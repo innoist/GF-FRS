@@ -1,0 +1,68 @@
+﻿@using FRS.Models.MenuModels
+@model FRS.Web.ViewModels.Common.MenuViewModel
+
+@{
+    Layout = null;
+}
+
+@{
+    if (Model.MenuRights != null)
+    {
+        foreach (MenuRight header in Model.MenuHeaders.ToList())
+        {
+
+            <li class="toActive" id="@header.Menu.MenuTitle">
+                <a href="javascript:;">
+                    <i class="@header.Menu.MenuImagePath"></i>
+                    <span class="title">
+                        @header.Menu.MenuTitle
+                    </span>
+                    <span class="toSelect"></span>
+                    <span class="arrow open"></span>
+                </a>
+                <ul class="sub-menu left-46" role="menu" id="@header.Menu.MenuTitle-sub-menu" style="overflow-y: auto">
+                    @{
+            if (Model.MenuRights.Any())
+            {
+                foreach (var menuRight in Model.MenuRights)
+                {
+                    foreach (var childMenu in menuRight.Menu.ParentItem)
+                    {
+                        if (childMenu.ParentItem_MenuId == header.Menu_MenuId)
+                        {
+                            <li class="@(Request.Url != null && Request.Url.ToString().Contains(childMenu.MenuTargetController + "/" + childMenu.MenuFunction) ? "active innerSelected" : "")">
+                                <a href="@Url.Action(childMenu.MenuFunction, childMenu.MenuTargetController)">
+                                    <i></i>
+                                    @childMenu.MenuTitle
+                                </a>
+                            </li>
+                        }
+                    }
+                }
+            }
+
+                    }
+                </ul>
+
+            </li>
+
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

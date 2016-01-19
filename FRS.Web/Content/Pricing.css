@@ -1,0 +1,413 @@
+﻿#tariffTypeBinding table thead tr .ttypesearchButton {
+  margin-left: 5px;
+}
+#tariffTypeBinding table thead tr .tariffTypeCode {
+  width: 10%;
+}
+#tariffTypeBinding table thead tr .tariffTypeName {
+  width: 13%;
+}
+#tariffTypeBinding table thead tr .pricingScheme {
+  width: 13%;
+}
+#tariffTypeBinding table thead tr .operation {
+  width: 17%;
+}
+#tariffTypeBinding table thead tr .measurementUnit {
+  width: 12%;
+}
+#tariffTypeBinding table thead tr .from {
+  width: 7%;
+}
+#tariffTypeBinding table thead tr .to {
+  width: 7%;
+}
+#tariffTypeBinding table thead tr .gracePeriod {
+  width: 7%;
+}
+#tariffTypeBinding table thead tr .effectiveDate {
+  width: 5%;
+}
+#tariffTypeBinding table thead tr .revision {
+  width: 5%;
+}
+#tariffTypeBinding #tariffTypeEditor {
+  margin-top: 15px;
+  /*.detailsContainer {
+            width: 100%;
+
+            .detailsHeaderSection {
+                float: left;
+                width: 85%;
+                margin-bottom: 20px;
+                margin-top: 10px;
+            }
+        }*/
+}
+#tariffRateBinding table thead tr .tarrifratecode {
+  width: 15%;
+}
+#tariffRateBinding table thead tr .tarrifrateName {
+  width: 15%;
+}
+#tariffRateBinding table thead tr .tarrifrateOperation {
+  width: 20%;
+}
+#tariffRateBinding table thead tr .tarrifrateType {
+  width: 14%;
+}
+#tariffRateBinding table thead tr .tarrifrateSEdate {
+  width: 35%;
+}
+#tariffRateBinding table thead tr .tarrifrateEFDate {
+  width: 35%;
+}
+#tariffRateBinding #tariffRateEditor {
+  margin-top: 15px;
+  /*.detailsContainer {
+            width: 100%;
+
+            .detailsHeaderSection {
+                float: left;
+                width: 85%;
+                margin-bottom: 20px;
+                margin-top: 10px;
+            }
+        }*/
+}
+#tariffRateBinding #tariffRateEditor .rateFilterTool {
+  margin-top: 15px;
+}
+#tariffRateBinding #tariffRateEditor table thead tr .hireGroupTh {
+  width: 12%;
+}
+#tariffRateBinding #tariffRateEditor table thead tr .make {
+  width: 12%;
+}
+#tariffRateBinding #tariffRateEditor table thead tr .model {
+  width: 12%;
+}
+#tariffRateBinding #tariffRateEditor table thead tr .category {
+  width: 12%;
+}
+#tariffRateBinding #tariffRateEditor table thead tr .modelYear {
+  width: 8%;
+}
+#tariffRateBinding #tariffRateEditor table thead tr .allowMileageTh {
+  width: 9%;
+}
+#tariffRateBinding #tariffRateEditor table thead tr .accessMileage {
+  width: 10%;
+}
+#tariffRateBinding #tariffRateEditor table thead tr .standardRate {
+  width: 8%;
+}
+#tariffRateBinding #tariffRateEditor table thead tr .startDateTh {
+  width: 8%;
+}
+#tariffRateBinding #tariffRateEditor table thead tr .endDateTh {
+  width: 7%;
+}
+#tariffRateBinding #tariffRateEditor table thead tr .revisionNumber {
+  width: 3%;
+}
+#tariffRateBinding #tariffRateEditor table thead tr .chckBox {
+  width: 3%;
+}
+#tariffRateBinding #tariffRateEditor table .excessMileageCharge {
+  width: 100%;
+}
+#tariffRateBinding #tariffRateEditor table .allowMileage {
+  width: 100%;
+}
+#tariffRateBinding #tariffRateEditor table .standardRt {
+  width: 100%;
+}
+#tariffRateBinding #tariffRateEditor table .startDate {
+  width: 100%;
+}
+#tariffRateBinding #tariffRateEditor table .endDate {
+  width: 100%;
+}
+#tariffRateBinding #tariffRateEditor #hgRateFilterIcon {
+  margin-left: 15px;
+}
+#tariffRateBinding #tariffRateEditor #rateHearderFilterSection {
+  margin-left: 15px;
+}
+#serviceRateBinding table thead tr .code {
+  width: 18%;
+}
+#serviceRateBinding table thead tr .name {
+  width: 18%;
+}
+#serviceRateBinding table thead tr .operation {
+  width: 21%;
+}
+#serviceRateBinding table thead tr .tariffType {
+  width: 18%;
+}
+#serviceRateBinding table thead tr .startDate {
+  width: 22%;
+}
+#serviceRateBinding #serviceRateEditor {
+  margin-top: 15px;
+}
+#serviceRateBinding #serviceRateEditor .detailsContainer {
+  width: 100%;
+}
+#serviceRateBinding #serviceRateEditor .detailsContainer .serviceRateTxtBox {
+  width: 70px;
+}
+#serviceRateBinding #serviceRateEditor .detailsContainer .startDateTxtBox {
+  width: 90px;
+}
+#serviceRateBinding #serviceRateEditor .detailsContainer table thead tr .srCode {
+  width: 20%;
+}
+#serviceRateBinding #serviceRateEditor .detailsContainer table thead tr .srName {
+  width: 20%;
+}
+#serviceRateBinding #serviceRateEditor .detailsContainer table thead tr .srType {
+  width: 20%;
+}
+#serviceRateBinding #serviceRateEditor .detailsContainer table thead tr .srRate {
+  width: 10%;
+}
+#serviceRateBinding #serviceRateEditor .detailsContainer table thead tr .srStartDateTh {
+  width: 8%;
+}
+#serviceRateBinding #serviceRateEditor .detailsContainer table thead tr .srRevisionNumber {
+  width: 2%;
+}
+#serviceRateBinding #serviceRateEditor .detailsContainer table thead tr .srCheckBox {
+  width: 2%;
+}
+#insuranceRateBinding table thead tr .IRCode {
+  width: 18%;
+}
+#insuranceRateBinding table thead tr .IRName {
+  width: 18%;
+}
+#insuranceRateBinding table thead tr .IROperation {
+  width: 22%;
+}
+#insuranceRateBinding table thead tr .IRType {
+  width: 18%;
+}
+#insuranceRateBinding table thead tr .IRDate {
+  width: 18%;
+}
+#insuranceRateBinding #insuranceRateEditor {
+  margin-top: 15px;
+}
+#insuranceRateBinding #insuranceRateEditor .detailsContainer {
+  width: 100%;
+  /*.detailsHeaderSection {
+                float: left;
+                width: 85%;
+                margin-bottom: 20px;
+                margin-top: 10px;
+            }*/
+}
+#insuranceRateBinding #insuranceRateEditor .detailsContainer table thead tr .insuranceType {
+  width: 14%;
+}
+#insuranceRateBinding #insuranceRateEditor .detailsContainer table thead tr .hireGroup {
+  width: 14%;
+}
+#insuranceRateBinding #insuranceRateEditor .detailsContainer table thead tr .make {
+  width: 14%;
+}
+#insuranceRateBinding #insuranceRateEditor .detailsContainer table thead tr .model {
+  width: 14%;
+}
+#insuranceRateBinding #insuranceRateEditor .detailsContainer table thead tr .category {
+  width: 14%;
+}
+#insuranceRateBinding #insuranceRateEditor .detailsContainer table thead tr .modelYear {
+  width: 10%;
+}
+#insuranceRateBinding #insuranceRateEditor .detailsContainer table thead tr .insuranceRateTh {
+  width: 8%;
+}
+#insuranceRateBinding #insuranceRateEditor .detailsContainer table thead tr .startDateTh {
+  width: 8%;
+}
+#insuranceRateBinding #insuranceRateEditor .detailsContainer table thead tr .revisionNumber {
+  width: 2%;
+}
+#insuranceRateBinding #insuranceRateEditor .detailsContainer table thead tr .chckBox {
+  width: 2%;
+}
+#insuranceRateBinding #insuranceRateEditor .detailsContainer table .insuranceRateIns {
+  width: 70px;
+}
+#insuranceRateBinding #insuranceRateEditor .detailsContainer table .startDateIns {
+  width: 90px;
+}
+#additionalDriverChargeBinding table thead tr .code {
+  width: 18%;
+}
+#additionalDriverChargeBinding table thead tr .codeName {
+  width: 18%;
+}
+#additionalDriverChargeBinding table thead tr .rate {
+  width: 22%;
+}
+#additionalDriverChargeBinding table thead tr .operation {
+  width: 18%;
+}
+#additionalDriverChargeBinding table thead tr .company {
+  width: 18%;
+}
+#additionalDriverChargeBinding table thead tr .date {
+  width: 18%;
+}
+#additionalDriverChargeBinding #additionalDriverChargeEditor {
+  margin-top: 15px;
+  /*.detailsContainer {
+            width: 100%;
+
+            .detailsHeaderSection {
+                float: left;
+                width: 85%;
+                margin-bottom: 20px;
+                margin-top: 10px;
+            }
+        }*/
+}
+#additionalChargeBinding table thead tr .Code {
+  width: 25%;
+}
+#additionalChargeBinding table thead tr .Name {
+  width: 25%;
+}
+#additionalChargeBinding table thead tr .IsEditable {
+  width: 22%;
+}
+#additionalChargeBinding table thead tr .Description {
+  width: 40%;
+}
+#additionalChargeBinding #additionalChargeEditor {
+  margin-top: 15px;
+  /*.detailsContainer {
+            width: 100%;
+
+            .detailsHeaderSection {
+                float: left;
+                width: 85%;
+                margin-bottom: 20px;
+                margin-top: 10px;
+            }
+        }*/
+}
+#additionalChargeBinding #additionalChargeEditor .addToBtn {
+  float: right;
+  margin-right: 30px;
+}
+#additionalChargeBinding #additionalChargeEditor .btnAdditionalChargeUpdate {
+  float: right;
+  margin-right: 4px;
+}
+#additionalChargeBinding #additionalChargeEditor .additionalChargeWell {
+  margin-top: 30px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+#chaufferChargeBinding table thead tr .Code {
+  width: 10%;
+}
+#chaufferChargeBinding table thead tr .Name {
+  width: 11%;
+}
+#chaufferChargeBinding table thead tr .Description {
+  width: 12%;
+}
+#chaufferChargeBinding table thead tr .Company {
+  width: 13%;
+}
+#chaufferChargeBinding table thead tr .Operation {
+  width: 17%;
+}
+#chaufferChargeBinding table thead tr .TariffType {
+  width: 17%;
+}
+#chaufferChargeBinding table thead tr .StartDate {
+  width: 15%;
+}
+#chaufferChargeBinding #chaufferChargeEditor {
+  margin-top: 15px;
+  /*.detailsContainer {
+            width: 100%;
+
+            .detailsHeaderSection {
+                float: left;
+                width: 85%;
+                margin-bottom: 20px;
+                margin-top: 10px;
+            }
+        }*/
+}
+#chaufferChargeBinding #chaufferChargeEditor .addToBtn {
+  float: right;
+  margin-right: 30px;
+}
+#chaufferChargeBinding #chaufferChargeEditor .btnAdditionalChargeUpdate {
+  float: right;
+  margin-right: 4px;
+}
+#chaufferChargeBinding #chaufferChargeEditor .additionalChargeWell {
+  margin-top: 30px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+#seasonalDiscountBinding table thead tr .Code {
+  width: 8%;
+}
+#seasonalDiscountBinding table thead tr .Name {
+  width: 12%;
+}
+#seasonalDiscountBinding table thead tr .Company {
+  width: 14%;
+}
+#seasonalDiscountBinding table thead tr .Operation {
+  width: 18%;
+}
+#seasonalDiscountBinding table thead tr .TariffType {
+  width: 18%;
+}
+#seasonalDiscountBinding table thead tr .StartDate {
+  width: 14%;
+}
+#seasonalDiscountBinding table thead tr .EndDate {
+  width: 13%;
+}
+#seasonalDiscountBinding #seasonalDiscountEditor {
+  margin-top: 15px;
+  /*.detailsContainer {
+            width: 100%;
+
+            .detailsHeaderSection {
+                float: left;
+                width: 85%;
+                margin-bottom: 20px;
+                margin-top: 10px;
+            }
+        }*/
+}
+#seasonalDiscountBinding #seasonalDiscountEditor .addToBtn {
+  float: right;
+  margin-right: 30px;
+}
+#seasonalDiscountBinding #seasonalDiscountEditor .btnAdditionalChargeUpdate {
+  float: right;
+  margin-right: 4px;
+}
+#seasonalDiscountBinding #seasonalDiscountEditor .seasinalDiscountWell {
+  margin-top: 30px;
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-bottom: 10px;
+}
+/*# sourceMappingURL=Pricing.css.map */

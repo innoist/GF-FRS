@@ -1,0 +1,19 @@
+﻿<div id="rentalAgreementSearchBinding" tabindex="-1" role="dialog" data-bind="css: { 'modal fade': showInDialog }" style="display: none;">
+    <div class="modal-dialog" style="margin-left: 50px; margin-right: 50px">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" id="myModalLabel">@Cares.Web.Resources.RentalAgreement.RentalAgreement.RentalAgreementReport_Title</h2>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="well">
+                        @Html.Partial("~/Areas/Common/Views/Shared/_RentalAgreementReport.cshtml")
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn" data-dismiss="modal">@FRS.Web.Resources.Shared.Common.Close</button>
+            </div>
+        </div>
+    </div>
+</div>

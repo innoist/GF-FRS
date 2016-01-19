@@ -1,0 +1,1602 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{426080DD-D8CB-49F2-9645-DFD962ADFFDF}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>FRS.Web</RootNamespace>
+    <AssemblyName>FRS.Web</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort>44304</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication>enabled</IISExpressAnonymousAuthentication>
+    <IISExpressWindowsAuthentication>disabled</IISExpressWindowsAuthentication>
+    <IISExpressUseClassicPipelineMode>false</IISExpressUseClassicPipelineMode>
+    <TypeScriptToolsVersion>1.0</TypeScriptToolsVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <FilesToIncludeForPublish>OnlyFilesToRunTheApp</FilesToIncludeForPublish>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Bytescout.BarCode">
+      <HintPath>..\packages\Bytescout.BarCode.4.31.0.784\lib\net45\Bytescout.BarCode.dll</HintPath>
+    </Reference>
+    <Reference Include="Bytescout.BarCode.WPF">
+      <HintPath>..\packages\Bytescout.BarCode.4.31.0.784\lib\net45\Bytescout.BarCode.WPF.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Bytescout.BarCodeReader">
+      <HintPath>..\packages\Bytescout.BarCode.Reader.8.20.0.1319\lib\net45\Bytescout.BarCodeReader.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Core, Version=3.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Castle.Core.3.0.0.4001\lib\net40-client\Castle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.1.0\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.1.0\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.1.0\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Owin.2.1.0\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.2.1.0\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Owin.Security.2.1.0\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.2.1.0\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Facebook, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Owin.Security.Facebook.2.1.0\lib\net45\Microsoft.Owin.Security.Facebook.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Google, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Owin.Security.Google.2.1.0\lib\net45\Microsoft.Owin.Security.Google.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.MicrosoftAccount, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Owin.Security.MicrosoftAccount.2.1.0\lib\net45\Microsoft.Owin.Security.MicrosoftAccount.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.2.1.0\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Twitter, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Owin.Security.Twitter.2.1.0\lib\net45\Microsoft.Owin.Security.Twitter.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common">
+      <HintPath>..\packages\EnterpriseLibrary.Common.6.0.1304.0\lib\NET45\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Data">
+      <HintPath>..\packages\EnterpriseLibrary.Data.6.0.1304.0\lib\NET45\Microsoft.Practices.EnterpriseLibrary.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Logging">
+      <HintPath>..\packages\EnterpriseLibrary.Logging.6.0.1304.0\lib\NET45\Microsoft.Practices.EnterpriseLibrary.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Logging.Database">
+      <HintPath>..\packages\EnterpriseLibrary.Logging.Database.6.0.1304.0\lib\NET45\Microsoft.Practices.EnterpriseLibrary.Logging.Database.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation">
+      <HintPath>..\packages\CommonServiceLocator.1.2\lib\portable-windows8+net40+sl5+windowsphone8\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity">
+      <HintPath>..\packages\Unity.3.5.1404.0\lib\net45\Microsoft.Practices.Unity.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Configuration">
+      <HintPath>..\packages\Unity.3.5.1404.0\lib\net45\Microsoft.Practices.Unity.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Mvc, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Unity.Mvc.3.5.1404.0\lib\net45\Microsoft.Practices.Unity.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.RegistrationByConvention">
+      <HintPath>..\packages\Unity.3.5.1404.0\lib\net45\Microsoft.Practices.Unity.RegistrationByConvention.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Report.Viewer.11.0.0.0\lib\net\Microsoft.ReportViewer.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Report.Viewer.11.0.0.0\lib\net\Microsoft.ReportViewer.ProcessingObjectModel.DLL</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Report.Viewer.11.0.0.0\lib\net\Microsoft.ReportViewer.WebForms.DLL</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.6\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Data">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Data.Linq">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.4.0.30506.0\lib\net40\System.Net.Http.Formatting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.DynamicData">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Entity">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.ApplicationServices">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Core">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.2\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.4.0.30506.0\lib\net40\System.Web.Http.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.2\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Providers">
+      <HintPath>..\packages\Microsoft.AspNet.Providers.Core.2.0.0\lib\net40\System.Web.Providers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.2\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.2\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.2\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.2\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Extensions">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Abstractions">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Routing">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Configuration">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Services">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.EnterpriseServices">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="WebActivatorEx, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7b26dc2a43f6a0d4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\WebActivatorEx.2.0\lib\net40\WebActivatorEx.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\IdentityConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Areas\Angular\AngularAreaRegistration.cs" />
+    <Compile Include="Areas\Angular\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Api\ApiAreaRegistration.cs" />
+    <Compile Include="Areas\Api\Controllers\EmployeeController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Areas\Api\Controllers\LoadController.cs" />
+    <Compile Include="Areas\Common\CommonAreaRegistration.cs" />
+    <Compile Include="Areas\SampleAngular\Controllers\HomeController.cs" />
+    <Compile Include="Areas\SampleAngular\SampleAngularAreaRegistration.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\MenuController.cs" />
+    <Compile Include="Controllers\RolesAdminController.cs" />
+    <Compile Include="Controllers\UnauthorizedRequestController.cs" />
+    <Compile Include="Controllers\UserAdminController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Helper\CultureHelper.cs" />
+    <Compile Include="ModelMappers\CaresUserClaimsMapper.cs" />
+    <Compile Include="ModelMappers\EmployeeMapper.cs" />
+    <Compile Include="ModelMappers\LoadMapper.cs" />
+    <Compile Include="Models\Employee.cs" />
+    <Compile Include="Models\EmployeeSearchRequestResponse.cs" />
+    <Compile Include="Models\Load.cs" />
+    <Compile Include="Models\LoadSearchRequestResponse.cs" />
+    <Compile Include="Models\MenuRight.cs" />
+    <Compile Include="Models\UserManagement.cs" />
+    <Compile Include="Models\UserModelForEditUser.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources\Shared\Common.ar.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Common.ar.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Shared\Common.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Common.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\User\User.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>User.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Startup.cs" />
+    <Compile Include="TypeRegistrations.cs" />
+    <Compile Include="ViewModels\Common\MenuViewModel.cs" />
+    <Compile Include="ViewModels\Common\MessageViewModel.cs" />
+    <Compile Include="ViewModels\RightsManagement\RightsManagementViewModel.cs" />
+    <Compile Include="Views\Shared\Reports.Master.cs">
+      <DependentUpon>Reports.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Shared\Reports.Master.designer.cs">
+      <DependentUpon>Reports.Master</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Angular\Scripts\quiz-controller.js" />
+    <Content Include="Areas\Angular\Scripts\quiz-dataService.js" />
+    <Content Include="Areas\Common\Scripts\clientSidePagination.js" />
+    <Content Include="Areas\Common\Scripts\confirmation.view.js" />
+    <Content Include="Areas\Common\Scripts\confirmation.viewModel.js" />
+    <Content Include="Areas\Common\Scripts\pagination.js" />
+    <Content Include="Areas\Common\Scripts\raReport.view.js" />
+    <Content Include="Areas\Common\Scripts\raReport.viewModel.js" />
+    <Content Include="Areas\Common\Scripts\vehicleCondition.view.js" />
+    <Content Include="Areas\Common\Scripts\vehicleCondition.viewModel.js" />
+    <Content Include="Areas\SampleAngular\Scripts\sampleAngularAppController.js" />
+    <Content Include="Areas\SampleAngular\Scripts\sampleAngularAppDataService.js" />
+    <Content Include="asadtest.html" />
+    <Content Include="Content\agreementDeletedEmailTemplate.html" />
+    <Content Include="Content\agreementOpenedEmailTemplate.html" />
+    <Content Include="Content\Area.css">
+      <DependentUpon>Area.less</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Area.min.css">
+      <DependentUpon>Area.css</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\bootstrap-rtl.css" />
+    <Content Include="Content\bootstrap-rtl.min.css">
+      <DependentUpon>bootstrap-rtl.css</DependentUpon>
+    </Content>
+    <Content Include="Content\bootstrap-switch\bootstrap2\bootstrap-switch.css" />
+    <Content Include="Content\bootstrap-switch\bootstrap2\bootstrap-switch.min.css" />
+    <Content Include="Content\bootstrap-switch\bootstrap3\bootstrap-switch.css" />
+    <Content Include="Content\bootstrap-switch\bootstrap3\bootstrap-switch.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\BusinessLegalStatus.css">
+      <DependentUpon>BusinessLegalStatus.less</DependentUpon>
+    </Content>
+    <Content Include="Content\BusinessLegalStatus.min.css">
+      <DependentUpon>BusinessLegalStatus.css</DependentUpon>
+    </Content>
+    <Content Include="Content\BusinessPartnerMainType.css">
+      <DependentUpon>BusinessPartnerMainType.less</DependentUpon>
+    </Content>
+    <Content Include="Content\BusinessPartnerMainType.min.css">
+      <DependentUpon>BusinessPartnerMainType.css</DependentUpon>
+    </Content>
+    <Content Include="Content\BusinessPartnerRelationshipType.css">
+      <DependentUpon>BusinessPartnerRelationshipType.less</DependentUpon>
+    </Content>
+    <Content Include="Content\BusinessPartnerRelationshipType.min.css">
+      <DependentUpon>BusinessPartnerRelationshipType.css</DependentUpon>
+    </Content>
+    <Content Include="Content\BusinessPartnerSubType.css">
+      <DependentUpon>BusinessPartnerSubType.less</DependentUpon>
+    </Content>
+    <Content Include="Content\BusinessPartnerSubType.min.css">
+      <DependentUpon>BusinessPartnerSubType.css</DependentUpon>
+    </Content>
+    <Content Include="Content\BusinessSegment.css">
+      <DependentUpon>BusinessSegment.less</DependentUpon>
+    </Content>
+    <Content Include="Content\BusinessSegment.min.css">
+      <DependentUpon>BusinessSegment.css</DependentUpon>
+    </Content>
+    <Content Include="Content\Calendar\jquery.calendars.picker.css" />
+    <Content Include="Content\City.css">
+      <DependentUpon>City.less</DependentUpon>
+    </Content>
+    <Content Include="Content\City.min.css">
+      <DependentUpon>City.css</DependentUpon>
+    </Content>
+    <Content Include="Content\Company.css">
+      <DependentUpon>Company.less</DependentUpon>
+    </Content>
+    <Content Include="Content\Company.min.css">
+      <DependentUpon>Company.css</DependentUpon>
+    </Content>
+    <Content Include="Content\CreditLimit.css">
+      <DependentUpon>CreditLimit.less</DependentUpon>
+    </Content>
+    <Content Include="Content\CreditLimit.min.css">
+      <DependentUpon>CreditLimit.css</DependentUpon>
+    </Content>
+    <Content Include="Content\CSS\architecture.css" />
+    <Content Include="Content\CSS\architecture.min.css">
+      <DependentUpon>architecture.css</DependentUpon>
+    </Content>
+    <Content Include="Content\CSS\components.css" />
+    <Content Include="Content\CSS\Global\componentsGlobal.css" />
+    <Content Include="Content\CSS\Global\plugins.css" />
+    <Content Include="Content\CSS\Global\Plugin\font-awesome\css\font-awesome.css" />
+    <Content Include="Content\CSS\Global\Plugin\font-awesome\css\font-awesome.min.css" />
+    <Content Include="Content\CSS\Global\Plugin\font-awesome\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\CSS\Global\Plugin\font-awesome\fonts\temp\fontawesome-webfont.svg" />
+    <Content Include="Content\CSS\Global\Plugin\simple-line-icons\fonts\Simple-Line-Icons.dev.svg" />
+    <Content Include="Content\CSS\Global\Plugin\simple-line-icons\fonts\Simple-Line-Icons.svg" />
+    <Content Include="Content\CSS\Global\Plugin\simple-line-icons\icons-lte-ie7.js" />
+    <Content Include="Content\CSS\Global\Plugin\simple-line-icons\License.txt" />
+    <Content Include="Content\CSS\Global\Plugin\simple-line-icons\Readme.txt" />
+    <Content Include="Content\CSS\Global\Plugin\simple-line-icons\simple-line-icons.css" />
+    <Content Include="Content\CSS\Global\Plugin\simple-line-icons\simple-line-icons.min.css" />
+    <Content Include="Content\CSS\layout.css" />
+    <Content Include="Content\CSS\light.css" />
+    <Content Include="Content\CSS\PagedList.css" />
+    <Content Include="Content\CSS\PagedList.min.css">
+      <DependentUpon>PagedList.css</DependentUpon>
+    </Content>
+    <Content Include="Content\CSS\Pages\about-us.css" />
+    <Content Include="Content\CSS\Pages\blog.css" />
+    <Content Include="Content\CSS\Pages\coming-soon.css" />
+    <Content Include="Content\CSS\Pages\error.css" />
+    <Content Include="Content\CSS\Pages\image-crop.css" />
+    <Content Include="Content\CSS\Pages\inbox.css" />
+    <Content Include="Content\CSS\Pages\invoice.css" />
+    <Content Include="Content\CSS\Pages\lock.css" />
+    <Content Include="Content\CSS\Pages\login-soft.css" />
+    <Content Include="Content\CSS\Pages\login.css" />
+    <Content Include="Content\CSS\Pages\news.css" />
+    <Content Include="Content\CSS\Pages\portfolio.css" />
+    <Content Include="Content\CSS\Pages\pricing-table.css" />
+    <Content Include="Content\CSS\Pages\profile.css" />
+    <Content Include="Content\CSS\Pages\search.css" />
+    <Content Include="Content\CSS\Pages\tasks.css" />
+    <Content Include="Content\CSS\Pages\timeline.css" />
+    <Content Include="Content\CSS\spinner.gif" />
+    <Content Include="Content\DesignationGrade.css">
+      <DependentUpon>DesignationGrade.less</DependentUpon>
+    </Content>
+    <Content Include="Content\DesignationGrade.min.css">
+      <DependentUpon>DesignationGrade.css</DependentUpon>
+    </Content>
+    <Content Include="Content\DiscountSubType.css">
+      <DependentUpon>DiscountSubType.less</DependentUpon>
+    </Content>
+    <Content Include="Content\DiscountSubType.min.css">
+      <DependentUpon>DiscountSubType.css</DependentUpon>
+    </Content>
+    <Content Include="Content\DiscountType.css">
+      <DependentUpon>DiscountType.less</DependentUpon>
+    </Content>
+    <Content Include="Content\DiscountType.min.css">
+      <DependentUpon>DiscountType.css</DependentUpon>
+    </Content>
+    <Content Include="Content\Document.css">
+      <DependentUpon>Document.less</DependentUpon>
+    </Content>
+    <Content Include="Content\Document.min.css">
+      <DependentUpon>Document.css</DependentUpon>
+    </Content>
+    <Content Include="Content\DocumentGroup.css">
+      <DependentUpon>DocumentGroup.less</DependentUpon>
+    </Content>
+    <Content Include="Content\DocumentGroup.min.css">
+      <DependentUpon>DocumentGroup.css</DependentUpon>
+    </Content>
+    <Content Include="Content\EmployeeManagement.css">
+      <DependentUpon>EmployeeManagement.less</DependentUpon>
+    </Content>
+    <Content Include="Content\EmployeeManagement.min.css">
+      <DependentUpon>EmployeeManagement.css</DependentUpon>
+    </Content>
+    <Content Include="Content\EmpStatus.css">
+      <DependentUpon>EmpStatus.less</DependentUpon>
+    </Content>
+    <Content Include="Content\EmpStatus.min.css">
+      <DependentUpon>EmpStatus.css</DependentUpon>
+    </Content>
+    <Content Include="Content\Fleet.css">
+      <DependentUpon>Fleet.less</DependentUpon>
+    </Content>
+    <Content Include="Content\Fleet.min.css">
+      <DependentUpon>Fleet.css</DependentUpon>
+    </Content>
+    <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\Images\arrow-down-small.png" />
+    <Content Include="Content\Images\arrow-up-small.png" />
+    <Content Include="Content\Images\btn_pdf.jpg" />
+    <Content Include="Content\Images\CarConditionNarrow.JPG" />
+    <Content Include="Content\Images\cares-logo-inv.png" />
+    <Content Include="Content\Images\cares-logo.png" />
+    <Content Include="Content\Images\checklist_in.png" />
+    <Content Include="Content\Images\checklist_out.png" />
+    <Content Include="Content\Images\returnedStamp.jpg" />
+    <Content Include="Content\Images\vehicleCondition1.jpg" />
+    <Content Include="Content\Images\vehicleCondition.png" />
+    <Content Include="Content\Images\vehiclemovement.png" />
+    <Content Include="Content\Images\logo-big.png" />
+    <Content Include="Content\Images\logo-invert.png" />
+    <Content Include="Content\Images\logo.png" />
+    <Content Include="Content\Images\menu-toggler.png" />
+    <Content Include="Content\Images\portlet-collapse-icon-white.png" />
+    <Content Include="Content\Images\portlet-collapse-icon.png" />
+    <Content Include="Content\Images\portlet-config-icon-white.png" />
+    <Content Include="Content\Images\portlet-config-icon.png" />
+    <Content Include="Content\Images\portlet-expand-icon-white.png" />
+    <Content Include="Content\Images\portlet-expand-icon.png" />
+    <Content Include="Content\Images\portlet-reload-icon-white.png" />
+    <Content Include="Content\Images\portlet-reload-icon.png" />
+    <Content Include="Content\Images\portlet-remove-icon-white.png" />
+    <Content Include="Content\Images\portlet-remove-icon.png" />
+    <Content Include="Content\Images\remove-icon-small.png" />
+    <Content Include="Content\Images\search_icon_light.png" />
+    <Content Include="Content\Images\sidebar-menu-arrow-reverse.png" />
+    <Content Include="Content\Images\sidebar-menu-arrow-right.png" />
+    <Content Include="Content\Images\sidebar-menu-arrow.png" />
+    <Content Include="Content\Images\sidebar_arrow_icon_light.png" />
+    <Content Include="Content\Images\sidebar_arrow_icon_light_rtl.png" />
+    <Content Include="Content\Images\sidebar_inline_toggler_icon_blue.jpg" />
+    <Content Include="Content\Images\sidebar_inline_toggler_icon_darkblue.jpg" />
+    <Content Include="Content\Images\sidebar_inline_toggler_icon_default.jpg" />
+    <Content Include="Content\Images\sidebar_inline_toggler_icon_grey.jpg" />
+    <Content Include="Content\Images\sidebar_inline_toggler_icon_light.jpg" />
+    <Content Include="Content\Images\sidebar_inline_toggler_icon_light2.jpg" />
+    <Content Include="Content\Images\sidebar_toggler_icon_blue.png" />
+    <Content Include="Content\Images\sidebar_toggler_icon_darkblue.png" />
+    <Content Include="Content\Images\sidebar_toggler_icon_default.png" />
+    <Content Include="Content\Images\sidebar_toggler_icon_grey.png" />
+    <Content Include="Content\Images\sidebar_toggler_icon_light.png" />
+    <Content Include="Content\Images\sidebar_toggler_icon_light2.png" />
+    <Content Include="Content\Images\insurance_checklist.png" />
+    <Content Include="Content\Images\syncfusion-icons-white.png" />
+    <Content Include="Content\Images\syncfusion-icons.png" />
+    <Content Include="Content\Images\up-arrow-small.png" />
+    <Content Include="Content\Images\arrow-down.png" />
+    <Content Include="Content\Images\arrow-up.png" />
+    <Content Include="Content\Images\delete.png" />
+    <Content Include="Content\Images\edit.png" />
+    <Content Include="Content\Images\spinner.gif" />
+    <Content Include="Content\Images\vehicle_movment.png" />
+    <Content Include="Content\InsuranceType.css">
+      <DependentUpon>InsuranceType.less</DependentUpon>
+    </Content>
+    <Content Include="Content\InsuranceType.min.css">
+      <DependentUpon>InsuranceType.css</DependentUpon>
+    </Content>
+    <Content Include="Content\JobType.css">
+      <DependentUpon>JobType.less</DependentUpon>
+    </Content>
+    <Content Include="Content\JobType.min.css">
+      <DependentUpon>JobType.css</DependentUpon>
+    </Content>
+    <Content Include="Content\jquery-ui-1.11.0.min.css" />
+    <Content Include="Content\jquery-ui-timepicker-addon.css" />
+    <Content Include="Content\MainSite.css">
+      <DependentUpon>MainSite.less</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\MainSite.min.css">
+      <DependentUpon>MainSite.css</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\MaintenanceType.css">
+      <DependentUpon>MaintenanceType.less</DependentUpon>
+    </Content>
+    <Content Include="Content\MaintenanceType.min.css">
+      <DependentUpon>MaintenanceType.css</DependentUpon>
+    </Content>
+    <Content Include="Content\MaintenanceTypeGroup.css">
+      <DependentUpon>MaintenanceTypeGroup.less</DependentUpon>
+    </Content>
+    <Content Include="Content\MaintenanceTypeGroup.min.css">
+      <DependentUpon>MaintenanceTypeGroup.css</DependentUpon>
+    </Content>
+    <Content Include="Content\MarketingChannel.css">
+      <DependentUpon>MarketingChannel.less</DependentUpon>
+    </Content>
+    <Content Include="Content\MarketingChannel.min.css">
+      <DependentUpon>MarketingChannel.css</DependentUpon>
+    </Content>
+    <Content Include="Content\ng-table.css" />
+    <Content Include="Content\NrtType.css">
+      <DependentUpon>NrtType.less</DependentUpon>
+    </Content>
+    <Content Include="Content\NrtType.min.css">
+      <DependentUpon>NrtType.css</DependentUpon>
+    </Content>
+    <Content Include="Content\OccupationType.css">
+      <DependentUpon>OccupationType.less</DependentUpon>
+    </Content>
+    <Content Include="Content\OccupationType.min.css">
+      <DependentUpon>OccupationType.css</DependentUpon>
+    </Content>
+    <Content Include="Content\odometer-theme-car.css" />
+    <Content Include="Content\Operation.css">
+      <DependentUpon>Operation.less</DependentUpon>
+    </Content>
+    <Content Include="Content\Operation.min.css">
+      <DependentUpon>Operation.css</DependentUpon>
+    </Content>
+    <Content Include="Content\PagedList.css" />
+    <Content Include="Content\PagedList.min.css">
+      <DependentUpon>PagedList.css</DependentUpon>
+    </Content>
+    <Content Include="Content\RatingType.css">
+      <DependentUpon>RatingType.less</DependentUpon>
+    </Content>
+    <Content Include="Content\RatingType.min.css">
+      <DependentUpon>RatingType.css</DependentUpon>
+    </Content>
+    <Content Include="Content\Region.css">
+      <DependentUpon>Region.less</DependentUpon>
+    </Content>
+    <Content Include="Content\Region.min.css">
+      <DependentUpon>Region.css</DependentUpon>
+    </Content>
+    <Content Include="Content\RentalAgreement.css">
+      <DependentUpon>RentalAgreement.less</DependentUpon>
+    </Content>
+    <Content Include="Content\Pricing.css">
+      <DependentUpon>Pricing.less</DependentUpon>
+    </Content>
+    <Content Include="Content\Pricing.min.css">
+      <DependentUpon>Pricing.css</DependentUpon>
+    </Content>
+    <Content Include="Content\RentalAgreement.min.css">
+      <DependentUpon>RentalAgreement.css</DependentUpon>
+    </Content>
+    <Content Include="Content\ServiceItem.css">
+      <DependentUpon>ServiceItem.less</DependentUpon>
+    </Content>
+    <Content Include="Content\ServiceItem.min.css">
+      <DependentUpon>ServiceItem.css</DependentUpon>
+    </Content>
+    <Content Include="Content\ServiceType.css">
+      <DependentUpon>ServiceType.less</DependentUpon>
+    </Content>
+    <Content Include="Content\ServiceType.min.css">
+      <DependentUpon>ServiceType.css</DependentUpon>
+    </Content>
+    <Content Include="Content\Site.min.css">
+      <DependentUpon>Site.css</DependentUpon>
+    </Content>
+    <Content Include="Content\SubRegion.css">
+      <DependentUpon>SubRegion.less</DependentUpon>
+    </Content>
+    <Content Include="Content\SubRegion.min.css">
+      <DependentUpon>SubRegion.css</DependentUpon>
+    </Content>
+    <Content Include="Content\themes\base\images\animated-overlay.gif" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\jquery-ui.css" />
+    <Content Include="Content\themes\base\jquery-ui.min.css">
+      <DependentUpon>jquery-ui.css</DependentUpon>
+    </Content>
+    <Content Include="Content\themes\base\jquery.ui.accordion.css" />
+    <Content Include="Content\themes\base\jquery.ui.accordion.min.css">
+      <DependentUpon>jquery.ui.accordion.css</DependentUpon>
+    </Content>
+    <Content Include="Content\themes\base\jquery.ui.all.css" />
+    <Content Include="Content\themes\base\jquery.ui.all.min.css">
+      <DependentUpon>jquery.ui.all.css</DependentUpon>
+    </Content>
+    <Content Include="Content\themes\base\jquery.ui.autocomplete.css" />
+    <Content Include="Content\themes\base\jquery.ui.autocomplete.min.css">
+      <DependentUpon>jquery.ui.autocomplete.css</DependentUpon>
+    </Content>
+    <Content Include="Content\themes\base\jquery.ui.base.css" />
+    <Content Include="Content\themes\base\jquery.ui.base.min.css">
+      <DependentUpon>jquery.ui.base.css</DependentUpon>
+    </Content>
+    <Content Include="Content\themes\base\jquery.ui.button.css" />
+    <Content Include="Content\themes\base\jquery.ui.button.min.css">
+      <DependentUpon>jquery.ui.button.css</DependentUpon>
+    </Content>
+    <Content Include="Content\themes\base\jquery.ui.core.css" />
+    <Content Include="Content\themes\base\jquery.ui.core.min.css">
+      <DependentUpon>jquery.ui.core.css</DependentUpon>
+    </Content>
+    <Content Include="Content\themes\base\jquery.ui.datepicker.css" />
+    <Content Include="Content\themes\base\jquery.ui.datepicker.min.css">
+      <DependentUpon>jquery.ui.datepicker.css</DependentUpon>
+    </Content>
+    <Content Include="Content\themes\base\jquery.ui.dialog.css" />
+    <Content Include="Content\themes\base\jquery.ui.dialog.min.css">
+      <DependentUpon>jquery.ui.dialog.css</DependentUpon>
+    </Content>
+    <Content Include="Content\themes\base\jquery.ui.menu.css" />
+    <Content Include="Content\themes\base\jquery.ui.menu.min.css">
+      <DependentUpon>jquery.ui.menu.css</DependentUpon>
+    </Content>
+    <Content Include="Content\themes\base\jquery.ui.progressbar.css" />
+    <Content Include="Content\themes\base\jquery.ui.progressbar.min.css">
+      <DependentUpon>jquery.ui.progressbar.css</DependentUpon>
+    </Content>
+    <Content Include="Content\themes\base\jquery.ui.resizable.css" />
+    <Content Include="Content\themes\base\jquery.ui.resizable.min.css">
+      <DependentUpon>jquery.ui.resizable.css</DependentUpon>
+    </Content>
+    <Content Include="Content\themes\base\jquery.ui.selectable.css" />
+    <Content Include="Content\themes\base\jquery.ui.selectable.min.css">
+      <DependentUpon>jquery.ui.selectable.css</DependentUpon>
+    </Content>
+    <Content Include="Content\themes\base\jquery.ui.slider.css" />
+    <Content Include="Content\themes\base\jquery.ui.slider.min.css">
+      <DependentUpon>jquery.ui.slider.css</DependentUpon>
+    </Content>
+    <Content Include="Content\themes\base\jquery.ui.spinner.css" />
+    <Content Include="Content\themes\base\jquery.ui.spinner.min.css">
+      <DependentUpon>jquery.ui.spinner.css</DependentUpon>
+    </Content>
+    <Content Include="Content\themes\base\jquery.ui.tabs.css" />
+    <Content Include="Content\themes\base\jquery.ui.tabs.min.css">
+      <DependentUpon>jquery.ui.tabs.css</DependentUpon>
+    </Content>
+    <Content Include="Content\themes\base\jquery.ui.theme.css" />
+    <Content Include="Content\themes\base\jquery.ui.theme.min.css">
+      <DependentUpon>jquery.ui.theme.css</DependentUpon>
+    </Content>
+    <Content Include="Content\themes\base\jquery.ui.tooltip.css" />
+    <Content Include="Content\themes\base\jquery.ui.tooltip.min.css">
+      <DependentUpon>jquery.ui.tooltip.css</DependentUpon>
+    </Content>
+    <Content Include="Content\themes\base\minified\images\animated-overlay.gif" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\minified\jquery-ui.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.accordion.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.autocomplete.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.button.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.core.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.datepicker.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.dialog.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.menu.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.progressbar.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.resizable.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.selectable.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.slider.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.spinner.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.tooltip.min.css" />
+    <Content Include="Content\OrgGroup.css">
+      <DependentUpon>OrgGroup.less</DependentUpon>
+    </Content>
+    <Content Include="Content\OrgGroup.min.css">
+      <DependentUpon>OrgGroup.css</DependentUpon>
+    </Content>
+    <Content Include="Content\Designation.css">
+      <DependentUpon>Designation.less</DependentUpon>
+    </Content>
+    <Content Include="Content\Designation.min.css">
+      <DependentUpon>Designation.css</DependentUpon>
+    </Content>
+    <Content Include="Content\toastr.css" />
+    <Content Include="Content\toastr.min.css" />
+    <Content Include="Content\Vehicle.css">
+      <DependentUpon>Vehicle.less</DependentUpon>
+    </Content>
+    <Content Include="Content\VehicleCategory.css">
+      <DependentUpon>VehicleCategory.less</DependentUpon>
+    </Content>
+    <Content Include="Content\VehicleCategory.min.css">
+      <DependentUpon>VehicleCategory.css</DependentUpon>
+    </Content>
+    <Content Include="Content\VehicleCondition.css">
+      <DependentUpon>VehicleCondition.less</DependentUpon>
+    </Content>
+    <Content Include="Content\VehicleCheckList.css">
+      <DependentUpon>VehicleCheckList.less</DependentUpon>
+    </Content>
+    <Content Include="Content\VehicleCheckList.min.css">
+      <DependentUpon>VehicleCheckList.css</DependentUpon>
+    </Content>
+    <Content Include="Content\VehicleMake.css">
+      <DependentUpon>VehicleMake.less</DependentUpon>
+    </Content>
+    <Content Include="Content\VehicleMake.min.css">
+      <DependentUpon>VehicleMake.css</DependentUpon>
+    </Content>
+    <Content Include="Content\VehicleModel.css">
+      <DependentUpon>VehicleModel.less</DependentUpon>
+    </Content>
+    <Content Include="Content\VehicleModel.min.css">
+      <DependentUpon>VehicleModel.css</DependentUpon>
+    </Content>
+    <Content Include="Content\VehicleStatus.css">
+      <DependentUpon>VehicleStatus.less</DependentUpon>
+    </Content>
+    <Content Include="Content\VehicleStatus.min.css">
+      <DependentUpon>VehicleStatus.css</DependentUpon>
+    </Content>
+    <Content Include="Content\WorkLocation.css">
+      <DependentUpon>WorkLocation.less</DependentUpon>
+    </Content>
+    <Content Include="Content\Vehicle.min.css">
+      <DependentUpon>Vehicle.css</DependentUpon>
+    </Content>
+    <Content Include="Content\WorkLocation.min.css">
+      <DependentUpon>WorkLocation.css</DependentUpon>
+    </Content>
+    <Content Include="Content\WorkPlace.css">
+      <DependentUpon>WorkPlace.less</DependentUpon>
+    </Content>
+    <Content Include="Content\WorkPlace.min.css">
+      <DependentUpon>WorkPlace.css</DependentUpon>
+    </Content>
+    <Content Include="Content\WorkPlaceType.css">
+      <DependentUpon>WorkPlaceType.less</DependentUpon>
+    </Content>
+    <Content Include="Content\WorkPlaceType.min.css">
+      <DependentUpon>WorkPlaceType.css</DependentUpon>
+    </Content>
+    <Content Include="favicon.ico" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Resources\Images\favicon.ico" />
+    <Content Include="Resources\Images\logo.jpg" />
+    <Content Include="Resources\Images\White_Car.jpg" />
+    <Content Include="Resources\Product.xml" />
+    <Content Include="RichTextEditor\adapters\jquery.js" />
+    <Content Include="RichTextEditor\build-config.js" />
+    <Content Include="RichTextEditor\CHANGES.md" />
+    <Content Include="RichTextEditor\ckeditor.js" />
+    <Content Include="RichTextEditor\config.js" />
+    <Content Include="RichTextEditor\contents.css" />
+    <Content Include="RichTextEditor\lang\af.js" />
+    <Content Include="RichTextEditor\lang\ar.js" />
+    <Content Include="RichTextEditor\lang\bg.js" />
+    <Content Include="RichTextEditor\lang\bn.js" />
+    <Content Include="RichTextEditor\lang\bs.js" />
+    <Content Include="RichTextEditor\lang\ca.js" />
+    <Content Include="RichTextEditor\lang\cs.js" />
+    <Content Include="RichTextEditor\lang\cy.js" />
+    <Content Include="RichTextEditor\lang\da.js" />
+    <Content Include="RichTextEditor\lang\de.js" />
+    <Content Include="RichTextEditor\lang\el.js" />
+    <Content Include="RichTextEditor\lang\en-au.js" />
+    <Content Include="RichTextEditor\lang\en-ca.js" />
+    <Content Include="RichTextEditor\lang\en-gb.js" />
+    <Content Include="RichTextEditor\lang\en.js" />
+    <Content Include="RichTextEditor\lang\eo.js" />
+    <Content Include="RichTextEditor\lang\es.js" />
+    <Content Include="RichTextEditor\lang\et.js" />
+    <Content Include="RichTextEditor\lang\eu.js" />
+    <Content Include="RichTextEditor\lang\fa.js" />
+    <Content Include="RichTextEditor\lang\fi.js" />
+    <Content Include="RichTextEditor\lang\fo.js" />
+    <Content Include="RichTextEditor\lang\fr-ca.js" />
+    <Content Include="RichTextEditor\lang\fr.js" />
+    <Content Include="RichTextEditor\lang\gl.js" />
+    <Content Include="RichTextEditor\lang\gu.js" />
+    <Content Include="RichTextEditor\lang\he.js" />
+    <Content Include="RichTextEditor\lang\hi.js" />
+    <Content Include="RichTextEditor\lang\hr.js" />
+    <Content Include="RichTextEditor\lang\hu.js" />
+    <Content Include="RichTextEditor\lang\id.js" />
+    <Content Include="RichTextEditor\lang\is.js" />
+    <Content Include="RichTextEditor\lang\it.js" />
+    <Content Include="RichTextEditor\lang\ja.js" />
+    <Content Include="RichTextEditor\lang\ka.js" />
+    <Content Include="RichTextEditor\lang\km.js" />
+    <Content Include="RichTextEditor\lang\ko.js" />
+    <Content Include="RichTextEditor\lang\ku.js" />
+    <Content Include="RichTextEditor\lang\lt.js" />
+    <Content Include="RichTextEditor\lang\lv.js" />
+    <Content Include="RichTextEditor\lang\mk.js" />
+    <Content Include="RichTextEditor\lang\mn.js" />
+    <Content Include="RichTextEditor\lang\ms.js" />
+    <Content Include="RichTextEditor\lang\nb.js" />
+    <Content Include="RichTextEditor\lang\nl.js" />
+    <Content Include="RichTextEditor\lang\no.js" />
+    <Content Include="RichTextEditor\lang\pl.js" />
+    <Content Include="RichTextEditor\lang\pt-br.js" />
+    <Content Include="RichTextEditor\lang\pt.js" />
+    <Content Include="RichTextEditor\lang\ro.js" />
+    <Content Include="RichTextEditor\lang\ru.js" />
+    <Content Include="RichTextEditor\lang\si.js" />
+    <Content Include="RichTextEditor\lang\sk.js" />
+    <Content Include="RichTextEditor\lang\sl.js" />
+    <Content Include="RichTextEditor\lang\sq.js" />
+    <Content Include="RichTextEditor\lang\sr-latn.js" />
+    <Content Include="RichTextEditor\lang\sr.js" />
+    <Content Include="RichTextEditor\lang\sv.js" />
+    <Content Include="RichTextEditor\lang\th.js" />
+    <Content Include="RichTextEditor\lang\tr.js" />
+    <Content Include="RichTextEditor\lang\tt.js" />
+    <Content Include="RichTextEditor\lang\ug.js" />
+    <Content Include="RichTextEditor\lang\uk.js" />
+    <Content Include="RichTextEditor\lang\vi.js" />
+    <Content Include="RichTextEditor\lang\zh-cn.js" />
+    <Content Include="RichTextEditor\lang\zh.js" />
+    <Content Include="RichTextEditor\LICENSE.md" />
+    <Content Include="RichTextEditor\plugins\about\dialogs\about.js" />
+    <Content Include="RichTextEditor\plugins\about\dialogs\hidpi\logo_ckeditor.png" />
+    <Content Include="RichTextEditor\plugins\about\dialogs\logo_ckeditor.png" />
+    <Content Include="RichTextEditor\plugins\clipboard\dialogs\paste.js" />
+    <Content Include="RichTextEditor\plugins\dialog\dialogDefinition.js" />
+    <Content Include="RichTextEditor\plugins\icons.png" />
+    <Content Include="RichTextEditor\plugins\icons_hidpi.png" />
+    <Content Include="RichTextEditor\plugins\link\dialogs\anchor.js" />
+    <Content Include="RichTextEditor\plugins\link\dialogs\link.js" />
+    <Content Include="RichTextEditor\plugins\link\images\anchor.png" />
+    <Content Include="RichTextEditor\plugins\link\images\hidpi\anchor.png" />
+    <Content Include="RichTextEditor\README.md" />
+    <Content Include="RichTextEditor\samples\ajax.html" />
+    <Content Include="RichTextEditor\samples\api.html" />
+    <Content Include="RichTextEditor\samples\appendto.html" />
+    <Content Include="RichTextEditor\samples\assets\inlineall\logo.png" />
+    <Content Include="RichTextEditor\samples\assets\outputxhtml\outputxhtml.css" />
+    <Content Include="RichTextEditor\samples\assets\posteddata.php" />
+    <Content Include="RichTextEditor\samples\assets\sample.jpg" />
+    <Content Include="RichTextEditor\samples\assets\uilanguages\languages.js" />
+    <Content Include="RichTextEditor\samples\datafiltering.html" />
+    <Content Include="RichTextEditor\samples\divreplace.html" />
+    <Content Include="RichTextEditor\samples\index.html" />
+    <Content Include="RichTextEditor\samples\inlineall.html" />
+    <Content Include="RichTextEditor\samples\inlinebycode.html" />
+    <Content Include="RichTextEditor\samples\inlinetextarea.html" />
+    <Content Include="RichTextEditor\samples\jquery.html" />
+    <Content Include="RichTextEditor\samples\plugins\dialog\assets\my_dialog.js" />
+    <Content Include="RichTextEditor\samples\plugins\dialog\dialog.html" />
+    <Content Include="RichTextEditor\samples\plugins\enterkey\enterkey.html" />
+    <Content Include="RichTextEditor\samples\plugins\toolbar\toolbar.html" />
+    <Content Include="RichTextEditor\samples\plugins\wysiwygarea\fullpage.html" />
+    <Content Include="RichTextEditor\samples\readonly.html" />
+    <Content Include="RichTextEditor\samples\replacebyclass.html" />
+    <Content Include="RichTextEditor\samples\replacebycode.html" />
+    <Content Include="RichTextEditor\samples\sample.css" />
+    <Content Include="RichTextEditor\samples\sample.js" />
+    <Content Include="RichTextEditor\samples\sample_posteddata.php" />
+    <Content Include="RichTextEditor\samples\tabindex.html" />
+    <Content Include="RichTextEditor\samples\uicolor.html" />
+    <Content Include="RichTextEditor\samples\uilanguages.html" />
+    <Content Include="RichTextEditor\samples\xhtmlstyle.html" />
+    <Content Include="RichTextEditor\skins\moono\dialog.css" />
+    <Content Include="RichTextEditor\skins\moono\dialog_ie.css" />
+    <Content Include="RichTextEditor\skins\moono\dialog_ie7.css" />
+    <Content Include="RichTextEditor\skins\moono\dialog_ie8.css" />
+    <Content Include="RichTextEditor\skins\moono\dialog_iequirks.css" />
+    <Content Include="RichTextEditor\skins\moono\editor.css" />
+    <Content Include="RichTextEditor\skins\moono\editor_gecko.css" />
+    <Content Include="RichTextEditor\skins\moono\editor_ie.css" />
+    <Content Include="RichTextEditor\skins\moono\editor_ie7.css" />
+    <Content Include="RichTextEditor\skins\moono\editor_ie8.css" />
+    <Content Include="RichTextEditor\skins\moono\editor_iequirks.css" />
+    <Content Include="RichTextEditor\skins\moono\icons.png" />
+    <Content Include="RichTextEditor\skins\moono\icons_hidpi.png" />
+    <Content Include="RichTextEditor\skins\moono\images\arrow.png" />
+    <Content Include="RichTextEditor\skins\moono\images\close.png" />
+    <Content Include="RichTextEditor\skins\moono\images\hidpi\close.png" />
+    <Content Include="RichTextEditor\skins\moono\images\hidpi\lock-open.png" />
+    <Content Include="RichTextEditor\skins\moono\images\hidpi\lock.png" />
+    <Content Include="RichTextEditor\skins\moono\images\hidpi\refresh.png" />
+    <Content Include="RichTextEditor\skins\moono\images\lock-open.png" />
+    <Content Include="RichTextEditor\skins\moono\images\lock.png" />
+    <Content Include="RichTextEditor\skins\moono\images\refresh.png" />
+    <Content Include="RichTextEditor\skins\moono\readme.md" />
+    <Content Include="RichTextEditor\styles.js" />
+    <Content Include="Scripts\affix.js" />
+    <Content Include="Scripts\alert.js" />
+    <Content Include="Content\MainSite.less">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Fleet.less" />
+    <Content Include="Content\Pricing.less" />
+    <Content Include="Content\Pricing.css.map">
+      <DependentUpon>Pricing.css</DependentUpon>
+    </Content>
+    <Content Include="Content\Fleet.css.map">
+      <DependentUpon>Fleet.css</DependentUpon>
+    </Content>
+    <Content Include="Content\RentalAgreement.less" />
+    <Content Include="Content\OrgGroup.less" />
+    <Content Include="Content\OrgGroup.css.map">
+      <DependentUpon>OrgGroup.css</DependentUpon>
+    </Content>
+    <Content Include="Content\Company.less" />
+    <Content Include="Content\Company.css.map">
+      <DependentUpon>Company.css</DependentUpon>
+    </Content>
+    <Content Include="Content\MainSite.css.map">
+      <DependentUpon>MainSite.css</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Operation.less" />
+    <Content Include="Content\Operation.css.map">
+      <DependentUpon>Operation.css</DependentUpon>
+    </Content>
+    <Content Include="Content\WorkPlace.less" />
+    <Content Include="Content\WorkPlace.css.map">
+      <DependentUpon>WorkPlace.css</DependentUpon>
+    </Content>
+    <Content Include="Content\WorkLocation.less" />
+    <Content Include="Content\WorkLocation.css.map">
+      <DependentUpon>WorkLocation.css</DependentUpon>
+    </Content>
+    <Content Include="Content\Vehicle.less" />
+    <Content Include="Content\Vehicle.css.map">
+      <DependentUpon>Vehicle.css</DependentUpon>
+    </Content>
+    <Content Include="Content\WorkPlaceType.less" />
+    <Content Include="Content\WorkPlaceType.css.map">
+      <DependentUpon>WorkPlaceType.css</DependentUpon>
+    </Content>
+    <Content Include="Content\BusinessSegment.less" />
+    <Content Include="Content\BusinessSegment.css.map">
+      <DependentUpon>BusinessSegment.css</DependentUpon>
+    </Content>
+    <Content Include="Content\Region.less" />
+    <Content Include="Content\Region.css.map">
+      <DependentUpon>Region.css</DependentUpon>
+    </Content>
+    <Content Include="Content\EmployeeManagement.less" />
+    <Content Include="Content\EmployeeManagement.css.map">
+      <DependentUpon>EmployeeManagement.css</DependentUpon>
+    </Content>
+    <Content Include="Content\SubRegion.less" />
+    <Content Include="Content\SubRegion.css.map">
+      <DependentUpon>SubRegion.css</DependentUpon>
+    </Content>
+    <Content Include="Content\City.less" />
+    <Content Include="Content\City.css.map">
+      <DependentUpon>City.css</DependentUpon>
+    </Content>
+    <Content Include="Content\Area.less">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Area.css.map">
+      <DependentUpon>Area.css</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\DesignationGrade.less" />
+    <Content Include="Content\DesignationGrade.css.map">
+      <DependentUpon>DesignationGrade.css</DependentUpon>
+    </Content>
+    <Content Include="Content\EmpStatus.less" />
+    <Content Include="Content\EmpStatus.css.map">
+      <DependentUpon>EmpStatus.css</DependentUpon>
+    </Content>
+    <Content Include="Content\Designation.less" />
+    <Content Include="Content\Designation.css.map">
+      <DependentUpon>Designation.css</DependentUpon>
+    </Content>
+    <Content Include="Content\JobType.less" />
+    <Content Include="Content\JobType.css.map">
+      <DependentUpon>JobType.css</DependentUpon>
+    </Content>
+    <Content Include="Content\DiscountType.less" />
+    <Content Include="Content\DiscountType.css.map">
+      <DependentUpon>DiscountType.css</DependentUpon>
+    </Content>
+    <Content Include="Content\DiscountSubType.less" />
+    <Content Include="Content\DiscountSubType.css.map">
+      <DependentUpon>DiscountSubType.css</DependentUpon>
+    </Content>
+    <Content Include="Content\ServiceType.less" />
+    <Content Include="Content\ServiceType.css.map">
+      <DependentUpon>ServiceType.css</DependentUpon>
+    </Content>
+    <Content Include="Content\ServiceItem.less" />
+    <Content Include="Content\ServiceItem.css.map">
+      <DependentUpon>ServiceItem.css</DependentUpon>
+    </Content>
+    <Content Include="Content\NrtType.less" />
+    <Content Include="Content\NrtType.css.map">
+      <DependentUpon>NrtType.css</DependentUpon>
+    </Content>
+    <Content Include="Content\VehicleCheckList.less" />
+    <Content Include="Content\VehicleCheckList.css.map">
+      <DependentUpon>VehicleCheckList.css</DependentUpon>
+    </Content>
+    <Content Include="Content\DocumentGroup.less" />
+    <Content Include="Content\DocumentGroup.css.map">
+      <DependentUpon>DocumentGroup.css</DependentUpon>
+    </Content>
+    <Content Include="Content\BusinessPartnerMainType.less" />
+    <Content Include="Content\BusinessPartnerMainType.css.map">
+      <DependentUpon>BusinessPartnerMainType.css</DependentUpon>
+    </Content>
+    <Content Include="Content\Document.less" />
+    <Content Include="Content\Document.css.map">
+      <DependentUpon>Document.css</DependentUpon>
+    </Content>
+    <Content Include="Content\RatingType.less" />
+    <Content Include="Content\RatingType.css.map">
+      <DependentUpon>RatingType.css</DependentUpon>
+    </Content>
+    <Content Include="Content\BusinessLegalStatus.less" />
+    <Content Include="Content\BusinessLegalStatus.css.map">
+      <DependentUpon>BusinessLegalStatus.css</DependentUpon>
+    </Content>
+    <Content Include="Content\OccupationType.less" />
+    <Content Include="Content\OccupationType.css.map">
+      <DependentUpon>OccupationType.css</DependentUpon>
+    </Content>
+    <Content Include="Content\BusinessPartnerRelationshipType.less" />
+    <Content Include="Content\BusinessPartnerRelationshipType.css.map">
+      <DependentUpon>BusinessPartnerRelationshipType.css</DependentUpon>
+    </Content>
+    <Content Include="Content\BusinessPartnerSubType.less" />
+    <Content Include="Content\BusinessPartnerSubType.css.map">
+      <DependentUpon>BusinessPartnerSubType.css</DependentUpon>
+    </Content>
+    <Content Include="Content\CreditLimit.less" />
+    <Content Include="Content\CreditLimit.css.map">
+      <DependentUpon>CreditLimit.css</DependentUpon>
+    </Content>
+    <Content Include="Content\MarketingChannel.less" />
+    <Content Include="Content\MarketingChannel.css.map">
+      <DependentUpon>MarketingChannel.css</DependentUpon>
+    </Content>
+    <Content Include="Content\MaintenanceTypeGroup.less" />
+    <Content Include="Content\MaintenanceTypeGroup.css.map">
+      <DependentUpon>MaintenanceTypeGroup.css</DependentUpon>
+    </Content>
+    <Content Include="Content\MaintenanceType.less" />
+    <Content Include="Content\MaintenanceType.css.map">
+      <DependentUpon>MaintenanceType.css</DependentUpon>
+    </Content>
+    <Content Include="Content\InsuranceType.less" />
+    <Content Include="Content\InsuranceType.css.map">
+      <DependentUpon>InsuranceType.css</DependentUpon>
+    </Content>
+    <Content Include="Content\VehicleMake.less" />
+    <Content Include="Content\VehicleMake.css.map">
+      <DependentUpon>VehicleMake.css</DependentUpon>
+    </Content>
+    <Content Include="Content\VehicleCategory.less" />
+    <Content Include="Content\VehicleCategory.css.map">
+      <DependentUpon>VehicleCategory.css</DependentUpon>
+    </Content>
+    <Content Include="Content\VehicleModel.less" />
+    <Content Include="Content\VehicleModel.css.map">
+      <DependentUpon>VehicleModel.css</DependentUpon>
+    </Content>
+    <Content Include="Content\VehicleStatus.less" />
+    <Content Include="Content\VehicleStatus.css.map">
+      <DependentUpon>VehicleStatus.css</DependentUpon>
+    </Content>
+    <Content Include="Content\RentalAgreement.css.map">
+      <DependentUpon>RentalAgreement.css</DependentUpon>
+    </Content>
+    <Content Include="Content\CSS\Global\Plugin\font-awesome\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\CSS\Global\Plugin\font-awesome\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\CSS\Global\Plugin\font-awesome\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\CSS\Global\Plugin\font-awesome\fonts\FontAwesome.otf" />
+    <Content Include="Content\CSS\Global\Plugin\font-awesome\fonts\temp\fontawesome-webfont.eot" />
+    <Content Include="Content\CSS\Global\Plugin\font-awesome\fonts\temp\fontawesome-webfont.ttf" />
+    <Content Include="Content\CSS\Global\Plugin\font-awesome\fonts\temp\fontawesome-webfont.woff" />
+    <Content Include="Content\CSS\Global\Plugin\font-awesome\fonts\temp\FontAwesome.otf" />
+    <Content Include="Content\CSS\Global\Plugin\simple-line-icons\fonts\Simple-Line-Icons.eot" />
+    <Content Include="Content\CSS\Global\Plugin\simple-line-icons\fonts\Simple-Line-Icons.ttf" />
+    <Content Include="Content\CSS\Global\Plugin\simple-line-icons\fonts\Simple-Line-Icons.woff" />
+    <Content Include="Content\VehicleCondition.less" />
+    <Content Include="DB Backup\angular" />
+    <Content Include="Areas\Angular\Views\Home\Index.cshtml" />
+    <Content Include="Areas\Angular\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Angular\Views\web.config" />
+    <Content Include="Areas\Angular\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Api\Views\web.config" />
+    <Content Include="Areas\Common\Views\Shared\_ConfirmationDialog.cshtml" />
+    <Content Include="Areas\Common\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Common\Views\Shared\_Pager.cshtml" />
+    <Content Include="Areas\Common\Views\Shared\_RentalAgreementReport.cshtml" />
+    <Content Include="Areas\Common\Views\Shared\_RentalAgreementReportDialog.cshtml" />
+    <Content Include="Areas\Common\Views\Shared\_VehicleConditionDialog.cshtml" />
+    <Content Include="Areas\Common\Views\web.config" />
+    <Content Include="Areas\Common\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\SampleAngular\Views\Home\Index.cshtml" />
+    <Content Include="Areas\SampleAngular\Views\Home\_EmployeeEditor.cshtml" />
+    <Content Include="Areas\SampleAngular\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\SampleAngular\Views\web.config" />
+    <Content Include="Areas\SampleAngular\Views\_ViewStart.cshtml" />
+    <None Include="Properties\PublishProfiles\cares.pubxml" />
+    <None Include="Properties\PublishProfiles\Khurram.pubxml" />
+    <Content Include="RichTextEditor\plugins\Thumbs.db" />
+    <None Include="Properties\PublishProfiles\testCares.pubxml" />
+    <None Include="Scripts\amplify-vsdoc.js" />
+    <Content Include="Scripts\amplify.js" />
+    <Content Include="Scripts\amplify.min.js" />
+    <Content Include="Scripts\App\architecture.js" />
+    <Content Include="Scripts\App\Pages\login-soft.js" />
+    <Content Include="Scripts\App\Pages\login.js" />
+    <Content Include="Scripts\App\requireConfig.js" />
+    <Content Include="Scripts\bloodhound.js" />
+    <Content Include="Scripts\bloodhound.min.js" />
+    <Content Include="Scripts\Bootstrap\RTL\bootstrap-rtl.js" />
+    <Content Include="Scripts\bootstrap-switch.js" />
+    <Content Include="Scripts\bootstrap-switch.min.js" />
+    <Content Include="Scripts\Bootstrap\bootstrap.js" />
+    <Content Include="Scripts\Bootstrap\bootstrap.min.js" />
+    <Content Include="Content\toastr.scss" />
+    <Content Include="Content\toastr.less" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
+    <None Include="Scripts\jquery-2.1.0.intellisense.js" />
+    <Content Include="Scripts\button.js" />
+    <Content Include="Scripts\Calendar\jquery.calendars.islamic.js" />
+    <Content Include="Scripts\Calendar\jquery.calendars.islamic.min.js" />
+    <Content Include="Scripts\Calendar\jquery.calendars.js" />
+    <Content Include="Scripts\Calendar\jquery.calendars.min.js" />
+    <Content Include="Scripts\Calendar\jquery.calendars.picker.js" />
+    <Content Include="Scripts\Calendar\jquery.calendars.picker.min.js" />
+    <Content Include="Scripts\Calendar\jquery.calendars.plus.js" />
+    <Content Include="Scripts\Calendar\jquery.calendars.plus.min.js" />
+    <Content Include="Scripts\Calendar\jquery.plugin.js" />
+    <Content Include="Scripts\Calendar\jquery.plugin.min.js" />
+    <Content Include="Scripts\carousel-rtl.js" />
+    <Content Include="Scripts\charts.js" />
+    <Content Include="Scripts\collapse.js" />
+    <Content Include="Scripts\DashboardAdmin\dashBoard.dataservice.js" />
+    <Content Include="Scripts\DashboardAdmin\dashBoard.model.js" />
+    <Content Include="Scripts\DashboardAdmin\dashBoard.view.js" />
+    <Content Include="Scripts\DashboardAdmin\dashBoard.viewModel.js" />
+    <Content Include="Scripts\flot\jquery.colorhelpers.js" />
+    <Content Include="Scripts\flot\jquery.colorhelpers.min.js" />
+    <Content Include="Scripts\flot\jquery.flot.animator.js" />
+    <Content Include="Scripts\flot\jquery.flot.axislabels.js" />
+    <Content Include="Scripts\flot\jquery.flot.canvas.js" />
+    <Content Include="Scripts\flot\jquery.flot.canvas.min.js" />
+    <Content Include="Scripts\flot\jquery.flot.categories.js" />
+    <Content Include="Scripts\flot\jquery.flot.categories.min.js" />
+    <Content Include="Scripts\flot\jquery.flot.crosshair.js" />
+    <Content Include="Scripts\flot\jquery.flot.crosshair.min.js" />
+    <Content Include="Scripts\flot\jquery.flot.errorbars.js" />
+    <Content Include="Scripts\flot\jquery.flot.errorbars.min.js" />
+    <Content Include="Scripts\flot\jquery.flot.fillbetween.js" />
+    <Content Include="Scripts\flot\jquery.flot.fillbetween.min.js" />
+    <Content Include="Scripts\flot\jquery.flot.image.js" />
+    <Content Include="Scripts\flot\jquery.flot.image.min.js" />
+    <Content Include="Scripts\flot\jquery.flot.js" />
+    <Content Include="Scripts\flot\jquery.flot.min.js" />
+    <Content Include="Scripts\flot\jquery.flot.navigate.js" />
+    <Content Include="Scripts\flot\jquery.flot.navigate.min.js" />
+    <Content Include="Scripts\flot\jquery.flot.orderBars.js" />
+    <Content Include="Scripts\flot\jquery.flot.pie.js" />
+    <Content Include="Scripts\flot\jquery.flot.pie.min.js" />
+    <Content Include="Scripts\flot\jquery.flot.resize.js" />
+    <Content Include="Scripts\flot\jquery.flot.resize.min.js" />
+    <Content Include="Scripts\flot\jquery.flot.selection.js" />
+    <Content Include="Scripts\flot\jquery.flot.selection.min.js" />
+    <Content Include="Scripts\flot\jquery.flot.stack.js" />
+    <Content Include="Scripts\flot\jquery.flot.stack.min.js" />
+    <Content Include="Scripts\flot\jquery.flot.symbol.js" />
+    <Content Include="Scripts\flot\jquery.flot.symbol.min.js" />
+    <Content Include="Scripts\flot\jquery.flot.threshold.js" />
+    <Content Include="Scripts\flot\jquery.flot.threshold.min.js" />
+    <Content Include="Scripts\flot\jquery.flot.time.js" />
+    <Content Include="Scripts\flot\jquery.flot.time.min.js" />
+    <Content Include="Scripts\flot\LICENSE.txt" />
+    <Content Include="Scripts\jquery-barcode.js" />
+    <Content Include="Scripts\jquery-barcode.min.js" />
+    <Content Include="Scripts\jquery-ui-1.11.0.min.js" />
+    <Content Include="Scripts\dropdown.js" />
+    <Content Include="Scripts\GPL-LICENSE.txt" />
+    <Content Include="Scripts\jquery-2.1.0.js" />
+    <Content Include="Scripts\jquery-2.1.0.min.js" />
+    <Content Include="Scripts\jquery-2.1.0.min.map" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery-ui-1.10.4.js" />
+    <Content Include="Scripts\jquery-ui-1.10.4.min.js" />
+    <Content Include="Scripts\jquery-ui-sliderAccess.js" />
+    <Content Include="Scripts\jquery-ui-timepicker-addon.js" />
+    <Content Include="Scripts\jquery.form.js" />
+    <Content Include="Scripts\jquery.knob.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\json2.js" />
+    <Content Include="Scripts\json2.min.js" />
+    <Content Include="Scripts\knockout-3.1.0.debug.js" />
+    <Content Include="Scripts\knockout-3.1.0.js" />
+    <Content Include="Scripts\knockout.mapping-latest.debug.js" />
+    <Content Include="Scripts\knockout.mapping-latest.js" />
+    <Content Include="Scripts\knockout.validation.debug.js" />
+    <Content Include="Scripts\knockout.validation.js" />
+    <Content Include="Scripts\layout.js" />
+    <Content Include="Scripts\metronic.js" />
+    <Content Include="Scripts\MIT-LICENSE.txt" />
+    <Content Include="Scripts\modal.js" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\moment-with-langs.js" />
+    <Content Include="Scripts\moment-with-langs.min.js" />
+    <Content Include="Scripts\moment.js" />
+    <Content Include="Scripts\moment.min.js" />
+    <Content Include="Scripts\ng-table.js" />
+    <Content Include="Scripts\numeral\numeral.js" />
+    <Content Include="Scripts\numeral\numeral.min.js" />
+    <Content Include="Scripts\odometer.js" />
+    <Content Include="Scripts\Plugins\angular-animate.js" />
+    <Content Include="Scripts\Plugins\angular-animate.min.js" />
+    <Content Include="Scripts\Plugins\angular-cookies.js" />
+    <Content Include="Scripts\Plugins\angular-cookies.min.js" />
+    <Content Include="Scripts\Plugins\angular-csp.css" />
+    <Content Include="Scripts\Plugins\angular-loader.js" />
+    <Content Include="Scripts\Plugins\angular-loader.min.js" />
+    <Content Include="Scripts\Plugins\angular-mocks.js" />
+    <Content Include="Scripts\Plugins\angular-resource.js" />
+    <Content Include="Scripts\Plugins\angular-resource.min.js" />
+    <Content Include="Scripts\Plugins\angular-route.js" />
+    <Content Include="Scripts\Plugins\angular-route.min.js" />
+    <Content Include="Scripts\Plugins\angular-sanitize.js" />
+    <Content Include="Scripts\Plugins\angular-sanitize.min.js" />
+    <Content Include="Scripts\Plugins\angular-scenario.js" />
+    <Content Include="Scripts\Plugins\angular-touch.js" />
+    <Content Include="Scripts\Plugins\angular-touch.min.js" />
+    <Content Include="Scripts\Plugins\angular.js" />
+    <Content Include="Scripts\Plugins\angular.min.js" />
+    <Content Include="Scripts\popover.js" />
+    <Content Include="Scripts\quick-sidebar.js" />
+    <Content Include="Scripts\r.js" />
+    <Content Include="Scripts\README.txt" />
+    <Content Include="Scripts\require.js" />
+    <Content Include="Scripts\respond.js" />
+    <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\sammy-0.7.5.js" />
+    <Content Include="Scripts\sammy-0.7.5.min.js" />
+    <Content Include="Scripts\scrollspy.js" />
+    <Content Include="Scripts\tab.js" />
+    <Content Include="Scripts\toastr.js" />
+    <Content Include="Scripts\toastr.min.js" />
+    <Content Include="Scripts\tooltip.js" />
+    <Content Include="Scripts\transition.js" />
+    <Content Include="Scripts\typeahead.bundle.js" />
+    <Content Include="Scripts\typeahead.bundle.min.js" />
+    <Content Include="Scripts\typeahead.jquery.js" />
+    <Content Include="Scripts\typeahead.jquery.min.js" />
+    <Content Include="Scripts\underscore-ko-1.6.0.js" />
+    <Content Include="Scripts\underscore-ko-1.6.0.min.js" />
+    <Content Include="Scripts\underscore-min.js" />
+    <Content Include="Scripts\underscore.js" />
+    <Content Include="Scripts\_references.js" />
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Account\_ChangePasswordPartial.cshtml" />
+    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
+    <Content Include="Views\Account\_RemoveAccountPartial.cshtml" />
+    <Content Include="Views\Account\_SetPasswordPartial.cshtml" />
+    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
+    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Manage.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Shared\Lockout.cshtml" />
+    <Content Include="Views\RolesAdmin\Index.cshtml" />
+    <Content Include="Views\RolesAdmin\Edit.cshtml" />
+    <Content Include="Views\RolesAdmin\Details.cshtml" />
+    <Content Include="Views\RolesAdmin\Delete.cshtml" />
+    <Content Include="Views\RolesAdmin\Create.cshtml" />
+    <Content Include="Views\RolesAdmin\Manage\VerifyPhoneNumber.cshtml" />
+    <Content Include="Views\RolesAdmin\Manage\SetPassword.cshtml" />
+    <Content Include="Views\RolesAdmin\Manage\ManageLogins.cshtml" />
+    <Content Include="Views\RolesAdmin\Manage\Index.cshtml" />
+    <Content Include="Views\RolesAdmin\Manage\ChangePassword.cshtml" />
+    <Content Include="Views\RolesAdmin\Manage\AddPhoneNumber.cshtml" />
+    <Content Include="Views\Account\VerifyCode.cshtml" />
+    <Content Include="Views\Account\SendCode.cshtml" />
+    <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
+    <Content Include="Views\Account\ResetPassword.cshtml" />
+    <Content Include="Views\Account\ForgotPasswordConfirmation.cshtml" />
+    <Content Include="Views\Account\ForgotPassword.cshtml" />
+    <Content Include="Views\Account\DisplayEmail.cshtml" />
+    <Content Include="Views\Account\ConfirmEmail.cshtml" />
+    <Content Include="Scripts\toastr.min.js.map" />
+    <Content Include="Scripts\underscore-min.map" />
+    <Content Include="Views\UnauthorizedRequest\Index.cshtml" />
+    <Content Include="Views\Shared\LoadMenu.cshtml" />
+    <Content Include="Views\Shared\_BlankLayout.cshtml" />
+    <Content Include="Views\Shared\Reports.Master" />
+    <Content Include="Views\RolesAdmin\RightsManagement.cshtml" />
+    <Content Include="Views\UsersAdmin\Index.cshtml" />
+    <Content Include="Views\UsersAdmin\CreateUser.cshtml" />
+    <Content Include="Views\UsersAdmin\EditUser.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Views\UsersAdmin\ViewUserDetail.cshtml" />
+    <Content Include="Views\Shared\Welcome.cshtml" />
+    <Content Include="Scripts\Plugins\angular-animate.min.js.map" />
+    <Content Include="Scripts\Plugins\angular-cookies.min.js.map" />
+    <Content Include="Scripts\Plugins\angular-loader.min.js.map" />
+    <Content Include="Scripts\Plugins\angular-resource.min.js.map" />
+    <Content Include="Scripts\Plugins\angular-route.min.js.map" />
+    <Content Include="Scripts\Plugins\angular-sanitize.min.js.map" />
+    <Content Include="Scripts\Plugins\angular-touch.min.js.map" />
+    <Content Include="Scripts\Plugins\angular.min.js.map" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Api\" />
+    <Folder Include="App_Data\ProfileImages\" />
+    <Folder Include="Areas\Angular\Models\" />
+    <Folder Include="Areas\Api\Models\" />
+    <Folder Include="Areas\Api\Views\Shared\" />
+    <Folder Include="Areas\Common\Controllers\" />
+    <Folder Include="Areas\Common\Models\" />
+    <Folder Include="Areas\SampleAngular\Models\" />
+    <Folder Include="Dashboard_Contents\Assets\" />
+    <Folder Include="DomainContents\Domainkey-41\Images\HireGroupCategory\HireGroupCategoryId-3\" />
+    <Folder Include="DomainContents\Domainkey-41\Images\InsuranceType\InsuranceTypeId-134\" />
+    <Folder Include="DomainContents\Domainkey-41\Images\InsuranceType\InsuranceTypeId-135\" />
+    <Folder Include="DomainContents\Domainkey-41\Images\ServiceItem\ItemId-10014\" />
+    <Folder Include="DomainContents\Domainkey-41\Images\ServiceItem\ItemId-10015\" />
+    <Folder Include="Migrations\" />
+    <Folder Include="RichTextEditor\plugins\a11yhelp\dialogs\lang\" />
+    <Folder Include="RichTextEditor\plugins\colordialog\dialogs\" />
+    <Folder Include="RichTextEditor\plugins\div\dialogs\" />
+    <Folder Include="RichTextEditor\plugins\find\dialogs\" />
+    <Folder Include="RichTextEditor\plugins\flash\dialogs\" />
+    <Folder Include="RichTextEditor\plugins\flash\images\" />
+    <Folder Include="RichTextEditor\plugins\forms\dialogs\" />
+    <Folder Include="RichTextEditor\plugins\forms\images\" />
+    <Folder Include="RichTextEditor\plugins\iframe\dialogs\" />
+    <Folder Include="RichTextEditor\plugins\iframe\images\" />
+    <Folder Include="RichTextEditor\plugins\image\dialogs\" />
+    <Folder Include="RichTextEditor\plugins\image\images\" />
+    <Folder Include="RichTextEditor\plugins\liststyle\dialogs\" />
+    <Folder Include="RichTextEditor\plugins\magicline\images\hidpi\" />
+    <Folder Include="RichTextEditor\plugins\pagebreak\images\" />
+    <Folder Include="RichTextEditor\plugins\pastefromword\filter\" />
+    <Folder Include="RichTextEditor\plugins\preview\" />
+    <Folder Include="RichTextEditor\plugins\scayt\dialogs\" />
+    <Folder Include="RichTextEditor\plugins\showblocks\images\" />
+    <Folder Include="RichTextEditor\plugins\smiley\dialogs\" />
+    <Folder Include="RichTextEditor\plugins\smiley\images\" />
+    <Folder Include="RichTextEditor\plugins\specialchar\dialogs\lang\" />
+    <Folder Include="RichTextEditor\plugins\tabletools\dialogs\" />
+    <Folder Include="RichTextEditor\plugins\table\dialogs\" />
+    <Folder Include="RichTextEditor\plugins\templates\dialogs\" />
+    <Folder Include="RichTextEditor\plugins\templates\templates\images\" />
+    <Folder Include="RichTextEditor\plugins\wsc\dialogs\" />
+    <Folder Include="RichTextEditor\samples\plugins\htmlwriter\assets\outputforflash\" />
+    <Folder Include="RichTextEditor\samples\plugins\magicline\" />
+    <Folder Include="Views\Base\" />
+    <Folder Include="Views\Menu\" />
+    <Folder Include="Views\OperationBaseDataResponse\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="packages.config" />
+    <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FRS.Commons\FRS.Commons.csproj">
+      <Project>{C495B1EB-AC68-44F5-B2FA-D36083EB7BEC}</Project>
+      <Name>FRS.Commons</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Implementation\FRS.Implementation.csproj">
+      <Project>{42d2e6c0-74f1-46fb-b7ba-43251156275d}</Project>
+      <Name>FRS.Implementation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Interfaces\FRS.Interfaces.csproj">
+      <Project>{98F7A831-6D93-48E9-950F-623772AA607A}</Project>
+      <Name>FRS.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Models\FRS.Models.csproj">
+      <Project>{81067904-2176-4648-87ab-014b0d76b85e}</Project>
+      <Name>FRS.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WebBase\FRS.WebBase.csproj">
+      <Project>{bcb8bcfd-0163-430c-8088-224074d6e384}</Project>
+      <Name>FRS.WebBase</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Shared\Common.ar.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Common.ar.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Shared\Common.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Common.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\User\User.ar.resx" />
+    <EmbeddedResource Include="Resources\User\User.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>User.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>43063</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:43060/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

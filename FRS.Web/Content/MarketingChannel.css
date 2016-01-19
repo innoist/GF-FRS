@@ -1,0 +1,22 @@
+﻿#MarketingChannelBinding table thead tr .MarketingChannelCode {
+  width: 33%;
+}
+#MarketingChannelBinding table thead tr .MarketingChannelName {
+  width: 33%;
+}
+#MarketingChannelBinding table thead tr .MarketingChannelDiscription {
+  width: 33%;
+}
+#MarketingChannelBinding #MarketingChannelEditor {
+  margin-top: 15px;
+  /*.detailsContainer{
+            width: 100%;
+            .detailsHeaderSection{
+                float: left;
+                width: 85%;
+                margin-bottom: 20px;
+                margin-top: 10px;
+            }
+        }*/
+}
+/*# sourceMappingURL=MarketingChannel.css.map */

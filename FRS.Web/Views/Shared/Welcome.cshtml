@@ -1,0 +1,15 @@
+﻿@{
+    ViewBag.Title = "Welcome to cares!";
+}
+
+<div id="welcome">
+    <iframe id="WelcomeDoc" src="https://drive.google.com/file/d/0B-Q7X8lELcn4MG4td3Y4NEU2NUk/preview"></iframe>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $("#WelcomeDoc").width(($(window).width() - $(".page-sidebar").width()) - 20);
+        $("#WelcomeDoc").height($(window).height() - ($(".page-header").height() + $(".page-footer").height() + (44 - 5 - 10)));
+        /* window height - (header height + footer height) + (margin-top - padding-top - padding bottom) */
+    });
+</script>

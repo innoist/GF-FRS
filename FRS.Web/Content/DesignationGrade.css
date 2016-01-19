@@ -1,0 +1,25 @@
+﻿#DesignGradeBinding table thead tr .ttypesearchButton {
+  margin-left: 5px;
+}
+#DesignGradeBinding table thead tr .DNcode {
+  width: 33%;
+}
+#DesignGradeBinding table thead tr .DNname {
+  width: 33%;
+}
+#DesignGradeBinding table thead tr .DNDes {
+  width: 33%;
+}
+#DesignGradeBinding #designationGradeEditor {
+  margin-top: 15px;
+  /*.detailsContainer{
+            width: 100%;
+            .detailsHeaderSection{
+                float: left;
+                width: 85%;
+                margin-bottom: 20px;
+                margin-top: 10px;
+            }
+        }*/
+}
+/*# sourceMappingURL=DesignationGrade.css.map */

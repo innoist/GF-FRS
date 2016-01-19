@@ -1,0 +1,776 @@
+﻿@extraColor: #DDDDDD;
+@driverColor: #89C4F4;
+@chaufferColor: #F0AD4E;
+@discountColor: #45B6AF;
+@damageColor: #F3565D;
+@paymentColor: #6B6F59;
+@billingColor:  hsl(0, 100%, 82%); 
+#rentalAgreementBinding {
+    color: gray;
+
+    .requiredField-asterik {
+        color: red;
+    }
+
+   .row{
+       margin-left: 0 !important;
+       margin-right: 0 !important;
+   }
+  
+    .margin-button {
+        margin-left: 10px;
+        margin-right: 0;
+    }
+    html[dir="rtl"] .margin-button {
+        margin-right: 10px;
+        margin-left: 0;
+    }
+    .display-block {
+            display: inline-block;
+        }
+    .font-em-1-3{
+        font-size: 1.7em;
+    }
+    .popover {
+        min-width: 33%;
+        min-height: 200px;
+        margin-top: 20px;
+    }
+
+    .well {
+        padding-top: 0;
+    }
+
+    .form-control {
+        padding: 2px;
+        height: 25px;
+    }
+
+    .control-label {
+        padding-top: 3px;
+    }
+
+    .form-group {
+        margin-bottom: 5px;
+
+        input,
+        select,
+        textarea {
+            max-width: 100%;
+        }
+
+        .col-xs-1, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7,
+        .col-xs-8, .col-xs-9, .col-xs-10, .col-xs-11, .col-xs-12, .col-sm-1, .col-sm-2,
+        .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9,
+        .col-sm-10, .col-sm-11, .col-sm-12, .col-md-1, .col-md-2, .col-md-3, .col-md-4,
+        .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11,
+        .col-md-12, .col-lg-1, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6,
+        .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-10, .col-lg-11, .col-lg-12 {
+            padding-right: 0;
+            padding-left: 8px;
+        }
+
+        label {
+            font-weight: normal;
+            text-align: left;
+        }
+
+        
+        .checkBoxCol {
+            width: 4.5%;
+
+            input[type="checkbox"] {
+                height: 15px;
+                margin-top: 6px;
+            }
+        }
+    }
+
+    #raPanels {
+        width: 28.9%;
+        float: left;
+
+        #raServiceItemsTable {
+            thead {
+                tr {
+                    #ServiceType {
+                        width: 10%;
+                        max-width: 10%;
+                    }
+
+                    #ServiceItemName {
+                        width: 10%;
+                        max-width: 10%;
+                    }
+
+                    #ServiceItemCode {
+                        width: 10%;
+                        max-width: 10%;
+                    }
+
+                    #Quantity {
+                        width: 10%;
+                        max-width: 10%;
+                    }
+
+                    #StartDate {
+                        width: 10%;
+                        max-width: 10%;
+                    }
+
+                    #StartTime {
+                        width: 10%;
+                        max-width: 10%;
+                    }
+
+                    #EndDate {
+                        width: 10%;
+                        max-width: 10%;
+                    }
+
+                    #EndTime {
+                        width: 10%;
+                        max-width: 10%;
+                    }
+
+                    #DeleteServiceItem {
+                        width: 10%;
+                        max-width: 10%;
+                    }
+                }
+            }
+        }
+
+        .panel-body {
+            padding: 8px;
+
+            .panelCustom {
+                -moz-border-radius: 12px !important;
+                -webkit-border-radius: 12px !important;
+                border-radius: 12px !important;
+
+                .panel-heading {
+                    -moz-border-radius: 10px !important;
+                    -webkit-border-radius: 10px !important;
+                    border-radius: 10px !important;
+                }
+
+                .clearBoth {
+                    clear: both;
+                }
+            }
+        }
+
+        .formGroupCustom {
+            margin-right: 0;
+            margin-left: 0;
+
+            hr {
+                margin-top: 5px;
+                margin-bottom: 5px;
+            }
+        }
+    }
+
+    .panel-heading {
+        color: gray;
+    }
+
+    .panel-group .panel {
+        overflow: visible;
+    }
+
+    .panel-default {
+        .panel-collapse {
+            .panel-body:not(.customPanel) {
+                overflow-x: auto;
+            }
+        }
+    }
+
+    a.headingLink :hover {
+        text-decoration: underline;
+    }
+
+    a.glyphicon {
+        text-decoration: none;
+    }
+
+
+    #customer {
+        height: 237px;
+
+        #isIndividualLabel {
+            width: 18%;
+            margin-left: 11px;
+        }
+
+        label.col-sm-2 {
+            width: 20%;
+        }
+
+        #customerSearchBtn {
+            cursor: pointer
+        }
+
+        .searchableFiled {
+            border: 1px solid blue;
+        }
+    }
+
+    .twitter-typeahead {
+        width: 100% !important;
+    }
+
+    #raMain {
+        width: 49.5%;
+        float: left;
+        margin-left: .5%;
+        margin-right: .5%;
+        /*#accordion3 {
+            margin-top: 5px;
+        }*/
+        #accordion5 {
+            #collapseEight, #collapseNine{
+                min-height: 211px;
+            }
+        }
+        #collapseSeven {
+            .panel-body {
+                padding: 8px;
+
+                .panelCustom {
+                    -moz-border-radius: 5px !important;
+                    -webkit-border-radius: 5px !important;
+                    border-radius: 5px !important;
+
+                    .panel-heading {
+                        -moz-border-radius: 5px 5px 0 0 !important;
+                        -webkit-border-radius: 5px 5px 0 0 !important;
+                        border-radius: 5px 5px 0 0 !important;
+                    }
+
+                    .clearBoth {
+                        clear: both;
+                    }
+                }
+            }
+
+            .formGroupCustom {
+                margin-right: 0;
+                margin-left: 0;
+                margin-bottom: 0;
+                /*border-radius: 10px !important;
+                background-color: silver;*/
+                hr {
+                    margin-top: 5px;
+                    margin-bottom: 5px;
+                }
+            }
+        }
+
+        #vehicle {
+            margin-top: .5%;
+            min-height: 505px;
+            a{
+                cursor: pointer;
+            }
+            h3{
+                margin-top: 5px;
+                font-size: 20px;
+                margin-bottom: 5px;
+            }
+            .col-sm-2{
+                /*float: right;*/
+                width: 20%;
+                line-height: 25px;
+                margin-left: 5px;
+            }
+            #vehicleMovementTemplate_popoverContent {
+                width: 500px;
+            }
+        }
+
+        #vehicleImage {
+            max-width: 200px;
+            max-height: 150px;
+            vertical-align: super;
+        }
+
+        .vehicleReturnedDateLabel {
+            margin-top: -20px;
+            font-weight: bold;
+            color: darkred;
+        }
+
+        #accordion311{
+            #billingRefreshLink{
+                cursor: pointer;
+            }
+        }
+
+        #collapseEleven11{
+            .panel-body{
+                padding-bottom: 4px;
+            }
+
+            .servicesLabel {
+                font-size: 14px;
+                color: blue;
+            }
+
+            .chargesSubLabel {
+                font-size: 14px; 
+                margin-right: 5px;
+                padding-top: 3px;
+            }
+
+            .billTotalLabel {
+                color: blue;
+                font-weight: bold;
+            }
+
+            .vehicleTariffLabel{
+                font-size: 14px;
+                color: green;
+            }
+
+            .vehicleBillSectionLabel {
+                .chargesSubLabel;
+                color: green;
+            }
+            
+            #billingDropoffContainer {
+                padding-left: 0; 
+                float: right;
+            }
+
+            #billingDropoffTextbox{
+                border: 2px solid;
+            }
+
+            .billingTotalChargesLabel {
+                font-weight: bold;
+                padding-top: 3px;
+            }
+
+            hr {
+                margin: 10px;
+            }
+        }
+    }
+
+    #raBilling {
+        width: 49.5%;
+        float: left;
+
+        #accordion2 {
+            margin-top: 5px;
+        }
+
+        #ra {
+            min-height: 175px;
+
+            label.col-sm-2 {
+                width: 16.5%;
+            }
+
+            label.notFirstColumn {
+                margin-left: 11px;
+            }
+
+            #rentalPaymentTermLabel {
+                width: 14%;
+            }
+
+            @media (min-width: 992px) {
+                .dateTimeControl {
+                    width: 39%;
+                }
+
+                #bookingNumberControl {
+                    /*width: 43.2%;*/
+                }
+
+                #rentalPaymentTermControl {
+                    width: 29%;
+                    padding-left: 0;
+                    
+                }
+                
+                #returnLocationControl {
+                    width: 36.4%;
+                }
+
+                .rentalHireGroupControl {
+                    width: 67%;
+                }
+                .btn-line-height{
+                    line-height: 1;
+                }
+            }
+
+            @media (min-width: 768px) {
+                .input-small {
+                    width: 26.15%;
+                }
+            }
+
+            #rentalAgreementHireGroup, #rentalAgreementHireGroupCopy {
+                width: 100%;
+            }
+        }
+    }
+
+
+    #billing {
+        margin-top: .5%;
+        min-height: 105px;
+
+        .Bold {
+            font-weight: bold;
+        }
+
+        div.form-group {
+            margin-right: 0;
+            margin-left: 0;
+
+            div {
+                border-bottom: 1px solid black;
+            }
+        }
+    }
+
+    .popoverContents {
+        min-height: 150px;
+        position: relative;
+        max-height: 500px;
+        overflow: auto;
+
+        .no-record-found {
+            position: absolute;
+            height: 75px;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+        }
+
+        .clearBoth {
+            clear: both;
+        }
+
+        hr {
+            margin: 10px 0 !important;
+        }
+
+        .formGroupCustom {
+            margin-right: 0;
+            margin-left: 0;
+        }
+
+        .popover-panel {
+            border: 1px solid @extraColor;
+            -moz-border-radius: 5px 5px 5px 5px !important;
+            -webkit-border-radius: 5px 5px 5px 5px !important;
+            border-radius: 5px 5px 5px 5px !important;
+
+            .popover-panel-heading {
+                padding-left: 5px;
+                background-color: @extraColor;
+                height: 25px;
+                padding-top: 5px;
+                font-size: 10pt;
+                font-weight: bold;
+                color: white;
+                .margin-right{
+                    margin-right: 5px;
+                }
+                .heading-text {
+                    margin-left: 5px;
+                }
+
+                a {
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+
+    #extraPopoverContents {
+    }
+
+    #driverPopoverContents {
+        .popover-panel {
+            border-color: @driverColor;
+
+            .popover-panel-heading {
+                background-color: @driverColor;
+                a{
+                    margin-right: 5px;
+                    margin-top: -2px;
+                }
+            }
+        }
+    }
+
+    #chaufferPopoverContents {
+        .popover-panel {
+            border-color: @chaufferColor;
+
+            .popover-panel-heading {
+                background-color: @chaufferColor;
+                a{
+                    margin-right: 5px;
+                    margin-top: -2px;
+                }
+            }
+        }
+    }
+
+    .popoverDateTimeColumn {
+        padding-left: 0 !important;
+
+        .timePart {
+            padding-left: 2px;
+        }
+    }
+
+    #discountPopoverContents {
+        .popover-panel {
+            border-color: @discountColor;
+
+            .popover-panel-heading {
+                background-color: @discountColor;
+            }
+        }
+    }
+
+    #damagePopoverContents {
+        .popover-panel {
+            border-color: @damageColor;
+
+            .popover-panel-heading {
+                background-color: @damageColor;
+                a{
+                    margin-right: 5px;
+                    margin-top: -2px;
+                }
+            }
+
+            #damageQtyControl{
+                width: 93%;
+            }
+        }
+    }
+
+    #paymentPopoverContents {
+        .popover-panel {
+            border-color: @paymentColor;
+
+            .popover-panel-heading {
+                background-color: @paymentColor;
+                a{
+                    margin-right: 5px;
+                    margin-top: -2px;
+                }
+            }
+        }
+    }
+
+    #hiregroupInsuranceDialog {
+
+    }
+
+    #hireGroupDialog{
+        .modal-header{
+            h2{
+                line-height: 0.8em;
+
+                .smallHeading{
+                    font-size: 11px;
+                }
+            }
+        }
+
+        .modal-body{
+            #hireGroupDialogGridContainer{
+                margin-bottom: 0;
+            }
+
+            table{
+                td.parentRow {
+                    font-weight: bold;
+                    color: blue;
+                    font-size: 16px;
+
+                    .secondaryInfo {
+                        font-size: 11px;
+                    }
+                }
+
+                .parentRowDropoffCharge {
+                    color: red;
+                    font-weight: bold;
+                    font-size: 16px;
+                }
+            }
+        }
+    }
+
+    #bpDocTable {
+        margin-left: 0 !important;
+    }
+}
+
+#raQueueBinding {
+
+    table {
+        thead {
+            tr {
+            }
+        }
+    }
+
+    .txtBox {
+        width: 108px;
+    }
+    .searchControlPadding{
+        padding: 0;
+        padding-left: 0;
+        padding-right: 2px;
+    }
+    .searchDropdown{
+        min-width: 150px;
+    }
+}
+
+#vehicleDialog, #hireGroupVehiclesTable{
+     img {
+        height: 30px;
+        width: 45px;
+        -moz-transition: -moz-transform 0.5s ease-in;
+        -webkit-transition: -webkit-transform 0.5s ease-in;
+        -o-transition: -o-transform 0.5s ease-in;
+        transition: -moz-transform 0.5s ease-in;
+    }
+
+     img:hover {
+        -moz-transform: scale(3);
+        -webkit-transform: scale(3);
+        -o-transform: scale(3);
+        -ms-transform: scale(3);
+        transform: scale(3);
+    }
+}
+.RAdocumentButton{
+    line-height: 1;
+}
+#vehicleDialog, #chaufferDialog, #searchCustomerDialog, #customerDocumentsDialog{
+    .btn-search {
+        line-height: 0.8 !important;
+    }
+
+    .header-toolsSection {
+        margin-top: 0;
+        float: right;
+    }
+
+    #chaufferDialogFilterSection{
+        padding-bottom: 5px;
+    }
+
+    #vehicleDialogFilterSection{
+        padding-bottom: 4px;
+    }
+}
+.btn-custom {
+  color: #ffffff;
+  background-color: @paymentColor;
+  border-color: @paymentColor;
+}
+.btn-custom:hover,
+.btn-custom:focus,
+.btn-custom:active,
+.btn-custom.active,
+.open .dropdown-toggle.btn-custom {
+  color: #ffffff;
+  background-color: @paymentColor;
+  border-color: @paymentColor;
+}
+.btn-custom:active,
+.btn-custom.active,
+.open .dropdown-toggle.btn-custom {
+  background-image: none;
+}
+.btn-custom.disabled,
+.btn-custom[disabled],
+fieldset[disabled] .btn-custom,
+.btn-custom.disabled:hover,
+.btn-custom[disabled]:hover,
+fieldset[disabled] .btn-custom:hover,
+.btn-custom.disabled:focus,
+.btn-custom[disabled]:focus,
+fieldset[disabled] .btn-custom:focus,
+.btn-custom.disabled:active,
+.btn-custom[disabled]:active,
+fieldset[disabled] .btn-custom:active,
+.btn-custom.disabled.active,
+.btn-custom[disabled].active,
+fieldset[disabled] .btn-custom.active {
+  background-color: @paymentColor;
+  border-color: @paymentColor;
+}
+
+
+
+.btn-billing {
+  color: #ffffff;
+  background-color: @billingColor;
+  border-color: @billingColor;
+}
+.btn-billing:hover,
+.btn-billing:focus,
+.btn-billing:active,
+.btn-billing.active,
+.open .dropdown-toggle.btn-billing {
+  color: #ffffff;
+  background-color: @billingColor;
+  border-color: @billingColor;
+}
+.btn-billing:active,
+.btn-billing.active,
+.open .dropdown-toggle.btn-billing {
+  background-image: none;
+}
+.btn-billing.disabled,
+.btn-billing[disabled],
+fieldset[disabled] .btn-billing,
+.btn-billing.disabled:hover,
+.btn-billing[disabled]:hover,
+fieldset[disabled] .btn-billing:hover,
+.btn-billing.disabled:focus,
+.btn-billing[disabled]:focus,
+fieldset[disabled] .btn-billing:focus,
+.btn-billing.disabled:active,
+.btn-billing[disabled]:active,
+fieldset[disabled] .btn-billing:active,
+.btn-billing.disabled.active,
+.btn-billing[disabled].active,
+fieldset[disabled] .btn-billing.active {
+  background-color: @billingColor;
+  border-color: @billingColor;
+}
+
+.validationSummaryContainer {
+    .validationSummaryLink {
+        margin-left: 15px;
+    }
+
+    ul {
+        padding-left: 20px;
+    }
+
+    a {
+        color: red;
+    }
+}

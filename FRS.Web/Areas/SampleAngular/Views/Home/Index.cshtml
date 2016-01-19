@@ -1,0 +1,57 @@
+﻿@{
+    ViewBag.Title = "Sample Angular App";
+}
+<div id="mainDiv" ng-app="SampleAngularApp" ng-controller="SampleAngularAppController">
+    <div id="div1" ng-show="!IsShowEdit">
+        <div class="row">
+            <h3 class="page-header float-left pageHeaderSection">List of Employee</h3>
+            <div class="header-toolsSection">
+                <a href="#" class="label label-default create-new-icon" ng-click="showEdit()" title="@FRS.Web.Resources.Shared.Common.CreateNew">@FRS.Web.Resources.Shared.Common.New</a>
+            </div>
+        </div>
+
+        <div class="row searchFilterResultSection">
+            <div class="well">
+                
+                <table ng-table="vm.tableParams" class="table" show-filter="true">
+                    <tr ng-repeat="user in employeeList">
+                        <td title="Name" filter="{ name: 'text'}" sortable="'name'">
+                            {{user.EmployeeName}}
+                        </td>
+                        <td title="Designation" filter="{ Designation: 'text'}" sortable="'Designation'">
+                            {{user.Designation}}
+                        </td>
+                    </tr>
+                </table>
+                
+
+                @*<table id="table" class="table table-condensed">
+                    <thead>
+                        <tr>
+                            <th class="th-pointer"><span id="1">Name</span></th>
+                            <th class="th-pointer"><span id="2">Designation</span></th>
+                            <th class="th-pointer"></th>
+                            <th class="th-pointer"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="emp in employeeList">
+                            <td>{{emp.EmployeeName}}</td>
+                            <td>{{emp.Designation}}</td>
+                            <td><a href="#" ng-click="editEmployee(emp.EmployeeId)" title="Edit"><span class="glyphicon glyphicon-edit"></span></a></td>
+                            <td><a href="#" ng-click="deleteEmployee(emp.EmployeeId)" confirm="Are you sure to delete?" title="Delete"><span class="glyphicon glyphicon-remove"></span></a></td>
+                        </tr>
+                    </tbody>
+                </table>*@
+                @*<table datatable="" dt-options="dtOptions" dt-columns="dtColumns"></table>
+                    <table id="foobar" datatable dt-options="dtOptions" dt-columns="dtColumns" dt-instance="dtInstance"></table>*@
+            </div>
+        </div>
+    </div>
+
+    @Html.Partial("_EmployeeEditor")
+</div>
+<script src="~/Areas/SampleAngular/Scripts/sampleAngularAppController.js"></script>
+<script src="~/Areas/SampleAngular/Scripts/sampleAngularAppDataService.js"></script>
+<script src="~/Scripts/ng-table.js"></script>
+<link href="~/Content/ng-table.css" rel="stylesheet" />

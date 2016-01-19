@@ -1,0 +1,67 @@
+﻿@using System.Configuration
+@using System.Globalization
+@using Cares.Web.Helper
+@using FRS.Web.Resources.Shared
+<!DOCTYPE html>
+<html lang="@CultureHelper.GetCurrentNeutralCulture()" dir="@(CultureHelper.IsRighToLeft() ? "rtl" : "ltr")">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title | Cares</title>
+    @Styles.Render("~/Content/bootstrap-" + (CultureHelper.IsRighToLeft() ? "rtl/files" : "ltr/files"))
+    @Styles.Render("~/Content/css/files")
+    @Styles.Render("~/Content/files")
+    @Styles.Render("~/Content/themes/base/css/files")
+    <link href="~/Content/jquery-ui-timepicker-addon.css" rel="stylesheet" />
+    @Scripts.Render("~/bundles/modernizr/files")
+    @Scripts.Render("~/bundles/jquery/files")
+    @Scripts.Render("~/bundles/jqueryval/files")
+    @Scripts.Render("~/Scripts/files")
+    <script src="~/Scripts/jquery-ui-timepicker-addon.js"></script>
+    @Scripts.Render("~/bundles/bootstrap" + (CultureHelper.IsRighToLeft() ? "-rtl" : ""))
+    <script src="~/Scripts/App/architecture.js"></script>
+    <script type="text/javascript">
+        var ist = window.ist;
+        @{
+        <text>
+        ist.siteUrl = '@ConfigurationManager.AppSettings["SiteURL"].ToString(CultureInfo.InvariantCulture)';
+        ist.resourceText.defaultConfirmationText = '@Common.DefaultConfirmationText';
+        ist.resourceText.defaultHeaderText = '@Common.Confirmation';
+        ist.resourceText.showing = '@Common.Showing';
+        ist.resourceText.of = '@Common.Of';
+        </text>
+    }
+    </script>
+    @* Get Local Time Zone and Keep in Cache *@
+    <script type="text/javascript">
+        function cookieExists(name) {
+            var nameToFind = name + "=";
+            var cookies = document.cookie.split(';');
+            for (var i = 0; i < cookies.length; i++) {
+                if (cookies[i].trim().indexOf(nameToFind) === 0) return true;
+            }
+            return false;
+        }
+        function addTimeZoneOffSetCookie() {
+            if (!cookieExists("_timeZoneOffset") && '@HttpContext.Current.Request.Url.Authority' != "localhost") {
+                var now = new Date();
+                var timeZoneOffset = -now.getTimezoneOffset();  // in minutes
+                now.setTime(now.getTime() + 10 * 24 * 60 * 60 * 1000); // keep it for 10 days
+                document.cookie = "_timeZoneOffset=" + timeZoneOffset.toString() + ";expires=" + now.toGMTString() + ";path=/;" + document.cookie;
+            }
+        }
+
+        // Get Time Zone OffSet and Keep it in cookie
+        addTimeZoneOffSetCookie();
+    </script>
+    <script src="~/Scripts/App/requireConfig.js"></script>
+    <script src="~/Scripts/typeahead.bundle.js"></script>
+    <link rel="stylesheet" type="text/css" href="~/Content/MainSite.css" />
+    <link rel="shortcut icon" href="~/Resources/Images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="~/Resources/Images/favicon.ico" type="image/x-icon">
+    <link href="~/Content/CSS/Global/Plugin/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    @RenderBody()
+</body>
+</html>

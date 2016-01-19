@@ -1,0 +1,25 @@
+﻿#BusinessPartnerSubTypeBinding table thead tr .businessPartnerSubTypeCode {
+  width: 25%;
+}
+#BusinessPartnerSubTypeBinding table thead tr .businessPartnerSubTypeName {
+  width: 25%;
+}
+#BusinessPartnerSubTypeBinding table thead tr .businessPartnerSubTypeDescription {
+  width: 25%;
+}
+#BusinessPartnerSubTypeBinding table thead tr .businessPartnerSubTypebpMain {
+  width: 25%;
+}
+#BusinessPartnerSubTypeBinding #BusinessPartnerSubTypeEditor {
+  margin-top: 15px;
+  /*.detailsContainer{
+            width: 100%;
+            .detailsHeaderSection{
+                float: left;
+                width: 85%;
+                margin-bottom: 20px;
+                margin-top: 10px;
+            }
+        }*/
+}
+/*# sourceMappingURL=BusinessPartnerSubType.css.map */

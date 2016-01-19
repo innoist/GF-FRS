@@ -1,0 +1,193 @@
+﻿@model Cares.WebApp.Models.AdditionalServicesRequstResponse
+@{
+    ViewBag.Title = "Services";
+}
+<h3 class="page-header ">Step 3: Select Aditional Services </h3>
+<div class="well col-md-12">
+    <div class="form-horizontal">
+        <div class="form-group">
+            <label  class="control-label h5 col-sm-3"><b>Pickup</b> </label>
+            <div class="col-md-3">
+            </div>
+            <label  class="control-label h5 col-sm-3"><b>Return</b></label>
+            <div class="col-md-3">
+            </div>
+        </div>
+        <div class="form-group">
+            <label  class="control-label h5 col-sm-3">Date/Time: </label>
+            <label  class="control-label h5 col-sm-3">@ViewBag.BookingVM.StartDt </label>
+            <label  class="control-label h5 col-sm-3">Date/Time: </label>
+            <label  class="control-label h5 col-sm-3">@ViewBag.BookingVM.EndDt </label>
+        </div>
+        <div class="form-group">
+            <label  class="control-label h5 col-sm-3">Location: </label>
+            <label  class="control-label h5 col-sm-3">@ViewBag.BookingVM.OperationWorkPlaceCode </label>
+            <label  class="control-label h5 col-sm-3">Location: </label>
+            <label  class="control-label h5 col-sm-3">@ViewBag.BookingVM.OperationWorkPlaceCode </label>
+        </div>
+    </div>
+</div>
+<form method="GET">
+    <h4 class="page-header ">Insurance Rates </h4>
+    <div class="well col-md-12">
+        @if (ViewBag.BookingVM != null)
+        {
+            @InputExtensions.Hidden(Html, "OperationWorkPlaceId", @ViewBag.BookingVM.OperationWorkPlaceId)
+            @InputExtensions.Hidden(Html, "OperationWorkPlaceCode", @ViewBag.BookingVM.OperationWorkPlaceCode)
+            @InputExtensions.Hidden(Html, "StartDateTime", @ViewBag.BookingVM.StartDt)
+            @InputExtensions.Hidden(Html, "EndDateTime", @ViewBag.BookingVM.EndDt)
+            @InputExtensions.Hidden(Html, "TariffTypeCode", @ViewBag.BookingVM.TariffTypeCode)
+            @InputExtensions.Hidden(Html, "HireGroupDetailId", @ViewBag.BookingVM.HireGroupDetailId)
+        }
+        @foreach (var item in Model.WebApiAvailableInsurancesRates)
+        {
+            <table>
+                <tr>
+                    <td style="width: 80%">
+                        <table>
+                            <tr><td><input class="insuranceTypeCheckbox" id="@item.InsuranceTypeId" type="checkbox" value="" /></td></tr>
+                            <tr>
+                                <td><b>Insurance Type Name : </b></td>
+                                <td> @Html.DisplayFor(modelItem => item.InsuranceTypeName) </td>
+                            </tr>
+                            <tr>
+                                <td><b>Insurance Rate : </b></td>
+                                <td>@Html.DisplayFor(modelItem => item.InsuranceRate) </td>
+                                @InputExtensions.Hidden(Html, "InsuranceTypeId", @item.InsuranceTypeId)
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+            <hr />
+        }
+    </div>
+    <h4 class="page-header ">    Additional Driver  </h4>
+    <div class="well col-md-12">
+        @foreach (var item in Model.WebApiAdditionalDriverRates)
+        {
+            <table>
+                <tr>
+                    <td style="width: 80%">
+                        <table>
+                            <tr><td><input class="drivercheckbox" id="drivercheckbox" type="checkbox" name="chahaderiver" /></td></tr>
+                            <tr>
+                                <td><b>Additional Driver Charge Rate : </b></td>
+                                <td>@Html.DisplayFor(modelItem => item.Rate) </td>
+                                @InputExtensions.Hidden(Html, "AdditionalDriverChargeRate", @item.Rate)
+                            </tr>
+                            <tr>
+                                <td><b>Enter Driver Name : </b></td>
+                                <td> <input class="driverControl" disabled="disabled" id="driverName" name="driverName" placeholder="Driver Name" type="text" /></td>
+                            </tr>
+                            <tr>
+                                <td><b>Enter License # : </b></td>
+                                <td> <input type="text" class="driverControl" disabled="disabled" id="licenseNumber" name="licenseNumber" placeholder="License #" /></td>
+                            </tr>
+                            <tr>
+                                <td><b>License Expiry Date : </b></td>
+                                <td> <input type="date" class="driverControl" disabled="disabled" id="licenseExpirydate" name="licenseExpirydate" /></td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+            <hr />
+        }
+    </div>
+    <h4 class="page-header "> Chauufer Rates  </h4>
+    <div class="well col-md-12">
+        @foreach (var item in Model.WebApiAvailableChuffersRates)
+        {
+            <table>
+                <tr>
+                    <td style="width: 80%">
+                        <table>
+                            <tr><td><input class="chaufferRateCheckBox" id="@item.ChaufferId" type="checkbox" value="" /></td></tr>
+                            <tr>
+                                <td><b>Designation Grade : </b></td>
+                                <td>@Html.DisplayFor(modelItem => item.DesignationGrade)</td>
+                                @Html.Hidden("ChaufferId", @item.ChaufferId)
+                            </tr>
+                            <tr>
+                                <td><b> Charge Rate : </b></td>
+                                <td>@Html.DisplayFor(modelItem => item.ChaufferChargeRate)</td>
+                                @Html.Hidden("ChaufferChargeRate", @item.ChaufferChargeRate)
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+            <hr />
+        }
+    </div>
+    <input type="button" id="submitButton" class="btn btn-info" value="Continue" />
+    <div id="waitDiv" style="visibility: hidden"><p>It will worth the wait...</p></div>
+</form>
+<link href="~/Content/themes/App.css" rel="stylesheet" />
+<script>
+    $(".drivercheckbox").click(function()  {
+        var val = $('#' + this.id).is(":checked");
+        if (val == false) {
+            $('.driverControl').attr('disabled', 'disabled');
+        } else {
+            $('.driverControl').removeAttr('disabled');
+        }
+    });
+    $("#submitButton")  .click(function() {
+        var insurancesTypeIndex = new Array(0);
+        var chauffersIndex = new Array(0);
+        var driverCheckBox = document.getElementById('drivercheckbox');
+        if (insurancesTypeIndex.length == 0 && chauffersIndex.length == 0 && (driverCheckBox && driverCheckBox.checked == false))
+            alert("No Additional Service attached!");
+        var additionalDriver = {
+            Name: $("#driverName").val(),
+            LicenseNumber: $("#licenseNumber").val(),
+            LicenseExpDate: $("#licenseExpirydate").val(),
+            Rate: $("#AdditionalDriverChargeRate").val()
+        };
+        $("input[type='checkbox']").each(function() {
+            if ((this).className == 'insuranceTypeCheckbox' && this.checked)
+                insurancesTypeIndex.push(this.id);
+            if ((this).className == 'chaufferRateCheckBox' && this.checked)
+                chauffersIndex.push(this.id);
+        });
+        var bookingInfo = {
+            OperationWorkPlaceId: $("#OperationWorkPlaceId").val(),
+            StartDateTime: $("#StartDateTime").val(),
+            EndtDateTime: $("#EndDateTime").val(),
+            TariffTypeCode: $("#TariffTypeCode").val(),
+            HireGroupDetailId: $("#HireGroupDetailId").val()
+        };
+        var bookingMainObject = {
+            InsurancesTypeIndex: insurancesTypeIndex,
+            ChauffersIndexInts: chauffersIndex,
+            AdditionalDriver: additionalDriver,
+            BookingMainInfo: bookingInfo
+        };
+       
+        document.getElementById('waitDiv').style.visibility = 'visible';
+        $.ajax({
+            type: "POST",
+            url: "/Booking/Services",
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify({
+                bookingMain: bookingMainObject
+            }),
+            dataType: "json",
+            success: function (data) { alert(data.message); },
+            error: function(jqXHR, textStatus, errorThrown) {
+                alert(jqXHR.status + " | " + textStatus + " | " + errorThrown);
+            }
+        });
+        document.getElementById('waitDiv').style.visibility = 'hidden';
+    }); 
+</script>
+@section scripts
+{
+    <script src="~/Scripts/jquery-ui.min-1.11.1.js"></script>
+    <script src="~/Scripts/jquery-ui-timepicker-addon.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+}

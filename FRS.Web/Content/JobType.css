@@ -1,0 +1,25 @@
+﻿#JobTypeBinding table thead tr .ttypesearchButton {
+  margin-left: 5px;
+}
+#JobTypeBinding table thead tr .JTcode {
+  width: 33%;
+}
+#JobTypeBinding table thead tr .JTname {
+  width: 33%;
+}
+#JobTypeBinding table thead tr .JTdes {
+  width: 33%;
+}
+#JobTypeBinding #JobTypeEditor {
+  margin-top: 15px;
+  /*.detailsContainer{
+            width: 100%;
+            .detailsHeaderSection{
+                float: left;
+                width: 85%;
+                margin-bottom: 20px;
+                margin-top: 10px;
+            }
+        }*/
+}
+/*# sourceMappingURL=JobType.css.map */

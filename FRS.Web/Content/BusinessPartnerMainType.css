@@ -1,0 +1,41 @@
+#bPMainTypeBinding table thead tr .bPMainTypeCode {
+  width: 33%;
+}
+#bPMainTypeBinding table thead tr .bPMainTypeName {
+  width: 33%;
+}
+#bPMainTypeBinding table thead tr .bPMainTypeDes {
+  width: 33%;
+}
+#bPMainTypeBinding #bPMainTypeEditor {
+  margin-top: 15px;
+  /*.detailsContainer{
+            width: 100%;
+            .detailsHeaderSection{
+                float: left;
+                width: 85%;
+                margin-bottom: 20px;
+                margin-top: 10px;
+            }
+        }*/
+}
+#docImage {
+  height: 40px;
+  width: 50px;
+}
+#bpDocTable {
+  margin-left: 31px;
+  width: 95%;
+}
+#BpdocImageLV {
+  word-break: break-all;
+}
+#BpdocCodeLV {
+  word-break: break-all;
+}
+#BpdocNameLV {
+  word-break: break-all;
+}
+#BpdocDesLV {
+  word-break: break-all;
+}

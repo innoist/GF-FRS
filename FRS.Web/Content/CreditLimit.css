@@ -1,0 +1,28 @@
+﻿#CreditLimitBinding table thead tr .creditLimitSubType {
+  width: 20%;
+}
+#CreditLimitBinding table thead tr .creditLimitRatingType {
+  width: 20%;
+}
+#CreditLimitBinding table thead tr .creditLimitIsIndividual {
+  width: 10%;
+}
+#CreditLimitBinding table thead tr .creditLimitCreditLimit {
+  width: 20%;
+}
+#CreditLimitBinding table thead tr .creditLimitDes {
+  width: 30%;
+}
+#CreditLimitBinding #CreditLimitEditor {
+  margin-top: 15px;
+  /*.detailsContainer{
+            width: 100%;
+            .detailsHeaderSection{
+                float: left;
+                width: 85%;
+                margin-bottom: 20px;
+                margin-top: 10px;
+            }
+        }*/
+}
+/*# sourceMappingURL=CreditLimit.css.map */

@@ -1,0 +1,21 @@
+﻿<div id="div2" ng-show="IsShowEdit">
+    <div class="well col-md-12">
+        <div class="float-left detailsContainer">
+            <h3 class="page-header detailsHeaderSection float-left">Employee Detail</h3>
+            <button class="btn  btn-info" id="saveFleetPoolbtn" ng-disabled="!empDetailForm.$dirty" ng-click="saveEmployee()">@FRS.Web.Resources.Shared.Common.Save</button>
+            <button class="btn  btn-default" id="cancelFleetPoolbtn" ng-click="onCancelSave()">@FRS.Web.Resources.Shared.Common.Cancel</button>
+        </div>
+        <form class="form-horizontal" name="empDetailForm">
+            <div class="form-group">
+                <label class="control-label h5 col-sm-2">Employee Name*</label>
+                <div class="col-md-2">
+                    <input type="text" class="form-control" ng-model="EmployeeName" placeholder="@("<Employee Name>")" required />
+                </div>
+                <label class="control-label h5 col-sm-2">Designation*</label>
+                <div class="col-md-2">
+                    <input type="text" class="form-control" ng-model="Designation" placeholder="@("<Designation>")" required />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,22 @@
+﻿#MaintenanceTypeGroupBinding table thead tr .maintenanceTypeGroupCode {
+  width: 33%;
+}
+#MaintenanceTypeGroupBinding table thead tr .maintenanceTypeGroupName {
+  width: 33%;
+}
+#MaintenanceTypeGroupBinding table thead tr .maintenanceTypeGroupDiscription {
+  width: 33%;
+}
+#MaintenanceTypeGroupBinding #MaintenanceTypeGroupEditor {
+  margin-top: 15px;
+  /*.detailsContainer{
+            width: 100%;
+            .detailsHeaderSection{
+                float: left;
+                width: 85%;
+                margin-bottom: 20px;
+                margin-top: 10px;
+            }
+        }*/
+}
+/*# sourceMappingURL=MaintenanceTypeGroup.css.map */

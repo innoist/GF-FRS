@@ -1,0 +1,25 @@
+﻿#BusinessSegmentBinding table thead tr .ttypesearchButton {
+  margin-left: 5px;
+}
+#BusinessSegmentBinding table thead tr .BScode {
+  width: 33%;
+}
+#BusinessSegmentBinding table thead tr .BSname {
+  width: 33%;
+}
+#BusinessSegmentBinding table thead tr .BSDes {
+  width: 40%;
+}
+#BusinessSegmentBinding #BusinessSegmentEditor {
+  margin-top: 15px;
+  /*.detailsContainer{
+            width: 100%;
+            .detailsHeaderSection{
+                display: inline-block;
+                width: 85%;
+                margin-bottom: 20px;
+                margin-top: 10px;
+            }
+        }*/
+}
+/*# sourceMappingURL=BusinessSegment.css.map */

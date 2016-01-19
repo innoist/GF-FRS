@@ -1,0 +1,25 @@
+﻿#DocumentBinding table thead tr .documentCode {
+  width: 25%;
+}
+#DocumentBinding table thead tr .documentName {
+  width: 25%;
+}
+#DocumentBinding table thead tr .documentDiscription {
+  width: 25%;
+}
+#DocumentBinding table thead tr .documentDocGroup {
+  width: 25%;
+}
+#DocumentBinding #DocumentEditor {
+  margin-top: 15px;
+  /*.detailsContainer{
+            width: 100%;
+            .detailsHeaderSection{
+                float: left;
+                width: 85%;
+                margin-bottom: 20px;
+                margin-top: 10px;
+            }
+        }*/
+}
+/*# sourceMappingURL=Document.css.map */

@@ -1,0 +1,121 @@
+﻿@model Cares.WebApp.Models.CustomerInfo
+
+@{
+    ViewBag.Title = "CustomerInfo";
+}
+
+<div class="well col-md-12" style="margin-top: 20px;">
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <h4>Customer Info</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                <label class="control-label h5 col-sm-1">Customer ID</label>
+                <div class="col-md-3">
+                    @Html.EditorFor(model => model.CustomerId, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.CustomerId, "", new { @class = "text-danger" })
+                </div>
+                <label class="control-label h5 col-sm-1">First name</label>
+                <div class="col-md-3">
+                    @Html.EditorFor(model => model.FName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.FName, "", new { @class = "text-danger" })
+                </div>
+                <label class="control-label h5 col-sm-1">Last Name </label>
+                <div class="col-md-3">
+                    @Html.EditorFor(model => model.LName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.LName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label h5 col-sm-1">NIC No.</label>
+                <div class="col-md-3">
+                    @Html.EditorFor(model => model.NICNo, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.NICNo, "", new { @class = "text-danger" })
+                </div>
+                <label class="control-label h5 col-sm-1">NIC Expiry Date</label>
+                <div class="col-md-3">
+                    @Html.EditorFor(model => model.NICExpDt, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.NICExpDt, "", new { @class = "text-danger" })
+                </div>
+                <label class="control-label h5 col-sm-1">Passport No. </label>
+                <div class="col-md-3">
+                    @Html.EditorFor(model => model.PassportNo, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.PassportNo, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label h5 col-sm-1">Passport Expiry Date </label>
+                <div class="col-md-3">
+                    @Html.EditorFor(model => model.PassportExpDt, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.PassportExpDt, "", new { @class = "text-danger" })
+                </div>
+                <label class="control-label h5 col-sm-1">License No.</label>
+                <div class="col-md-3">
+                    @Html.EditorFor(model => model.LicenseNo, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.LicenseNo, "", new { @class = "text-danger" })
+                </div>
+                <label class="control-label h5 col-sm-1">License Expiry Date </label>
+                <div class="col-md-3">
+                    @Html.EditorFor(model => model.LicenseExpDt, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.LicenseExpDt, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label h5 col-sm-1">DOB </label>
+                <div class="col-md-3">
+                    @Html.EditorFor(model => model.DOB, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.DOB, "", new { @class = "text-danger" })
+                </div>
+                <label class="control-label h5 col-sm-1">Sponsor/Kafeel</label>
+                <div class="col-md-3">
+                    @Html.EditorFor(model => model.Sponser, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Sponser, "", new { @class = "text-danger" })
+                </div>
+                <label class="control-label h5 col-sm-1">Phone Numer </label>
+                <div class="col-md-3">
+                    @Html.EditorFor(model => model.PhoneNumer, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.PhoneNumer, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label h5 col-sm-1">Mobile Numer </label>
+                <div class="col-md-3">
+                    @Html.EditorFor(model => model.MobileNumer, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.MobileNumer, "", new { @class = "text-danger" })
+                </div>
+                <label class="control-label h5 col-sm-1">Email</label>
+                <div class="col-md-3">
+                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                </div>
+
+            </div>
+
+
+            <div class="form-group">
+                <div class="col-md-offset-11 col-md-12">
+                    <input type="submit" value="Book Now" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    }
+
+
+</div>
+
+@section scripts
+{
+    <script src="~/Scripts/jquery-ui.min-1.11.1.js"></script>
+    <script src="~/Scripts/jquery-ui-timepicker-addon.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Scripts/App/Booking.js"></script>
+}

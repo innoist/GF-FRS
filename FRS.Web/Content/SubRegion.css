@@ -1,0 +1,28 @@
+﻿#SubRegionBinding table thead tr .ttypesearchButton {
+  margin-left: 5px;
+}
+#SubRegionBinding table thead tr .SRcode {
+  width: 25%;
+}
+#SubRegionBinding table thead tr .SRname {
+  width: 25%;
+}
+#SubRegionBinding table thead tr .SRDes {
+  width: 25%;
+}
+#SubRegionBinding table thead tr .SRRegion {
+  width: 25%;
+}
+#SubRegionBinding #SubRegionEditor {
+  margin-top: 15px;
+  /*.detailsContainer{
+            width: 100%;
+            .detailsHeaderSection{
+                display: inline-block;
+                width: 85%;
+                margin-bottom: 20px;
+                margin-top: 10px;
+            }
+        }*/
+}
+/*# sourceMappingURL=SubRegion.css.map */

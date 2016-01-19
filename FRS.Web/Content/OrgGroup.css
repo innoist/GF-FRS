@@ -1,0 +1,24 @@
+﻿#OrgGroupBinding table thead tr .ttypesearchButton {
+  margin-left: 5px;
+}
+#OrgGroupBinding table thead tr .OrgGroupcode {
+  width: 33%;
+}
+#OrgGroupBinding table thead tr .OrgGroupname {
+  width: 33%;
+}
+#OrgGroupBinding table thead tr .OrgGroupDes {
+  width: 33%;
+}
+#OrgGroupBinding #_OrgGroupEditor {
+  margin-top: 15px;
+  /*.detailsContainer{
+            width: 100%;
+            .detailsHeaderSection{
+                width: 85%;
+                margin-bottom: 20px;
+                margin-top: 10px;
+            }
+        }*/
+}
+/*# sourceMappingURL=OrgGroup.css.map */

@@ -1,0 +1,74 @@
+﻿#vehicleBinding .vehicleThumbnail img {
+  height: 30px;
+  width: 45px;
+  -moz-transition: -moz-transform 0.5s ease-in;
+  -webkit-transition: -webkit-transform 0.5s ease-in;
+  -o-transition: -o-transform 0.5s ease-in;
+  transition: -moz-transform 0.5s ease-in;
+}
+#vehicleBinding .vehicleThumbnail img:hover {
+  -moz-transform: scale(3);
+  -webkit-transform: scale(3);
+  -o-transform: scale(3);
+  -ms-transform: scale(3);
+  transform: scale(3);
+}
+#vehicleBinding table thead tr .vImage {
+  width: 7%;
+}
+#vehicleBinding table thead tr .vPlateNumber {
+  width: 8%;
+}
+#vehicleBinding table thead tr .vName {
+  width: 10%;
+}
+#vehicleBinding table thead tr .vModel {
+  width: 6%;
+}
+#vehicleBinding table thead tr .vFuelLevel {
+  width: 6%;
+}
+#vehicleBinding table thead tr .vCurrentOdemeter {
+  width: 7%;
+}
+#vehicleBinding table thead tr .vLocation {
+  width: 13%;
+}
+#vehicleBinding table thead tr .vMake {
+  width: 12%;
+}
+#vehicleBinding table thead tr .vStatus {
+  width: 12%;
+}
+#vehicleBinding table thead tr .operation {
+  width: 12%;
+}
+#vehicleBinding #vehicleEditor {
+  margin-top: 15px;
+}
+#vehicleBinding #vehicleEditor #vPictorialCondition {
+  cursor: pointer;
+}
+#vehicleBinding #vehicleEditor .addToBtn {
+  float: right;
+  margin-right: 54px;
+}
+#vehicleBinding #vehicleEditor .addToBtnDiv {
+  width: 100%;
+  margin-bottom: 15px;
+}
+#vehicleBinding #vehicleEditor table thead tr .maintenanceType {
+  width: 18%;
+}
+#vehicleBinding #vehicleEditor table thead tr .maintenanceStartDate {
+  width: 18%;
+}
+#vehicleBinding #vehicleEditor table thead tr .frequencyInDays {
+  width: 7%;
+}
+#vehicleBinding #vehicleEditor table thead tr .frequencyInKM {
+  width: 5%;
+}
+#vehicleBinding #vehicleEditor table thead tr .checkListItem {
+  width: 18%;
+}

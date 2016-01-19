@@ -1,0 +1,25 @@
+﻿#MaintenanceTypeBinding table thead tr .maintenanceTypeCode {
+  width: 25%;
+}
+#MaintenanceTypeBinding table thead tr .maintenanceTypeName {
+  width: 25%;
+}
+#MaintenanceTypeBinding table thead tr .maintenanceTypeDiscription {
+  width: 25%;
+}
+#MaintenanceTypeBinding table thead tr .maintenanceTypeGroup {
+  width: 25%;
+}
+#MaintenanceTypeBinding #MaintenanceTypeEditor {
+  margin-top: 15px;
+  /*.detailsContainer{
+            width: 100%;
+            .detailsHeaderSection{
+                float: left;
+                width: 85%;
+                margin-bottom: 20px;
+                margin-top: 10px;
+            }
+        }*/
+}
+/*# sourceMappingURL=MaintenanceType.css.map */

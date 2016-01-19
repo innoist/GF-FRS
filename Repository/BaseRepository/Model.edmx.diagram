@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="4c82f04103114739a6a03c5186c1df21" Name="Diagram1" ZoomLevel="70">
+        <EntityTypeShape EntityType="angularModel.UserRole" Width="1.5" PointX="0.5" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="angularModel.UserClaim" Width="1.5" PointX="5.25" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="angularModel.UserLogin" Width="1.875" PointX="5.25" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="angularModel.Currency" Width="1.5" PointX="7.75" PointY="2.875" />
+        <EntityTypeShape EntityType="angularModel.Load" Width="1.5" PointX="17.875" PointY="10.125" />
+        <EntityTypeShape EntityType="angularModel.LoadMetaData" Width="1.5" PointX="10.25" PointY="2.75" />
+        <EntityTypeShape EntityType="angularModel.LoadType" Width="1.5" PointX="12.625" PointY="13.75" />
+        <EntityTypeShape EntityType="angularModel.Menu" Width="1.5" PointX="10.375" PointY="10.875" />
+        <EntityTypeShape EntityType="angularModel.MenuRight" Width="1.5" PointX="12.625" PointY="11.125" />
+        <EntityTypeShape EntityType="angularModel.MT940LoadDetail" Width="1.5" PointX="12.5" PointY="2.75" />
+        <EntityTypeShape EntityType="angularModel.Source" Width="1.5" PointX="15" PointY="12.5" />
+        <EntityTypeShape EntityType="angularModel.Status" Width="1.5" PointX="8" PointY="7.25" />
+        <EntityTypeShape EntityType="angularModel.sysdiagram" Width="1.5" PointX="5.375" PointY="5.75" />
+        <AssociationConnector Association="angularModel.FK_dbo_MenuRight_dbo_AspNetRoles_Role_Id" />
+        <AssociationConnector Association="angularModel.FK_LoadMetaData_Currency" />
+        <AssociationConnector Association="angularModel.FK_Load_LoadMetaData" />
+        <AssociationConnector Association="angularModel.FK_Load_LoadType" />
+        <AssociationConnector Association="angularModel.FK_Load_MT940LoadDetail" />
+        <AssociationConnector Association="angularModel.FK_LoadMetaData_Status" />
+        <AssociationConnector Association="angularModel.FK_LoadType_Status" />
+        <AssociationConnector Association="angularModel.FK_dbo_MenuRight_dbo_Menu_Menu_MenuId" />
+        <AssociationConnector Association="angularModel.RefMenu01" />
+        <AssociationConnector Association="angularModel.FK_MT940LoadDetail_Status" />
+        <AssociationConnector Association="angularModel.FK_Source_Status" />
+        <EntityTypeShape EntityType="angularModel.AspNetUser" Width="1.75" PointX="3" PointY="3.875" />
+        <AssociationConnector Association="angularModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="angularModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="angularModel.FK_MT940LoadDetail_AspNetUsers" />
+        <AssociationConnector Association="angularModel.AspNetUserRoles" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

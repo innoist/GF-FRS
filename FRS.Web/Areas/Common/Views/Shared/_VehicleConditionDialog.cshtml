@@ -1,0 +1,187 @@
+﻿<div id="vehicleConditionDialog" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="vehicelConditionDialogModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">@FRS.Web.Resources.Shared.Common.Close</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">@Cares.Web.Resources.RentalAgreement.RentalAgreement.VehicleCondition</h4>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <form class="form-horizontal">
+                        <div>
+                            <button type="button" class="btn btn-primary pull-right" data-bind="click: proceed, visible: isEditable">
+                                @FRS.Web.Resources.Shared.Common.Save
+                            </button>
+                        </div>
+                        <div>
+                            <table>
+                                <tr>
+                                    <td class="carCondition">
+                                        <table>
+                                            <tr>
+                                                <td style="height:30px"></td>
+                                            </tr>
+                                            <tr style="height:188px;vertical-align:top">
+                                                <td style="width:84px"></td>
+                                                <td>
+                                                    <table>
+                                                        <tr style="vertical-align:top">
+                                                            <td style="height:30px;width:102px">
+                                                                <input type="checkbox" id="chkVP000" data-bind="enable: isEditable" />
+                                                            </td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td style="height:30px;">
+                                                                <input type="checkbox" id="chkVP020" data-bind="enable: isEditable" />
+                                                            </td>
+                                                        </tr>
+                                                        <tr style="vertical-align:top">
+                                                            <td style="height:40px;">
+                                                                <input type="checkbox" id="chkVP001" data-bind="enable: isEditable" />
+                                                            </td>
+                                                            <td style="width:30px;">
+                                                                <input type="checkbox" id="chkVP010" data-bind="enable: isEditable" />
+                                                            </td>
+                                                            <td style="width:30px;">
+                                                                <input type="checkbox" id="chkVP011" data-bind="enable: isEditable" />
+                                                            </td>
+                                                            <td style="width:112px;">
+                                                                <input type="checkbox" id="chkVP012" data-bind="enable: isEditable" />
+                                                            </td>
+                                                            <td>
+                                                                <input type="checkbox" id="chkVP021" data-bind="enable: isEditable" />
+                                                            </td>
+                                                        </tr>
+                                                        <tr style="vertical-align:top">
+                                                            <td style="height:30px;">
+                                                                <input type="checkbox" id="chkVP002" data-bind="enable: isEditable" />
+                                                            </td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td style="height:30px;">
+                                                                <input type="checkbox" id="chkVP022" data-bind="enable: isEditable" />
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                            <tr style="height:160px;vertical-align:top">
+                                                <td style="width:35px"></td>
+                                                <td>
+                                                    <table>
+                                                        <tr style="vertical-align:top">
+                                                            <td style="height:30px;width:102px">
+                                                                <input type="checkbox" id="chkVP100" data-bind="enable: isEditable" />
+                                                            </td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td style="height:30px;">
+                                                                <input type="checkbox" id="chkVP120" data-bind="enable: isEditable" />
+                                                            </td>
+                                                        </tr>
+                                                        <tr style="vertical-align:top">
+                                                            <td style="height:40px;">
+                                                                <input type="checkbox" id="chkVP101" data-bind="enable: isEditable" />
+                                                            </td>
+                                                            <td style="width:30px;">
+                                                                <input type="checkbox" id="chkVP110" data-bind="enable: isEditable" />
+                                                            </td>
+                                                            <td style="width:30px;">
+                                                                <input type="checkbox" id="chkVP111" data-bind="enable: isEditable" />
+                                                            </td>
+                                                            <td style="width:112px;">
+                                                                <input type="checkbox" id="chkVP112" data-bind="enable: isEditable" />
+                                                            </td>
+                                                            <td>
+                                                                <input type="checkbox" id="chkVP121" data-bind="enable: isEditable" />
+                                                            </td>
+                                                        </tr>
+                                                        <tr style="vertical-align:top">
+                                                            <td style="height:30px;">
+                                                                <input type="checkbox" id="chkVP102" data-bind="enable: isEditable" />
+                                                            </td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td style="height:30px;">
+                                                                <input type="checkbox" id="chkVP122" data-bind="enable: isEditable" />
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                            <tr style="height:110px;vertical-align:top">
+                                                <td style="width:35px"></td>
+                                                <td>
+                                                    <table>
+                                                        <tr style="vertical-align:top">
+                                                            <td style="height:30px;width:102px">
+                                                                <input type="checkbox" id="chkVP200" data-bind="enable: isEditable" />
+                                                            </td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td style="height:30px;">
+                                                                <input type="checkbox" id="chkVP220" data-bind="enable: isEditable" />
+                                                            </td>
+                                                        </tr>
+                                                        <tr style="vertical-align:top">
+                                                            <td style="height:40px;">
+                                                                <input type="checkbox" id="chkVP201" data-bind="enable: isEditable" />
+                                                            </td>
+                                                            <td style="width:30px;">
+                                                                <input type="checkbox" id="chkVP210" data-bind="enable: isEditable" />
+                                                            </td>
+                                                            <td style="width:30px;">
+                                                                <input type="checkbox" id="chkVP211" data-bind="enable: isEditable" />
+                                                            </td>
+                                                            <td style="width:112px;">
+                                                                <input type="checkbox" id="chkVP212" data-bind="enable: isEditable" />
+                                                            </td>
+                                                            <td>
+                                                                <input type="checkbox" id="chkVP221" data-bind="enable: isEditable" />
+                                                            </td>
+                                                        </tr>
+                                                        <tr style="vertical-align:top">
+                                                            <td style="height:30px;">
+                                                                <input type="checkbox" id="chkVP202" data-bind="enable: isEditable" />
+                                                            </td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td style="height:30px;">
+                                                                <input type="checkbox" id="chkVP222" data-bind="enable: isEditable" />
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+
+                                    <td style="width:37.5%;" align="center">
+                                        <div>
+                                            <label class="control-label">@Cares.Web.Resources.RentalAgreement.RentalAgreement.Description</label>
+                                        </div>
+                                        <div>
+                                            <textarea cols="75" rows="25" data-bind="value: description, enable: isEditable"></textarea>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>

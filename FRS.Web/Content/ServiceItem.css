@@ -1,0 +1,27 @@
+#ServiceItemBinding table thead tr .ServiceItemImage {
+  width: 10%;
+}
+#ServiceItemBinding table thead tr .ServiceItemCode {
+  width: 15%;
+}
+#ServiceItemBinding table thead tr .ServiceItemName {
+  width: 25%;
+}
+#ServiceItemBinding table thead tr .ServiceItemDes {
+  width: 25%;
+}
+#ServiceItemBinding table thead tr .ServiceItemServiceType {
+  width: 25%;
+}
+#ServiceItemBinding #ServiceItemEditor {
+  margin-top: 15px;
+  /*.detailsContainer{
+            width: 100%;
+            .detailsHeaderSection{
+                float: left;
+                width: 85%;
+                margin-bottom: 20px;
+                margin-top: 10px;
+            }
+        }*/
+}

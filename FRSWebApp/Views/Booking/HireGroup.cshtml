@@ -1,0 +1,120 @@
+﻿@model List<Cares.WebApp.Models.HireGroupDetail>
+
+@{
+    ViewBag.Title = "Hire Group";
+}
+
+<h3 class="page-header ">Step 2: Select Hire Group </h3>
+<div class="well col-md-12">
+    <div class="form-horizontal">
+        <div class="form-group">
+            <label for="" class="control-label h5 col-sm-3"><b>Pickup</b> </label>
+            <div class="col-md-3">
+            </div>
+            <label for="" class="control-label h5 col-sm-3"><b>Return</b></label>
+            <div class="col-md-3">
+            </div>
+
+        </div>
+        <div class="form-group">
+            <label for="" class="control-label h5 col-sm-3">Date/Time: </label>
+            <label for="" class="control-label h5 col-sm-3">@ViewBag.BookingVM.StartDt </label>
+            <label for="" class="control-label h5 col-sm-3">Date/Time: </label>
+            <label for="" class="control-label h5 col-sm-3">@ViewBag.BookingVM.EndDt </label>
+
+        </div> 
+        <div class="form-group">
+            <label for="" class="control-label h5 col-sm-3">Location: </label>
+            <label for="" class="control-label h5 col-sm-3">@ViewBag.BookingVM.OperationWorkPlaceCode </label>
+            <label for="" class="control-label h5 col-sm-3">Location: </label>
+            <label for="" class="control-label h5 col-sm-3">@ViewBag.BookingVM.OperationWorkPlaceCode </label>
+        </div>
+    </div>
+</div>
+<div class="well col-md-12">
+
+    @foreach (var item in Model)
+    {
+        using (Html.BeginForm())
+        {
+            if (ViewBag.BookingVM != null)
+            {
+                @InputExtensions.Hidden(Html, "OperationWorkPlaceId", @ViewBag.BookingVM.OperationWorkPlaceId)
+                @InputExtensions.Hidden(Html, "OperationWorkPlaceCode", @ViewBag.BookingVM.OperationWorkPlaceCode)
+                @InputExtensions.Hidden(Html, "StartDateTime", @ViewBag.BookingVM.StartDt)
+                @InputExtensions.Hidden(Html, "EndDateTime", @ViewBag.BookingVM.EndDt)
+                @Html.Hidden("TariffTypeCode", @item.TariffTypeCode)
+            }
+            @(Html.Hidden("HireGroupDetailId", @item.HireGroupDetailId))
+            <table id=@item.HireGroupDetailId>
+                <tr>
+                    <td style="width: 10%">
+                        @*<asp:Image ID="Image1" runat="server" Width="120" />*@
+                        <img src="../../Content/Images/LS600hL.Jpeg" alt="" width="120" />
+                    </td>
+                    <td style="width: 80%">
+                        <table>
+                            <tr>
+                                <td style="width: 70%;">
+                                    <b>Vehicle Make: </b>
+                                    @Html.DisplayFor(modelItem => item.VehicleMakeName)
+                                </td>
+                                <td style="width: 30%;">
+                                    <b>Rate:</b>
+                                    @Html.DisplayFor(modelItem => item.RentalCharge)
+                                    @*<asp:Label Text='<%# Eval("StandardRate","{0:N0}") %>' runat="server" ID="Label5" />*@
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <b>Vehicle Model: </b>
+                                    @Html.DisplayFor(modelItem => item.VehilceModelName)
+                                </td>
+                                <td>
+                                    <b>Allowed Milage:</b>
+                                    @Html.DisplayFor(modelItem => item.AllowedMileage)
+                                    @*<asp:Label Text='<%# Eval("AllowedMileage","{0:N0}") %>' runat="server" ID="Label6" />*@
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <b>Category: </b>
+                                    @Html.DisplayFor(modelItem => item.VehicleCategoryName)
+                                </td>
+                                <td>
+                                    <b>Charge/Extra Km:</b>
+                                    @*<asp:Label Text='<%# Eval("ExcessMileageRt","{0:N2}") %>' runat="server" ID="Label7" />*@
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <b>Model Year: </b>
+                                    @Html.DisplayFor(modelItem => item.ModelYear)
+                                </td>
+                                <td>
+                                    <b>Charge: </b>
+                                    @*<asp:Label Text='<%# Eval("TotalStandardCharge","{0:N0}") %>' runat="server" ID="Label8"
+                                        Style="color: Black; font-size: large" />*@
+                                </td>
+                                <td>
+                                    <input type="submit" class="btn btn-info" value="Continue" />
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+            <hr />
+        }
+    }
+</div>
+<link href="~/Content/themes/App.css" rel="stylesheet" />
+
+@section scripts
+{
+    <script src="~/Scripts/jquery-ui.min-1.11.1.js"></script>
+    <script src="~/Scripts/jquery-ui-timepicker-addon.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+}

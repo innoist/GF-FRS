@@ -1,0 +1,70 @@
+﻿#WorkLocationBinding table thead tr .ttypesearchButton {
+  margin-left: 5px;
+}
+#WorkLocationBinding table thead tr .WLcode {
+  width: 15%;
+}
+#WorkLocationBinding table thead tr .WLname {
+  width: 15%;
+}
+#WorkLocationBinding table thead tr .WLCompany {
+  width: 10%;
+}
+#WorkLocationBinding table thead tr .WLCountry {
+  width: 15%;
+}
+#WorkLocationBinding table thead tr .WLregion {
+  width: 12%;
+}
+#WorkLocationBinding table thead tr .WLSubregion {
+  width: 10%;
+}
+#WorkLocationBinding table thead tr .WLCity {
+  width: 11%;
+}
+#WorkLocationBinding table thead tr .WLArea {
+  width: 12%;
+}
+#WorkLocationBinding #WorkplaceEditor {
+  margin-top: 15px;
+  /*.detailsContainer {
+        width: 100%;
+
+        .detailsHeaderSection {
+            width: 85%;
+            display: inline-block;
+            margin-bottom: 20px;
+            margin-top: 10px;
+        }
+                    }*/
+}
+#WorkLocationBinding #WorkplaceEditor .addToBtn {
+  float: right;
+}
+#WorkLocationBinding #WorkplaceEditor .addToBtnDiv {
+  width: 100%;
+  margin-bottom: 15px;
+}
+#WorkLocationBinding #WorkplaceEditor #phoneType {
+  margin-left: -40px;
+}
+#WorkLocationBinding #WorkplaceEditor #addButtonContainer {
+  margin-right: 10px;
+}
+#WorkLocationBinding #WorkplaceEditor #phoneTable {
+  margin: 10px;
+  width: 68%;
+  margin-left: 26px;
+  margin-top: 28px;
+}
+#WorkLocationBinding #WorkplaceEditor #defaultCheckbox {
+  height: 18px;
+  margin-top: 7px;
+}
+#WorkLocationBinding #WorkplaceEditor #saveBtn {
+  width: 80px;
+}
+#WorkLocationBinding #WorkplaceEditor #isDefaultHeader {
+  width: 14%;
+}
+/*# sourceMappingURL=WorkLocation.css.map */

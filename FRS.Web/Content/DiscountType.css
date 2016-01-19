@@ -1,0 +1,22 @@
+﻿#DiscountTypeBinding table thead tr .DTcode {
+  width: 33%;
+}
+#DiscountTypeBinding table thead tr .DTname {
+  width: 33%;
+}
+#DiscountTypeBinding table thead tr .DTDes {
+  width: 33%;
+}
+#DiscountTypeBinding #DiscountTypeEditor {
+  margin-top: 15px;
+  /*.detailsContainer{
+            width: 100%;
+            .detailsHeaderSection{
+                float: left;
+                width: 85%;
+                margin-bottom: 20px;
+                margin-top: 10px;
+            }
+        }*/
+}
+/*# sourceMappingURL=DiscountType.css.map */

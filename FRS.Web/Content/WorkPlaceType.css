@@ -1,0 +1,28 @@
+﻿#WorkPlaceTypeBinding table thead tr .ttypesearchButton {
+  margin-left: 5px;
+}
+#WorkPlaceTypeBinding table thead tr .WPTcode {
+  width: 25%;
+}
+#WorkPlaceTypeBinding table thead tr .WPTname {
+  width: 25%;
+}
+#WorkPlaceTypeBinding table thead tr .WPTDes {
+  width: 25%;
+}
+#WorkPlaceTypeBinding table thead tr .WPTnature {
+  width: 25%;
+}
+#WorkPlaceTypeBinding #WorkPlaceTypeEditor {
+  margin-top: 15px;
+  /*.detailsContainer{
+            width: 100%;
+            .detailsHeaderSection{
+                display: inline-block;
+                width: 85%;
+                margin-bottom: 20px;
+                margin-top: 10px;
+            }
+        }*/
+}
+/*# sourceMappingURL=WorkPlaceType.css.map */

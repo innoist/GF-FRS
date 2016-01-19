@@ -1,0 +1,97 @@
+﻿@model Cares.WebApp.Models.BookingSearchRequest
+
+@{
+    ViewBag.Title = "Index";
+}
+<div class="well " style="width: 50%;margin-top: 40px;">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <h4>Booking Detail</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.Label("Pick/Drop Location", new { @class = "control-label col-md-4" })
+                <div class="col-md-17">
+                    @Html.EditorFor(model => model.OperationWorkPlaceCode, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.OperationWorkPlaceCode, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.OperationWorkPlaceId)
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                @Html.Label("Pick Date Time", new { @class = "control-label col-md-4" })
+                <div class="col-md-17">
+                    @Html.EditorFor(model => model.StartDt, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.StartDt, "", new { @class = "text-danger" })
+                    @*@Html.TextBox("StartDt", null, new { @class = "form-control" })*@
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Drop Date Time", new { @class = "control-label col-md-4" })
+                <div class="col-md-17">
+                    @Html.EditorFor(model => model.EndDt, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.EndDt, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-7 col-md-17">
+                    <input type="submit" value="Proceed To Quote" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    }
+
+</div>
+
+
+<link href="~/Content/themes/base/datepicker.css" rel="stylesheet" />
+@section scripts
+{
+    <script type="text/javascript">
+        var operationWorkPlaces = [];
+        debugger;
+        var array = @Html.Raw(Json.Encode(@ViewBag.OperationWorkPlaces))
+        $.each(array, function (item) {
+        });
+        for (var i = 0; i < array.OperationWorkplaces.length; i++) {
+            operationWorkPlaces[i] = array.OperationWorkplaces[i];
+        }
+        $(document).ready(function () {
+
+            $('#OperationWorkPlaceCode').autocomplete({
+                source: function (request, response) {
+                    var re = $.ui.autocomplete.escapeRegex(request.term);
+                    var matcher = new RegExp("^" + re, "i");
+                    response($.grep(($.map(operationWorkPlaces, function (v, i) {
+
+                        return {
+                            label: v.LocationName,
+                            value: v.OperationWorkplaceId
+                        };
+                    })), function (item) {
+                        return matcher.test(item.label);
+                    }));
+
+                },
+                select: function (event, ui) {
+                    if (ui.item.value == -1) {
+                        return false;
+                    }
+                    $('#OperationWorkPlaceId').val(ui.item.value);
+                    $("#OperationWorkPlaceCode").val(ui.item.label);
+                    return false;
+                },
+            });
+            $("#StartDt").datetimepicker();
+            $("#EndDt").datetimepicker();
+
+        });
+    </script>
+}
+

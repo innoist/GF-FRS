@@ -1,0 +1,64 @@
+﻿@model FRS.Web.Models.UserModelForEditUser
+
+@{
+    ViewBag.Title = "Edit User";
+}
+
+@using (Html.BeginForm())
+{
+
+    <div class="well col-md-12" style="margin-top: 15px">
+        <div class="float-left detailsContainer">
+            <h3 class="page-header detailsHeaderSection float-left">@FRS.Web.Resources.User.User.UserDetail</h3>
+            <input type="submit" id="addUser" value="@FRS.Web.Resources.Shared.Common.Save" class="btn btn-info" />
+            @Html.ActionLink(FRS.Web.Resources.Shared.Common.Cancel, "Index", new { }, new { @class = "btn  btn-default" })
+        </div>
+        <div class="form-horizontal">
+            <hr />
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+            
+            <div class="form-group">
+                @Html.LabelFor(model => model.FirstName, new { @class = "control-label h5 col-md-2" })
+                <div class="col-md-3">
+                    @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.FirstName)
+                </div>
+                @Html.LabelFor(model => model.LastName, new { @class = "control-label h5 col-md-2" })
+                <div class="col-md-3">
+                    @Html.TextBoxFor(model => model.LastName, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.LastName)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.UserEmail, new { @class = "control-label h5 col-sm-2" })
+                <div class="col-md-3">
+                    @Html.TextBoxFor(model => model.UserEmail, new { @readonly = true, @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.UserEmail)
+                </div>
+                @Html.LabelFor(model => model.SelectedRole, new { @class = "control-label h5 col-sm-2" })
+                <div class="col-md-3">
+                    @Html.DropDownListFor(n => n.SelectedRole, new SelectList(Model.Roles, "Id", "Name", 1), "--Select Role--", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.SelectedRole)
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <p>@ViewBag.EditUserError</p>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <p>@ViewBag.UserError</p>
+                </div>
+            </div>
+
+        </div>
+        @Html.HiddenFor(model => model.id)
+    </div>
+
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval/files")
+}

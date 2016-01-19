@@ -1,0 +1,99 @@
+﻿@{
+    ViewBag.Title = "Play";
+}
+<div id="bodyContainer" ng-app="QuizApp">
+    <section id="content">
+        <div class="container">
+            <div class="row">
+                <div class="flip-container text-center col-md-12" ng-controller="QuizCtrl" ng-init="getCities()">
+                    <ul>
+                        <li ng-repeat="x in cities">
+                            {{ x.CityName + ', ' + x.CountryName }}
+                        </li>
+                    </ul>
+                    <ul>
+                        <li ng-repeat="x in cities">
+                            <p>CityName : <input type="text" ng-model="x.CityName"></p>
+                            <p>CountryName : <input type="text" ng-model="x.CountryName"></p>
+                        </li>
+                    </ul>
+                    <input type="checkbox" ng-model="confirmed" ng-change="change()" id="ng-change-example1" />
+                    <input type="checkbox" ng-model="confirmed" id="ng-change-example2" />
+                    <label for="ng-change-example2">Confirmed</label><br />
+                    <tt>debug = {{confirmed}}</tt><br />
+                    <tt>counter = {{counter}}</tt><br />
+                    
+                    
+                    <label>Click me to toggle: <input type="checkbox" ng-model="checked"></label><br />
+                    <button ng-model="button" ng-disabled="checked">Button</button>
+                    
+                    <label>Check me to make text readonly: <input type="checkbox" ng-model="checked"></label><br />
+                    <input type="text" ng-readonly="checked" value="I'm Angular" aria-label="Readonly field" />
+                    
+                    <h2>RadioBox Example</h2>
+                    <h2>Which is your favorite?</h2>
+                    <label ng-repeat="name in names" for="{{name}}">
+                        {{name}}
+                        <input type="radio"
+                               ng-model="my.favorite"
+                               ng-value="name"
+                               id="{{name}}"
+                               name="favorite">
+                    </label>
+                    <div>You chose {{my.favorite}}</div>
+                    
+                    
+                    <label>Enter name: <input type="text" ng-model="name"></label><br>
+                    Hello <span ng-bind="name"></span>!
+                    
+
+                    <label for="repeatSelect"> Repeat select: </label>
+                    <select name="repeatSelect" id="repeatSelect" ng-model="data.repeatSelect">
+                        <option ng-repeat="option in data.availableOptions" value="{{option.id}}">{{option.name}}</option>
+                    </select>
+                    <hr>
+                    <tt>repeatSelect = {{data.repeatSelect}}</tt><br />
+                    
+
+                    <h2>Validation Example</h2>
+                    <form name="form" ng-submit="submit()" novalidate>
+
+                        <div class="control-group" ng-class="error('cityName')">
+                            <label class="control-label" for="cityName">City Name</label>
+                            <div class="controls">
+                                <input id="cityName" name="cityName" type="text" ng-disabled="!isEdittable" ng-model="city.CityName" placeholder="City Name" required />
+                                <span class="help-block"
+                                      ng-show="form.cityName.$invalid && form.cityName.$dirty">
+                                    City Name is required
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="control-group" ng-class="error('citycode')">
+                            <label class="control-label" for="citycode">City Code</label>
+                            <div class="controls">
+                                <input id="citycode" name="citycode" type="text" ng-disabled="!isEdittable" ng-model="city.CityCode" placeholder="citycode" required />
+                                <span class="help-block" 
+                                      ng-show="form.city.CityCode.$invalid && form.city.CityCode.$dirty">
+                                    City Code is required
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <div class="controls">
+                                <button ng-disabled="form.$invalid ||form.$pristine" class="btn">Submit</button>
+                                <input type="button" ng-click="editForm()" value="Edit" class="btn">
+                                <input type="button" ng-click="cancelEditForm()" value="Cancel" class="btn">
+                            </div>
+                        </div>
+                        
+                    </form>
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<script src="~/Areas/Angular/Scripts/quiz-controller.js"></script>
+@*<script src="~/Areas/Angular/Scripts/quiz-dataService.js"></script>*@

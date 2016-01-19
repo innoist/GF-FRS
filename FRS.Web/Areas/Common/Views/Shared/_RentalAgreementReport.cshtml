@@ -1,0 +1,24 @@
+﻿<div class="row" id="rentalAgreementSearchBinding">
+    <div class="row searchFilterSection">
+        <!--ko if: $root.isDisplayFilterSection()-->
+        <div class="well">
+            <form class="form-horizontal" data-bind="submit: search">
+                <div class="col-xs-1 txtBox">
+                    <input type="text" class="form-control" style="width: 180px" placeholder='@Cares.Web.Resources.RentalAgreement.RentalAgreement.PHRANo' data-bind="value: raRentalAgreementId" />
+                </div>
+                <a class="btn btn-success" style="margin-left: 150px" data-bind="click: search">@FRS.Web.Resources.Shared.Common.Search</a>
+            </form>
+        </div>
+        <!--/ko-->
+    </div>
+    <div class="row searchFilterResultSection">
+        <div class="well" style="background-color: white ; padding-top: 0px">
+            <table id="AreaTable" class="table table-condensed">
+                <thead>
+                    <tr><td id="reportIFrame"><iframe id="myReport" src="" data-bind="attr: { src: reportSrc }"></iframe></td></tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,262 @@
+﻿@import "Fleet";
+@import "Pricing";
+@import "RentalAgreement";
+@import "Company";
+@import "Operation";
+@import "OrgGroup";
+@import "WorkPlace";
+@import "Vehicle";
+@import "WorkLocation";
+@import "WorkPlaceType";
+@import "BusinessSegment";
+@import "Region";
+@import "EmployeeManagement";
+@import "SubRegion";
+@import "City";
+@import "Area";
+@import "DesignationGrade";
+@import "EmpStatus";
+@import "Designation";
+@import "JobType";
+@import "DiscountType";
+@import "DiscountSubType";
+@import "ServiceType";
+@import "ServiceItem";
+@import "NrtType";
+@import "VehicleCheckList";
+@import "DocumentGroup";
+@import "BusinessPartnerMainType";
+@import "Document";
+@import "RatingType";
+@import "BusinessLegalStatus";
+@import "OccupationType";
+@import "BusinessPartnerRelationshipType";
+@import "BusinessPartnerSubType";
+@import "CreditLimit";
+@import "MarketingChannel";
+@import "MaintenanceTypeGroup";
+@import "MaintenanceType";
+@import "InsuranceType";
+@import "VehicleMake";
+@import "VehicleCategory";
+@import "VehicleModel";
+@import "VehicleStatus";
+@import "VehicleCondition.less";
+
+.float-left {
+    float: left;
+}
+
+.float-right {
+    float: right;
+}
+
+.collapse-filter {
+    margin-top: 10px;
+}
+
+.create-new-icon {
+    margin-left: 10px;
+}
+
+
+
+.margin-left-10 {
+  margin-left: 10px !important;
+}
+
+
+.margin-right{
+    margin-right: 3%;
+}
+
+.margin-right-20{
+    margin-right: 20px;
+}
+
+.margin-top-15{
+    margin-top: 15px;
+}
+.cursor-pointer{
+    cursor: pointer;
+}
+
+   html[dir="rtl"] .form-group label{
+            font-weight: normal;
+            text-align: right !important;
+        }
+   html[dir="rtl"] .col-xs-1,html[dir="rtl"] .col-xs-2, html[dir="rtl"] .col-xs-3, html[dir="rtl"] .col-xs-4, html[dir="rtl"] .col-xs-5, html[dir="rtl"] .col-xs-6, html[dir="rtl"] .col-xs-7,
+        html[dir="rtl"] .col-xs-8, html[dir="rtl"] .col-xs-9, html[dir="rtl"] .col-xs-10, html[dir="rtl"] .col-xs-11, html[dir="rtl"] .col-xs-12, html[dir="rtl"] .col-sm-1, html[dir="rtl"] .col-sm-2,
+        html[dir="rtl"] .col-sm-3, html[dir="rtl"] .col-sm-4, html[dir="rtl"] .col-sm-5, html[dir="rtl"] .col-sm-6, html[dir="rtl"] .col-sm-7, html[dir="rtl"] .col-sm-8, html[dir="rtl"] .col-sm-9,
+        html[dir="rtl"] .col-sm-10, html[dir="rtl"] .col-sm-11, html[dir="rtl"] .col-sm-12, html[dir="rtl"] .col-md-1, html[dir="rtl"] .col-md-2, html[dir="rtl"] .col-md-3, html[dir="rtl"] .col-md-4,
+        html[dir="rtl"] .col-md-5, html[dir="rtl"] .col-md-6, html[dir="rtl"] .col-md-7, html[dir="rtl"] .col-md-8, html[dir="rtl"] .col-md-9, html[dir="rtl"] .col-md-10, html[dir="rtl"] .col-md-11,
+        html[dir="rtl"] .col-md-12, html[dir="rtl"] .col-lg-1, html[dir="rtl"] .col-lg-2, html[dir="rtl"] .col-lg-3, html[dir="rtl"] .col-lg-4, html[dir="rtl"] .col-lg-5, html[dir="rtl"] .col-lg-6,
+        html[dir="rtl"] .col-lg-7, html[dir="rtl"] .col-lg-8, html[dir="rtl"] .col-lg-9, html[dir="rtl"] .col-lg-10, html[dir="rtl"] .col-lg-11, html[dir="rtl"] .col-lg-12 {
+            padding-right: 8px !important;
+            padding-left: 0 !important; 
+        } 
+
+.modal-dialog {
+    width: 900px;
+
+    .well {
+        -moz-border-radius: 5px !important;
+        -webkit-border-radius: 5px !important;
+        border-radius: 5px !important;
+    }
+
+    .modal-header {
+        background-color: #3F5567;
+
+        .modal-title {
+            color: #FFFFFF;
+        }
+    }
+
+    .modal-body {
+        padding: 10px;
+    }
+
+    .modal-footer {
+        padding: 10px 20px 20px;
+        margin-top: 2px;
+    }
+}
+
+#dialog-confirm{
+    margin-top: 14.7%;
+}
+
+.pageHeaderSection {
+    width: 93%;
+    margin-bottom: 0;
+    margin-top: 15px;
+}
+
+.detailsContainer{
+            width: 100%;
+            .detailsHeaderSection{
+                display: inline-block;
+                width: 85%;
+                margin-bottom: 20px;
+                margin-top: 10px;
+            }
+        }
+
+.header-toolsSection {
+    margin-top: 20px;
+}
+
+/* For Fluid Layout */
+@media (min-width: 1200px) {
+    .container-fluid {
+        max-width: 100%;
+        margin: 10px;
+    }
+}
+/* For Fluid Layout */
+
+/* Input Mini */
+@media (min-width: 768px) {
+    .input-mini {
+        width: 8%;
+        padding-right: 0;
+    }
+}
+/* Input Mini */
+
+/* Input Small */
+@media (min-width: 768px) {
+    .input-small {
+        width: 16%;
+        padding-right: 0;
+    }
+}
+/* Input Small */
+
+/* Twitter Typeahead */
+.twitter-typeahead .tt-query,
+.twitter-typeahead .tt-hint {
+	margin-bottom: 0;
+}
+.tt-hint {
+	display: block;
+	width: 100%;
+	height: 38px;
+	padding: 8px 12px;
+	font-size: 14px;
+	line-height: 1.428571429;
+	color: #999;
+	vertical-align: middle;
+	background-color: #ffffff;
+	border: 1px solid #cccccc;
+	border-radius: 4px;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+	        box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+	-webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+	        transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+}
+.tt-dropdown-menu {
+	min-width: 160px;
+	margin-top: 2px;
+	padding: 5px 0;
+	background-color: #ffffff;
+	border: 1px solid #cccccc;
+	border: 1px solid rgba(0, 0, 0, 0.15);
+	border-radius: 4px;
+	-webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+	        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+	background-clip: padding-box;
+    position: relative;
+ 
+}
+.tt-suggestion {
+	display: block;
+	padding: 3px 20px;
+}
+.tt-suggestion.tt-cursor {
+	color: #fff;
+	background-color: #428bca;
+}
+.tt-suggestion.tt-is-under-cursor a {
+	color: #fff;
+}
+.tt-suggestion p {
+	margin: 0;
+}
+
+#sitename{
+    color:deepskyblue
+}
+/* Twitter Typeahead */
+
+/*RTL IMPLEMENTATION*/
+html[dir="rtl"] .form-horizontal .form-group {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+html[dir="rtl"] .float-left {
+    float: right;
+}
+html[dir="rtl"] .float-right {
+    float: left;
+}
+
+html[dir="ltr"] .margin-left{
+    margin-left: 4%;
+}
+
+html[dir="rtl"] .margin-right{
+    margin-left: 3%;
+} 
+html[dir="rtl"] .margin-left-10 {
+    margin-right: 10px !important;
+}
+html[dir="rtl"] .margin-left { 
+    margin-right: 4%;
+}
+
+html[dir="rtl"] .margin-right-20{
+    margin-left: 20px;
+}

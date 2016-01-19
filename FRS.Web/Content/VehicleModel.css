@@ -1,0 +1,21 @@
+﻿#VehicleModelBinding table thead tr .VehicleModelCode {
+  width: 33%;
+}
+#VehicleModelBinding table thead tr .VehicleModelName {
+  width: 33%;
+}
+#VehicleModelBinding table thead tr .VehicleModelDiscription {
+  width: 33%;
+}
+#VehicleModelBinding #VehicleModelEditor {
+  margin-top: 15px;
+  /*.detailsContainer{
+            width: 100%;
+            .detailsHeaderSection{
+                width: 85%;
+                margin-bottom: 20px;
+                margin-top: 10px;
+            }
+        }*/
+}
+/*# sourceMappingURL=VehicleModel.css.map */

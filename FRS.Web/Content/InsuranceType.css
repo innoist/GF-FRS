@@ -1,0 +1,24 @@
+#InsuranceTypeBinding table thead tr .InsuranceTypeImage {
+  width: 10%;
+}
+#InsuranceTypeBinding table thead tr .InsuranceTypeCode {
+  width: 15%;
+}
+#InsuranceTypeBinding table thead tr .InsuranceTypeName {
+  width: 33%;
+}
+#InsuranceTypeBinding table thead tr .InsuranceTypeDescription {
+  width: 33%;
+}
+#InsuranceTypeBinding #insuranceTypeEditor {
+  margin-top: 15px;
+  /*.detailsContainer{
+            width: 100%;
+            .detailsHeaderSection{
+                float: left;
+                width: 85%;
+                margin-bottom: 20px;
+                margin-top: 10px;
+            }
+        }*/
+}

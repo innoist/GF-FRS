@@ -1,0 +1,34 @@
+﻿#CityBinding table thead tr .ttypesearchButton {
+  margin-left: 5px;
+}
+#CityBinding table thead tr .Citycode {
+  width: 16%;
+}
+#CityBinding table thead tr .CityName {
+  width: 17%;
+}
+#CityBinding table thead tr .CityDiscription {
+  width: 16%;
+}
+#CityBinding table thead tr .CityCountry {
+  width: 17%;
+}
+#CityBinding table thead tr .CityRegion {
+  width: 16%;
+}
+#CityBinding table thead tr .CitySubRegion {
+  width: 17%;
+}
+#CityBinding #CityEditor {
+  margin-top: 15px;
+  /*.detailsContainer{
+            width: 100%;
+            .detailsHeaderSection{
+                float: left;
+                width: 85%;
+                margin-bottom: 20px;
+                margin-top: 10px;
+            }
+        }*/
+}
+/*# sourceMappingURL=City.css.map */

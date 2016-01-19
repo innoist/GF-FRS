@@ -1,0 +1,33 @@
+﻿#OperationBinding table thead tr .ttypesearchButton {
+  margin-left: 5px;
+}
+#OperationBinding table thead tr .code {
+  width: 20%;
+}
+#OperationBinding table thead tr .name {
+  width: 20%;
+}
+#OperationBinding table thead tr .company {
+  width: 20%;
+}
+#OperationBinding table thead tr .department {
+  width: 20%;
+}
+#OperationBinding table thead tr .departmentType {
+  width: 20%;
+}
+#OperationBinding #OperationEditor {
+  margin-top: 15px;
+  /*.detailsContainer {
+        width: 100%;
+
+        .detailsHeaderSection {
+           
+            width: 85%;
+            margin-bottom: 20px;
+            margin-top: 10px;
+            display: inline-block;
+        }
+    }*/
+}
+/*# sourceMappingURL=Operation.css.map */
