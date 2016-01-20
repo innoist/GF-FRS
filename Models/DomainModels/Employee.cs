@@ -9,6 +9,6 @@ namespace FRS.Models.DomainModels
         public string EmployeeName { get; set; }
         public string Designation { get; set; }
 
-        public virtual ICollection<AspNetUser> Users { get; set; }
+        public virtual ICollection<AspNetUser> AspNetUsers { get; set; }
     }
 }

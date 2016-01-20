@@ -34,6 +34,8 @@
         <AssociationConnector Association="angularModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
         <AssociationConnector Association="angularModel.FK_MT940LoadDetail_AspNetUsers" />
         <AssociationConnector Association="angularModel.AspNetUserRoles" />
+        <EntityTypeShape EntityType="angularModel.Employee" Width="1.5" PointX="0.75" PointY="0.875" />
+        <AssociationConnector Association="angularModel.FK_AspNetUsers_Employee" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

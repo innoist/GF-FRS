@@ -13,7 +13,7 @@
         <div class="row searchFilterResultSection">
             <div class="well">
                 
-                <table ng-table="vm.tableParams" class="table" show-filter="true">
+                @*<table ng-table="vm.tableParams" class="table" show-filter="true">
                     <tr ng-repeat="user in employeeList">
                         <td title="Name" filter="{ name: 'text'}" sortable="'name'">
                             {{user.EmployeeName}}
@@ -22,10 +22,10 @@
                             {{user.Designation}}
                         </td>
                     </tr>
-                </table>
+                </table>*@
                 
 
-                @*<table id="table" class="table table-condensed">
+                <table id="table" class="table table-condensed">
                     <thead>
                         <tr>
                             <th class="th-pointer"><span id="1">Name</span></th>
@@ -42,9 +42,9 @@
                             <td><a href="#" ng-click="deleteEmployee(emp.EmployeeId)" confirm="Are you sure to delete?" title="Delete"><span class="glyphicon glyphicon-remove"></span></a></td>
                         </tr>
                     </tbody>
-                </table>*@
-                @*<table datatable="" dt-options="dtOptions" dt-columns="dtColumns"></table>
-                    <table id="foobar" datatable dt-options="dtOptions" dt-columns="dtColumns" dt-instance="dtInstance"></table>*@
+                </table>
+                <table datatable="" dt-options="dtOptions" dt-columns="dtColumns"></table>
+                    <table id="foobar" datatable dt-options="dtOptions" dt-columns="dtColumns" dt-instance="dtInstance"></table>
             </div>
         </div>
     </div>

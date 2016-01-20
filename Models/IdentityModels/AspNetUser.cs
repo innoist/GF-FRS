@@ -35,5 +35,6 @@ namespace FRS.Models.IdentityModels
         public virtual ICollection<UserClaim> AspNetUserClaims { get; set; }
         public virtual ICollection<UserLogin> AspNetUserLogins { get; set; }
         public virtual ICollection<UserRole> AspNetRoles { get; set; }
+        public virtual Employee Employee { get; set; }
     }
 }

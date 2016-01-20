@@ -303,7 +303,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Areas\Api\Controllers\LoadController.cs" />
+    <Compile Include="Areas\Api\Controllers\LoadMetaDataController.cs" />
     <Compile Include="Areas\Common\CommonAreaRegistration.cs" />
+    <Compile Include="Areas\FRS\Controllers\LoadMetaDataController.cs" />
+    <Compile Include="Areas\FRS\FRSAreaRegistration.cs" />
     <Compile Include="Areas\SampleAngular\Controllers\HomeController.cs" />
     <Compile Include="Areas\SampleAngular\SampleAngularAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -321,9 +324,12 @@
     <Compile Include="ModelMappers\CaresUserClaimsMapper.cs" />
     <Compile Include="ModelMappers\EmployeeMapper.cs" />
     <Compile Include="ModelMappers\LoadMapper.cs" />
+    <Compile Include="ModelMappers\LoadMetaDataMapper.cs" />
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\EmployeeSearchRequestResponse.cs" />
     <Compile Include="Models\Load.cs" />
+    <Compile Include="Models\LoadMetaData.cs" />
+    <Compile Include="Models\LoadMetaDataResponse.cs" />
     <Compile Include="Models\LoadSearchRequestResponse.cs" />
     <Compile Include="Models\MenuRight.cs" />
     <Compile Include="Models\UserManagement.cs" />
@@ -368,6 +374,8 @@
     <Content Include="Areas\Common\Scripts\raReport.viewModel.js" />
     <Content Include="Areas\Common\Scripts\vehicleCondition.view.js" />
     <Content Include="Areas\Common\Scripts\vehicleCondition.viewModel.js" />
+    <Content Include="Areas\FRS\Scripts\frsAppController.js" />
+    <Content Include="Areas\FRS\Scripts\frsDataService.js" />
     <Content Include="Areas\SampleAngular\Scripts\sampleAngularAppController.js" />
     <Content Include="Areas\SampleAngular\Scripts\sampleAngularAppDataService.js" />
     <Content Include="asadtest.html" />
@@ -1244,6 +1252,7 @@
     <Content Include="Areas\SampleAngular\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\SampleAngular\Views\web.config" />
     <Content Include="Areas\SampleAngular\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\FRS\Views\web.config" />
     <None Include="Properties\PublishProfiles\cares.pubxml" />
     <None Include="Properties\PublishProfiles\Khurram.pubxml" />
     <Content Include="RichTextEditor\plugins\Thumbs.db" />
@@ -1474,6 +1483,8 @@
     <Folder Include="Areas\Api\Views\Shared\" />
     <Folder Include="Areas\Common\Controllers\" />
     <Folder Include="Areas\Common\Models\" />
+    <Folder Include="Areas\FRS\Models\" />
+    <Folder Include="Areas\FRS\Views\Shared\" />
     <Folder Include="Areas\SampleAngular\Models\" />
     <Folder Include="Dashboard_Contents\Assets\" />
     <Folder Include="DomainContents\Domainkey-41\Images\HireGroupCategory\HireGroupCategoryId-3\" />
