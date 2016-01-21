@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace FRS.Models.DomainModels
 {
@@ -12,7 +8,6 @@ namespace FRS.Models.DomainModels
         public string Name { get; set; }
         public byte StatusId { get; set; }
 
-        public virtual ICollection<Load> Loads { get; set; }
-        public virtual Status Status { get; set; }
+        public virtual ICollection<LoadMetaData> LoadMetaDatas { get; set; }
     }
 }

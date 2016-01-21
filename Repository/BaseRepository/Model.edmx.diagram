@@ -4,38 +4,46 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="4c82f04103114739a6a03c5186c1df21" Name="Diagram1" ZoomLevel="70">
-        <EntityTypeShape EntityType="angularModel.UserRole" Width="1.5" PointX="0.5" PointY="4" IsExpanded="true" />
-        <EntityTypeShape EntityType="angularModel.UserClaim" Width="1.5" PointX="5.25" PointY="2.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="angularModel.UserLogin" Width="1.875" PointX="5.25" PointY="8.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="angularModel.Currency" Width="1.5" PointX="7.75" PointY="2.875" />
-        <EntityTypeShape EntityType="angularModel.Load" Width="1.5" PointX="17.875" PointY="10.125" />
-        <EntityTypeShape EntityType="angularModel.LoadMetaData" Width="1.5" PointX="10.25" PointY="2.75" />
-        <EntityTypeShape EntityType="angularModel.LoadType" Width="1.5" PointX="12.625" PointY="13.75" />
-        <EntityTypeShape EntityType="angularModel.Menu" Width="1.5" PointX="10.375" PointY="10.875" />
-        <EntityTypeShape EntityType="angularModel.MenuRight" Width="1.5" PointX="12.625" PointY="11.125" />
-        <EntityTypeShape EntityType="angularModel.MT940LoadDetail" Width="1.5" PointX="12.5" PointY="2.75" />
-        <EntityTypeShape EntityType="angularModel.Source" Width="1.5" PointX="15" PointY="12.5" />
-        <EntityTypeShape EntityType="angularModel.Status" Width="1.5" PointX="8" PointY="7.25" />
-        <EntityTypeShape EntityType="angularModel.sysdiagram" Width="1.5" PointX="5.375" PointY="5.75" />
+      <Diagram DiagramId="4c82f04103114739a6a03c5186c1df21" Name="Diagram1" ZoomLevel="67">
+        <EntityTypeShape EntityType="angularModel.UserRole" Width="1.5" PointX="0.5" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="angularModel.UserClaim" Width="1.5" PointX="5.375" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="angularModel.UserLogin" Width="1.875" PointX="0.5" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="angularModel.Menu" Width="1.5" PointX="7.5" PointY="0.5" />
+        <EntityTypeShape EntityType="angularModel.MenuRight" Width="1.5" PointX="5.625" PointY="2.875" />
         <AssociationConnector Association="angularModel.FK_dbo_MenuRight_dbo_AspNetRoles_Role_Id" />
-        <AssociationConnector Association="angularModel.FK_LoadMetaData_Currency" />
-        <AssociationConnector Association="angularModel.FK_Load_LoadMetaData" />
-        <AssociationConnector Association="angularModel.FK_Load_LoadType" />
-        <AssociationConnector Association="angularModel.FK_Load_MT940LoadDetail" />
-        <AssociationConnector Association="angularModel.FK_LoadMetaData_Status" />
-        <AssociationConnector Association="angularModel.FK_LoadType_Status" />
         <AssociationConnector Association="angularModel.FK_dbo_MenuRight_dbo_Menu_Menu_MenuId" />
         <AssociationConnector Association="angularModel.RefMenu01" />
-        <AssociationConnector Association="angularModel.FK_MT940LoadDetail_Status" />
-        <AssociationConnector Association="angularModel.FK_Source_Status" />
-        <EntityTypeShape EntityType="angularModel.AspNetUser" Width="1.75" PointX="3" PointY="3.875" />
+        <EntityTypeShape EntityType="angularModel.AspNetUser" Width="1.75" PointX="3" PointY="0.625" />
         <AssociationConnector Association="angularModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
         <AssociationConnector Association="angularModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
-        <AssociationConnector Association="angularModel.FK_MT940LoadDetail_AspNetUsers" />
         <AssociationConnector Association="angularModel.AspNetUserRoles" />
-        <EntityTypeShape EntityType="angularModel.Employee" Width="1.5" PointX="0.75" PointY="0.875" />
+        <EntityTypeShape EntityType="angularModel.Employee" Width="1.5" PointX="0.5" PointY="0.5" />
         <AssociationConnector Association="angularModel.FK_AspNetUsers_Employee" />
+        <EntityTypeShape EntityType="angularModel.Currency" Width="1.5" PointX="1.375" PointY="10.375" />
+        <EntityTypeShape EntityType="angularModel.FileContent" Width="1.5" PointX="5.375" PointY="7.5" />
+        <EntityTypeShape EntityType="angularModel.Load" Width="1.5" PointX="12.875" PointY="9.625" />
+        <EntityTypeShape EntityType="angularModel.LoadMetaData" Width="1.5" PointX="10.625" PointY="9.25" />
+        <EntityTypeShape EntityType="angularModel.LoadType" Width="1.5" PointX="8.375" PointY="14.25" />
+        <EntityTypeShape EntityType="angularModel.MT940Balance" Width="1.5" PointX="3.375" PointY="12.5" />
+        <EntityTypeShape EntityType="angularModel.MT940CustomerStatement" Width="1.5" PointX="9.875" PointY="2.875" />
+        <EntityTypeShape EntityType="angularModel.MT940CustomerStatementTransaction" Width="1.5" PointX="12.125" PointY="3.5" />
+        <EntityTypeShape EntityType="angularModel.MT940Load" Width="1.5" PointX="7.625" PointY="9.375" />
+        <EntityTypeShape EntityType="angularModel.Source" Width="1.5" PointX="8.375" PointY="16.75" />
+        <EntityTypeShape EntityType="angularModel.Status" Width="1.5" PointX="5.375" PointY="10.5" />
+        <AssociationConnector Association="angularModel.FK_Balance_Currency" />
+        <AssociationConnector Association="angularModel.FK_MT940Load_FileContent" />
+        <AssociationConnector Association="angularModel.FK_Load_LoadMetaData" />
+        <AssociationConnector Association="angularModel.FK_Load_MT940Load" />
+        <AssociationConnector Association="angularModel.FK_LoadMetaData_LoadType" />
+        <AssociationConnector Association="angularModel.FK_LoadMetaData_Source" />
+        <AssociationConnector Association="angularModel.FK_LoadMetaData_Status" />
+        <AssociationConnector Association="angularModel.FK_CustomerStatement_Balance_ClosingAviBal" />
+        <AssociationConnector Association="angularModel.FK_CustomerStatement_Balance_ClosingBal" />
+        <AssociationConnector Association="angularModel.FK_CustomerStatement_Balance_ForAvailBal" />
+        <AssociationConnector Association="angularModel.FK_CustomerStatement_Balance_OpenBal" />
+        <AssociationConnector Association="angularModel.FK_MT940CustomerStatement_MT940Load" />
+        <AssociationConnector Association="angularModel.FK_MT940CustomerStatementTransaction_MT940CustomerStatement" />
+        <AssociationConnector Association="angularModel.FK_MT940Load_Status" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

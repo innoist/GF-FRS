@@ -110,9 +110,14 @@
     <Compile Include="Common\ClaimParamters.cs" />
     <Compile Include="DomainModels\Currency.cs" />
     <Compile Include="DomainModels\Employee.cs" />
+    <Compile Include="DomainModels\FileContent.cs" />
     <Compile Include="DomainModels\Load.cs" />
     <Compile Include="DomainModels\LoadMetaData.cs" />
     <Compile Include="DomainModels\LoadType.cs" />
+    <Compile Include="DomainModels\MT940Balance.cs" />
+    <Compile Include="DomainModels\MT940CustomerStatement.cs" />
+    <Compile Include="DomainModels\MT940CustomerStatementTransaction.cs" />
+    <Compile Include="DomainModels\MT940Load.cs" />
     <Compile Include="DomainModels\MT940LoadDetail.cs" />
     <Compile Include="DomainModels\Source.cs" />
     <Compile Include="DomainModels\Status.cs" />

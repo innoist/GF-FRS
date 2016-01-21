@@ -8,8 +8,6 @@ namespace FRS.Models.DomainModels
         public string Name { get; set; }
 
         public virtual ICollection<LoadMetaData> LoadMetaDatas { get; set; }
-        public virtual ICollection<LoadType> LoadTypes { get; set; }
-        public virtual ICollection<MT940LoadDetail> MT940LoadDetail { get; set; }
-        public virtual ICollection<Source> Sources { get; set; }
+        public virtual ICollection<MT940Load> MT940Load { get; set; }
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace FRS.Models.DomainModels
+﻿using System.Collections.Generic;
+
+namespace FRS.Models.DomainModels
 {
     public class Source
     {
@@ -6,6 +8,6 @@
         public string Name { get; set; }
         public byte StatusId { get; set; }
 
-        public virtual Status Status { get; set; }
+        public virtual ICollection<LoadMetaData> LoadMetaDatas { get; set; }
     }
 }
