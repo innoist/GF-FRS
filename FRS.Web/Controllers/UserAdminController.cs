@@ -1,23 +1,15 @@
-﻿using Cares.Models.IdentityModels;
-using Cares.Models.IdentityModels.ViewModels;
-using FRS.Implementation.Identity;
+﻿using FRS.Implementation.Identity;
 using FRS.Models.IdentityModels;
 using FRS.Web.Models;
 using FRS.WebBase.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
-using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
-using System.Net;
-using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-using DomainModels=Cares.Models.DomainModels;
 using Cares.Commons;
-using Microsoft.Practices.Unity;
 
 namespace Cares.Web.Controllers
 {

@@ -1,7 +1,4 @@
-﻿using Cares.Models.DomainModels;
-using Cares.Models.IdentityModels;
-using Cares.Models.IdentityModels.ViewModels;
-using Cares.Web.Controllers;
+﻿using Cares.Models.IdentityModels.ViewModels;
 using FRS.Implementation.Identity;
 using FRS.Interfaces.IServices;
 using FRS.Models.IdentityModels;
@@ -9,7 +6,6 @@ using FRS.Models.MenuModels;
 using FRS.Web.ViewModels.RightsManagement;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
-using Microsoft.AspNet.Identity.EntityFramework;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
@@ -17,8 +13,6 @@ using System.Web;
 using System.Web.Mvc;
 using System.Collections.Generic;
 using MenuRightModel = FRS.Web.Models.MenuRight;
-using Cares.Commons;
-using System;
 
 namespace Cares.Web.Controllers
 {

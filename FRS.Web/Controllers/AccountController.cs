@@ -1,11 +1,5 @@
-﻿using System.Globalization;
-using System.Security.Principal;
-using System.Web.Routing;
-using System.Web.Security;
-using Cares.Commons;
-using Cares.Models.IdentityModels;
+﻿using Cares.Commons;
 using Cares.Models.IdentityModels.ViewModels;
-using Cares.WebBase.WebApi;
 using FRS.Implementation.Identity;
 using FRS.Interfaces.IServices;
 using FRS.Models.IdentityModels;
@@ -13,7 +7,6 @@ using FRS.Models.IdentityModels.ViewModels;
 using FRS.Models.MenuModels;
 using FRS.Web.ModelMappers;
 using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using System;
@@ -23,12 +16,6 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using System.Collections.Generic;
-using Cares.Models.DomainModels;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
-using System.Threading;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.Security.Claims;
 using Newtonsoft.Json;
 
 

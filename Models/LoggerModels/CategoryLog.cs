@@ -1,6 +1,4 @@
 ﻿
-using Cares.Models.DomainModels;
-
 namespace FRS.Models.LoggerModels
 {
     /// <summary>

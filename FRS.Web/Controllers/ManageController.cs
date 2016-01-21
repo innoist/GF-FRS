@@ -1,6 +1,4 @@
-﻿using Cares.Models.DomainModels;
-using Cares.Models.IdentityModels;
-using Cares.Models.IdentityModels.ViewModels;
+﻿using Cares.Models.IdentityModels.ViewModels;
 using FRS.Implementation.Identity;
 using FRS.Models.IdentityModels;
 using Microsoft.AspNet.Identity;
@@ -10,7 +8,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-using Microsoft.Owin.Security.OAuth;
 
 namespace Cares.Web.Controllers
 {
