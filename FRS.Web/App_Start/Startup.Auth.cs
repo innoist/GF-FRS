@@ -1,7 +1,5 @@
-﻿using Cares.Models.IdentityModels;
-using FRS.Implementation.Identity;
+﻿using FRS.Implementation.Identity;
 using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Owin;

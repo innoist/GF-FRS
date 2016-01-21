@@ -1,5 +1,4 @@
-﻿using FRS.Interfaces.IServices;
-using FRS.Interfaces.Repository;
+﻿using FRS.Interfaces.Repository;
 using FRS.Repository.BaseRepository;
 using FRS.Repository.Repositories;
 using Microsoft.Practices.Unity;

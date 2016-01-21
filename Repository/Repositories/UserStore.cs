@@ -9,7 +9,6 @@ using System.Globalization;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using Cares.Models.DomainModels;
 using FRS.Models.IdentityModels;
 using FRS.Repository.BaseRepository;
 using Microsoft.AspNet.Identity;
