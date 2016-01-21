@@ -2,7 +2,7 @@
 
 namespace FRS.Web.Areas.FRS.Controllers
 {
-    public class LoadController : Controller
+    public class MT940LoadController : Controller
     {
         // GET: FRS/Load
         public ActionResult Index()

@@ -18,18 +18,18 @@
                 <table id="table" class="table table-condensed">
                     <thead>
                         <tr>
-                            <th class="th-pointer"><span id="1">Load Type</span></th>
-                            <th class="th-pointer"><span id="2">Metadata</span></th>
-                            <th class="th-pointer"><span id="2">MT940 Detail</span></th>
+                            <th class="th-pointer"><span id="1">Start</span></th>
+                            <th class="th-pointer"><span id="2">Finish</span></th>
+                            <th class="th-pointer"><span id="2">InProgress</span></th>
                             <th class="th-pointer"></th>
                             <th class="th-pointer"></th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr ng-repeat="load in loadList">
-                            <td>{{load.LoadTypeName}}</td>
-                            <td>{{load.MetaDataName}}</td>
-                            <td>{{load.MT940Detail}}</td>
+                            <td>{{load.Start}}</td>
+                            <td>{{load.Finish}}</td>
+                            <td>{{load.InProgress}}</td>
                             <td><a href="#" ng-click="editLoad(load.LoadId)" title="Edit"><span class="glyphicon glyphicon-edit"></span></a></td>
                             <td><a href="#" ng-click="deleteLoad(load.LoadId)" confirm="Are you sure to delete?" title="Delete"><span class="glyphicon glyphicon-remove"></span></a></td>
                         </tr>
