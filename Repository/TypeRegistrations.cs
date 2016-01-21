@@ -1,4 +1,5 @@
-﻿using FRS.Interfaces.Repository;
+﻿using FRS.Interfaces.IServices;
+using FRS.Interfaces.Repository;
 using FRS.Repository.BaseRepository;
 using FRS.Repository.Repositories;
 using Microsoft.Practices.Unity;
@@ -22,6 +23,8 @@ namespace FRS.Repository
             unityContainer.RegisterType<IUserRepository, UserRepository>();
             unityContainer.RegisterType<IUserDetailsRepository, UserDetailsRepository>();
             unityContainer.RegisterType<IEmployeeRepository, EmployeeRepository>();
+            unityContainer.RegisterType<ILoadRepository, LoadRepository>();
+            unityContainer.RegisterType<ILoadMetaDataRepository, LoadMetaDataRepository>();
         }
     }
 }

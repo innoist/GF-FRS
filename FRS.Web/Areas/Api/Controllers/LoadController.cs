@@ -40,7 +40,7 @@ namespace FRS.Web.Areas.Api.Controllers
             }
             var response = new LoadSearchRequestResponse
             {
-                Loads = loadService.GetAll().Select(x => x.CreateFromServerToClient())
+                Loads = loadService.GetAll().Select(x => x.CreateFromServerToClient()).ToList()
             };
             return response;
         }

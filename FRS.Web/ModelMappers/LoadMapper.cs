@@ -16,6 +16,9 @@ namespace FRS.Web.ModelMappers
                 CreatedOn = source.CreatedOn,
                 ModifiedBy = source.ModifiedBy,
                 ModifiedOn = source.ModifiedOn,
+                LoadTypeName = source.LoadType.Name,
+                MT940Detail = source.MT940LoadDetail.Name,
+                MetaDataName = source.LoadMetaData.Name
             };
         }
 

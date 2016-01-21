@@ -1,0 +1,21 @@
+﻿<div id="div2" ng-show="IsShowEdit">
+    <div class="well col-md-12">
+        <div class="float-left detailsContainer">
+            <h3 class="page-header detailsHeaderSection float-left">MT940 Load Detail</h3>
+            <button class="btn  btn-info" id="saveLoadbtn" ng-disabled="!loadForm.$dirty" ng-click="saveLoad()">@FRS.Web.Resources.Shared.Common.Save</button>
+            <button class="btn  btn-default" id="cancelLoadbtn" ng-click="onEditCancel()">@FRS.Web.Resources.Shared.Common.Cancel</button>
+        </div>
+        <form class="form-horizontal" name="loadForm">
+            <div class="form-group">
+                <label class="control-label h5 col-sm-2">A</label>
+                <div class="col-md-2">
+                    <input type="text" class="form-control" ng-model="LoadTypeId" placeholder="@("<A>")" required />
+                </div>
+                <label class="control-label h5 col-sm-2">B</label>
+                <div class="col-md-2">
+                    <input type="text" class="form-control" ng-model="MetaDataId" placeholder="@("<B>")" required />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

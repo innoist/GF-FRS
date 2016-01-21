@@ -72,6 +72,7 @@ mainApp.controller("FRSAppController", ['$scope', '$http', '$filter', 'dataServi
         $scope.Designation = '';
         $scope.IsShowEdit = false;
     }
+
     $scope.defaultModel = function () {
         $scope.EmployeeId = 0;
         $scope.EmployeeName = '';
@@ -79,4 +80,43 @@ mainApp.controller("FRSAppController", ['$scope', '$http', '$filter', 'dataServi
     }
     $scope.getMetaDataList();
     //#endregion
+}]);
+
+mainApp.controller("FRSLoadController", ['$scope', '$http', '$filter', 'dataService', function ($scope, $http, $filter, dataService) {
+    $scope.LoadId;
+    $scope.LoadTypeId;
+    $scope.MetaDataId;
+    $scope.MT940DetailId;
+    $scope.IsShowEdit = false;
+
+    //#region Get Data from DB
+    $scope.getLoadList = function () {
+        $http.get(ist.siteUrl + '/api/Load')
+            .success(function (data, status, headers, config) {
+                $scope.loadList = data.Loads;
+            });
+    }
+    //#endregion
+
+    //#region Functions
+    $scope.defaultModel = function () {
+        $scope.LoadId = 0;
+        $scope.LoadTypeId = 0;
+        $scope.MetaDataId = 0;
+        $scope.MT940DetailId = 0;
+    }
+
+    $scope.showEdit = function () {
+        $scope.defaultModel();
+        $scope.IsShowEdit = true;
+    }
+
+    $scope.onEditCancel = function () {
+        $scope.IsShowEdit = false;
+    }
+
+    // get data on page load
+    $scope.getLoadList();
+    //#endregion
+
 }]);
