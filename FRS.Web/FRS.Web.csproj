@@ -305,7 +305,7 @@
     <Compile Include="Areas\Api\Controllers\LoadController.cs" />
     <Compile Include="Areas\Api\Controllers\LoadMetaDataController.cs" />
     <Compile Include="Areas\Common\CommonAreaRegistration.cs" />
-    <Compile Include="Areas\FRS\Controllers\LoadController.cs" />
+    <Compile Include="Areas\FRS\Controllers\MT940LoadController.cs" />
     <Compile Include="Areas\FRS\Controllers\LoadMetaDataController.cs" />
     <Compile Include="Areas\FRS\FRSAreaRegistration.cs" />
     <Compile Include="Areas\SampleAngular\Controllers\HomeController.cs" />
@@ -326,6 +326,7 @@
     <Compile Include="ModelMappers\EmployeeMapper.cs" />
     <Compile Include="ModelMappers\LoadMapper.cs" />
     <Compile Include="ModelMappers\LoadMetaDataMapper.cs" />
+    <Compile Include="Models\DropDown\LoadMetadataDropDown.cs" />
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\EmployeeSearchRequestResponse.cs" />
     <Compile Include="Models\Load.cs" />
@@ -1256,8 +1257,8 @@
     <Content Include="Areas\FRS\Views\web.config" />
     <Content Include="Areas\FRS\Views\_ViewStart.cshtml" />
     <Content Include="Areas\FRS\Views\Shared\_Layout.cshtml" />
-    <Content Include="Areas\FRS\Views\Load\Index.cshtml" />
-    <Content Include="Areas\FRS\Views\Load\_MT940LoadEditor.cshtml" />
+    <Content Include="Areas\FRS\Views\MT940Load\Index.cshtml" />
+    <Content Include="Areas\FRS\Views\MT940Load\_MT940LoadEditor.cshtml" />
     <None Include="Properties\PublishProfiles\cares.pubxml" />
     <None Include="Properties\PublishProfiles\Khurram.pubxml" />
     <Content Include="RichTextEditor\plugins\Thumbs.db" />
