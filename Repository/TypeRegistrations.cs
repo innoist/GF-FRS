@@ -24,6 +24,9 @@ namespace FRS.Repository
             unityContainer.RegisterType<IEmployeeRepository, EmployeeRepository>();
             unityContainer.RegisterType<ILoadRepository, LoadRepository>();
             unityContainer.RegisterType<ILoadMetaDataRepository, LoadMetaDataRepository>();
+            unityContainer.RegisterType<ILoadMetaDataRepository, LoadMetaDataRepository>();
+            unityContainer.RegisterType<IMT940BalanceRepository, MT940BalanceRepository>();
+            unityContainer.RegisterType<IMT940CustomerStatementRepository, MT940CustomerStatementRepository>();
         }
     }
 }

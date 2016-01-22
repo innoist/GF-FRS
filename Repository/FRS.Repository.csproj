@@ -172,6 +172,11 @@
     <Compile Include="Repositories\MenuRepository.cs" />
     <Compile Include="Repositories\ApplicationUserRepository.cs" />
     <Compile Include="Repositories\MenuRightRepository.cs" />
+    <Compile Include="Repositories\MT940BalanceRepository.cs" />
+    <Compile Include="Repositories\MT940CustomerStatementRepository.cs" />
+    <Compile Include="Repositories\MT940CustomerStatementTransactionRepository.cs" />
+    <Compile Include="Repositories\MT940LoadDetailRepository.cs" />
+    <Compile Include="Repositories\MT940LoadRepository.cs" />
     <Compile Include="Repositories\UserDetailsRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
     <Compile Include="Repositories\UserRoleStore.cs" />

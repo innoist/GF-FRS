@@ -4,7 +4,7 @@ using FRS.Models.DomainModels;
 
 namespace FRS.Interfaces.Repository
 {
-    public interface ILoadMetaDataRepository : IBaseRepository<LoadMetaData, byte>
+    public interface ILoadMetaDataRepository : IBaseRepository<LoadMetaData, long>
     {
         IEnumerable<LoadMetadataDropDown> LoadMetadataDropDown();
     }
