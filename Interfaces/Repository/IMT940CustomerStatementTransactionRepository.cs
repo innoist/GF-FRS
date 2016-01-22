@@ -2,7 +2,7 @@
 
 namespace FRS.Interfaces.Repository
 {
-    public interface IMT940CustomerStatementTransactionRepository : IBaseRepository<MT940CustomerStatement, long>
+    public interface IMT940CustomerStatementTransactionRepository : IBaseRepository<MT940CustomerStatementTransaction, long>
     {
     }
 }
