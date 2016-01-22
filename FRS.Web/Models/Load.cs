@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Web;
 
 namespace FRS.Web.Models
 {
@@ -18,5 +19,7 @@ namespace FRS.Web.Models
         public string LoadTypeName { get; set; }
         public string MetaDataName { get; set; }
         public string MT940Detail { get; set; }
+        public long LoadMetadataId { get; set; }
+        public HttpPostedFileBase Attachment { get; set; }
     }
 }

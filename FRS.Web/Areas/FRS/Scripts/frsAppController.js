@@ -82,19 +82,41 @@ mainApp.controller("FRSAppController", ['$scope', '$http', '$filter', 'dataServi
     //#endregion
 }]);
 
-mainApp.controller("FRSLoadController", ['$scope', '$http', '$filter', 'dataService', function ($scope, $http, $filter, dataService) {
+mainApp.controller("FRSLoadController", ['$scope', '$http', '$filter', 'dataService', 'akFileUploaderService', function ($scope, $http, $filter, dataService, akFileUploaderService) {
     $scope.LoadId;
     $scope.LoadTypeId;
     $scope.MetaDataId;
     $scope.MT940DetailId;
+    $scope.Attachment;
     $scope.IsShowEdit = false;
+    $scope.LoadMetadataDropDown = [];
+    $scope.LoadMetadataId = 0;
 
     //#region Get Data from DB
     $scope.getLoadList = function () {
-        $http.get(ist.siteUrl + '/api/Load')
+        $http.get(ist.siteUrl + '/api/MT940Load')
             .success(function (data, status, headers, config) {
                 $scope.loadList = data.Loads;
+                $scope.LoadMetadataDropDown = data.LoadMetadataDropDown;
             });
+    }
+    //#endregion
+
+    //#region Post Data
+    $scope.saveMT940Detail = function () {
+        var load = {
+            LoadId: $scope.LoadId,
+            LoadTypeId: $scope.LoadTypeId,
+            MetaDataId: $scope.MetaDataId,
+            MT940DetailId: $scope.MT940DetailId,
+            Attachment: $scope.Attachment,
+            LoadMetadataId: $scope.LoadMetadataId
+        };
+        akFileUploaderService.saveModel(load, '/Api/MT940Load');
+        //$http.post(ist.siteUrl + '/api/MT940Load', load)
+        //    .success(function (data, status, headers, config) {
+
+        //    });
     }
     //#endregion
 
@@ -119,4 +141,26 @@ mainApp.controller("FRSLoadController", ['$scope', '$http', '$filter', 'dataServ
     $scope.getLoadList();
     //#endregion
 
+}])
+.factory('FileUploadService', ['$http', '$q', function ($http, $q) {
+    var fac = {};
+    fac.UploadFile = function (file, description) {
+        var formData = new FormData();
+        formData.append("file", file);
+        formData.append("description", description);
+
+        var defer = $q.defer;
+        $http.post("URL", formData, {
+            withCredentials: true,
+            headers: { 'Content-Type': undefined },
+            transformRequest: angular.identity
+        })
+        .success(function (d) {
+            defer.resolve(d);
+        })
+        .error(function () {
+            defer.reject("File Upload Failed!");
+        });
+        return defer.promise();
+    }
 }]);

@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
+using System.Linq;
 using FRS.Interfaces.Repository;
+using FRS.Models.Common.DropDown;
 using FRS.Models.DomainModels;
 using FRS.Repository.BaseRepository;
 using Microsoft.Practices.Unity;
@@ -22,5 +25,16 @@ namespace FRS.Repository.Repositories
         {
             throw new NotImplementedException();
         }
+
+        #region Public
+        public IEnumerable<LoadMetadataDropDown> LoadMetadataDropDown()
+        {
+            return DbSet.Select(x => new LoadMetadataDropDown
+            {
+                Id = x.LoadMetaDataId,
+                Name = x.Name
+            });
+        }
+        #endregion
     }
 }

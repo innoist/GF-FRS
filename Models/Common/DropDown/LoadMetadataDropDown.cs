@@ -1,4 +1,4 @@
-﻿namespace FRS.Web.Models.DropDown
+﻿namespace FRS.Models.Common.DropDown
 {
     public class LoadMetadataDropDown
     {

@@ -302,7 +302,7 @@
     <Compile Include="Areas\Api\Controllers\EmployeeController.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Areas\Api\Controllers\LoadController.cs" />
+    <Compile Include="Areas\Api\Controllers\MT940LoadController.cs" />
     <Compile Include="Areas\Api\Controllers\LoadMetaDataController.cs" />
     <Compile Include="Areas\Common\CommonAreaRegistration.cs" />
     <Compile Include="Areas\FRS\Controllers\MT940LoadController.cs" />
@@ -326,7 +326,6 @@
     <Compile Include="ModelMappers\EmployeeMapper.cs" />
     <Compile Include="ModelMappers\LoadMapper.cs" />
     <Compile Include="ModelMappers\LoadMetaDataMapper.cs" />
-    <Compile Include="Models\DropDown\LoadMetadataDropDown.cs" />
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\EmployeeSearchRequestResponse.cs" />
     <Compile Include="Models\Load.cs" />
@@ -334,6 +333,7 @@
     <Compile Include="Models\LoadMetaDataResponse.cs" />
     <Compile Include="Models\LoadSearchRequestResponse.cs" />
     <Compile Include="Models\MenuRight.cs" />
+    <Compile Include="Models\MT940Load\BaseDataMT940Load.cs" />
     <Compile Include="Models\UserManagement.cs" />
     <Compile Include="Models\UserModelForEditUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -1301,6 +1301,7 @@
     <Content Include="Scripts\DashboardAdmin\dashBoard.model.js" />
     <Content Include="Scripts\DashboardAdmin\dashBoard.view.js" />
     <Content Include="Scripts\DashboardAdmin\dashBoard.viewModel.js" />
+    <Content Include="Areas\FRS\Scripts\fileUploader.js" />
     <Content Include="Scripts\flot\jquery.colorhelpers.js" />
     <Content Include="Scripts\flot\jquery.colorhelpers.min.js" />
     <Content Include="Scripts\flot\jquery.flot.animator.js" />
