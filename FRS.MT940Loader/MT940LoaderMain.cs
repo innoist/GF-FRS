@@ -95,11 +95,6 @@ namespace FRS.MT940Loader
                 return false;
             }
 
-            //var header = new Raptorious.SharpMt940Lib.Mt940Format.Separator("{1:F01AAALSARIAXXX.SN...ISN.}{2:I940SCBLGB20XWEBN}{3:{108:xxxxx}}{4:");
-            //var trailer = new Raptorious.SharpMt940Lib.Mt940Format.Separator("-}");
-            //var genericFomat = new Raptorious.SharpMt940Lib.Mt940Format.GenericFormat(header, trailer);
-            //var parsed = Raptorious.SharpMt940Lib.Mt940Parser.Parse(genericFomat, FilePath, CultureInfo.CurrentCulture);            
-
             try
             {
                 var header = new Separator(_headerSeperator);
