@@ -1,5 +1,4 @@
-﻿using System;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using FRS.Interfaces.Repository;
 using FRS.Models.DomainModels;
 using FRS.Repository.BaseRepository;
@@ -16,11 +15,6 @@ namespace FRS.Repository.Repositories
         protected override IDbSet<LoadMetaData> DbSet
         {
             get { return db.LoadMetaDatas; }
-        }
-
-        public LoadMetaData Find(byte id)
-        {
-            throw new NotImplementedException();
         }
     }
 }

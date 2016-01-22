@@ -7,7 +7,7 @@ namespace FRS.Models.DomainModels
         public long LoadId { get; set; }
         public byte LoadMetaDataId { get; set; }
         public long? MT940LoadId { get; set; }
-        public System.DateTime Start { get; set; }
+        public DateTime Start { get; set; }
         public DateTime? Finish { get; set; }
         public bool InProgress { get; set; }
         public bool ReadOnly { get; set; }

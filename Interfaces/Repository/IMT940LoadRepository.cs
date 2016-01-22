@@ -2,7 +2,7 @@
 
 namespace FRS.Interfaces.Repository
 {
-    public interface ILoadMetaDataRepository : IBaseRepository<LoadMetaData, long>
+    public interface IMT940LoadRepository : IBaseRepository<MT940Load, long>
     {
     }
 }
