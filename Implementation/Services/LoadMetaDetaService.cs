@@ -2,6 +2,7 @@
 using FRS.Interfaces.IServices;
 using FRS.Interfaces.Repository;
 using FRS.Models.DomainModels;
+using FRS.Models.ResponseModels;
 
 namespace FRS.Implementation.Services
 {
@@ -44,10 +45,22 @@ namespace FRS.Implementation.Services
             return true;
         }
 
-        public void DeleteMetaData(LoadMetaData loadMetaData)
+        public void DeleteMetaData(long loadMetaDataId)
         {
-            loadMetaDataRepository.Delete(loadMetaData);
-            loadMetaDataRepository.SaveChanges();
+            var metaData = loadMetaDataRepository.Find(loadMetaDataId);
+            if (metaData != null)
+            {
+                loadMetaDataRepository.Delete(metaData);
+                loadMetaDataRepository.SaveChanges();
+            }
+        }
+
+        public BaseDataLoadMetaDataResponse GetBaseDataResponse()
+        {
+            return new BaseDataLoadMetaDataResponse
+            {
+                LoadMetaDatas = loadMetaDataRepository.GetAll(),
+            };
         }
 
         #endregion

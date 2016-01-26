@@ -148,6 +148,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="ResponseModels\BaseDataLoadMetaDataResponse.cs" />
     <Compile Include="ResponseModels\MT940LoadBaseDataResponse.cs" />
   </ItemGroup>
   <ItemGroup>

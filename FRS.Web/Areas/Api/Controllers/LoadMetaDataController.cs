@@ -1,8 +1,8 @@
-﻿using System.Linq;
-using System.Net;
-using System.Web;
+﻿using System;
+using System.Linq;
 using System.Web.Http;
 using FRS.Interfaces.IServices;
+using FRS.Models.ResponseModels;
 using FRS.Web.ModelMappers;
 using FRS.Web.Models;
 
@@ -28,23 +28,59 @@ namespace FRS.Web.Areas.Api.Controllers
         #region Public
 
         #region Get
+        public BaseDataLoadMetaData Get()
+        {
+            BaseDataLoadMetaDataResponse response = loadMetaDataService.GetBaseDataResponse();
+            BaseDataLoadMetaData baseData = new BaseDataLoadMetaData
+            {
+                LoadMetaDatas = response.LoadMetaDatas.Select(x => x.CreateFromServerToClient()).ToList()
+            };
+            return baseData;
+        }
         #endregion
 
 
         #region Post
-
-        public LoadMetaDataResponse Get()
+        public bool Post(LoadMetaData loadMetaData)
         {
-            if (!ModelState.IsValid)
+            //if (!ModelState.IsValid)
+            //{
+            //    throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
+            //}
+            if (loadMetaDataService != null)
             {
-                throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
+                try
+                {
+
+                    return true;
+                }
+                catch (Exception)
+                {
+                    return false;
+                }
             }
-            var response = new LoadMetaDataResponse
-            {
-                LoadMetaDatas = loadMetaDataService.GetAll().Select(x => x.CreateFromServerToClient())
-            };
-            return response;
+            return false;
         }
+        #endregion
+
+        #region Delete
+        public bool Delete(long loadMetaDataId)
+        {
+            if (loadMetaDataService != null)
+            {
+                try
+                {
+                    loadMetaDataService.DeleteMetaData(loadMetaDataId);
+                    return true;
+                }
+                catch (Exception)
+                {
+                    return false;
+                }
+            }
+            return false;
+        }
+
         #endregion
 
         #endregion

@@ -1,0 +1,27 @@
+﻿<div id="div2" ng-show="IsShowEdit">
+    <div class="well col-md-12">
+        <div class="float-left detailsContainer">
+            <h3 class="page-header detailsHeaderSection float-left">Load Meta Data Detail</h3>
+            <button class="btn  btn-info" id="saveLoadbtn" ng-disabled="!loadForm.$dirty" ng-click="saveLoadMetaDataDetail()">@FRS.Web.Resources.Shared.Common.Save</button>
+            <button class="btn  btn-default" id="cancelLoadbtn" ng-click="onEditCancel()">@FRS.Web.Resources.Shared.Common.Cancel</button>
+        </div>
+        <form class="form-horizontal" name="loadForm">
+            <div class="form-group">
+                <label class="control-label h5 col-sm-2">Name</label>
+                <div class="col-md-3">
+                    <input type="text" ng-model="Name" ng-disabled="IsReadOnly" />
+                </div>
+                <label class="control-label h5 col-sm-2">Header</label>
+                <div class="col-md-3">
+                    <input type="text" ng-model="Header" ng-disabled="IsReadOnly" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label h5 col-sm-2">Description</label>
+                <div class="col-md-3">
+                    <input type="text" ng-model="Description" ng-disabled="IsReadOnly" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

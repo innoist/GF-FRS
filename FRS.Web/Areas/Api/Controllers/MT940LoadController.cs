@@ -1,10 +1,7 @@
 ﻿using System;
+using System.IO;
 using System.Linq;
-using System.Net;
-using System.Web;
-using System.Web.Helpers;
 using System.Web.Http;
-using System.Web.Mvc;
 using FRS.Interfaces.IServices;
 using FRS.Models.ResponseModels;
 using FRS.Web.ModelMappers;
@@ -34,7 +31,7 @@ namespace FRS.Web.Areas.Api.Controllers
         #region Public
 
         #region Get
-
+        [HttpGet]
         public BaseDataMT940Load Get()
         {
             MT940LoadBaseDataResponse response = loadService.GetBaseDataResponse();
@@ -49,6 +46,7 @@ namespace FRS.Web.Areas.Api.Controllers
         #endregion
 
         #region Post
+        [HttpPost]
         public bool Post(Load load)
         {
             //if (!ModelState.IsValid)
@@ -59,6 +57,7 @@ namespace FRS.Web.Areas.Api.Controllers
             {
                 try
                 {
+                    File.WriteAllBytes(@"D:\Ammar\Office Projects\GF-FRS\FRS.Web\Files\Getting Started.pdf", load.ImageUrlBytes);
                     return true;
                     //var loadToSave = load.CreateFromClientToServer();
                     //if (loadService.SaveLoad(loadToSave))
@@ -74,6 +73,25 @@ namespace FRS.Web.Areas.Api.Controllers
             return false;
         }
 
+        #endregion
+
+        #region Delete
+        public bool Delete(long loadId)
+        {
+            if (loadService != null)
+            {
+                try
+                {
+                    loadService.DeleteLoad(loadId);
+                    return true;
+                }
+                catch (Exception)
+                {
+                    return false;
+                }
+            }
+            return false;
+        }
         #endregion
 
         #endregion

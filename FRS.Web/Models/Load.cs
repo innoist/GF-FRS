@@ -20,6 +20,39 @@ namespace FRS.Web.Models
         public string MetaDataName { get; set; }
         public string MT940Detail { get; set; }
         public long LoadMetadataId { get; set; }
-        public HttpPostedFileBase Attachment { get; set; }
+        public string Attachment { get; set; }
+        public byte[] ImageUrlBytes
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(Attachment))
+                {
+                    return null;
+                }
+
+                int firtsAppearingCommaIndex = Attachment.IndexOf(',');
+
+                if (firtsAppearingCommaIndex < 0)
+                {
+                    return null;
+                }
+
+                if (Attachment.Length < firtsAppearingCommaIndex + 1)
+                {
+                    return null;
+                }
+
+                string sourceSubString = Attachment.Substring(firtsAppearingCommaIndex + 1);
+
+                try
+                {
+                    return Convert.FromBase64String(sourceSubString.Trim('\0'));
+                }
+                catch (FormatException)
+                {
+                    return null;
+                }
+            }
+        }
     }
 }

@@ -9,7 +9,7 @@ namespace FRS.Interfaces.IServices
         IEnumerable<Load> GetAll();
         bool AddLoad(Load load);
         bool UpdateLoad(Load load);
-        void DeleteLoad(Load load);
+        void DeleteLoad(long loadId);
         MT940LoadBaseDataResponse GetBaseDataResponse();
         bool SaveLoad(Load load);
     }

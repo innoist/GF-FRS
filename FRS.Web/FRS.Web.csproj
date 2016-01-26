@@ -330,7 +330,7 @@
     <Compile Include="Models\EmployeeSearchRequestResponse.cs" />
     <Compile Include="Models\Load.cs" />
     <Compile Include="Models\LoadMetaData.cs" />
-    <Compile Include="Models\LoadMetaDataResponse.cs" />
+    <Compile Include="Models\BaseDataLoadMetaData.cs" />
     <Compile Include="Models\LoadSearchRequestResponse.cs" />
     <Compile Include="Models\MenuRight.cs" />
     <Compile Include="Models\MT940Load\BaseDataMT940Load.cs" />
@@ -378,6 +378,8 @@
     <Content Include="Areas\Common\Scripts\vehicleCondition.viewModel.js" />
     <Content Include="Areas\FRS\Scripts\frsAppController.js" />
     <Content Include="Areas\FRS\Scripts\frsDataService.js" />
+    <Content Include="Areas\FRS\Scripts\frsLoadController.js" />
+    <Content Include="Areas\FRS\Scripts\loadMetaDataController.js" />
     <Content Include="Areas\SampleAngular\Scripts\sampleAngularAppController.js" />
     <Content Include="Areas\SampleAngular\Scripts\sampleAngularAppDataService.js" />
     <Content Include="asadtest.html" />
@@ -1259,6 +1261,8 @@
     <Content Include="Areas\FRS\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\FRS\Views\MT940Load\Index.cshtml" />
     <Content Include="Areas\FRS\Views\MT940Load\_MT940LoadEditor.cshtml" />
+    <Content Include="Areas\FRS\Views\LoadMetaData\Index.cshtml" />
+    <Content Include="Areas\FRS\Views\LoadMetaData\_LoadMetaDataEditor.cshtml" />
     <None Include="Properties\PublishProfiles\cares.pubxml" />
     <None Include="Properties\PublishProfiles\Khurram.pubxml" />
     <Content Include="RichTextEditor\plugins\Thumbs.db" />
@@ -1301,7 +1305,6 @@
     <Content Include="Scripts\DashboardAdmin\dashBoard.model.js" />
     <Content Include="Scripts\DashboardAdmin\dashBoard.view.js" />
     <Content Include="Scripts\DashboardAdmin\dashBoard.viewModel.js" />
-    <Content Include="Areas\FRS\Scripts\fileUploader.js" />
     <Content Include="Scripts\flot\jquery.colorhelpers.js" />
     <Content Include="Scripts\flot\jquery.colorhelpers.min.js" />
     <Content Include="Scripts\flot\jquery.flot.animator.js" />
@@ -1500,6 +1503,7 @@
     <Folder Include="DomainContents\Domainkey-41\Images\InsuranceType\InsuranceTypeId-135\" />
     <Folder Include="DomainContents\Domainkey-41\Images\ServiceItem\ItemId-10014\" />
     <Folder Include="DomainContents\Domainkey-41\Images\ServiceItem\ItemId-10015\" />
+    <Folder Include="Files\" />
     <Folder Include="Migrations\" />
     <Folder Include="RichTextEditor\plugins\a11yhelp\dialogs\lang\" />
     <Folder Include="RichTextEditor\plugins\colordialog\dialogs\" />
