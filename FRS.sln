@@ -28,6 +28,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FRS.ConsoleTester", "FRS.Co
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FRS.MT940Loader", "FRS.MT940Loader\FRS.MT940Loader.csproj", "{F58978F5-8273-4746-BE9A-E00B12427BEB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FRS.MT940LoaderServices", "FRS.MT940LoaderServices\FRS.MT940LoaderServices.csproj", "{4A2B47B2-BF04-4A7C-9E53-BB19D480271C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -76,6 +78,10 @@ Global
 		{F58978F5-8273-4746-BE9A-E00B12427BEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F58978F5-8273-4746-BE9A-E00B12427BEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F58978F5-8273-4746-BE9A-E00B12427BEB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4A2B47B2-BF04-4A7C-9E53-BB19D480271C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A2B47B2-BF04-4A7C-9E53-BB19D480271C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A2B47B2-BF04-4A7C-9E53-BB19D480271C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A2B47B2-BF04-4A7C-9E53-BB19D480271C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
