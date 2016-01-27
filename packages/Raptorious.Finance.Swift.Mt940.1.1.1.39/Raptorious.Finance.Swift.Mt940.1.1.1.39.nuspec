@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>Raptorious.Finance.Swift.Mt940</id>
+    <version>1.1.1.39</version>
+    <title>SharpMt940Lib</title>
+    <authors>Jaco Adriaansen</authors>
+    <owners>Jaco Adriaansen</owners>
+    <licenseUrl>https://bitbucket.org/raptux/sharpmt940lib/raw/10de8e21ae6d4943e8df8b649935348319e68af3/Raptorious.SharpMT940Lib/license.txt</licenseUrl>
+    <projectUrl>https://bitbucket.org/raptux/sharpmt940lib</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>SharpMT940Lib implements the MT940 format in C# and is based on specifications of multiple banks. You can use it as a base for financial software or for conversions to other formats like CSV or OFX.</description>
+    <summary>SharpMt940Lib is a C# library that allows you to read MT940 formatted files and convert it to in-memory .NET objects.</summary>
+    <releaseNotes>Added: Change: Money now supports &lt; and &gt; operators.
+Change: TransactionsBalance now requires CultureInfo
+Changed: DateParser now static
+Changed: Widening of cultureinfo to IFormatProvider
+Changed: Parse methods without CultureInfo are now obsolte and produce a warning (or error depending on compiler configuration).
+Changed: Build script is now based on [FAKE](https://fsharp.github.io/FAKE/)
+Removed: The dependency on xunit test runner, it isn't required as the project runs on nunit.
+Removed: Dependency on system.diagnostics.codecontracts it didn't work with code analysis.</releaseNotes>
+    <copyright>Copyright Jaco Adriaansen</copyright>
+    <tags>MT940 swift finance SharpMt940Lib bank transaction</tags>
+  </metadata>
+</package>

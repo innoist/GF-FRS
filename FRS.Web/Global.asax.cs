@@ -3,6 +3,7 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using Cares.Web.Helper;
+using FRS.WebBase.UnityConfiguration;
 using Microsoft.Practices.Unity;
 using Microsoft.Practices.EnterpriseLibrary.Common.Configuration;
 using Microsoft.Practices.EnterpriseLibrary.Data;
@@ -35,7 +36,7 @@ namespace Cares.Web
         /// </summary>
         private static IUnityContainer CreateUnityContainer()
         {
-            container = WebBase.UnityConfiguration.UnityWebActivator.Container;
+            container = UnityWebActivator.Container;
             RegisterTypes();
 
             return container;
@@ -72,10 +73,10 @@ namespace Cares.Web
 
             // Set MVC resolver
             //DependencyResolver.SetResolver(new UnityDependencyResolver(container));
-            DependencyResolver.SetResolver(new WebBase.UnityConfiguration.UnityDependencyResolver(container));
+            DependencyResolver.SetResolver(new UnityDependencyResolver(container));
             // Set Web Api resolver
             //GlobalConfiguration.Configuration.DependencyResolver = new UnityDependencyResolver(container);
-            GlobalConfiguration.Configuration.DependencyResolver = new WebBase.UnityConfiguration.UnityDependencyResolver(container);
+            GlobalConfiguration.Configuration.DependencyResolver = new UnityDependencyResolver(container);
         }
 
         /// <summary>

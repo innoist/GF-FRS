@@ -1,7 +1,7 @@
 ﻿using System.Web.Http.Dependencies;
 using Microsoft.Practices.Unity;
 
-namespace Cares.WebBase.UnityConfiguration
+namespace FRS.WebBase.UnityConfiguration
 {
     /// <summary>
     /// Unity dependency resolver

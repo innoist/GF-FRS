@@ -28,10 +28,6 @@ namespace FRS.Web.Areas.Api.Controllers
         #region Public
 
         #region Get
-        #endregion
-
-
-        #region Post
 
         public LoadMetaDataResponse Get()
         {
@@ -45,6 +41,11 @@ namespace FRS.Web.Areas.Api.Controllers
             };
             return response;
         }
+
+        #endregion
+
+
+        #region Post
         #endregion
 
         #endregion
