@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("GF.FRS.MT940LoaderServices")]
+[assembly: AssemblyTitle("FRS.MT940LoaderServices")]
 [assembly: AssemblyDescription("This is WCF Service host in a Managed Windows Service to run and handle the MT940 file loading, developed by InnoStark Technologies Limited, Pakistan for Gulf Finance, Saudi Arabia.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("InnoStark Technologies Limited, Pakistan")]

@@ -12,7 +12,7 @@ namespace FRS.MT940Loader.Services
         public FRSMT940LoaderWinService()
         {
             // Name the Windows Service
-            ServiceName = "GF.FRS.MT940Loader WindowService V1.0.0.0";
+            ServiceName = "IST FRS.MT940Loader WindowService V1.0.0.0";
             InitializeComponent();
         }
 

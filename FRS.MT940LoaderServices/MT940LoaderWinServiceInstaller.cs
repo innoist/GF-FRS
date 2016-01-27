@@ -17,7 +17,7 @@ namespace FRS.MT940Loader.Services
             process = new ServiceProcessInstaller();
             process.Account = ServiceAccount.LocalSystem;
             service = new ServiceInstaller();
-            service.ServiceName = "GF.FRS.MT940Loader WindowService V1.0.0.0"; //This name will appear in the services.msc console.
+            service.ServiceName = "IST FRS.MT940Loader WindowService V1.0.0.0"; //This name will appear in the services.msc console.
             service.Description = "This is WCF Service host in a Managed Windows Service to run and handle the MT940 file loading, developed by InnoStark Technologies Limited, Pakistan for Gulf Finance, Saudi Arabia.";
             Installers.Add(process);
             Installers.Add(service);
