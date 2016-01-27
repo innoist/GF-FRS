@@ -124,6 +124,10 @@ namespace FRS.Repository.BaseRepository
         public DbSet<MT940CustomerStatementTransaction> MT940CustomerStatementTransactions { get; set; }
         public DbSet<MT940Load> MT940Loads { get; set; }
         public DbSet<MT940LoadDetail> MT940LoadDetail { get; set; }
+        public DbSet<LoadType> LoadTypes { get; set; }
+        public DbSet<Source> Sources { get; set; }
+        public DbSet<Currency> Currencies { get; set; }
+        public DbSet<Status> Statuses { get; set; }
         /// <summary>
         /// Execute store procedure for creating d
         /// </summary>

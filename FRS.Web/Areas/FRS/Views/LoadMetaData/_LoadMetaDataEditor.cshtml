@@ -7,19 +7,51 @@
         </div>
         <form class="form-horizontal" name="loadForm">
             <div class="form-group">
-                <label class="control-label h5 col-sm-2">Name</label>
+                <label class="control-label h5 col-sm-2">Load Type*</label>
                 <div class="col-md-3">
-                    <input type="text" ng-model="Name" ng-disabled="IsReadOnly" />
+                    <select id="sel" class="form-control" ng-model="LoadTypeId" ng-options="obj.Id as obj.Name for obj in LoadTypes" required ng-disabled="IsReadOnly">
+                        <option value="">Select</option>
+                    </select>
                 </div>
-                <label class="control-label h5 col-sm-2">Header</label>
+                <label class="control-label h5 col-sm-2">Source*</label>
                 <div class="col-md-3">
-                    <input type="text" ng-model="Header" ng-disabled="IsReadOnly" />
+                    <select id="sel" class="form-control" ng-model="SourceId" ng-options="obj.Id as obj.Name for obj in Sources" required ng-disabled="IsReadOnly">
+                        <option value="">Select</option>
+                    </select>
                 </div>
             </div>
             <div class="form-group">
+                <label class="control-label h5 col-sm-2">Currency*</label>
+                <div class="col-md-3">
+                    <select id="sel" class="form-control" ng-model="CurrencyId" ng-options="obj.Id as obj.Name for obj in Currencies" required ng-disabled="IsReadOnly">
+                        <option value="">Select</option>
+                    </select>
+                </div>
+                <label class="control-label h5 col-sm-2">Status*</label>
+                <div class="col-md-3">
+                    <select id="sel" class="form-control" ng-model="StatusId" ng-options="obj.Id as obj.Name for obj in Statuses" required ng-disabled="IsReadOnly">
+                        <option value="">Select</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label h5 col-sm-2">Header*</label>
+                <div class="col-md-3">
+                    <input type="text" class="form-control" ng-model="Header" placeholder="<Header>" ng-disabled="IsReadOnly" required />
+                </div>
+                <label class="control-label h5 col-sm-2">Footer*</label>
+                <div class="col-md-3">
+                    <input type="text" class="form-control" ng-model="Footer" placeholder="<Footer>" ng-disabled="IsReadOnly" required />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label h5 col-sm-2">Name*</label>
+                <div class="col-md-3">
+                    <input type="text" class="form-control" ng-model="Name" placeholder="<Name>" ng-disabled="IsReadOnly" required />
+                </div>
                 <label class="control-label h5 col-sm-2">Description</label>
                 <div class="col-md-3">
-                    <input type="text" ng-model="Description" ng-disabled="IsReadOnly" />
+                    <textarea class="form-control" rows="4" placeholder="<Description>" ng-disabled="IsReadOnly" ng-model="Description"></textarea>
                 </div>
             </div>
         </form>

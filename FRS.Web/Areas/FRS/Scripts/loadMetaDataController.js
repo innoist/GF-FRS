@@ -1,10 +1,22 @@
 ﻿mainApp.controller("LoadMetaDataController", ['$scope', '$http', '$filter', function ($scope, $http, $filter) {
+    //#region Web Model properties
     $scope.LoadMetaDataId;
     $scope.LoadTypeId;
+    $scope.SourceId;
     $scope.Header;
+    $scope.Footer;
     $scope.Name;
     $scope.CurrencyId;
     $scope.Description;
+    $scope.StatusId;
+    //#endregion
+
+    //#region DropDowns
+    $scope.LoadTypes = [];
+    $scope.Sources = [];
+    $scope.Currencies = [];
+    $scope.Statuses = [];
+    //#endregion
     $scope.IsShowEdit = false;
     $scope.Currency = '';
     $scope.IsReadOnly = false;
@@ -14,6 +26,10 @@
         $http.get(ist.siteUrl + '/api/LoadMetaData')
             .success(function (data, status, headers, config) {
                 $scope.loadMetaDataList = data.LoadMetaDatas;
+                $scope.LoadTypes = data.LoadTypes;
+                $scope.Sources = data.Sources;
+                $scope.Currencies = data.Currencies;
+                $scope.Statuses = data.Statuses;
             });
     }
     //#endregion
@@ -23,10 +39,13 @@
         var loadMetaData = {
             LoadMetaDataId: $scope.LoadMetaDataId,
             LoadTypeId: $scope.LoadTypeId,
+            SourceId: $scope.SourceId,
             Header: $scope.Header,
+            Footer: $scope.Footer,
             Name: $scope.Name,
             CurrencyId: $scope.CurrencyId,
-            Description: $scope.Description
+            Description: $scope.Description,
+            StatusId: $scope.StatusId
         };
         $http.post(ist.siteUrl + '/api/LoadMetaData', loadMetaData)
             .success(function (data, status, headers, config) {
@@ -38,9 +57,16 @@
     //#region Edit LoadMetaData
     $scope.editLoadMetaData = function(loadMetaDataId) {
         var metaData = $filter('filter')($scope.loadMetaDataList, { LoadMetaDataId: loadMetaDataId });
+        $scope.LoadMetaDataId = metaData[0].LoadMetaDataId;
+        $scope.LoadTypeId = metaData[0].LoadTypeId;
+        $scope.SourceId = metaData[0].SourceId;
         $scope.Header = metaData[0].Header;
+        $scope.Footer = metaData[0].Footer;
         $scope.Name = metaData[0].Name;
+        $scope.CurrencyId = metaData[0].CurrencyId;
         $scope.Description = metaData[0].Description;
+        $scope.StatusId = metaData[0].StatusId;
+        $scope.Currency = metaData[0].Currency;
         $scope.IsReadOnly = true;
         $scope.IsShowEdit = true;
     }
@@ -61,10 +87,13 @@
     $scope.defaultModel = function () {
         $scope.LoadMetaDataId = 0;
         $scope.LoadTypeId = 0;
+        $scope.SourceId = 0;
         $scope.Header = '';
+        $scope.Footer = '';
         $scope.Name = '';
         $scope.CurrencyId = 0;
         $scope.Description = '';
+        $scope.StatusId = 0;
         $scope.Currency = '';
     }
 

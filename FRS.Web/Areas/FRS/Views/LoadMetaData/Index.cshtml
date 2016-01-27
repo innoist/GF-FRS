@@ -20,6 +20,7 @@
                         <tr>
                             <th class="th-pointer">Name</th>
                             <th class="th-pointer">Header</th>
+                            <th class="th-pointer">Currency</th>
                             <th class="th-pointer">Description</th>
                             <th class="th-pointer"></th>
                             <th class="th-pointer"></th>
@@ -29,6 +30,7 @@
                         <tr ng-repeat="metadata in loadMetaDataList">
                             <td>{{metadata.Name}}</td>
                             <td>{{metadata.Header}}</td>
+                            <td>{{metadata.Currency}}</td>
                             <td>{{metadata.Description}}</td>
                             <td><a href="#" ng-click="editLoadMetaData(metadata.LoadMetaDataId)" title="Edit"><span class="glyphicon glyphicon-edit"></span></a></td>
                             <td><a href="#" ng-click="deleteLoadMetaData(metadata.LoadMetaDataId)" confirm="Are you sure to delete?" title="Delete"><span class="glyphicon glyphicon-remove"></span></a></td>

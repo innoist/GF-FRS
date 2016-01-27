@@ -1,6 +1,5 @@
 ﻿using System.Data.Entity;
 using FRS.Interfaces.Repository;
-using FRS.Models.Common.DropDown;
 using FRS.Models.DomainModels;
 using FRS.Repository.BaseRepository;
 using Microsoft.Practices.Unity;

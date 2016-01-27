@@ -12,13 +12,21 @@ namespace FRS.Implementation.Services
         #region Private
 
         private readonly ILoadMetaDataRepository loadMetaDataRepository;
+        private readonly ILoadTypeRepository loadTypeRepository;
+        private readonly ISourceRepository sourceRepository;
+        private readonly ICurrencyRepository currencyRepository;
+        private readonly IStatusRepository statusRepository;
 
         #endregion
 
         #region Constructor
 
-        public LoadMetaDetaService(ILoadMetaDataRepository loadMetaDataRepository)
+        public LoadMetaDetaService(ILoadMetaDataRepository loadMetaDataRepository, ILoadTypeRepository loadTypeRepository, ISourceRepository sourceRepository, ICurrencyRepository currencyRepository, IStatusRepository statusRepository)
         {
+            this.loadTypeRepository = loadTypeRepository;
+            this.sourceRepository = sourceRepository;
+            this.currencyRepository = currencyRepository;
+            this.statusRepository = statusRepository;
             this.loadMetaDataRepository = loadMetaDataRepository;
         }
 
@@ -60,6 +68,10 @@ namespace FRS.Implementation.Services
             return new BaseDataLoadMetaDataResponse
             {
                 LoadMetaDatas = loadMetaDataRepository.GetAll(),
+                LoadTypes = loadTypeRepository.GetLoadTypesDropDown(),
+                Sources = sourceRepository.GetSourcesDropDown(),
+                Currencies = currencyRepository.GetCurrenciesDropDown(),
+                Statuses = statusRepository.GetStatusesDropDown()
             };
         }
 

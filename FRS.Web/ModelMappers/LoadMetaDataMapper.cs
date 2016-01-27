@@ -9,6 +9,8 @@ namespace FRS.Web.ModelMappers
             return new LoadMetaData
             {
                 LoadMetaDataId = source.LoadMetaDataId,
+                LoadTypeId = source.LoadTypeId,
+                SourceId = source.SourceId,
                 Header = source.Header,
                 Footer = source.Footer,
                 CurrencyId = source.CurrencyId,
@@ -19,6 +21,7 @@ namespace FRS.Web.ModelMappers
                 CreatedOn = source.CreatedOn,
                 ModifiedBy = source.ModifiedBy,
                 ModifiedOn = source.ModifiedOn,
+                Currency = source.Currency.Name
             };
         }
 
@@ -27,6 +30,8 @@ namespace FRS.Web.ModelMappers
             return new FRS.Models.DomainModels.LoadMetaData
             {
                 LoadMetaDataId = source.LoadMetaDataId,
+                LoadTypeId = source.LoadTypeId,
+                SourceId = source.SourceId,
                 Header = source.Header,
                 Footer = source.Footer,
                 CurrencyId = source.CurrencyId,
@@ -36,7 +41,7 @@ namespace FRS.Web.ModelMappers
                 CreatedBy = source.CreatedBy,
                 CreatedOn = source.CreatedOn,
                 ModifiedBy = source.ModifiedBy,
-                ModifiedOn = source.ModifiedOn,
+                ModifiedOn = source.ModifiedOn
             };
         }
     }

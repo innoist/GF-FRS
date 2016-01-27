@@ -106,7 +106,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommonTypes\DomainLicenseDetailClaim.cs" />
-    <Compile Include="Common\DropDown\LoadMetadataDropDown.cs" />
+    <Compile Include="Common\DropDown\DropDownModel.cs" />
     <Compile Include="Common\HelperIcon.cs" />
     <Compile Include="Common\ClaimParamters.cs" />
     <Compile Include="DomainModels\Currency.cs" />

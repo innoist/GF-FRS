@@ -33,7 +33,11 @@ namespace FRS.Web.Areas.Api.Controllers
             BaseDataLoadMetaDataResponse response = loadMetaDataService.GetBaseDataResponse();
             BaseDataLoadMetaData baseData = new BaseDataLoadMetaData
             {
-                LoadMetaDatas = response.LoadMetaDatas.Select(x => x.CreateFromServerToClient()).ToList()
+                LoadMetaDatas = response.LoadMetaDatas.Select(x => x.CreateFromServerToClient()).ToList(),
+                LoadTypes = response.LoadTypes,
+                Sources = response.Sources,
+                Currencies = response.Currencies,
+                Statuses = response.Statuses
             };
             return baseData;
         }
