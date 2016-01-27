@@ -7,6 +7,6 @@ namespace FRS.Models.ResponseModels
     public class MT940LoadBaseDataResponse
     {
         public IList<Load> Loads { get; set; }
-        public IEnumerable<LoadMetadataDropDown> LoadMetadataDropDown { get; set; }
+        public IEnumerable<DropDownModel> LoadMetadataDropDown { get; set; }
     }
 }

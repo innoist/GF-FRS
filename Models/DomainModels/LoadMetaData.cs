@@ -14,14 +14,15 @@ namespace FRS.Models.DomainModels
         public byte CurrencyId { get; set; }
         public string Description { get; set; }
         public string CreatedBy { get; set; }
-        public System.DateTime CreatedOn { get; set; }
+        public DateTime CreatedOn { get; set; }
         public string ModifiedBy { get; set; }
-        public System.DateTime ModifiedOn { get; set; }
+        public DateTime ModifiedOn { get; set; }
         public byte StatusId { get; set; }
 
         public virtual ICollection<Load> Loads { get; set; }
         public virtual LoadType LoadType { get; set; }
         public virtual Source Source { get; set; }
         public virtual Status Status { get; set; }
+        public virtual Currency Currency { get; set; }
     }
 }

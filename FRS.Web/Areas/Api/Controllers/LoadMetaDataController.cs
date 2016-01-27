@@ -1,8 +1,8 @@
-﻿using System.Linq;
-using System.Net;
-using System.Web;
+﻿using System;
+using System.Linq;
 using System.Web.Http;
 using FRS.Interfaces.IServices;
+using FRS.Models.ResponseModels;
 using FRS.Web.ModelMappers;
 using FRS.Web.Models;
 
@@ -29,23 +29,67 @@ namespace FRS.Web.Areas.Api.Controllers
 
         #region Get
 
-        public LoadMetaDataResponse Get()
+        public BaseDataLoadMetaData Get()
         {
-            if (!ModelState.IsValid)
+            BaseDataLoadMetaDataResponse response = loadMetaDataService.GetBaseDataResponse();
+            BaseDataLoadMetaData baseData = new BaseDataLoadMetaData
             {
-                throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
-            }
-            var response = new LoadMetaDataResponse
-            {
-                LoadMetaDatas = loadMetaDataService.GetAll().Select(x => x.CreateFromServerToClient())
+                LoadMetaDatas = response.LoadMetaDatas.Select(x => x.CreateFromServerToClient()).ToList(),
+                LoadTypes = response.LoadTypes,
+                Sources = response.Sources,
+                Currencies = response.Currencies,
+                Statuses = response.Statuses
             };
-            return response;
+            return baseData;
         }
 
         #endregion
 
 
         #region Post
+
+        public bool Post(LoadMetaData loadMetaData)
+        {
+            //if (!ModelState.IsValid)
+            //{
+            //    throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
+            //}
+            if (loadMetaDataService != null)
+            {
+                try
+                {
+
+                    return true;
+                }
+                catch (Exception)
+                {
+                    return false;
+                }
+            }
+            return false;
+        }
+
+        #endregion
+
+        #region Delete
+
+        public bool Delete(long loadMetaDataId)
+        {
+            if (loadMetaDataService != null)
+            {
+                try
+                {
+                    loadMetaDataService.DeleteMetaData(loadMetaDataId);
+                    return true;
+                }
+                catch (Exception)
+                {
+                    return false;
+                }
+            }
+            return false;
+        }
+
         #endregion
 
         #endregion

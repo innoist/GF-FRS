@@ -63,11 +63,14 @@ namespace FRS.Implementation.Services
         /// <summary>
         /// Delete
         /// </summary>
-        /// <param name="load"></param>
-        public void DeleteLoad(Load load)
+        public void DeleteLoad(long loadId)
         {
-            loadRepository.Delete(load);
-            loadRepository.SaveChanges();
+            var load = loadRepository.Find(loadId);
+            if (load != null)
+            {
+                loadRepository.Delete(load);
+                loadRepository.SaveChanges();
+            }
         }
 
         public MT940LoadBaseDataResponse GetBaseDataResponse()
