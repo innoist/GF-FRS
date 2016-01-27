@@ -8,7 +8,8 @@ namespace FRS.Repository.Repositories
 {
     public class LoadRepository : BaseRepository<Load>, ILoadRepository
     {
-        public LoadRepository(IUnityContainer container) : base(container)
+        public LoadRepository(IUnityContainer container)
+            : base(container)
         {
         }
 

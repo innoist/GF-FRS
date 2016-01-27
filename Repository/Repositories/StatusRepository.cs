@@ -9,23 +9,27 @@ using Microsoft.Practices.Unity;
 
 namespace FRS.Repository.Repositories
 {
-    public class LoadMetaDataRepository : BaseRepository<LoadMetaData>, ILoadMetaDataRepository
+    public class StatusRepository : BaseRepository<Status>, IStatusRepository
     {
-        public LoadMetaDataRepository(IUnityContainer container) : base(container)
+        #region Constructor
+        public StatusRepository(IUnityContainer container) : base(container)
         {
         }
+        #endregion
 
-        protected override IDbSet<LoadMetaData> DbSet
+        #region Protected
+        protected override IDbSet<Status> DbSet
         {
-            get { return db.LoadMetaDatas; }
+            get { return db.Statuses; }
         }
+        #endregion
 
         #region Public
-        public IEnumerable<DropDownModel> LoadMetadataDropDown()
+        public IEnumerable<DropDownModel> GetStatusesDropDown()
         {
             return DbSet.Select(x => new DropDownModel
             {
-                Id = x.LoadMetaDataId,
+                Id = x.Value,
                 Name = x.Name
             });
         }

@@ -166,9 +166,11 @@
     <Compile Include="BaseRepository\PropertyReference.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\CurrencyRepository.cs" />
     <Compile Include="Repositories\EmployeeRepository.cs" />
     <Compile Include="Repositories\LoadMetaDataRepository.cs" />
     <Compile Include="Repositories\LoadRepository.cs" />
+    <Compile Include="Repositories\LoadTypeRepository.cs" />
     <Compile Include="Repositories\MenuRepository.cs" />
     <Compile Include="Repositories\ApplicationUserRepository.cs" />
     <Compile Include="Repositories\MenuRightRepository.cs" />
@@ -177,6 +179,8 @@
     <Compile Include="Repositories\MT940CustomerStatementTransactionRepository.cs" />
     <Compile Include="Repositories\MT940LoadDetailRepository.cs" />
     <Compile Include="Repositories\MT940LoadRepository.cs" />
+    <Compile Include="Repositories\SourceRepository.cs" />
+    <Compile Include="Repositories\StatusRepository.cs" />
     <Compile Include="Repositories\UserDetailsRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
     <Compile Include="Repositories\UserRoleStore.cs" />

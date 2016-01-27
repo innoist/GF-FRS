@@ -2,18 +2,20 @@
     <div class="well col-md-12">
         <div class="float-left detailsContainer">
             <h3 class="page-header detailsHeaderSection float-left">MT940 Load Detail</h3>
-            <button class="btn  btn-info" id="saveLoadbtn" ng-disabled="!loadForm.$dirty" ng-click="saveLoad()">@FRS.Web.Resources.Shared.Common.Save</button>
+            <button class="btn  btn-info" id="saveLoadbtn" ng-disabled="!loadForm.$dirty" ng-click="saveMT940Detail()">@FRS.Web.Resources.Shared.Common.Save</button>
             <button class="btn  btn-default" id="cancelLoadbtn" ng-click="onEditCancel()">@FRS.Web.Resources.Shared.Common.Cancel</button>
         </div>
         <form class="form-horizontal" name="loadForm">
             <div class="form-group">
-                <label class="control-label h5 col-sm-2">A</label>
-                <div class="col-md-2">
-                    <input type="text" class="form-control" ng-model="LoadTypeId" placeholder="@("<A>")" required />
+                <label class="control-label h5 col-sm-2">Load Meta Data</label>
+                <div class="col-md-3">
+                    <select id="sel" class="form-control" ng-model="LoadMetadataId" ng-options="obj.Id as obj.Name for obj in LoadMetadataDropDown">
+                        <option value="">Select</option>
+                    </select>
                 </div>
-                <label class="control-label h5 col-sm-2">B</label>
-                <div class="col-md-2">
-                    <input type="text" class="form-control" ng-model="MetaDataId" placeholder="@("<B>")" required />
+                <label class="control-label h5 col-sm-2">Upload File</label>
+                <div class="col-md-3">
+                    <input type="file" name="Attachment" data-ak-file-model="Attachment" onchange="angular.element(this).scope().readPhotoURL(this)" />
                 </div>
             </div>
         </form>

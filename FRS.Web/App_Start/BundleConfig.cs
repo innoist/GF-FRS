@@ -24,6 +24,7 @@ namespace Cares.Web
                 .Include("~/Scripts/jquery-ui-1.10.4.js")
                 .Include("~/Scripts/json2.js")
                 .Include("~/Scripts/Plugins/angular.js")
+                .Include("~/Scripts/Plugins/angular-route.js")
                 .Include("~/Scripts/knockout-3.1.0.js")
                 .Include("~/Scripts/odometer.js")
                 .Include("~/Scripts/knockout.mapping-latest.js")

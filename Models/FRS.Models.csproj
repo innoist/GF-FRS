@@ -106,6 +106,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommonTypes\DomainLicenseDetailClaim.cs" />
+    <Compile Include="Common\DropDown\DropDownModel.cs" />
     <Compile Include="Common\HelperIcon.cs" />
     <Compile Include="Common\ClaimParamters.cs" />
     <Compile Include="DomainModels\Currency.cs" />
@@ -147,6 +148,8 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="ResponseModels\BaseDataLoadMetaDataResponse.cs" />
+    <Compile Include="ResponseModels\MT940LoadBaseDataResponse.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -163,7 +166,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="RequestModels\" />
-    <Folder Include="ResponseModels\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

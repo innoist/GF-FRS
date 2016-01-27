@@ -9,5 +9,6 @@ namespace FRS.Models.DomainModels
         public string Sign { get; set; }
 
         public virtual ICollection<MT940Balance> MT940Balance { get; set; }
+        public virtual ICollection<LoadMetaData> LoadMetaDatas { get; set; }
     }
 }

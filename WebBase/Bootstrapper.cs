@@ -1,8 +1,8 @@
 using System.Web.Mvc;
-using Cares.WebBase.UnityConfiguration;
+using FRS.WebBase.UnityConfiguration;
 using Microsoft.Practices.Unity;
 
-namespace Cares.WebBase
+namespace FRS.WebBase
 {
   public static class Bootstrapper
   {
