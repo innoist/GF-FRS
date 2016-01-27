@@ -13,11 +13,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FRS.Implementation", "Imple
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FRS.Web", "FRS.Web\FRS.Web.csproj", "{426080DD-D8CB-49F2-9645-DFD962ADFFDF}"
 EndProject
-Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "FRS.Database", "FRSDatabase\FRS.Database.sqlproj", "{B8A8F2DD-DE07-4F2D-A1D9-B9DBB01FD375}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FRS.Commons", "FRS.Commons\FRS.Commons.csproj", "{C495B1EB-AC68-44F5-B2FA-D36083EB7BEC}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CaresAssemblies", "CaresAssemblies", "{E3B505CB-5E48-470A-9270-AC19D2D1E1C1}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FRSCommonAssemblies", "FRSCommonAssemblies", "{E3B505CB-5E48-470A-9270-AC19D2D1E1C1}"
 	ProjectSection(SolutionItems) = preProject
 		CaresAssemblies\SendGrid.SmtpApi.dll = CaresAssemblies\SendGrid.SmtpApi.dll
 	EndProjectSection
@@ -27,6 +25,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FRS.MT940Loader", "FRS.MT940Loader\FRS.MT940Loader.csproj", "{F58978F5-8273-4746-BE9A-E00B12427BEB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FRS.MT940LoaderServices", "FRS.MT940LoaderServices\FRS.MT940LoaderServices.csproj", "{4A2B47B2-BF04-4A7C-9E53-BB19D480271C}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "FRS.Database", "FRS.Database\FRS.Database.sqlproj", "{9C6A1897-1E5C-4C76-985D-EFA398C08EA0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -54,12 +54,6 @@ Global
 		{426080DD-D8CB-49F2-9645-DFD962ADFFDF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{426080DD-D8CB-49F2-9645-DFD962ADFFDF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{426080DD-D8CB-49F2-9645-DFD962ADFFDF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B8A8F2DD-DE07-4F2D-A1D9-B9DBB01FD375}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B8A8F2DD-DE07-4F2D-A1D9-B9DBB01FD375}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B8A8F2DD-DE07-4F2D-A1D9-B9DBB01FD375}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
-		{B8A8F2DD-DE07-4F2D-A1D9-B9DBB01FD375}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B8A8F2DD-DE07-4F2D-A1D9-B9DBB01FD375}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B8A8F2DD-DE07-4F2D-A1D9-B9DBB01FD375}.Release|Any CPU.Deploy.0 = Release|Any CPU
 		{C495B1EB-AC68-44F5-B2FA-D36083EB7BEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C495B1EB-AC68-44F5-B2FA-D36083EB7BEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C495B1EB-AC68-44F5-B2FA-D36083EB7BEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -76,6 +70,12 @@ Global
 		{4A2B47B2-BF04-4A7C-9E53-BB19D480271C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4A2B47B2-BF04-4A7C-9E53-BB19D480271C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4A2B47B2-BF04-4A7C-9E53-BB19D480271C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C6A1897-1E5C-4C76-985D-EFA398C08EA0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C6A1897-1E5C-4C76-985D-EFA398C08EA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C6A1897-1E5C-4C76-985D-EFA398C08EA0}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{9C6A1897-1E5C-4C76-985D-EFA398C08EA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C6A1897-1E5C-4C76-985D-EFA398C08EA0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C6A1897-1E5C-4C76-985D-EFA398C08EA0}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
