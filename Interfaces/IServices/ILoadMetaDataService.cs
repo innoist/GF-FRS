@@ -7,9 +7,10 @@ namespace FRS.Interfaces.IServices
     public interface ILoadMetaDataService
     {
         IEnumerable<LoadMetaData> GetAll();
-        bool SaveMetaData(LoadMetaData loadMetaData);
+        bool AddMetaData(LoadMetaData loadMetaData);
         bool UpdateMetaData(LoadMetaData loadMetaData);
         void DeleteMetaData(long loadMetaData);
         BaseDataLoadMetaDataResponse GetBaseDataResponse();
+        LoadMetaData SaveMetaData(LoadMetaData loadMetaData);
     }
 }

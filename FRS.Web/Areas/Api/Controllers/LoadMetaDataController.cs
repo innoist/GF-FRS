@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Linq;
+using System.Net;
+using System.Web;
 using System.Web.Http;
 using FRS.Interfaces.IServices;
 using FRS.Models.ResponseModels;
 using FRS.Web.ModelMappers;
 using FRS.Web.Models;
+using Microsoft.AspNet.Identity;
 
 namespace FRS.Web.Areas.Api.Controllers
 {
@@ -45,25 +48,24 @@ namespace FRS.Web.Areas.Api.Controllers
 
 
         #region Post
-        public bool Post(LoadMetaData loadMetaData)
+        public LoadMetaData Post(LoadMetaData loadMetaData)
         {
-            //if (!ModelState.IsValid)
-            //{
-            //    throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
-            //}
+            if (loadMetaData == null || !ModelState.IsValid)
+            {
+                throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
+            }
             if (loadMetaDataService != null)
             {
                 try
                 {
-
-                    return true;
+                    return loadMetaDataService.SaveMetaData(loadMetaData.CreateFromClientToServer()).CreateFromServerToClient();
                 }
                 catch (Exception)
                 {
-                    return false;
+                    return null;
                 }
             }
-            return false;
+            return null;
         }
         #endregion
 

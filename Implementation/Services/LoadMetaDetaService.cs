@@ -1,8 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Security.Claims;
 using FRS.Interfaces.IServices;
 using FRS.Interfaces.Repository;
 using FRS.Models.DomainModels;
 using FRS.Models.ResponseModels;
+using Microsoft.AspNet.Identity;
 
 namespace FRS.Implementation.Services
 {
@@ -17,6 +20,34 @@ namespace FRS.Implementation.Services
         private readonly ICurrencyRepository currencyRepository;
         private readonly IStatusRepository statusRepository;
 
+        private void UpdateProperties(LoadMetaData metaData, LoadMetaData dbVersion)
+        {
+            dbVersion.ModifiedBy = ClaimsPrincipal.Current.Identity.GetUserId();
+            dbVersion.ModifiedOn = DateTime.Now;
+            dbVersion.LoadTypeId = metaData.LoadTypeId;
+            dbVersion.SourceId = metaData.SourceId;
+            dbVersion.Header = metaData.Header;
+            dbVersion.Footer = metaData.Footer;
+            dbVersion.Name = metaData.Name;
+            dbVersion.CurrencyId = metaData.CurrencyId;
+            dbVersion.Description = metaData.Description;
+            dbVersion.StatusId = metaData.StatusId;
+        }
+        private void SetProperties(LoadMetaData metaData, LoadMetaData dbVersion)
+        {
+            dbVersion.CreatedBy = ClaimsPrincipal.Current.Identity.GetUserId();
+            dbVersion.CreatedOn = DateTime.Now;
+            dbVersion.ModifiedBy = ClaimsPrincipal.Current.Identity.GetUserId();
+            dbVersion.ModifiedOn = DateTime.Now;
+            dbVersion.LoadTypeId = metaData.LoadTypeId;
+            dbVersion.SourceId = metaData.SourceId;
+            dbVersion.Header = metaData.Header;
+            dbVersion.Footer = metaData.Footer;
+            dbVersion.Name = metaData.Name;
+            dbVersion.CurrencyId = metaData.CurrencyId;
+            dbVersion.Description = metaData.Description;
+            dbVersion.StatusId = metaData.StatusId;
+        }
         #endregion
 
         #region Constructor
@@ -39,7 +70,7 @@ namespace FRS.Implementation.Services
             return loadMetaDataRepository.GetAll();
         }
 
-        public bool SaveMetaData(LoadMetaData loadMetaData)
+        public bool AddMetaData(LoadMetaData loadMetaData)
         {
             loadMetaDataRepository.Add(loadMetaData);
             loadMetaDataRepository.SaveChanges();
@@ -73,6 +104,24 @@ namespace FRS.Implementation.Services
                 Currencies = currencyRepository.GetCurrenciesDropDown(),
                 Statuses = statusRepository.GetStatusesDropDown()
             };
+        }
+
+        public LoadMetaData SaveMetaData(LoadMetaData loadMetaData)
+        {
+            LoadMetaData dbVersion = loadMetaDataRepository.Find(loadMetaData.LoadMetaDataId);
+            if (dbVersion != null)
+            {
+                UpdateProperties(loadMetaData, dbVersion);
+                loadMetaDataRepository.Update(dbVersion);
+            }
+            else
+            {
+                dbVersion = new LoadMetaData();
+                SetProperties(loadMetaData, dbVersion);
+                loadMetaDataRepository.Add(dbVersion);
+            }
+            loadMetaDataRepository.SaveChanges();
+            return dbVersion;
         }
 
         #endregion

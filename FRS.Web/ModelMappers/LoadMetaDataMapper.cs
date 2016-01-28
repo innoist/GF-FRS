@@ -17,10 +17,6 @@ namespace FRS.Web.ModelMappers
                 Description = source.Description,
                 Name = source.Name,
                 StatusId = source.StatusId,
-                CreatedBy = source.CreatedBy,
-                CreatedOn = source.CreatedOn,
-                ModifiedBy = source.ModifiedBy,
-                ModifiedOn = source.ModifiedOn,
                 Currency = source.Currency.Name
             };
         }
@@ -38,10 +34,6 @@ namespace FRS.Web.ModelMappers
                 Description = source.Description,
                 Name = source.Name,
                 StatusId = source.StatusId,
-                CreatedBy = source.CreatedBy,
-                CreatedOn = source.CreatedOn,
-                ModifiedBy = source.ModifiedBy,
-                ModifiedOn = source.ModifiedOn
             };
         }
     }

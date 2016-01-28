@@ -29,6 +29,17 @@ namespace FRS.Repository.Repositories
                 Name = x.Name
             });
         }
+
+        public IEnumerable<LoadMetaDataWithFileType> LoadMetadataWithFileTypes()
+        {
+            return DbSet.Select(x => new LoadMetaDataWithFileType
+            {
+                LoadMetaDataId = x.LoadMetaDataId,
+                IsSourceFileType = x.Source.Name == "File" || x.Source.Name == "file"
+            });
+
+        }
+
         #endregion
     }
 }

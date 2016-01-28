@@ -49,6 +49,15 @@
         };
         $http.post(ist.siteUrl + '/api/LoadMetaData', loadMetaData)
             .success(function (data, status, headers, config) {
+                if (data != null) {
+                    toastr.success("Success");
+                }
+
+                console.log(data);
+            }).error(function (data, status, headers, config) {
+                if (data != null) {
+                    toastr.success("Error");
+                }
                 console.log(data);
             });
     }
@@ -67,7 +76,7 @@
         $scope.Description = metaData[0].Description;
         $scope.StatusId = metaData[0].StatusId;
         $scope.Currency = metaData[0].Currency;
-        $scope.IsReadOnly = true;
+        $scope.IsReadOnly = false;
         $scope.IsShowEdit = true;
     }
     //#endregion

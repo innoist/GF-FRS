@@ -7,5 +7,6 @@ namespace FRS.Interfaces.Repository
     public interface ILoadMetaDataRepository : IBaseRepository<LoadMetaData, long>
     {
         IEnumerable<DropDownModel> LoadMetadataDropDown();
+        IEnumerable<LoadMetaDataWithFileType> LoadMetadataWithFileTypes();
     }
 }
