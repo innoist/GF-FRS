@@ -12,5 +12,6 @@ namespace FRS.Interfaces.IServices
         void DeleteMetaData(long loadMetaData);
         BaseDataLoadMetaDataResponse GetBaseDataResponse();
         LoadMetaData SaveMetaData(LoadMetaData loadMetaData);
+        bool IsSourceFileType(long loadMetaDataId);
     }
 }

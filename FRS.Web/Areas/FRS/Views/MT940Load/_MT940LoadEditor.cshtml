@@ -9,14 +9,19 @@
             <div class="form-group">
                 <label class="control-label h5 col-sm-2">Load Meta Data</label>
                 <div class="col-md-3">
-                    <select id="sel" class="form-control" ng-model="LoadMetadataId" ng-options="obj.Id as obj.Name for obj in LoadMetadataDropDown">
+                    <select class="form-control" ng-model="LoadMetadataId" ng-options="obj as obj.Name for obj in LoadMetadataDropDown" ng-change="showHideFileUploader(LoadMetadataId)">
                         <option value="">Select</option>
                     </select>
                 </div>
-                <label class="control-label h5 col-sm-2">Upload File</label>
-                <div class="col-md-3">
-                    <input type="file" name="Attachment" data-ak-file-model="Attachment" onchange="angular.element(this).scope().readPhotoURL(this)" />
+                <div ng-show="IsSourceTypeFile">
+                    <label class="control-label h5 col-sm-2">Upload File</label>
+                    <div class="col-md-3">
+                        <input class="form-control" type="file" onchange="angular.element(this).scope().readPhotoURL(this)" />
+                    </div>
                 </div>
+            </div>
+            <div class="form-group">
+                
             </div>
         </form>
     </div>

@@ -6,7 +6,10 @@
     $scope.Attachment;
     $scope.IsShowEdit = false;
     $scope.LoadMetadataDropDown = [];
+    $scope.MetaDataWithFileTypes = [];
     $scope.LoadMetadataId = 0;
+    // show/hide file uploading facility
+    $scope.IsSourceTypeFile = false;
 
     //#region Get Data from DB
     $scope.getLoadList = function () {
@@ -14,6 +17,7 @@
             .success(function (data, status, headers, config) {
                 $scope.loadList = data.Loads;
                 $scope.LoadMetadataDropDown = data.LoadMetadataDropDown;
+                $scope.MetaDataWithFileTypes = data.MetaDataWithFileTypes;
             });
     }
     //#endregion
@@ -36,7 +40,7 @@
     //#endregion
 
     //#region Delete Data
-    $scope.deleteLoad = function(loadId) {
+    $scope.deleteLoad = function (loadId) {
         $http.delete(ist.siteUrl + '/api/MT940Load', { params: { loadId: loadId } })
                     .success(function (data, status, headers, config) {
                         if (data != false) {
@@ -61,6 +65,18 @@
     $scope.onEditCancel = function () {
         $scope.defaultModel();
         $scope.IsShowEdit = false;
+    }
+
+    $scope.showHideFileUploader = function (loadMetadataId) {
+        var url = ist.siteUrl + '/api/MT940Load?metaDataId=' + loadMetadataId.Id;
+        $http.get(url)
+            .success(function (data, status, headers, config) {
+                if (data == true) {
+                    $scope.IsSourceTypeFile = true;
+                } else {
+                    $scope.IsSourceTypeFile = false;
+                }
+            });
     }
 
     // get data on page load

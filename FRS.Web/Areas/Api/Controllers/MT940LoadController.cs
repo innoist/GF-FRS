@@ -16,14 +16,16 @@ namespace FRS.Web.Areas.Api.Controllers
         #region Private
 
         private readonly ILoadService loadService;
+        private readonly ILoadMetaDataService metaDataService;
 
         #endregion
 
         #region Constructor
 
-        public MT940LoadController(ILoadService loadService)
+        public MT940LoadController(ILoadService loadService, ILoadMetaDataService metaDataService)
         {
             this.loadService = loadService;
+            this.metaDataService = metaDataService;
         }
 
         #endregion
@@ -91,6 +93,14 @@ namespace FRS.Web.Areas.Api.Controllers
                 }
             }
             return false;
+        }
+        #endregion
+
+        #region Get File Type
+
+        public bool Get(long metaDataId)
+        {
+            return metaDataService.IsSourceFileType(metaDataId);
         }
         #endregion
 

@@ -124,6 +124,11 @@ namespace FRS.Implementation.Services
             return dbVersion;
         }
 
+        public bool IsSourceFileType(long loadMetaDataId)
+        {
+            return loadMetaDataRepository.IsSourceFileType(loadMetaDataId);
+        }
+
         #endregion
     }
 }
