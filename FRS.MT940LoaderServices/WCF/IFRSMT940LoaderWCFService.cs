@@ -7,6 +7,6 @@ namespace FRS.MT940Loader.Services
     public interface IFRSMT940LoaderWCFService
     {
         [OperationContract]
-        ProcessMT940AfterInsertReturn ProcessMT940AfterInsert(ProcessMT940AfterInsertInput input);
+        ProcessMT940AfterInsertReturn LoadMT940AfterInsert(ProcessMT940AfterInsertInput input);
     }
 }

@@ -1,11 +1,13 @@
 ﻿using System;
 using FRS.MT940Loader.Services.InputOutput;
+using FRS.MT940Loader.Fault;
+using System.Collections.Generic;
 
 namespace FRS.MT940Loader.Services
 {
     public class FRSMT940LoaderWCFService : IFRSMT940LoaderWCFService
     {
-        public ProcessMT940AfterInsertReturn ProcessMT940AfterInsert(ProcessMT940AfterInsertInput input)
+        public ProcessMT940AfterInsertReturn LoadMT940AfterInsert(ProcessMT940AfterInsertInput input)
         {
             //Validate the input of this function call
             //Fetch all metadata of this function from the database
@@ -16,6 +18,10 @@ namespace FRS.MT940Loader.Services
             //                                          "{1:F01AAALSARIAXXX.SN...ISN.}{2:I940SCBLGB20XWEBN}{3:{108:xxxxx}}{4:",
             //                                          "-}");
             //l.ValidateFile();
+
+            MT940LoadHandler loadHandler = new MT940LoadHandler();
+
+            loadHandler.LoadMT940(input.MT940LoadId);
 
             throw new NotImplementedException();
         }
