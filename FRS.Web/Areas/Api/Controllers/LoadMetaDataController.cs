@@ -31,6 +31,7 @@ namespace FRS.Web.Areas.Api.Controllers
         #region Public
 
         #region Get
+
         public BaseDataLoadMetaData Get()
         {
             BaseDataLoadMetaDataResponse response = loadMetaDataService.GetBaseDataResponse();
@@ -44,6 +45,7 @@ namespace FRS.Web.Areas.Api.Controllers
             };
             return baseData;
         }
+
         #endregion
 
 
@@ -67,9 +69,11 @@ namespace FRS.Web.Areas.Api.Controllers
             }
             return null;
         }
+
         #endregion
 
         #region Delete
+
         public bool Delete(long loadMetaDataId)
         {
             if (loadMetaDataService != null)

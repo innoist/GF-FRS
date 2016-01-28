@@ -4,15 +4,18 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{F58978F5-8273-4746-BE9A-E00B12427BEB}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{4A2B47B2-BF04-4A7C-9E53-BB19D480271C}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>FRS.MT940Loader</RootNamespace>
-    <AssemblyName>FRS.MT940Loader</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <RootNamespace>FRS.MT940LoaderService</RootNamespace>
+    <AssemblyName>FRS.MT940LoaderServices</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -22,6 +25,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -30,12 +34,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Raptorious.SharpMt940Lib, Version=1.1.1.39, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Raptorious.Finance.Swift.Mt940.1.1.1.39\lib\Raptorious.SharpMt940Lib.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration.Install" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceProcess" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -44,27 +48,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Fault\FRSFileValidationFault.cs" />
-    <Compile Include="MT940LoaderMain.cs" />
-    <Compile Include="MessageClasses.cs" />
+    <Compile Include="WCF\FRSMT940LoaderWCFService.cs" />
+    <Compile Include="WinService\FRSMT940LoaderWinService.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WinService\FRSMT940LoaderWinService.Designer.cs">
+      <DependentUpon>FRSMT940LoaderWinService.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WCF\IFRSMT940LoaderWCFService.cs" />
+    <Compile Include="InputOutput\ProcessMT940AfterInsertInput.cs" />
+    <Compile Include="InputOutput\ProcessMT940AfterInsertReturn.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="MT940LoaderWinServiceInstaller.cs">
+      <SubType>Component</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
-    <None Include="Samples\KSA\KSA Bank Statement CSV File.xlsx" />
-    <None Include="Samples\KSA\SHB 940 message format.xlsx" />
+    <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Samples\KSA\940SampleSHB.txt" />
-    <Content Include="Samples\KSA\CodeDescription.txt" />
-    <Content Include="Samples\KSA\KSA Bank STatement MT940 Swift Format.txt" />
-    <Content Include="Samples\KSA\SCB Client- 010175823005.940f.txt" />
-    <Content Include="Samples\KSA\SCB Vostro - 010173588009 -940e.txt" />
-    <Content Include="Samples\KSA\SCB Vostro - 031001548008 -940d.txt" />
-    <Content Include="Samples\KSA\SCB Vostro - 031001548008.940a.txt" />
-    <Content Include="Samples\KSA\SCB Vostro - 031001548008.940b.txt" />
-    <Content Include="Samples\KSA\SCB Vostro - 031001548008.940c.txt" />
-    <Content Include="Samples\SharpMt940\MING01 Uitgaande SECT en Incasso.txt" />
+    <Content Include="How To.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
