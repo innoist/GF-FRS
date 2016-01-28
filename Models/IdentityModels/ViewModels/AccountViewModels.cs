@@ -77,33 +77,13 @@ namespace FRS.Models.IdentityModels.ViewModels
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
 
+        [Required(ErrorMessage = "Please select role")]
         public string SelectedRole { get; set; }
 
         public List<UserRole> Roles { get; set; }
 
-        [Required]
-        [Display(Name = "Account Type")]
-        public string AccountType { get; set; }
-
         [Display(Name = "Phone Number")]
         public string PhoneNumber { get; set; }
-
-
-        [Required]
-        [Display(Name = "Company Name")]
-        public string CompanyName { get; set; }
-
-        [Required]
-        [Display(Name = "Company Short-URL ")]
-        public string ShortUrl { get; set; }
-
-        [Required]
-        [Display(Name = "Address")]
-        public string CompanyAddress { get; set; }
-
-        [Required]
-        [Display(Name = "Country")]
-        public string CountryName { get; set; }
     }
 
     public class ResetPasswordViewModel

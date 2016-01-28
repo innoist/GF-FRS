@@ -41,11 +41,6 @@ namespace FRS.Implementation.Services
         public void SaveUserDetails(AspNetUser addedUser, RegisterViewModel model)
         {
             UserDetail user = userDetailsRepository.Create();
-            user.AccountType = model.AccountType;
-            user.Address = model.CompanyAddress;
-            user.CompanyName = model.CompanyName;
-            user.CountryName = model.CountryName;
-            user.CompanyShortUrl = model.ShortUrl;
             user.UserId = addedUser.Id;
             userDetailsRepository.Add(user);
             userDetailsRepository.SaveChanges();

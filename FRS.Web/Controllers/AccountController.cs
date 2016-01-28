@@ -272,7 +272,7 @@ namespace Cares.Web.Controllers
                     var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code },
                         protocol: Request.Url.Scheme);
                     await
-                        UserManager.SendEmailAsync(model.Email, "Confirm your account", "\">link</a><br>Your Password is:" + model.Password);
+                        UserManager.SendEmailAsync(model.Email, "Confirm your account", "You can click this link to confirm the email: \"<a href='" + callbackUrl + "'></a><br>Your Password is:" + model.Password);
                     ViewBag.Link = callbackUrl;
                     return View("DisplayEmail");
                 }
