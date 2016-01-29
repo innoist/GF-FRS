@@ -50,13 +50,15 @@
         $http.post(ist.siteUrl + '/api/LoadMetaData', loadMetaData)
             .success(function (data, status, headers, config) {
                 if (data != null) {
-                    toastr.success("Success");
+                    $scope.getLoadMetaDataList();
+                    $scope.IsShowEdit = false;
+                    toastr.success("Record has been Saved Successfully");
                 }
 
                 console.log(data);
             }).error(function (data, status, headers, config) {
                 if (data != null) {
-                    toastr.success("Error");
+                    toastr.success("Error in Saving the Record");
                 }
                 console.log(data);
             });

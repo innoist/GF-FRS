@@ -20,13 +20,13 @@
         <EntityTypeShape EntityType="angularModel.Employee" Width="1.5" PointX="0.5" PointY="0.5" />
         <AssociationConnector Association="angularModel.FK_AspNetUsers_Employee" />
         <EntityTypeShape EntityType="angularModel.Currency" Width="1.5" PointX="1.375" PointY="10.375" />
-        <EntityTypeShape EntityType="angularModel.FileContent" Width="1.5" PointX="5.375" PointY="7.5" />
+        <EntityTypeShape EntityType="angularModel.FileContent" Width="1.875" PointX="5.375" PointY="7.5" />
         <EntityTypeShape EntityType="angularModel.Load" Width="1.5" PointX="14.125" PointY="9.25" />
         <EntityTypeShape EntityType="angularModel.LoadMetaData" Width="1.5" PointX="11.375" PointY="8.5" />
         <EntityTypeShape EntityType="angularModel.LoadType" Width="1.5" PointX="8.375" PointY="14.25" />
         <EntityTypeShape EntityType="angularModel.MT940Balance" Width="1.5" PointX="3.375" PointY="12.5" />
-        <EntityTypeShape EntityType="angularModel.MT940CustomerStatement" Width="1.5" PointX="9.875" PointY="2.875" />
-        <EntityTypeShape EntityType="angularModel.MT940CustomerStatementTransaction" Width="1.5" PointX="12.125" PointY="3.5" />
+        <EntityTypeShape EntityType="angularModel.MT940CustomerStatement" Width="2.625" PointX="9.875" PointY="2.875" />
+        <EntityTypeShape EntityType="angularModel.MT940CustomerStatementTransaction" Width="2.625" PointX="15.125" PointY="3.375" />
         <EntityTypeShape EntityType="angularModel.MT940Load" Width="1.5" PointX="7.625" PointY="9.375" />
         <EntityTypeShape EntityType="angularModel.Source" Width="1.5" PointX="8.375" PointY="16.75" />
         <EntityTypeShape EntityType="angularModel.Status" Width="1.5" PointX="5.375" PointY="10.5" />

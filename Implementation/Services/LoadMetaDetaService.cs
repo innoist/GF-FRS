@@ -4,6 +4,7 @@ using System.Security.Claims;
 using FRS.Interfaces.IServices;
 using FRS.Interfaces.Repository;
 using FRS.Models.DomainModels;
+using FRS.Models.IdentityModels;
 using FRS.Models.ResponseModels;
 using Microsoft.AspNet.Identity;
 
@@ -19,10 +20,11 @@ namespace FRS.Implementation.Services
         private readonly ISourceRepository sourceRepository;
         private readonly ICurrencyRepository currencyRepository;
         private readonly IStatusRepository statusRepository;
+        private readonly IUserRepository userRepository;
 
-        private void UpdateProperties(LoadMetaData metaData, LoadMetaData dbVersion)
+        private void UpdateProperties(LoadMetaData metaData, LoadMetaData dbVersion, AspNetUser user)
         {
-            dbVersion.ModifiedBy = ClaimsPrincipal.Current.Identity.GetUserId();
+            dbVersion.ModifiedBy = user.Id;
             dbVersion.ModifiedOn = DateTime.Now;
             dbVersion.LoadTypeId = metaData.LoadTypeId;
             dbVersion.SourceId = metaData.SourceId;
@@ -33,11 +35,11 @@ namespace FRS.Implementation.Services
             dbVersion.Description = metaData.Description;
             dbVersion.StatusId = metaData.StatusId;
         }
-        private void SetProperties(LoadMetaData metaData, LoadMetaData dbVersion)
+        private void SetProperties(LoadMetaData metaData, LoadMetaData dbVersion, AspNetUser user)
         {
-            dbVersion.CreatedBy = ClaimsPrincipal.Current.Identity.GetUserId();
+            dbVersion.CreatedBy = user.Id;
             dbVersion.CreatedOn = DateTime.Now;
-            dbVersion.ModifiedBy = ClaimsPrincipal.Current.Identity.GetUserId();
+            dbVersion.ModifiedBy = user.Id;
             dbVersion.ModifiedOn = DateTime.Now;
             dbVersion.LoadTypeId = metaData.LoadTypeId;
             dbVersion.SourceId = metaData.SourceId;
@@ -52,12 +54,13 @@ namespace FRS.Implementation.Services
 
         #region Constructor
 
-        public LoadMetaDetaService(ILoadMetaDataRepository loadMetaDataRepository, ILoadTypeRepository loadTypeRepository, ISourceRepository sourceRepository, ICurrencyRepository currencyRepository, IStatusRepository statusRepository)
+        public LoadMetaDetaService(ILoadMetaDataRepository loadMetaDataRepository, ILoadTypeRepository loadTypeRepository, ISourceRepository sourceRepository, ICurrencyRepository currencyRepository, IStatusRepository statusRepository, IUserRepository userRepository)
         {
             this.loadTypeRepository = loadTypeRepository;
             this.sourceRepository = sourceRepository;
             this.currencyRepository = currencyRepository;
             this.statusRepository = statusRepository;
+            this.userRepository = userRepository;
             this.loadMetaDataRepository = loadMetaDataRepository;
         }
 
@@ -108,16 +111,17 @@ namespace FRS.Implementation.Services
 
         public LoadMetaData SaveMetaData(LoadMetaData loadMetaData)
         {
+            var user = userRepository.GetLoggedInUser();
             LoadMetaData dbVersion = loadMetaDataRepository.Find(loadMetaData.LoadMetaDataId);
             if (dbVersion != null)
             {
-                UpdateProperties(loadMetaData, dbVersion);
+                UpdateProperties(loadMetaData, dbVersion, user);
                 loadMetaDataRepository.Update(dbVersion);
             }
             else
             {
                 dbVersion = new LoadMetaData();
-                SetProperties(loadMetaData, dbVersion);
+                SetProperties(loadMetaData, dbVersion, user);
                 loadMetaDataRepository.Add(dbVersion);
             }
             loadMetaDataRepository.SaveChanges();
