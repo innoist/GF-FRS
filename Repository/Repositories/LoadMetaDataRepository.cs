@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Configuration;
 using System.Data.Entity;
 using System.Linq;
 using FRS.Interfaces.Repository;
@@ -32,10 +33,11 @@ namespace FRS.Repository.Repositories
 
         public bool IsSourceFileType(long loadMetaDataId)
         {
+            string loadType = ConfigurationManager.AppSettings["LoadTypeFile"];
             var metaData = DbSet.FirstOrDefault(x => x.LoadMetaDataId == loadMetaDataId);
             if (metaData != null && metaData.Source != null)
             {
-                return metaData.Source.Name == "File" || metaData.Source.Name == "file";
+                return metaData.LoadType.Name == loadType || metaData.LoadType.Name == loadType;
             }
             return false;
         }

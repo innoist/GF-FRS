@@ -59,7 +59,7 @@ namespace FRS.Web.Areas.Api.Controllers
             {
                 try
                 {
-                    File.WriteAllBytes(@"D:\Ammar\Office Projects\GF-FRS\FRS.Web\Files\Getting Started.pdf", load.ImageUrlBytes);
+                    File.WriteAllBytes(@"D:\Ammar\Office Projects\GF-FRS\FRS.Web\Files\" + load.FileName , load.ImageUrlBytes);
                     return true;
                     //var loadToSave = load.CreateFromClientToServer();
                     //if (loadService.SaveLoad(loadToSave))

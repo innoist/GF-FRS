@@ -9,15 +9,13 @@ namespace FRS.Web.ModelMappers
             return new Load
             {
                 LoadId = source.LoadId,
-                //LoadTypeId = source.LoadTypeId,
-                //MetaDataId = source.MetaDataId,
-                //MT940DetailId = source.MT940DetailId,
-                CreatedBy = source.CreatedBy,
-                CreatedOn = source.CreatedOn,
-                ModifiedBy = source.ModifiedBy,
-                ModifiedOn = source.ModifiedOn,
-                //LoadTypeName = source.LoadType.Name,
-                //MT940Detail = source.MT940LoadDetail.Name,
+                LoadMetaDataId = source.LoadMetaDataId,
+                MT940LoadId = source.MT940LoadId,
+                Start = source.Start,
+                Finish = source.Finish,
+                InProgress = source.InProgress,
+                ReadOnly = source.ReadOnly,
+                LoadTypeName = source.LoadMetaData.LoadType.Name,
                 MetaDataName = source.LoadMetaData.Name
             };
         }
@@ -27,13 +25,12 @@ namespace FRS.Web.ModelMappers
             return new FRS.Models.DomainModels.Load
             {
                 LoadId = source.LoadId,
-                //LoadTypeId = source.LoadTypeId,
-                //MetaDataId = source.MetaDataId,
-                //MT940DetailId = source.MT940DetailId,
-                CreatedBy = source.CreatedBy,
-                CreatedOn = source.CreatedOn,
-                ModifiedBy = source.ModifiedBy,
-                ModifiedOn = source.ModifiedOn,
+                LoadMetaDataId = source.LoadMetaDataId,
+                MT940LoadId = source.MT940LoadId,
+                Start = source.Start,
+                Finish = source.Finish,
+                InProgress = source.InProgress,
+                ReadOnly = source.ReadOnly,
             };
         }
 
