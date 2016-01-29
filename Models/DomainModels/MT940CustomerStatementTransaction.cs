@@ -21,6 +21,10 @@ namespace FRS.Models.DomainModels
         public string TransactionType { get; set; }
         public string Value { get; set; }
         public DateTime ValueDate { get; set; }
+        public string CreatedBy { get; set; }
+        public DateTime CreatedOn { get; set; }
+        public string ModifiedBy { get; set; }
+        public DateTime ModifiedOn { get; set; }
 
         public virtual MT940CustomerStatement MT940CustomerStatement { get; set; }
     }

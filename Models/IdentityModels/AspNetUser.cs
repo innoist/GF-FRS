@@ -5,7 +5,7 @@ using FRS.Models.DomainModels;
 namespace FRS.Models.IdentityModels
 {
     /// <summary>
-    /// User
+    /// AspNetUser
     /// </summary>
     public partial class AspNetUser
     {

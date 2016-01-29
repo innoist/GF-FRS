@@ -61,6 +61,7 @@
           <Property Name="Telephone" Type="nvarchar" MaxLength="200" />
           <Property Name="UserComments" Type="nvarchar" MaxLength="1000" />
           <Property Name="EmployeeId" Type="bigint" />
+          <Property Name="UserDomainKey" Type="bigint" Nullable="false" />
         </EntityType>
         <EntityType Name="Currency">
           <Key>
@@ -83,7 +84,8 @@
             <PropertyRef Name="FileContentId" />
           </Key>
           <Property Name="FileContentId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="FileContent" Type="varbinary(max)" Nullable="false" />
+          <Property Name="FileContent" Type="varbinary(max)" />
+          <Property Name="FileContentBase64" Type="nvarchar(max)" />
           <Property Name="Description" Type="nvarchar" MaxLength="124" />
         </EntityType>
         <EntityType Name="Load">
@@ -180,6 +182,10 @@
           <Property Name="StatementNumber" Type="int" Nullable="false" />
           <Property Name="TransactionReference" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="TransactionCount" Type="int" Nullable="false" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedBy" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ModifiedOn" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="MT940CustomerStatementTransaction">
           <Key>
@@ -198,6 +204,10 @@
           <Property Name="TransactionType" Type="nvarchar" MaxLength="4" />
           <Property Name="Value" Type="nvarchar" MaxLength="1024" />
           <Property Name="ValueDate" Type="datetime" Nullable="false" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedBy" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ModifiedOn" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="MT940Load">
           <Key>
@@ -208,19 +218,19 @@
           <Property Name="FileName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="FileExtension" Type="nvarchar" MaxLength="10" Nullable="false" />
           <Property Name="StatusId" Type="tinyint" Nullable="false" />
+          <Property Name="CustomerStatementCount" Type="int" Nullable="false" />
+          <Property Name="FileContentId" Type="bigint" Nullable="false" />
           <Property Name="CreatedBy" Type="nvarchar" MaxLength="128" Nullable="false" />
           <Property Name="CreatedOn" Type="datetime" Nullable="false" />
           <Property Name="ModifiedBy" Type="nvarchar" MaxLength="128" Nullable="false" />
           <Property Name="ModifiedOn" Type="datetime" Nullable="false" />
-          <Property Name="CustomerStatementCount" Type="int" Nullable="false" />
-          <Property Name="FileContentId" Type="bigint" Nullable="false" />
         </EntityType>
         <EntityType Name="Source">
           <Key>
             <PropertyRef Name="Value" />
           </Key>
           <Property Name="Value" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="30" Nullable="false" />
           <Property Name="StatusId" Type="tinyint" Nullable="false" />
         </EntityType>
         <EntityType Name="Status">
@@ -230,6 +240,18 @@
           <Property Name="Value" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="15" Nullable="false" />
         </EntityType>
+        <Association Name="FK_AspNetUsers_Employee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="EmployeeId" />
+            </Principal>
+            <Dependent Role="AspNetUsers">
+              <PropertyRef Name="EmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Balance_Currency">
           <End Role="Currency" Type="Self.Currency" Multiplicity="1" />
           <End Role="MT940Balance" Type="Self.MT940Balance" Multiplicity="*" />
@@ -380,18 +402,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_LoadMetaData_Currency">
-          <End Role="Currency" Type="Self.Currency" Multiplicity="1" />
-          <End Role="LoadMetaData" Type="Self.LoadMetaData" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Currency">
-              <PropertyRef Name="Value" />
-            </Principal>
-            <Dependent Role="LoadMetaData">
-              <PropertyRef Name="CurrencyId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_LoadMetaData_LoadType">
           <End Role="LoadType" Type="Self.LoadType" Multiplicity="1" />
           <End Role="LoadMetaData" Type="Self.LoadMetaData" Multiplicity="*" />
@@ -508,6 +518,10 @@
           <EntitySet Name="MT940Load" EntityType="Self.MT940Load" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Source" EntityType="Self.Source" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Status" EntityType="Self.Status" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_AspNetUsers_Employee" Association="Self.FK_AspNetUsers_Employee">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+          </AssociationSet>
           <AssociationSet Name="FK_Balance_Currency" Association="Self.FK_Balance_Currency">
             <End Role="Currency" EntitySet="Currency" />
             <End Role="MT940Balance" EntitySet="MT940Balance" />
@@ -555,10 +569,6 @@
           <AssociationSet Name="FK_Load_MT940Load" Association="Self.FK_Load_MT940Load">
             <End Role="MT940Load" EntitySet="MT940Load" />
             <End Role="Load" EntitySet="Load" />
-          </AssociationSet>
-          <AssociationSet Name="FK_LoadMetaData_Currency" Association="Self.FK_LoadMetaData_Currency">
-            <End Role="Currency" EntitySet="Currency" />
-            <End Role="LoadMetaData" EntitySet="LoadMetaData" />
           </AssociationSet>
           <AssociationSet Name="FK_LoadMetaData_LoadType" Association="Self.FK_LoadMetaData_LoadType">
             <End Role="LoadType" EntitySet="LoadType" />
@@ -824,6 +834,7 @@
           <NavigationProperty Name="AspNetRoles" Relationship="angularModel.AspNetUserRoles" FromRole="AspNetUser" ToRole="UserRole" />
           <Property Name="EmployeeId" Type="Int64" />
           <NavigationProperty Name="Employee" Relationship="angularModel.FK_AspNetUsers_Employee" FromRole="AspNetUser" ToRole="Employee" />
+          <Property Name="UserDomainKey" Type="Int64" Nullable="false" />
         </EntityType>
         <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
           <End Type="angularModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
@@ -893,9 +904,10 @@
             <PropertyRef Name="FileContentId" />
           </Key>
           <Property Name="FileContentId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FileContent1" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <Property Name="FileContent1" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="Description" Type="String" MaxLength="124" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="MT940Load" Relationship="angularModel.FK_MT940Load_FileContent" FromRole="FileContent" ToRole="MT940Load" />
+          <Property Name="FileContentBase64" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Load">
           <Key>
@@ -987,6 +999,10 @@
           <NavigationProperty Name="MT940Balance3" Relationship="angularModel.FK_CustomerStatement_Balance_OpenBal" FromRole="MT940CustomerStatement" ToRole="MT940Balance" />
           <NavigationProperty Name="MT940Load" Relationship="angularModel.FK_MT940CustomerStatement_MT940Load" FromRole="MT940CustomerStatement" ToRole="MT940Load" />
           <NavigationProperty Name="MT940CustomerStatementTransaction" Relationship="angularModel.FK_MT940CustomerStatementTransaction_MT940CustomerStatement" FromRole="MT940CustomerStatement" ToRole="MT940CustomerStatementTransaction" />
+          <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedBy" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ModifiedOn" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
         <EntityType Name="MT940CustomerStatementTransaction">
           <Key>
@@ -1006,6 +1022,10 @@
           <Property Name="Value" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
           <Property Name="ValueDate" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="MT940CustomerStatement" Relationship="angularModel.FK_MT940CustomerStatementTransaction_MT940CustomerStatement" FromRole="MT940CustomerStatementTransaction" ToRole="MT940CustomerStatement" />
+          <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedBy" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ModifiedOn" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
         <EntityType Name="MT940Load">
           <Key>
@@ -1032,7 +1052,7 @@
             <PropertyRef Name="Value" />
           </Key>
           <Property Name="Value" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Name="StatusId" Type="Byte" Nullable="false" />
           <NavigationProperty Name="LoadMetaDatas" Relationship="angularModel.FK_LoadMetaData_Source" FromRole="Source" ToRole="LoadMetaData" />
         </EntityType>
@@ -1286,6 +1306,7 @@
           <EntitySetMapping Name="AspNetUsers">
             <EntityTypeMapping TypeName="angularModel.AspNetUser">
               <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="UserDomainKey" ColumnName="UserDomainKey" />
                 <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
                 <ScalarProperty Name="UserComments" ColumnName="UserComments" />
                 <ScalarProperty Name="Telephone" ColumnName="Telephone" />
@@ -1336,6 +1357,7 @@
           <EntitySetMapping Name="FileContents">
             <EntityTypeMapping TypeName="angularModel.FileContent">
               <MappingFragment StoreEntitySet="FileContent">
+                <ScalarProperty Name="FileContentBase64" ColumnName="FileContentBase64" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="FileContent1" ColumnName="FileContent" />
                 <ScalarProperty Name="FileContentId" ColumnName="FileContentId" />
@@ -1401,6 +1423,10 @@
           <EntitySetMapping Name="MT940CustomerStatement">
             <EntityTypeMapping TypeName="angularModel.MT940CustomerStatement">
               <MappingFragment StoreEntitySet="MT940CustomerStatement">
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
                 <ScalarProperty Name="TransactionCount" ColumnName="TransactionCount" />
                 <ScalarProperty Name="TransactionReference" ColumnName="TransactionReference" />
                 <ScalarProperty Name="StatementNumber" ColumnName="StatementNumber" />
@@ -1422,6 +1448,10 @@
           <EntitySetMapping Name="MT940CustomerStatementTransaction">
             <EntityTypeMapping TypeName="angularModel.MT940CustomerStatementTransaction">
               <MappingFragment StoreEntitySet="MT940CustomerStatementTransaction">
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
                 <ScalarProperty Name="ValueDate" ColumnName="ValueDate" />
                 <ScalarProperty Name="Value" ColumnName="Value" />
                 <ScalarProperty Name="TransactionType" ColumnName="TransactionType" />
