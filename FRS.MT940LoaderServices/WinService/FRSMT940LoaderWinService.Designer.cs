@@ -1,4 +1,4 @@
-﻿namespace FRS.MT940Loader.Services
+﻿namespace FRS.MT940LoaderService.WinService
 {
     partial class FRSMT940LoaderWinService
     {

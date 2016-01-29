@@ -1,9 +1,9 @@
 ﻿using System;
+using FRS.MT940Loader;
+using FRS.MT940Loader.Services;
 using FRS.MT940Loader.Services.InputOutput;
-using FRS.MT940Loader.Fault;
-using System.Collections.Generic;
 
-namespace FRS.MT940Loader.Services
+namespace FRS.MT940LoaderService.WCF
 {
     public class FRSMT940LoaderWCFService : IFRSMT940LoaderWCFService
     {
