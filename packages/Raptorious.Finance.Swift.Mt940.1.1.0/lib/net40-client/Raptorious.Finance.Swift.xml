@@ -1,0 +1,664 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Raptorious.SharpMt940Lib</name>
+    </assembly>
+    <members>
+        <member name="T:Raptorious.SharpMt940Lib.Currency">
+            <summary>
+            Represents a currency
+            </summary>
+        </member>
+        <member name="M:Raptorious.SharpMt940Lib.Currency.#ctor(System.String)">
+            <summary>
+            Initializes a new currency object.
+            </summary>
+            <param name="currencyCode">ISO Currency code (http://www.xe.com/iso4217.php)</param>
+        </member>
+        <member name="M:Raptorious.SharpMt940Lib.Currency.Equals(Raptorious.SharpMt940Lib.Currency)">
+            <summary>
+            Indicates whether the current object is equal to another object of the same type.
+            </summary>
+            <param name="other"></param>
+            <returns>Returns true if equal</returns>
+        </member>
+        <member name="M:Raptorious.SharpMt940Lib.Currency.Equals(System.Object)">
+            <summary>
+            Indicates whether the current object is equal to another object of the same type.
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Raptorious.SharpMt940Lib.Currency.GetHashCode">
+            <summary>
+            Returns the hash code of the object
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Raptorious.SharpMt940Lib.Currency.CompareTo(System.Object)">
+            <summary>
+            Compares the current instance with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other object.
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Raptorious.SharpMt940Lib.Currency.CompareTo(Raptorious.SharpMt940Lib.Currency)">
+            <summary>
+            Compares the current instance with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other object.
+            </summary>
+            <param name="other"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Raptorious.SharpMt940Lib.Currency.op_Equality(Raptorious.SharpMt940Lib.Currency,Raptorious.SharpMt940Lib.Currency)">
+            <summary>
+            Indicates whether the current object is equal to another object of the same type.
+            </summary>
+            <param name="left"></param>
+            <param name="right"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Raptorious.SharpMt940Lib.Currency.op_Inequality(Raptorious.SharpMt940Lib.Currency,Raptorious.SharpMt940Lib.Currency)">
+            <summary>
+            Indicates whether the current object is not equal to another object of the same type.
+            </summary>
+            <param name="left"></param>
+            <param name="right"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Raptorious.SharpMt940Lib.Currency.Code">
+            <summary>
+            Gets the current code for this currency e.g. EUR, USD, etc. 
+            </summary>
+        </member>
+        <member name="T:Raptorious.SharpMt940Lib.CustomerStatementMessage">
+            <summary>
+            MT940 Customer statement message.
+            </summary>
+        </member>
+        <member name="M:Raptorious.SharpMt940Lib.CustomerStatementMessage.#ctor">
+            <summary>
+            Creates a new Customer Statement Message. And initialized an empty list
+            of transactions.
+            </summary>
+        </member>
+        <member name="M:Raptorious.SharpMt940Lib.CustomerStatementMessage.#ctor(Raptorious.SharpMt940Lib.CustomerStatementMessage)">
+            <summary>
+            Creates a new Customer Statement Message based on  the given CustomerStatementMessage.
+            </summary>
+        </member>
+        <member name="M:Raptorious.SharpMt940Lib.CustomerStatementMessage.SetSequenceNumber(System.String,System.Globalization.CultureInfo)">
+            <summary>
+            Sets the sequence and statement number for this customer statement message.
+            </summary>
+            <param name="transactionData">A string of data formatted as ([0-9]{5})/([0-9]{2,3})</param>
+            <param name="cultureInfo">The culture to use</param>
+        </member>
+        <member name="M:Raptorious.SharpMt940Lib.CustomerStatementMessage.SetTransactionReference(System.String)">
+            <summary>
+            Sets the transaction reference and returns a new customer statement message
+            </summary>
+            <param name="transactionData"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Raptorious.SharpMt940Lib.CustomerStatementMessage.SetRelatedMessage(System.String)">
+            <summary>
+            Sets the related message and returns a new customer statement message.
+            </summary>
+        </member>
+        <member name="M:Raptorious.SharpMt940Lib.CustomerStatementMessage.SetAccount(System.String)">
+            <summary>
+            Sets the account number and returns a new customer statement message.
+            </summary>
+        </member>
+        <member name="M:Raptorious.SharpMt940Lib.CustomerStatementMessage.SetOpeningBalance(Raptorious.SharpMt940Lib.TransactionBalance)">
+            <summary>
+            Sets the opening balance and returns a new customer statement message.
+            </summary>
+        </member>
+        <member name="M:Raptorious.SharpMt940Lib.CustomerStatementMessage.SetDescription(System.String)">
+            <summary>
+            Sets the description and returns a new customer statement message.
+            </summary>
+        </member>
+        <member name="M:Raptorious.SharpMt940Lib.CustomerStatementMessage.SetClosingBalance(Raptorious.SharpMt940Lib.TransactionBalance)">
+            <summary>
+            Sets the closing balance and returns a new customer statement message.
+            </summary>
+        </member>
+        <member name="M:Raptorious.SharpMt940Lib.CustomerStatementMessage.SetClosingAvailableBalance(Raptorious.SharpMt940Lib.TransactionBalance)">
+            <summary>
+            Sets the closing available balance and returns a new customer statement message.
+            </summary>
+        </member>
+        <member name="M:Raptorious.SharpMt940Lib.CustomerStatementMessage.SetForwardAvailableBalance(Raptorious.SharpMt940Lib.TransactionBalance)">
+            <summary>
+            Sets the forward availabe balance and returns a new customer statement message.
+            </summary>
+        </member>
+        <member name="P:Raptorious.SharpMt940Lib.CustomerStatementMessage.TransactionReference">
+            <summary>
+            Transaction Reference Number (TRN)
+            In my test set the value of this property is alway ABN AMRO NV
+            </summary>
+        </member>
+        <member name="P:Raptorious.SharpMt940Lib.CustomerStatementMessage.RelatedMessage">
+            <summary>
+            Reference to related message/transaction
+            (optional)
+            </summary>
+        </member>
+        <member name="P:Raptorious.SharpMt940Lib.CustomerStatementMessage.Account">
+            <summary>
+            Account identification, this is usually the account number of the bank.
+            </summary>
+        </member>
+        <member name="P:Raptorious.SharpMt940Lib.CustomerStatementMessage.StatementNumber">
+            <summary>
+            Statement number is used to identify the message within a set of message of the same account.
+            </summary>
+            <see cref="P:Raptorious.SharpMt940Lib.CustomerStatementMessage.Account"></see>
+        </member>
+        <member name="P:Raptorious.SharpMt940Lib.CustomerStatementMessage.SequenceNumber">
+            <summary>
+            Sequence number is used to identify the message within the statement.
+            See StatementNumber
+            </summary>
+            <see cref="P:Raptorious.SharpMt940Lib.CustomerStatementMessage.StatementNumber"></see>
+        </member>
+        <member name="P:Raptorious.SharpMt940Lib.CustomerStatementMessage.OpeningBalance">
+            <summary>
+            Balance at the start of this message.
+            </summary>
+        </member>
+        <member name="P:Raptorious.SharpMt940Lib.CustomerStatementMessage.ClosingBalance">
+            <summary>
+            Balance at the end of this message.
+            </summary>
+        </member>
+        <member name="P:Raptorious.SharpMt940Lib.CustomerStatementMessage.ClosingAvailableBalance">
+            <summary>
+            Available balance at the end of this message.
+            (optional)
+            </summary>
+        </member>
+        <member name="P:Raptorious.SharpMt940Lib.CustomerStatementMessage.ForwardAvailableBalance">
+            <summary>
+            No idea, but it is in the spec.
+            (optional)
+            </summary>
+        </member>
+        <member name="P:Raptorious.SharpMt940Lib.CustomerStatementMessage.Description">
+            <summary>
+            Message description
+            </summary>
+        </member>
+        <member name="P:Raptorious.SharpMt940Lib.CustomerStatementMessage.Transactions">
+            <summary>
+            Collection of financial transactions within this message.
+            </summary>
+        </member>
+        <member name="T:Raptorious.SharpMt940Lib.DateParser">
+            <summary>
+            Responsible for parsing input to a specific date time.
+            </summary>
+        </member>
+        <member name="M:Raptorious.SharpMt940Lib.DateParser.#ctor">
+            <summary>
+            Creates a new date parser with the calendar set to Gregorian USEnglish.
+            </summary>
+        </member>
+        <member name="M:Raptorious.SharpMt940Lib.DateParser.ParseDate(System.String,System.String,System.String,System.Globalization.CultureInfo)">
+            <summary>
+            Parses the given string parts into a datetime object.
+            </summary>
+            <param name="year"></param>
+            <param name="month"></param>
+            <param name="day"></param>
+            <param name="cultureInfo">The culture to use</param>
+            <returns></returns>
+        </member>
+        <member name="T:Raptorious.SharpMt940Lib.DebitCredit">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Raptorious.SharpMt940Lib.DebitCredit.Debit">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Raptorious.SharpMt940Lib.DebitCredit.Credit">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Raptorious.SharpMt940Lib.DebitCredit.RC">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Raptorious.SharpMt940Lib.DebitCredit.RD">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Raptorious.SharpMt940Lib.DebitCreditFactory">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Raptorious.SharpMt940Lib.DebitCreditFactory.Create(System.String)">
+            <summary>
+            Returns the correct EnumFlag for the correct given type.
+            </summary>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Raptorious.SharpMt940Lib.Money">
+            <summary>
+            Represents a monetary value. (http://martinfowler.com/eaaCatalog/money.html)
+            </summary>
+        </member>
+        <member name="M:Raptorious.SharpMt940Lib.Money.#ctor(System.String,Raptorious.SharpMt940Lib.Currency)">
+            <summary>
+            Initializes the money object with the given string in decimal format for the given currency.
+            </summary>
+            <param name="value"></param>
+            <param name="currency"></param>
+        </member>
+        <member name="M:Raptorious.SharpMt940Lib.Money.#ctor(System.String,Raptorious.SharpMt940Lib.Currency,System.Globalization.CultureInfo)">
+            <summary>
+            Initializes the money object with the given string in decimal format for the given currency.
+            </summary>
+            <param name="value"></param>
+            <param name="currency"></param>
+            <param name="cultureInfo">The culture to use</param>
+        </member>
+        <member name="M:Raptorious.SharpMt940Lib.Money.Equals(Raptorious.SharpMt940Lib.Money)">
+            <summary>
+            Indicates whether the current object is equal to another object of the same type.
+            </summary>
+            <param name="other"></param>
+            <returns>Returns true if equal</returns>
+        </member>
+        <member name="M:Raptorious.SharpMt940Lib.Money.Equals(System.Object)">
+            <summary>
+            Indicates whether the current object is equal to another object of the same type.
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Raptorious.SharpMt940Lib.Money.GetHashCode">
+            <summary>
+            Returns the hash code of the object
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Raptorious.SharpMt940Lib.Money.CompareTo(System.Object)">
+            <summary>
+            Compares the current instance with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other object.
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Raptorious.SharpMt940Lib.Money.CompareTo(Raptorious.SharpMt940Lib.Money)">
+            <summary>
+            Compares the current instance with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other object.
+            </summary>
+            <param name="other"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Raptorious.SharpMt940Lib.Money.op_Equality(Raptorious.SharpMt940Lib.Money,Raptorious.SharpMt940Lib.Money)">
+            <summary>
+            Indicates whether the current object is equal to another object of the same type.
+            </summary>
+            <param name="left"></param>
+            <param name="right"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Raptorious.SharpMt940Lib.Money.op_Inequality(Raptorious.SharpMt940Lib.Money,Raptorious.SharpMt940Lib.Money)">
+            <summary>
+            Indicates whether the current object is not equal to another object of the same type.
+            </summary>
+            <param name="left"></param>
+            <param name="right"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Raptorious.SharpMt940Lib.Money.ToString">
+            <summary>
+            Returns the string representation of the money object.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Raptorious.SharpMt940Lib.Money.Currency">
+            <summary>
+            Gets the currency of the money
+            </summary>
+        </member>
+        <member name="P:Raptorious.SharpMt940Lib.Money.Value">
+            <summary>
+            The decimal value of the money.
+            </summary>
+        </member>
+        <member name="T:Raptorious.SharpMt940Lib.Mt940Format.AbnAmro">
+            <summary>
+            IMt940Format implementation for Abn Amro.
+            </summary>
+            <see cref="T:Raptorious.SharpMt940Lib.Mt940Format.IMt940Format"></see>
+        </member>
+        <member name="T:Raptorious.SharpMt940Lib.Mt940Format.IMt940Format">
+            <summary>
+            Every bank defines it's own header and trailer in it's MT940 format.
+            Implement this interface per specific bank.
+            </summary>
+        </member>
+        <member name="P:Raptorious.SharpMt940Lib.Mt940Format.IMt940Format.Header">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Raptorious.SharpMt940Lib.Mt940Format.IMt940Format.Trailer">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Raptorious.SharpMt940Lib.Mt940Format.AbnAmro.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Raptorious.SharpMt940Lib.Mt940Format.AbnAmro.Header">
+            <summary>
+            Header property
+            </summary>
+            <value>ABN Amro defines it's header as such:
+            ABNANL2A[newline]
+            940[newline]
+            ABNANL2A
+            </value>
+        </member>
+        <member name="P:Raptorious.SharpMt940Lib.Mt940Format.AbnAmro.Trailer">
+            <summary>
+            Trailer
+            </summary>
+            <value>
+            ABN Amro defines it's trailer as -
+            </value>
+            
+        </member>
+        <member name="T:Raptorious.SharpMt940Lib.Mt940Format.GenericFormat">
+            <summary>
+            Non-specific IMt940Format implementation.
+            </summary>
+        </member>
+        <member name="M:Raptorious.SharpMt940Lib.Mt940Format.GenericFormat.#ctor(Raptorious.SharpMt940Lib.Mt940Format.Separator,Raptorious.SharpMt940Lib.Mt940Format.Separator)">
+            <summary>
+            Creates a new Mt940 format based on given values.
+            </summary>
+            <param name="header"></param>
+            <param name="trailer"></param>
+        </member>
+        <member name="P:Raptorious.SharpMt940Lib.Mt940Format.GenericFormat.Header">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Raptorious.SharpMt940Lib.Mt940Format.GenericFormat.Trailer">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Raptorious.SharpMt940Lib.Mt940Format.Separator">
+            <summary>
+            Description of Header.
+            </summary>
+        </member>
+        <member name="M:Raptorious.SharpMt940Lib.Mt940Format.Separator.#ctor(System.String[])">
+            <summary>
+            
+            </summary>
+            <param name="data"></param>
+        </member>
+        <member name="P:Raptorious.SharpMt940Lib.Mt940Format.Separator.Data">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Raptorious.SharpMt940Lib.Mt940Format.Separator.LineCount">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Raptorious.SharpMt940Lib.Mt940Parser">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Raptorious.SharpMt940Lib.Mt940Parser.Parse(Raptorious.SharpMt940Lib.Mt940Format.IMt940Format,System.String)">
+            <summary>
+            Opens the given file, reads it and returns a collection of CustomerStatementMessages using the current culture.
+            </summary>
+            <param name="file">File to read.</param>
+            <param name="format">Bank specific format of this file.</param>
+            <returns>Returns a collection of customer statement messages, populated by the data of the given file.</returns>
+        </member>
+        <member name="M:Raptorious.SharpMt940Lib.Mt940Parser.Parse(Raptorious.SharpMt940Lib.Mt940Format.IMt940Format,System.String,System.Globalization.CultureInfo)">
+            <summary>
+            Opens the given file, reads it and returns a collection of CustomerStatementMessages.
+            </summary>
+            <param name="file">File to read.</param>
+            <param name="format">Bank specific format of this file.</param>
+            <param name="cultureInfo">Specifies the culture to use</param>
+            <returns>Returns a collection of customer statement messages, populated by the data of the given file.</returns>
+        </member>
+        <member name="M:Raptorious.SharpMt940Lib.Mt940Parser.Parse(Raptorious.SharpMt940Lib.Mt940Format.IMt940Format,System.IO.TextReader)">
+            <summary>
+            Reads the given string to the end and parses the data to Customer Statement Messages.
+            </summary>
+            <param name="fileStream">Filestream to read.</param>
+            <param name="format">Bank specific format of this file.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Raptorious.SharpMt940Lib.Mt940Parser.Parse(Raptorious.SharpMt940Lib.Mt940Format.IMt940Format,System.IO.TextReader,System.Globalization.CultureInfo)">
+            <summary>
+            Reads the given string to the end and parses the data to Customer Statement Messages.
+            </summary>
+            <param name="fileStream">Filestream to read.</param>
+            <param name="format">Bank specific format of this file.</param>
+            <param name="cultureInfo">Specifies the culture information to use</param>
+            <returns></returns>
+        </member>
+        <member name="M:Raptorious.SharpMt940Lib.Mt940Parser.ParseData(Raptorious.SharpMt940Lib.Mt940Format.IMt940Format,System.String)">
+            <summary>
+            Reads the given string to the end and parses the data to Customer Statement Messages using the current culture
+            </summary>
+            <param name="format">Bank specific format of this file.</param>
+            <param name="data">String containing the MT940 file.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Raptorious.SharpMt940Lib.Mt940Parser.ParseData(Raptorious.SharpMt940Lib.Mt940Format.IMt940Format,System.String,System.Globalization.CultureInfo)">
+            <summary>
+            Reads the given string to the end and parses the data to Customer Statement Messages
+            </summary>
+            <param name="format"></param>
+            <param name="data"></param>
+            <param name="cultureInfo">Specifies the culture information to use</param>
+            <returns></returns>
+        </member>
+        <member name="M:Raptorious.SharpMt940Lib.Mt940Parser.CreateObjectTransactions(Raptorious.SharpMt940Lib.Mt940Format.IMt940Format,System.Collections.Generic.ICollection{System.String[]},System.Globalization.CultureInfo)">
+            <summary>
+            
+            </summary>
+            <param name="format">IMt940Format implementation</param>
+            <param name="data">A collection of string arrays formatted by CreateStringTransactions()</param>
+            <param name="cultureInfo">The culture to use</param>
+            <see cref="M:Raptorious.SharpMt940Lib.Mt940Parser.CreateStringTransactions(Raptorious.SharpMt940Lib.Mt940Format.IMt940Format,System.String)"></see>
+            <returns></returns>
+        </member>
+        <member name="M:Raptorious.SharpMt940Lib.Mt940Parser.CreateStringTransactions(Raptorious.SharpMt940Lib.Mt940Format.IMt940Format,System.String)">
+            <summary>
+            This method accepts mt940 data file given as a string. The string 
+            is split by Environment.NewLine as each line contains a command.
+            
+            Every line that starts with a ':' is a mt940 'command'. Lines that 
+            does not start with a ':' belongs to the previous command. 
+            
+            The method returns a collection of string arrays. Every item in 
+            the collection is a mt940 message. 
+            </summary>
+            <param name="data">A string of MT940 data to parse.</param>
+            <param name="format">Specifies the bank specific format</param>
+            <returns>A collection :)</returns>
+        </member>
+        <member name="T:Raptorious.SharpMt940Lib.Transaction">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Raptorious.SharpMt940Lib.Transaction.#ctor(System.String,Raptorious.SharpMt940Lib.Currency)">
+            <summary>
+            
+            </summary>
+            <param name="data"></param>
+            <param name="currency">The currency that is used in this transaction.</param>
+        </member>
+        <member name="M:Raptorious.SharpMt940Lib.Transaction.#ctor(System.String,Raptorious.SharpMt940Lib.Currency,System.Globalization.CultureInfo)">
+            <summary>
+            
+            </summary>
+            <param name="data"></param>
+            <param name="currency">The currency that is used in this transaction.</param>
+            <param name="cultureInfo">The culture to use</param>
+        </member>
+        <member name="P:Raptorious.SharpMt940Lib.Transaction.Value">
+            <summary>
+            Unparsed raw data.
+            Code 61.
+            </summary>
+        </member>
+        <member name="P:Raptorious.SharpMt940Lib.Transaction.Description">
+            <summary>
+            Description of the transaction.
+            Code 86
+            </summary>
+        </member>
+        <member name="P:Raptorious.SharpMt940Lib.Transaction.ValueDate">
+            <summary>
+            ??
+            </summary>
+        </member>
+        <member name="P:Raptorious.SharpMt940Lib.Transaction.EntryDate">
+            <summary>
+            Optional date.
+            </summary>
+        </member>
+        <member name="P:Raptorious.SharpMt940Lib.Transaction.FundsCode">
+            <summary>
+            ??
+            </summary>
+        </member>
+        <member name="P:Raptorious.SharpMt940Lib.Transaction.Amount">
+            <summary>
+            Transaction amount
+            </summary>
+        </member>
+        <member name="P:Raptorious.SharpMt940Lib.Transaction.TransactionType">
+            <summary>
+            Transaction type, a value that starts with N and is followed by 3 numbers.
+            </summary>
+        </member>
+        <member name="P:Raptorious.SharpMt940Lib.Transaction.Reference">
+            <summary>
+            NONREF or account number of the other party.
+            </summary>
+        </member>
+        <member name="P:Raptorious.SharpMt940Lib.Transaction.DebitCredit">
+            <summary>
+            Debit-credit indication
+            </summary>
+        </member>
+        <member name="T:Raptorious.SharpMt940Lib.TransactionBalance">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Raptorious.SharpMt940Lib.TransactionBalance.#ctor(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="data"></param>
+        </member>
+        <member name="M:Raptorious.SharpMt940Lib.TransactionBalance.#ctor(System.String,System.Globalization.CultureInfo)">
+            <summary>
+            
+            </summary>
+            <param name="data"></param>
+            <param name="cultureInfo">The culture to use</param>
+        </member>
+        <member name="M:Raptorious.SharpMt940Lib.TransactionBalance.ToString">
+            <summary>
+            Returns the string represantion of the transaction balance.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Raptorious.SharpMt940Lib.TransactionBalance.DebitCredit">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Raptorious.SharpMt940Lib.TransactionBalance.EntryDate">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Raptorious.SharpMt940Lib.TransactionBalance.Currency">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Raptorious.SharpMt940Lib.TransactionBalance.Balance">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Raptorious.SharpMt940Lib.ValueConverter">
+            <summary>
+            Description of ValueConvert.
+            </summary>
+        </member>
+        <member name="M:Raptorious.SharpMt940Lib.ValueConverter.ParseInteger(System.String,System.Globalization.CultureInfo)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="cultureInfo">The culture to use</param>
+            <returns></returns>
+        </member>
+        <member name="M:Raptorious.SharpMt940Lib.ValueConverter.TryParseInteger(System.String,System.Globalization.CultureInfo,System.Int32@)">
+            <summary>
+            
+            </summary>
+            <param name="integer"></param>
+            <param name="result"></param>
+            <param name="cultureInfo">The culture to use</param>
+            <returns></returns>
+        </member>
+        <member name="M:Raptorious.SharpMt940Lib.ValueConverter.ParseDecimal(System.String,System.Globalization.CultureInfo)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="cultureInfo">The culture to use</param>
+            <returns></returns>
+        </member>
+        <member name="M:Raptorious.SharpMt940Lib.ValueConverter.TryParseDecimal(System.String,System.Globalization.CultureInfo,System.Decimal@)">
+            <summary>
+            
+            </summary>
+            <param name="dec"></param>
+            <param name="result"></param>
+            <param name="cultureInfo">The culture to use</param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
