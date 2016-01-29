@@ -1,0 +1,1560 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="FRS.MT940Loader.ADOModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaims">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ClaimType" Type="nvarchar(max)" />
+          <Property Name="ClaimValue" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogins">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserRoles">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" />
+          <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+          <Property Name="PasswordHash" Type="nvarchar(max)" />
+          <Property Name="SecurityStamp" Type="nvarchar(max)" />
+          <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="datetime" />
+          <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="Address" Type="nvarchar" MaxLength="200" />
+          <Property Name="CompanyName" Type="nvarchar" MaxLength="200" />
+          <Property Name="ImageName" Type="nvarchar(max)" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="200" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="200" />
+          <Property Name="Telephone" Type="nvarchar" MaxLength="200" />
+          <Property Name="UserComments" Type="nvarchar" MaxLength="1000" />
+          <Property Name="EmployeeId" Type="bigint" />
+        </EntityType>
+        <EntityType Name="Currency">
+          <Key>
+            <PropertyRef Name="Value" />
+          </Key>
+          <Property Name="Value" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Sign" Type="nvarchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="EmployeeId" />
+          </Key>
+          <Property Name="EmployeeId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmployeeName" Type="nvarchar" MaxLength="128" />
+          <Property Name="Designation" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="FileContent">
+          <Key>
+            <PropertyRef Name="FileContentId" />
+          </Key>
+          <Property Name="FileContentId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FileContent" Type="varbinary(max)" />
+          <Property Name="FileContentBase64" Type="nvarchar(max)" />
+          <Property Name="Description" Type="nvarchar" MaxLength="124" />
+        </EntityType>
+        <EntityType Name="Load">
+          <Key>
+            <PropertyRef Name="LoadId" />
+          </Key>
+          <Property Name="LoadId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LoadMetaDataId" Type="tinyint" Nullable="false" />
+          <Property Name="MT940LoadId" Type="bigint" />
+          <Property Name="Start" Type="datetime" Nullable="false" />
+          <Property Name="Finish" Type="datetime" />
+          <Property Name="InProgress" Type="bit" Nullable="false" />
+          <Property Name="ReadOnly" Type="bit" Nullable="false" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedBy" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ModifiedOn" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LoadMetaData">
+          <Key>
+            <PropertyRef Name="LoadMetaDataId" />
+          </Key>
+          <Property Name="LoadMetaDataId" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LoadTypeId" Type="tinyint" Nullable="false" />
+          <Property Name="SourceId" Type="tinyint" Nullable="false" />
+          <Property Name="Header" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="Footer" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="CurrencyId" Type="tinyint" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="1024" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedBy" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ModifiedOn" Type="datetime" Nullable="false" />
+          <Property Name="StatusId" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LoadType">
+          <Key>
+            <PropertyRef Name="Value" />
+          </Key>
+          <Property Name="Value" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="StatusId" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Menu">
+          <Key>
+            <PropertyRef Name="MenuId" />
+          </Key>
+          <Property Name="MenuId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MenuKey" Type="int" Nullable="false" />
+          <Property Name="MenuTitle" Type="nvarchar(max)" />
+          <Property Name="SortOrder" Type="int" Nullable="false" />
+          <Property Name="MenuTargetController" Type="nvarchar(max)" />
+          <Property Name="MenuImagePath" Type="nvarchar(max)" />
+          <Property Name="MenuFunction" Type="nvarchar(max)" />
+          <Property Name="PermissionKey" Type="nvarchar(max)" />
+          <Property Name="IsRootItem" Type="bit" Nullable="false" />
+          <Property Name="ParentItem_MenuId" Type="int" />
+        </EntityType>
+        <EntityType Name="MenuRight">
+          <Key>
+            <PropertyRef Name="MenuRightId" />
+          </Key>
+          <Property Name="MenuRightId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Menu_MenuId" Type="int" />
+          <Property Name="Role_Id" Type="nvarchar" MaxLength="128" />
+        </EntityType>
+        <EntityType Name="MT940Balance">
+          <Key>
+            <PropertyRef Name="MT940BalanceId" />
+          </Key>
+          <Property Name="MT940BalanceId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CurrencyId" Type="tinyint" Nullable="false" />
+          <Property Name="DebitOrCredit" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="EntryDate" Type="datetime" Nullable="false" />
+          <Property Name="Value" Type="decimal" Precision="30" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MT940CustomerStatement">
+          <Key>
+            <PropertyRef Name="MT940CustomerStatementId" />
+          </Key>
+          <Property Name="MT940CustomerStatementId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MT940LoadId" Type="bigint" Nullable="false" />
+          <Property Name="Sequence" Type="tinyint" Nullable="false" />
+          <Property Name="ReadOnly" Type="bit" Nullable="false" />
+          <Property Name="AccountNumber" Type="nvarchar" MaxLength="16" Nullable="false" />
+          <Property Name="ClosingAvailableBalanceId" Type="bigint" Nullable="false" />
+          <Property Name="ClosingBalanceId" Type="bigint" />
+          <Property Name="Description" Type="nvarchar" MaxLength="1024" />
+          <Property Name="ForwardAvailableBalanceId" Type="bigint" />
+          <Property Name="OpeningBalanceId" Type="bigint" />
+          <Property Name="ReleatedMessage" Type="nvarchar" MaxLength="1024" />
+          <Property Name="SequenceNumber" Type="int" Nullable="false" />
+          <Property Name="StatementNumber" Type="int" Nullable="false" />
+          <Property Name="TransactionReference" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="TransactionCount" Type="int" Nullable="false" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedBy" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ModifiedOn" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MT940CustomerStatementTransaction">
+          <Key>
+            <PropertyRef Name="MT940CustomerStatementTransactionId" />
+          </Key>
+          <Property Name="MT940CustomerStatementTransactionId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MT940CustomerStatementId" Type="bigint" Nullable="false" />
+          <Property Name="Sequence" Type="tinyint" Nullable="false" />
+          <Property Name="ReadOnly" Type="bit" Nullable="false" />
+          <Property Name="Amount" Type="money" Nullable="false" />
+          <Property Name="DebitOrCredit" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="1024" />
+          <Property Name="EntryDate" Type="datetime" />
+          <Property Name="FundsCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="Reference" Type="nvarchar" MaxLength="16" />
+          <Property Name="TransactionType" Type="nvarchar" MaxLength="4" />
+          <Property Name="Value" Type="nvarchar" MaxLength="1024" />
+          <Property Name="ValueDate" Type="datetime" Nullable="false" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedBy" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ModifiedOn" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MT940Load">
+          <Key>
+            <PropertyRef Name="MT940LoadId" />
+          </Key>
+          <Property Name="MT940LoadId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Path" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="FileName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="FileExtension" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="StatusId" Type="tinyint" Nullable="false" />
+          <Property Name="CustomerStatementCount" Type="int" Nullable="false" />
+          <Property Name="FileContentId" Type="bigint" Nullable="false" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedBy" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ModifiedOn" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Source">
+          <Key>
+            <PropertyRef Name="Value" />
+          </Key>
+          <Property Name="Value" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="StatusId" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Status">
+          <Key>
+            <PropertyRef Name="Value" />
+          </Key>
+          <Property Name="Value" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <Association Name="FK_AspNetUsers_Employee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="EmployeeId" />
+            </Principal>
+            <Dependent Role="AspNetUsers">
+              <PropertyRef Name="EmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Balance_Currency">
+          <End Role="Currency" Type="Self.Currency" Multiplicity="1" />
+          <End Role="MT940Balance" Type="Self.MT940Balance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Currency">
+              <PropertyRef Name="Value" />
+            </Principal>
+            <Dependent Role="MT940Balance">
+              <PropertyRef Name="CurrencyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CustomerStatement_Balance_ClosingAviBal">
+          <End Role="MT940Balance" Type="Self.MT940Balance" Multiplicity="1" />
+          <End Role="MT940CustomerStatement" Type="Self.MT940CustomerStatement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MT940Balance">
+              <PropertyRef Name="MT940BalanceId" />
+            </Principal>
+            <Dependent Role="MT940CustomerStatement">
+              <PropertyRef Name="ClosingAvailableBalanceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CustomerStatement_Balance_ClosingBal">
+          <End Role="MT940Balance" Type="Self.MT940Balance" Multiplicity="0..1" />
+          <End Role="MT940CustomerStatement" Type="Self.MT940CustomerStatement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MT940Balance">
+              <PropertyRef Name="MT940BalanceId" />
+            </Principal>
+            <Dependent Role="MT940CustomerStatement">
+              <PropertyRef Name="ClosingBalanceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CustomerStatement_Balance_ForAvailBal">
+          <End Role="MT940Balance" Type="Self.MT940Balance" Multiplicity="0..1" />
+          <End Role="MT940CustomerStatement" Type="Self.MT940CustomerStatement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MT940Balance">
+              <PropertyRef Name="MT940BalanceId" />
+            </Principal>
+            <Dependent Role="MT940CustomerStatement">
+              <PropertyRef Name="ForwardAvailableBalanceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CustomerStatement_Balance_OpenBal">
+          <End Role="MT940Balance" Type="Self.MT940Balance" Multiplicity="0..1" />
+          <End Role="MT940CustomerStatement" Type="Self.MT940CustomerStatement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MT940Balance">
+              <PropertyRef Name="MT940BalanceId" />
+            </Principal>
+            <Dependent Role="MT940CustomerStatement">
+              <PropertyRef Name="OpeningBalanceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetRoles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_MenuRight_dbo_AspNetRoles_Role_Id">
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="0..1" />
+          <End Role="MenuRight" Type="Self.MenuRight" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetRoles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MenuRight">
+              <PropertyRef Name="Role_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_MenuRight_dbo_Menu_Menu_MenuId">
+          <End Role="Menu" Type="Self.Menu" Multiplicity="0..1" />
+          <End Role="MenuRight" Type="Self.MenuRight" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Menu">
+              <PropertyRef Name="MenuId" />
+            </Principal>
+            <Dependent Role="MenuRight">
+              <PropertyRef Name="Menu_MenuId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Load_LoadMetaData">
+          <End Role="LoadMetaData" Type="Self.LoadMetaData" Multiplicity="1" />
+          <End Role="Load" Type="Self.Load" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LoadMetaData">
+              <PropertyRef Name="LoadMetaDataId" />
+            </Principal>
+            <Dependent Role="Load">
+              <PropertyRef Name="LoadMetaDataId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Load_MT940Load">
+          <End Role="MT940Load" Type="Self.MT940Load" Multiplicity="0..1" />
+          <End Role="Load" Type="Self.Load" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MT940Load">
+              <PropertyRef Name="MT940LoadId" />
+            </Principal>
+            <Dependent Role="Load">
+              <PropertyRef Name="MT940LoadId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LoadMetaData_LoadType">
+          <End Role="LoadType" Type="Self.LoadType" Multiplicity="1" />
+          <End Role="LoadMetaData" Type="Self.LoadMetaData" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LoadType">
+              <PropertyRef Name="Value" />
+            </Principal>
+            <Dependent Role="LoadMetaData">
+              <PropertyRef Name="LoadTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LoadMetaData_Source">
+          <End Role="Source" Type="Self.Source" Multiplicity="1" />
+          <End Role="LoadMetaData" Type="Self.LoadMetaData" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Source">
+              <PropertyRef Name="Value" />
+            </Principal>
+            <Dependent Role="LoadMetaData">
+              <PropertyRef Name="SourceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LoadMetaData_Status">
+          <End Role="Status" Type="Self.Status" Multiplicity="1" />
+          <End Role="LoadMetaData" Type="Self.LoadMetaData" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="Value" />
+            </Principal>
+            <Dependent Role="LoadMetaData">
+              <PropertyRef Name="StatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MT940CustomerStatement_MT940Load">
+          <End Role="MT940Load" Type="Self.MT940Load" Multiplicity="1" />
+          <End Role="MT940CustomerStatement" Type="Self.MT940CustomerStatement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MT940Load">
+              <PropertyRef Name="MT940LoadId" />
+            </Principal>
+            <Dependent Role="MT940CustomerStatement">
+              <PropertyRef Name="MT940LoadId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MT940CustomerStatementTransaction_MT940CustomerStatement">
+          <End Role="MT940CustomerStatement" Type="Self.MT940CustomerStatement" Multiplicity="1" />
+          <End Role="MT940CustomerStatementTransaction" Type="Self.MT940CustomerStatementTransaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MT940CustomerStatement">
+              <PropertyRef Name="MT940CustomerStatementId" />
+            </Principal>
+            <Dependent Role="MT940CustomerStatementTransaction">
+              <PropertyRef Name="MT940CustomerStatementId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MT940Load_FileContent">
+          <End Role="FileContent" Type="Self.FileContent" Multiplicity="1" />
+          <End Role="MT940Load" Type="Self.MT940Load" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FileContent">
+              <PropertyRef Name="FileContentId" />
+            </Principal>
+            <Dependent Role="MT940Load">
+              <PropertyRef Name="FileContentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MT940Load_Status">
+          <End Role="Status" Type="Self.Status" Multiplicity="1" />
+          <End Role="MT940Load" Type="Self.MT940Load" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="Value" />
+            </Principal>
+            <Dependent Role="MT940Load">
+              <PropertyRef Name="StatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RefMenu01">
+          <End Role="Menu" Type="Self.Menu" Multiplicity="0..1" />
+          <End Role="Menu1" Type="Self.Menu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Menu">
+              <PropertyRef Name="MenuId" />
+            </Principal>
+            <Dependent Role="Menu1">
+              <PropertyRef Name="ParentItem_MenuId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="FRSMT940LoaderADOModelStoreContainer">
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Currency" EntityType="Self.Currency" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FileContent" EntityType="Self.FileContent" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Load" EntityType="Self.Load" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LoadMetaData" EntityType="Self.LoadMetaData" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LoadType" EntityType="Self.LoadType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Menu" EntityType="Self.Menu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MenuRight" EntityType="Self.MenuRight" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MT940Balance" EntityType="Self.MT940Balance" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MT940CustomerStatement" EntityType="Self.MT940CustomerStatement" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MT940CustomerStatementTransaction" EntityType="Self.MT940CustomerStatementTransaction" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MT940Load" EntityType="Self.MT940Load" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Source" EntityType="Self.Source" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Status" EntityType="Self.Status" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_AspNetUsers_Employee" Association="Self.FK_AspNetUsers_Employee">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Balance_Currency" Association="Self.FK_Balance_Currency">
+            <End Role="Currency" EntitySet="Currency" />
+            <End Role="MT940Balance" EntitySet="MT940Balance" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CustomerStatement_Balance_ClosingAviBal" Association="Self.FK_CustomerStatement_Balance_ClosingAviBal">
+            <End Role="MT940Balance" EntitySet="MT940Balance" />
+            <End Role="MT940CustomerStatement" EntitySet="MT940CustomerStatement" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CustomerStatement_Balance_ClosingBal" Association="Self.FK_CustomerStatement_Balance_ClosingBal">
+            <End Role="MT940Balance" EntitySet="MT940Balance" />
+            <End Role="MT940CustomerStatement" EntitySet="MT940CustomerStatement" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CustomerStatement_Balance_ForAvailBal" Association="Self.FK_CustomerStatement_Balance_ForAvailBal">
+            <End Role="MT940Balance" EntitySet="MT940Balance" />
+            <End Role="MT940CustomerStatement" EntitySet="MT940CustomerStatement" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CustomerStatement_Balance_OpenBal" Association="Self.FK_CustomerStatement_Balance_OpenBal">
+            <End Role="MT940Balance" EntitySet="MT940Balance" />
+            <End Role="MT940CustomerStatement" EntitySet="MT940CustomerStatement" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_MenuRight_dbo_AspNetRoles_Role_Id" Association="Self.FK_dbo_MenuRight_dbo_AspNetRoles_Role_Id">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="MenuRight" EntitySet="MenuRight" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_MenuRight_dbo_Menu_Menu_MenuId" Association="Self.FK_dbo_MenuRight_dbo_Menu_Menu_MenuId">
+            <End Role="Menu" EntitySet="Menu" />
+            <End Role="MenuRight" EntitySet="MenuRight" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Load_LoadMetaData" Association="Self.FK_Load_LoadMetaData">
+            <End Role="LoadMetaData" EntitySet="LoadMetaData" />
+            <End Role="Load" EntitySet="Load" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Load_MT940Load" Association="Self.FK_Load_MT940Load">
+            <End Role="MT940Load" EntitySet="MT940Load" />
+            <End Role="Load" EntitySet="Load" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LoadMetaData_LoadType" Association="Self.FK_LoadMetaData_LoadType">
+            <End Role="LoadType" EntitySet="LoadType" />
+            <End Role="LoadMetaData" EntitySet="LoadMetaData" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LoadMetaData_Source" Association="Self.FK_LoadMetaData_Source">
+            <End Role="Source" EntitySet="Source" />
+            <End Role="LoadMetaData" EntitySet="LoadMetaData" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LoadMetaData_Status" Association="Self.FK_LoadMetaData_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="LoadMetaData" EntitySet="LoadMetaData" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MT940CustomerStatement_MT940Load" Association="Self.FK_MT940CustomerStatement_MT940Load">
+            <End Role="MT940Load" EntitySet="MT940Load" />
+            <End Role="MT940CustomerStatement" EntitySet="MT940CustomerStatement" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MT940CustomerStatementTransaction_MT940CustomerStatement" Association="Self.FK_MT940CustomerStatementTransaction_MT940CustomerStatement">
+            <End Role="MT940CustomerStatement" EntitySet="MT940CustomerStatement" />
+            <End Role="MT940CustomerStatementTransaction" EntitySet="MT940CustomerStatementTransaction" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MT940Load_FileContent" Association="Self.FK_MT940Load_FileContent">
+            <End Role="FileContent" EntitySet="FileContent" />
+            <End Role="MT940Load" EntitySet="MT940Load" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MT940Load_Status" Association="Self.FK_MT940Load_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="MT940Load" EntitySet="MT940Load" />
+          </AssociationSet>
+          <AssociationSet Name="RefMenu01" Association="Self.RefMenu01">
+            <End Role="Menu" EntitySet="Menu" />
+            <End Role="Menu1" EntitySet="Menu" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="FRS.MT940Loader.ADOModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AspNetRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUserRoles" Relationship="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" FromRole="AspNetRoles" ToRole="AspNetUserRoles" />
+          <NavigationProperty Name="MenuRights" Relationship="Self.FK_dbo_MenuRight_dbo_AspNetRoles_Role_Id" FromRole="AspNetRoles" ToRole="MenuRight" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaim">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaims" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogin">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProviderKey" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogins" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUserRole">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="RoleId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetRole" Relationship="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" FromRole="AspNetUserRoles" ToRole="AspNetRoles" />
+        </EntityType>
+        <EntityType Name="AspNetUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="ImageName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FirstName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Telephone" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="UserComments" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="EmployeeId" Type="Int64" />
+          <NavigationProperty Name="AspNetUserClaims" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
+          <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK_AspNetUsers_Employee" FromRole="AspNetUsers" ToRole="Employee" />
+        </EntityType>
+        <EntityType Name="Currency">
+          <Key>
+            <PropertyRef Name="Value" />
+          </Key>
+          <Property Name="Value" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Sign" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="MT940Balance" Relationship="Self.FK_Balance_Currency" FromRole="Currency" ToRole="MT940Balance" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="EmployeeId" />
+          </Key>
+          <Property Name="EmployeeId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmployeeName" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Designation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.FK_AspNetUsers_Employee" FromRole="Employee" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="FileContent">
+          <Key>
+            <PropertyRef Name="FileContentId" />
+          </Key>
+          <Property Name="FileContentId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FileContent1" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Description" Type="String" MaxLength="124" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="MT940Load" Relationship="Self.FK_MT940Load_FileContent" FromRole="FileContent" ToRole="MT940Load" />
+          <Property Name="FileContentBase64" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Load">
+          <Key>
+            <PropertyRef Name="LoadId" />
+          </Key>
+          <Property Name="LoadId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LoadMetaDataId" Type="Byte" Nullable="false" />
+          <Property Name="MT940LoadId" Type="Int64" />
+          <Property Name="Start" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Finish" Type="DateTime" Precision="3" />
+          <Property Name="InProgress" Type="Boolean" Nullable="false" />
+          <Property Name="ReadOnly" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ModifiedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="LoadMetaData" Relationship="Self.FK_Load_LoadMetaData" FromRole="Load" ToRole="LoadMetaData" />
+          <NavigationProperty Name="MT940Load" Relationship="Self.FK_Load_MT940Load" FromRole="Load" ToRole="MT940Load" />
+        </EntityType>
+        <EntityType Name="LoadMetaData">
+          <Key>
+            <PropertyRef Name="LoadMetaDataId" />
+          </Key>
+          <Property Name="LoadMetaDataId" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LoadTypeId" Type="Byte" Nullable="false" />
+          <Property Name="SourceId" Type="Byte" Nullable="false" />
+          <Property Name="Header" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Footer" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CurrencyId" Type="Byte" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ModifiedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="StatusId" Type="Byte" Nullable="false" />
+          <NavigationProperty Name="Loads" Relationship="Self.FK_Load_LoadMetaData" FromRole="LoadMetaData" ToRole="Load" />
+          <NavigationProperty Name="LoadType" Relationship="Self.FK_LoadMetaData_LoadType" FromRole="LoadMetaData" ToRole="LoadType" />
+          <NavigationProperty Name="Source" Relationship="Self.FK_LoadMetaData_Source" FromRole="LoadMetaData" ToRole="Source" />
+          <NavigationProperty Name="Status" Relationship="Self.FK_LoadMetaData_Status" FromRole="LoadMetaData" ToRole="Status" />
+        </EntityType>
+        <EntityType Name="LoadType">
+          <Key>
+            <PropertyRef Name="Value" />
+          </Key>
+          <Property Name="Value" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="StatusId" Type="Byte" Nullable="false" />
+          <NavigationProperty Name="LoadMetaDatas" Relationship="Self.FK_LoadMetaData_LoadType" FromRole="LoadType" ToRole="LoadMetaData" />
+        </EntityType>
+        <EntityType Name="Menu">
+          <Key>
+            <PropertyRef Name="MenuId" />
+          </Key>
+          <Property Name="MenuId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MenuKey" Type="Int32" Nullable="false" />
+          <Property Name="MenuTitle" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SortOrder" Type="Int32" Nullable="false" />
+          <Property Name="MenuTargetController" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MenuImagePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MenuFunction" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PermissionKey" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsRootItem" Type="Boolean" Nullable="false" />
+          <Property Name="ParentItem_MenuId" Type="Int32" />
+          <NavigationProperty Name="MenuRights" Relationship="Self.FK_dbo_MenuRight_dbo_Menu_Menu_MenuId" FromRole="Menu" ToRole="MenuRight" />
+          <NavigationProperty Name="Menu1" Relationship="Self.RefMenu01" FromRole="Menu" ToRole="Menu1" />
+          <NavigationProperty Name="Menu2" Relationship="Self.RefMenu01" FromRole="Menu1" ToRole="Menu" />
+        </EntityType>
+        <EntityType Name="MenuRight">
+          <Key>
+            <PropertyRef Name="MenuRightId" />
+          </Key>
+          <Property Name="MenuRightId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Menu_MenuId" Type="Int32" />
+          <Property Name="Role_Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetRole" Relationship="Self.FK_dbo_MenuRight_dbo_AspNetRoles_Role_Id" FromRole="MenuRight" ToRole="AspNetRoles" />
+          <NavigationProperty Name="Menu" Relationship="Self.FK_dbo_MenuRight_dbo_Menu_Menu_MenuId" FromRole="MenuRight" ToRole="Menu" />
+        </EntityType>
+        <EntityType Name="MT940Balance">
+          <Key>
+            <PropertyRef Name="MT940BalanceId" />
+          </Key>
+          <Property Name="MT940BalanceId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CurrencyId" Type="Byte" Nullable="false" />
+          <Property Name="DebitOrCredit" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="EntryDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Value" Type="Decimal" Precision="30" Scale="2" Nullable="false" />
+          <NavigationProperty Name="Currency" Relationship="Self.FK_Balance_Currency" FromRole="MT940Balance" ToRole="Currency" />
+          <NavigationProperty Name="MT940CustomerStatement" Relationship="Self.FK_CustomerStatement_Balance_ClosingAviBal" FromRole="MT940Balance" ToRole="MT940CustomerStatement" />
+          <NavigationProperty Name="MT940CustomerStatement1" Relationship="Self.FK_CustomerStatement_Balance_ClosingBal" FromRole="MT940Balance" ToRole="MT940CustomerStatement" />
+          <NavigationProperty Name="MT940CustomerStatement2" Relationship="Self.FK_CustomerStatement_Balance_ForAvailBal" FromRole="MT940Balance" ToRole="MT940CustomerStatement" />
+          <NavigationProperty Name="MT940CustomerStatement3" Relationship="Self.FK_CustomerStatement_Balance_OpenBal" FromRole="MT940Balance" ToRole="MT940CustomerStatement" />
+        </EntityType>
+        <EntityType Name="MT940CustomerStatement">
+          <Key>
+            <PropertyRef Name="MT940CustomerStatementId" />
+          </Key>
+          <Property Name="MT940CustomerStatementId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MT940LoadId" Type="Int64" Nullable="false" />
+          <Property Name="Sequence" Type="Byte" Nullable="false" />
+          <Property Name="ReadOnly" Type="Boolean" Nullable="false" />
+          <Property Name="AccountNumber" Type="String" MaxLength="16" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ClosingAvailableBalanceId" Type="Int64" Nullable="false" />
+          <Property Name="ClosingBalanceId" Type="Int64" />
+          <Property Name="Description" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+          <Property Name="ForwardAvailableBalanceId" Type="Int64" />
+          <Property Name="OpeningBalanceId" Type="Int64" />
+          <Property Name="ReleatedMessage" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+          <Property Name="SequenceNumber" Type="Int32" Nullable="false" />
+          <Property Name="StatementNumber" Type="Int32" Nullable="false" />
+          <Property Name="TransactionReference" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TransactionCount" Type="Int32" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ModifiedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="MT940Balance" Relationship="Self.FK_CustomerStatement_Balance_ClosingAviBal" FromRole="MT940CustomerStatement" ToRole="MT940Balance" />
+          <NavigationProperty Name="MT940Balance1" Relationship="Self.FK_CustomerStatement_Balance_ClosingBal" FromRole="MT940CustomerStatement" ToRole="MT940Balance" />
+          <NavigationProperty Name="MT940Balance2" Relationship="Self.FK_CustomerStatement_Balance_ForAvailBal" FromRole="MT940CustomerStatement" ToRole="MT940Balance" />
+          <NavigationProperty Name="MT940Balance3" Relationship="Self.FK_CustomerStatement_Balance_OpenBal" FromRole="MT940CustomerStatement" ToRole="MT940Balance" />
+          <NavigationProperty Name="MT940Load" Relationship="Self.FK_MT940CustomerStatement_MT940Load" FromRole="MT940CustomerStatement" ToRole="MT940Load" />
+          <NavigationProperty Name="MT940CustomerStatementTransaction" Relationship="Self.FK_MT940CustomerStatementTransaction_MT940CustomerStatement" FromRole="MT940CustomerStatement" ToRole="MT940CustomerStatementTransaction" />
+        </EntityType>
+        <EntityType Name="MT940CustomerStatementTransaction">
+          <Key>
+            <PropertyRef Name="MT940CustomerStatementTransactionId" />
+          </Key>
+          <Property Name="MT940CustomerStatementTransactionId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MT940CustomerStatementId" Type="Int64" Nullable="false" />
+          <Property Name="Sequence" Type="Byte" Nullable="false" />
+          <Property Name="ReadOnly" Type="Boolean" Nullable="false" />
+          <Property Name="Amount" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="DebitOrCredit" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+          <Property Name="EntryDate" Type="DateTime" Precision="3" />
+          <Property Name="FundsCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Reference" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Name="TransactionType" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+          <Property Name="Value" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+          <Property Name="ValueDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ModifiedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="MT940CustomerStatement" Relationship="Self.FK_MT940CustomerStatementTransaction_MT940CustomerStatement" FromRole="MT940CustomerStatementTransaction" ToRole="MT940CustomerStatement" />
+        </EntityType>
+        <EntityType Name="MT940Load">
+          <Key>
+            <PropertyRef Name="MT940LoadId" />
+          </Key>
+          <Property Name="MT940LoadId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Path" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FileName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FileExtension" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="StatusId" Type="Byte" Nullable="false" />
+          <Property Name="CustomerStatementCount" Type="Int32" Nullable="false" />
+          <Property Name="FileContentId" Type="Int64" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ModifiedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="FileContent" Relationship="Self.FK_MT940Load_FileContent" FromRole="MT940Load" ToRole="FileContent" />
+          <NavigationProperty Name="Loads" Relationship="Self.FK_Load_MT940Load" FromRole="MT940Load" ToRole="Load" />
+          <NavigationProperty Name="MT940CustomerStatement" Relationship="Self.FK_MT940CustomerStatement_MT940Load" FromRole="MT940Load" ToRole="MT940CustomerStatement" />
+          <NavigationProperty Name="Status" Relationship="Self.FK_MT940Load_Status" FromRole="MT940Load" ToRole="Status" />
+        </EntityType>
+        <EntityType Name="Source">
+          <Key>
+            <PropertyRef Name="Value" />
+          </Key>
+          <Property Name="Value" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="StatusId" Type="Byte" Nullable="false" />
+          <NavigationProperty Name="LoadMetaDatas" Relationship="Self.FK_LoadMetaData_Source" FromRole="Source" ToRole="LoadMetaData" />
+        </EntityType>
+        <EntityType Name="Status">
+          <Key>
+            <PropertyRef Name="Value" />
+          </Key>
+          <Property Name="Value" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="LoadMetaDatas" Relationship="Self.FK_LoadMetaData_Status" FromRole="Status" ToRole="LoadMetaData" />
+          <NavigationProperty Name="MT940Load" Relationship="Self.FK_MT940Load_Status" FromRole="Status" ToRole="MT940Load" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+          <End Role="AspNetRoles" Type="Self.AspNetRole" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetRoles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_MenuRight_dbo_AspNetRoles_Role_Id">
+          <End Role="AspNetRoles" Type="Self.AspNetRole" Multiplicity="0..1" />
+          <End Role="MenuRight" Type="Self.MenuRight" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetRoles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MenuRight">
+              <PropertyRef Name="Role_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AspNetUsers_Employee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="EmployeeId" />
+            </Principal>
+            <Dependent Role="AspNetUsers">
+              <PropertyRef Name="EmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Balance_Currency">
+          <End Role="Currency" Type="Self.Currency" Multiplicity="1" />
+          <End Role="MT940Balance" Type="Self.MT940Balance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Currency">
+              <PropertyRef Name="Value" />
+            </Principal>
+            <Dependent Role="MT940Balance">
+              <PropertyRef Name="CurrencyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MT940Load_FileContent">
+          <End Role="FileContent" Type="Self.FileContent" Multiplicity="1" />
+          <End Role="MT940Load" Type="Self.MT940Load" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FileContent">
+              <PropertyRef Name="FileContentId" />
+            </Principal>
+            <Dependent Role="MT940Load">
+              <PropertyRef Name="FileContentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Load_LoadMetaData">
+          <End Role="LoadMetaData" Type="Self.LoadMetaData" Multiplicity="1" />
+          <End Role="Load" Type="Self.Load" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LoadMetaData">
+              <PropertyRef Name="LoadMetaDataId" />
+            </Principal>
+            <Dependent Role="Load">
+              <PropertyRef Name="LoadMetaDataId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Load_MT940Load">
+          <End Role="MT940Load" Type="Self.MT940Load" Multiplicity="0..1" />
+          <End Role="Load" Type="Self.Load" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MT940Load">
+              <PropertyRef Name="MT940LoadId" />
+            </Principal>
+            <Dependent Role="Load">
+              <PropertyRef Name="MT940LoadId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LoadMetaData_LoadType">
+          <End Role="LoadType" Type="Self.LoadType" Multiplicity="1" />
+          <End Role="LoadMetaData" Type="Self.LoadMetaData" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LoadType">
+              <PropertyRef Name="Value" />
+            </Principal>
+            <Dependent Role="LoadMetaData">
+              <PropertyRef Name="LoadTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LoadMetaData_Source">
+          <End Role="Source" Type="Self.Source" Multiplicity="1" />
+          <End Role="LoadMetaData" Type="Self.LoadMetaData" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Source">
+              <PropertyRef Name="Value" />
+            </Principal>
+            <Dependent Role="LoadMetaData">
+              <PropertyRef Name="SourceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LoadMetaData_Status">
+          <End Role="Status" Type="Self.Status" Multiplicity="1" />
+          <End Role="LoadMetaData" Type="Self.LoadMetaData" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="Value" />
+            </Principal>
+            <Dependent Role="LoadMetaData">
+              <PropertyRef Name="StatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_MenuRight_dbo_Menu_Menu_MenuId">
+          <End Role="Menu" Type="Self.Menu" Multiplicity="0..1" />
+          <End Role="MenuRight" Type="Self.MenuRight" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Menu">
+              <PropertyRef Name="MenuId" />
+            </Principal>
+            <Dependent Role="MenuRight">
+              <PropertyRef Name="Menu_MenuId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RefMenu01">
+          <End Role="Menu" Type="Self.Menu" Multiplicity="0..1" />
+          <End Role="Menu1" Type="Self.Menu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Menu">
+              <PropertyRef Name="MenuId" />
+            </Principal>
+            <Dependent Role="Menu1">
+              <PropertyRef Name="ParentItem_MenuId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CustomerStatement_Balance_ClosingAviBal">
+          <End Role="MT940Balance" Type="Self.MT940Balance" Multiplicity="1" />
+          <End Role="MT940CustomerStatement" Type="Self.MT940CustomerStatement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MT940Balance">
+              <PropertyRef Name="MT940BalanceId" />
+            </Principal>
+            <Dependent Role="MT940CustomerStatement">
+              <PropertyRef Name="ClosingAvailableBalanceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CustomerStatement_Balance_ClosingBal">
+          <End Role="MT940Balance" Type="Self.MT940Balance" Multiplicity="0..1" />
+          <End Role="MT940CustomerStatement" Type="Self.MT940CustomerStatement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MT940Balance">
+              <PropertyRef Name="MT940BalanceId" />
+            </Principal>
+            <Dependent Role="MT940CustomerStatement">
+              <PropertyRef Name="ClosingBalanceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CustomerStatement_Balance_ForAvailBal">
+          <End Role="MT940Balance" Type="Self.MT940Balance" Multiplicity="0..1" />
+          <End Role="MT940CustomerStatement" Type="Self.MT940CustomerStatement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MT940Balance">
+              <PropertyRef Name="MT940BalanceId" />
+            </Principal>
+            <Dependent Role="MT940CustomerStatement">
+              <PropertyRef Name="ForwardAvailableBalanceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CustomerStatement_Balance_OpenBal">
+          <End Role="MT940Balance" Type="Self.MT940Balance" Multiplicity="0..1" />
+          <End Role="MT940CustomerStatement" Type="Self.MT940CustomerStatement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MT940Balance">
+              <PropertyRef Name="MT940BalanceId" />
+            </Principal>
+            <Dependent Role="MT940CustomerStatement">
+              <PropertyRef Name="OpeningBalanceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MT940CustomerStatement_MT940Load">
+          <End Role="MT940Load" Type="Self.MT940Load" Multiplicity="1" />
+          <End Role="MT940CustomerStatement" Type="Self.MT940CustomerStatement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MT940Load">
+              <PropertyRef Name="MT940LoadId" />
+            </Principal>
+            <Dependent Role="MT940CustomerStatement">
+              <PropertyRef Name="MT940LoadId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MT940CustomerStatementTransaction_MT940CustomerStatement">
+          <End Role="MT940CustomerStatement" Type="Self.MT940CustomerStatement" Multiplicity="1" />
+          <End Role="MT940CustomerStatementTransaction" Type="Self.MT940CustomerStatementTransaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MT940CustomerStatement">
+              <PropertyRef Name="MT940CustomerStatementId" />
+            </Principal>
+            <Dependent Role="MT940CustomerStatementTransaction">
+              <PropertyRef Name="MT940CustomerStatementId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MT940Load_Status">
+          <End Role="Status" Type="Self.Status" Multiplicity="1" />
+          <End Role="MT940Load" Type="Self.MT940Load" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="Value" />
+            </Principal>
+            <Dependent Role="MT940Load">
+              <PropertyRef Name="StatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="FRSMT940LoaderContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRole" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaim" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogin" />
+          <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRole" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUser" />
+          <EntitySet Name="Currencies" EntityType="Self.Currency" />
+          <EntitySet Name="Employees" EntityType="Self.Employee" />
+          <EntitySet Name="FileContents" EntityType="Self.FileContent" />
+          <EntitySet Name="Loads" EntityType="Self.Load" />
+          <EntitySet Name="LoadMetaDatas" EntityType="Self.LoadMetaData" />
+          <EntitySet Name="LoadTypes" EntityType="Self.LoadType" />
+          <EntitySet Name="Menus" EntityType="Self.Menu" />
+          <EntitySet Name="MenuRights" EntityType="Self.MenuRight" />
+          <EntitySet Name="MT940Balance" EntityType="Self.MT940Balance" />
+          <EntitySet Name="MT940CustomerStatement" EntityType="Self.MT940CustomerStatement" />
+          <EntitySet Name="MT940CustomerStatementTransaction" EntityType="Self.MT940CustomerStatementTransaction" />
+          <EntitySet Name="MT940Load" EntityType="Self.MT940Load" />
+          <EntitySet Name="Sources" EntityType="Self.Source" />
+          <EntitySet Name="Status" EntityType="Self.Status" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_MenuRight_dbo_AspNetRoles_Role_Id" Association="Self.FK_dbo_MenuRight_dbo_AspNetRoles_Role_Id">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="MenuRight" EntitySet="MenuRights" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AspNetUsers_Employee" Association="Self.FK_AspNetUsers_Employee">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Balance_Currency" Association="Self.FK_Balance_Currency">
+            <End Role="Currency" EntitySet="Currencies" />
+            <End Role="MT940Balance" EntitySet="MT940Balance" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MT940Load_FileContent" Association="Self.FK_MT940Load_FileContent">
+            <End Role="FileContent" EntitySet="FileContents" />
+            <End Role="MT940Load" EntitySet="MT940Load" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Load_LoadMetaData" Association="Self.FK_Load_LoadMetaData">
+            <End Role="LoadMetaData" EntitySet="LoadMetaDatas" />
+            <End Role="Load" EntitySet="Loads" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Load_MT940Load" Association="Self.FK_Load_MT940Load">
+            <End Role="MT940Load" EntitySet="MT940Load" />
+            <End Role="Load" EntitySet="Loads" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LoadMetaData_LoadType" Association="Self.FK_LoadMetaData_LoadType">
+            <End Role="LoadType" EntitySet="LoadTypes" />
+            <End Role="LoadMetaData" EntitySet="LoadMetaDatas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LoadMetaData_Source" Association="Self.FK_LoadMetaData_Source">
+            <End Role="Source" EntitySet="Sources" />
+            <End Role="LoadMetaData" EntitySet="LoadMetaDatas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LoadMetaData_Status" Association="Self.FK_LoadMetaData_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="LoadMetaData" EntitySet="LoadMetaDatas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_MenuRight_dbo_Menu_Menu_MenuId" Association="Self.FK_dbo_MenuRight_dbo_Menu_Menu_MenuId">
+            <End Role="Menu" EntitySet="Menus" />
+            <End Role="MenuRight" EntitySet="MenuRights" />
+          </AssociationSet>
+          <AssociationSet Name="RefMenu01" Association="Self.RefMenu01">
+            <End Role="Menu" EntitySet="Menus" />
+            <End Role="Menu1" EntitySet="Menus" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CustomerStatement_Balance_ClosingAviBal" Association="Self.FK_CustomerStatement_Balance_ClosingAviBal">
+            <End Role="MT940Balance" EntitySet="MT940Balance" />
+            <End Role="MT940CustomerStatement" EntitySet="MT940CustomerStatement" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CustomerStatement_Balance_ClosingBal" Association="Self.FK_CustomerStatement_Balance_ClosingBal">
+            <End Role="MT940Balance" EntitySet="MT940Balance" />
+            <End Role="MT940CustomerStatement" EntitySet="MT940CustomerStatement" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CustomerStatement_Balance_ForAvailBal" Association="Self.FK_CustomerStatement_Balance_ForAvailBal">
+            <End Role="MT940Balance" EntitySet="MT940Balance" />
+            <End Role="MT940CustomerStatement" EntitySet="MT940CustomerStatement" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CustomerStatement_Balance_OpenBal" Association="Self.FK_CustomerStatement_Balance_OpenBal">
+            <End Role="MT940Balance" EntitySet="MT940Balance" />
+            <End Role="MT940CustomerStatement" EntitySet="MT940CustomerStatement" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MT940CustomerStatement_MT940Load" Association="Self.FK_MT940CustomerStatement_MT940Load">
+            <End Role="MT940Load" EntitySet="MT940Load" />
+            <End Role="MT940CustomerStatement" EntitySet="MT940CustomerStatement" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MT940CustomerStatementTransaction_MT940CustomerStatement" Association="Self.FK_MT940CustomerStatementTransaction_MT940CustomerStatement">
+            <End Role="MT940CustomerStatement" EntitySet="MT940CustomerStatement" />
+            <End Role="MT940CustomerStatementTransaction" EntitySet="MT940CustomerStatementTransaction" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MT940Load_Status" Association="Self.FK_MT940Load_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="MT940Load" EntitySet="MT940Load" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="FRSMT940LoaderADOModelStoreContainer" CdmEntityContainer="FRSMT940LoaderContext">
+          <EntitySetMapping Name="AspNetRoles">
+            <EntityTypeMapping TypeName="FRS.MT940Loader.ADOModel.AspNetRole">
+              <MappingFragment StoreEntitySet="AspNetRoles">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserClaims">
+            <EntityTypeMapping TypeName="FRS.MT940Loader.ADOModel.AspNetUserClaim">
+              <MappingFragment StoreEntitySet="AspNetUserClaims">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+                <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserLogins">
+            <EntityTypeMapping TypeName="FRS.MT940Loader.ADOModel.AspNetUserLogin">
+              <MappingFragment StoreEntitySet="AspNetUserLogins">
+                <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+                <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserRoles">
+            <EntityTypeMapping TypeName="FRS.MT940Loader.ADOModel.AspNetUserRole">
+              <MappingFragment StoreEntitySet="AspNetUserRoles">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUsers">
+            <EntityTypeMapping TypeName="FRS.MT940Loader.ADOModel.AspNetUser">
+              <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="ImageName" ColumnName="ImageName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+                <ScalarProperty Name="UserComments" ColumnName="UserComments" />
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Currencies">
+            <EntityTypeMapping TypeName="FRS.MT940Loader.ADOModel.Currency">
+              <MappingFragment StoreEntitySet="Currency">
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Sign" ColumnName="Sign" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employees">
+            <EntityTypeMapping TypeName="FRS.MT940Loader.ADOModel.Employee">
+              <MappingFragment StoreEntitySet="Employee">
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+                <ScalarProperty Name="EmployeeName" ColumnName="EmployeeName" />
+                <ScalarProperty Name="Designation" ColumnName="Designation" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FileContents">
+            <EntityTypeMapping TypeName="FRS.MT940Loader.ADOModel.FileContent">
+              <MappingFragment StoreEntitySet="FileContent">
+                <ScalarProperty Name="FileContentBase64" ColumnName="FileContentBase64" />
+                <ScalarProperty Name="FileContentId" ColumnName="FileContentId" />
+                <ScalarProperty Name="FileContent1" ColumnName="FileContent" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Loads">
+            <EntityTypeMapping TypeName="FRS.MT940Loader.ADOModel.Load">
+              <MappingFragment StoreEntitySet="Load">
+                <ScalarProperty Name="LoadId" ColumnName="LoadId" />
+                <ScalarProperty Name="LoadMetaDataId" ColumnName="LoadMetaDataId" />
+                <ScalarProperty Name="MT940LoadId" ColumnName="MT940LoadId" />
+                <ScalarProperty Name="Start" ColumnName="Start" />
+                <ScalarProperty Name="Finish" ColumnName="Finish" />
+                <ScalarProperty Name="InProgress" ColumnName="InProgress" />
+                <ScalarProperty Name="ReadOnly" ColumnName="ReadOnly" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LoadMetaDatas">
+            <EntityTypeMapping TypeName="FRS.MT940Loader.ADOModel.LoadMetaData">
+              <MappingFragment StoreEntitySet="LoadMetaData">
+                <ScalarProperty Name="LoadMetaDataId" ColumnName="LoadMetaDataId" />
+                <ScalarProperty Name="LoadTypeId" ColumnName="LoadTypeId" />
+                <ScalarProperty Name="SourceId" ColumnName="SourceId" />
+                <ScalarProperty Name="Header" ColumnName="Header" />
+                <ScalarProperty Name="Footer" ColumnName="Footer" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CurrencyId" ColumnName="CurrencyId" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LoadTypes">
+            <EntityTypeMapping TypeName="FRS.MT940Loader.ADOModel.LoadType">
+              <MappingFragment StoreEntitySet="LoadType">
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Menus">
+            <EntityTypeMapping TypeName="FRS.MT940Loader.ADOModel.Menu">
+              <MappingFragment StoreEntitySet="Menu">
+                <ScalarProperty Name="MenuId" ColumnName="MenuId" />
+                <ScalarProperty Name="MenuKey" ColumnName="MenuKey" />
+                <ScalarProperty Name="MenuTitle" ColumnName="MenuTitle" />
+                <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
+                <ScalarProperty Name="MenuTargetController" ColumnName="MenuTargetController" />
+                <ScalarProperty Name="MenuImagePath" ColumnName="MenuImagePath" />
+                <ScalarProperty Name="MenuFunction" ColumnName="MenuFunction" />
+                <ScalarProperty Name="PermissionKey" ColumnName="PermissionKey" />
+                <ScalarProperty Name="IsRootItem" ColumnName="IsRootItem" />
+                <ScalarProperty Name="ParentItem_MenuId" ColumnName="ParentItem_MenuId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MenuRights">
+            <EntityTypeMapping TypeName="FRS.MT940Loader.ADOModel.MenuRight">
+              <MappingFragment StoreEntitySet="MenuRight">
+                <ScalarProperty Name="MenuRightId" ColumnName="MenuRightId" />
+                <ScalarProperty Name="Menu_MenuId" ColumnName="Menu_MenuId" />
+                <ScalarProperty Name="Role_Id" ColumnName="Role_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MT940Balance">
+            <EntityTypeMapping TypeName="FRS.MT940Loader.ADOModel.MT940Balance">
+              <MappingFragment StoreEntitySet="MT940Balance">
+                <ScalarProperty Name="MT940BalanceId" ColumnName="MT940BalanceId" />
+                <ScalarProperty Name="CurrencyId" ColumnName="CurrencyId" />
+                <ScalarProperty Name="DebitOrCredit" ColumnName="DebitOrCredit" />
+                <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MT940CustomerStatement">
+            <EntityTypeMapping TypeName="FRS.MT940Loader.ADOModel.MT940CustomerStatement">
+              <MappingFragment StoreEntitySet="MT940CustomerStatement">
+                <ScalarProperty Name="MT940CustomerStatementId" ColumnName="MT940CustomerStatementId" />
+                <ScalarProperty Name="MT940LoadId" ColumnName="MT940LoadId" />
+                <ScalarProperty Name="Sequence" ColumnName="Sequence" />
+                <ScalarProperty Name="ReadOnly" ColumnName="ReadOnly" />
+                <ScalarProperty Name="AccountNumber" ColumnName="AccountNumber" />
+                <ScalarProperty Name="ClosingAvailableBalanceId" ColumnName="ClosingAvailableBalanceId" />
+                <ScalarProperty Name="ClosingBalanceId" ColumnName="ClosingBalanceId" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ForwardAvailableBalanceId" ColumnName="ForwardAvailableBalanceId" />
+                <ScalarProperty Name="OpeningBalanceId" ColumnName="OpeningBalanceId" />
+                <ScalarProperty Name="ReleatedMessage" ColumnName="ReleatedMessage" />
+                <ScalarProperty Name="SequenceNumber" ColumnName="SequenceNumber" />
+                <ScalarProperty Name="StatementNumber" ColumnName="StatementNumber" />
+                <ScalarProperty Name="TransactionReference" ColumnName="TransactionReference" />
+                <ScalarProperty Name="TransactionCount" ColumnName="TransactionCount" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MT940CustomerStatementTransaction">
+            <EntityTypeMapping TypeName="FRS.MT940Loader.ADOModel.MT940CustomerStatementTransaction">
+              <MappingFragment StoreEntitySet="MT940CustomerStatementTransaction">
+                <ScalarProperty Name="MT940CustomerStatementTransactionId" ColumnName="MT940CustomerStatementTransactionId" />
+                <ScalarProperty Name="MT940CustomerStatementId" ColumnName="MT940CustomerStatementId" />
+                <ScalarProperty Name="Sequence" ColumnName="Sequence" />
+                <ScalarProperty Name="ReadOnly" ColumnName="ReadOnly" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="DebitOrCredit" ColumnName="DebitOrCredit" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+                <ScalarProperty Name="FundsCode" ColumnName="FundsCode" />
+                <ScalarProperty Name="Reference" ColumnName="Reference" />
+                <ScalarProperty Name="TransactionType" ColumnName="TransactionType" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="ValueDate" ColumnName="ValueDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MT940Load">
+            <EntityTypeMapping TypeName="FRS.MT940Loader.ADOModel.MT940Load">
+              <MappingFragment StoreEntitySet="MT940Load">
+                <ScalarProperty Name="MT940LoadId" ColumnName="MT940LoadId" />
+                <ScalarProperty Name="Path" ColumnName="Path" />
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
+                <ScalarProperty Name="FileExtension" ColumnName="FileExtension" />
+                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+                <ScalarProperty Name="CustomerStatementCount" ColumnName="CustomerStatementCount" />
+                <ScalarProperty Name="FileContentId" ColumnName="FileContentId" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sources">
+            <EntityTypeMapping TypeName="FRS.MT940Loader.ADOModel.Source">
+              <MappingFragment StoreEntitySet="Source">
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Status">
+            <EntityTypeMapping TypeName="FRS.MT940Loader.ADOModel.Status">
+              <MappingFragment StoreEntitySet="Status">
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="FRS.MT940Loader.ADOModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
