@@ -143,7 +143,6 @@
     <Content Include="FRSMT940LoaderModel.Context.tt">
       <DependentUpon>FRSMT940LoaderModel.edmx</DependentUpon>
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>FRSMT940LoaderModel.Context.cs</LastGenOutput>
     </Content>
     <Content Include="FRSMT940LoaderModel.tt">
       <DependentUpon>FRSMT940LoaderModel.edmx</DependentUpon>

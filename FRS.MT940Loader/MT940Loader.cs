@@ -96,6 +96,34 @@ namespace FRS.MT940Loader
             }
 
             AddFilePhysicalValidatoinFaultAndThrowException();
+        }        
+
+        public bool ValidateFile()
+        {
+            return ValidateFile(_path);
+        }
+
+        public bool ValidBase64MT940Content(string base64MT940Content)
+        {
+            return ValidateContent(base64MT940Content);
+        }
+
+        public ICollection<CustomerStatementMessage> LoadBase64MT940Content(string base64MT940Content)
+        {
+            try
+            {
+                Separator header = new Separator(HeaderSeperator);
+                Separator trailer = new Separator(TrailerSeperator);
+                GenericFormat genericFomat = new GenericFormat(header, trailer);
+                string fileData = Encoding.ASCII.GetString(Convert.FromBase64String(base64MT940Content));
+                return Mt940Parser.ParseData(genericFomat, fileData, CultureInfo.CurrentCulture);
+            }
+            catch (Exception ex)
+            {
+                AddFileLibraryInvalidation(ex);
+            }
+
+            return null;
         }
 
         private string GetFileNameFromPath(string path)
@@ -112,16 +140,6 @@ namespace FRS.MT940Loader
         {
             FileInfo fileInfo = new FileInfo(path);
             return fileInfo.Exists;
-        }
-
-        public bool ValidateFile()
-        {
-            return ValidateFile(_path);
-        }
-
-        public bool ValidBase64Content(string base64Content)
-        {
-            return ValidateContent(base64Content);
         }
 
         private bool ValidateContent(string base64Content)

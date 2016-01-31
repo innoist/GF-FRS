@@ -36,11 +36,15 @@ namespace FRS.MT940LoaderService.WCF
 
             //Validate the file data into a MT940 object
             Load load = mt940LoadHandler.GetLoad(input.LoadId);
-            mt940LoadHandler.SetHeaderTrailer(load.LoadMetaData.Header, load.LoadMetaData.Footer);
-            faults = mt940LoadHandler.ValidateFileContent(load);
 
-            //Load the MT940 into objects and then to the database
-            mt940LoadHandler.LoadMT940(input.LoadId);
+            //Very important to set the header and trailer as these are going to be used later throughout this processing
+            mt940LoadHandler.SetHeaderTrailer(load.LoadMetaData.Header, load.LoadMetaData.Footer);
+
+            //Validate the MT940 Base64 contents
+            faults = mt940LoadHandler.ValidateMT940FileContent(load.MT940Load.FileContent.FileContentBase64);
+
+            //Load the MT940 file data into objects and then to the database
+            mt940LoadHandler.LoadMT940(load, load.MT940Load.FileContent.FileContentBase64);
 
             return null;
         }

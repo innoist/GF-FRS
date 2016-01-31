@@ -16,7 +16,7 @@
         <EntityTypeShape EntityType="FRS.MT940Loader.ADOModel.Load" Width="2.875" PointX="4.5" PointY="3.625" IsExpanded="true" />
         <EntityTypeShape EntityType="FRS.MT940Loader.ADOModel.LoadMetaData" Width="2.875" PointX="8.75" PointY="2" IsExpanded="true" />
         <EntityTypeShape EntityType="FRS.MT940Loader.ADOModel.LoadType" Width="2.875" PointX="13.375" PointY="1.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="FRS.MT940Loader.ADOModel.MT940Balance" Width="2.875" PointX="4.5" PointY="19.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="FRS.MT940Loader.ADOModel.MT940Balance" Width="2.875" PointX="4.125" PointY="19.75" IsExpanded="true" />
         <EntityTypeShape EntityType="FRS.MT940Loader.ADOModel.MT940CustomerStatement" Width="2.875" PointX="4.375" PointY="12.5" IsExpanded="true" />
         <EntityTypeShape EntityType="FRS.MT940Loader.ADOModel.MT940CustomerStatementTransaction" Width="2.875" PointX="8.25" PointY="12.5" IsExpanded="true" />
         <EntityTypeShape EntityType="FRS.MT940Loader.ADOModel.MT940Load" Width="2.875" PointX="4.375" PointY="7.75" IsExpanded="true" />
