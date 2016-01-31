@@ -1,13 +1,13 @@
 ﻿mainApp.controller("FRSLoadController", ['$scope', '$http', '$filter', function ($scope, $http, $filter) {
     $scope.LoadId;
-    $scope.LoadTypeId;
-    $scope.MetaDataId;
-    $scope.MT940DetailId;
+    $scope.LoadMetadataId;
+    $scope.MT940LoadId;
     $scope.Attachment;
+    $scope.FileName;
     $scope.IsShowEdit = false;
     $scope.LoadMetadataDropDown = [];
     $scope.MetaDataWithFileTypes = [];
-    $scope.LoadMetadataId = 0;
+    
     // show/hide file uploading facility
     $scope.IsSourceTypeFile = false;
 
@@ -26,11 +26,9 @@
     $scope.saveMT940Detail = function () {
         var load = {
             LoadId: $scope.LoadId,
-            LoadTypeId: $scope.LoadTypeId,
-            MetaDataId: $scope.MetaDataId,
-            MT940DetailId: $scope.MT940DetailId,
+            LoadMetadataId: $scope.LoadMetadataId,
             Attachment: $scope.Attachment,
-            LoadMetadataId: $scope.LoadMetadataId
+            FileName: $scope.FileName
         };
         $http.post(ist.siteUrl + '/api/MT940Load', load)
             .success(function (data, status, headers, config) {
@@ -53,9 +51,10 @@
     //#region Functions
     $scope.defaultModel = function () {
         $scope.LoadId = 0;
-        $scope.LoadTypeId = 0;
-        $scope.MetaDataId = 0;
-        $scope.MT940DetailId = 0;
+        $scope.LoadMetadataId = 0;
+        $scope.MT940LoadId = 0;
+        $scope.Attachment = '';
+        $scope.FileName = '';
     }
 
     $scope.showEdit = function () {
@@ -84,6 +83,7 @@
     //#endregion
     $scope.readPhotoURL = function (input) {
         if (input.files && input.files[0]) {
+            $scope.FileName = input.files[0].name;
             var reader = new FileReader();
             reader.onload = function (e) {
                 var img = new Image;
