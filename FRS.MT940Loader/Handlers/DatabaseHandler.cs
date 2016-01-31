@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace FRS.MT940Loader
+﻿namespace FRS.MT940Loader.Handlers
 {
     internal class DatabaseHandler
     {

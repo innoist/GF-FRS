@@ -1,9 +1,9 @@
-﻿namespace FRS.MT940Loader.Fault
+﻿namespace FRS.MT940Loader.Faults
 {
     public class MT940LoaderFault
     {
         private int _code;
-        private string _faultMessage;
+        private string _message;
 
         public int Code
         {
@@ -18,23 +18,23 @@
             }
         }
 
-        public string FaultMessage
+        public string Message
         {
             get
             {
-                return _faultMessage;
+                return _message;
             }
 
             set
             {
-                _faultMessage = value;
+                _message = value;
             }
         }
 
-        public MT940LoaderFault(int code, string faultMessage)
+        public MT940LoaderFault(int code, string message)
         {
             _code = code;
-            _faultMessage = faultMessage;
+            _message = message;
         }
     }
 }
