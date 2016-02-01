@@ -17,10 +17,10 @@ namespace FRS.MT940Loader
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public MT940Balance()
         {
-            this.MT940CustomerStatement = new HashSet<MT940CustomerStatement>();
-            this.MT940CustomerStatement1 = new HashSet<MT940CustomerStatement>();
-            this.MT940CustomerStatement2 = new HashSet<MT940CustomerStatement>();
-            this.MT940CustomerStatement3 = new HashSet<MT940CustomerStatement>();
+            this.ClosingAvailableBalance = new HashSet<MT940CustomerStatement>();
+            this.ClosingBalance = new HashSet<MT940CustomerStatement>();
+            this.ForwardAvailableBalance = new HashSet<MT940CustomerStatement>();
+            this.OpeningBalance = new HashSet<MT940CustomerStatement>();
         }
     
         public long MT940BalanceId { get; set; }
@@ -31,12 +31,12 @@ namespace FRS.MT940Loader
     
         public virtual Currency Currency { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<MT940CustomerStatement> MT940CustomerStatement { get; set; }
+        public virtual ICollection<MT940CustomerStatement> ClosingAvailableBalance { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<MT940CustomerStatement> MT940CustomerStatement1 { get; set; }
+        public virtual ICollection<MT940CustomerStatement> ClosingBalance { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<MT940CustomerStatement> MT940CustomerStatement2 { get; set; }
+        public virtual ICollection<MT940CustomerStatement> ForwardAvailableBalance { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<MT940CustomerStatement> MT940CustomerStatement3 { get; set; }
+        public virtual ICollection<MT940CustomerStatement> OpeningBalance { get; set; }
     }
 }

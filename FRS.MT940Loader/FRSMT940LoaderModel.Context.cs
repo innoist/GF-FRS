@@ -36,14 +36,11 @@ namespace FRS.MT940Loader
         public virtual DbSet<Load> Loads { get; set; }
         public virtual DbSet<LoadMetaData> LoadMetaDatas { get; set; }
         public virtual DbSet<LoadType> LoadTypes { get; set; }
-        public virtual DbSet<Menu> Menus { get; set; }
-        public virtual DbSet<MenuRight> MenuRights { get; set; }
         public virtual DbSet<MT940Balance> MT940Balance { get; set; }
         public virtual DbSet<MT940CustomerStatement> MT940CustomerStatement { get; set; }
         public virtual DbSet<MT940CustomerStatementTransaction> MT940CustomerStatementTransaction { get; set; }
         public virtual DbSet<MT940Load> MT940Load { get; set; }
         public virtual DbSet<Source> Sources { get; set; }
         public virtual DbSet<Status> Status { get; set; }
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
     }
 }

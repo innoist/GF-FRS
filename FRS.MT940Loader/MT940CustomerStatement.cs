@@ -40,10 +40,10 @@ namespace FRS.MT940Loader
         public string ModifiedBy { get; set; }
         public System.DateTime ModifiedOn { get; set; }
     
-        public virtual MT940Balance MT940Balance { get; set; }
-        public virtual MT940Balance MT940Balance1 { get; set; }
-        public virtual MT940Balance MT940Balance2 { get; set; }
-        public virtual MT940Balance MT940Balance3 { get; set; }
+        public virtual MT940Balance ClosingAvailableBalance { get; set; }
+        public virtual MT940Balance ClosingBalance { get; set; }
+        public virtual MT940Balance ForwardAvailableBalance { get; set; }
+        public virtual MT940Balance OpeningBalance { get; set; }
         public virtual MT940Load MT940Load { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MT940CustomerStatementTransaction> MT940CustomerStatementTransaction { get; set; }

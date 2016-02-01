@@ -1,10 +1,11 @@
-﻿using FRS.MT940Loader.Fault;
+﻿using FRS.MT940Loader.Faults;
 using Raptorious.SharpMt940Lib;
 using Raptorious.SharpMt940Lib.Mt940Format;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
+using System.Text;
 
 namespace FRS.MT940Loader
 {
@@ -41,7 +42,33 @@ namespace FRS.MT940Loader
             }
         }
 
-        public List<MT940LoaderFault> ValidationResults;
+        public string HeaderSeperator
+        {
+            get
+            {
+                return _headerSeperator;
+            }
+
+            set
+            {
+                _headerSeperator = value;
+            }
+        }
+
+        public string TrailerSeperator
+        {
+            get
+            {
+                return _trailerSeperator;
+            }
+
+            set
+            {
+                _trailerSeperator = value;
+            }
+        }
+
+        public List<MT940LoaderFault> OperationFaults;
 
         public MT940Loader()
         {
@@ -60,15 +87,43 @@ namespace FRS.MT940Loader
             {
                 _path = filePath;
                 _filename = GetFileNameFromPath(filePath);
-                _headerSeperator = headerSeperator;
-                _trailerSeperator = trailerSeperator;
+                HeaderSeperator = headerSeperator;
+                TrailerSeperator = trailerSeperator;
 
-                ValidationResults = new List<MT940LoaderFault>();
+                OperationFaults = new List<MT940LoaderFault>();
 
                 return;
             }
 
             AddFilePhysicalValidatoinFaultAndThrowException();
+        }        
+
+        public bool ValidateFile()
+        {
+            return ValidateFile(_path);
+        }
+
+        public bool ValidBase64MT940Content(string base64MT940Content)
+        {
+            return ValidateContent(base64MT940Content);
+        }
+
+        public ICollection<CustomerStatementMessage> LoadBase64MT940Content(string base64MT940Content)
+        {
+            try
+            {
+                Separator header = new Separator(HeaderSeperator);
+                Separator trailer = new Separator(TrailerSeperator);
+                GenericFormat genericFomat = new GenericFormat(header, trailer);
+                string fileData = Encoding.ASCII.GetString(Convert.FromBase64String(base64MT940Content));
+                return Mt940Parser.ParseData(genericFomat, fileData, CultureInfo.CurrentCulture);
+            }
+            catch (Exception ex)
+            {
+                AddFileLibraryInvalidation(ex);
+            }
+
+            return null;
         }
 
         private string GetFileNameFromPath(string path)
@@ -87,9 +142,24 @@ namespace FRS.MT940Loader
             return fileInfo.Exists;
         }
 
-        public bool ValidateFile()
+        private bool ValidateContent(string base64Content)
         {
-            return ValidateFile(_path);
+            try
+            {
+                Separator header = new Separator(HeaderSeperator);
+                Separator trailer = new Separator(TrailerSeperator);
+                GenericFormat genericFomat = new GenericFormat(header, trailer);
+                string fileData = Encoding.ASCII.GetString(Convert.FromBase64String(base64Content));
+                var parsed = Mt940Parser.ParseData(genericFomat, fileData, CultureInfo.CurrentCulture);
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                AddFileLibraryInvalidation(ex);
+            }
+
+            return false;
         }
 
         private bool ValidateFile(string path)
@@ -102,8 +172,8 @@ namespace FRS.MT940Loader
 
             try
             {
-                var header = new Separator(_headerSeperator);
-                var trailer = new Separator(_trailerSeperator);
+                var header = new Separator(HeaderSeperator);
+                var trailer = new Separator(TrailerSeperator);
                 var genericFomat = new GenericFormat(header, trailer);
                 var parsed = Mt940Parser.Parse(genericFomat, FilePath, CultureInfo.CurrentCulture);
             }
@@ -125,7 +195,7 @@ namespace FRS.MT940Loader
 
         private void AddFilePhysicalValidatoinFaultAndThrowException()
         {
-            ClearList(ValidationResults);
+            ClearList(OperationFaults);
             AddFilePhysicalValidationFault();
 
             throw new FileNotFoundException(MT940ValidationMessages.FNF_FileNotFoundOnPath);
@@ -133,14 +203,14 @@ namespace FRS.MT940Loader
 
         private void AddFilePhysicalValidationFault()
         {
-            ClearList(ValidationResults);
-            ValidationResults.Add(new MT940LoaderFault(MT940ValidationMessages.FNF_C_FileNotFoundOnPath, MT940ValidationMessages.FNF_FileNotFoundOnPath));
+            ClearList(OperationFaults);
+            OperationFaults.Add(new MT940LoaderFault(MT940ValidationMessages.FNF_C_FileNotFoundOnPath, MT940ValidationMessages.FNF_FileNotFoundOnPath));
         }
 
         private void AddFileLibraryInvalidation(Exception ex)
         {
-            ClearList(ValidationResults);
-            ValidationResults.Add(new MT940LoaderFault(MT940ValidationMessages.LFV_C_FileFailedLibraryValidationAndLoadToObject,
+            ClearList(OperationFaults);
+            OperationFaults.Add(new MT940LoaderFault(MT940ValidationMessages.LFV_C_FileFailedLibraryValidationAndLoadToObject,
                                                             MT940ValidationMessages.LFV_FileFailedLibraryValidationAndLoadToObject));
             string errorMessage = ex.Message;
             if (ex.InnerException != null && !String.IsNullOrEmpty(ex.InnerException.Message))
@@ -148,7 +218,7 @@ namespace FRS.MT940Loader
                 errorMessage += Environment.NewLine;
                 errorMessage += "Error details: " + ex.InnerException.Message;
             }
-            ValidationResults.Add(new MT940LoaderFault(MT940ValidationMessages.LFV_C_LibraryError,
+            OperationFaults.Add(new MT940LoaderFault(MT940ValidationMessages.LFV_C_LibraryError,
                                                             string.Format(MT940ValidationMessages.LFV_LibraryError, errorMessage)));
         }
         #endregion End - Exception and Fault Methods

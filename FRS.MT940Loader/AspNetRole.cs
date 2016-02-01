@@ -18,7 +18,6 @@ namespace FRS.MT940Loader
         public AspNetRole()
         {
             this.AspNetUserRoles = new HashSet<AspNetUserRole>();
-            this.MenuRights = new HashSet<MenuRight>();
         }
     
         public string Id { get; set; }
@@ -26,7 +25,5 @@ namespace FRS.MT940Loader
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AspNetUserRole> AspNetUserRoles { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<MenuRight> MenuRights { get; set; }
     }
 }
