@@ -17,48 +17,38 @@ namespace FRS.Implementation.Services
         private readonly ILoadRepository loadRepository;
         private readonly ILoadMetaDataRepository loadMetaDataRepository;
         private readonly IFileContentService fileContentService;
+        private readonly IMT940LoadService mt940LoadService;
 
-        private void UpdateProperties(Load metaData, Load dbVersion, AspNetUser user)
+        private void UpdateProperties(Load load, Load dbVersion, AspNetUser user)
         {
             dbVersion.ModifiedBy = user.Id;
             dbVersion.ModifiedOn = DateTime.Now;
-            dbVersion.LoadId = metaData.LoadId;
-            //dbVersion. = metaData.SourceId;
-            //dbVersion.Header = metaData.Header;
-            //dbVersion.Footer = metaData.Footer;
-            //dbVersion.Name = metaData.Name;
-            //dbVersion.CurrencyId = metaData.CurrencyId;
-            //dbVersion.Description = metaData.Description;
-            //dbVersion.StatusId = metaData.StatusId;
+            dbVersion.LoadId = load.LoadId;
+            dbVersion.LoadMetaDataId = load.LoadMetaDataId;
+            dbVersion.MT940LoadId = load.MT940LoadId;
+            dbVersion.Start = DateTime.Now;
+            dbVersion.InProgress = true;
+            dbVersion.ReadOnly = true;
         }
-        private void SetProperties(Load metaData, Load dbVersion, AspNetUser user)
+        private void SetProperties(Load load, Load dbVersion, AspNetUser user)
         {
             dbVersion.CreatedBy = user.Id;
             dbVersion.CreatedOn = DateTime.Now;
             dbVersion.ModifiedBy = user.Id;
             dbVersion.ModifiedOn = DateTime.Now;
-            //dbVersion.LoadTypeId = metaData.LoadTypeId;
-            //dbVersion.SourceId = metaData.SourceId;
-            //dbVersion.Header = metaData.Header;
-            //dbVersion.Footer = metaData.Footer;
-            //dbVersion.Name = metaData.Name;
-            //dbVersion.CurrencyId = metaData.CurrencyId;
-            //dbVersion.Description = metaData.Description;
-            //dbVersion.StatusId = metaData.StatusId;
+            dbVersion.LoadId = load.LoadId;
+            dbVersion.LoadMetaDataId = load.LoadMetaDataId;
+            dbVersion.MT940LoadId = load.MT940LoadId;
+            dbVersion.Start = DateTime.Now;
+            dbVersion.InProgress = true;
+            dbVersion.ReadOnly = true;
         }
-        private MT940Load SetMT940LoadProperties(AspNetUser user, Load load, long fileContentId)
+        private MT940Load SetMT940LoadProperties(Load load, long fileContentId)
         {
             return new MT940Load
             {
-                CreatedBy = user.Id,
-                CreatedOn = DateTime.Now,
-                ModifiedBy = user.Id,
-                ModifiedOn = DateTime.Now,
-                MT940LoadId = 0,
-                Path = "",
                 FileName = load.MT940Load.FileName,
                 FileExtension = load.MT940Load.FileExtension,
-                StatusId = 0,
                 FileContentId = fileContentId,
             };
         }
@@ -66,12 +56,13 @@ namespace FRS.Implementation.Services
 
         #region Constructor
 
-        public LoadService(ILoadRepository loadRepository, ILoadMetaDataRepository loadMetaDataRepository, IUserRepository userRepository, IFileContentService fileContentService)
+        public LoadService(ILoadRepository loadRepository, ILoadMetaDataRepository loadMetaDataRepository, IUserRepository userRepository, IFileContentService fileContentService, IMT940LoadService mt940LoadService)
         {
             this.loadRepository = loadRepository;
             this.loadMetaDataRepository = loadMetaDataRepository;
             this.userRepository = userRepository;
             this.fileContentService = fileContentService;
+            this.mt940LoadService = mt940LoadService;
         }
 
         #endregion
@@ -152,15 +143,21 @@ namespace FRS.Implementation.Services
                     FileContentBase64 = load.MT940Load.FileContent.FileContentBase64,
                     Description = load.MT940Load.FileContent.Description
                 };
-                fileContentService.SaveFileContent(fileContent);
-                // add MT940Load
-                MT940Load mt940Load = SetMT940LoadProperties(user, load, fileContent.FileContentId);
-
-                SetProperties(load, dbVersion, user);
-                loadRepository.Add(dbVersion);
+                if (fileContentService.SaveFileContent(fileContent))
+                {
+                    // add MT940Load
+                    MT940Load mt940Load = SetMT940LoadProperties(load, fileContent.FileContentId);
+                    if (mt940LoadService.SaveMT940Load(mt940Load))
+                    {
+                        load.MT940LoadId = mt940Load.MT940LoadId;
+                        SetProperties(load, dbVersion, user);
+                        loadRepository.Add(dbVersion);
+                        loadRepository.SaveChanges();
+                        return true;
+                    }
+                }
             }
-            loadRepository.SaveChanges();
-            return true;
+            return false;
         }
 
         #endregion

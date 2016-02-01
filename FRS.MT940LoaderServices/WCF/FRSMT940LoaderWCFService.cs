@@ -26,13 +26,14 @@ namespace FRS.MT940LoaderService.WCF
             MT940LoadHandler mt940LoadHandler = new MT940LoadHandler();
 
             //Validate the Load object fully, including the associated objects
-            List<MT940LoaderFault> faults = mt940LoadHandler.ValidateLoad(input.LoadId);
-            if(faults != null && faults.Count != 0)
-            {
-                throw new FaultException(string.Format(" There was a fault validating passed Load Id = {0}. Fault details: {1}",
-                                                       input.LoadId.ToString(),
-                                                       DotNetHelper.WrapFaultListToString(faults)));
-            }
+            
+            //List<MT940LoaderFault> faults = mt940LoadHandler.ValidateLoad(input.LoadId);
+            //if(faults != null && faults.Count != 0)
+            //{
+            //    throw new FaultException(string.Format(" There was a fault validating passed Load Id = {0}. Fault details: {1}",
+            //                                           input.LoadId.ToString(),
+            //                                           DotNetHelper.WrapFaultListToString(faults)));
+            //}
 
             //Validate the file data into a MT940 object
             Load load = mt940LoadHandler.GetLoad(input.LoadId);
@@ -41,7 +42,7 @@ namespace FRS.MT940LoaderService.WCF
             mt940LoadHandler.SetHeaderTrailer(load.LoadMetaData.Header, load.LoadMetaData.Footer);
 
             //Validate the MT940 Base64 contents
-            faults = mt940LoadHandler.ValidateMT940FileContent(load.MT940Load.FileContent.FileContentBase64);
+            //faults = mt940LoadHandler.ValidateMT940FileContent(load.MT940Load.FileContent.FileContentBase64);
 
             //Load the MT940 file data into objects and then to the database
             mt940LoadHandler.LoadMT940(load, load.MT940Load.FileContent.FileContentBase64);

@@ -182,6 +182,7 @@
     <Compile Include="Services\FileContentService.cs" />
     <Compile Include="Services\LoadMetaDetaService.cs" />
     <Compile Include="Services\LoadService.cs" />
+    <Compile Include="Services\MT940LoadService.cs" />
     <Compile Include="Services\RegisterUserService.cs" />
     <Compile Include="Services\LoggerService.cs" />
     <Compile Include="Services\MenuRightsService.cs" />

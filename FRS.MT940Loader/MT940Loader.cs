@@ -190,7 +190,11 @@ namespace FRS.MT940Loader
         #region Start - Exception and Fault Methods
         private void ClearList<T>(List<T> list)
         {
+            if (list != null)
+            {
                 list.Clear();
+            }
+                
         }
 
         private void AddFilePhysicalValidatoinFaultAndThrowException()

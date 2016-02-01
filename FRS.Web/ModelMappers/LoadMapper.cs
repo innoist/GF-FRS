@@ -32,6 +32,16 @@ namespace FRS.Web.ModelMappers
                 Finish = source.Finish,
                 InProgress = source.InProgress,
                 ReadOnly = source.ReadOnly,
+                MT940Load = new MT940Load
+                {
+                    FileName = source.FileName,
+                    FileExtension = source.FileExtension,
+                    FileContent = new FileContent
+                    {
+                        FileContentBase64 = source.Attachment,
+                        Description = "",
+                    }
+                },
             };
         }
 

@@ -63,16 +63,6 @@ namespace FRS.Web.Areas.Api.Controllers
                 {
                     //return true;
                     var loadToSave = load.CreateFromClientToServer();
-                    loadToSave.MT940Load = new MT940Load
-                    {
-                        FileName = load.FileName,
-                        FileExtension = load.FileExtension,
-                        FileContent = new FileContent
-                        {
-                            FileContentBase64 = load.Attachment,
-                            Description = "",
-                        }
-                    };
                     if (loadService.SaveLoad(loadToSave))
                     {
                         return true;

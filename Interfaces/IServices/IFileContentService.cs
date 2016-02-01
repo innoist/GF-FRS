@@ -5,7 +5,7 @@ namespace FRS.Interfaces.IServices
 {
     public interface IFileContentService
     {
-        IEnumerable<FileContent> LoadAll();
+        IEnumerable<FileContent> GetAll();
         bool SaveFileContent(FileContent fileContent);
         void DeleteFileContent(long fileContentId);
     }
