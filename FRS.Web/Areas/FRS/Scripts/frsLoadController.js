@@ -1,4 +1,5 @@
 ﻿mainApp.controller("FRSLoadController", ['$scope', '$http', '$filter', function ($scope, $http, $filter) {
+    // Load Model properties
     $scope.LoadId;
     $scope.LoadMetadataId;
     $scope.MT940LoadId;
@@ -7,9 +8,14 @@
     $scope.IsShowEdit = false;
     $scope.LoadMetadataDropDown = [];
     $scope.MetaDataWithFileTypes = [];
+    // readonly properties
+    $scope.LoadTypeName;
+    $scope.SourceName;
+    $scope.LastModified;
+
     
     // show/hide file uploading facility
-    $scope.IsSourceTypeFile = false;
+    $scope.IsLoadTypeMT940 = false;
 
     //#region Get Data from DB
     $scope.getLoadList = function () {
@@ -26,7 +32,7 @@
     $scope.saveMT940Detail = function () {
         var load = {
             LoadId: $scope.LoadId,
-            LoadMetadataId: $scope.LoadMetadataId,
+            LoadMetadataId: $scope.LoadMetadataId.Id,
             Attachment: $scope.Attachment,
             FileName: $scope.FileName
         };
@@ -55,6 +61,10 @@
         $scope.MT940LoadId = 0;
         $scope.Attachment = '';
         $scope.FileName = '';
+        $scope.IsLoadTypeMT940 = false;
+        $scope.LoadTypeName = '';
+        $scope.SourceName = '';
+        $scope.LastModified = '';
     }
 
     $scope.showEdit = function () {
@@ -67,15 +77,28 @@
     }
 
     $scope.showHideFileUploader = function (loadMetadataId) {
-        var url = ist.siteUrl + '/api/MT940Load?metaDataId=' + loadMetadataId.Id;
-        $http.get(url)
-            .success(function (data, status, headers, config) {
-                if (data == true) {
-                    $scope.IsSourceTypeFile = true;
-                } else {
-                    $scope.IsSourceTypeFile = false;
-                }
-            });
+        if (loadMetadataId != null) {
+            var url = ist.siteUrl + '/api/MT940Load?metaDataId=' + loadMetadataId.Id;
+            $http.get(url)
+                .success(function(data, status, headers, config) {
+                    if (data != null) {
+                        $scope.IsLoadTypeMT940 = data.IsLoadTypeMT940;
+                        $scope.LoadTypeName = data.LoadType;
+                        $scope.SourceName = data.SourceName;
+                        $scope.LastModified = data.LastModified;
+                    } else {
+                        $scope.IsLoadTypeMT940 = false;
+                        $scope.LoadTypeName = '';
+                        $scope.SourceName = '';
+                        $scope.LastModified = '';
+                    }
+                });
+        } else {
+            $scope.IsLoadTypeMT940 = false;
+            $scope.LoadTypeName = '';
+            $scope.SourceName = '';
+            $scope.LastModified = '';
+        }
     }
 
     // get data on page load
@@ -95,7 +118,6 @@
                             .attr('src', e.target.result)
                             .width(120)
                             .height(120);
-
                     }
                 };
                 img.src = reader.result;

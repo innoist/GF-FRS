@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Security.Claims;
 using FRS.Interfaces.IServices;
 using FRS.Interfaces.Repository;
+using FRS.Models.Common;
 using FRS.Models.DomainModels;
 using FRS.Models.IdentityModels;
 using FRS.Models.ResponseModels;
@@ -128,9 +129,9 @@ namespace FRS.Implementation.Services
             return dbVersion;
         }
 
-        public bool IsSourceFileType(long loadMetaDataId)
+        public LoadMetaDataForLoad IsLoadTypeMT940(long loadMetaDataId)
         {
-            return loadMetaDataRepository.IsSourceFileType(loadMetaDataId);
+            return loadMetaDataRepository.IsLoadTypeMT940(loadMetaDataId);
         }
 
         #endregion
