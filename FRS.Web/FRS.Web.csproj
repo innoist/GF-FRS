@@ -2558,7 +2558,7 @@
     <Content Include="server\editor\filetree.json" />
     <Content Include="server\mails.json" />
     <Content Include="server\ng-grid-data.json" />
-    <Content Include="server\sidebar-menu.json" />
+    <Content Include="server\sidebar-menu.js" />
     <Content Include="server\table-data.json" />
     <Content Include="server\treedata.json" />
     <Content Include="server\uigrid-100.json" />
