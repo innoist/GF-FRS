@@ -5,6 +5,7 @@
     $scope.MT940LoadId;
     $scope.Attachment;
     $scope.FileName;
+    $scope.FileExtension;
     $scope.IsShowEdit = false;
     $scope.LoadMetadataDropDown = [];
     $scope.MetaDataWithFileTypes = [];
@@ -34,7 +35,8 @@
             LoadId: $scope.LoadId,
             LoadMetadataId: $scope.LoadMetadataId.Id,
             Attachment: $scope.Attachment,
-            FileName: $scope.FileName
+            FileName: $scope.FileName,
+            FileExtension: $scope.FileExtension,
         };
         $http.post(ist.siteUrl + '/api/MT940Load', load)
             .success(function (data, status, headers, config) {
@@ -61,6 +63,7 @@
         $scope.MT940LoadId = 0;
         $scope.Attachment = '';
         $scope.FileName = '';
+        $scope.FileExtension = '';
         $scope.IsLoadTypeMT940 = false;
         $scope.LoadTypeName = '';
         $scope.SourceName = '';
@@ -107,6 +110,7 @@
     $scope.readPhotoURL = function (input) {
         if (input.files && input.files[0]) {
             $scope.FileName = input.files[0].name;
+            $scope.FileExtension = input.files[0].type.split('/')[1];
             var reader = new FileReader();
             reader.onload = function (e) {
                 var img = new Image;

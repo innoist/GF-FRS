@@ -66,6 +66,7 @@ namespace FRS.Web.Areas.Api.Controllers
                     loadToSave.MT940Load = new MT940Load
                     {
                         FileName = load.FileName,
+                        FileExtension = load.FileExtension,
                         FileContent = new FileContent
                         {
                             FileContentBase64 = load.Attachment,

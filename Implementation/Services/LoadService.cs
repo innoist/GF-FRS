@@ -22,14 +22,14 @@ namespace FRS.Implementation.Services
         {
             dbVersion.ModifiedBy = user.Id;
             dbVersion.ModifiedOn = DateTime.Now;
-            dbVersion.LoadTypeId = metaData.LoadTypeId;
-            dbVersion.SourceId = metaData.SourceId;
-            dbVersion.Header = metaData.Header;
-            dbVersion.Footer = metaData.Footer;
-            dbVersion.Name = metaData.Name;
-            dbVersion.CurrencyId = metaData.CurrencyId;
-            dbVersion.Description = metaData.Description;
-            dbVersion.StatusId = metaData.StatusId;
+            dbVersion.LoadId = metaData.LoadId;
+            //dbVersion. = metaData.SourceId;
+            //dbVersion.Header = metaData.Header;
+            //dbVersion.Footer = metaData.Footer;
+            //dbVersion.Name = metaData.Name;
+            //dbVersion.CurrencyId = metaData.CurrencyId;
+            //dbVersion.Description = metaData.Description;
+            //dbVersion.StatusId = metaData.StatusId;
         }
         private void SetProperties(Load metaData, Load dbVersion, AspNetUser user)
         {
@@ -37,14 +37,30 @@ namespace FRS.Implementation.Services
             dbVersion.CreatedOn = DateTime.Now;
             dbVersion.ModifiedBy = user.Id;
             dbVersion.ModifiedOn = DateTime.Now;
-            dbVersion.LoadTypeId = metaData.LoadTypeId;
-            dbVersion.SourceId = metaData.SourceId;
-            dbVersion.Header = metaData.Header;
-            dbVersion.Footer = metaData.Footer;
-            dbVersion.Name = metaData.Name;
-            dbVersion.CurrencyId = metaData.CurrencyId;
-            dbVersion.Description = metaData.Description;
-            dbVersion.StatusId = metaData.StatusId;
+            //dbVersion.LoadTypeId = metaData.LoadTypeId;
+            //dbVersion.SourceId = metaData.SourceId;
+            //dbVersion.Header = metaData.Header;
+            //dbVersion.Footer = metaData.Footer;
+            //dbVersion.Name = metaData.Name;
+            //dbVersion.CurrencyId = metaData.CurrencyId;
+            //dbVersion.Description = metaData.Description;
+            //dbVersion.StatusId = metaData.StatusId;
+        }
+        private MT940Load SetMT940LoadProperties(AspNetUser user, Load load, long fileContentId)
+        {
+            return new MT940Load
+            {
+                CreatedBy = user.Id,
+                CreatedOn = DateTime.Now,
+                ModifiedBy = user.Id,
+                ModifiedOn = DateTime.Now,
+                MT940LoadId = 0,
+                Path = "",
+                FileName = load.MT940Load.FileName,
+                FileExtension = load.MT940Load.FileExtension,
+                StatusId = 0,
+                FileContentId = fileContentId,
+            };
         }
         #endregion
 
@@ -138,10 +154,8 @@ namespace FRS.Implementation.Services
                 };
                 fileContentService.SaveFileContent(fileContent);
                 // add MT940Load
-                MT940Load mt940Load = new MT940Load
-                {
-                    
-                };
+                MT940Load mt940Load = SetMT940LoadProperties(user, load, fileContent.FileContentId);
+
                 SetProperties(load, dbVersion, user);
                 loadRepository.Add(dbVersion);
             }

@@ -21,6 +21,7 @@ namespace FRS.Web.Models
         public string MetaDataName { get; set; }
         public string Attachment { get; set; }
         public string FileName { get; set; }
+        public string FileExtension { get; set; }
         public byte[] ImageUrlBytes
         {
             get

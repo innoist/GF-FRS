@@ -29,6 +29,7 @@ namespace FRS.Implementation
             unityContainer.RegisterType<IEmployeeService, EmployeeService>();
             unityContainer.RegisterType<ILoadService, LoadService>();
             unityContainer.RegisterType<ILoadMetaDataService, LoadMetaDetaService>();
+            unityContainer.RegisterType<IFileContentService, FileContentService>();
         }
     }
 }

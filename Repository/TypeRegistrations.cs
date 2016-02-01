@@ -31,6 +31,7 @@ namespace FRS.Repository
             unityContainer.RegisterType<ISourceRepository, SourceRepository>();
             unityContainer.RegisterType<ICurrencyRepository, CurrencyRepository>();
             unityContainer.RegisterType<IStatusRepository, StatusRepository>();
+            unityContainer.RegisterType<IFileContentRepository, FileContentRepository>();
         }
     }
 }
