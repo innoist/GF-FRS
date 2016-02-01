@@ -6,10 +6,11 @@ using System.Web;
 using System.Web.Http;
 using FRS.Interfaces.IServices;
 using FRS.Models.Common;
+using FRS.Models.DomainModels;
 using FRS.Models.ResponseModels;
 using FRS.Web.ModelMappers;
-using FRS.Web.Models;
 using FRS.Web.Models.MT940Load;
+using Load = FRS.Web.Models.Load;
 
 namespace FRS.Web.Areas.Api.Controllers
 {
@@ -60,15 +61,21 @@ namespace FRS.Web.Areas.Api.Controllers
             {
                 try
                 {
-                    // save file in FileContent
-
-                    //File.WriteAllBytes(@"D:\Ammar\Office Projects\GF-FRS\FRS.Web\Files\" + load.FileName , load.ImageUrlBytes);
-                    return true;
-                    //var loadToSave = load.CreateFromClientToServer();
-                    //if (loadService.SaveLoad(loadToSave))
-                    //{
-                    //    return true;
-                    //}
+                    //return true;
+                    var loadToSave = load.CreateFromClientToServer();
+                    loadToSave.MT940Load = new MT940Load
+                    {
+                        FileName = load.FileName,
+                        FileContent = new FileContent
+                        {
+                            FileContentBase64 = load.Attachment,
+                            Description = "",
+                        }
+                    };
+                    if (loadService.SaveLoad(loadToSave))
+                    {
+                        return true;
+                    }
                 }
                 catch (Exception)
                 {

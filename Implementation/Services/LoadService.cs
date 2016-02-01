@@ -1,8 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using FRS.Interfaces.IServices;
 using FRS.Interfaces.Repository;
 using FRS.Models.DomainModels;
+using FRS.Models.IdentityModels;
 using FRS.Models.ResponseModels;
 
 namespace FRS.Implementation.Services
@@ -11,17 +13,49 @@ namespace FRS.Implementation.Services
     {
         #region Private
 
+        private readonly IUserRepository userRepository;
         private readonly ILoadRepository loadRepository;
         private readonly ILoadMetaDataRepository loadMetaDataRepository;
+        private readonly IFileContentService fileContentService;
 
+        private void UpdateProperties(Load metaData, Load dbVersion, AspNetUser user)
+        {
+            dbVersion.ModifiedBy = user.Id;
+            dbVersion.ModifiedOn = DateTime.Now;
+            dbVersion.LoadTypeId = metaData.LoadTypeId;
+            dbVersion.SourceId = metaData.SourceId;
+            dbVersion.Header = metaData.Header;
+            dbVersion.Footer = metaData.Footer;
+            dbVersion.Name = metaData.Name;
+            dbVersion.CurrencyId = metaData.CurrencyId;
+            dbVersion.Description = metaData.Description;
+            dbVersion.StatusId = metaData.StatusId;
+        }
+        private void SetProperties(Load metaData, Load dbVersion, AspNetUser user)
+        {
+            dbVersion.CreatedBy = user.Id;
+            dbVersion.CreatedOn = DateTime.Now;
+            dbVersion.ModifiedBy = user.Id;
+            dbVersion.ModifiedOn = DateTime.Now;
+            dbVersion.LoadTypeId = metaData.LoadTypeId;
+            dbVersion.SourceId = metaData.SourceId;
+            dbVersion.Header = metaData.Header;
+            dbVersion.Footer = metaData.Footer;
+            dbVersion.Name = metaData.Name;
+            dbVersion.CurrencyId = metaData.CurrencyId;
+            dbVersion.Description = metaData.Description;
+            dbVersion.StatusId = metaData.StatusId;
+        }
         #endregion
 
         #region Constructor
 
-        public LoadService(ILoadRepository loadRepository, ILoadMetaDataRepository loadMetaDataRepository)
+        public LoadService(ILoadRepository loadRepository, ILoadMetaDataRepository loadMetaDataRepository, IUserRepository userRepository, IFileContentService fileContentService)
         {
             this.loadRepository = loadRepository;
             this.loadMetaDataRepository = loadMetaDataRepository;
+            this.userRepository = userRepository;
+            this.fileContentService = fileContentService;
         }
 
         #endregion
@@ -85,13 +119,32 @@ namespace FRS.Implementation.Services
 
         public bool SaveLoad(Load load)
         {
-            if (load.LoadId > 0)
+            var user = userRepository.GetLoggedInUser();
+            var dbVersion = loadRepository.Find(load.LoadId);
+            if (dbVersion != null)
             {
-                loadRepository.Update(load);
-                loadRepository.SaveChanges();
-                return true;
+                UpdateProperties(load, dbVersion, user);
+                loadRepository.Update(dbVersion);
             }
-            loadRepository.Add(load);
+            else
+            {
+                dbVersion = new Load();
+                // save file in FileContent
+                FileContent fileContent = new FileContent
+                {
+                    FileContentId = load.MT940Load.FileContentId,
+                    FileContentBase64 = load.MT940Load.FileContent.FileContentBase64,
+                    Description = load.MT940Load.FileContent.Description
+                };
+                fileContentService.SaveFileContent(fileContent);
+                // add MT940Load
+                MT940Load mt940Load = new MT940Load
+                {
+                    
+                };
+                SetProperties(load, dbVersion, user);
+                loadRepository.Add(dbVersion);
+            }
             loadRepository.SaveChanges();
             return true;
         }

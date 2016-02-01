@@ -328,6 +328,7 @@
     <Compile Include="ModelMappers\LoadMetaDataMapper.cs" />
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\EmployeeSearchRequestResponse.cs" />
+    <Compile Include="Models\FileContent.cs" />
     <Compile Include="Models\Load.cs" />
     <Compile Include="Models\LoadMetaData.cs" />
     <Compile Include="Models\BaseDataLoadMetaData.cs" />
@@ -382,7 +383,6 @@
     <Content Include="Areas\FRS\Scripts\loadMetaDataController.js" />
     <Content Include="Areas\SampleAngular\Scripts\sampleAngularAppController.js" />
     <Content Include="Areas\SampleAngular\Scripts\sampleAngularAppDataService.js" />
-    <Content Include="asadtest.html" />
     <Content Include="Content\agreementDeletedEmailTemplate.html" />
     <Content Include="Content\agreementOpenedEmailTemplate.html" />
     <Content Include="Content\Area.css">

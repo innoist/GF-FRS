@@ -1,4 +1,5 @@
-﻿using FRS.Web.Models;
+﻿using FRS.Models.DomainModels;
+using Load = FRS.Web.Models.Load;
 
 namespace FRS.Web.ModelMappers
 {
