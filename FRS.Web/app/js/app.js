@@ -7433,7 +7433,7 @@
           .state('app.dashboard_v2', {
               url: '/dashboard_v2',
               title: 'Dashboard v2',
-              templateUrl: helper.basepath('dashboard_v2.html'),
+              templateUrl: helper.basepath('../../../../app/views/dashboard_v2.html'),
               controller: 'DashboardV2Controller',
               controllerAs: 'dash2',
               resolve: helper.resolveFor('flot-chart','flot-chart-plugins')
@@ -7443,69 +7443,69 @@
               title: 'Dashboard v3',
               controller: 'DashboardV3Controller',
               controllerAs: 'dash3',
-              templateUrl: helper.basepath('dashboard_v3.html'),
+              templateUrl: helper.basepath('../../../../app/views/dashboard_v3.html'),
               resolve: helper.resolveFor('flot-chart','flot-chart-plugins', 'vector-map', 'vector-map-maps')
           })
           .state('app.widgets', {
               url: '/widgets',
               title: 'Widgets',
-              templateUrl: helper.basepath('widgets.html'),
+              templateUrl: helper.basepath('../../../../app/views/widgets.html'),
               resolve: helper.resolveFor('loadGoogleMapsJS', function() { return loadGoogleMaps(); }, 'ui.map')
           })
           .state('app.buttons', {
               url: '/buttons',
               title: 'Buttons',
-              templateUrl: helper.basepath('buttons.html')
+              templateUrl: helper.basepath('../../../../app/views/buttons.html')
           })
           .state('app.colors', {
               url: '/colors',
               title: 'Colors',
-              templateUrl: helper.basepath('colors.html')
+              templateUrl: helper.basepath('../../../../app/views/colors.html')
           })
           .state('app.localization', {
               url: '/localization',
               title: 'Localization',
-              templateUrl: helper.basepath('localization.html')
+              templateUrl: helper.basepath('../../../../app/views/localization.html')
           })
           .state('app.infinite-scroll', {
               url: '/infinite-scroll',
               title: 'Infinite Scroll',
-              templateUrl: helper.basepath('infinite-scroll.html'),
+              templateUrl: helper.basepath('../../../../app/views/infinite-scroll.html'),
               resolve: helper.resolveFor('infinite-scroll')
           })
           .state('app.navtree', {
               url: '/navtree',
               title: 'Nav Tree',
-              templateUrl: helper.basepath('nav-tree.html'),
+              templateUrl: helper.basepath('../../../../app/views/nav-tree.html'),
               resolve: helper.resolveFor('angularBootstrapNavTree')
           })
           .state('app.nestable', {
               url: '/nestable',
               title: 'Nestable',
-              templateUrl: helper.basepath('nestable.html'),
+              templateUrl: helper.basepath('../../../../app/views/nestable.html'),
               resolve: helper.resolveFor('ng-nestable')
           })
           .state('app.sortable', {
               url: '/sortable',
               title: 'Sortable',
-              templateUrl: helper.basepath('sortable.html'),
+              templateUrl: helper.basepath('../../../../app/views/sortable.html'),
               resolve: helper.resolveFor('htmlSortable')
           })
           .state('app.notifications', {
               url: '/notifications',
               title: 'Notifications',
-              templateUrl: helper.basepath('notifications.html')
+              templateUrl: helper.basepath('../../../../app/views/notifications.html')
           })
           .state('app.carousel', {
               url: '/carousel',
               title: 'Carousel',
-              templateUrl: helper.basepath('carousel.html'),
+              templateUrl: helper.basepath('../../../../app/views/carousel.html'),
               resolve: helper.resolveFor('angular-carousel')
           })
           .state('app.ngdialog', {
               url: '/ngdialog',
               title: 'ngDialog',
-              templateUrl: helper.basepath('ngdialog.html'),
+              templateUrl: helper.basepath('../../../../app/views/ngdialog.html'),
               resolve: angular.extend(helper.resolveFor('ngDialog'),{
                 tpl: function() { return { path: helper.basepath('ngdialog-template.html') }; }
               }),
@@ -7514,52 +7514,52 @@
           .state('app.sweetalert', {
             url: '/sweetalert',
             title: 'SweetAlert',
-            templateUrl: helper.basepath('sweetalert.html'),
+            templateUrl: helper.basepath('../../../../app/views/sweetalert.html'),
             resolve: helper.resolveFor('oitozero.ngSweetAlert')
           })
           .state('app.tour', {
             url: '/tour',
             title: 'Tour',
-            templateUrl: helper.basepath('tour.html'),
+            templateUrl: helper.basepath('../../../../app/views/tour.html'),
             resolve: helper.resolveFor('bm.bsTour')
           })
           .state('app.interaction', {
               url: '/interaction',
               title: 'Interaction',
-              templateUrl: helper.basepath('interaction.html')
+              templateUrl: helper.basepath('../../../../app/views/interaction.html')
           })
           .state('app.spinners', {
               url: '/spinners',
               title: 'Spinners',
-              templateUrl: helper.basepath('spinners.html'),
+              templateUrl: helper.basepath('../../../../app/views/spinners.html'),
               resolve: helper.resolveFor('loaders.css', 'spinkit')
           })
           .state('app.dropdown-animations', {
               url: '/dropdown-animations',
               title: 'Dropdown Animations',
-              templateUrl: helper.basepath('dropdown-animations.html')
+              templateUrl: helper.basepath('../../../../app/views/dropdown-animations.html')
           })
           .state('app.panels', {
               url: '/panels',
               title: 'Panels',
-              templateUrl: helper.basepath('panels.html')
+              templateUrl: helper.basepath('../../../../app/views/panels.html')
           })
           .state('app.portlets', {
               url: '/portlets',
               title: 'Portlets',
-              templateUrl: helper.basepath('portlets.html'),
+              templateUrl: helper.basepath('../../../../app/views/portlets.html'),
               resolve: helper.resolveFor('jquery-ui', 'jquery-ui-widgets')
           })
           .state('app.maps-google', {
               url: '/maps-google',
               title: 'Maps Google',
-              templateUrl: helper.basepath('maps-google.html'),
+              templateUrl: helper.basepath('../../../../app/views/maps-google.html'),
               resolve: helper.resolveFor('loadGoogleMapsJS', function() { return loadGoogleMaps(); }, 'ui.map')
           })
           .state('app.maps-vector', {
               url: '/maps-vector',
               title: 'Maps Vector',
-              templateUrl: helper.basepath('maps-vector.html'),
+              templateUrl: helper.basepath('../../../../app/views/maps-vector.html'),
               controller: 'VectorMapController',
               controllerAs: 'vmap',
               resolve: helper.resolveFor('vector-map', 'vector-map-maps')
@@ -7567,84 +7567,84 @@
           .state('app.grid', {
               url: '/grid',
               title: 'Grid',
-              templateUrl: helper.basepath('grid.html')
+              templateUrl: helper.basepath('../../../../app/views/grid.html')
           })
           .state('app.grid-masonry', {
               url: '/grid-masonry',
               title: 'Grid Masonry',
-              templateUrl: helper.basepath('grid-masonry.html')
+              templateUrl: helper.basepath('../../../../app/views/grid-masonry.html')
           })
           .state('app.grid-masonry-deck', {
               url: '/grid-masonry-deck',
               title: 'Grid Masonry',
-              templateUrl: helper.basepath('grid-masonry-deck.html'),
+              templateUrl: helper.basepath('../../../../app/views/grid-masonry-deck.html'),
               resolve: helper.resolveFor('spinkit', 'akoenig.deckgrid')
           })
           .state('app.typo', {
               url: '/typo',
               title: 'Typo',
-              templateUrl: helper.basepath('typo.html')
+              templateUrl: helper.basepath('../../../../app/views/typo.html')
           })
           .state('app.icons-font', {
               url: '/icons-font',
               title: 'Icons Font',
-              templateUrl: helper.basepath('icons-font.html'),
+              templateUrl: helper.basepath('../../../../app/views/icons-font.html'),
               resolve: helper.resolveFor('icons')
           })
           .state('app.icons-weather', {
               url: '/icons-weather',
               title: 'Icons Weather',
-              templateUrl: helper.basepath('icons-weather.html'),
+              templateUrl: helper.basepath('../../../../app/views/icons-weather.html'),
               resolve: helper.resolveFor('weather-icons', 'skycons')
           })
           .state('app.form-standard', {
               url: '/form-standard',
               title: 'Form Standard',
-              templateUrl: helper.basepath('form-standard.html')
+              templateUrl: helper.basepath('../../../../app/views/form-standard.html')
           })
           .state('app.form-extended', {
               url: '/form-extended',
               title: 'Form Extended',
-              templateUrl: helper.basepath('form-extended.html'),
+              templateUrl: helper.basepath('../../../../app/views/form-extended.html'),
               resolve: helper.resolveFor('colorpicker.module', 'codemirror', 'moment', 'taginput','inputmask','localytics.directives', 'ui.bootstrap-slider', 'ngWig', 'filestyle', 'textAngular')
           })
           .state('app.form-validation', {
               url: '/form-validation',
               title: 'Form Validation',
-              templateUrl: helper.basepath('form-validation.html'),
+              templateUrl: helper.basepath('../../../../app/views/form-validation.html'),
               resolve: helper.resolveFor('ui.select', 'taginput','inputmask','localytics.directives')
           })
           .state('app.form-parsley', {
               url: '/form-parsley',
               title: 'Form Validation - Parsley',
-              templateUrl: helper.basepath('form-parsley.html'),
+              templateUrl: helper.basepath('../../../../app/views/form-parsley.html'),
               resolve: helper.resolveFor('parsley')
           })
           .state('app.form-wizard', {
               url: '/form-wizard',
               title: 'Form Wizard',
-              templateUrl: helper.basepath('form-wizard.html'),
+              templateUrl: helper.basepath('../../../../app/views/form-wizard.html'),
               resolve: helper.resolveFor('parsley')
           })
           .state('app.form-upload', {
               url: '/form-upload',
               title: 'Form upload',
-              templateUrl: helper.basepath('form-upload.html'),
+              templateUrl: helper.basepath('../../../../app/views/form-upload.html'),
               resolve: helper.resolveFor('angularFileUpload', 'filestyle')
           })
           .state('app.form-xeditable', {
               url: '/form-xeditable',
-              templateUrl: helper.basepath('form-xeditable.html'),
+              templateUrl: helper.basepath('../../../../app/views/form-xeditable.html'),
               resolve: helper.resolveFor('xeditable')
           })
           .state('app.form-imagecrop', {
               url: '/form-imagecrop',
-              templateUrl: helper.basepath('form-imagecrop.html'),
+              templateUrl: helper.basepath('../../../../app/views/form-imagecrop.html'),
               resolve: helper.resolveFor('ngImgCrop', 'filestyle')
           })
           .state('app.form-uiselect', {
               url: '/form-uiselect',
-              templateUrl: helper.basepath('form-uiselect.html'),
+              templateUrl: helper.basepath('../../../../app/views/form-uiselect.html'),
               controller: 'uiSelectController',
               controllerAs: 'uisel',
               resolve: helper.resolveFor('ui.select')
@@ -7652,113 +7652,113 @@
           .state('app.chart-flot', {
               url: '/chart-flot',
               title: 'Chart Flot',
-              templateUrl: helper.basepath('chart-flot.html'),
+              templateUrl: helper.basepath('../../../../app/views/chart-flot.html'),
               resolve: helper.resolveFor('flot-chart','flot-chart-plugins')
           })
           .state('app.chart-radial', {
               url: '/chart-radial',
               title: 'Chart Radial',
-              templateUrl: helper.basepath('chart-radial.html'),
+              templateUrl: helper.basepath('../../../../app/views/chart-radial.html'),
               resolve: helper.resolveFor('classyloader', 'ui.knob', 'easypiechart')
           })
           .state('app.chart-js', {
               url: '/chart-js',
               title: 'Chart JS',
-              templateUrl: helper.basepath('chart-js.html'),
+              templateUrl: helper.basepath('../../../../app/views/chart-js.html'),
               resolve: helper.resolveFor('chartjs')
           })
           .state('app.chart-rickshaw', {
               url: '/chart-rickshaw',
               title: 'Chart Rickshaw',
-              templateUrl: helper.basepath('chart-rickshaw.html'),
+              templateUrl: helper.basepath('../../../../app/views/chart-rickshaw.html'),
               resolve: helper.resolveFor('angular-rickshaw')
           })
           .state('app.chart-morris', {
               url: '/chart-morris',
               title: 'Chart Morris',
-              templateUrl: helper.basepath('chart-morris.html'),
+              templateUrl: helper.basepath('../../../../app/views/chart-morris.html'),
               resolve: helper.resolveFor('morris')
           })
           .state('app.chart-chartist', {
               url: '/chart-chartist',
               title: 'Chart Chartist',
-              templateUrl: helper.basepath('chart-chartist.html'),
+              templateUrl: helper.basepath('../../../../app/views/chart-chartist.html'),
               resolve: helper.resolveFor('angular-chartist')
           })
           .state('app.table-standard', {
               url: '/table-standard',
               title: 'Table Standard',
-              templateUrl: helper.basepath('table-standard.html')
+              templateUrl: helper.basepath('../../../../app/views/table-standard.html')
           })
           .state('app.table-extended', {
               url: '/table-extended',
               title: 'Table Extended',
-              templateUrl: helper.basepath('table-extended.html')
+              templateUrl: helper.basepath('../../../../app/views/table-extended.html')
           })
           .state('app.table-datatable', {
               url: '/table-datatable',
               title: 'Table Datatable',
-              templateUrl: helper.basepath('table-datatable.html'),
+              templateUrl: helper.basepath('../../../../app/views/table-datatable.html'),
               resolve: helper.resolveFor('datatables')
           })
           .state('app.table-xeditable', {
               url: '/table-xeditable',
-              templateUrl: helper.basepath('table-xeditable.html'),
+              templateUrl: helper.basepath('../../../../app/views/table-xeditable.html'),
               resolve: helper.resolveFor('xeditable')
           })
           .state('app.table-ngtable', {
               url: '/table-ngtable',
-              templateUrl: helper.basepath('table-ngtable.html'),
+              templateUrl: helper.basepath('../../../../app/views/table-ngtable.html'),
               resolve: helper.resolveFor('ngTable', 'ngTableExport')
           })
           .state('app.table-uigrid', {
               url: '/table-uigrid',
-              templateUrl: helper.basepath('table-uigrid.html'),
+              templateUrl: helper.basepath('../../../../app/views/table-uigrid.html'),
               resolve: helper.resolveFor('ui.grid')
           })
           .state('app.table-angulargrid', {
               url: '/table-angulargrid',
-              templateUrl: helper.basepath('table-angulargrid.html'),
+              templateUrl: helper.basepath('../../../../app/views/table-angulargrid.html'),
               resolve: helper.resolveFor('angularGrid')
           })
           .state('app.timeline', {
               url: '/timeline',
               title: 'Timeline',
-              templateUrl: helper.basepath('timeline.html')
+              templateUrl: helper.basepath('../../../../app/views/timeline.html')
           })
           .state('app.calendar', {
               url: '/calendar',
               title: 'Calendar',
-              templateUrl: helper.basepath('calendar.html'),
+              templateUrl: helper.basepath('../../../../app/views/calendar.html'),
               resolve: helper.resolveFor('jquery-ui', 'jquery-ui-widgets', 'moment', 'fullcalendar')
           })
           .state('app.invoice', {
               url: '/invoice',
               title: 'Invoice',
-              templateUrl: helper.basepath('invoice.html')
+              templateUrl: helper.basepath('../../../../app/views/invoice.html')
           })
           .state('app.search', {
               url: '/search',
               title: 'Search',
-              templateUrl: helper.basepath('search.html'),
+              templateUrl: helper.basepath('../../../../app/views/search.html'),
               resolve: helper.resolveFor('moment', 'localytics.directives', 'ui.bootstrap-slider')
           })
           .state('app.todo', {
               url: '/todo',
               title: 'Todo List',
-              templateUrl: helper.basepath('todo.html'),
+              templateUrl: helper.basepath('../../../../app/views/todo.html'),
               controller: 'TodoController',
               controllerAs: 'todo'
           })
           .state('app.profile', {
               url: '/profile',
               title: 'Profile',
-              templateUrl: helper.basepath('profile.html'),
+              templateUrl: helper.basepath('../../../../app/views/profile.html'),
               resolve: helper.resolveFor('loadGoogleMapsJS', function() { return loadGoogleMaps(); }, 'ui.map')
           })
           .state('app.code-editor', {
               url: '/code-editor',
-              templateUrl: helper.basepath('code-editor.html'),
+              templateUrl: helper.basepath('../../../../app/views/code-editor.html'),
               controller: 'CodeEditorController',
               controllerAs: 'coder',
               resolve: {
@@ -7773,12 +7773,12 @@
           .state('app.template', {
               url: '/template',
               title: 'Blank Template',
-              templateUrl: helper.basepath('template.html')
+              templateUrl: helper.basepath('../../../../app/views/template.html')
           })
           .state('app.documentation', {
               url: '/documentation',
               title: 'Documentation',
-              templateUrl: helper.basepath('documentation.html'),
+              templateUrl: helper.basepath('../../../../app/views/documentation.html'),
               resolve: helper.resolveFor('flatdoc')
           })
           // Forum
@@ -7786,42 +7786,42 @@
           .state('app.forum', {
               url: '/forum',
               title: 'Forum',
-              templateUrl: helper.basepath('forum.html')
+              templateUrl: helper.basepath('../../../../app/views/forum.html')
           })
           .state('app.forum-topics', {
               url: '/forum/topics/:catid',
               title: 'Forum Topics',
-              templateUrl: helper.basepath('forum-topics.html')
+              templateUrl: helper.basepath('../../../../app/views/forum-topics.html')
           })
           .state('app.forum-discussion', {
               url: '/forum/discussion/:topid',
               title: 'Forum Discussion',
-              templateUrl: helper.basepath('forum-discussion.html')
+              templateUrl: helper.basepath('../../../../app/views/forum-discussion.html')
           })
           // Blog
           // -----------------------------------
           .state('app.blog', {
               url: '/blog',
               title: 'Blog',
-              templateUrl: helper.basepath('blog.html'),
+              templateUrl: helper.basepath('../../../../app/views/blog.html'),
               resolve: helper.resolveFor('angular-jqcloud')
           })
           .state('app.blog-post', {
               url: '/post',
               title: 'Post',
-              templateUrl: helper.basepath('blog-post.html'),
+              templateUrl: helper.basepath('../../../../app/views/blog-post.html'),
               resolve: helper.resolveFor('angular-jqcloud')
           })
           .state('app.articles', {
               url: '/articles',
               title: 'Articles',
-              templateUrl: helper.basepath('blog-articles.html'),
+              templateUrl: helper.basepath('../../../../app/views/blog-articles.html'),
               resolve: helper.resolveFor('datatables')
           })
           .state('app.article-view', {
               url: '/article/:id',
               title: 'Article View',
-              templateUrl: helper.basepath('blog-article-view.html'),
+              templateUrl: helper.basepath('../../../../app/views/blog-article-view.html'),
               resolve: helper.resolveFor('ui.select', 'textAngular')
           })
           // eCommerce
@@ -7829,24 +7829,24 @@
           .state('app.orders', {
               url: '/orders',
               title: 'Orders',
-              templateUrl: helper.basepath('ecommerce-orders.html'),
+              templateUrl: helper.basepath('../../../../app/views/ecommerce-orders.html'),
               resolve: helper.resolveFor('datatables')
           })
           .state('app.order-view', {
               url: '/order-view',
               title: 'Order View',
-              templateUrl: helper.basepath('ecommerce-order-view.html')
+              templateUrl: helper.basepath('../../../../app/views/ecommerce-order-view.html')
           })
           .state('app.products', {
               url: '/products',
               title: 'Products',
-              templateUrl: helper.basepath('ecommerce-products.html'),
+              templateUrl: helper.basepath('../../../../app/views/ecommerce-products.html'),
               resolve: helper.resolveFor('datatables')
           })
           .state('app.product-view', {
               url: '/product/:id',
               title: 'Product View',
-              templateUrl: helper.basepath('ecommerce-product-view.html')
+              templateUrl: helper.basepath('../../../../app/views/ecommerce-product-view.html')
           })
           // Mailbox
           // -----------------------------------
@@ -7854,23 +7854,23 @@
               url: '/mailbox',
               title: 'Mailbox',
               abstract: true,
-              templateUrl: helper.basepath('mailbox.html')
+              templateUrl: helper.basepath('../../../../app/views/mailbox.html')
           })
           .state('app.mailbox.folder', {
               url: '/folder/:folder',
               title: 'Mailbox',
-              templateUrl: helper.basepath('mailbox-inbox.html')
+              templateUrl: helper.basepath('../../../../app/views/mailbox-inbox.html')
           })
           .state('app.mailbox.view', {
               url : '/{mid:[0-9]{1,4}}',
               title: 'View mail',
-              templateUrl: helper.basepath('mailbox-view.html'),
+              templateUrl: helper.basepath('../../../../app/views/mailbox-view.html'),
               resolve: helper.resolveFor('ngWig')
           })
           .state('app.mailbox.compose', {
               url: '/compose',
               title: 'Mailbox',
-              templateUrl: helper.basepath('mailbox-compose.html'),
+              templateUrl: helper.basepath('../../../../app/views/mailbox-compose.html'),
               resolve: helper.resolveFor('ngWig')
           })
           //
@@ -7954,7 +7954,7 @@
           .state('app-h.dashboard_v2', {
               url: '/dashboard_v2',
               title: 'Dashboard v2',
-              templateUrl: helper.basepath('dashboard_v2.html'),
+              templateUrl: helper.basepath('../../../../app/views/dashboard_v2.html'),
               controller: 'DashboardV2Controller',
               controllerAs: 'dash2',
               resolve: helper.resolveFor('flot-chart','flot-chart-plugins')
