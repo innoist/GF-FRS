@@ -7466,16 +7466,16 @@
         $locationProvider.html5Mode(false);
 
         // defaults to dashboard
-        $urlRouterProvider.otherwise('/app/dashboard');
+        $urlRouterProvider.otherwise('/FRS/Test');
 
         //
         // Application Routes
         // -----------------------------------
         $stateProvider
           .state('app', {
-              url: '/app',
+              url: '/FRS',
               abstract: true,
-              templateUrl: helper.basepath('../../../../app/views/app.html'),
+              templateUrl: helper.basepath('../../../../app/views/FRS.html'),
               resolve: helper.resolveFor('fastclick', 'modernizr', 'icons', 'screenfull', 'animo', 'sparklines', 'slimscroll', 'classyloader', 'toaster', 'whirl')
           })
           .state('app.dashboard', {

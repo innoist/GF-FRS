@@ -436,7 +436,7 @@
     <Content Include="app\vendor\datatable-bootstrap\js\dataTables.bootstrap.js" />
     <Content Include="app\vendor\datatable-bootstrap\js\dataTables.bootstrapPagination.js" />
     <Content Include="app\views\app-h.html" />
-    <Content Include="app\views\app.html" />
+    <Content Include="app\views\FRS.html" />
     <Content Include="app\views\blog-article-view.html" />
     <Content Include="app\views\blog-articles.html" />
     <Content Include="app\views\blog-post.html" />
@@ -531,12 +531,13 @@
     <Content Include="Areas\Common\Scripts\raReport.viewModel.js" />
     <Content Include="Areas\Common\Scripts\vehicleCondition.view.js" />
     <Content Include="Areas\Common\Scripts\vehicleCondition.viewModel.js" />
-    <Content Include="Areas\FRS\Scripts\frsAppController.js" />
+    <Content Include="Areas\FRS\Scripts\frsapp.js" />
     <Content Include="Areas\FRS\Scripts\frsDataService.js" />
     <Content Include="Areas\FRS\Scripts\frsLoadController.js" />
     <Content Include="Areas\FRS\Scripts\loadMetaDataController.js" />
     <Content Include="Areas\SampleAngular\Scripts\sampleAngularAppController.js" />
     <Content Include="Areas\SampleAngular\Scripts\sampleAngularAppDataService.js" />
+    <Content Include="Areas\SampleAngular\Views\AngleTest\Test.html" />
     <Content Include="Content\agreementDeletedEmailTemplate.html" />
     <Content Include="Content\agreementOpenedEmailTemplate.html" />
     <Content Include="Content\Area.css">
@@ -2590,6 +2591,8 @@
     <Content Include="vendor\weather-icons\font\weathericons-regular-webfont.ttf" />
     <Content Include="vendor\weather-icons\font\weathericons-regular-webfont.woff" />
     <Content Include="vendor\weather-icons\font\weathericons-regular-webfont.woff2" />
+    <Content Include="Views\Shared\Partial\_SidebarPartial.cshtml" />
+    <Content Include="Views\Shared\Partial\_TopNavBarPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Api\" />
