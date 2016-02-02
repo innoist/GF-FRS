@@ -4,7 +4,7 @@
  =========================================================*/
 
 
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -12,14 +12,14 @@
         .config(routesConfig);
 
     routesConfig.$inject = ['$stateProvider', '$locationProvider', '$urlRouterProvider', 'RouteHelpersProvider'];
-    function routesConfig($stateProvider, $locationProvider, $urlRouterProvider, helper){
+    function routesConfig($stateProvider, $locationProvider, $urlRouterProvider, helper) {
 
         // Set the following to true to enable the HTML5 Mode
         // You may have to set <base> tag in index and a routing configuration in your server
         $locationProvider.html5Mode(false);
 
         // defaults to dashboard
-        $urlRouterProvider.otherwise('/app/dashboard');
+        $urlRouterProvider.otherwise('/app/Test');
 
         //
         // Application Routes
@@ -31,19 +31,25 @@
               templateUrl: helper.basepath('../../../../app/views/app.html'),
               resolve: helper.resolveFor('fastclick', 'modernizr', 'icons', 'screenfull', 'animo', 'sparklines', 'slimscroll', 'classyloader', 'toaster', 'whirl')
           })
-          .state('app.dashboard', {
-              url: '/dashboard',
-              title: 'Dashboard',
-              templateUrl: helper.basepath('../../../../app/views/dashboard.html'),
-              resolve: helper.resolveFor('flot-chart','flot-chart-plugins', 'weather-icons')
+          .state('app.Test', {
+              url: '/Test',
+              title: 'Test',
+              templateUrl: helper.basepath('../../../../app/views/Test.cshtml'),
+              resolve: helper.resolveFor('flot-chart', 'flot-chart-plugins', 'weather-icons')
           })
+            .state('app.dashboard', {
+                url: '/dashboard',
+                title: 'Dashboard',
+                templateUrl: helper.basepath('../../../../app/views/dashboard.html'),
+                resolve: helper.resolveFor('flot-chart', 'flot-chart-plugins', 'weather-icons')
+            })
           .state('app.dashboard_v2', {
               url: '/dashboard_v2',
               title: 'Dashboard v2',
               templateUrl: helper.basepath('dashboard_v2.html'),
               controller: 'DashboardV2Controller',
               controllerAs: 'dash2',
-              resolve: helper.resolveFor('flot-chart','flot-chart-plugins')
+              resolve: helper.resolveFor('flot-chart', 'flot-chart-plugins')
           })
           .state('app.dashboard_v3', {
               url: '/dashboard_v3',
@@ -51,13 +57,13 @@
               controller: 'DashboardV3Controller',
               controllerAs: 'dash3',
               templateUrl: helper.basepath('dashboard_v3.html'),
-              resolve: helper.resolveFor('flot-chart','flot-chart-plugins', 'vector-map', 'vector-map-maps')
+              resolve: helper.resolveFor('flot-chart', 'flot-chart-plugins', 'vector-map', 'vector-map-maps')
           })
           .state('app.widgets', {
               url: '/widgets',
               title: 'Widgets',
               templateUrl: helper.basepath('widgets.html'),
-              resolve: helper.resolveFor('loadGoogleMapsJS', function() { return loadGoogleMaps(); }, 'ui.map')
+              resolve: helper.resolveFor('loadGoogleMapsJS', function () { return loadGoogleMaps(); }, 'ui.map')
           })
           .state('app.buttons', {
               url: '/buttons',
@@ -113,22 +119,22 @@
               url: '/ngdialog',
               title: 'ngDialog',
               templateUrl: helper.basepath('ngdialog.html'),
-              resolve: angular.extend(helper.resolveFor('ngDialog'),{
-                tpl: function() { return { path: helper.basepath('ngdialog-template.html') }; }
+              resolve: angular.extend(helper.resolveFor('ngDialog'), {
+                  tpl: function () { return { path: helper.basepath('ngdialog-template.html') }; }
               }),
               controller: 'DialogIntroCtrl'
           })
           .state('app.sweetalert', {
-            url: '/sweetalert',
-            title: 'SweetAlert',
-            templateUrl: helper.basepath('sweetalert.html'),
-            resolve: helper.resolveFor('oitozero.ngSweetAlert')
+              url: '/sweetalert',
+              title: 'SweetAlert',
+              templateUrl: helper.basepath('sweetalert.html'),
+              resolve: helper.resolveFor('oitozero.ngSweetAlert')
           })
           .state('app.tour', {
-            url: '/tour',
-            title: 'Tour',
-            templateUrl: helper.basepath('tour.html'),
-            resolve: helper.resolveFor('bm.bsTour')
+              url: '/tour',
+              title: 'Tour',
+              templateUrl: helper.basepath('tour.html'),
+              resolve: helper.resolveFor('bm.bsTour')
           })
           .state('app.interaction', {
               url: '/interaction',
@@ -161,7 +167,7 @@
               url: '/maps-google',
               title: 'Maps Google',
               templateUrl: helper.basepath('maps-google.html'),
-              resolve: helper.resolveFor('loadGoogleMapsJS', function() { return loadGoogleMaps(); }, 'ui.map')
+              resolve: helper.resolveFor('loadGoogleMapsJS', function () { return loadGoogleMaps(); }, 'ui.map')
           })
           .state('app.maps-vector', {
               url: '/maps-vector',
@@ -213,13 +219,13 @@
               url: '/form-extended',
               title: 'Form Extended',
               templateUrl: helper.basepath('form-extended.html'),
-              resolve: helper.resolveFor('colorpicker.module', 'codemirror', 'moment', 'taginput','inputmask','localytics.directives', 'ui.bootstrap-slider', 'ngWig', 'filestyle', 'textAngular')
+              resolve: helper.resolveFor('colorpicker.module', 'codemirror', 'moment', 'taginput', 'inputmask', 'localytics.directives', 'ui.bootstrap-slider', 'ngWig', 'filestyle', 'textAngular')
           })
           .state('app.form-validation', {
               url: '/form-validation',
               title: 'Form Validation',
               templateUrl: helper.basepath('form-validation.html'),
-              resolve: helper.resolveFor('ui.select', 'taginput','inputmask','localytics.directives')
+              resolve: helper.resolveFor('ui.select', 'taginput', 'inputmask', 'localytics.directives')
           })
           .state('app.form-parsley', {
               url: '/form-parsley',
@@ -260,7 +266,7 @@
               url: '/chart-flot',
               title: 'Chart Flot',
               templateUrl: helper.basepath('chart-flot.html'),
-              resolve: helper.resolveFor('flot-chart','flot-chart-plugins')
+              resolve: helper.resolveFor('flot-chart', 'flot-chart-plugins')
           })
           .state('app.chart-radial', {
               url: '/chart-radial',
@@ -361,7 +367,7 @@
               url: '/profile',
               title: 'Profile',
               templateUrl: helper.basepath('profile.html'),
-              resolve: helper.resolveFor('loadGoogleMapsJS', function() { return loadGoogleMaps(); }, 'ui.map')
+              resolve: helper.resolveFor('loadGoogleMapsJS', function () { return loadGoogleMaps(); }, 'ui.map')
           })
           .state('app.code-editor', {
               url: '/code-editor',
@@ -469,7 +475,7 @@
               templateUrl: helper.basepath('mailbox-inbox.html')
           })
           .state('app.mailbox.view', {
-              url : '/{mid:[0-9]{1,4}}',
+              url: '/{mid:[0-9]{1,4}}',
               title: 'View mail',
               templateUrl: helper.basepath('mailbox-view.html'),
               resolve: helper.resolveFor('ngWig')
@@ -501,7 +507,7 @@
           .state('app.multilevel.level1.level2', {
               url: '/level2',
               title: 'Multilevel - Level2',
-              template: '<div class="lead ba p">View @ Level 2'  + '<div ui-view=""></div> </div>'
+              template: '<div class="lead ba p">View @ Level 2' + '<div ui-view=""></div> </div>'
           })
           .state('app.multilevel.level1.level2.level3', {
               url: '/level3',
@@ -520,7 +526,7 @@
               url: '/page',
               templateUrl: 'app/pages/page.html',
               resolve: helper.resolveFor('modernizr', 'icons'),
-              controller: ['$rootScope', function($rootScope) {
+              controller: ['$rootScope', function ($rootScope) {
                   $rootScope.app.layout.isBoxed = false;
               }]
           })
@@ -555,7 +561,7 @@
           .state('app-h', {
               url: '/app-h',
               abstract: true,
-              templateUrl: helper.basepath( 'app-h.html' ),
+              templateUrl: helper.basepath('app-h.html'),
               resolve: helper.resolveFor('fastclick', 'modernizr', 'icons', 'screenfull', 'animo', 'sparklines', 'slimscroll', 'classyloader', 'toaster', 'whirl')
           })
           .state('app-h.dashboard_v2', {
@@ -564,25 +570,25 @@
               templateUrl: helper.basepath('dashboard_v2.html'),
               controller: 'DashboardV2Controller',
               controllerAs: 'dash2',
-              resolve: helper.resolveFor('flot-chart','flot-chart-plugins')
+              resolve: helper.resolveFor('flot-chart', 'flot-chart-plugins')
           })
-          //
-          // CUSTOM RESOLVES
-          //   Add your own resolves properties
-          //   following this object extend
-          //   method
-          // -----------------------------------
-          // .state('app.someroute', {
-          //   url: '/some_url',
-          //   templateUrl: 'path_to_template.html',
-          //   controller: 'someController',
-          //   resolve: angular.extend(
-          //     helper.resolveFor(), {
-          //     // YOUR RESOLVES GO HERE
-          //     }
-          //   )
-          // })
-          ;
+        //
+        // CUSTOM RESOLVES
+        //   Add your own resolves properties
+        //   following this object extend
+        //   method
+        // -----------------------------------
+        // .state('app.someroute', {
+        //   url: '/some_url',
+        //   templateUrl: 'path_to_template.html',
+        //   controller: 'someController',
+        //   resolve: angular.extend(
+        //     helper.resolveFor(), {
+        //     // YOUR RESOLVES GO HERE
+        //     }
+        //   )
+        // })
+        ;
 
     } // routesConfig
 
