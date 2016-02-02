@@ -17,7 +17,7 @@
 
           // SPLINE
           // ----------------------------------- 
-          vm.splineData = ChartData.load('server/chart/spline.json');
+          vm.splineData = ChartData.load('../../server/chart/spline.json');
           vm.splineOptions = {
               series: {
                   lines: {

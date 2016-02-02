@@ -6,8 +6,7 @@ namespace FRS.Interfaces.IServices
     public interface  IMT940LoadService
     {
         IEnumerable<MT940Load> GetAll();
-        bool SaveLoad(MT940Load load);
-        bool UpdateLoad(MT940Load load);
-        void DeleteLoad(MT940Load load);
+        bool SaveMT940Load(MT940Load mt940Load);
+        void DeleteMT940Load(long mt940LoadId);
     }
 }

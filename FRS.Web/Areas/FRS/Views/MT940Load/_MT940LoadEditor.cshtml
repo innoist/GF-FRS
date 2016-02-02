@@ -1,7 +1,7 @@
 ﻿<div id="div2" ng-show="IsShowEdit">
     <div class="well col-md-12">
         <div class="float-left detailsContainer">
-            <h3 class="page-header detailsHeaderSection float-left">MT940 Load Detail</h3>
+            <h3 class="page-header detailsHeaderSection float-left">Load Data</h3>
             <button class="btn  btn-info" id="saveLoadbtn" ng-disabled="!loadForm.$dirty" ng-click="saveMT940Detail()">@FRS.Web.Resources.Shared.Common.Save</button>
             <button class="btn  btn-default" id="cancelLoadbtn" ng-click="onEditCancel()">@FRS.Web.Resources.Shared.Common.Cancel</button>
         </div>
@@ -13,15 +13,28 @@
                         <option value="">Select</option>
                     </select>
                 </div>
-                <div ng-show="IsSourceTypeFile">
+                <div ng-show="IsLoadTypeMT940">
                     <label class="control-label h5 col-sm-2">Upload File</label>
                     <div class="col-md-3">
                         <input class="form-control" type="file" onchange="angular.element(this).scope().readPhotoURL(this)" />
                     </div>
                 </div>
             </div>
-            <div class="form-group">
-                
+            <div class="form-group" ng-show="IsLoadTypeMT940">
+                <label class="control-label h5 col-sm-2">Load Type</label>
+                <div class="col-md-3">
+                    <input class="form-control" type="text" ng-model="LoadTypeName" ng-readonly="true" />
+                </div>
+                <label class="control-label h5 col-sm-2">Source</label>
+                <div class="col-md-3">
+                    <input class="form-control" type="text" ng-model="SourceName" ng-readonly="true" />
+                </div>
+            </div>
+            <div class="form-group" ng-show="IsLoadTypeMT940">
+                <label class="control-label h5 col-sm-2">Last Modified</label>
+                <div class="col-md-3">
+                    <input class="form-control" type="text" ng-model="LastModified" ng-readonly="true" />
+                </div>
             </div>
         </form>
     </div>

@@ -17,7 +17,7 @@ namespace FRS.Models.DomainModels
         public DateTime CreatedOn { get; set; }
         public string ModifiedBy { get; set; }
         public DateTime ModifiedOn { get; set; }
-        public int CustomerStatementCount { get; set; }
+        public int? CustomerStatementCount { get; set; }
         public long FileContentId { get; set; }
 
         public virtual FileContent FileContent { get; set; }

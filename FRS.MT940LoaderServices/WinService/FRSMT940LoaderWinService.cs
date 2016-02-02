@@ -3,8 +3,9 @@ using System.Reflection;
 using System.ServiceModel;
 using System.ServiceProcess;
 using System.Threading;
+using FRS.MT940LoaderService.WCF;
 
-namespace FRS.MT940Loader.Services
+namespace FRS.MT940LoaderService.WinService
 {
     partial class FRSMT940LoaderWinService : ServiceBase
     {

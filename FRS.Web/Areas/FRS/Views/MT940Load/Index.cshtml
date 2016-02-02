@@ -7,7 +7,7 @@
 <div id="mainDiv" ng-app="FRSApp" ng-controller="FRSLoadController">
     <div id="div1" ng-show="!IsShowEdit">
         <div class="row">
-            <h3 class="page-header float-left pageHeaderSection">MT940 Loads</h3>
+            <h3 class="page-header float-left pageHeaderSection">Load Data</h3>
             <div class="header-toolsSection">
                 <a href="#" class="label label-default create-new-icon" ng-click="showEdit()" title="@FRS.Web.Resources.Shared.Common.CreateNew">@FRS.Web.Resources.Shared.Common.New</a>
             </div>
@@ -35,8 +35,6 @@
                         </tr>
                     </tbody>
                 </table>
-                <table datatable="" dt-options="dtOptions" dt-columns="dtColumns"></table>
-                <table id="foobar" datatable dt-options="dtOptions" dt-columns="dtColumns" dt-instance="dtInstance"></table>
             </div>
         </div>
     </div>

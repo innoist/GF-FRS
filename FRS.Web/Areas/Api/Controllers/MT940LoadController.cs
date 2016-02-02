@@ -1,12 +1,16 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
+using System.Net;
+using System.Web;
 using System.Web.Http;
 using FRS.Interfaces.IServices;
+using FRS.Models.Common;
+using FRS.Models.DomainModels;
 using FRS.Models.ResponseModels;
 using FRS.Web.ModelMappers;
-using FRS.Web.Models;
 using FRS.Web.Models.MT940Load;
+using Load = FRS.Web.Models.Load;
 
 namespace FRS.Web.Areas.Api.Controllers
 {
@@ -33,7 +37,6 @@ namespace FRS.Web.Areas.Api.Controllers
         #region Public
 
         #region Get
-        [HttpGet]
         public BaseDataMT940Load Get()
         {
             MT940LoadBaseDataResponse response = loadService.GetBaseDataResponse();
@@ -48,24 +51,22 @@ namespace FRS.Web.Areas.Api.Controllers
         #endregion
 
         #region Post
-        [HttpPost]
         public bool Post(Load load)
         {
-            //if (!ModelState.IsValid)
-            //{
-            //    throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
-            //}
+            if (!ModelState.IsValid)
+            {
+                throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
+            }
             if (loadService != null)
             {
                 try
                 {
-                    File.WriteAllBytes(@"D:\Ammar\Office Projects\GF-FRS\FRS.Web\Files\Getting Started.pdf", load.ImageUrlBytes);
-                    return true;
-                    //var loadToSave = load.CreateFromClientToServer();
-                    //if (loadService.SaveLoad(loadToSave))
-                    //{
-                    //    return true;
-                    //}
+                    //return true;
+                    var loadToSave = load.CreateFromClientToServer();
+                    if (loadService.SaveLoad(loadToSave))
+                    {
+                        return true;
+                    }
                 }
                 catch (Exception)
                 {
@@ -98,9 +99,9 @@ namespace FRS.Web.Areas.Api.Controllers
 
         #region Get File Type
 
-        public bool Get(long metaDataId)
+        public LoadMetaDataForLoad Get(long metaDataId)
         {
-            return metaDataService.IsSourceFileType(metaDataId);
+            return metaDataService.IsLoadTypeMT940(metaDataId);
         }
         #endregion
 

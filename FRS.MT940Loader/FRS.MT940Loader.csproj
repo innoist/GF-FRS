@@ -45,6 +45,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
@@ -74,29 +75,32 @@
     <Compile Include="Currency.cs">
       <DependentUpon>FRSMT940LoaderModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="DatabaseHandler.cs" />
+    <Compile Include="Handlers\DatabaseHandler.cs" />
     <Compile Include="Employee.cs">
       <DependentUpon>FRSMT940LoaderModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Fault\MT940LoaderFault.cs" />
+    <Compile Include="Faults\FaultClasses.cs" />
+    <Compile Include="Faults\MT940LoaderFault.cs" />
     <Compile Include="FileContent.cs">
       <DependentUpon>FRSMT940LoaderModel.tt</DependentUpon>
     </Compile>
     <Compile Include="FRSMT940LoaderModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
       <DependentUpon>FRSMT940LoaderModel.Context.tt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
     </Compile>
     <Compile Include="FRSMT940LoaderModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
       <DependentUpon>FRSMT940LoaderModel.tt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
     </Compile>
     <Compile Include="FRSMT940LoaderModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
       <DependentUpon>FRSMT940LoaderModel.edmx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
     </Compile>
+    <Compile Include="Helpers\DotNetHelper.cs" />
+    <Compile Include="Helpers\LoaderConstants.cs" />
     <Compile Include="Load.cs">
       <DependentUpon>FRSMT940LoaderModel.tt</DependentUpon>
     </Compile>
@@ -104,12 +108,6 @@
       <DependentUpon>FRSMT940LoaderModel.tt</DependentUpon>
     </Compile>
     <Compile Include="LoadType.cs">
-      <DependentUpon>FRSMT940LoaderModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Menu.cs">
-      <DependentUpon>FRSMT940LoaderModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="MenuRight.cs">
       <DependentUpon>FRSMT940LoaderModel.tt</DependentUpon>
     </Compile>
     <Compile Include="MT940Balance.cs">
@@ -125,8 +123,7 @@
       <DependentUpon>FRSMT940LoaderModel.tt</DependentUpon>
     </Compile>
     <Compile Include="MT940Loader.cs" />
-    <Compile Include="Fault\FaultClasses.cs" />
-    <Compile Include="MT940LoadHandler.cs" />
+    <Compile Include="Handlers\MT940LoadHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Source.cs">
       <DependentUpon>FRSMT940LoaderModel.tt</DependentUpon>
@@ -134,20 +131,10 @@
     <Compile Include="Status.cs">
       <DependentUpon>FRSMT940LoaderModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="sysdiagram.cs">
-      <DependentUpon>FRSMT940LoaderModel.tt</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EntityDeploy Include="FRSMT940LoaderModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>FRSMT940LoaderModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
     <None Include="App.config">
       <SubType>Designer</SubType>
-    </None>
-    <None Include="FRSMT940LoaderModel.edmx.diagram">
-      <DependentUpon>FRSMT940LoaderModel.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Samples\KSA\KSA Bank Statement CSV File.xlsx" />
@@ -155,13 +142,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="FRSMT940LoaderModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>FRSMT940LoaderModel.edmx</DependentUpon>
-      <LastGenOutput>FRSMT940LoaderModel.Context.cs</LastGenOutput>
+      <Generator>TextTemplatingFileGenerator</Generator>
     </Content>
     <Content Include="FRSMT940LoaderModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>FRSMT940LoaderModel.edmx</DependentUpon>
+      <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>FRSMT940LoaderModel.cs</LastGenOutput>
     </Content>
     <Content Include="Samples\KSA\940SampleSHB.txt" />
@@ -177,6 +163,13 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <EntityDeploy Include="FRSMT940LoaderModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>FRSMT940LoaderModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

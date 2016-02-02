@@ -1,7 +1,7 @@
-﻿using FRS.MT940Loader.Services.InputOutput;
-using System.ServiceModel;
+﻿using System.ServiceModel;
+using FRS.MT940Loader.Services.InputOutput;
 
-namespace FRS.MT940Loader.Services
+namespace FRS.MT940LoaderService.WCF
 {
     [ServiceContract(Namespace = "http://www.gulffinance.com.sa/frs/v1/input")]
     public interface IFRSMT940LoaderWCFService

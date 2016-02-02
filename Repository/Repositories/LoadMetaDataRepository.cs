@@ -1,7 +1,10 @@
 ﻿using System.Collections.Generic;
+using System.Configuration;
 using System.Data.Entity;
+using System.Globalization;
 using System.Linq;
 using FRS.Interfaces.Repository;
+using FRS.Models.Common;
 using FRS.Models.Common.DropDown;
 using FRS.Models.DomainModels;
 using FRS.Repository.BaseRepository;
@@ -30,14 +33,21 @@ namespace FRS.Repository.Repositories
             });
         }
 
-        public bool IsSourceFileType(long loadMetaDataId)
+        public LoadMetaDataForLoad IsLoadTypeMT940(long loadMetaDataId)
         {
+            string loadType = ConfigurationManager.AppSettings["LoadTypeFile"];
             var metaData = DbSet.FirstOrDefault(x => x.LoadMetaDataId == loadMetaDataId);
             if (metaData != null && metaData.Source != null)
             {
-                return metaData.Source.Name == "File" || metaData.Source.Name == "file";
+                return new LoadMetaDataForLoad
+                {
+                    IsLoadTypeMT940 = metaData.LoadType.Name == loadType,
+                    LoadType = metaData.LoadType.Name,
+                    SourceName = metaData.Source.Name,
+                    LastModified = metaData.ModifiedOn.ToString("dd/MM/yyyy", new CultureInfo("en"))
+                };
             }
-            return false;
+            return null;
         }
 
         #endregion
