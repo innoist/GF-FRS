@@ -109,6 +109,7 @@
     <Compile Include="Common\DropDown\DropDownModel.cs" />
     <Compile Include="Common\HelperIcon.cs" />
     <Compile Include="Common\ClaimParamters.cs" />
+    <Compile Include="Common\LoadMetaDataForLoad.cs" />
     <Compile Include="DomainModels\Currency.cs" />
     <Compile Include="DomainModels\Employee.cs" />
     <Compile Include="DomainModels\FileContent.cs" />

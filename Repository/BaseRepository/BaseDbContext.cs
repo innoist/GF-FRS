@@ -128,6 +128,7 @@ namespace FRS.Repository.BaseRepository
         public DbSet<Source> Sources { get; set; }
         public DbSet<Currency> Currencies { get; set; }
         public DbSet<Status> Statuses { get; set; }
+        public DbSet<FileContent> FileContents { get; set; }
         /// <summary>
         /// Execute store procedure for creating d
         /// </summary>

@@ -16,11 +16,12 @@ namespace FRS.Web.Models
         public DateTime CreatedOn { get; set; }
         public string ModifiedBy { get; set; }
         public DateTime ModifiedOn { get; set; }
+
         public string LoadTypeName { get; set; }
         public string MetaDataName { get; set; }
-        public string MT940Detail { get; set; }
-        public long LoadMetadataId { get; set; }
         public string Attachment { get; set; }
+        public string FileName { get; set; }
+        public string FileExtension { get; set; }
         public byte[] ImageUrlBytes
         {
             get

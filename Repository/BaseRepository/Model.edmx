@@ -218,7 +218,7 @@
           <Property Name="FileName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="FileExtension" Type="nvarchar" MaxLength="10" Nullable="false" />
           <Property Name="StatusId" Type="tinyint" Nullable="false" />
-          <Property Name="CustomerStatementCount" Type="int" Nullable="false" />
+          <Property Name="CustomerStatementCount" Type="int" />
           <Property Name="FileContentId" Type="bigint" Nullable="false" />
           <Property Name="CreatedBy" Type="nvarchar" MaxLength="128" Nullable="false" />
           <Property Name="CreatedOn" Type="datetime" Nullable="false" />
@@ -1040,7 +1040,7 @@
           <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="ModifiedBy" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="ModifiedOn" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="CustomerStatementCount" Type="Int32" Nullable="false" />
+          <Property Name="CustomerStatementCount" Type="Int32" />
           <Property Name="FileContentId" Type="Int64" Nullable="false" />
           <NavigationProperty Name="FileContent" Relationship="angularModel.FK_MT940Load_FileContent" FromRole="MT940Load" ToRole="FileContent" />
           <NavigationProperty Name="Loads" Relationship="angularModel.FK_Load_MT940Load" FromRole="MT940Load" ToRole="Load" />

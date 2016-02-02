@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using FRS.Models.Common;
 using FRS.Models.DomainModels;
 using FRS.Models.ResponseModels;
 
@@ -12,6 +13,6 @@ namespace FRS.Interfaces.IServices
         void DeleteMetaData(long loadMetaData);
         BaseDataLoadMetaDataResponse GetBaseDataResponse();
         LoadMetaData SaveMetaData(LoadMetaData loadMetaData);
-        bool IsSourceFileType(long loadMetaDataId);
+        LoadMetaDataForLoad IsLoadTypeMT940(long loadMetaDataId);
     }
 }

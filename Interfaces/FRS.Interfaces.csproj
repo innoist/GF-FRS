@@ -53,6 +53,7 @@
   <ItemGroup>
     <Compile Include="IServices\IClaimsSecurityService.cs" />
     <Compile Include="IServices\IEmployeeService.cs" />
+    <Compile Include="IServices\IFileContentService.cs" />
     <Compile Include="IServices\IMT940BalanceService.cs" />
     <Compile Include="IServices\ILoadMetaDataService.cs" />
     <Compile Include="IServices\ILoadService.cs" />
@@ -64,6 +65,7 @@
     <Compile Include="IServices\IWebApiAuthenticationService.cs" />
     <Compile Include="Repository\ICurrencyRepository.cs" />
     <Compile Include="Repository\IEmployeeRepository.cs" />
+    <Compile Include="Repository\IFileContentRepository.cs" />
     <Compile Include="Repository\ILoadMetaDataRepository.cs" />
     <Compile Include="Repository\ILoadRepository.cs" />
     <Compile Include="Repository\ILoadTypeRepository.cs" />

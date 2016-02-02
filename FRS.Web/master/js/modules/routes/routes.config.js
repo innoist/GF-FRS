@@ -31,13 +31,7 @@
               templateUrl: helper.basepath('../../../../app/views/app.html'),
               resolve: helper.resolveFor('fastclick', 'modernizr', 'icons', 'screenfull', 'animo', 'sparklines', 'slimscroll', 'classyloader', 'toaster', 'whirl')
           })
-          .state('app.Test', {
-              url: '/Test',
-              title: 'Test',
-              templateUrl: helper.basepath('../../../../app/views/Test.cshtml'),
-              resolve: helper.resolveFor('flot-chart', 'flot-chart-plugins', 'weather-icons')
-          })
-            .state('app.dashboard', {
+          .state('app.dashboard', {
                 url: '/dashboard',
                 title: 'Dashboard',
                 templateUrl: helper.basepath('../../../../app/views/dashboard.html'),
