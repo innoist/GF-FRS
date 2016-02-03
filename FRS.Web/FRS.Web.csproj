@@ -482,6 +482,8 @@
     <Content Include="app\views\infinite-scroll.html" />
     <Content Include="app\views\interaction.html" />
     <Content Include="app\views\invoice.html" />
+    <Content Include="app\views\Load.html" />
+    <Content Include="app\views\LoadMetaData.html" />
     <Content Include="app\views\localization.html" />
     <Content Include="app\views\mailbox-compose.html" />
     <Content Include="app\views\mailbox-inbox.html" />

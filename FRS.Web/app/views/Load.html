@@ -1,0 +1,126 @@
+﻿<div class="panel panel-default">
+    <div class="panel-body">
+        <form form-wizard="" steps="4" novalidate="" ng-submit="alertSubmit()">
+            <div class="form-wizard wizard-horizontal">
+                <!-- START wizard steps indicator-->
+                <ol class="row">
+                    <li ng-class="{'active':wizard.active(1)}" ng-click="wizard.go(1)" class="col-md-3">
+                        <h4>Load</h4>
+                        <small class="text-muted">Duis volutpat nunc at ligula tincidunt non aliquam.</small>
+                    </li>
+                    <li ng-class="{'active':wizard.active(2)}" ng-click="wizard.go(2)" class="col-md-3">
+                        <h4>MetaData</h4>
+                        <small class="text-muted">Nulla pharetra imperdiet sapien ac faucibus.</small>
+                    </li>
+                    <li ng-class="{'active':wizard.active(3)}" ng-click="wizard.go(3)" class="col-md-3">
+                        <h4>Confirmation</h4>
+                        <small class="text-muted">Nullam sit amet magna vestibulum libero.</small>
+                    </li>
+                </ol>
+                <!-- END wizard steps indicator-->
+                <!-- START Wizard Step inputs -->
+                <div ng-show="wizard.active(1)">
+                    <fieldset>
+                        <legend>Load</legend>
+                        <!-- START row -->
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Name</label>
+                                    <div class="controls">
+                                        <input type="text" name="loadname" placeholder="Load Name" class="form-control" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END row -->
+                    </fieldset>
+                    <ul class="pager">
+                        <li class="next">
+                            <a href="#" ng-click="wizard.go(2)">Next <span>&rarr;</span></a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- END Wizard Step inputs -->
+                <!-- START Wizard Step inputs -->
+                <div ng-show="wizard.active(2)">
+                    <fieldset>
+                        <legend>MetaData</legend>
+                        <!-- START row -->
+                        <div class="row">
+                            <div class="col-md-3">
+                                <!-- START box placeholder-->
+                                <div class="box-placeholder">
+                                    <!-- START button group-->
+                                    <div uib-dropdown="dropdown" class="btn-group">
+                                        <button uib-dropdown-toggle="" class="btn btn-default">
+                                            flipInX <b class="caret"></b>
+                                        </button>
+                                        <ul role="menu" class="dropdown-menu animated flipInX">
+                                            <li>
+                                                <a href="#">Action</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">Another action</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">Something else here</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">Separated link</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <!-- END button group-->
+                                </div>
+                                <!-- END box placeholder-->
+                            </div>
+                        </div>
+                        <!-- END row -->
+                    </fieldset>
+                    <ul class="pager">
+                        <li class="previous">
+                            <a href="#" ng-click="wizard.go(1)">
+                                <span>&larr; Previous</span>
+                            </a>
+                        </li>
+                        <li class="next">
+                            <a href="#" ng-click="wizard.go(3)">Next <span>&rarr;</span></a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- END Wizard Step inputs -->
+                <!-- START Wizard Step inputs -->
+                <div ng-show="wizard.active(3)">
+                    <fieldset>
+                        <legend>Contact</legend>
+                        <!-- START row -->
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Email</label>
+                                    <input type="text" name="email" placeholder="john@snow.com" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Phone</label>
+                                    <input type="text" name="phone" placeholder="11-2345-6789" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END row -->
+                    </fieldset>
+                    <ul class="pager">
+                        <li class="previous">
+                            <a href="#" ng-click="wizard.go(2)">
+                                <span>&larr; Previous</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- END Wizard Step inputs -->
+            </div>
+        </form>
+    </div>
+</div>

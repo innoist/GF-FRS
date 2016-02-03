@@ -40,11 +40,18 @@
             'app.tables',
             'app.extras',
             'app.mailbox',
-            'app.utils'
+            'app.utils',
+            'app.LoadMetaData'
         ]);
 })();
 
 
+(function () {
+    'use strict';
+
+    angular
+        .module('app.LoadMetaData', []);
+})();
 (function () {
     'use strict';
 
@@ -7466,7 +7473,7 @@
         $locationProvider.html5Mode(false);
 
         // defaults to dashboard
-        $urlRouterProvider.otherwise('/FRS/Test');
+        $urlRouterProvider.otherwise('/FRS/LoadMetaData');
 
         //
         // Application Routes
@@ -7484,11 +7491,11 @@
               templateUrl: helper.basepath('../../../../app/views/dashboard.html'),
               resolve: helper.resolveFor('flot-chart', 'flot-chart-plugins', 'weather-icons')
           })
-            .state('app.Test', {
-                url: '/Test',
-                title: 'Test',
-                templateUrl: helper.basepath('../../../../app/views/Test.html'),
-                controller: 'DashboardV2Controller',
+            .state('app.LoadMetaData', {
+                url: '/LoadMetaData',
+                title: 'Load MetaData',
+                templateUrl: helper.basepath('../../../../app/views/LoadMetaData.html'),
+                controller: 'LoadMetaDataController',
             })
           .state('app.dashboard_v2', {
               url: '/dashboard_v2',
@@ -7574,13 +7581,13 @@
           .state('app.sweetalert', {
               url: '/sweetalert',
               title: 'SweetAlert',
-            templateUrl: helper.basepath('../../../../app/views/sweetalert.html'),
+              templateUrl: helper.basepath('../../../../app/views/sweetalert.html'),
               resolve: helper.resolveFor('oitozero.ngSweetAlert')
           })
           .state('app.tour', {
               url: '/tour',
               title: 'Tour',
-            templateUrl: helper.basepath('../../../../app/views/tour.html'),
+              templateUrl: helper.basepath('../../../../app/views/tour.html'),
               resolve: helper.resolveFor('bm.bsTour')
           })
           .state('app.interaction', {
@@ -8098,6 +8105,69 @@
 
     }
 
+})();
+
+/**=========================================================
+ * Module: load meta data
+ * Load Meta Data view
+ =========================================================*/
+
+(function () {
+    'use strict';
+
+    angular
+        .module('app.LoadMetaData')
+        .controller('LoadMetaDataController', LoadMetaDataController);
+
+    LoadMetaDataController.$inject = ['$http', '$rootScope', '$scope', '$state', 'LoadMetaDataService'];
+
+    function LoadMetaDataController($http, $rootScope, $scope, $state, LoadMetaDataService) {
+        $scope.Name = "Ammar";
+
+        $scope.GetOnLoad = function() {
+            LoadMetaDataService.getLoadMetaData(onSuccess);
+            function onSuccess(data) {
+                $scope.loadMetaDataList = data.LoadMetaDatas;
+                $scope.LoadTypes = data.LoadTypes;
+                $scope.Sources = data.Sources;
+                $scope.Currencies = data.Currencies;
+                $scope.Statuses = data.Statuses;
+            }
+        }
+
+        $scope.GetOnLoad();
+    }
+})();
+
+/**=========================================================
+ * Module: load meta data
+ * Load Meta Data service
+ =========================================================*/
+
+(function () {
+    'use strict';
+
+    angular
+        .module('app.LoadMetaData')
+        .service('LoadMetaDataService', LoadMetaDataService);
+
+    LoadMetaDataService.$inject = ['$http'];
+    function LoadMetaDataService($http) {
+        this.getLoadMetaData = getLoadMetaData;
+
+        ////////////////
+
+        function getLoadMetaData(onReady, onError) {
+            var urlMetaData = '/api/LoadMetaData';
+
+            onError = onError || function () { alert('Failure loading Meta Data'); };
+
+            $http
+              .get(urlMetaData)
+              .success(onReady)
+              .error(onError);
+        }
+    }
 })();
 
 /**=========================================================
@@ -8972,10 +9042,8 @@
         .module('app.sidebar')
         .controller('SidebarController', SidebarController);
 
-    SidebarController.$inject = ['$http','$rootScope', '$scope', '$state', 'SidebarLoader', 'Utils'];
+    SidebarController.$inject = ['$http', '$rootScope', '$scope', '$state', 'SidebarLoader', 'Utils'];
     function SidebarController($http, $rootScope, $scope, $state, SidebarLoader, Utils) {
-        debugger;
-        $http.get("api/Employee");
         activate();
 
         ////////////////
