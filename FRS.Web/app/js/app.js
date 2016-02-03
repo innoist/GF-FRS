@@ -1497,7 +1497,7 @@
 
             // BAR
             // -----------------------------------
-            vm.barData = ChartData.load('server/chart/bar.json');
+            vm.barData = ChartData.load('server/chart/bar.js');
             vm.barOptions = {
                 series: {
                     bars: {
@@ -1531,7 +1531,7 @@
 
             // BAR STACKED
             // -----------------------------------
-            vm.barStackeData = ChartData.load('server/chart/barstacked.json');
+            vm.barStackeData = ChartData.load('server/chart/barstacked.js');
             vm.barStackedOptions = {
                 series: {
                     stack: true,
@@ -1568,7 +1568,7 @@
 
             // SPLINE
             // -----------------------------------
-            vm.splineData = ChartData.load('server/chart/spline.json');
+            vm.splineData = ChartData.load('server/chart/spline.js');
             vm.splineOptions = {
                 series: {
                     lines: {
@@ -1613,7 +1613,7 @@
 
             // AREA
             // -----------------------------------
-            vm.areaData = ChartData.load('server/chart/area.json');
+            vm.areaData = ChartData.load('server/chart/area.js');
             vm.areaOptions = {
                 series: {
                     lines: {
@@ -1652,7 +1652,7 @@
 
             // LINE
             // -----------------------------------
-            vm.lineData = ChartData.load('server/chart/line.json');
+            vm.lineData = ChartData.load('server/chart/line.js');
             vm.lineOptions = {
                 series: {
                     lines: {
@@ -1709,7 +1709,7 @@
                 "data": 120
             }];
             // Direct data temporarily added until fix: https://github.com/flot/flot/pull/1462
-            // ChartData.load('server/chart/pie.json');
+            // ChartData.load('server/chart/pie.js');
 
             vm.pieOptions = {
                 series: {
@@ -1763,7 +1763,7 @@
                 }
             ];
             // Direct data temporarily added until fix: https://github.com/flot/flot/pull/1462
-            // ChartData.load('server/chart/donut.json');
+            // ChartData.load('server/chart/donut.js');
 
             vm.donutOptions = {
                 series: {
@@ -2612,7 +2612,7 @@
 
             // SPLINE
             // ----------------------------------- 
-            vm.splineData = ChartData.load('server/chart/spline.json');
+            vm.splineData = ChartData.load('server/chart/spline.js');
             vm.splineOptions = {
                 series: {
                     lines: {
@@ -3556,7 +3556,7 @@
                 vm.doing_async = true;
 
                 // Request tree data via $resource
-                var remoteTree = $resource('server/treedata.json');
+                var remoteTree = $resource('server/treedata.js');
 
                 return remoteTree.get(function (res) {
 
@@ -4270,7 +4270,7 @@
     LoadTreeService.$inject = ['$resource'];
     function LoadTreeService($resource) {
         // Loads the list of files to populate the treeview
-        return $resource('server/editor/filetree.json');
+        return $resource('server/editor/filetree.js');
     }
 
 })();
@@ -4889,7 +4889,7 @@
             vm.groups = [];
 
             vm.loadGroups = function () {
-                return vm.groups.length ? null : $http.get('server/xeditable-groups.json').success(function (data) {
+                return vm.groups.length ? null : $http.get('server/xeditable-groups.js').success(function (data) {
                     vm.groups = data;
                 });
             };
@@ -4936,7 +4936,7 @@
 
             // Tags inputs
             // ----------------------------------- 
-            var Cities = $resource('server/cities.json', {}, actions);
+            var Cities = $resource('server/cities.js', {}, actions);
 
             Cities.get(function (data) {
 
@@ -4959,7 +4959,7 @@
             // Chosen data
             // ----------------------------------- 
 
-            var States = $resource('server/chosen-states.json', {}, { 'query': { method: 'GET', isArray: true } });
+            var States = $resource('server/chosen-states.js', {}, { 'query': { method: 'GET', isArray: true } });
 
             vm.states = States.query();
 
@@ -5983,7 +5983,7 @@
         ////////////////
 
         function readMails() {
-            var path = 'server/mails.json';
+            var path = 'server/mails.js';
             return $http.get(path).then(function (resp) {
                 return resp.data.mails;
             });
@@ -7487,7 +7487,8 @@
             .state('app.Test', {
                 url: '/Test',
                 title: 'Test',
-                templateUrl: helper.basepath('../../../../app/views/Test.html')
+                templateUrl: helper.basepath('../../../../app/views/Test.html'),
+                controller: 'DashboardV2Controller',
             })
           .state('app.dashboard_v2', {
               url: '/dashboard_v2',
@@ -8188,7 +8189,7 @@
             // Get the data from SERVER
             //-----------------------------
 
-            $http.get('server/ag-owinners.json')
+            $http.get('server/ag-owinners.js')
                 .then(function (res) {
                     // basic
                     vm.gridOptions.api.setRowData(res.data);
@@ -8230,7 +8231,7 @@
 
             // Ajax
 
-            $resource('server/datatable.json').query().$promise.then(function (persons) {
+            $resource('server/datatable.js').query().$promise.then(function (persons) {
                 vm.persons = persons;
             });
 
@@ -8348,7 +8349,7 @@
             };
 
             $scope.getPagedDataAsync = function (pageSize, page, searchText) {
-                var ngGridResourcePath = 'server/ng-grid-data.json';
+                var ngGridResourcePath = 'server/ng-grid-data.js';
 
                 $timeout(function () {
 
@@ -8580,7 +8581,7 @@
 
             // AJAX
 
-            var Api = $resource('server/table-data.json');
+            var Api = $resource('server/table-data.js');
 
             vm.tableParams5 = new ngTableParams({
                 page: 1,            // show first page
@@ -8650,7 +8651,7 @@
 
             vm.groups = [];
             vm.loadGroups = function () {
-                return vm.groups.length ? null : $http.get('server/xeditable-groups.json').success(function (data) {
+                return vm.groups.length ? null : $http.get('server/xeditable-groups.js').success(function (data) {
                     vm.groups = data;
                 });
             };
@@ -8931,7 +8932,7 @@
                 }
             };
 
-            $http.get('server/uigrid-complex.json')
+            $http.get('server/uigrid-complex.js')
               .success(function (data) {
                   data.forEach(function (row) {
                       row.registered = Date.parse(row.registered);
@@ -8950,7 +8951,7 @@
                 ]
             };
 
-            $http.get('server/uigrid-100.json')
+            $http.get('server/uigrid-100.js')
             .success(function (data) {
                 vm.gridOptions1.data = data;
             });
@@ -8971,9 +8972,10 @@
         .module('app.sidebar')
         .controller('SidebarController', SidebarController);
 
-    SidebarController.$inject = ['$rootScope', '$scope', '$state', 'SidebarLoader', 'Utils'];
-    function SidebarController($rootScope, $scope, $state, SidebarLoader, Utils) {
-
+    SidebarController.$inject = ['$http','$rootScope', '$scope', '$state', 'SidebarLoader', 'Utils'];
+    function SidebarController($http, $rootScope, $scope, $state, SidebarLoader, Utils) {
+        debugger;
+        $http.get("api/Employee");
         activate();
 
         ////////////////
@@ -9326,7 +9328,7 @@
 
         $translateProvider.useStaticFilesLoader({
             prefix: 'app/i18n/',
-            suffix: '.json'
+            suffix: '.js'
         });
 
         $translateProvider.preferredLanguage('en');
