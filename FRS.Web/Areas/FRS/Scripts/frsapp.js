@@ -1,142 +1,146 @@
-﻿//(function () {
-//    'use strict';
+﻿(function () {
+    'use strict';
 
-//    angular.module('myModule', []);
-//})();
+    angular.module('myModule', []);
+})();
 
-//(function () {
-//    'use strict';
+(function () {
+    'use strict';
 
-//    angular.module('myModule').controller('SidebarController', SidebarController);
+    angular.module('myModule').controller('SidebarController', SidebarController);
 
-//    SidebarController.$inject = ['$rootScope', '$scope', 'SidebarLoader'];
+    SidebarController.$inject = ['$rootScope', '$scope', 'SidebarLoader'];
 
-//    function SidebarController($rootScope, $scope, SidebarLoader) {
-//        $scope.FirstName = "Ammar";
-//        activate();
+    function SidebarController($rootScope, $scope, SidebarLoader) {
+        $scope.FirstName = "Ammar";
+        activate();
 
-//        ////////////////
+        $scope.collapsedSidebar = function() {
+            $('body').toggleClass('aside-collapsed');
+        }
+        ////////////////
 
-//        function activate() {
-//            var collapseList = [];
+        function activate() {
 
-//            // demo: when switch from collapse to hover, close all items
-//            $rootScope.$watch('app.layout.asideHover', function (oldVal, newVal) {
-//                if (newVal === false && oldVal === true) {
-//                    closeAllBut(-1);
-//                }
-//            });
+            var collapseList = [];
+
+            // demo: when switch from collapse to hover, close all items
+            $rootScope.$watch('app.layout.asideHover', function (oldVal, newVal) {
+                if (newVal === false && oldVal === true) {
+                    closeAllBut(-1);
+                }
+            });
 
 
-//            // Load menu from json file
-//            // ----------------------------------- 
+            // Load menu from json file
+            // ----------------------------------- 
 
-//            SidebarLoader.getMenu(sidebarReady);
+            SidebarLoader.getMenu(sidebarReady);
 
-//            function sidebarReady(items) {
-//                $scope.menuItems = items;
-//            }
+            function sidebarReady(items) {
+                $scope.menuItems = items;
+            }
 
-//            // Handle sidebar and collapse items
-//            // ----------------------------------
+            // Handle sidebar and collapse items
+            // ----------------------------------
 
-//            $scope.getMenuItemPropClasses = function (item) {
-//                return (item.heading ? 'nav-heading' : '') +
-//                       (isActive(item) ? ' active' : '');
-//            };
+            $scope.getMenuItemPropClasses = function (item) {
+                return (item.heading ? 'nav-heading' : '') +
+                       (isActive(item) ? ' active' : '');
+            };
 
-//            $scope.addCollapse = function ($index, item) {
-//                collapseList[$index] = $rootScope.app.layout.asideHover ? true : !isActive(item);
-//            };
+            $scope.addCollapse = function ($index, item) {
+                collapseList[$index] = $rootScope.app.layout.asideHover ? true : !isActive(item);
+            };
 
-//            $scope.isCollapse = function ($index) {
-//                return (collapseList[$index]);
-//            };
+            $scope.isCollapse = function ($index) {
+                return (collapseList[$index]);
+            };
 
-//            $scope.toggleCollapse = function ($index, isParentItem) {
+            $scope.toggleCollapse = function ($index, isParentItem) {
 
-//                // collapsed sidebar doesn't toggle drodopwn
-//                if (Utils.isSidebarCollapsed() || $rootScope.app.layout.asideHover) return true;
+                // collapsed sidebar doesn't toggle drodopwn
+                if (Utils.isSidebarCollapsed() || $rootScope.app.layout.asideHover) return true;
 
-//                // make sure the item index exists
-//                if (angular.isDefined(collapseList[$index])) {
-//                    if (!$scope.lastEventFromChild) {
-//                        collapseList[$index] = !collapseList[$index];
-//                        closeAllBut($index);
-//                    }
-//                }
-//                else if (isParentItem) {
-//                    closeAllBut(-1);
-//                }
+                // make sure the item index exists
+                if (angular.isDefined(collapseList[$index])) {
+                    if (!$scope.lastEventFromChild) {
+                        collapseList[$index] = !collapseList[$index];
+                        closeAllBut($index);
+                    }
+                }
+                else if (isParentItem) {
+                    closeAllBut(-1);
+                }
 
-//                $scope.lastEventFromChild = isChild($index);
+                $scope.lastEventFromChild = isChild($index);
 
-//                return true;
+                return true;
 
-//            };
+            };
 
-//            // Controller helpers
-//            // ----------------------------------- 
+            // Controller helpers
+            // ----------------------------------- 
 
-//            // Check item and children active state
-//            function isActive(item) {
+            // Check item and children active state
+            function isActive(item) {
 
-//                if (!item) return;
+                if (!item) return;
 
-//                if (!item.sref || item.sref === '#') {
-//                    var foundActive = false;
-//                    angular.forEach(item.submenu, function (value) {
-//                        if (isActive(value)) foundActive = true;
-//                    });
-//                    return foundActive;
-//                }
-//                else
-//                    return $state.is(item.sref) || $state.includes(item.sref);
-//            }
+                if (!item.sref || item.sref === '#') {
+                    var foundActive = false;
+                    angular.forEach(item.submenu, function (value) {
+                        if (isActive(value)) foundActive = true;
+                    });
+                    return foundActive;
+                }
+                else
+                    return $state.is(item.sref) || $state.includes(item.sref);
+            }
 
-//            function closeAllBut(index) {
-//                index += '';
-//                for (var i in collapseList) {
-//                    if (index < 0 || index.indexOf(i) < 0)
-//                        collapseList[i] = true;
-//                }
-//            }
+            function closeAllBut(index) {
+                index += '';
+                for (var i in collapseList) {
+                    if (index < 0 || index.indexOf(i) < 0)
+                        collapseList[i] = true;
+                }
+            }
 
-//            function isChild($index) {
-//                /*jshint -W018*/
-//                return (typeof $index === 'string') && !($index.indexOf('-') < 0);
-//            }
+            function isChild($index) {
+                /*jshint -W018*/
+                return (typeof $index === 'string') && !($index.indexOf('-') < 0);
+            }
 
-//        }
-//    }
-//})();
+        }
+    }
+})();
 
-//(function () {
-//    'use strict';
+(function () {
+    'use strict';
 
-//    angular
-//        .module('myModule')
-//        .service('SidebarLoader', SidebarLoader);
+    angular
+        .module('myModule')
+        .service('SidebarLoader', SidebarLoader);
 
-//    SidebarLoader.$inject = ['$http'];
-//    function SidebarLoader($http) {
-//        this.getMenu = getMenu;
+    SidebarLoader.$inject = ['$http'];
+    function SidebarLoader($http) {
+        this.getMenu = getMenu;
 
-//        ////////////////
+        ////////////////
 
-//        function getMenu(onReady, onError) {
-//            var menuJson = '../../server/sidebar-menu.js',
-//                menuURL = menuJson + '?v=' + (new Date().getTime()); // jumps cache
+        function getMenu(onReady, onError) {
+            var menuJson = '../../server/sidebar-menu.js',
+                menuURL = menuJson + '?v=' + (new Date().getTime()); // jumps cache
 
-//            onError = onError || function () { alert('Failure loading menu'); };
+            onError = onError || function () { alert('Failure loading menu'); };
 
-//            $http
-//              .get(menuURL)
-//              .success(onReady)
-//              .error(onError);
-//        }
-//    }
-//})();
+            $http
+              .get(menuURL)
+              .success(onReady)
+              .error(onError);
+        }
+    }
+})();
 
 //(function () {
 //    'use strict';

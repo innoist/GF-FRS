@@ -1053,6 +1053,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="index.html" />
     <Content Include="master\gulpfile.js" />
     <Content Include="master\js\app.module.js" />
     <Content Include="master\js\custom\custom.controller.js" />
@@ -1569,7 +1570,7 @@
     <Content Include="Areas\FRS\Views\LoadMetaData\Index.cshtml" />
     <Content Include="Areas\FRS\Views\LoadMetaData\_LoadMetaDataEditor.cshtml" />
     <Content Include="app\documentation\readme.md" />
-    <Content Include="app\i18n\en.json" />
+    <Content Include="app\i18n\en.js" />
     <Content Include="app\i18n\es_AR.json" />
     <Content Include="app\vendor\datatable-bootstrap\images\Sorting icons.psd" />
     <Content Include="master\.bowerrc" />

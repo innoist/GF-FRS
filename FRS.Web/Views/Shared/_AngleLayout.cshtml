@@ -21,7 +21,10 @@
     <link rel="stylesheet" href="~/app/css/theme-g.css">
     <link href="~/vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet" />
     <link href="~/vendor/fontawesome/css/font-awesome.min.css" rel="stylesheet" />
+    @Scripts.Render("~/bundles/jquery/files")
+    @Scripts.Render("~/bundles/jqueryval/files")
     <script src="~/Scripts/Plugins/angular.js"></script>
+    <script src="~/Areas/FRS/Scripts/frsapp.js"></script>
 </head>
 <body>
     <div data-preloader></div>
@@ -52,6 +55,6 @@
     </section>
     @*<script src="~/app/js/base.js"></script>*@
     @*<script src="~/app/js/app.js"></script>*@
-    <script src="~/Areas/FRS/Scripts/frsapp.js"></script>
+    
 </body>
 </html>
