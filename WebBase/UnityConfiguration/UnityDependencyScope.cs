@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Web.Http.Dependencies;
-using Cares.WebBase.UnityConfiguration;
 using Microsoft.Practices.Unity;
 
 namespace FRS.WebBase.UnityConfiguration

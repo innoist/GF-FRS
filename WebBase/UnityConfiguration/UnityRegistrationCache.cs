@@ -4,7 +4,7 @@ using System.Linq;
 using Microsoft.Practices.ObjectBuilder2;
 using Microsoft.Practices.Unity;
 
-namespace Cares.WebBase.UnityConfiguration
+namespace FRS.WebBase.UnityConfiguration
 {
     //using Base;
 

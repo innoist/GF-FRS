@@ -1,6 +1,5 @@
 ﻿using System.Linq;
 using System.Web.Mvc;
-using Cares.WebBase.UnityConfiguration;
 using FRS.WebBase.UnityConfiguration;
 using Microsoft.Practices.Unity;
 using Microsoft.Practices.Unity.Mvc;

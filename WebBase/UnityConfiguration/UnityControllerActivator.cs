@@ -2,7 +2,7 @@
 using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace Cares.WebBase.UnityConfiguration
+namespace FRS.WebBase.UnityConfiguration
 {
     public class UnityControllerActivator : IControllerActivator
     {

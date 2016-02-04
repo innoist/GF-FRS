@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.Practices.Unity;
 
-namespace Cares.WebBase.UnityConfiguration
+namespace FRS.WebBase.UnityConfiguration
 {
     /// <summary>
     /// Specifies the Unity configuration for the main container.
