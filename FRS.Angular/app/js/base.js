@@ -61,7 +61,7 @@
 
     var support = {};
 
-    window.istApiUrl = "http://localhost:43060/";
+    window.frsApiUrl = "http://localhost:4897";
 
 
 
