@@ -59,6 +59,7 @@
   <ItemGroup>
     <Content Include="app\documentation\readme.md" />
     <Content Include="app\i18n\es_AR.json" />
+    <Content Include="app\js\angular-local-storage.min.js" />
     <Content Include="app\vendor\datatable-bootstrap\images\Sorting icons.psd" />
     <Content Include="master\.bowerrc" />
     <Content Include="master\.jshintrc" />

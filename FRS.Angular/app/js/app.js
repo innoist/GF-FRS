@@ -2607,12 +2607,12 @@
         .module('app.dashboard')
         .controller('DashboardController', DashboardController);
 
-    DashboardController.$inject = ['$scope', 'ChartData', '$timeout'];
-    function DashboardController($scope, ChartData, $timeout) {
+    DashboardController.$inject = ['$scope', 'ChartData', '$timeout', '$localstorage'];
+    function DashboardController($scope, ChartData, $timeout, $localstorage) {
         var vm = this;
 
         activate();
-
+        $scope.username = $localstorage.get('authorizationData').username;
         ////////////////
 
         function activate() {
@@ -6727,7 +6727,7 @@
     LoginFormController.$inject = ['$http', '$state'];
     function LoginFormController($http, $state) {
         var vm = this;
-
+        
         activate();
 
         ////////////////
@@ -6740,22 +6740,28 @@
 
             vm.login = function () {
                 vm.authMsg = '';
-
+                
                 if (vm.loginForm.$valid) {
+                    var data = "grant_type=password&username=" + vm.account.email + "&password=" + vm.account.password;
 
                     $http
-                      .post('api/account/login', { email: vm.account.email, password: vm.account.password })
-                      .then(function (response) {
-                          // assumes if ok, response is an object with some data, if not, a string with error
-                          // customize according to your api
-                          if (!response.account) {
-                              vm.authMsg = 'Incorrect credentials.';
-                          } else {
-                              $state.go('app.dashboard');
-                          }
-                      }, function () {
-                          vm.authMsg = 'Server Request Error';
-                      });
+                        .post('http://localhost:4897/token', data, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } })
+                        .success(function(response) {
+                            debugger;
+                            localStorage.setItem('authorizationData', { token: response.access_token, userName: response.userName });
+
+                            // assumes if ok, response is an object with some data, if not, a string with error
+                            // customize according to your api
+                            $state.go('app.dashboard');
+                            
+                        }, function() {
+                            vm.authMsg = 'Server Request Error';
+                        })
+                        .error(function (err, status) {
+                        if (status === 400) {
+                            vm.authMsg = 'Incorrect credentials.';
+                        }
+                    });
                 }
                 else {
                     // set as dirty if the user click directly to login so we show the validation messages

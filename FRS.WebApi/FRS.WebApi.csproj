@@ -317,6 +317,10 @@
       <Project>{81067904-2176-4648-87ab-014b0d76b85e}</Project>
       <Name>FRS.Models</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Repository\FRS.Repository.csproj">
+      <Project>{852BDC39-3388-4CB1-A959-F3BD06E9DF92}</Project>
+      <Name>FRS.Repository</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WebBase\FRS.WebBase.csproj">
       <Project>{BCB8BCFD-0163-430C-8088-224074D6E384}</Project>
       <Name>FRS.WebBase</Name>
