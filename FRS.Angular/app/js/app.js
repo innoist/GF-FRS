@@ -8269,7 +8269,7 @@
         ////////////////
 
         function getLoadMetaData(onReady, onError) {
-            var urlMetaData = window.istApiUrl + 'api/LoadMetaData';
+            var urlMetaData = window.frsApiUrl + '/api/LoadMetaData';
 
             onError = onError || function () { alert('Failure loading Meta Data'); };
 
