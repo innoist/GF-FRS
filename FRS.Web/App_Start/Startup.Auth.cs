@@ -29,6 +29,7 @@ namespace Cares.Web
                 {                  
                 }
             });
+
             // identity.Result.AddClaim(new Claim(ClaimTypes.Country, "Pakistan"));
 
             app.UseExternalSignInCookie(DefaultAuthenticationTypes.ExternalCookie);

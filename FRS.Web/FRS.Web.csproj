@@ -299,6 +299,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApplicationOAuthProvider.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
@@ -316,6 +317,7 @@
     <Compile Include="Areas\FRS\Controllers\MT940LoadController.cs" />
     <Compile Include="Areas\FRS\Controllers\LoadMetaDataController.cs" />
     <Compile Include="Areas\FRS\FRSAreaRegistration.cs" />
+    <Compile Include="Areas\SampleAngular\Controllers\AccountController.cs" />
     <Compile Include="Areas\SampleAngular\Controllers\AngleTestController.cs" />
     <Compile Include="Areas\SampleAngular\Controllers\HomeController.cs" />
     <Compile Include="Areas\SampleAngular\SampleAngularAreaRegistration.cs" />
