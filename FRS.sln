@@ -30,6 +30,8 @@ Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "FRS.Database", "FRS.Databas
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FRS.WebBase", "WebBase\FRS.WebBase.csproj", "{BCB8BCFD-0163-430C-8088-224074D6E384}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FRS.WebApi", "FRS.WebApi\FRS.WebApi.csproj", "{07E34922-5AEA-4477-AFF9-4BF01B95D1A0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -82,6 +84,10 @@ Global
 		{BCB8BCFD-0163-430C-8088-224074D6E384}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BCB8BCFD-0163-430C-8088-224074D6E384}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BCB8BCFD-0163-430C-8088-224074D6E384}.Release|Any CPU.Build.0 = Release|Any CPU
+		{07E34922-5AEA-4477-AFF9-4BF01B95D1A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{07E34922-5AEA-4477-AFF9-4BF01B95D1A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{07E34922-5AEA-4477-AFF9-4BF01B95D1A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{07E34922-5AEA-4477-AFF9-4BF01B95D1A0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -7,7 +7,6 @@ using FRS.Interfaces.IServices;
 using FRS.Models.ResponseModels;
 using FRS.Web.ModelMappers;
 using FRS.Web.Models;
-using Microsoft.AspNet.Identity;
 
 namespace FRS.Web.Areas.Api.Controllers
 {
@@ -31,7 +30,7 @@ namespace FRS.Web.Areas.Api.Controllers
         #region Public
 
         #region Get
-
+        
         public BaseDataLoadMetaData Get()
         {
             BaseDataLoadMetaDataResponse response = loadMetaDataService.GetBaseDataResponse();
@@ -72,7 +71,6 @@ namespace FRS.Web.Areas.Api.Controllers
         #endregion
 
         #region Delete
-
         public bool Delete(long loadMetaDataId)
         {
             if (loadMetaDataService != null)
