@@ -1,0 +1,54 @@
+﻿{{LoadTypes | json}}
+<div class="row">
+    <div class="col-md-3">
+        <!-- START box placeholder-->
+        <div class="box-placeholder">
+            <!-- START button group-->
+            <!-- END button group-->
+        </div>
+        <!-- END box placeholder-->
+    </div>
+    {{LoadTypeId}}
+</div>
+
+<div uib-dropdown="dropdown" class="btn-group">
+    <button id="load-type-sel" uib-dropdown-toggle="" class="btn btn-default">
+        LoadTypes <b class="caret"></b>
+    </button>
+    <ul role="menu" class="dropdown-menu animated flipInX" ng-model="LoadTypeId">
+        <li ng-repeat="load in LoadTypes">
+            <a ng-click="LoadTypeChange(load)">{{load.Name}}</a>
+        </li>
+    </ul>
+</div>
+
+<div class="panel-body">
+    <form method="get" action="/" class="form-horizontal ng-pristine ng-valid">
+        <fieldset>
+            <legend>Load MetaData</legend>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Rounded Corners</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control form-control-rounded">
+                </div>
+            </div>
+        </fieldset>
+        <fieldset>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">With help</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control">
+                    <span class="help-block">A block of help text that breaks onto a new line and may extend beyond one line.</span>
+                </div>
+            </div>
+        </fieldset>
+        <fieldset>
+            <div class="form-group">
+                <label for="input-id-1" class="col-sm-2 control-label">Label focus</label>
+                <div class="col-sm-10">
+                    <input id="input-id-1" type="text" class="form-control">
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</div>
