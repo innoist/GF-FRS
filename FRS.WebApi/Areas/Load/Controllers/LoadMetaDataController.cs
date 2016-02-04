@@ -6,6 +6,7 @@ using FRS.Models.ResponseModels;
 using FRS.WebApi.ModelMappers;
 using FRS.WebApi.ViewModels.MetaData;
 using FRS.WebBase.UnityConfiguration;
+using Microsoft.Practices.Unity;
 
 namespace FRS.WebApi.Areas.Load.Controllers
 {
@@ -13,7 +14,7 @@ namespace FRS.WebApi.Areas.Load.Controllers
     {
         #region Private
 
-        private readonly ILoadMetaDataService loadMetaDataService;
+        private readonly ILoadMetaDataService loadMetaDataService = UnityWebActivator.Container.Resolve<ILoadMetaDataService>();
         #endregion
 
         #region Public
