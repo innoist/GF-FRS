@@ -29,6 +29,24 @@ namespace Cares.Web
                 {                  
                 }
             });
+
+            #region CustomTokenAuthentication
+
+            // Configure the application for OAuth based flow
+            PublicClientId = "self";
+            OAuthOptions = new OAuthAuthorizationServerOptions
+            {
+                TokenEndpointPath = new PathString("/Token"),
+                Provider = new ApplicationOAuthProvider(PublicClientId),
+                AuthorizeEndpointPath = new PathString("/api/Account/ExternalLogin"),
+                AccessTokenExpireTimeSpan = TimeSpan.FromDays(14)
+                //AllowInsecureHttp = true
+            };
+
+            // Enable the application to use bearer tokens to authenticate users
+            app.UseOAuthBearerTokens(OAuthOptions);
+            #endregion
+
             // identity.Result.AddClaim(new Claim(ClaimTypes.Country, "Pakistan"));
 
             app.UseExternalSignInCookie(DefaultAuthenticationTypes.ExternalCookie);
