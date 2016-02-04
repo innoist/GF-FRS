@@ -7496,6 +7496,7 @@
                 title: 'Load MetaData',
                 templateUrl: helper.basepath('../../../../app/views/LoadMetaData.html'),
                 controller: 'LoadMetaDataController',
+                controllerAs: 'mdc',
             })
           .state('app.dashboard_v2', {
               url: '/dashboard_v2',
@@ -8145,7 +8146,7 @@
         $scope.IsReadOnly = false;
 
         //#region Get Data from DB
-        $scope.GetOnLoad = function () {
+        $scope.GetBaseData = function () {
             LoadMetaDataService.getLoadMetaData(onSuccess);
             function onSuccess(data) {
                 $scope.loadMetaDataList = data.LoadMetaDatas;
@@ -8170,21 +8171,29 @@
                 Description: $scope.Description,
                 StatusId: $scope.StatusId
             };
-            $http.post(ist.siteUrl + '/api/LoadMetaData', loadMetaData)
-                .success(function (data, status, headers, config) {
-                    if (data != null) {
-                        $scope.getLoadMetaDataList();
-                        $scope.IsShowEdit = false;
-                        toastr.success("Record has been Saved Successfully");
-                    }
+            //LoadMetaDataService.saveLoadMetaDataDetail(loadMetaData, onSuccess);
+            function onSuccess(data) {
+                if (data != null) {
+                    $scope.GetBaseData();
+                    $scope.IsShowEdit = false;
+                    alert("Record has been Saved Successfully");
+                }
+            }
+            //$http.post(ist.siteUrl + '/api/LoadMetaData', loadMetaData)
+            //    .success(function (data, status, headers, config) {
+            //        if (data != null) {
+            //            $scope.getLoadMetaDataList();
+            //            $scope.IsShowEdit = false;
+            //            toastr.success("Record has been Saved Successfully");
+            //        }
 
-                    console.log(data);
-                }).error(function (data, status, headers, config) {
-                    if (data != null) {
-                        toastr.success("Error in Saving the Record");
-                    }
-                    console.log(data);
-                });
+            //        console.log(data);
+            //    }).error(function (data, status, headers, config) {
+            //        if (data != null) {
+            //            toastr.success("Error in Saving the Record");
+            //        }
+            //        console.log(data);
+            //    });
         }
         //#endregion
 
@@ -8240,12 +8249,28 @@
             $scope.defaultModel();
             $scope.IsShowEdit = false;
         }
-        
-        $scope.GetOnLoad();
 
-        $scope.LoadTypeChange = function(load) {
+        // Load base data
+        $scope.GetBaseData();
+
+        $scope.LoadTypeChange = function (load) {
             $scope.LoadTypeId = load.Id;
             $("#load-type-sel").text(load.Name).append('&nbsp;<b class="caret"></b>');
+        }
+
+        $scope.SourceChange = function (source) {
+            $scope.SourceId = source.Id;
+            $("#source-sel").text(source.Name).append('&nbsp;<b class="caret"></b>');
+        }
+
+        $scope.CurrencyChange = function (currency) {
+            $scope.CurrencyId = currency.Id;
+            $("#currency-sel").text(currency.Name).append('&nbsp;<b class="caret"></b>');
+        }
+
+        $scope.StatusChange = function (status) {
+            $scope.StatusId = status.Id;
+            $("#status-sel").text(status.Name).append('&nbsp;<b class="caret"></b>');
         }
     }
 })();
@@ -8265,8 +8290,7 @@
     LoadMetaDataService.$inject = ['$http'];
     function LoadMetaDataService($http) {
         this.getLoadMetaData = getLoadMetaData;
-
-        ////////////////
+        this.saveLoadMetaDataDetail = saveLoadMetaDataDetail;
 
         function getLoadMetaData(onReady, onError) {
             var urlMetaData = window.frsApiUrl + '/api/LoadMetaData';
@@ -8275,6 +8299,17 @@
 
             $http
               .get(urlMetaData)
+              .success(onReady)
+              .error(onError);
+        }
+
+        function saveLoadMetaDataDetail(metaData, onReady, onError) {
+            var urlMetaData = window.frsApiUrl + '/api/LoadMetaData';
+
+            onError = onError || function () { alert('Failure saving Meta Data'); };
+
+            $http
+              .post(urlMetaData, metaData)
               .success(onReady)
               .error(onError);
         }

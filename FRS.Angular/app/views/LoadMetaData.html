@@ -1,5 +1,12 @@
 ﻿<div ng-show="!IsShowEdit">
-    <button ng-click="showEdit()" class="btn btn-info">New</button>
-    ListView
+    <div class="pull-right">
+        <button ng-click="showEdit()" class="btn btn-default btn-sm pull-right margin-right-40">New</button>
+    </div>
+    <fieldset>
+        <legend>ListView</legend>
+    </fieldset>
+    
+    <!-- Grid view to show listview with searching, sorting and pagination-->
+
 </div>
 <div ng-include="'../../app/views/LoadMetaDataEditor.html'"></div>
