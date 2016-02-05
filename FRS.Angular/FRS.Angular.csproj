@@ -500,6 +500,7 @@
     <Content Include="app\css\app.css" />
     <Content Include="app\css\bootstrap-rtl.css" />
     <Content Include="app\css\bootstrap.css" />
+    <Content Include="app\css\main-site.css" />
     <Content Include="app\css\theme-a.css" />
     <Content Include="app\css\theme-b.css" />
     <Content Include="app\css\theme-c.css" />
@@ -613,6 +614,7 @@
     <Content Include="app\views\invoice.html" />
     <Content Include="app\views\Load.html" />
     <Content Include="app\views\LoadMetaData.html" />
+    <Content Include="app\views\LoadMetaDataEditor.html" />
     <Content Include="app\views\localization.html" />
     <Content Include="app\views\mailbox-compose.html" />
     <Content Include="app\views\mailbox-inbox.html" />
