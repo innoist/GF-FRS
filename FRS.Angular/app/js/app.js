@@ -94,7 +94,7 @@
     'use strict';
 
     angular
-        .module('app.dashboard', []);
+        .module('app.dashboard', ['$localStorage', '$rootScope']);
 })();
 (function () {
     'use strict';
@@ -2604,19 +2604,31 @@
     'use strict';
 
     angular
-        .module('app.dashboard')
+        .module('app.dashboard', [])
         .controller('DashboardController', DashboardController);
 
-    DashboardController.$inject = ['$scope', 'ChartData', '$timeout', '$localstorage'];
-    function DashboardController($scope, ChartData, $timeout, $localstorage) {
+    DashboardController.$inject = ['$state', '$scope', '$rootScope', 'ChartData', '$timeout', '$localStorage'];
+    function DashboardController($state, $scope, $rootScope, ChartData, $timeout, $localStorage) {
+
+        if (!$localStorage['authorizationData']) {
+            $state.go('page.login');
+            return;
+        }
+            
+
         var vm = this;
 
         activate();
-        $scope.username = $localstorage.get('authorizationData').username;
+        
         ////////////////
 
         function activate() {
-
+            //$rootscope.user.name = $localStorage['authorizationData'].username;
+            $rootScope.user = {
+                name: $localStorage['authorizationData'].userName,
+                job: 'ng-developer',
+                picture: '../../app/img/user/02.jpg'
+            };
             // SPLINE
             // ----------------------------------- 
             vm.splineData = ChartData.load('server/chart/spline.js');
@@ -2706,6 +2718,11 @@
 
             });
 
+        }
+
+        $rootScope.logout = function () {
+            delete $localStorage['authorizationData'];
+            $state.go('page.login');
         }
     }
 })();
@@ -6724,8 +6741,8 @@
         .module('app.pages')
         .controller('LoginFormController', LoginFormController);
 
-    LoginFormController.$inject = ['$http', '$state'];
-    function LoginFormController($http, $state) {
+    LoginFormController.$inject = ['$http', '$state', '$localStorage'];
+    function LoginFormController($http, $state, $localStorage) {
         var vm = this;
         
         activate();
@@ -6748,7 +6765,7 @@
                         .post('http://localhost:4897/token', data, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } })
                         .success(function(response) {
                             debugger;
-                            localStorage.setItem('authorizationData', { token: response.access_token, userName: response.userName });
+                            $localStorage['authorizationData'] = { token: response.access_token, userName: response.userName };
 
                             // assumes if ok, response is an object with some data, if not, a string with error
                             // customize according to your api
@@ -9477,11 +9494,11 @@
         ////////////////
 
         function activate() {
-            $rootScope.user = {
-                name: 'John',
-                job: 'ng-developer',
-                picture: '../../app/img/user/02.jpg'
-            };
+            //$rootScope.user = {
+            //    name: 'John',
+            //    job: 'ng-developer',
+            //    picture: '../../app/img/user/02.jpg'
+            //};
 
             // Hides/show user avatar on sidebar
             $rootScope.toggleUserBlock = function () {
