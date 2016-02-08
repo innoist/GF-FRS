@@ -8154,7 +8154,7 @@
             paginationPageSizes: [25, 50, 75],
             paginationPageSize: 25,
             columnDefs: [
-              { name: 'name' },
+              { name: 'Meta Data Name', field:'name' },
               { name: 'gender' },
               { name: 'company' }
             ]
