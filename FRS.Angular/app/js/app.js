@@ -2614,12 +2614,12 @@
             $state.go('page.login');
             return;
         }
-            
+
 
         var vm = this;
 
         activate();
-        
+
         ////////////////
 
         function activate() {
@@ -6744,7 +6744,7 @@
     LoginFormController.$inject = ['$http', '$state', '$localStorage'];
     function LoginFormController($http, $state, $localStorage) {
         var vm = this;
-        
+
         activate();
 
         ////////////////
@@ -6757,28 +6757,28 @@
 
             vm.login = function () {
                 vm.authMsg = '';
-                
+
                 if (vm.loginForm.$valid) {
                     var data = "grant_type=password&username=" + vm.account.email + "&password=" + vm.account.password;
 
                     $http
                         .post('http://localhost:4897/token', data, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } })
-                        .success(function(response) {
+                        .success(function (response) {
                             debugger;
                             $localStorage['authorizationData'] = { token: response.access_token, userName: response.userName };
 
                             // assumes if ok, response is an object with some data, if not, a string with error
                             // customize according to your api
                             $state.go('app.dashboard');
-                            
-                        }, function() {
+
+                        }, function () {
                             vm.authMsg = 'Server Request Error';
                         })
                         .error(function (err, status) {
-                        if (status === 400) {
-                            vm.authMsg = 'Incorrect credentials.';
-                        }
-                    });
+                            if (status === 400) {
+                                vm.authMsg = 'Incorrect credentials.';
+                            }
+                        });
                 }
                 else {
                     // set as dirty if the user click directly to login so we show the validation messages
@@ -8150,7 +8150,6 @@
 
         var vm = this;
 
-        debugger;
         vm.gridOptions = {
             paginationPageSizes: [25, 50, 75],
             paginationPageSize: 25,
@@ -8161,7 +8160,7 @@
             ]
         };
 
-        $http.get(ist.siteUrl + '/api/LoadMetaData')
+        $http.get(window.frsApiUrl + '/api/LoadMetaData')
         .success(function (data) {
             vm.gridOptions.data = data;
         });
@@ -8214,6 +8213,7 @@
                 Description: $scope.Description,
                 StatusId: $scope.StatusId
             };
+            debugger;
             //LoadMetaDataService.saveLoadMetaDataDetail(loadMetaData, onSuccess);
             function onSuccess(data) {
                 if (data != null) {
@@ -8260,7 +8260,7 @@
 
         //#region Delete Data
         $scope.deleteLoadMetaData = function (loadMetaDataId) {
-            $http.delete(ist.siteUrl + '/api/LoadMetaData', { params: { loadMetaDataId: loadMetaDataId } })
+            $http.delete('/api/LoadMetaData', { params: { loadMetaDataId: loadMetaDataId } })
                         .success(function (data, status, headers, config) {
                             if (data != false) {
                                 $scope.getLoadMetaDataList();
@@ -8314,6 +8314,19 @@
         $scope.StatusChange = function (status) {
             $scope.StatusId = status.Id;
             $("#status-sel").text(status.Name).append('&nbsp;<b class="caret"></b>');
+        }
+
+        $scope.headerChange = function (header) {
+            $scope.Header = header;
+        }
+        $scope.footerChange = function(footer) {
+            $scope.Footer = footer;
+        }
+        $scope.nameChange = function(name) {
+            $scope.Name = name;
+        }
+        $scope.descriptionChange = function(description) {
+            $scope.Description = description;
         }
     }
 })();

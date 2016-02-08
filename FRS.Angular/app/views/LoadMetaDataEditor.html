@@ -70,11 +70,11 @@
                     <div class="col-sm-12">
                         <div class="col-md-6">
                             <label for="header" class="control-label">Header</label>
-                            <input id="header" type="text" placeholder="Header" class="form-control" ng-model="mdc.Header">
+                            <input id="header" type="text" placeholder="Header" class="form-control" ng-model="mdc.Header" ng-change="headerChange(mdc.Header)">
                         </div>
                         <div class="col-md-6">
                             <label for="footer" class="control-label">Footer</label>
-                            <input id="footer" type="text" placeholder="Footer" class="form-control" ng-model="mdc.Footer">
+                            <input id="footer" type="text" placeholder="Footer" class="form-control" ng-model="mdc.Footer" ng-change="footerChange(mdc.Footer)">
                         </div>
                     </div>
                 </div>
@@ -84,11 +84,11 @@
                     <div class="col-sm-12">
                         <div class="col-md-6">
                             <label for="name" class="control-label">Name</label>
-                            <input id="name" type="text" placeholder="Name" class="form-control" ng-model="mdc.Name">
+                            <input id="name" type="text" placeholder="Name" class="form-control" ng-model="mdc.Name" ng-change="nameChange(mdc.Name)">
                         </div>
                         <div class="col-md-6">
                             <label for="description" class="control-label">Description</label>
-                            <textarea id="description" type="text" placeholder="Description" class="form-control" ng-model="mdc.Description"></textarea>
+                            <textarea id="description" type="text" placeholder="Description" class="form-control" ng-model="mdc.Description" ng-change="descriptionChange(mdc.Description)"></textarea>
                         </div>
                     </div>
                 </div>
