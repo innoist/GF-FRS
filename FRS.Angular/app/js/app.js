@@ -8160,6 +8160,11 @@
             ]
         };
 
+        function activate(parameters) {
+            // Load base data
+            $scope.GetBaseData();
+        }
+
         $http.get(window.frsApiUrl + '/api/LoadMetaData')
         .success(function (data) {
             vm.gridOptions.data = data;
@@ -8214,7 +8219,7 @@
                 StatusId: $scope.StatusId
             };
             debugger;
-            //LoadMetaDataService.saveLoadMetaDataDetail(loadMetaData, onSuccess);
+            LoadMetaDataService.saveLoadMetaDataDetail(loadMetaData, onSuccess);
             function onSuccess(data) {
                 if (data != null) {
                     $scope.GetBaseData();
@@ -8222,21 +8227,6 @@
                     alert("Record has been Saved Successfully");
                 }
             }
-            //$http.post(ist.siteUrl + '/api/LoadMetaData', loadMetaData)
-            //    .success(function (data, status, headers, config) {
-            //        if (data != null) {
-            //            $scope.getLoadMetaDataList();
-            //            $scope.IsShowEdit = false;
-            //            toastr.success("Record has been Saved Successfully");
-            //        }
-
-            //        console.log(data);
-            //    }).error(function (data, status, headers, config) {
-            //        if (data != null) {
-            //            toastr.success("Error in Saving the Record");
-            //        }
-            //        console.log(data);
-            //    });
         }
         //#endregion
 
@@ -8293,9 +8283,6 @@
             $scope.IsShowEdit = false;
         }
 
-        // Load base data
-        $scope.GetBaseData();
-
         $scope.LoadTypeChange = function (load) {
             $scope.LoadTypeId = load.Id;
             $("#load-type-sel").text(load.Name).append('&nbsp;<b class="caret"></b>');
@@ -8328,6 +8315,7 @@
         $scope.descriptionChange = function(description) {
             $scope.Description = description;
         }
+        activate();
     }
 })();
 

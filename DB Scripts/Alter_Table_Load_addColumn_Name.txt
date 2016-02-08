@@ -1,0 +1,2 @@
+alter table [dbo].[Load]
+add Name nvarchar(128) not null

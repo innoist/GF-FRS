@@ -15,6 +15,7 @@ namespace FRS.Models.DomainModels
         public DateTime CreatedOn { get; set; }
         public string ModifiedBy { get; set; }
         public DateTime ModifiedOn { get; set; }
+        public string Name { get; set; }
 
         public virtual LoadMetaData LoadMetaData { get; set; }
         public virtual MT940Load MT940Load { get; set; }

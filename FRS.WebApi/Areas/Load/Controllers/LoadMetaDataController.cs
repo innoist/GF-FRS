@@ -38,7 +38,19 @@ namespace FRS.WebApi.Areas.Load.Controllers
             };
             return baseData;
         }
-
+        public BaseDataLoadMetaData Get(long id)
+        {
+            BaseDataLoadMetaDataResponse response = loadMetaDataService.GetBaseDataResponse();
+            BaseDataLoadMetaData baseData = new BaseDataLoadMetaData
+            {
+                LoadMetaDatas = response.LoadMetaDatas.Select(x => x.CreateFromServerToClient()).ToList(),
+                LoadTypes = response.LoadTypes,
+                Sources = response.Sources,
+                Currencies = response.Currencies,
+                Statuses = response.Statuses
+            };
+            return baseData;
+        }
         #endregion
 
         #region Post
