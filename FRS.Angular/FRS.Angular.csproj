@@ -465,7 +465,7 @@
     <Content Include="server\ng-grid-data.json" />
     <Content Include="server\table-data.json" />
     <Content Include="server\treedata.json" />
-    <Content Include="server\uigrid-100.json" />
+    <Content Include="server\uigrid-100.js" />
     <Content Include="server\uigrid-complex.json" />
     <Content Include="server\upload.php" />
     <Content Include="server\xeditable-groups.json" />

@@ -41,8 +41,7 @@
             'app.extras',
             'app.mailbox',
             'app.utils',
-            'app.LoadMetaData',
-            'app.Loads',
+            'app.LoadMetaData'
         ]);
 })();
 
@@ -52,12 +51,6 @@
 
     angular
         .module('app.LoadMetaData', []);
-})();
-(function () {
-    'use strict';
-
-    angular
-        .module('app.Loads', []);
 })();
 (function () {
     'use strict';
@@ -7527,6 +7520,7 @@
                 templateUrl: helper.basepath('../../../../app/views/LoadMetaData.html'),
                 controller: 'LoadMetaDataController',
                 controllerAs: 'mdc',
+                resolve: helper.resolveFor('ui.grid')
             })
           .state('app.dashboard_v2', {
               url: '/dashboard_v2',
@@ -8147,12 +8141,31 @@
     'use strict';
 
     angular
-        .module('app.LoadMetaData')
+        .module('app.LoadMetaData', [])
         .controller('LoadMetaDataController', LoadMetaDataController);
 
     LoadMetaDataController.$inject = ['$http', '$rootScope', '$scope', '$state', 'LoadMetaDataService'];
 
     function LoadMetaDataController($http, $rootScope, $scope, $state, LoadMetaDataService) {
+
+        var vm = this;
+
+        debugger;
+        vm.gridOptions = {
+            paginationPageSizes: [25, 50, 75],
+            paginationPageSize: 25,
+            columnDefs: [
+              { name: 'name' },
+              { name: 'gender' },
+              { name: 'company' }
+            ]
+        };
+
+        $http.get(ist.siteUrl + '/api/LoadMetaData')
+        .success(function (data) {
+            vm.gridOptions.data = data;
+        });
+
         //#region Web Model properties
         $scope.LoadMetaDataId;
         $scope.LoadTypeId;
@@ -9033,7 +9046,7 @@
     UIGridController.$inject = ['uiGridConstants', '$http'];
     function UIGridController(uiGridConstants, $http) {
         var vm = this;
-
+        debugger;
         activate();
 
         ////////////////
