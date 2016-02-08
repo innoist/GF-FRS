@@ -8150,18 +8150,17 @@
 
         var vm = this;
 
-        debugger;
         vm.gridOptions = {
             paginationPageSizes: [25, 50, 75],
             paginationPageSize: 25,
             columnDefs: [
-              { name: 'name' },
+              { name: 'Meta Data Name', field:'name' },
               { name: 'gender' },
               { name: 'company' }
             ]
         };
 
-        $http.get(ist.siteUrl + '/api/LoadMetaData')
+        $http.get('server/uigrid-100.js')
         .success(function (data) {
             vm.gridOptions.data = data;
         });
