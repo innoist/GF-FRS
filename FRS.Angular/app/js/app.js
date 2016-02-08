@@ -2614,12 +2614,12 @@
             $state.go('page.login');
             return;
         }
-            
+
 
         var vm = this;
 
         activate();
-        
+
         ////////////////
 
         function activate() {
@@ -6744,7 +6744,7 @@
     LoginFormController.$inject = ['$http', '$state', '$localStorage'];
     function LoginFormController($http, $state, $localStorage) {
         var vm = this;
-        
+
         activate();
 
         ////////////////
@@ -6757,28 +6757,28 @@
 
             vm.login = function () {
                 vm.authMsg = '';
-                
+
                 if (vm.loginForm.$valid) {
                     var data = "grant_type=password&username=" + vm.account.email + "&password=" + vm.account.password;
 
                     $http
                         .post('http://localhost:4897/token', data, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } })
-                        .success(function(response) {
+                        .success(function (response) {
                             debugger;
                             $localStorage['authorizationData'] = { token: response.access_token, userName: response.userName };
 
                             // assumes if ok, response is an object with some data, if not, a string with error
                             // customize according to your api
                             $state.go('app.dashboard');
-                            
-                        }, function() {
+
+                        }, function () {
                             vm.authMsg = 'Server Request Error';
                         })
                         .error(function (err, status) {
-                        if (status === 400) {
-                            vm.authMsg = 'Incorrect credentials.';
-                        }
-                    });
+                            if (status === 400) {
+                                vm.authMsg = 'Incorrect credentials.';
+                            }
+                        });
                 }
                 else {
                     // set as dirty if the user click directly to login so we show the validation messages
@@ -8144,26 +8144,72 @@
         .module('app.LoadMetaData', [])
         .controller('LoadMetaDataController', LoadMetaDataController);
 
-    LoadMetaDataController.$inject = ['$http', '$rootScope', '$scope', '$state', 'LoadMetaDataService'];
+    LoadMetaDataController.$inject = ['$http', '$rootScope', '$scope', '$state', 'LoadMetaDataService', 'uiGridConstants'];
 
-    function LoadMetaDataController($http, $rootScope, $scope, $state, LoadMetaDataService) {
+    function LoadMetaDataController($http, $rootScope, $scope, $state, LoadMetaDataService, uiGridConstants) {
 
         var vm = this;
-
+        var paginationOptions = {
+            pageNumber: 1,
+            pageSize: 25,
+            sort: null
+        };
         vm.gridOptions = {
             paginationPageSizes: [25, 50, 75],
             paginationPageSize: 25,
+            useExternalPagination: true,
+            useExternalSorting: true,
             columnDefs: [
-              { name: 'Meta Data Name', field:'name' },
-              { name: 'gender' },
-              { name: 'company' }
-            ]
+                // name is for display on the table header, field is for mapping as in 
+              { name: 'Meta Data Name', field:'Name' },
+              { name: 'File Header', field : 'Header' },
+              { name: 'Currency', field:'Currency' },
+              { name: 'Description', field: 'Description' }
+            ],
+            //onRegisterApi: function (gridApi) {
+            //    vm.gridApi = gridApi;
+            //    vm.gridApi.core.on.sortChanged($scope, function (grid, sortColumns) {
+            //        if (sortColumns.length == 0) {
+            //            paginationOptions.sort = null;
+            //        } else {
+            //            paginationOptions.sort = sortColumns[0].sort.direction;
+            //        }
+            //        getPage();
+            //    });
+            //    gridApi.pagination.on.paginationChanged($scope, function (newPage, pageSize) {
+            //        paginationOptions.pageNumber = newPage;
+            //        paginationOptions.pageSize = pageSize;
+            //        getPage();
+            //    });
+            //}
         };
 
-        $http.get('server/uigrid-100.js')
-        .success(function (data) {
-            vm.gridOptions.data = data;
-        });
+        //$http.get(window.frsApiUrl + '/api/LoadMetaData', {SortBy:2})
+        //    .success(function (data) {
+        //        vm.gridOptions.totalItems = 100;
+        //        var firstRow = (paginationOptions.pageNumber - 1) * paginationOptions.pageSize;
+        //        vm.gridOptions.data = data.slice(firstRow, firstRow + paginationOptions.pageSize);
+        //    });
+
+        //var getPage = function () {
+        //    var url;
+        //    switch (paginationOptions.sort) {
+        //        case uiGridConstants.ASC:
+        //            url = '/data/100_ASC.json';
+        //            break;
+        //        case uiGridConstants.DESC:
+        //            url = '/data/100_DESC.json';
+        //            break;
+        //        default:
+        //            url = '/data/100.json';
+        //            break;
+        //    }
+        //};
+
+        function activate() {
+            // Load base data
+            $scope.GetBaseData();
+        }
 
         //#region Web Model properties
         $scope.LoadMetaDataId;
@@ -8191,7 +8237,7 @@
         $scope.GetBaseData = function () {
             LoadMetaDataService.getLoadMetaData(onSuccess);
             function onSuccess(data) {
-                $scope.loadMetaDataList = data.LoadMetaDatas;
+                vm.gridOptions.data = data.LoadMetaDatas;
                 $scope.LoadTypes = data.LoadTypes;
                 $scope.Sources = data.Sources;
                 $scope.Currencies = data.Currencies;
@@ -8213,7 +8259,8 @@
                 Description: $scope.Description,
                 StatusId: $scope.StatusId
             };
-            //LoadMetaDataService.saveLoadMetaDataDetail(loadMetaData, onSuccess);
+            debugger;
+            LoadMetaDataService.saveLoadMetaDataDetail(loadMetaData, onSuccess);
             function onSuccess(data) {
                 if (data != null) {
                     $scope.GetBaseData();
@@ -8221,21 +8268,6 @@
                     alert("Record has been Saved Successfully");
                 }
             }
-            //$http.post(ist.siteUrl + '/api/LoadMetaData', loadMetaData)
-            //    .success(function (data, status, headers, config) {
-            //        if (data != null) {
-            //            $scope.getLoadMetaDataList();
-            //            $scope.IsShowEdit = false;
-            //            toastr.success("Record has been Saved Successfully");
-            //        }
-
-            //        console.log(data);
-            //    }).error(function (data, status, headers, config) {
-            //        if (data != null) {
-            //            toastr.success("Error in Saving the Record");
-            //        }
-            //        console.log(data);
-            //    });
         }
         //#endregion
 
@@ -8259,7 +8291,7 @@
 
         //#region Delete Data
         $scope.deleteLoadMetaData = function (loadMetaDataId) {
-            $http.delete(ist.siteUrl + '/api/LoadMetaData', { params: { loadMetaDataId: loadMetaDataId } })
+            $http.delete('/api/LoadMetaData', { params: { loadMetaDataId: loadMetaDataId } })
                         .success(function (data, status, headers, config) {
                             if (data != false) {
                                 $scope.getLoadMetaDataList();
@@ -8292,9 +8324,6 @@
             $scope.IsShowEdit = false;
         }
 
-        // Load base data
-        $scope.GetBaseData();
-
         $scope.LoadTypeChange = function (load) {
             $scope.LoadTypeId = load.Id;
             $("#load-type-sel").text(load.Name).append('&nbsp;<b class="caret"></b>');
@@ -8314,6 +8343,20 @@
             $scope.StatusId = status.Id;
             $("#status-sel").text(status.Name).append('&nbsp;<b class="caret"></b>');
         }
+
+        $scope.headerChange = function (header) {
+            $scope.Header = header;
+        }
+        $scope.footerChange = function(footer) {
+            $scope.Footer = footer;
+        }
+        $scope.nameChange = function(name) {
+            $scope.Name = name;
+        }
+        $scope.descriptionChange = function(description) {
+            $scope.Description = description;
+        }
+        activate();
     }
 })();
 

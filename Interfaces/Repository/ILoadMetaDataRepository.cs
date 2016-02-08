@@ -2,6 +2,8 @@
 using FRS.Models.Common;
 using FRS.Models.Common.DropDown;
 using FRS.Models.DomainModels;
+using FRS.Models.RequestModels;
+using FRS.Models.ResponseModels;
 
 namespace FRS.Interfaces.Repository
 {
@@ -9,5 +11,6 @@ namespace FRS.Interfaces.Repository
     {
         IEnumerable<DropDownModel> LoadMetadataDropDown();
         LoadMetaDataForLoad IsLoadTypeMT940(long loadMetaDataId);
+        SearchLoadMetaDataResponse SearchLoadMetaData(LoadMetaDataSearchRequest searchRequest);
     }
 }

@@ -103,6 +103,7 @@
           <Property Name="CreatedOn" Type="datetime" Nullable="false" />
           <Property Name="ModifiedBy" Type="nvarchar" MaxLength="128" Nullable="false" />
           <Property Name="ModifiedOn" Type="datetime" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="128" Nullable="false" />
         </EntityType>
         <EntityType Name="LoadMetaData">
           <Key>
@@ -926,6 +927,7 @@
           <Property Name="ModifiedOn" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="LoadMetaData" Relationship="angularModel.FK_Load_LoadMetaData" FromRole="Load" ToRole="LoadMetaData" />
           <NavigationProperty Name="MT940Load" Relationship="angularModel.FK_Load_MT940Load" FromRole="Load" ToRole="MT940Load" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="LoadMetaData">
           <Key>
@@ -1367,6 +1369,7 @@
           <EntitySetMapping Name="Loads">
             <EntityTypeMapping TypeName="angularModel.Load">
               <MappingFragment StoreEntitySet="Load">
+                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
                 <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
                 <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
