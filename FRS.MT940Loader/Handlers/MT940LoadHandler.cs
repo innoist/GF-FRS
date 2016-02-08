@@ -191,7 +191,10 @@ namespace FRS.MT940Loader.Handlers
         public void LoadMT940(Load load, string base64Content)
         {
             ICollection<CustomerStatementMessage> customerStatementMessages = _mt940Loader.LoadBase64MT940Content(base64Content);
-
+            //load id and userid needed
+            //error handling
+            //exception handling
+            //
             foreach(CustomerStatementMessage customerStatementMessage in customerStatementMessages)
             {
                 Currency currency = (from c in _dbHandler.DbContext.Currencies
