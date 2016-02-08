@@ -8144,26 +8144,69 @@
         .module('app.LoadMetaData', [])
         .controller('LoadMetaDataController', LoadMetaDataController);
 
-    LoadMetaDataController.$inject = ['$http', '$rootScope', '$scope', '$state', 'LoadMetaDataService'];
+    LoadMetaDataController.$inject = ['$http', '$rootScope', '$scope', '$state', 'LoadMetaDataService', 'uiGridConstants'];
 
-    function LoadMetaDataController($http, $rootScope, $scope, $state, LoadMetaDataService) {
+    function LoadMetaDataController($http, $rootScope, $scope, $state, LoadMetaDataService, uiGridConstants) {
 
         var vm = this;
-
+        var paginationOptions = {
+            pageNumber: 1,
+            pageSize: 25,
+            sort: null
+        };
         vm.gridOptions = {
             paginationPageSizes: [25, 50, 75],
             paginationPageSize: 25,
+            useExternalPagination: true,
+            useExternalSorting: true,
             columnDefs: [
-              { name: 'Meta Data Name', field:'name' },
-              { name: 'gender' },
-              { name: 'company' }
-            ]
+                // name is for display on the table header, field is for mapping as in 
+              { name: 'Meta Data Name', field:'Name' },
+              { name: 'File Header', field : 'Header' },
+              { name: 'Currency', field:'Currency' },
+              { name: 'Description', field: 'Description' }
+            ],
+            onRegisterApi: function (gridApi) {
+                vm.gridApi = gridApi;
+                vm.gridApi.core.on.sortChanged($scope, function (grid, sortColumns) {
+                    if (sortColumns.length == 0) {
+                        paginationOptions.sort = null;
+                    } else {
+                        paginationOptions.sort = sortColumns[0].sort.direction;
+                    }
+                    getPage();
+                });
+                gridApi.pagination.on.paginationChanged($scope, function (newPage, pageSize) {
+                    paginationOptions.pageNumber = newPage;
+                    paginationOptions.pageSize = pageSize;
+                    getPage();
+                });
+            }
         };
 
-        $http.get('server/uigrid-100.js')
-        .success(function (data) {
-            vm.gridOptions.data = data;
-        });
+        $http.get(window.frsApiUrl + '/api/LoadMetaData?SortBy=2')
+            .success(function (data) {
+                vm.gridOptions.totalItems = 100;
+                var firstRow = (paginationOptions.pageNumber - 1) * paginationOptions.pageSize;
+                vm.gridOptions.data = data.slice(firstRow, firstRow + paginationOptions.pageSize);
+            });
+
+        //var getPage = function () {
+        //    var url;
+        //    switch (paginationOptions.sort) {
+        //        case uiGridConstants.ASC:
+        //            url = '/data/100_ASC.json';
+        //            break;
+        //        case uiGridConstants.DESC:
+        //            url = '/data/100_DESC.json';
+        //            break;
+        //        default:
+        //            url = '/data/100.json';
+        //            break;
+        //    }
+        //};
+
+
 
         //#region Web Model properties
         $scope.LoadMetaDataId;
@@ -8191,7 +8234,7 @@
         $scope.GetBaseData = function () {
             LoadMetaDataService.getLoadMetaData(onSuccess);
             function onSuccess(data) {
-                $scope.loadMetaDataList = data.LoadMetaDatas;
+                //vm.gridOptions.data = data.LoadMetaDatas;
                 $scope.LoadTypes = data.LoadTypes;
                 $scope.Sources = data.Sources;
                 $scope.Currencies = data.Currencies;

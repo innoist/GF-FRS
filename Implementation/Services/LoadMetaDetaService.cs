@@ -6,6 +6,7 @@ using FRS.Interfaces.Repository;
 using FRS.Models.Common;
 using FRS.Models.DomainModels;
 using FRS.Models.IdentityModels;
+using FRS.Models.RequestModels;
 using FRS.Models.ResponseModels;
 using Microsoft.AspNet.Identity;
 
@@ -132,6 +133,11 @@ namespace FRS.Implementation.Services
         public LoadMetaDataForLoad IsLoadTypeMT940(long loadMetaDataId)
         {
             return loadMetaDataRepository.IsLoadTypeMT940(loadMetaDataId);
+        }
+
+        public SearchLoadMetaDataResponse SearchLoadMetaData(LoadMetaDataSearchRequest searchRequest)
+        {
+            return loadMetaDataRepository.SearchLoadMetaData(searchRequest);
         }
 
         #endregion
