@@ -107,9 +107,11 @@
   <ItemGroup>
     <Compile Include="CommonTypes\DomainLicenseDetailClaim.cs" />
     <Compile Include="Common\DropDown\DropDownModel.cs" />
+    <Compile Include="Common\GetPagedListRequest.cs" />
     <Compile Include="Common\HelperIcon.cs" />
     <Compile Include="Common\ClaimParamters.cs" />
     <Compile Include="Common\LoadMetaDataForLoad.cs" />
+    <Compile Include="Common\OrderByLoadMetaData.cs" />
     <Compile Include="DomainModels\Currency.cs" />
     <Compile Include="DomainModels\Employee.cs" />
     <Compile Include="DomainModels\FileContent.cs" />
@@ -149,8 +151,10 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="RequestModels\LoadMetaDataSearchRequest.cs" />
     <Compile Include="ResponseModels\BaseDataLoadMetaDataResponse.cs" />
     <Compile Include="ResponseModels\MT940LoadBaseDataResponse.cs" />
+    <Compile Include="ResponseModels\SearchLoadMetaDataResponse.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -165,9 +169,7 @@
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="RequestModels\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

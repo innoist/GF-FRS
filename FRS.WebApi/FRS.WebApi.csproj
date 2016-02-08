@@ -238,6 +238,7 @@
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\Load\BaseDataLoad.cs" />
     <Compile Include="ViewModels\MetaData\BaseDataLoadMetaData.cs" />
+    <Compile Include="ViewModels\MetaData\LoadMetaDataListViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
