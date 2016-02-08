@@ -455,6 +455,7 @@
     <Content Include="master\sass\themes\theme-h.scss" />
     <Content Include="master\vendor.base.json" />
     <Content Include="master\vendor.json" />
+    <Content Include="Scripts\Load\LoadController.js" />
     <Content Include="server\ag-owinners.json" />
     <Content Include="server\chosen-states.json" />
     <Content Include="server\cities.json" />

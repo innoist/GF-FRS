@@ -16,5 +16,7 @@ namespace FRS.Repository.Repositories
         {
             get { return db.Loads; }
         }
+
+
     }
 }

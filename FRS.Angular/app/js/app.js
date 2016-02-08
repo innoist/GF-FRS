@@ -41,7 +41,8 @@
             'app.extras',
             'app.mailbox',
             'app.utils',
-            'app.LoadMetaData'
+            'app.LoadMetaData',
+            'app.Loads',
         ]);
 })();
 
@@ -51,6 +52,12 @@
 
     angular
         .module('app.LoadMetaData', []);
+})();
+(function () {
+    'use strict';
+
+    angular
+        .module('app.Loads', []);
 })();
 (function () {
     'use strict';
