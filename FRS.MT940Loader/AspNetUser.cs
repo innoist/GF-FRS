@@ -39,6 +39,7 @@ namespace FRS.MT940Loader
         public string Telephone { get; set; }
         public string UserComments { get; set; }
         public Nullable<long> EmployeeId { get; set; }
+        public long UserDomainKey { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AspNetUserClaim> AspNetUserClaims { get; set; }
