@@ -15,7 +15,10 @@
                 Description = source.Description,
                 Name = source.Name,
                 StatusId = source.StatusId,
-                Currency = source.Currency != null ? source.Currency.Name : ""
+                Currency = source.Currency != null ? source.Currency.Name : "",
+                LoadType = source.LoadType.Name,
+                Source = source.Source.Name,
+                Status = source.Status.Name
             };
         }
 

@@ -18,5 +18,8 @@ namespace FRS.WebApi.Models.MetaData
         public DateTime ModifiedOn { get; set; }
         public byte StatusId { get; set; }
         public string Currency { get; set; }
+        public string LoadType { get; set; }
+        public string Source { get; set; }
+        public string Status { get; set; }
     }
 }

@@ -8,6 +8,7 @@ using FRS.Interfaces.IServices;
 using FRS.Models.RequestModels;
 using FRS.Models.ResponseModels;
 using FRS.WebApi.ModelMappers;
+using FRS.WebApi.Models.MetaData;
 using FRS.WebApi.ViewModels.MetaData;
 using FRS.WebBase.UnityConfiguration;
 using Microsoft.Practices.Unity;
@@ -26,22 +27,21 @@ namespace FRS.WebApi.Areas.Load.Controllers
 
         #region Get
 
-        public BaseDataLoadMetaData Get()
+        public LoadMetaData Get(long? id)
         {
-            BaseDataLoadMetaDataResponse response = loadMetaDataService.GetBaseDataResponse();
-            BaseDataLoadMetaData baseData = new BaseDataLoadMetaData
+            if (id != null && id > 0)
             {
-                LoadMetaDatas = response.LoadMetaDatas.Select(x => x.CreateFromServerToClient()).ToList(),
-                LoadTypes = response.LoadTypes,
-                Sources = response.Sources,
-                Currencies = response.Currencies,
-                Statuses = response.Statuses
-            };
-            return baseData;
+                var loadMetaData = loadMetaDataService.FindById((long)id);
+                if (loadMetaData != null)
+                {
+                    return loadMetaData.CreateFromServerToClient();
+                }
+            }
+            return null;
         }
 
-
-        public LoadMetaDataListViewModel Get(LoadMetaDataSearchRequest searchRequest)
+        [HttpGet]
+        public LoadMetaDataListViewModel Get([FromUri]LoadMetaDataSearchRequest searchRequest)
         {
             var response =  loadMetaDataService.SearchLoadMetaData(searchRequest);
             LoadMetaDataListViewModel listViewModel = new LoadMetaDataListViewModel
@@ -54,19 +54,7 @@ namespace FRS.WebApi.Areas.Load.Controllers
 
             return listViewModel;
         }
-        public BaseDataLoadMetaData Get(long id)
-        {
-            BaseDataLoadMetaDataResponse response = loadMetaDataService.GetBaseDataResponse();
-            BaseDataLoadMetaData baseData = new BaseDataLoadMetaData
-            {
-                LoadMetaDatas = response.LoadMetaDatas.Select(x => x.CreateFromServerToClient()).ToList(),
-                LoadTypes = response.LoadTypes,
-                Sources = response.Sources,
-                Currencies = response.Currencies,
-                Statuses = response.Statuses
-            };
-            return baseData;
-        }
+        
         #endregion
 
         #region Post

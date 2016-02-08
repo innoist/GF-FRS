@@ -8161,10 +8161,11 @@
             useExternalSorting: true,
             columnDefs: [
                 // name is for display on the table header, field is for mapping as in 
-              { name: 'Meta Data Name', field:'Name' },
-              { name: 'File Header', field : 'Header' },
-              { name: 'Currency', field:'Currency' },
-              { name: 'Description', field: 'Description' }
+              { name: 'Meta Data Name', field: 'Name' },
+              { name: 'Header', field: 'Header' },
+              { name: 'Footer', field: 'Footer' },
+              { name: 'Load Type', field: 'LoadType' },
+              { name: 'Source', field: 'Source' }
             ],
             //onRegisterApi: function (gridApi) {
             //    vm.gridApi = gridApi;
@@ -8183,8 +8184,10 @@
             //    });
             //}
         };
-
-        //$http.get(window.frsApiUrl + '/api/LoadMetaData', {SortBy:2})
+        //var params = {
+        //    'params': { SortBy: 2, SearchString: 'ASDF' }
+        //};
+        //$http.get(window.frsApiUrl + '/api/LoadMetaData', params)
         //    .success(function (data) {
         //        vm.gridOptions.totalItems = 100;
         //        var firstRow = (paginationOptions.pageNumber - 1) * paginationOptions.pageSize;
@@ -8212,15 +8215,9 @@
         }
 
         //#region Web Model properties
-        $scope.LoadMetaDataId;
-        $scope.LoadTypeId;
-        $scope.SourceId;
-        $scope.Header;
-        $scope.Footer;
-        $scope.Name;
-        $scope.CurrencyId;
-        $scope.Description;
-        $scope.StatusId;
+        vm.LoadMetaData = {
+
+        }
         //#endregion
 
         //#region DropDowns
@@ -8248,19 +8245,8 @@
 
         //#region Post Data
         $scope.saveLoadMetaDataDetail = function () {
-            var loadMetaData = {
-                LoadMetaDataId: $scope.LoadMetaDataId,
-                LoadTypeId: $scope.LoadTypeId,
-                SourceId: $scope.SourceId,
-                Header: $scope.Header,
-                Footer: $scope.Footer,
-                Name: $scope.Name,
-                CurrencyId: $scope.CurrencyId,
-                Description: $scope.Description,
-                StatusId: $scope.StatusId
-            };
             debugger;
-            LoadMetaDataService.saveLoadMetaDataDetail(loadMetaData, onSuccess);
+            LoadMetaDataService.saveLoadMetaDataDetail(vm.LoadMetaData, onSuccess);
             function onSuccess(data) {
                 if (data != null) {
                     $scope.GetBaseData();
@@ -8273,19 +8259,16 @@
 
         //#region Edit LoadMetaData
         $scope.editLoadMetaData = function (loadMetaDataId) {
-            var metaData = $filter('filter')($scope.loadMetaDataList, { LoadMetaDataId: loadMetaDataId });
-            $scope.LoadMetaDataId = metaData[0].LoadMetaDataId;
-            $scope.LoadTypeId = metaData[0].LoadTypeId;
-            $scope.SourceId = metaData[0].SourceId;
-            $scope.Header = metaData[0].Header;
-            $scope.Footer = metaData[0].Footer;
-            $scope.Name = metaData[0].Name;
-            $scope.CurrencyId = metaData[0].CurrencyId;
-            $scope.Description = metaData[0].Description;
-            $scope.StatusId = metaData[0].StatusId;
-            $scope.Currency = metaData[0].Currency;
-            $scope.IsReadOnly = false;
-            $scope.IsShowEdit = true;
+            $http.get(window.frsApiUrl + '/api/LoadMetaData/' + loadMetaDataId)
+                .success(function (data) {
+                    if (data != null) {
+                        vm.LoadMetaData = data;
+                        $("#load-type-sel").text(data.LoadType).append('&nbsp;<b class="caret"></b>');
+                        $("#source-sel").text(data.Source).append('&nbsp;<b class="caret"></b>');
+                        $("#currency-sel").text(data.Currency).append('&nbsp;<b class="caret"></b>');
+                        $("#status-sel").text(data.Status).append('&nbsp;<b class="caret"></b>');
+                    }
+                });
         }
         //#endregion
 
@@ -8317,6 +8300,7 @@
         $scope.showEdit = function () {
             $scope.IsReadOnly = false;
             $scope.IsShowEdit = true;
+            $scope.editLoadMetaData(5);
         }
 
         $scope.onEditCancel = function () {
@@ -8325,37 +8309,25 @@
         }
 
         $scope.LoadTypeChange = function (load) {
-            $scope.LoadTypeId = load.Id;
+            vm.LoadMetaData.LoadTypeId = load.Id;
             $("#load-type-sel").text(load.Name).append('&nbsp;<b class="caret"></b>');
         }
 
         $scope.SourceChange = function (source) {
-            $scope.SourceId = source.Id;
+            vm.LoadMetaData.SourceId = source.Id;
             $("#source-sel").text(source.Name).append('&nbsp;<b class="caret"></b>');
         }
 
         $scope.CurrencyChange = function (currency) {
-            $scope.CurrencyId = currency.Id;
+            vm.LoadMetaData.CurrencyId = currency.Id;
             $("#currency-sel").text(currency.Name).append('&nbsp;<b class="caret"></b>');
         }
 
         $scope.StatusChange = function (status) {
-            $scope.StatusId = status.Id;
+            vm.LoadMetaData.StatusId = status.Id;
             $("#status-sel").text(status.Name).append('&nbsp;<b class="caret"></b>');
         }
 
-        $scope.headerChange = function (header) {
-            $scope.Header = header;
-        }
-        $scope.footerChange = function(footer) {
-            $scope.Footer = footer;
-        }
-        $scope.nameChange = function(name) {
-            $scope.Name = name;
-        }
-        $scope.descriptionChange = function(description) {
-            $scope.Description = description;
-        }
         activate();
     }
 })();
@@ -8378,7 +8350,7 @@
         this.saveLoadMetaDataDetail = saveLoadMetaDataDetail;
 
         function getLoadMetaData(onReady, onError) {
-            var urlMetaData = window.frsApiUrl + '/api/LoadMetaData';
+            var urlMetaData = window.frsApiUrl + '/api/LoadMetaDataBase';
 
             onError = onError || function () { alert('Failure loading Meta Data'); };
 

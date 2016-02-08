@@ -75,6 +75,11 @@ namespace FRS.Implementation.Services
             return loadMetaDataRepository.GetAll();
         }
 
+        public LoadMetaData FindById(long loadMetadataId)
+        {
+            return loadMetaDataRepository.Find(loadMetadataId);
+        }
+
         public bool AddMetaData(LoadMetaData loadMetaData)
         {
             loadMetaDataRepository.Add(loadMetaData);
