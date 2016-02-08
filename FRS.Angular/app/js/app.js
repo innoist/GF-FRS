@@ -8166,30 +8166,30 @@
               { name: 'Currency', field:'Currency' },
               { name: 'Description', field: 'Description' }
             ],
-            onRegisterApi: function (gridApi) {
-                vm.gridApi = gridApi;
-                vm.gridApi.core.on.sortChanged($scope, function (grid, sortColumns) {
-                    if (sortColumns.length == 0) {
-                        paginationOptions.sort = null;
-                    } else {
-                        paginationOptions.sort = sortColumns[0].sort.direction;
-                    }
-                    getPage();
-                });
-                gridApi.pagination.on.paginationChanged($scope, function (newPage, pageSize) {
-                    paginationOptions.pageNumber = newPage;
-                    paginationOptions.pageSize = pageSize;
-                    getPage();
-                });
-            }
+            //onRegisterApi: function (gridApi) {
+            //    vm.gridApi = gridApi;
+            //    vm.gridApi.core.on.sortChanged($scope, function (grid, sortColumns) {
+            //        if (sortColumns.length == 0) {
+            //            paginationOptions.sort = null;
+            //        } else {
+            //            paginationOptions.sort = sortColumns[0].sort.direction;
+            //        }
+            //        getPage();
+            //    });
+            //    gridApi.pagination.on.paginationChanged($scope, function (newPage, pageSize) {
+            //        paginationOptions.pageNumber = newPage;
+            //        paginationOptions.pageSize = pageSize;
+            //        getPage();
+            //    });
+            //}
         };
 
-        $http.get(window.frsApiUrl + '/api/LoadMetaData?SortBy=2')
-            .success(function (data) {
-                vm.gridOptions.totalItems = 100;
-                var firstRow = (paginationOptions.pageNumber - 1) * paginationOptions.pageSize;
-                vm.gridOptions.data = data.slice(firstRow, firstRow + paginationOptions.pageSize);
-            });
+        //$http.get(window.frsApiUrl + '/api/LoadMetaData', {SortBy:2})
+        //    .success(function (data) {
+        //        vm.gridOptions.totalItems = 100;
+        //        var firstRow = (paginationOptions.pageNumber - 1) * paginationOptions.pageSize;
+        //        vm.gridOptions.data = data.slice(firstRow, firstRow + paginationOptions.pageSize);
+        //    });
 
         //var getPage = function () {
         //    var url;
@@ -8234,7 +8234,7 @@
         $scope.GetBaseData = function () {
             LoadMetaDataService.getLoadMetaData(onSuccess);
             function onSuccess(data) {
-                //vm.gridOptions.data = data.LoadMetaDatas;
+                vm.gridOptions.data = data.LoadMetaDatas;
                 $scope.LoadTypes = data.LoadTypes;
                 $scope.Sources = data.Sources;
                 $scope.Currencies = data.Currencies;
