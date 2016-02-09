@@ -8149,65 +8149,82 @@
     function LoadMetaDataController($http, $rootScope, $scope, $state, LoadMetaDataService, uiGridConstants) {
 
         var vm = this;
-        var paginationOptions = {
-            pageNumber: 1,
-            pageSize: 25,
-            sort: null
+        //var paginationOptions = {
+        //    pageNumber: 1,
+        //    pageSize: 1,
+        //    sort: null
+        //};
+        var paginationOptions = { 'params' : { SortBy: 0, SearchString: '', IsAsc: true, PageNo: 1, PageSize: 1, sort: null }
         };
         vm.gridOptions = {
-            paginationPageSizes: [25, 50, 75],
-            paginationPageSize: 25,
+            paginationPageSizes: [1,10,25,50,100,500],
+            paginationPageSize: 1,
             useExternalPagination: true,
             useExternalSorting: true,
+            enableFiltering: true,
+            flatEntityAccess: true,
+            //fastWatch: true,
+            enableGridMenu: true,
+            //useExternalFiltering: true,
             columnDefs: [
                 // name is for display on the table header, field is for mapping as in 
-              { name: 'Meta Data Name', field: 'Name' },
-              { name: 'Header', field: 'Header' },
-              { name: 'Footer', field: 'Footer' },
-              { name: 'Load Type', field: 'LoadType' },
-              { name: 'Source', field: 'Source' }
+                //sortId is kept locally it is not the property of ui.grid
+              { name: 'Meta Data Name', field: 'Name', sortId: 0, enableFiltering: true },
+              { name: 'Header', field: 'Header', sortId: 1, enableFiltering: true },
+              { name: 'Footer', field: 'Footer', sortId: 2, enableFiltering: true },
+              { name: 'Load Type', field: 'LoadType', sortId: 3, enableFiltering: true },
+              { name: 'Source', field: 'Source', sortId: 4, enableFiltering: true }
             ],
-            //onRegisterApi: function (gridApi) {
-            //    vm.gridApi = gridApi;
-            //    vm.gridApi.core.on.sortChanged($scope, function (grid, sortColumns) {
-            //        if (sortColumns.length == 0) {
-            //            paginationOptions.sort = null;
-            //        } else {
-            //            paginationOptions.sort = sortColumns[0].sort.direction;
-            //        }
-            //        getPage();
-            //    });
-            //    gridApi.pagination.on.paginationChanged($scope, function (newPage, pageSize) {
-            //        paginationOptions.pageNumber = newPage;
-            //        paginationOptions.pageSize = pageSize;
-            //        getPage();
-            //    });
-            //}
+            onRegisterApi: function (gridApi) {
+                vm.gridApi = gridApi;
+                vm.gridApi.core.on.sortChanged($scope, function (grid, sortColumns) {
+                    if (sortColumns.length == 0) {
+                        paginationOptions.params.sort = null;
+                        paginationOptions.params.SortBy = 0;
+                    } else {
+                        paginationOptions.params.sort = sortColumns[0].sort.direction;
+                        var temp = -1;
+                        angular.forEach(vm.gridOptions.columnDefs, function (value, key) {
+                            if (temp == -1)
+                                if (value.field == sortColumns[0].field) {
+                                    paginationOptions.params.SortBy = value.sortId;
+                                    temp = 0;
+                                }
+                        });
+                        
+                    }
+                    getPage();
+                });
+                gridApi.pagination.on.paginationChanged($scope, function (newPage, pageSize) {
+                    paginationOptions.params.PageNo = newPage;
+                    paginationOptions.params.PageSize = pageSize;
+                    getPage();
+                });
+            }
         };
-        //var params = {
-        //    'params': { SortBy: 2, SearchString: 'ASDF' }
-        //};
-        //$http.get(window.frsApiUrl + '/api/LoadMetaData', params)
-        //    .success(function (data) {
-        //        vm.gridOptions.totalItems = 100;
-        //        var firstRow = (paginationOptions.pageNumber - 1) * paginationOptions.pageSize;
-        //        vm.gridOptions.data = data.slice(firstRow, firstRow + paginationOptions.pageSize);
-        //    });
+        var getPage = function () {
+            
+            switch (paginationOptions.params.sort) {
+                case uiGridConstants.ASC:
+                    paginationOptions.params.IsAsc = true;
+                    break;
+                case uiGridConstants.DESC:
+                    paginationOptions.params.IsAsc = false;
+                    break;
+                default:
+                    //url = '/data/100.json';
+                    break;
+            }
 
-        //var getPage = function () {
-        //    var url;
-        //    switch (paginationOptions.sort) {
-        //        case uiGridConstants.ASC:
-        //            url = '/data/100_ASC.json';
-        //            break;
-        //        case uiGridConstants.DESC:
-        //            url = '/data/100_DESC.json';
-        //            break;
-        //        default:
-        //            url = '/data/100.json';
-        //            break;
-        //    }
-        //};
+            $http.get(window.frsApiUrl + '/api/LoadMetaData', paginationOptions)
+            .success(function (data) {
+                vm.gridOptions.totalItems = data.TotalCount;
+                //var firstRow = (paginationOptions.pageNumber - 1) * paginationOptions.pageSize;
+                vm.gridOptions.data = data.LoadMetaDatas; //.slice(firstRow, firstRow + paginationOptions.pageSize);
+            });
+        };
+
+        getPage();
 
         function activate() {
             // Load base data
@@ -8234,7 +8251,7 @@
         $scope.GetBaseData = function () {
             LoadMetaDataService.getLoadMetaData(onSuccess);
             function onSuccess(data) {
-                vm.gridOptions.data = data.LoadMetaDatas;
+                //vm.gridOptions.data = data.LoadMetaDatas;
                 $scope.LoadTypes = data.LoadTypes;
                 $scope.Sources = data.Sources;
                 $scope.Currencies = data.Currencies;

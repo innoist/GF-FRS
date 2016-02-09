@@ -24,7 +24,9 @@ namespace FRS.Repository.Repositories
             {
                 {OrderByLoadMetaData.Name, c => c.Name},
                 {OrderByLoadMetaData.Header, c => c.Header},
-                {OrderByLoadMetaData.Currency, c => c.Currency}
+                {OrderByLoadMetaData.Footer, c => c.Footer},
+                {OrderByLoadMetaData.LoadType, c => c.LoadTypeId},
+                {OrderByLoadMetaData.Source, c => c.Source},
             };
 
 

@@ -48,8 +48,7 @@ namespace FRS.WebApi.Areas.Load.Controllers
             {
                 LoadMetaDatas = response.LoadMetaDatas.Select(x=>x.CreateFromServerToClient()).ToList(),
                 FilteredCount = response.FilteredCount,
-                TotalCount = response.TotalCount,
-                TotalRecords = response.TotalRecords
+                TotalCount = response.TotalCount
             };
 
             return listViewModel;
