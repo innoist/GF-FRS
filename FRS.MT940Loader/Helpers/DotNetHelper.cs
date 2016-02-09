@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Text;
+using Raptorious.SharpMt940Lib;
 
 namespace FRS.MT940Loader.Helpers
 {
@@ -55,6 +56,22 @@ namespace FRS.MT940Loader.Helpers
                 sb.AppendLine("Code = " + fault.Code + ", Message = " + fault.Message);
 
             return sb.ToString();
+        }
+
+        public static MT940Balance ConvertTransactionBalanceToMT940Balance(this TransactionBalance source)
+        {
+            return new MT940Balance
+            {
+                CurrencyId = Convert.ToByte(source.Currency.Code),
+                DebitOrCredit = source.DebitCredit.ConvertToDebitOrCredit(),
+                EntryDate = source.EntryDate,
+                Value = source.Balance.Value
+            };
+        }
+
+        public static string ConvertToDebitOrCredit(this DebitCredit source)
+        {
+           return (source == DebitCredit.RC || source == DebitCredit.Credit) ? "C" : "D";
         }
     }
 }

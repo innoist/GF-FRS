@@ -1,4 +1,5 @@
-﻿using FRS.MT940Loader.Faults;
+﻿using System;
+using FRS.MT940Loader.Faults;
 using FRS.MT940Loader.Helpers;
 using Raptorious.SharpMt940Lib;
 using System.Linq;
@@ -118,7 +119,14 @@ namespace FRS.MT940Loader.Handlers
             }
 
         }
-
+        private long AddMT940Balance(TransactionBalance balance)
+        {
+            return _dbHandler.DbContext.MT940Balance.Add(balance.ConvertTransactionBalanceToMT940Balance()).MT940BalanceId;
+        }
+        private long AddMT940CustomerStatement(MT940CustomerStatement customerStatement)
+        {
+            return _dbHandler.DbContext.MT940CustomerStatement.Add(customerStatement).MT940CustomerStatementId;
+        }
         #endregion **END - Private Methods **
 
         #region **STRAT - Public Methods**
@@ -188,34 +196,51 @@ namespace FRS.MT940Loader.Handlers
         /// </summary>
         /// <param name="load">Load object for this load</param>
         /// <param name="base64Content">Base64 string contents of MT940 file</param>
-        public void LoadMT940(Load load, string base64Content)
+        public void LoadMT940(Load load, string base64Content, string userId)
         {
             ICollection<CustomerStatementMessage> customerStatementMessages = _mt940Loader.LoadBase64MT940Content(base64Content);
             //load id and userid needed
             //error handling
             //exception handling
             //
-            foreach(CustomerStatementMessage customerStatementMessage in customerStatementMessages)
+            foreach(CustomerStatementMessage customerStatement in customerStatementMessages)
             {
                 Currency currency = (from c in _dbHandler.DbContext.Currencies
-                                    where c.Name == customerStatementMessage.ClosingAvailableBalance.Currency.Code
+                                    where c.Name == customerStatement.ClosingAvailableBalance.Currency.Code
                                     select c).FirstOrDefault();
                 MT940CustomerStatement mt940CustomerStatement = new MT940CustomerStatement()
                 {
-                    AccountNumber = customerStatementMessage.Account,
-                    ClosingAvailableBalance = new MT940Balance()
-                    {
-                        Currency = currency
-                        //DebitOrCredit = customerStatementMessage.ClosingAvailableBalance.DebitCredit.
-                    }
+                    MT940LoadId = Convert.ToInt64(load.MT940LoadId),
+                    //Sequence = ????
+                    //ReadOnly = ??
+                    AccountNumber = customerStatement.Account,
+                    ClosingAvailableBalanceId = AddMT940Balance(customerStatement.ClosingAvailableBalance),
+                    ClosingBalanceId = AddMT940Balance(customerStatement.ClosingBalance),
+                    Description = customerStatement.Description,
+                    ForwardAvailableBalanceId = AddMT940Balance(customerStatement.ForwardAvailableBalance),
+                    OpeningBalanceId = AddMT940Balance(customerStatement.OpeningBalance),
+                    ReleatedMessage = customerStatement.RelatedMessage,
+                    SequenceNumber = customerStatement.SequenceNumber,
+                    StatementNumber = customerStatement.StatementNumber,
+                    TransactionReference = customerStatement.TransactionReference,
+                    TransactionCount = customerStatement.Transactions.Count,
+                    CreatedBy = userId,
+                    ModifiedBy = userId
                 };
-                
-                foreach(Transaction transaction in customerStatementMessage.Transactions)
+                long MT940CustomerStatementId = AddMT940CustomerStatement(mt940CustomerStatement);
+                foreach(Transaction transaction in customerStatement.Transactions)
                 {
                     //Add to MT940 Customer Transaction
+                    MT940CustomerStatementTransaction mt940CustomerStatementTransaction = new MT940CustomerStatementTransaction
+                    {
+                        
+                    };
                 }
             }
         }
+
+        
+
         #endregion **END - Public Methods**
     }
 }
