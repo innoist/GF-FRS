@@ -41,7 +41,8 @@
             'app.extras',
             'app.mailbox',
             'app.utils',
-            'app.LoadMetaData'
+            'app.LoadMetaData',
+            'app.Load'
         ]);
 })();
 
@@ -51,6 +52,13 @@
 
     angular
         .module('app.LoadMetaData', []);
+})();
+
+(function () {
+    'use strict';
+
+    angular
+        .module('app.Load', []);
 })();
 (function () {
     'use strict';
@@ -7520,7 +7528,15 @@
                 templateUrl: helper.basepath('../../../../app/views/LoadMetaData.html'),
                 controller: 'LoadMetaDataController',
                 controllerAs: 'mdc',
-                resolve: helper.resolveFor('ui.grid')
+                resolve: helper.resolveFor('ui.grid','loaders.css', 'spinkit')
+            })
+            .state('app.Load', {
+                url: '/Load',
+                title: 'Load',
+                templateUrl: helper.basepath('../../../../app/views/Load.html'),
+                controller: 'LoadController',
+                controllerAs: 'ldc',
+                resolve: helper.resolveFor('parsley')
             })
           .state('app.dashboard_v2', {
               url: '/dashboard_v2',
@@ -8149,12 +8165,15 @@
     function LoadMetaDataController($http, $rootScope, $scope, $state, LoadMetaDataService, uiGridConstants) {
 
         var vm = this;
-        //var paginationOptions = {
-        //    pageNumber: 1,
-        //    pageSize: 1,
-        //    sort: null
-        //};
-        var paginationOptions = { 'params' : { SortBy: 0, SearchString: '', IsAsc: true, PageNo: 1, PageSize: 1, sort: null }
+        var paginationOptions = {
+            'params': {
+                SortBy: 0,
+                SearchString: '',
+                IsAsc: true,
+                PageNo: 1,
+                PageSize: 1,
+                sort: null
+            }
         };
         vm.gridOptions = {
             paginationPageSizes: [1,10,25,50,100,500],
@@ -8203,7 +8222,7 @@
             }
         };
         var getPage = function () {
-            
+            $scope.loading = true;
             switch (paginationOptions.params.sort) {
                 case uiGridConstants.ASC:
                     paginationOptions.params.IsAsc = true;
@@ -8221,6 +8240,9 @@
                 vm.gridOptions.totalItems = data.TotalCount;
                 //var firstRow = (paginationOptions.pageNumber - 1) * paginationOptions.pageSize;
                 vm.gridOptions.data = data.LoadMetaDatas; //.slice(firstRow, firstRow + paginationOptions.pageSize);
+                $scope.loading = false;
+            }).error(function() {
+                $scope.loading = false;
             });
         };
 
@@ -8386,6 +8408,163 @@
               .post(urlMetaData, metaData)
               .success(onReady)
               .error(onError);
+        }
+    }
+})();
+
+
+/**=========================================================
+ * Module: load
+ * Load view
+ =========================================================*/
+(function () {
+    'use strict';
+    angular
+        .module('app.Load')
+        .controller('LoadController', LoadController);
+
+    LoadController.$inject = ['$http', '$scope'];
+
+    function LoadController($http, $scope) {
+        var vm = this;
+
+        activate();
+
+        function activate() {
+            
+            //functionality starts here
+            $scope.LoadId;
+            $scope.LoadMetadataId;
+            $scope.MT940LoadId;
+            $scope.Attachment;
+            $scope.FileName;
+            $scope.FileExtension;
+            $scope.IsShowEdit = false;
+            $scope.LoadMetadataDropDown = [];
+            $scope.MetaDataWithFileTypes = [];
+            // readonly properties
+            $scope.LoadTypeName;
+            $scope.SourceName;
+            $scope.LastModified;
+
+
+            // show/hide file uploading facility
+            $scope.IsLoadTypeMT940 = false;
+
+            //#region Get Data from DB
+            $scope.getLoadList = function () {
+                $http.get(window.frsApiUrl + '/api/Load')
+                    .success(function (data, status, headers, config) {
+                        $scope.loadList = data.Loads;
+                        $scope.LoadMetadataDropDown = data.LoadMetadataDropDown;
+                        $scope.MetaDataWithFileTypes = data.MetaDataWithFileTypes;
+                    });
+            }
+            //#endregion
+
+            //#region Post Data
+            $scope.saveMT940Detail = function () {
+                var load = {
+                    LoadId: $scope.LoadId,
+                    LoadMetadataId: $scope.LoadMetadataId.Id,
+                    Attachment: $scope.Attachment,
+                    FileName: $scope.FileName,
+                    FileExtension: $scope.FileExtension,
+                };
+                $http.post(window.frsApiUrl + '/api/Load', load)
+                    .success(function (data, status, headers, config) {
+                        console.log(data);
+                    });
+            }
+            //#endregion
+
+            //#region Delete Data
+            $scope.deleteLoad = function (loadId) {
+                $http.delete(window.frsApiUrl + '/api/Load', { params: { loadId: loadId } })
+                            .success(function (data, status, headers, config) {
+                                if (data != false) {
+                                    $scope.getLoadList();
+                                }
+                            });
+            }
+            //#endregion
+
+            //#region Functions
+            $scope.defaultModel = function () {
+                $scope.LoadId = 0;
+                $scope.LoadMetadataId = 0;
+                $scope.MT940LoadId = 0;
+                $scope.Attachment = '';
+                $scope.FileName = '';
+                $scope.FileExtension = '';
+                $scope.IsLoadTypeMT940 = false;
+                $scope.LoadTypeName = '';
+                $scope.SourceName = '';
+                $scope.LastModified = '';
+            }
+
+            $scope.showEdit = function () {
+                $scope.IsShowEdit = true;
+            }
+
+            $scope.onEditCancel = function () {
+                $scope.defaultModel();
+                $scope.IsShowEdit = false;
+            }
+
+            $scope.showHideFileUploader = function (loadMetadata) {
+                if (loadMetadata.Id != null) {
+                    var url = window.frsApiUrl + '/api/Load?metaDataId=' + loadMetadata.Id;
+                    $("#source-sel").text(loadMetadata.Name).append('&nbsp;<b class="caret"></b>');
+                    $http.get(url)
+                        .success(function (data, status, headers, config) {
+                            if (data != null) {
+                                $scope.IsLoadTypeMT940 = data.IsLoadTypeMT940;
+                                $scope.LoadTypeName = data.LoadType;
+                                $scope.SourceName = data.SourceName;
+                                $scope.Tailer = data.Footer;
+                            } else {
+                                $scope.IsLoadTypeMT940 = false;
+                                $scope.LoadTypeName = '';
+                                $scope.SourceName = '';
+                                $scope.LastModified = '';
+                            }
+                        });
+                } else {
+                    $scope.IsLoadTypeMT940 = false;
+                    $scope.LoadTypeName = '';
+                    $scope.SourceName = '';
+                    $scope.LastModified = '';
+                }
+            }
+
+            // get data on page load
+            $scope.getLoadList();
+            //#endregion
+            $scope.readPhotoURL = function (input) {
+                if (input.files && input.files[0]) {
+                    $scope.FileName = input.files[0].name;
+                    $scope.FileExtension = input.files[0].type.split('/')[1];
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        var img = new Image;
+                        img.onload = function () {
+                            if (img.height > 250 || img.width > 250) {
+                                //   toastr.error("Image Max. width 1280 and height 1024px; please resize the image and try again");
+                            } else {
+                                $('#vehicleImage')
+                                    .attr('src', e.target.result)
+                                    .width(120)
+                                    .height(120);
+                            }
+                        };
+                        img.src = reader.result;
+                        $scope.Attachment = img.src;
+                    };
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
+
         }
     }
 })();

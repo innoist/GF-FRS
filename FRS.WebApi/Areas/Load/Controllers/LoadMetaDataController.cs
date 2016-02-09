@@ -4,6 +4,7 @@ using System.Net;
 using System.Web;
 using System.Web.Http;
 using System.Web.Http.Cors;
+using System.Web.Routing;
 using FRS.Interfaces.IServices;
 using FRS.Models.RequestModels;
 using FRS.Models.ResponseModels;
@@ -11,6 +12,7 @@ using FRS.WebApi.ModelMappers;
 using FRS.WebApi.Models.MetaData;
 using FRS.WebApi.ViewModels.MetaData;
 using FRS.WebBase.UnityConfiguration;
+using Microsoft.AspNet.Identity;
 using Microsoft.Practices.Unity;
 
 namespace FRS.WebApi.Areas.Load.Controllers
@@ -67,6 +69,7 @@ namespace FRS.WebApi.Areas.Load.Controllers
             {
                 try
                 {
+                    //RequestContext.Principal.Identity.GetUserId();
                     return loadMetaDataService.SaveMetaData(loadMetaData.CreateFromClientToServer()).CreateFromServerToClient();
                 }
                 catch (Exception)
