@@ -8522,19 +8522,24 @@
                                 $scope.IsLoadTypeMT940 = data.IsLoadTypeMT940;
                                 $scope.LoadTypeName = data.LoadType;
                                 $scope.SourceName = data.SourceName;
-                                $scope.Tailer = data.Footer;
+                                $scope.Tailer = data.Trailer;
+                                $scope.Header = data.Header;
+                                $scope.Currency = data.Currency;
+
                             } else {
                                 $scope.IsLoadTypeMT940 = false;
-                                $scope.LoadTypeName = '';
-                                $scope.SourceName = '';
-                                $scope.LastModified = '';
+                                $scope.Tailer = '';
+                                $scope.Header = '';
+                                $scope.Currency = '';
                             }
                         });
                 } else {
                     $scope.IsLoadTypeMT940 = false;
                     $scope.LoadTypeName = '';
                     $scope.SourceName = '';
-                    $scope.LastModified = '';
+                    $scope.Tailer = '';
+                    $scope.Header = '';
+                    $scope.Currency = '';
                 }
             }
 

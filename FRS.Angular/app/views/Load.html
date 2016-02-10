@@ -60,11 +60,11 @@
                                     <!--<label>First Name</label>-->
                                     <!--<input type="text" name="first-name" data-parsley-group="step2" placeholder="John" required="required" class="form-control" />-->
                                     <label for="source-sel" class="control-label col-md-2">Source</label>
-                                    <div uib-dropdown="dropdown" class="col-md-8">
-                                        <button id="source-sel" uib-dropdown-toggle="" class="btn btn-default">
+                                    <div uib-dropdown="dropdown" class="col-md-6">
+                                        <button id="source-sel" uib-dropdown-toggle="" class="btn btn-default" style="width: 100%">
                                             Select <b class="caret"></b>
                                         </button>
-                                        <ul role="menu" class="dropdown-menu animated flipInX">
+                                        <ul role="menu" class="dropdown-menu animated flipInX" style="width: 100%; text-align: center">
                                             <li ng-repeat="obj in LoadMetadataDropDown">
                                                 <a ng-click="showHideFileUploader(obj)">{{obj.Name}}</a>
                                             </li>
@@ -91,24 +91,22 @@
                                     </div>
                                 </div>
                             
-                                <div class="" ng-show="IsLoadTypeMT940">
-                                    <div class="form-group margin-top-20">
-                                        <label class="control-label col-md-2">Header</label>
-                                        <div class="col-md-6">
-                                            <input class="form-control" type="text" ng-model="Header" ng-readonly="true" />
-                                        </div>
+                                <div class="form-group margin-top-20">
+                                    <label class="control-label col-md-2">Header</label>
+                                    <div class="col-md-6">
+                                        <input class="form-control" type="text" ng-model="Header" ng-readonly="true" />
                                     </div>
-                                    <!--<div class="form-group margin-top-20">
+                                </div>
+                                <!--<div class="form-group margin-top-20">
                                         <label class="control-label col-sm-2">Upload File</label>
                                         <div class="col-md-6">
                                             <input class="form-control" type="file" onchange=" angular.element(this).scope().readPhotoURL(this) " />
                                         </div>
                                     </div>-->
-                                    <div class="form-group margin-top-20">
-                                        <label class="control-label col-sm-2">Trailer</label>
-                                        <div class="col-md-6">
-                                            <input class="form-control" type="file" ng-model="Trailer" />
-                                        </div>
+                                <div class="form-group margin-top-20">
+                                    <label class="control-label col-sm-2">Trailer</label>
+                                    <div class="col-md-6">
+                                        <input class="form-control" type="text" ng-model="Trailer" ng-readonly="true" />
                                     </div>
                                 </div>
                             </form>

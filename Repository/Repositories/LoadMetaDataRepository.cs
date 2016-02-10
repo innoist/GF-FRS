@@ -60,7 +60,10 @@ namespace FRS.Repository.Repositories
                     IsLoadTypeMT940 = metaData.LoadType.Name == loadType,
                     LoadType = metaData.LoadType.Name,
                     SourceName = metaData.Source.Name,
-                    LastModified = metaData.ModifiedOn.ToString("dd/MM/yyyy", new CultureInfo("en"))
+                    Currency = metaData.Currency.Sign,
+                    Header = metaData.Header,
+                    Trailer = metaData.Footer
+                    //LastModified = metaData.ModifiedOn.ToString("dd/MM/yyyy", new CultureInfo("en"))
                 };
             }
             return null;
