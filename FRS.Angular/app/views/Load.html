@@ -31,10 +31,10 @@
                         <!-- START row -->
                         
                         <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label>Name</label>
-                                    <div class="controls">
+                            <div class="form-horizontal">
+                                <div class="form-group margin-top-20">
+                                    <label class="control-label col-md-2">Name</label>
+                                    <div class="col-md-6">
                                         <input type="text" name="name" data-parsley-group="step1" placeholder="Your name here" required="required" class="form-control" />
                                     </div>
                                 </div>
@@ -57,8 +57,6 @@
                         <div class="row">
                             <div class="form-horizontal">
                                 <div class="form-group margin-top-20">
-                                    <!--<label>First Name</label>-->
-                                    <!--<input type="text" name="first-name" data-parsley-group="step2" placeholder="John" required="required" class="form-control" />-->
                                     <label for="source-sel" class="control-label col-md-2">Source</label>
                                     <div uib-dropdown="dropdown" class="col-md-6">
                                         <button id="source-sel" uib-dropdown-toggle="" class="btn btn-default" style="width: 100%">
@@ -75,7 +73,7 @@
                             
                         </div>
                         <!-- END row -->
-                        <div class="row" ng-show="IsLoadTypeMT940">
+                        <div class="row">
                             
                             <form class="form-horizontal">
                                 <div class="form-group margin-top-20">
@@ -97,16 +95,18 @@
                                         <input class="form-control" type="text" ng-model="Header" ng-readonly="true" />
                                     </div>
                                 </div>
-                                <!--<div class="form-group margin-top-20">
-                                        <label class="control-label col-sm-2">Upload File</label>
-                                        <div class="col-md-6">
-                                            <input class="form-control" type="file" onchange=" angular.element(this).scope().readPhotoURL(this) " />
-                                        </div>
-                                    </div>-->
+                                
                                 <div class="form-group margin-top-20">
                                     <label class="control-label col-sm-2">Trailer</label>
                                     <div class="col-md-6">
                                         <input class="form-control" type="text" ng-model="Trailer" ng-readonly="true" />
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group margin-top-20" ng-show="IsLoadTypeMT940">
+                                    <label class="control-label col-sm-2">Upload File</label>
+                                    <div class="col-md-6">
+                                        <input class="form-control" type="file" onchange=" angular.element(this).scope().readPhotoURL(this) " />
                                     </div>
                                 </div>
                             </form>

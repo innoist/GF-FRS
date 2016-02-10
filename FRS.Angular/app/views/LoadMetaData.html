@@ -1,14 +1,14 @@
-﻿<div ng-show="!IsShowEdit" class="container-fluid">
+﻿<div class="container-fluid">
     <div class="pull-right">
-        <button ng-click="showEdit()" class="btn btn-default btn-sm pull-right margin-right-40">New</button>
+        <a ui-sref="app.CreateMetaData" class="btn btn-default btn-sm pull-right margin-right-40">New</a>
     </div>
     <fieldset>
         <legend>ListView</legend>
     </fieldset>
-    
+
     <!-- Grid view to show listview with searching, sorting and pagination-->
     <div ui-grid="mdc.gridOptions" ui-grid-pagination class="table-uigrid" style="height: auto; min-height: 300px">
-        
+
         <div class="" ng-hide="!loading">
             <div class="line-scale-pulse-out" style="position: absolute; left: 0;  right: 0; top: 100px; vertical-align: middle; text-align: center">
                 <div></div>
@@ -20,7 +20,4 @@
 
         </div>
     </div>
-    
-
 </div>
-<div ng-include="'../../app/views/LoadMetaDataEditor.html'"></div>

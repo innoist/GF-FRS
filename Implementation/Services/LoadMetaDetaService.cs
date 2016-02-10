@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Security.Claims;
+﻿using System.Collections.Generic;
 using FRS.Interfaces.IServices;
 using FRS.Interfaces.Repository;
 using FRS.Models.Common;
@@ -8,7 +6,6 @@ using FRS.Models.DomainModels;
 using FRS.Models.IdentityModels;
 using FRS.Models.RequestModels;
 using FRS.Models.ResponseModels;
-using Microsoft.AspNet.Identity;
 
 namespace FRS.Implementation.Services
 {
@@ -24,10 +21,10 @@ namespace FRS.Implementation.Services
         private readonly IStatusRepository statusRepository;
         private readonly IUserRepository userRepository;
 
-        private void UpdateProperties(LoadMetaData metaData, LoadMetaData dbVersion, AspNetUser user)
+        private void UpdateProperties(LoadMetaData metaData, LoadMetaData dbVersion)
         {
-            dbVersion.ModifiedBy = user.Id;
-            dbVersion.ModifiedOn = DateTime.Now;
+            dbVersion.ModifiedBy = metaData.ModifiedBy;
+            dbVersion.ModifiedOn = metaData.ModifiedOn;
             dbVersion.LoadTypeId = metaData.LoadTypeId;
             dbVersion.SourceId = metaData.SourceId;
             dbVersion.Header = metaData.Header;
@@ -37,12 +34,12 @@ namespace FRS.Implementation.Services
             dbVersion.Description = metaData.Description;
             dbVersion.StatusId = metaData.StatusId;
         }
-        private void SetProperties(LoadMetaData metaData, LoadMetaData dbVersion, AspNetUser user)
+        private void SetProperties(LoadMetaData metaData, LoadMetaData dbVersion)
         {
-            dbVersion.CreatedBy = user.Id;
-            dbVersion.CreatedOn = DateTime.Now;
-            dbVersion.ModifiedBy = user.Id;
-            dbVersion.ModifiedOn = DateTime.Now;
+            dbVersion.CreatedBy = metaData.CreatedBy;
+            dbVersion.CreatedOn = metaData.CreatedOn;
+            dbVersion.ModifiedBy = metaData.ModifiedBy;
+            dbVersion.ModifiedOn = metaData.ModifiedOn;
             dbVersion.LoadTypeId = metaData.LoadTypeId;
             dbVersion.SourceId = metaData.SourceId;
             dbVersion.Header = metaData.Header;
@@ -118,17 +115,17 @@ namespace FRS.Implementation.Services
 
         public LoadMetaData SaveMetaData(LoadMetaData loadMetaData)
         {
-            var user = userRepository.GetLoggedInUser();
+            //var user = userRepository.GetLoggedInUser();
             LoadMetaData dbVersion = loadMetaDataRepository.Find(loadMetaData.LoadMetaDataId);
             if (dbVersion != null)
             {
-                UpdateProperties(loadMetaData, dbVersion, user);
+                UpdateProperties(loadMetaData, dbVersion);
                 loadMetaDataRepository.Update(dbVersion);
             }
             else
             {
                 dbVersion = new LoadMetaData();
-                SetProperties(loadMetaData, dbVersion, user);
+                SetProperties(loadMetaData, dbVersion);
                 loadMetaDataRepository.Add(dbVersion);
             }
             loadMetaDataRepository.SaveChanges();

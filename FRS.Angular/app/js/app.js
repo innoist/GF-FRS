@@ -42,6 +42,7 @@
             'app.mailbox',
             'app.utils',
             'app.LoadMetaData',
+            'app.CreateMetaData',
             'app.Load'
         ]);
 })();
@@ -52,6 +53,12 @@
 
     angular
         .module('app.LoadMetaData', []);
+})();
+(function () {
+    'use strict';
+
+    angular
+        .module('app.CreateMetaData', []);
 })();
 
 (function () {
@@ -7530,6 +7537,13 @@
                 controllerAs: 'mdc',
                 resolve: helper.resolveFor('ui.grid','loaders.css', 'spinkit')
             })
+            .state('app.CreateMetaData', {
+                url: '/CreateMetaData',
+                title: 'New MetaData',
+                templateUrl: helper.basepath('../../../../app/views/CreateMetaData.html'),
+                controller: 'CreateMetaDataController',
+                controllerAs: 'cmdc'
+            })
             .state('app.Load', {
                 url: '/Load',
                 title: 'Load',
@@ -8160,9 +8174,9 @@
         .module('app.LoadMetaData', [])
         .controller('LoadMetaDataController', LoadMetaDataController);
 
-    LoadMetaDataController.$inject = ['$http', '$rootScope', '$scope', '$state', 'LoadMetaDataService', 'uiGridConstants'];
+    LoadMetaDataController.$inject = ['$http', '$rootScope', '$scope', '$state', 'uiGridConstants'];
 
-    function LoadMetaDataController($http, $rootScope, $scope, $state, LoadMetaDataService, uiGridConstants) {
+    function LoadMetaDataController($http, $rootScope, $scope, $state, uiGridConstants) {
 
         var vm = this;
         var paginationOptions = {
@@ -8248,6 +8262,20 @@
 
         getPage();
 
+       
+    }
+})();
+//Create MetaData
+(function () {
+
+    angular
+        .module('app.CreateMetaData', [])
+        .controller('CreateMetaDataController', CreateMetaDataController);
+
+    CreateMetaDataController.$inject = ['$http', '$scope', 'LoadMetaDataService'];
+
+    function CreateMetaDataController($http, $scope, LoadMetaDataService) {
+        var vm = this;
         function activate() {
             // Load base data
             $scope.GetBaseData();
@@ -8265,7 +8293,7 @@
         $scope.Currencies = [];
         $scope.Statuses = [];
         //#endregion
-        $scope.IsShowEdit = false;
+        //$scope.IsShowEdit = false;
         $scope.Currency = '';
         $scope.IsReadOnly = false;
 
@@ -8284,12 +8312,16 @@
 
         //#region Post Data
         $scope.saveLoadMetaDataDetail = function () {
-            debugger;
+            vm.LoadMetaData.Header = $scope.Header;
+            vm.LoadMetaData.Footer = $scope.Footer;
+            vm.LoadMetaData.Name = $scope.Name;
+            vm.LoadMetaData.Description = $scope.Description;
+
             LoadMetaDataService.saveLoadMetaDataDetail(vm.LoadMetaData, onSuccess);
             function onSuccess(data) {
                 if (data != null) {
                     $scope.GetBaseData();
-                    $scope.IsShowEdit = false;
+                    //$scope.IsShowEdit = false;
                     alert("Record has been Saved Successfully");
                 }
             }
@@ -8323,28 +8355,23 @@
         //#endregion
 
         //#region Functions
-        $scope.defaultModel = function () {
-            $scope.LoadMetaDataId = 0;
-            $scope.LoadTypeId = 0;
-            $scope.SourceId = 0;
-            $scope.Header = '';
-            $scope.Footer = '';
-            $scope.Name = '';
-            $scope.CurrencyId = 0;
-            $scope.Description = '';
-            $scope.StatusId = 0;
-            $scope.Currency = '';
-        }
+        //$scope.defaultModel = function () {
+        //    $scope.LoadMetaDataId = 0;
+        //    $scope.LoadTypeId = 0;
+        //    $scope.SourceId = 0;
+        //    $scope.Header = '';
+        //    $scope.Footer = '';
+        //    $scope.Name = '';
+        //    $scope.CurrencyId = 0;
+        //    $scope.Description = '';
+        //    $scope.StatusId = 0;
+        //    $scope.Currency = '';
+        //}
 
         $scope.showEdit = function () {
             $scope.IsReadOnly = false;
-            $scope.IsShowEdit = true;
+            //$scope.IsShowEdit = true;
             $scope.editLoadMetaData(5);
-        }
-
-        $scope.onEditCancel = function () {
-            $scope.defaultModel();
-            $scope.IsShowEdit = false;
         }
 
         $scope.LoadTypeChange = function (load) {
@@ -8369,6 +8396,8 @@
 
         activate();
     }
+
+    
 })();
 
 /**=========================================================
@@ -8383,8 +8412,8 @@
         .module('app.LoadMetaData')
         .service('LoadMetaDataService', LoadMetaDataService);
 
-    LoadMetaDataService.$inject = ['$http'];
-    function LoadMetaDataService($http) {
+    LoadMetaDataService.$inject = ['$http', '$localStorage'];
+    function LoadMetaDataService($http, $localStorage) {
         this.getLoadMetaData = getLoadMetaData;
         this.saveLoadMetaDataDetail = saveLoadMetaDataDetail;
 
@@ -8405,7 +8434,11 @@
             onError = onError || function () { alert('Failure saving Meta Data'); };
 
             $http
-              .post(urlMetaData, metaData)
+              .post(urlMetaData, metaData, {
+                  headers: {
+                  'Content-Type': 'application/x-www-form-urlencoded',
+                  'Authorization': 'Bearer ' + $localStorage['authorizationData'].token
+                } })
               .success(onReady)
               .error(onError);
         }
@@ -8522,13 +8555,13 @@
                                 $scope.IsLoadTypeMT940 = data.IsLoadTypeMT940;
                                 $scope.LoadTypeName = data.LoadType;
                                 $scope.SourceName = data.SourceName;
-                                $scope.Tailer = data.Trailer;
+                                $scope.Trailer = data.Trailer;
                                 $scope.Header = data.Header;
                                 $scope.Currency = data.Currency;
 
                             } else {
                                 $scope.IsLoadTypeMT940 = false;
-                                $scope.Tailer = '';
+                                $scope.Trailer = '';
                                 $scope.Header = '';
                                 $scope.Currency = '';
                             }
@@ -8537,7 +8570,7 @@
                     $scope.IsLoadTypeMT940 = false;
                     $scope.LoadTypeName = '';
                     $scope.SourceName = '';
-                    $scope.Tailer = '';
+                    $scope.Trailer = '';
                     $scope.Header = '';
                     $scope.Currency = '';
                 }

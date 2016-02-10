@@ -4,10 +4,8 @@ using System.Net;
 using System.Web;
 using System.Web.Http;
 using System.Web.Http.Cors;
-using System.Web.Routing;
 using FRS.Interfaces.IServices;
 using FRS.Models.RequestModels;
-using FRS.Models.ResponseModels;
 using FRS.WebApi.ModelMappers;
 using FRS.WebApi.Models.MetaData;
 using FRS.WebApi.ViewModels.MetaData;
@@ -59,8 +57,11 @@ namespace FRS.WebApi.Areas.Load.Controllers
         #endregion
 
         #region Post
+        [HttpPost]
+        [Authorize]
         public Models.MetaData.LoadMetaData Post(Models.MetaData.LoadMetaData loadMetaData)
         {
+            //HttpContext.Current.Session
             if (loadMetaData == null || !ModelState.IsValid)
             {
                 throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
@@ -69,8 +70,12 @@ namespace FRS.WebApi.Areas.Load.Controllers
             {
                 try
                 {
-                    //RequestContext.Principal.Identity.GetUserId();
-                    return loadMetaDataService.SaveMetaData(loadMetaData.CreateFromClientToServer()).CreateFromServerToClient();
+                    loadMetaData.CreatedBy = User.Identity.GetUserId();
+                    loadMetaData.ModifiedBy = User.Identity.GetUserId();
+                    loadMetaData.CreatedOn = DateTime.UtcNow;
+                    loadMetaData.ModifiedOn = DateTime.Now;
+                    var temp = loadMetaData.CreateFromClientToServer();
+                    return loadMetaDataService.SaveMetaData(temp).CreateFromServerToClient();
                 }
                 catch (Exception)
                 {

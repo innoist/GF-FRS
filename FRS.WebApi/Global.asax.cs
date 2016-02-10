@@ -2,6 +2,7 @@
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using System.Web.SessionState;
 using FRS.WebBase.UnityConfiguration;
 using Microsoft.Practices.Unity;
 
@@ -49,6 +50,20 @@ namespace FRS.WebApi
             {
                 container = CreateUnityContainer();
             }
+        }
+
+        protected void Application_PostAuthorizeRequest()
+        {
+            if (IsWebApiRequest())
+            {
+                System.Web.HttpContext.Current.SetSessionStateBehavior(SessionStateBehavior.Required);
+            }
+        }
+
+        private bool IsWebApiRequest()
+        {
+            return System.Web.HttpContext.Current.Request.AppRelativeCurrentExecutionFilePath != null && 
+                System.Web.HttpContext.Current.Request.AppRelativeCurrentExecutionFilePath.StartsWith("~/Api");
         }
     }
 }

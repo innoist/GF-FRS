@@ -1,7 +1,7 @@
-﻿<div ng-show="IsShowEdit">
+﻿<div>
     <div class="pull-right margin-right-10">
         <button ng-click="saveLoadMetaDataDetail()" class="btn btn-green">Save</button>
-        <button ng-click="onEditCancel()" class="btn btn-default">Cancel</button>
+        <a class="btn btn-default" ui-sref="app.LoadMetaData">Cancel</a>
     </div>
     <legend>Load Meta Data</legend>
 
@@ -70,11 +70,11 @@
                     <div class="col-sm-12">
                         <div class="col-md-6">
                             <label for="header" class="control-label">Header</label>
-                            <input id="header" type="text" placeholder="Header" class="form-control" ng-model="mdc.LoadMetaData.Header">
+                            <input id="header" type="text" placeholder="Header" class="form-control" ng-model="Header">
                         </div>
                         <div class="col-md-6">
                             <label for="footer" class="control-label">Footer</label>
-                            <input id="footer" type="text" placeholder="Footer" class="form-control" ng-model="mdc.LoadMetaData.Footer">
+                            <input id="footer" type="text" placeholder="Footer" class="form-control" ng-model="Footer">
                         </div>
                     </div>
                 </div>
@@ -84,11 +84,11 @@
                     <div class="col-sm-12">
                         <div class="col-md-6">
                             <label for="name" class="control-label">Name</label>
-                            <input id="name" type="text" placeholder="Name" class="form-control" ng-model="mdc.LoadMetaData.Name">
+                            <input id="name" type="text" placeholder="Name" class="form-control" ng-model="Name">
                         </div>
                         <div class="col-md-6">
                             <label for="description" class="control-label">Description</label>
-                            <textarea id="description" type="text" placeholder="Description" class="form-control" ng-model="mdc.LoadMetaData.Description"></textarea>
+                            <textarea id="description" type="text" placeholder="Description" class="form-control" ng-model="Description"></textarea>
                         </div>
                     </div>
                 </div>

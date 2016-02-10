@@ -45,33 +45,40 @@ namespace FRS.WebApi.Providers
                 return;
             }
 
-            //ClaimsIdentity oAuthIdentity = await user.GenerateUserIdentityAsync(userManager,
-            //   OAuthDefaults.AuthenticationType);
-            ClaimsIdentity cookiesIdentity = await user.GenerateUserIdentityAsync(userManager,
-                CookieAuthenticationDefaults.AuthenticationType);
+            ClaimsIdentity oAuthIdentity = await user.GenerateUserIdentityAsync(userManager,
+               OAuthDefaults.AuthenticationType);
+            //ClaimsIdentity cookiesIdentity = await user.GenerateUserIdentityAsync(userManager,
+            //    CookieAuthenticationDefaults.AuthenticationType);
 
             //AuthenticationProperties properties = CreateProperties(user.UserName);
 
-            ClaimsIdentity identity = new ClaimsIdentity(context.Options.AuthenticationType);
-            identity.AddClaim(new Claim(ClaimTypes.Name, context.UserName));
-            identity.AddClaim(new Claim(ClaimTypes.Role, "user"));
-            identity.AddClaim(new Claim("sub", context.UserName));
+           // ClaimsIdentity identity = new ClaimsIdentity(context.Options.AuthenticationType);
+            oAuthIdentity.AddClaim(new Claim(ClaimTypes.Name, context.UserName));
+            oAuthIdentity.AddClaim(new Claim(ClaimTypes.Role, "user"));
+            oAuthIdentity.AddClaim(new Claim("sub", context.UserName));
+            oAuthIdentity.AddClaim(new Claim("UserId", user.Id));
 
             var props = new AuthenticationProperties(new Dictionary<string, string>
                 {
                     { 
-                        "as:client_id", (context.ClientId == null) ? string.Empty : context.ClientId
+                        "as:client_id", context.ClientId ?? string.Empty
                     },
                     { 
                         "userName", context.UserName
+                    },
+                    {
+                        "userId", user.Id
+                    },
+                    {
+                        "UserRole", "User"
                     }
                 });
 
 
             //AuthenticationTicket ticket = new AuthenticationTicket(oAuthIdentity, properties);
-            AuthenticationTicket ticket = new AuthenticationTicket(identity, props);
+            AuthenticationTicket ticket = new AuthenticationTicket(oAuthIdentity, props);
             context.Validated(ticket);
-            context.Request.Context.Authentication.SignIn(cookiesIdentity);
+            context.Request.Context.Authentication.SignIn(oAuthIdentity);
         }
 
         public override Task TokenEndpoint(OAuthTokenEndpointContext context)

@@ -14,9 +14,10 @@
   {
     "text": "Load Metadata",
     "sref": "#",
-    "icon": "icon-grid",
+    "icon": "icon-note",
     "submenu": [
-        { "text": "MetaData's", "sref": "app.LoadMetaData" }
+        { "text": "MetaDatas", "sref": "app.LoadMetaData" },
+        { "text": "New", "sref": "app.CreateMetaData", "icon": "icon-note" }
     ]
   },
   {
@@ -24,7 +25,7 @@
     "sref": "#",
     "icon": "icon-grid",
     "submenu": [
-      { "text": "Load's", "sref": "app.Load" }
+      { "text": "Loads", "sref": "app.Load" }
     ]
   }
 ]
