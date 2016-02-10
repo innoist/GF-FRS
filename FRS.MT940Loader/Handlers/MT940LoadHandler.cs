@@ -127,6 +127,10 @@ namespace FRS.MT940Loader.Handlers
         {
             return _dbHandler.DbContext.MT940CustomerStatement.Add(customerStatement).MT940CustomerStatementId;
         }
+        private long AddMT940CustomerStatementTransaction(MT940CustomerStatementTransaction customerStatementTransaction)
+        {
+            return _dbHandler.DbContext.MT940CustomerStatementTransaction.Add(customerStatementTransaction).MT940CustomerStatementTransactionId;
+        }
         #endregion **END - Private Methods **
 
         #region **STRAT - Public Methods**
@@ -203,16 +207,18 @@ namespace FRS.MT940Loader.Handlers
             //error handling
             //exception handling
             //
+            byte customerStatementSequence = 1;
             foreach(CustomerStatementMessage customerStatement in customerStatementMessages)
             {
-                Currency currency = (from c in _dbHandler.DbContext.Currencies
-                                    where c.Name == customerStatement.ClosingAvailableBalance.Currency.Code
-                                    select c).FirstOrDefault();
+                //Currency currency = (from c in _dbHandler.DbContext.Currencies
+                //                    where c.Name == customerStatement.ClosingAvailableBalance.Currency.Code
+                //                    select c).FirstOrDefault();
+
                 MT940CustomerStatement mt940CustomerStatement = new MT940CustomerStatement()
                 {
                     MT940LoadId = Convert.ToInt64(load.MT940LoadId),
-                    //Sequence = ????
-                    //ReadOnly = ??
+                    Sequence = customerStatementSequence++,
+                    ReadOnly = false,
                     AccountNumber = customerStatement.Account,
                     ClosingAvailableBalanceId = AddMT940Balance(customerStatement.ClosingAvailableBalance),
                     ClosingBalanceId = AddMT940Balance(customerStatement.ClosingBalance),
@@ -228,13 +234,28 @@ namespace FRS.MT940Loader.Handlers
                     ModifiedBy = userId
                 };
                 long MT940CustomerStatementId = AddMT940CustomerStatement(mt940CustomerStatement);
+                byte customerStatementTransactionSequence = 1;
                 foreach(Transaction transaction in customerStatement.Transactions)
                 {
                     //Add to MT940 Customer Transaction
                     MT940CustomerStatementTransaction mt940CustomerStatementTransaction = new MT940CustomerStatementTransaction
                     {
-                        
+                        MT940CustomerStatementId = MT940CustomerStatementId,
+                        Sequence = customerStatementTransactionSequence++,
+                        ReadOnly = false,
+                        Amount = transaction.Amount.Value,
+                        DebitOrCredit = transaction.DebitCredit.ConvertToDebitOrCredit(),
+                        Description = transaction.Description,
+                        EntryDate = transaction.EntryDate,
+                        FundsCode = transaction.FundsCode,
+                        Reference = transaction.Reference,
+                        TransactionType = transaction.TransactionType,
+                        Value = transaction.Value,
+                        ValueDate = transaction.ValueDate,
+                        CreatedBy = userId,
+                        ModifiedBy = userId,
                     };
+                    AddMT940CustomerStatementTransaction(mt940CustomerStatementTransaction);
                 }
             }
         }
