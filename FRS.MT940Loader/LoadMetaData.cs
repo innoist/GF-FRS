@@ -24,7 +24,7 @@ namespace FRS.MT940Loader
         public byte LoadTypeId { get; set; }
         public byte SourceId { get; set; }
         public string Header { get; set; }
-        public string Footer { get; set; }
+        public string Trailer { get; set; }
         public string Name { get; set; }
         public byte CurrencyId { get; set; }
         public string Description { get; set; }

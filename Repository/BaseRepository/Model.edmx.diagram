@@ -22,7 +22,7 @@
         <EntityTypeShape EntityType="angularModel.Currency" Width="1.5" PointX="1.375" PointY="10.375" />
         <EntityTypeShape EntityType="angularModel.FileContent" Width="1.875" PointX="5.375" PointY="7.5" />
         <EntityTypeShape EntityType="angularModel.Load" Width="1.5" PointX="14.125" PointY="9.25" />
-        <EntityTypeShape EntityType="angularModel.LoadMetaData" Width="1.5" PointX="11.375" PointY="8.5" />
+        <EntityTypeShape EntityType="angularModel.LoadMetaData" Width="1.5" PointX="12.25" PointY="8.625" />
         <EntityTypeShape EntityType="angularModel.LoadType" Width="1.5" PointX="8.375" PointY="14.25" />
         <EntityTypeShape EntityType="angularModel.MT940Balance" Width="1.5" PointX="3.375" PointY="12.5" />
         <EntityTypeShape EntityType="angularModel.MT940CustomerStatement" Width="2.625" PointX="9.875" PointY="2.875" />

@@ -30,7 +30,7 @@ namespace FRS.Implementation.Services
             dbVersion.LoadTypeId = metaData.LoadTypeId;
             dbVersion.SourceId = metaData.SourceId;
             dbVersion.Header = metaData.Header;
-            dbVersion.Footer = metaData.Footer;
+            dbVersion.Trailer = metaData.Trailer;
             dbVersion.Name = metaData.Name;
             dbVersion.CurrencyId = metaData.CurrencyId;
             dbVersion.Description = metaData.Description;
@@ -45,7 +45,7 @@ namespace FRS.Implementation.Services
             dbVersion.LoadTypeId = metaData.LoadTypeId;
             dbVersion.SourceId = metaData.SourceId;
             dbVersion.Header = metaData.Header;
-            dbVersion.Footer = metaData.Footer;
+            dbVersion.Trailer = metaData.Trailer;
             dbVersion.Name = metaData.Name;
             dbVersion.CurrencyId = metaData.CurrencyId;
             dbVersion.Description = metaData.Description;

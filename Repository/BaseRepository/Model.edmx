@@ -103,6 +103,7 @@
           <Property Name="CreatedOn" Type="datetime" Nullable="false" />
           <Property Name="ModifiedBy" Type="nvarchar" MaxLength="128" Nullable="false" />
           <Property Name="ModifiedOn" Type="datetime" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="128" Nullable="false" />
         </EntityType>
         <EntityType Name="LoadMetaData">
           <Key>
@@ -112,7 +113,7 @@
           <Property Name="LoadTypeId" Type="tinyint" Nullable="false" />
           <Property Name="SourceId" Type="tinyint" Nullable="false" />
           <Property Name="Header" Type="nvarchar" MaxLength="256" Nullable="false" />
-          <Property Name="Footer" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="Trailer" Type="nvarchar" MaxLength="256" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="CurrencyId" Type="tinyint" Nullable="false" />
           <Property Name="Description" Type="nvarchar" MaxLength="1024" />
@@ -183,9 +184,9 @@
           <Property Name="TransactionReference" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="TransactionCount" Type="int" Nullable="false" />
           <Property Name="CreatedBy" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime" />
           <Property Name="ModifiedBy" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="ModifiedOn" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedOn" Type="datetime" />
         </EntityType>
         <EntityType Name="MT940CustomerStatementTransaction">
           <Key>
@@ -205,9 +206,9 @@
           <Property Name="Value" Type="nvarchar" MaxLength="1024" />
           <Property Name="ValueDate" Type="datetime" Nullable="false" />
           <Property Name="CreatedBy" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime" />
           <Property Name="ModifiedBy" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="ModifiedOn" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedOn" Type="datetime" />
         </EntityType>
         <EntityType Name="MT940Load">
           <Key>
@@ -926,6 +927,7 @@
           <Property Name="ModifiedOn" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="LoadMetaData" Relationship="angularModel.FK_Load_LoadMetaData" FromRole="Load" ToRole="LoadMetaData" />
           <NavigationProperty Name="MT940Load" Relationship="angularModel.FK_Load_MT940Load" FromRole="Load" ToRole="MT940Load" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="LoadMetaData">
           <Key>
@@ -935,7 +937,6 @@
           <Property Name="LoadTypeId" Type="Byte" Nullable="false" />
           <Property Name="SourceId" Type="Byte" Nullable="false" />
           <Property Name="Header" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
-          <Property Name="Footer" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="CurrencyId" Type="Byte" Nullable="false" />
           <Property Name="Description" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
@@ -949,6 +950,7 @@
           <NavigationProperty Name="Source" Relationship="angularModel.FK_LoadMetaData_Source" FromRole="LoadMetaData" ToRole="Source" />
           <NavigationProperty Name="Status" Relationship="angularModel.FK_LoadMetaData_Status" FromRole="LoadMetaData" ToRole="Status" />
           <NavigationProperty Name="Currency" Relationship="angularModel.FK_LoadMetaData_Currency" FromRole="LoadMetaData" ToRole="Currency" />
+          <Property Name="Trailer" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="LoadType">
           <Key>
@@ -1000,9 +1002,9 @@
           <NavigationProperty Name="MT940Load" Relationship="angularModel.FK_MT940CustomerStatement_MT940Load" FromRole="MT940CustomerStatement" ToRole="MT940Load" />
           <NavigationProperty Name="MT940CustomerStatementTransaction" Relationship="angularModel.FK_MT940CustomerStatementTransaction_MT940CustomerStatement" FromRole="MT940CustomerStatement" ToRole="MT940CustomerStatementTransaction" />
           <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
           <Property Name="ModifiedBy" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="ModifiedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="MT940CustomerStatementTransaction">
           <Key>
@@ -1023,9 +1025,9 @@
           <Property Name="ValueDate" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="MT940CustomerStatement" Relationship="angularModel.FK_MT940CustomerStatementTransaction_MT940CustomerStatement" FromRole="MT940CustomerStatementTransaction" ToRole="MT940CustomerStatement" />
           <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
           <Property Name="ModifiedBy" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="ModifiedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="MT940Load">
           <Key>
@@ -1367,6 +1369,7 @@
           <EntitySetMapping Name="Loads">
             <EntityTypeMapping TypeName="angularModel.Load">
               <MappingFragment StoreEntitySet="Load">
+                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
                 <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
                 <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
@@ -1384,6 +1387,7 @@
           <EntitySetMapping Name="LoadMetaDatas">
             <EntityTypeMapping TypeName="angularModel.LoadMetaData">
               <MappingFragment StoreEntitySet="LoadMetaData">
+                <ScalarProperty Name="Trailer" ColumnName="Trailer" />
                 <ScalarProperty Name="StatusId" ColumnName="StatusId" />
                 <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
                 <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
@@ -1392,7 +1396,6 @@
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="CurrencyId" ColumnName="CurrencyId" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Footer" ColumnName="Footer" />
                 <ScalarProperty Name="Header" ColumnName="Header" />
                 <ScalarProperty Name="SourceId" ColumnName="SourceId" />
                 <ScalarProperty Name="LoadTypeId" ColumnName="LoadTypeId" />
