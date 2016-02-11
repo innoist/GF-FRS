@@ -59,7 +59,7 @@ namespace FRS.WebApi.Areas.Load.Controllers
         #region Post
         [HttpPost]
         [Authorize]
-        public Models.MetaData.LoadMetaData Post(Models.MetaData.LoadMetaData loadMetaData)
+        public bool Post(Models.MetaData.LoadMetaData loadMetaData)
         {
             //HttpContext.Current.Session
             if (loadMetaData == null || !ModelState.IsValid)
@@ -75,14 +75,14 @@ namespace FRS.WebApi.Areas.Load.Controllers
                     loadMetaData.CreatedOn = DateTime.UtcNow;
                     loadMetaData.ModifiedOn = DateTime.Now;
                     var temp = loadMetaData.CreateFromClientToServer();
-                    return loadMetaDataService.SaveMetaData(temp).CreateFromServerToClient();
+                    return loadMetaDataService.SaveMetaData(temp);//.CreateFromServerToClient();
                 }
-                catch (Exception)
+                catch (Exception e)
                 {
-                    return null;
+                    return false;
                 }
             }
-            return null;
+            return true;
         }
 
         #endregion

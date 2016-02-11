@@ -1,11 +1,24 @@
 ﻿<div>
     <div class="pull-right margin-right-10">
-        <button ng-click="saveLoadMetaDataDetail()" class="btn btn-green">Save</button>
-        <a class="btn btn-default" ui-sref="app.LoadMetaData">Cancel</a>
+        <button ng-click="saveLoadMetaDataDetail(false)" type="button" class="btn btn-labeled btn-success">
+            <span class="btn-label">
+                <i class="fa fa-check"></i>
+            </span><span class="hidden-480">Save</span>
+        </button>
+        <button ng-click="saveLoadMetaDataDetail(true)" type="button" class="btn btn-labeled btn-info">
+            <span class="btn-label">
+                <i class="fa fa-plus"></i>
+            </span><span class="hidden-480">Save and New</span>
+        </button>
+        <a class="btn btn-labeled btn-danger" ui-sref="app.LoadMetaData">
+            <span class="btn-label">
+                <i class="fa fa-times"></i>
+            </span><span class="hidden-480">Cancel</span>
+        </a>
     </div>
     <legend>Load Meta Data</legend>
 
-    <form class="form-horizontal" name="loadForm">
+    <form class="form-horizontal form-validate" name="cmdc.formValidate" novalidate="">
         <div class="form-group">
             <fieldset>
                 <div class="row">
@@ -70,11 +83,13 @@
                     <div class="col-sm-12">
                         <div class="col-md-6">
                             <label for="header" class="control-label">Header</label>
-                            <input id="header" type="text" placeholder="Header" class="form-control" ng-model="Header">
+                            <input id="header" type="text" placeholder="Header" required="" class="form-control" ng-model="Header" name="Header">
+                            <span ng-show="cmdc.validateInput('Header', 'required')" class="text-danger">This field is required</span>
                         </div>
                         <div class="col-md-6">
                             <label for="footer" class="control-label">Footer</label>
-                            <input id="footer" type="text" placeholder="Footer" class="form-control" ng-model="Footer">
+                            <input id="footer" type="text" placeholder="Footer" required="" class="form-control" ng-model="Footer" name="Footer">
+                            <span ng-show="cmdc.validateInput('Footer', 'required')" class="text-danger">This field is required</span>
                         </div>
                     </div>
                 </div>
@@ -84,11 +99,13 @@
                     <div class="col-sm-12">
                         <div class="col-md-6">
                             <label for="name" class="control-label">Name</label>
-                            <input id="name" type="text" placeholder="Name" class="form-control" ng-model="Name">
+                            <input id="name" type="text" placeholder="Name" required="" class="form-control" ng-model="Name" name="Name">
+                            <span ng-show="cmdc.validateInput('Name', 'required')" class="text-danger">This field is required</span>
                         </div>
                         <div class="col-md-6">
                             <label for="description" class="control-label">Description</label>
-                            <textarea id="description" type="text" placeholder="Description" class="form-control" ng-model="Description"></textarea>
+                            <textarea id="description" type="text" placeholder="Description" required="" class="form-control" ng-model="Description" name="Description"></textarea>
+                            <span ng-show="cmdc.validateInput('Description', 'required')" class="text-danger">This field is required</span>
                         </div>
                     </div>
                 </div>
