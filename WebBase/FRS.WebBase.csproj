@@ -30,10 +30,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Cares.ExceptionHandling, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\FRS.Web\Bin\Cares.ExceptionHandling.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common">
       <HintPath>..\packages\EnterpriseLibrary.Common.6.0.1304.0\lib\NET45\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
     </Reference>
@@ -148,6 +144,10 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ExceptionHandling\FRS.ExceptionHandling.csproj">
+      <Project>{5a6acd2d-0701-4e38-99b7-65cc4e6cb8e8}</Project>
+      <Name>FRS.ExceptionHandling</Name>
+    </ProjectReference>
     <ProjectReference Include="..\FRS.Commons\FRS.Commons.csproj">
       <Project>{C495B1EB-AC68-44F5-B2FA-D36083EB7BEC}</Project>
       <Name>FRS.Commons</Name>

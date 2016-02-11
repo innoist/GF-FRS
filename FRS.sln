@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.40629.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FRS.Repository", "Repository\FRS.Repository.csproj", "{852BDC39-3388-4CB1-A959-F3BD06E9DF92}"
 EndProject
@@ -33,6 +33,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FRS.WebApi", "FRS.WebApi\FRS.WebApi.csproj", "{07E34922-5AEA-4477-AFF9-4BF01B95D1A0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FRS.Angular", "FRS.Angular\FRS.Angular.csproj", "{482C986A-67EA-48D8-9F26-2D4BC93F4AED}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FRS.ExceptionHandling", "ExceptionHandling\FRS.ExceptionHandling.csproj", "{5A6ACD2D-0701-4E38-99B7-65CC4E6CB8E8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -94,6 +96,10 @@ Global
 		{482C986A-67EA-48D8-9F26-2D4BC93F4AED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{482C986A-67EA-48D8-9F26-2D4BC93F4AED}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{482C986A-67EA-48D8-9F26-2D4BC93F4AED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A6ACD2D-0701-4E38-99B7-65CC4E6CB8E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A6ACD2D-0701-4E38-99B7-65CC4E6CB8E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A6ACD2D-0701-4E38-99B7-65CC4E6CB8E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A6ACD2D-0701-4E38-99B7-65CC4E6CB8E8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

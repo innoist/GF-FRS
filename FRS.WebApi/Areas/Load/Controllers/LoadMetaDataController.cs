@@ -9,6 +9,7 @@ using FRS.Models.RequestModels;
 using FRS.WebApi.ModelMappers;
 using FRS.WebApi.Models.MetaData;
 using FRS.WebApi.ViewModels.MetaData;
+using FRS.WebBase.Mvc;
 using FRS.WebBase.UnityConfiguration;
 using Microsoft.AspNet.Identity;
 using Microsoft.Practices.Unity;
@@ -26,39 +27,46 @@ namespace FRS.WebApi.Areas.Load.Controllers
         #region Public
 
         #region Get
-
+        [ApiException]
         public LoadMetaData Get(long? id)
         {
-            if (id != null && id > 0)
+            if (id == null || id <= 0)
             {
-                var loadMetaData = loadMetaDataService.FindById((long)id);
-                if (loadMetaData != null)
-                {
-                    return loadMetaData.CreateFromServerToClient();
-                }
+                throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
             }
-            return null;
+
+
+            var loadMetaData = loadMetaDataService.FindById((long)id);
+            return loadMetaData?.CreateFromServerToClient();
         }
 
         [HttpGet]
+        [ApiException]
         public LoadMetaDataListViewModel Get([FromUri]LoadMetaDataSearchRequest searchRequest)
         {
-            var response =  loadMetaDataService.SearchLoadMetaData(searchRequest);
+            if (searchRequest == null || !ModelState.IsValid)
+            {
+                throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
+            }
+
+            var response = loadMetaDataService.SearchLoadMetaData(searchRequest);
             LoadMetaDataListViewModel listViewModel = new LoadMetaDataListViewModel
             {
-                LoadMetaDatas = response.LoadMetaDatas.Select(x=>x.CreateFromServerToClient()).ToList(),
+                LoadMetaDatas = response.LoadMetaDatas.Select(x => x.CreateFromServerToClient()).ToList(),
                 FilteredCount = response.FilteredCount,
                 TotalCount = response.TotalCount
             };
 
             return listViewModel;
         }
-        
+
         #endregion
 
         #region Post
+
         [HttpPost]
         [Authorize]
+        [ApiException]
         public Models.MetaData.LoadMetaData Post(Models.MetaData.LoadMetaData loadMetaData)
         {
             //HttpContext.Current.Session
@@ -88,6 +96,7 @@ namespace FRS.WebApi.Areas.Load.Controllers
         #endregion
 
         #region Delete
+        [ApiException]
         public bool Delete(long loadMetaDataId)
         {
             if (loadMetaDataService != null)

@@ -4,6 +4,9 @@ using System.Web.Optimization;
 using System.Web.Routing;
 using System.Web.SessionState;
 using FRS.WebBase.UnityConfiguration;
+using Microsoft.Practices.EnterpriseLibrary.Common.Configuration;
+using Microsoft.Practices.EnterpriseLibrary.Data;
+using Microsoft.Practices.EnterpriseLibrary.Logging;
 using Microsoft.Practices.Unity;
 
 namespace FRS.WebApi
@@ -22,9 +25,21 @@ namespace FRS.WebApi
             return container;
         }
 
+        /// <summary>
+        /// Configure Logger
+        /// </summary>
+        private void ConfigureLogger()
+        {
+            DatabaseFactory.SetDatabaseProviderFactory(new DatabaseProviderFactory());
+            IConfigurationSource configurationSource = ConfigurationSourceFactory.Create();
+            LogWriterFactory logWriterFactory = new LogWriterFactory(configurationSource);
+            Logger.SetLogWriter(logWriterFactory.Create());
+        }
+
         protected void Application_Start()
         {
             RegisterIoC();
+            ConfigureLogger();
             AreaRegistration.RegisterAllAreas();
             UnityConfig.RegisterTypes(container);
             GlobalConfiguration.Configure(WebApiConfig.Register);
