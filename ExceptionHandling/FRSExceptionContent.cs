@@ -1,10 +1,10 @@
 ﻿
-namespace Cares.ExceptionHandling
+namespace FRS.ExceptionHandling
 {
     /// <summary>
     /// Cares Exception Contents
     /// </summary>
-    public sealed class CaresExceptionContent
+    public sealed class FRSExceptionContent
     {
         /// <summary>
         /// Error message
@@ -12,9 +12,8 @@ namespace Cares.ExceptionHandling
         public string Message { get; set; }
 
         /// <summary>
-        /// Cares Exception Type
+        /// FRS Exception Type
         /// </summary>
-        public string ExceptionType { get { return CaresExceptionTypes.CaresGeneralException; } }
-
+        public string ExceptionType => FRSExceptionTypes.FRSGeneralException;
     }
 }
