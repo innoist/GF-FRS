@@ -48,7 +48,7 @@ namespace FRS.Web.Areas.Api.Controllers
         #endregion
 
         #region Post
-        public LoadMetaData Post(LoadMetaData loadMetaData)
+        public bool Post(LoadMetaData loadMetaData)
         {
             if (loadMetaData == null || !ModelState.IsValid)
             {
@@ -58,14 +58,15 @@ namespace FRS.Web.Areas.Api.Controllers
             {
                 try
                 {
-                    return loadMetaDataService.SaveMetaData(loadMetaData.CreateFromClientToServer()).CreateFromServerToClient();
+                    return loadMetaDataService.SaveMetaData(loadMetaData.CreateFromClientToServer());
+                        //.CreateFromServerToClient();
                 }
                 catch (Exception)
                 {
-                    return null;
+                    return false;
                 }
             }
-            return null;
+            return false;
         }
 
         #endregion

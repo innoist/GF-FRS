@@ -7906,7 +7906,6 @@
 
         // Main method
         ajax: function (url, options) {
-
             // If url is an object, simulate pre-1.5 signature
             if (typeof url === "object") {
                 options = url;
@@ -8182,7 +8181,7 @@
             function done(status, nativeStatusText, responses, headers) {
                 var isSuccess, success, error, response, modified,
                     statusText = nativeStatusText;
-
+                
                 // Called once
                 if (state === 2) {
                     return;
