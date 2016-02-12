@@ -37,7 +37,7 @@ namespace FRS.WebApi.Areas.Load.Controllers
 
 
             var loadMetaData = loadMetaDataService.FindById((long)id);
-            return loadMetaData?.CreateFromServerToClient();
+            return loadMetaData.CreateFromServerToClient();
         }
 
         [HttpGet]
