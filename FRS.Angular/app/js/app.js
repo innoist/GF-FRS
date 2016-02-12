@@ -8429,9 +8429,11 @@
             }
         }
         //#endregion
-        vm.validateInput = function (name, type) {
-            var input = vm.formValidate[name];
-            return (input.$dirty || vm.submitted) && input.$error[type];
+        vm.validateInput = function (property, type) {
+            if (!property || !type) {
+                return false;
+            }
+            return (property.$dirty || vm.submitted) && property.$error[type];
         };
         //#region Post Data
         $scope.saveLoadMetaDataDetail = function (isNew) {

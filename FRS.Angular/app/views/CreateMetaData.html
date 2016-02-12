@@ -24,112 +24,127 @@
 
 <toaster-container toaster-options="{'position-class': 'toast-bottom-right', 'close-button':true}"></toaster-container>
 <div class="panel panel-default">
-    
 
-    <div class="panel-body"><form class="form-horizontal form-validate" name="cmdc.formValidate" novalidate="">
-                 <div class="form-group">
-                     <fieldset>
-                         <div class="row">
-                             <div class="col-sm-12">
-                                 <div class="col-sm-3">
-                                     <label for="load-type-sel" class="control-label">Load Type</label>
-                                     <div uib-dropdown="dropdown" class="btn-group">
-                                         <button id="load-type-sel" uib-dropdown-toggle="" class="btn btn-default">
-                                             Select <b class="caret"></b>
-                                         </button>
-                                         <ul role="menu" class="dropdown-menu animated flipInX">
-                                             <li ng-repeat="load in LoadTypes">
-                                                 <a ng-click="LoadTypeChange(load)">{{load.Name}}</a>
-                                             </li>
-                                         </ul>
-                                     </div>
-                                 </div>
-                                 <div class="col-sm-3">
-                                     <label for="source-sel" class="control-label">Source</label>
-                                     <div uib-dropdown="dropdown" class="btn-group">
-                                         <button id="source-sel" uib-dropdown-toggle="" class="btn btn-default">
-                                             Select <b class="caret"></b>
-                                         </button>
-                                         <ul role="menu" class="dropdown-menu animated flipInX">
-                                             <li ng-repeat="source in Sources">
-                                                 <a ng-click="SourceChange(source)">{{source.Name}}</a>
-                                             </li>
-                                         </ul>
-                                     </div>
-                                 </div>
-                                 <div class="col-sm-3">
-                                     <label for="currency-sel" class="control-label">Currency</label>
-                                     <div uib-dropdown="dropdown" class="btn-group">
-                                         <button id="currency-sel" uib-dropdown-toggle="" class="btn btn-default">
-                                             Select <b class="caret"></b>
-                                         </button>
-                                         <ul role="menu" class="dropdown-menu animated flipInX">
-                                             <li ng-repeat="currency in Currencies">
-                                                 <a ng-click="CurrencyChange(currency)">{{currency.Name}}</a>
-                                             </li>
-                                         </ul>
-                                     </div>
-                                 </div>
-                                 <div class="col-sm-3">
-                                     <label for="status-sel" class="control-label">Status</label>
-                                     <div uib-dropdown="dropdown" class="btn-group">
-                                         <button id="status-sel" uib-dropdown-toggle="" class="btn btn-default">
-                                             Select <b class="caret"></b>
-                                         </button>
-                                         <ul role="menu" class="dropdown-menu animated flipInX">
-                                             <li ng-repeat="status in Statuses">
-                                                 <a ng-click="StatusChange(status)">{{status.Name}}</a>
-                                             </li>
-                                         </ul>
-                                     </div>
-                                 </div>
-                             </div>
-                         </div>
-                     </fieldset>
-                     <fieldset>
-                         <div class="row">
-                             <div class="col-sm-12">
-                                 <div class="col-md-12">
-                                     <label for="name" class="control-label requiredLabel">Name</label>
-                                     <input id="name" type="text" placeholder="Name" required="" uib-tooltip="Name field is required" uib-tooltip-trigger="focus" uib-tooltip-placement="top" class="form-control" ng-model="Name" name="Name">
-                                     <span ng-show="cmdc.validateInput('Name', 'required')" class="text-danger">Name field is required</span>
-                                 </div>
-                             </div>
-                         </div>
-                         <div class="row">
-                             <div class="col-md-12">
-                                 <div class="col-md-12">
-                                     <label for="description" class="control-label requiredLabel">Description</label>
-                                     <textarea id="description" type="text" placeholder="Description" required="" class="form-control" ng-model="Description" name="Description"></textarea>
-                                     <span ng-show="cmdc.validateInput('Description', 'required')" class="text-danger">Description field is required</span>
-                                 </div>
-                             </div>
-                         </div>
-                         
-                         <div class="row">
-                             <div class="col-sm-12">
-                                 <div class="col-md-12">
-                                     <label for="header" class="control-label requiredLabel">Header</label>
-                                     <input id="header" type="text" placeholder="Header" required="" class="form-control" ng-model="Header" name="Header">
-                                     <span ng-show="cmdc.validateInput('Header', 'required')" class="text-danger">Header field is required</span>
-                                 </div>
-                             </div>
-                         </div>
-                         <div class="row">
-                             <div class="col-md-12">
-                                 <div class="col-md-12">
-                                     <label for="footer" class="control-label requiredLabel">Footer</label>
-                                     <input id="footer" type="text" placeholder="Footer" required="" class="form-control" ng-model="Footer" name="Footer">
-                                     <span ng-show="cmdc.validateInput('Footer', 'required')" class="text-danger">Footer field is required</span>
-                                 </div>
-                             </div>
-                         </div>
 
-                     </fieldset>
+    <div class="panel-body">
+        <form class="form-horizontal form-validate" name="cmdc.formValidate" novalidate="">
+            <div class="form-group">
+                <fieldset>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="col-sm-3">
+                                <label for="load-type-sel" class="control-label">Load Type</label>
+                                <div uib-dropdown="dropdown" class="btn-group">
+                                    <button id="load-type-sel" uib-dropdown-toggle="" class="btn btn-default">
+                                        Select <b class="caret"></b>
+                                    </button>
+                                    <ul role="menu" class="dropdown-menu animated flipInX">
+                                        <li ng-repeat="load in LoadTypes">
+                                            <a ng-click="LoadTypeChange(load)">{{load.Name}}</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <label for="source-sel" class="control-label">Source</label>
+                                <div uib-dropdown="dropdown" class="btn-group">
+                                    <button id="source-sel" uib-dropdown-toggle="" class="btn btn-default">
+                                        Select <b class="caret"></b>
+                                    </button>
+                                    <ul role="menu" class="dropdown-menu animated flipInX">
+                                        <li ng-repeat="source in Sources">
+                                            <a ng-click="SourceChange(source)">{{source.Name}}</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <label for="currency-sel" class="control-label">Currency</label>
+                                <div uib-dropdown="dropdown" class="btn-group">
+                                    <button id="currency-sel" uib-dropdown-toggle="" class="btn btn-default">
+                                        Select <b class="caret"></b>
+                                    </button>
+                                    <ul role="menu" class="dropdown-menu animated flipInX">
+                                        <li ng-repeat="currency in Currencies">
+                                            <a ng-click="CurrencyChange(currency)">{{currency.Name}}</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <label for="status-sel" class="control-label">Status</label>
+                                <div uib-dropdown="dropdown" class="btn-group">
+                                    <button id="status-sel" uib-dropdown-toggle="" class="btn btn-default">
+                                        Select <b class="caret"></b>
+                                    </button>
+                                    <ul role="menu" class="dropdown-menu animated flipInX">
+                                        <li ng-repeat="status in Statuses">
+                                            <a ng-click="StatusChange(status)">{{status.Name}}</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="col-md-12" ng-class="{ 'has-error': cmdc.validateInput(cmdc.formValidate.Name, 'required') }">
+                                <label for="name" class="control-label requiredLabel">Name</label>
+                                <input id="name" ng-model="Name" name="Name" type="text" placeholder="Name" required=""
+                                       uib-tooltip="{{ cmdc.validateInput(cmdc.formValidate.Name, 'required') ? 'This field is required.' : ''}}"
+                                       uib-tooltip-trigger="focus"
+                                       uib-tooltip-placement="bottom"
+                                       class="form-control">
+                            </div>
 
-                     
-                     
-                 </div>
-             </form></div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="col-md-12" ng-class="{ 'has-error': cmdc.validateInput(cmdc.formValidate.Description, 'required') }">
+                                <label for="description" class="control-label requiredLabel">Description</label>
+                                <textarea id="description" type="text" placeholder="Description" required="" class="form-control" ng-model="Description" name="Description"
+                                          uib-tooltip="{{ cmdc.validateInput(cmdc.formValidate.Description, 'required') ? 'This field is required.' : '' }}"
+                                          uib-tooltip-trigger="focus"
+                                          uib-tooltip-placement="bottom"></textarea>
 
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="col-md-12" ng-class="{ 'has-error': cmdc.validateInput(cmdc.formValidate.Header, 'required') }">
+                                <label for="header" class="control-label requiredLabel">Header</label>
+                                <input id="header" type="text" placeholder="Header"
+                                       ng-model="Header" name="Header"
+                                       uib-tooltip="{{ cmdc.validateInput(cmdc.formValidate.Header, 'required') ? 'This field is required.' : '' }}"
+                                       uib-tooltip-trigger="focus"
+                                       uib-tooltip-placement="bottom"
+                                       required class="form-control">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="col-md-12" ng-class="{ 'has-error': cmdc.validateInput(cmdc.formValidate.Footer, 'required') }">
+                                <label for="footer" class="control-label requiredLabel">Footer</label>
+                                <input id="footer" type="text" placeholder="Footer" required="" class="form-control" ng-model="Footer" name="Footer"
+                                       uib-tooltip="{{ cmdc.validateInput(cmdc.formValidate.Footer, 'required') ? 'This field is required.' : '' }}"
+                                       uib-tooltip-trigger="focus"
+                                       uib-tooltip-placement="bottom">
+                            </div>
+                        </div>
+                    </div>
+
+                </fieldset>
+
+
+
+            </div>
+        </form>
+    </div>
 </div>
