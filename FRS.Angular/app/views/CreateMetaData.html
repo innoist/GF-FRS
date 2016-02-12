@@ -24,7 +24,7 @@
 
 
 <div class="panel panel-default">
-    
+
 
     <form class="form-horizontal form-validate" name="cmdc.formValidate" novalidate="">
         <div class="form-group">
@@ -87,17 +87,23 @@
                 </div>
             </fieldset>
             <fieldset>
-                <div class="row">
+                <div class="row" >
                     <div class="col-sm-12">
-                        <div class="col-md-6">
+                        <div class="col-md-6" ng-class="{ 'has-error': cmdc.validateInput(cmdc.formValidate.Header, 'required') }">
                             <label for="header" class="control-label">Header</label>
-                            <input id="header" type="text" placeholder="Header" required="" class="form-control" ng-model="Header" name="Header">
-                            <span ng-show="cmdc.validateInput('Header', 'required')" class="text-danger">This field is required</span>
+                            <input id="header" ng-model="Header" name="Header" type="text" placeholder="Header" required=""
+                                   uib-tooltip="{{ cmdc.validateInput(cmdc.formValidate.Header, 'required') ? 'This field is required.' : ''}}"
+                                   uib-tooltip-trigger="focus"
+                                   uib-tooltip-placement="bottom"
+                                   class="form-control">
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-6" ng-class="{ 'has-error': cmdc.validateInput(cmdc.formValidate.Footer, 'required') }">
                             <label for="footer" class="control-label">Footer</label>
-                            <input id="footer" type="text" placeholder="Footer" required="" class="form-control" ng-model="Footer" name="Footer">
-                            <span ng-show="cmdc.validateInput('Footer', 'required')" class="text-danger">This field is required</span>
+                            <input id="footer" ng-model="Footer" name="Footer" type="text" placeholder="Footer" required=""
+                                   uib-tooltip="{{ cmdc.validateInput(cmdc.formValidate.Footer, 'required') ? 'This field is required.' : '' }}"
+                                   uib-tooltip-trigger="focus"
+                                   uib-tooltip-placement="bottom"
+                                   class="form-control">
                         </div>
                     </div>
                 </div>
@@ -105,20 +111,27 @@
             <fieldset>
                 <div class="row">
                     <div class="col-sm-12">
-                        <div class="col-md-6">
+                        <div class="col-md-6" ng-class="{ 'has-error': cmdc.validateInput(cmdc.formValidate.Name, 'required') }">
                             <label for="name" class="control-label">Name</label>
-                            <input id="name" type="text" placeholder="Name" required="" class="form-control" ng-model="Name" name="Name">
-                            <span ng-show="cmdc.validateInput('Name', 'required')" class="text-danger">This field is required</span>
+                            <input id="name" type="text" placeholder="Name"
+                                   ng-model="Name" name="Name"
+                                   uib-tooltip="{{ cmdc.validateInput(cmdc.formValidate.Name, 'required') ? 'This field is required.' : '' }}"
+                                   uib-tooltip-trigger="focus"
+                                   uib-tooltip-placement="bottom"
+                                   required class="form-control">
+
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-6" ng-class="{ 'has-error': cmdc.validateInput(cmdc.formValidate.Description, 'required') }">
                             <label for="description" class="control-label">Description</label>
-                            <textarea id="description" type="text" placeholder="Description" required="" class="form-control" ng-model="Description" name="Description"></textarea>
-                            <span ng-show="cmdc.validateInput('Description', 'required')" class="text-danger">This field is required</span>
+                            <textarea id="description" ng-model="Description" name="Description" type="text" placeholder="Description" required=""
+                                      uib-tooltip="{{ cmdc.validateInput(cmdc.formValidate.Description, 'required') ? 'This field is required.' : '' }}"
+                                      uib-tooltip-trigger="focus"
+                                      uib-tooltip-placement="bottom"
+                                      class="form-control"></textarea>
                         </div>
                     </div>
                 </div>
             </fieldset>
         </div>
     </form>
-
 </div>
