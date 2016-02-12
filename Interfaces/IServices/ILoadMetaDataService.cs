@@ -14,7 +14,7 @@ namespace FRS.Interfaces.IServices
         bool UpdateMetaData(LoadMetaData loadMetaData);
         void DeleteMetaData(long loadMetaData);
         BaseDataLoadMetaDataResponse GetBaseDataResponse();
-        LoadMetaData SaveMetaData(LoadMetaData loadMetaData);
+        bool SaveMetaData(LoadMetaData loadMetaData);
         LoadMetaDataForLoad IsLoadTypeMT940(long loadMetaDataId);
 
         SearchLoadMetaDataResponse SearchLoadMetaData(LoadMetaDataSearchRequest searchRequest);

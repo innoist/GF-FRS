@@ -113,7 +113,7 @@ namespace FRS.Implementation.Services
             };
         }
 
-        public LoadMetaData SaveMetaData(LoadMetaData loadMetaData)
+        public bool SaveMetaData(LoadMetaData loadMetaData)
         {
             //var user = userRepository.GetLoggedInUser();
             LoadMetaData dbVersion = loadMetaDataRepository.Find(loadMetaData.LoadMetaDataId);
@@ -129,7 +129,7 @@ namespace FRS.Implementation.Services
                 loadMetaDataRepository.Add(dbVersion);
             }
             loadMetaDataRepository.SaveChanges();
-            return dbVersion;
+            return true;
         }
 
         public LoadMetaDataForLoad IsLoadTypeMT940(long loadMetaDataId)

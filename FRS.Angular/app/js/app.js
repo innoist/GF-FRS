@@ -6817,23 +6817,24 @@
 
                 if (vm.loginForm.$valid) {
                     var data = "grant_type=password&username=" + vm.account.email + "&password=" + vm.account.password;
-
+                    vm.submitButton = true;
                     $http
-                        .post('http://localhost:4897/token', data, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } })
+                        .post(window.frsApiUrl +'/token', data, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } })
                         .success(function (response) {
-                            debugger;
                             $localStorage['authorizationData'] = { token: response.access_token, userName: response.userName };
 
                             // assumes if ok, response is an object with some data, if not, a string with error
                             // customize according to your api
                             $state.go('app.dashboard');
 
-                        }, function () {
-                            vm.authMsg = 'Server Request Error';
                         })
                         .error(function (err, status) {
+                            vm.submitButton = false;
                             if (status === 400) {
                                 vm.authMsg = 'Incorrect credentials.';
+                            }
+                            if (status === 500) {
+                                vm.authMsg = 'Server Request Error';
                             }
                         });
                 }
@@ -7584,7 +7585,8 @@
                 title: 'New MetaData',
                 templateUrl: helper.basepath('../../../../app/views/CreateMetaData.html'),
                 controller: 'CreateMetaDataController',
-                controllerAs: 'cmdc'
+                controllerAs: 'cmdc',
+                resolve: helper.resolveFor('oitozero.ngSweetAlert')
             })
             .state('app.Load', {
                 url: '/Load',
@@ -8314,9 +8316,9 @@
         .module('app.CreateMetaData', [])
         .controller('CreateMetaDataController', CreateMetaDataController);
 
-    CreateMetaDataController.$inject = ['$http', '$scope', 'LoadMetaDataService'];
+    CreateMetaDataController.$inject = ['$http', '$scope', '$state', 'LoadMetaDataService', 'SweetAlert'];
 
-    function CreateMetaDataController($http, $scope, LoadMetaDataService) {
+    function CreateMetaDataController($http, $scope, $state, LoadMetaDataService, SweetAlert) {
         var vm = this;
         function activate() {
             // Load base data
@@ -8328,7 +8330,10 @@
 
         }
         //#endregion
-
+        vm.submitted = false;
+        //vm.submitForm = function () {
+            
+        //};
         //#region DropDowns
         $scope.LoadTypes = [];
         $scope.Sources = [];
@@ -8351,22 +8356,68 @@
             }
         }
         //#endregion
-
+        vm.validateInput = function (name, type) {
+            var input = vm.formValidate[name];
+            return (input.$dirty || vm.submitted) && input.$error[type];
+        };
         //#region Post Data
-        $scope.saveLoadMetaDataDetail = function () {
+        $scope.saveLoadMetaDataDetail = function (isNew) {
+            vm.submitted = true;
+            if (vm.formValidate.$valid) {
+                console.log('Submitted!!');
+            } else {
+                console.log('Not valid!!');
+                return false;
+            }
             vm.LoadMetaData.Header = $scope.Header;
             vm.LoadMetaData.Footer = $scope.Footer;
             vm.LoadMetaData.Name = $scope.Name;
             vm.LoadMetaData.Description = $scope.Description;
 
-            LoadMetaDataService.saveLoadMetaDataDetail(vm.LoadMetaData, onSuccess);
-            function onSuccess(data) {
-                if (data != null) {
-                    $scope.GetBaseData();
-                    //$scope.IsShowEdit = false;
-                    alert("Record has been Saved Successfully");
+            LoadMetaDataService.saveLoadMetaDataDetail(vm.LoadMetaData, onSuccess, onError);
+            function onSuccess(response) {
+                if (response.data == true) {
+                    //$scope.GetBaseData();
+                    (function () {
+                        SweetAlert.swal({
+                            title: 'Done !',
+                            text: 'Record has been Saved Successfully.',
+                            type: 'success',
+                            //showCancelButton: true,
+                            //confirmButtonColor: '#DD6B55',
+                            //confirmButtonText: 'Yes, delete it!',
+                            //closeOnConfirm: false
+                        //}, function () {
+                        //    SweetAlert.swal('Booyah!');
+                        });
+                    })();
+
                 }
             }
+            function onError(err) {
+                (function () {
+                    SweetAlert.swal({
+                        title: 'Alas !',
+                        text: 'Something went wrong.',
+                        type: 'error',
+                        //showCancelButton: true,
+                        //confirmButtonColor: '#DD6B55',
+                        //confirmButtonText: 'Yes, delete it!',
+                        //closeOnConfirm: false
+                        //}, function () {
+                        //    SweetAlert.swal('Booyah!');
+                    });
+                })();
+            }
+
+            if (isNew) {
+
+                $state.go('app.CreateMetaData');
+            }
+            if (!isNew) {
+                $state.go('app.LoadMetaData');
+            }
+            defaultModel();
         }
         //#endregion
 
@@ -8397,18 +8448,18 @@
         //#endregion
 
         //#region Functions
-        //$scope.defaultModel = function () {
-        //    $scope.LoadMetaDataId = 0;
-        //    $scope.LoadTypeId = 0;
-        //    $scope.SourceId = 0;
-        //    $scope.Header = '';
-        //    $scope.Footer = '';
-        //    $scope.Name = '';
-        //    $scope.CurrencyId = 0;
-        //    $scope.Description = '';
-        //    $scope.StatusId = 0;
-        //    $scope.Currency = '';
-        //}
+        var defaultModel = function () {
+            $scope.LoadMetaDataId = 0;
+            $scope.LoadTypeId = 0;
+            $scope.SourceId = 0;
+            $scope.Header = '';
+            $scope.Footer = '';
+            $scope.Name = '';
+            $scope.CurrencyId = 0;
+            $scope.Description = '';
+            $scope.StatusId = 0;
+            $scope.Currency = '';
+        }
 
         $scope.showEdit = function () {
             $scope.IsReadOnly = false;
@@ -8454,8 +8505,8 @@
         .module('app.LoadMetaData')
         .service('LoadMetaDataService', LoadMetaDataService);
 
-    LoadMetaDataService.$inject = ['$http', '$localStorage'];
-    function LoadMetaDataService($http, $localStorage) {
+    LoadMetaDataService.$inject = ['$http', '$state', '$localStorage'];
+    function LoadMetaDataService($http, $state, $localStorage) {
         this.getLoadMetaData = getLoadMetaData;
         this.saveLoadMetaDataDetail = saveLoadMetaDataDetail;
 
@@ -8471,18 +8522,28 @@
         }
 
         function saveLoadMetaDataDetail(metaData, onReady, onError) {
+            if (!$localStorage['authorizationData']) {
+                delete $localStorage['authorizationData'];
+                $state.go('page.login');
+                return;
+            }
+                
             var urlMetaData = window.frsApiUrl + '/api/LoadMetaData';
 
             onError = onError || function () { alert('Failure saving Meta Data'); };
 
-            $http
-              .post(urlMetaData, metaData, {
-                  headers: {
-                  'Content-Type': 'application/x-www-form-urlencoded',
-                  'Authorization': 'Bearer ' + $localStorage['authorizationData'].token
-                } })
-              .success(onReady)
-              .error(onError);
+            $http(
+                {
+                    method: 'POST',
+                    url: urlMetaData,
+                    headers: {
+                        //'Content-Type': 'application/x-www-form-urlencoded',
+                        'Authorization': 'Bearer ' + $localStorage['authorizationData'].token
+                    },
+                    data: JSON.stringify(metaData),
+                }
+              )
+              .then(onReady,onError);
         }
     }
 })();

@@ -14,6 +14,6 @@ namespace FRS.ExceptionHandling
         /// <summary>
         /// FRS Exception Type
         /// </summary>
-        public string ExceptionType => FRSExceptionTypes.FRSGeneralException;
+        public string ExceptionType { get { return FRSExceptionTypes.FRSGeneralException; }}
     }
 }
