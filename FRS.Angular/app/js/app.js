@@ -7578,7 +7578,7 @@
                 templateUrl: helper.basepath('../../../../app/views/LoadMetaData.html'),
                 controller: 'LoadMetaDataController',
                 controllerAs: 'mdc',
-                resolve: helper.resolveFor('ui.grid','loaders.css', 'spinkit')
+                resolve: helper.resolveFor('ui.grid', 'loaders.css', 'spinkit','ui.select')
             })
             .state('app.CreateMetaData', {
                 url: '/CreateMetaData',
@@ -8223,6 +8223,57 @@
     function LoadMetaDataController($http, $rootScope, $scope, $state, uiGridConstants) {
 
         var vm = this;
+
+        //datepicker
+        vm.today = function () {
+            vm.dt = new Date();
+        };
+        vm.today();
+
+        vm.clear = function () {
+            vm.dt = null;
+        };
+
+        // Disable weekend selection
+        vm.disabled = function (date, mode) {
+            return (mode === 'day' && (date.getDay() === 0 || date.getDay() === 6));
+        };
+        vm.open = function ($event) {
+            $event.preventDefault();
+            $event.stopPropagation();
+
+            vm.opened = true;
+        };
+
+        vm.dateOptions = {
+            formatYear: 'yy',
+            startingDay: 1
+        };
+
+        vm.initDate = new Date();
+        vm.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
+        vm.format = vm.formats[0];
+
+
+        //ui-select
+        vm.disabled = undefined;
+        vm.person = {};
+        vm.people = [
+          { name: 'Adam', email: 'adam@email.com', age: 10 },
+          { name: 'Amalie', email: 'amalie@email.com', age: 12 },
+          { name: 'Wladimir', email: 'wladimir@email.com', age: 30 },
+          { name: 'Samantha', email: 'samantha@email.com', age: 31 },
+          { name: 'Estefanía', email: 'estefanía@email.com', age: 16 },
+          { name: 'Natasha', email: 'natasha@email.com', age: 54 },
+          { name: 'Nicole', email: 'nicole@email.com', age: 43 },
+          { name: 'Adrian', email: 'adrian@email.com', age: 21 }
+        ];
+
+
+        
+
+
+        //ui-grid
         var paginationOptions = {
             'params': {
                 SortBy: 0,
@@ -8231,7 +8282,9 @@
                 PageNo: 1,
                 PageSize: 10,
                 sort: null
-            }
+            },
+            Name: '',
+            LoadTypeId : ''
         };
         vm.gridOptions = {
             paginationPageSizes: [10,25,50,100,500],
@@ -8246,11 +8299,11 @@
             columnDefs: [
                 // name is for display on the table header, field is for mapping as in 
                 //sortId is kept locally it is not the property of ui.grid
-              { name: 'Meta Data Name', field: 'Name', sortId: 0 },
-              { name: 'Header', field: 'Header', sortId: 1},
-              { name: 'Footer', field: 'Footer', sortId: 2},
-              { name: 'Load Type', field: 'LoadType', sortId: 3},
-              { name: 'Source', field: 'Source', sortId: 4 }
+              { name: 'Id', field: 'LoadMetaDataId', sortId: 0 , width:'8%'},
+              { name: 'Name', field: 'Name', sortId: 1},
+              { name: 'Load Type', field: 'LoadType', sortId: 2 },
+              { name: 'Source', field: 'Source', sortId: 3 },
+              { name: 'Currency', field: 'Currency', sortId: 4 }
             ],
             onRegisterApi: function (gridApi) {
                 vm.gridApi = gridApi;
@@ -8303,6 +8356,18 @@
                 $scope.loading = false;
             });
         };
+
+        $scope.resetFilter = function () {
+            vm.dt = null;
+            vm.name = '';
+            vm.person.selected = null;
+        }
+
+        $scope.fiterData = function () {
+            paginationOptions.Name = vm.name;
+            paginationOptions.LoadTypeId = vm.LoadType;
+            getPage();
+        }
 
         getPage();
 

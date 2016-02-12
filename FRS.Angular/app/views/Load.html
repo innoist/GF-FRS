@@ -1,4 +1,15 @@
-﻿<!-- START panel-->
+﻿<h3>
+    <!-- START Language list-->
+    <div class="pull-right">
+        
+    </div>
+    <!-- END Language list    -->
+    Load
+    <small>Create</small>
+</h3>
+
+
+<!-- START panel-->
 <div class="panel panel-default">
     <div class="panel-heading">Create New Load</div>
     <div class="panel-body">
@@ -60,9 +71,9 @@
                                     <label for="source-sel" class="control-label col-md-2">Source</label>
                                     <div uib-dropdown="dropdown" class="col-md-6">
                                         <button id="source-sel" uib-dropdown-toggle="" class="btn btn-default" style="width: 100%">
-                                            Select <b class="caret"></b>
+                                            Select <span class="pull-right"><b class="caret"></b></span>
                                         </button>
-                                        <ul role="menu" class="dropdown-menu animated flipInX" style="width: 100%; text-align: center">
+                                        <ul role="menu" class="dropdown-menu animated flipInX" style="width: 100%; text-align: left">
                                             <li ng-repeat="obj in LoadMetadataDropDown">
                                                 <a ng-click="showHideFileUploader(obj)">{{obj.Name}}</a>
                                             </li>
