@@ -27,6 +27,7 @@ namespace FRS.Repository.Repositories
                 {OrderByLoadMetaData.LoadType, c => c.LoadType.Name},
                 {OrderByLoadMetaData.Source, c => c.Source.Name},
                 {OrderByLoadMetaData.Currency, c => c.Currency},
+                {OrderByLoadMetaData.CreatedOn, c => c.CreatedOn},
             };
 
 
@@ -76,7 +77,10 @@ namespace FRS.Repository.Repositories
             Expression<Func<LoadMetaData, bool>> query =
                 s =>
                     (
-                    (searchRequest.LoadMetaDataId == 0 || searchRequest.LoadMetaDataId.Equals(s.LoadMetaDataId))
+                    (searchRequest.LoadMetaDataId == 0 || searchRequest.LoadMetaDataId.Equals(s.LoadMetaDataId)) &&
+                    (searchRequest.CreatedDate == null || DbFunctions.TruncateTime(searchRequest.CreatedDate) == DbFunctions.TruncateTime(s.CreatedOn)) &&
+                    (searchRequest.Name == null || searchRequest.Name.Equals(s.Name)) && 
+                    (searchRequest.LoadTypeId == 0 || searchRequest.LoadTypeId == s.LoadTypeId)
                     );
 
             IEnumerable<LoadMetaData> loadMetaDatas = searchRequest.IsAsc

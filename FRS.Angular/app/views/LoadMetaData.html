@@ -43,13 +43,13 @@
                 </p>
             </div>
             <div class="col-md-3">
-                <ui-select ng-model="mdc.person.selected" theme="bootstrap" ng-disabled="mdc.disabled">
-                    <ui-select-match placeholder="Select or search a name/age...">{{$select.selected.name}}</ui-select-match>
-                    <ui-select-choices repeat="person in mdc.people | propsFilter: {name: $select.search, age: $select.search}">
-                        <div ng-bind-html="person.name | highlight: $select.search"></div>
+                <ui-select ng-model="mdc.LoadType.selected" theme="bootstrap" ng-disabled="mdc.disabled">
+                    <ui-select-match placeholder="Select or LoadType...">{{$select.selected.Name}}</ui-select-match>
+                    <ui-select-choices repeat="loadtype in mdc.LoadTypes | propsFilter: {Name: $select.search, Id: $select.search}">
+                        <div ng-bind-html="loadtype.Name | highlight: $select.search"></div>
                         <small>
-                            email: {{person.email}} age:
-                            <span ng-bind-html="''+person.age | highlight: $select.search"></span>
+                            Id:
+                            <span ng-bind-html="''+loadtype.Id | highlight: $select.search"></span>
                         </small>
                     </ui-select-choices>
                 </ui-select>

@@ -6,6 +6,7 @@
         Name = 1,
         LoadType = 2,
         Source = 3,
-        Currency = 4
+        Currency = 4,
+        CreatedOn = 5,
     }
 }

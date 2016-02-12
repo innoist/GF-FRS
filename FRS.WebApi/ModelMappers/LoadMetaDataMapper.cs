@@ -18,7 +18,8 @@
                 Currency = source.Currency != null ? source.Currency.Name : "",
                 LoadType = source.LoadType.Name,
                 Source = source.Source.Name,
-                Status = source.Status.Name
+                Status = source.Status.Name,
+                CreatedOnString = source.CreatedOn.ToShortDateString()
             };
         }
 

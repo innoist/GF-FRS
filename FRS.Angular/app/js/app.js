@@ -8257,19 +8257,14 @@
 
         //ui-select
         vm.disabled = undefined;
-        vm.person = {};
-        vm.people = [
-          { name: 'Adam', email: 'adam@email.com', age: 10 },
-          { name: 'Amalie', email: 'amalie@email.com', age: 12 },
-          { name: 'Wladimir', email: 'wladimir@email.com', age: 30 },
-          { name: 'Samantha', email: 'samantha@email.com', age: 31 },
-          { name: 'Estefanía', email: 'estefanía@email.com', age: 16 },
-          { name: 'Natasha', email: 'natasha@email.com', age: 54 },
-          { name: 'Nicole', email: 'nicole@email.com', age: 43 },
-          { name: 'Adrian', email: 'adrian@email.com', age: 21 }
+        vm.LoadType = {};
+        vm.LoadTypes = [
+          //{ Id: '1', Name: 'a'}
         ];
 
-
+        $http.get(window.frsApiUrl + '/api/LoadMetaDataBase').success(function (response) {
+            vm.LoadTypes = response.LoadTypes;
+        });
         
 
 
@@ -8281,10 +8276,12 @@
                 IsAsc: true,
                 PageNo: 1,
                 PageSize: 10,
-                sort: null
+                sort: null,
+                Name: '',
+                LoadTypeId: 0,
+                CreatedDate: ''
             },
-            Name: '',
-            LoadTypeId : ''
+            
         };
         vm.gridOptions = {
             paginationPageSizes: [10,25,50,100,500],
@@ -8303,7 +8300,8 @@
               { name: 'Name', field: 'Name', sortId: 1},
               { name: 'Load Type', field: 'LoadType', sortId: 2 },
               { name: 'Source', field: 'Source', sortId: 3 },
-              { name: 'Currency', field: 'Currency', sortId: 4 }
+              { name: 'Currency', field: 'Currency', sortId: 4 },
+              { name: 'Created Date', field: 'CreatedOnString', sortId: 5 }
             ],
             onRegisterApi: function (gridApi) {
                 vm.gridApi = gridApi;
@@ -8360,12 +8358,22 @@
         $scope.resetFilter = function () {
             vm.dt = null;
             vm.name = '';
-            vm.person.selected = null;
+            vm.LoadType.selected = null;
+
+            paginationOptions.params.CreatedDate = '';
+            paginationOptions.params.IsAsc = true;
+            paginationOptions.params.PageNo = 1;
+            paginationOptions.params.sort = null;
+            paginationOptions.params.SortBy = 0;
+            paginationOptions.params.Name = '';
+            paginationOptions.params.LoadTypeId = 0;
+            getPage();
         }
 
         $scope.fiterData = function () {
-            paginationOptions.Name = vm.name;
-            paginationOptions.LoadTypeId = vm.LoadType;
+            paginationOptions.params.Name = vm.name;
+            paginationOptions.params.CreatedDate = vm.dt;
+            paginationOptions.params.LoadTypeId = vm.LoadType.selected.Id || 0;
             getPage();
         }
 

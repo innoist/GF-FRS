@@ -14,6 +14,7 @@ namespace FRS.WebApi.Models.MetaData
         public string Description { get; set; }
         public string CreatedBy { get; set; }
         public DateTime CreatedOn { get; set; }
+        public string CreatedOnString { get; set; }
         public string ModifiedBy { get; set; }
         public DateTime ModifiedOn { get; set; }
         public byte StatusId { get; set; }
