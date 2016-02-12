@@ -2508,8 +2508,8 @@
         .module('app.core')
         .config(coreConfig);
 
-    coreConfig.$inject = ['$controllerProvider', '$compileProvider', '$filterProvider', '$provide', '$animateProvider'];
-    function coreConfig($controllerProvider, $compileProvider, $filterProvider, $provide, $animateProvider) {
+    coreConfig.$inject = ['$controllerProvider', '$compileProvider', '$filterProvider', '$provide', '$animateProvider', '$httpProvider'];
+    function coreConfig($controllerProvider, $compileProvider, $filterProvider, $provide, $animateProvider, $httpProvider) {
 
         var core = angular.module('app.core');
         // registering components after bootstrap
@@ -2524,6 +2524,48 @@
         // Disables animation on items with class .ng-no-animation
         $animateProvider.classNameFilter(/^((?!(ng-no-animation)).)*$/);
 
+        // Register http Interceptor
+        core.factory('myHttpInterceptor', function ($q, $window, $rootScope) {
+            $rootScope.ActiveAjaxConectionsWithouthNotifications = 0;
+            var checker = function (parameters, status) {
+                //YOU CAN USE parameters.url TO IGNORE SOME URL
+                if (status === "request") {
+                    $rootScope.ActiveAjaxConectionsWithouthNotifications += 1;
+                    $("div#mainSpinner").show();
+                }
+                if (status === "response") {
+                    $rootScope.ActiveAjaxConectionsWithouthNotifications -= 1;
+
+                }
+                if ($rootScope.ActiveAjaxConectionsWithouthNotifications <= 0) {
+                    $rootScope.ActiveAjaxConectionsWithouthNotifications = 0;
+                    $("div#mainSpinner").hide();
+
+                }
+
+
+            };
+            return {
+                'request': function (config) {
+                    checker(config, "request");
+                    return config;
+                },
+                'requestError': function (rejection) {
+                    checker(rejection.config, "request");
+                    return $q.reject(rejection);
+                },
+                'response': function (response) {
+                    checker(response.config, "response");
+                    return response;
+                },
+                'responseError': function (rejection) {
+                    checker(rejection.config, "response");
+                    return $q.reject(rejection);
+                }
+            };
+        });
+
+        $httpProvider.interceptors.push('myHttpInterceptor');
     }
 
 })();
@@ -10354,3 +10396,4 @@
         }
     }
 })();
+
