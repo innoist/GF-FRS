@@ -1,31 +1,79 @@
 ﻿<h3>
     <!-- START Language list-->
     <div class="pull-right">
-        <a ui-sref="app.CreateMetaData" class="btn btn-info btn-labeled pull-right margin-right-40">
+        <a ui-sref="app.CreateMetaData" class="btn btn-info btn-labeled">
             <span class="btn-label">
                 <i class="fa fa-plus"></i>
             </span>New
         </a>
+        <button class="btn btn-warning btn-labeled" ng-click="isFilterOpen = !isFilterOpen">
+            <span class="btn-label">
+                <i class="fa fa-filter"></i>
+            </span>Filter
+        </button>
     </div>
     <!-- END Language list    -->
     Metadata
     <small>Details</small>
 </h3>
-
-
-<div class="container-fluid">
-    <!-- Grid view to show listview with searching, sorting and pagination-->
-    <div ui-grid="mdc.gridOptions" ui-grid-pagination class="table-uigrid">
-
-        <!--<div class="" ng-hide="!loading">
-            <div class="line-scale-pulse-out" style="position: absolute; left: 0;  right: 0; top: 100px; vertical-align: middle; text-align: center">
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
+<div class="container-fluid" ng-show="isFilterOpen">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="col-md-3">
+                <input type="text" placeholder="Name" class="form-control" ng-model="mdc.name"/>
             </div>
+            <div class="col-md-3">
+                <p class="input-group">
+                    <input type="text" placeholder="Select Date" 
+                           uib-datepicker-popup="{{mdc.format}}" 
+                           ng-model="mdc.dt" 
+                           is-open="mdc.opened" 
+                           min-date="mdc.minDate" 
+                           max-date="'mdc.maxDate'" 
+                           uib-datepicker-options="mdc.dateOptions" 
+                           date-disabled="mdc.disabled(date, mode)"
+                           close-text="Close" 
+                           class="form-control" 
+                           ng-disabled="true"/>
+                    <span class="input-group-btn">
+                        <button type="button" ng-click="mdc.open($event)" class="btn btn-default">
+                            <em class="fa fa-calendar"></em>
+                        </button>
+                    </span>
+                </p>
+            </div>
+            <div class="col-md-3">
+                <ui-select ng-model="mdc.person.selected" theme="bootstrap" ng-disabled="mdc.disabled">
+                    <ui-select-match placeholder="Select or search a name/age...">{{$select.selected.name}}</ui-select-match>
+                    <ui-select-choices repeat="person in mdc.people | propsFilter: {name: $select.search, age: $select.search}">
+                        <div ng-bind-html="person.name | highlight: $select.search"></div>
+                        <small>
+                            email: {{person.email}} age:
+                            <span ng-bind-html="''+person.age | highlight: $select.search"></span>
+                        </small>
+                    </ui-select-choices>
+                </ui-select>
+            </div>
+            <button class="btn btn-success" ng-click="fiterData()">Filter</button>
+            <button class="btn btn-default" ng-click="resetFilter()">Reset</button>
+        </div>
 
-        </div>-->
     </div>
 </div>
+
+    <div class="container-fluid">
+        <!-- Grid view to show listview with searching, sorting and pagination-->
+        <div ui-grid="mdc.gridOptions" ui-grid-pagination class="table-uigrid">
+
+            <!--<div class="" ng-hide="!loading">
+                <div class="line-scale-pulse-out" style="position: absolute; left: 0;  right: 0; top: 100px; vertical-align: middle; text-align: center">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+
+            </div>-->
+        </div>
+    </div>

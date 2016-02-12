@@ -9,7 +9,7 @@
     "icon": "icon-speedometer",
     "submenu": [
       {"text": "Dashboard",       "sref": "app.dashboard"},
-      { "text": "Loads", "sref": "app.LoadMetaData" }
+      { "text": "Loads", "sref": "app.Load" }
     ]
   },
   {
@@ -23,7 +23,7 @@
           },
           {
               "text": "MetaData",
-              "sref": "#"
+              "sref": "app.LoadMetaData"
           },
           {
               "text": "Users",
@@ -49,7 +49,7 @@
       "submenu": [
           {
               "text": "Loads",
-              "sref": "#"
+              "sref": "app.Load"
           }
       ]
   },
@@ -60,7 +60,7 @@
       "submenu": [
           {
               "text": "Loads",
-              "sref": "#"
+              "sref": "app.Load"
           },
           {
               "text": "Customer Statements",

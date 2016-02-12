@@ -23,10 +23,10 @@ namespace FRS.Repository.Repositories
             new Dictionary<OrderByLoadMetaData, Func<LoadMetaData, object>>
             {
                 {OrderByLoadMetaData.Name, c => c.Name},
-                {OrderByLoadMetaData.Header, c => c.Header},
-                {OrderByLoadMetaData.Footer, c => c.Footer},
-                {OrderByLoadMetaData.LoadType, c => c.LoadTypeId},
-                {OrderByLoadMetaData.Source, c => c.Source},
+                {OrderByLoadMetaData.Id, c => c.LoadMetaDataId},
+                {OrderByLoadMetaData.LoadType, c => c.LoadType.Name},
+                {OrderByLoadMetaData.Source, c => c.Source.Name},
+                {OrderByLoadMetaData.Currency, c => c.Currency},
             };
 
 

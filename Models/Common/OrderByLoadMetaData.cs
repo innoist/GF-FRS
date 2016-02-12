@@ -2,10 +2,10 @@
 {
     public enum OrderByLoadMetaData
     {
-        Name = 0,
-        Header = 1,
-        Footer = 2,
-        LoadType = 3,
-        Source = 4
+        Id = 0,
+        Name = 1,
+        LoadType = 2,
+        Source = 3,
+        Currency = 4
     }
 }
