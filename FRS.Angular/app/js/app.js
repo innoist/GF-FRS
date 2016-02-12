@@ -10458,3 +10458,12 @@
     }
 })();
 
+// Show Progress
+function showProgress() {
+    $("div#mainSpinner").show();
+}
+
+// Hide Progress
+function hideProgress() {
+    $("div#mainSpinner").hide();
+}
