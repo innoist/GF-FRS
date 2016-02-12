@@ -8187,16 +8187,16 @@
                 SearchString: '',
                 IsAsc: true,
                 PageNo: 1,
-                PageSize: 1,
+                PageSize: 10,
                 sort: null
             }
         };
         vm.gridOptions = {
-            paginationPageSizes: [1,10,25,50,100,500],
-            paginationPageSize: 1,
+            paginationPageSizes: [10,25,50,100,500],
+            paginationPageSize: 10,
             useExternalPagination: true,
             useExternalSorting: true,
-            enableFiltering: true,
+            //enableFiltering: true,
             flatEntityAccess: true,
             //fastWatch: true,
             enableGridMenu: true,
@@ -8204,11 +8204,11 @@
             columnDefs: [
                 // name is for display on the table header, field is for mapping as in 
                 //sortId is kept locally it is not the property of ui.grid
-              { name: 'Meta Data Name', field: 'Name', sortId: 0, enableFiltering: true },
-              { name: 'Header', field: 'Header', sortId: 1, enableFiltering: true },
-              { name: 'Footer', field: 'Footer', sortId: 2, enableFiltering: true },
-              { name: 'Load Type', field: 'LoadType', sortId: 3, enableFiltering: true },
-              { name: 'Source', field: 'Source', sortId: 4, enableFiltering: true }
+              { name: 'Meta Data Name', field: 'Name', sortId: 0 },
+              { name: 'Header', field: 'Header', sortId: 1},
+              { name: 'Footer', field: 'Footer', sortId: 2},
+              { name: 'Load Type', field: 'LoadType', sortId: 3},
+              { name: 'Source', field: 'Source', sortId: 4 }
             ],
             onRegisterApi: function (gridApi) {
                 vm.gridApi = gridApi;
@@ -8274,9 +8274,9 @@
         .module('app.CreateMetaData', [])
         .controller('CreateMetaDataController', CreateMetaDataController);
 
-    CreateMetaDataController.$inject = ['$http', '$scope', '$state', 'LoadMetaDataService', 'SweetAlert'];
+    CreateMetaDataController.$inject = ['$http', '$scope', '$state', 'LoadMetaDataService', 'SweetAlert', 'toaster'];
 
-    function CreateMetaDataController($http, $scope, $state, LoadMetaDataService, SweetAlert) {
+    function CreateMetaDataController($http, $scope, $state, LoadMetaDataService, SweetAlert, toaster) {
         var vm = this;
         function activate() {
             // Load base data
@@ -8324,7 +8324,7 @@
             if (vm.formValidate.$valid) {
                 console.log('Submitted!!');
             } else {
-                console.log('Not valid!!');
+                toaster.pop("error", "Fields are required", "Notification");
                 return false;
             }
             vm.LoadMetaData.Header = $scope.Header;
@@ -8335,37 +8335,39 @@
             LoadMetaDataService.saveLoadMetaDataDetail(vm.LoadMetaData, onSuccess, onError);
             function onSuccess(response) {
                 if (response.data == true) {
+                    toaster.pop("success", "Metadata Saved successfully", "Notification");
                     //$scope.GetBaseData();
-                    (function () {
-                        SweetAlert.swal({
-                            title: 'Done !',
-                            text: 'Record has been Saved Successfully.',
-                            type: 'success',
-                            //showCancelButton: true,
-                            //confirmButtonColor: '#DD6B55',
-                            //confirmButtonText: 'Yes, delete it!',
-                            //closeOnConfirm: false
-                        //}, function () {
-                        //    SweetAlert.swal('Booyah!');
-                        });
-                    })();
+                    //(function () {
+                    //    SweetAlert.swal({
+                    //        title: 'Done !',
+                    //        text: 'Record has been Saved Successfully.',
+                    //        type: 'success',
+                    //        //showCancelButton: true,
+                    //        //confirmButtonColor: '#DD6B55',
+                    //        //confirmButtonText: 'Yes, delete it!',
+                    //        //closeOnConfirm: false
+                    //    //}, function () {
+                    //    //    SweetAlert.swal('Booyah!');
+                    //    });
+                    //})();
 
                 }
             }
             function onError(err) {
-                (function () {
-                    SweetAlert.swal({
-                        title: 'Alas !',
-                        text: 'Something went wrong.',
-                        type: 'error',
-                        //showCancelButton: true,
-                        //confirmButtonColor: '#DD6B55',
-                        //confirmButtonText: 'Yes, delete it!',
-                        //closeOnConfirm: false
-                        //}, function () {
-                        //    SweetAlert.swal('Booyah!');
-                    });
-                })();
+                toaster.pop("error", "Server error", "Notification");
+                //(function () {
+                //    SweetAlert.swal({
+                //        title: 'Alas !',
+                //        text: 'Something went wrong.',
+                //        type: 'error',
+                //        //showCancelButton: true,
+                //        //confirmButtonColor: '#DD6B55',
+                //        //confirmButtonText: 'Yes, delete it!',
+                //        //closeOnConfirm: false
+                //        //}, function () {
+                //        //    SweetAlert.swal('Booyah!');
+                //    });
+                //})();
             }
 
             if (isNew) {
@@ -8417,6 +8419,7 @@
             $scope.Description = '';
             $scope.StatusId = 0;
             $scope.Currency = '';
+            vm.submitted = false;
         }
 
         $scope.showEdit = function () {
@@ -8480,11 +8483,6 @@
         }
 
         function saveLoadMetaDataDetail(metaData, onReady, onError) {
-            if (!$localStorage['authorizationData']) {
-                delete $localStorage['authorizationData'];
-                $state.go('page.login');
-                return;
-            }
                 
             var urlMetaData = window.frsApiUrl + '/api/LoadMetaData';
 
