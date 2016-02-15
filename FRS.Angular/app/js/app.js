@@ -2779,7 +2779,11 @@
 
         $rootScope.logout = function () {
             delete $localStorage['authorizationData'];
-            $state.go('page.login');
+            $http.get(frsApiUrl + "/Account/Logout").success(function() {
+                console.log("LogedOut");
+                $state.go('page.login');
+            });
+            
         }
     }
 })();
@@ -6881,7 +6885,7 @@
                 if (vm.registerForm.$valid) {
 
                     $http
-                      .post('api/account/register', { email: vm.account.email, password: vm.account.password })
+                      .post(frsApiUrl + '/Account/Register', { Email: vm.account.email, Password: vm.account.password, ConfirmPassword: vm.account.account_password_confirm })
                       .then(function (response) {
                           // assumes if ok, response is an object with some data, if not, a string with error
                           // customize according to your api
@@ -8472,8 +8476,8 @@
                 }
             }
             function onError(err) {
-                debugger;
-                toaster.pop("error", err.statusText, err.data.Message);
+                toaster.error(err.statusText, err.data.Message);
+                showErrors(err);
                 //(function () {
                 //    SweetAlert.swal({
                 //        title: 'Alas !',
@@ -10541,4 +10545,17 @@ function showProgress() {
 // Hide Progress
 function hideProgress() {
     $("div#mainSpinner").hide();
+}
+
+function showErrors(err) {
+    if (!err)
+        return;
+    var errors = "";
+    for (var key in err.data.ModelState) {
+        var errMsg = err.data.ModelState[key][0];
+        errors += errMsg + "<br/>";
+    }
+                
+    if($.trim(errors) !== "")
+        toaster.error(err.statusText, errors);
 }
