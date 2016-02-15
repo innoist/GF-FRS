@@ -8373,7 +8373,7 @@
         $scope.fiterData = function () {
             paginationOptions.params.Name = vm.name;
             paginationOptions.params.CreatedDate = vm.dt;
-            paginationOptions.params.LoadTypeId = vm.LoadType.selected.Id || 0;
+            paginationOptions.params.LoadTypeId = vm.LoadType.selected == null ? 0 : vm.LoadType.selected.Id;
             getPage();
         }
 
