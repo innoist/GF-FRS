@@ -8451,6 +8451,7 @@
 
             LoadMetaDataService.saveLoadMetaDataDetail(vm.LoadMetaData, onSuccess, onError);
             function onSuccess(response) {
+                debugger;
                 if (response.data == true) {
                     toaster.pop("success", "Metadata Saved successfully", "Notification");
                     //$scope.GetBaseData();
@@ -8471,7 +8472,8 @@
                 }
             }
             function onError(err) {
-                toaster.pop("error", "Server error", "Notification");
+                debugger;
+                toaster.pop("error", err.statusText, err.data.Message);
                 //(function () {
                 //    SweetAlert.swal({
                 //        title: 'Alas !',

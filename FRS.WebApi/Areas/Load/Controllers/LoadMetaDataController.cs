@@ -3,6 +3,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Http;
+using System.Web.Http.Controllers;
 using System.Web.Http.Cors;
 using FRS.Interfaces.IServices;
 using FRS.Models.RequestModels;
@@ -67,12 +68,12 @@ namespace FRS.WebApi.Areas.Load.Controllers
         [HttpPost]
         [Authorize]
         [ApiException]
-        public bool Post(Models.MetaData.LoadMetaData loadMetaData)
+        public IHttpActionResult Post(Models.MetaData.LoadMetaData loadMetaData)
         {
             //HttpContext.Current.Session
             if (loadMetaData == null || !ModelState.IsValid)
             {
-                throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
+                return BadRequest(ModelState);
             }
             if (loadMetaDataService != null)
             {
@@ -83,14 +84,14 @@ namespace FRS.WebApi.Areas.Load.Controllers
                     loadMetaData.CreatedOn = DateTime.UtcNow;
                     loadMetaData.ModifiedOn = DateTime.Now;
                     var temp = loadMetaData.CreateFromClientToServer();
-                    return loadMetaDataService.SaveMetaData(temp);//.CreateFromServerToClient();
+                    return Json(loadMetaDataService.SaveMetaData(temp));//.CreateFromServerToClient();
                 }
                 catch (Exception e)
                 {
-                    return false;
+                    return InternalServerError(e);
                 }
             }
-            return true;
+            return Json(true);
         }
 
         #endregion
