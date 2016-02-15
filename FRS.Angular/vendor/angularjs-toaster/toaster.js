@@ -43,7 +43,7 @@
                 success: 'toast-success',
                 warning: 'toast-warning'
             },
-            'body-output-type': '', // Options: '', 'trustedHtml', 'template', 'templateWithData', 'directive'
+            'body-output-type': 'trustedHtml', // Options: '', 'trustedHtml', 'template', 'templateWithData', 'directive'
             'body-template': 'toasterBodyTmpl.html',
             'icon-class': 'toast-info',
             'position-class': 'toast-top-right', // Options (see CSS):

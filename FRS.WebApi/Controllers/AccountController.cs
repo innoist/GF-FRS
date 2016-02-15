@@ -6,10 +6,9 @@ using System.Security.Cryptography;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
-using System.Web.Http.ModelBinding;
+using System.Web.Http.Cors;
 using FRS.Models.IdentityModels;
 using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
@@ -20,6 +19,7 @@ using FRS.WebApi.Results;
 
 namespace FRS.WebApi.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     [Authorize]
     [RoutePrefix("api/Account")]
     public class AccountController : ApiController
