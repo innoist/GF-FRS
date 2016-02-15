@@ -52,11 +52,6 @@ namespace FRS.Interfaces.Repository
         void SaveChanges();
 
         /// <summary>
-        /// User Domain Key
-        /// </summary>
-        long UserDomainKey { get;}
-
-        /// <summary>
         /// Logged in user identity
         /// </summary>
         string LoggedInUserIdentity { get; }

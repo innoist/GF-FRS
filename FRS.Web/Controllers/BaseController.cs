@@ -2,6 +2,7 @@
 using System.Web.Mvc;
 using System.Web.Routing;
 using Cares.Commons;
+using FRS.Commons;
 using FRS.Interfaces.IServices;
 using Microsoft.Practices.Unity;
 
@@ -32,7 +33,7 @@ namespace FRS.Web.Controllers
         /// </summary>
         private void SetUserDetail()
         {
-            Claim domainKeyClaim = ClaimHelper.GetClaimToString(CaresUserClaims.UserDomainKey);
+            Claim domainKeyClaim = ClaimHelper.GetClaimToString(FRSUserClaims.UserId);
             if (domainKeyClaim != null)
             {
                 return;

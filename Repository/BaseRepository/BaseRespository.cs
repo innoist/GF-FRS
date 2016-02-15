@@ -9,6 +9,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Security.Claims;
 using Cares.Commons;
+using FRS.Commons;
 using FRS.Interfaces.Repository;
 using FRS.Models.IdentityModels;
 using Microsoft.Practices.Unity;
@@ -139,21 +140,7 @@ namespace FRS.Repository.BaseRepository
         {
             db.LoadProperty(entity, propertyExpression, isCollection);
         }
-        /// <summary>that specifies the User's domain on the system
-        /// User Domain key 
-        /// </summary>        
-        public long UserDomainKey
-        {
-            get
-            {
-                Claim domainKeyClaim = ClaimHelper.GetClaimToString(CaresUserClaims.UserDomainKey);
-                if (domainKeyClaim==null)
-                {
-                    throw new InvalidOperationException("Domain-Key claim not found!");
-                }
-                return Convert.ToInt64(domainKeyClaim.Value);
-            }
-        }
+        
         /// <summary>
         /// Logged in User Identity
         /// </summary>
@@ -161,7 +148,7 @@ namespace FRS.Repository.BaseRepository
         {
             get
             {
-                Claim domainKeyClaim = ClaimHelper.GetClaimToString(CaresUserClaims.Name);
+                Claim domainKeyClaim = ClaimHelper.GetClaimToString(ClaimTypes.Name);
                 if (domainKeyClaim == null)
                 {
                     throw new InvalidOperationException("User Domain Name claim not found!");
@@ -177,7 +164,7 @@ namespace FRS.Repository.BaseRepository
         {
             get
             {
-                Claim userTimeZoneOffsetClaim = ClaimHelper.GetClaimToString(CaresUserClaims.UserTimeZoneOffset);
+                Claim userTimeZoneOffsetClaim = ClaimHelper.GetClaimToString(FRSUserClaims.UserTimeZoneOffset);
                 if (userTimeZoneOffsetClaim == null)
                 {
                     return TimeSpan.FromMinutes(0);

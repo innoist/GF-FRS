@@ -332,6 +332,10 @@
       <Project>{5a6acd2d-0701-4e38-99b7-65cc4e6cb8e8}</Project>
       <Name>FRS.ExceptionHandling</Name>
     </ProjectReference>
+    <ProjectReference Include="..\FRS.Commons\FRS.Commons.csproj">
+      <Project>{c495b1eb-ac68-44f5-b2fa-d36083eb7bec}</Project>
+      <Name>FRS.Commons</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Implementation\FRS.Implementation.csproj">
       <Project>{42d2e6c0-74f1-46fb-b7ba-43251156275d}</Project>
       <Name>FRS.Implementation</Name>

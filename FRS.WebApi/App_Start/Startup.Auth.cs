@@ -6,6 +6,7 @@ using Microsoft.Owin.Security.OAuth;
 using Owin;
 using FRS.WebApi.Providers;
 using FRS.WebApi.Models;
+using FRS.WebBase.UnityConfiguration;
 
 namespace FRS.WebApi
 {
@@ -27,14 +28,14 @@ namespace FRS.WebApi
             //app.UseCookieAuthentication(new CookieAuthenticationOptions());
             //app.UseExternalSignInCookie(DefaultAuthenticationTypes.ExternalCookie);
             PublicClientId = "self";
-            
-            // Configure the application for OAuth based flow
 
+            // Configure the application for OAuth based flow
+            
             // Enable the application to use bearer tokens to authenticate users
             app.UseOAuthBearerTokens(new OAuthAuthorizationServerOptions
             {
                 TokenEndpointPath = new PathString("/Token"),
-                Provider = new ApplicationOAuthProvider(PublicClientId),
+                Provider = new ApplicationOAuthProvider(PublicClientId, UnityWebActivator.Container),
                 AuthorizeEndpointPath = new PathString("/api/Account/ExternalLogin"),
                 AccessTokenExpireTimeSpan = TimeSpan.FromMinutes(10),
                 // In production mode set AllowInsecureHttp = false

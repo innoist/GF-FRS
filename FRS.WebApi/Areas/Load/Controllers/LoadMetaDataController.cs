@@ -29,6 +29,7 @@ namespace FRS.WebApi.Areas.Load.Controllers
 
         #region Get
         [ApiException]
+        [Authorize]
         public LoadMetaData Get(long? id)
         {
             if (id == null || id <= 0)
@@ -42,6 +43,7 @@ namespace FRS.WebApi.Areas.Load.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         [ApiException]
         public LoadMetaDataListViewModel Get([FromUri]LoadMetaDataSearchRequest searchRequest)
         {

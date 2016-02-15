@@ -11,7 +11,7 @@ namespace FRS.Interfaces.IServices
         /// <summary>
         /// Adds user claims to Identity
         /// </summary>
-        void AddClaimsToIdentity(long domainKey, string defaultRole, string userName, TimeSpan userTimeZoneOffset, ClaimsIdentity identity);
+        void AddClaimsToIdentity(string defaultRole, string userName, string userId, TimeSpan userTimeZoneOffset, ClaimsIdentity identity);
 
     }
 }
