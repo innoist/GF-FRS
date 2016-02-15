@@ -79,7 +79,7 @@ namespace FRS.Repository.Repositories
                     (
                     (searchRequest.LoadMetaDataId == 0 || searchRequest.LoadMetaDataId.Equals(s.LoadMetaDataId)) &&
                     (searchRequest.CreatedDate == null || DbFunctions.TruncateTime(searchRequest.CreatedDate) == DbFunctions.TruncateTime(s.CreatedOn)) &&
-                    (searchRequest.Name == null || searchRequest.Name.Equals(s.Name)) && 
+                    (searchRequest.Name == null || s.Name.Contains(searchRequest.Name)) && 
                     (searchRequest.LoadTypeId == 0 || searchRequest.LoadTypeId == s.LoadTypeId)
                     );
 

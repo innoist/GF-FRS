@@ -6,7 +6,7 @@
                 <i class="fa fa-plus"></i>
             </span>New
         </a>
-        <button class="btn btn-warning btn-labeled" ng-click="isFilterOpen = !isFilterOpen">
+        <button class="btn btn-warning btn-labeled" ng-click="isFilterOpen = !isFilterOpen" ng-show="!isFilterOpen">
             <span class="btn-label">
                 <i class="fa fa-filter"></i>
             </span>Filter
@@ -56,6 +56,8 @@
             </div>
             <button class="btn btn-success" ng-click="fiterData()">Filter</button>
             <button class="btn btn-default" ng-click="resetFilter()">Reset</button>
+            
+            <a class="pull-right" title="Hide filter Section" ng-click="isFilterOpen = !isFilterOpen"><i class="fa fa-compress"></i></a>
         </div>
 
     </div>
@@ -63,17 +65,17 @@
 
     <div class="container-fluid">
         <!-- Grid view to show listview with searching, sorting and pagination-->
-        <div ui-grid="mdc.gridOptions" ui-grid-pagination class="table-uigrid">
+        <div ui-grid="mdc.gridOptions" ui-grid-pagination ui-grid-move-columns ui-grid-resize-columns class="table-uigrid">
 
             <!--<div class="" ng-hide="!loading">
-                <div class="line-scale-pulse-out" style="position: absolute; left: 0;  right: 0; top: 100px; vertical-align: middle; text-align: center">
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                </div>
+            <div class="line-scale-pulse-out" style="position: absolute; left: 0;  right: 0; top: 100px; vertical-align: middle; text-align: center">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
 
-            </div>-->
+        </div>-->
         </div>
     </div>

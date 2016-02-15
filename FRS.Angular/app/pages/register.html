@@ -25,7 +25,7 @@
             </div>
             <div class="form-group has-feedback">
                <label class="text-muted">Retype Password</label>
-               <input type="password" name="account_password_confirm" ng-model="reg.register.account_password_confirm" ui-validate="'$value==register.password'" ui-validate-watch="'password'" class="form-control" />
+               <input type="password" name="account_password_confirm" ng-model="reg.register.account_password_confirm" ui-validate="'$value==reg.register.password'" ui-validate-watch="'password'" class="form-control" />
                <span class="fa fa-lock form-control-feedback text-muted"></span>
                <span ng-show="reg.registerForm.account_password_confirm.$dirty &amp;&amp; reg.registerForm.account_password_confirm.$error.validator" class="text-danger">Password does Not match</span>
             </div>
@@ -41,7 +41,7 @@
             <button type="submit" class="btn btn-block btn-primary mt-lg">Create account</button>
          </form>
          <div ng-show="reg.authMsg" class="alert alert-danger text-center">{{reg.authMsg}}</div>
-         <p class="pt-lg text-center">Have an account?</p><a ui-sref="page.login" class="btn btn-block btn-default">Signup</a>
+         <p class="pt-lg text-center">Have an account?</p><a ui-sref="page.login" class="btn btn-block btn-default">Signin</a>
       </div>
    </div>
    <!-- END panel-->
