@@ -61,12 +61,6 @@ namespace Cares.Web.Controllers
         /// </summary>
         private IEnumerable<AspNetUser> GetAllUsers()
         {
-            var domainKeyClaim = ClaimHelper.GetClaimToString(CaresUserClaims.UserDomainKey);
-            if (domainKeyClaim == null)
-            {
-                throw new InvalidOperationException("Domain-Key claim not found!");
-            }
-            var domainkey = System.Convert.ToInt64(domainKeyClaim.Value);
             return UserManager.Users.ToList();
             //return UserManager.Users.Where(user => user.UserDomainKey == domainkey).ToList();
         } 
@@ -125,21 +119,13 @@ namespace Cares.Web.Controllers
         {
             if (model == null)
                 throw new InvalidOperationException("User Does not exists!");
-            var domainKeyClaim = ClaimHelper.GetClaimToString(CaresUserClaims.UserDomainKey);
-            if (domainKeyClaim == null)
-            {
-                throw new InvalidOperationException("Domain-Key claim not found!");
-            }
-            var domainkey = System.Convert.ToInt64(domainKeyClaim.Value);
-            // Creating employee 
-            //DomainModels.Employee emp = employeeService.CreateEmployeeWithUser(model.UserEmail);
-
+            
             var user = new AspNetUser
             {
                 PhoneNumber = model.PhoneNumber,
                 UserName = model.UserEmail,
                 Email = model.UserEmail,
-                UserDomainKey = domainkey,
+                UserDomainKey = 0,
                 FirstName = model.FirstName,
                 LastName = model.LastName
             };

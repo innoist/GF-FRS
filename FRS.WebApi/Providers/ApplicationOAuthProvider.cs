@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Security.Claims;
+using System.Threading;
 using System.Threading.Tasks;
+using System.Web;
+using FRS.Commons;
 using FRS.Models.IdentityModels;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OAuth;
-using FRS.WebApi.Models;
+using FRS.Interfaces.IServices;
+using Microsoft.Practices.Unity;
 
 namespace FRS.WebApi.Providers
 {
@@ -18,14 +18,23 @@ namespace FRS.WebApi.Providers
     {
         private readonly string _publicClientId;
 
-        public ApplicationOAuthProvider(string publicClientId)
+        private readonly IUnityContainer _container;
+
+        public IClaimsSecurityService ClaimsSecurityService { get; set; }
+
+        public ApplicationOAuthProvider(string publicClientId, IUnityContainer container)
         {
             if (publicClientId == null)
             {
                 throw new ArgumentNullException("publicClientId");
             }
+            if (container == null)
+            {
+                throw new ArgumentNullException("container");
+            }
 
             _publicClientId = publicClientId;
+            _container = container;
         }
 
         public override async Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
@@ -36,7 +45,6 @@ namespace FRS.WebApi.Providers
 
             var userManager = context.OwinContext.GetUserManager<ApplicationUserManager>();
 
-            //ApplicationUser user = await userManager.FindAsync(context.UserName, context.Password);
             AspNetUser user = await userManager.FindAsync(context.UserName, context.Password);
 
             if (user == null)
@@ -45,19 +53,33 @@ namespace FRS.WebApi.Providers
                 return;
             }
 
+            // Get Form posted values
+            // Extract TimeZoneOffset.
+            var data = await context.Request.ReadFormAsync();
+            var timeZoneCookie = data["userTimeZone"];
+            var timeZoneOffSetValue = TimeSpan.FromMinutes(0);
+            if (!string.IsNullOrEmpty(timeZoneCookie))
+            {
+
+                double offsetMinutes;
+                if (double.TryParse(timeZoneCookie, out offsetMinutes))
+                {
+                    timeZoneOffSetValue = TimeSpan.FromMinutes(offsetMinutes);
+                }
+            }
+
             ClaimsIdentity oAuthIdentity = await user.GenerateUserIdentityAsync(userManager,
                OAuthDefaults.AuthenticationType);
-            //ClaimsIdentity cookiesIdentity = await user.GenerateUserIdentityAsync(userManager,
-            //    CookieAuthenticationDefaults.AuthenticationType);
 
-            //AuthenticationProperties properties = CreateProperties(user.UserName);
+            ClaimsSecurityService = _container.Resolve<IClaimsSecurityService>();
+            if (ClaimsSecurityService == null)
+            {
+                throw new ArgumentException("ClaimsSecurityService");
+            }
 
-           // ClaimsIdentity identity = new ClaimsIdentity(context.Options.AuthenticationType);
-            oAuthIdentity.AddClaim(new Claim(ClaimTypes.Name, context.UserName));
-            oAuthIdentity.AddClaim(new Claim(ClaimTypes.Role, "user"));
-            oAuthIdentity.AddClaim(new Claim("sub", context.UserName));
-            oAuthIdentity.AddClaim(new Claim("UserId", user.Id));
-
+            ClaimsSecurityService.AddClaimsToIdentity(FRSApplicationRoles.User, context.UserName, 
+                user.Id, timeZoneOffSetValue, oAuthIdentity);
+            
             var props = new AuthenticationProperties(new Dictionary<string, string>
                 {
                     { 
@@ -70,14 +92,16 @@ namespace FRS.WebApi.Providers
                         "userId", user.Id
                     },
                     {
-                        "UserRole", "User"
+                        "UserRole", FRSApplicationRoles.User
                     }
                 });
 
 
-            //AuthenticationTicket ticket = new AuthenticationTicket(oAuthIdentity, properties);
             AuthenticationTicket ticket = new AuthenticationTicket(oAuthIdentity, props);
             context.Validated(ticket);
+            HttpContext.Current.User = new ClaimsPrincipal(oAuthIdentity);
+            // Make sure the Principal's are in sync
+            Thread.CurrentPrincipal = HttpContext.Current.User;
             context.Request.Context.Authentication.SignIn(oAuthIdentity);
         }
 

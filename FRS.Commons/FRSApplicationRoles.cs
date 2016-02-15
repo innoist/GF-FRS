@@ -1,9 +1,9 @@
-﻿namespace Cares.Commons
+﻿namespace FRS.Commons
 {
     /// <summary>
     /// Application Roles to be used across the application
     /// </summary>
-    public sealed class CaresApplicationRoles
+    public sealed class FRSApplicationRoles
     {
         /// <summary>
         /// System Administrator
@@ -16,8 +16,8 @@
         public static string Admin = "Admin";
 
         /// <summary>
-        /// Employee
+        /// User
         /// </summary>
-        public static string Employee = "Employee";
+        public static string User = "User";
     }
 }

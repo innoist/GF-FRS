@@ -44,8 +44,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CaresApplicationRoles.cs" />
-    <Compile Include="CaresUserClaims.cs" />
+    <Compile Include="FRSApplicationRoles.cs" />
+    <Compile Include="FRSUserClaims.cs" />
     <Compile Include="ClaimHelper.cs" />
     <Compile Include="MenuRightClaims.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

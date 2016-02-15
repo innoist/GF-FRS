@@ -17,7 +17,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Collections.Generic;
 using Newtonsoft.Json;
-
+using FRS.Commons;
 
 namespace Cares.Web.Controllers
 {
@@ -42,20 +42,14 @@ namespace Cares.Web.Controllers
             {
                 return;
             }
-            if (user.AspNetRoles.Any(roles => roles.Name == CaresApplicationRoles.SystemAdministrator))
+            if (user.AspNetRoles.Any(roles => roles.Name == FRSApplicationRoles.SystemAdministrator))
             {
-                menuRights = user.AspNetRoles.FirstOrDefault(roles => roles.Name == CaresApplicationRoles.SystemAdministrator).MenuRights.ToList();
+                menuRights = user.AspNetRoles.FirstOrDefault(roles => roles.Name == FRSApplicationRoles.SystemAdministrator).MenuRights.ToList();
             }
-            else if (user.AspNetRoles.Any(roles => roles.Name == CaresApplicationRoles.Admin))
+            else if (user.AspNetRoles.Any(roles => roles.Name == FRSApplicationRoles.Admin))
             {
-                menuRights = user.AspNetRoles.FirstOrDefault(roles => roles.Name == CaresApplicationRoles.Admin).MenuRights.ToList();
+                menuRights = user.AspNetRoles.FirstOrDefault(roles => roles.Name == FRSApplicationRoles.Admin).MenuRights.ToList();
             }
-            else
-            {
-                menuRights = user.AspNetRoles.FirstOrDefault().MenuRights.ToList();
-            }
-             IEnumerable<string> PermissionKeyClaims=menuRights.Select(menuRight => menuRight.CreatePermissionKey());
-             ClaimHelper.AddClaim(new Claim(CaresUserClaims.UserPermissionSet, JsonConvert.SerializeObject(PermissionKeyClaims)), identity);
         }
         #endregion
 
@@ -91,7 +85,7 @@ namespace Cares.Web.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
-            if (!User.Identity.IsAuthenticated || ClaimHelper.GetClaimToString(CaresUserClaims.UserDomainKey) == null) 
+            if (!User.Identity.IsAuthenticated) 
             {
                 ViewBag.ReturnUrl = returnUrl;
                 return View();
@@ -155,7 +149,7 @@ namespace Cares.Web.Controllers
                                 timeZoneOffSetValue = TimeSpan.FromMinutes(offsetMinutes);
                             }
                         }
-                        claimsSecurityService.AddClaimsToIdentity(user.UserDomainKey, user.AspNetRoles.FirstOrDefault().Name, user.UserName, timeZoneOffSetValue, 
+                        claimsSecurityService.AddClaimsToIdentity(user.AspNetRoles.FirstOrDefault().Name, user.UserName, user.Id, timeZoneOffSetValue, 
                             identity);
                         SetUserPermissions(user, identity);  
                         AuthenticationManager.SignIn(new AuthenticationProperties { IsPersistent = true }, identity);                       

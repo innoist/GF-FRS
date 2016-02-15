@@ -21,26 +21,16 @@ namespace FRS.WebBase.Mvc
         /// </summary>
         private bool IsAuthorized(HttpContextBase httpContext)
         {
-            if (httpContext.User != null && ClaimHelper.GetClaimToString(CaresUserClaims.UserDomainKey) == null)
+            if (!httpContext.User.Identity.IsAuthenticated)
             {
                 httpContext.User = null;
                 return false;
             }
 
-            if (httpContext.User != null && (httpContext.User.IsInRole("Admin") || httpContext.User.IsInRole("SystemAdministrator")))
-                return true;            
+            if ((httpContext.User.IsInRole("Admin") || httpContext.User.IsInRole("SystemAdministrator")))
+                return true;
 
-            Claim serializedUserPermissionSet = ClaimHelper.GetClaimToString(CaresUserClaims.UserPermissionSet);
-            if (serializedUserPermissionSet == null)
-            {
-                return false;
-            }
-            var userPermissionSet = JsonConvert.DeserializeObject<List<string>>(serializedUserPermissionSet.Value);
-            if (!userPermissionSet.Any())
-            {
-                return false;
-            }
-            return (userPermissionSet.Any(userPSet => userPSet.Contains(PermissionKey)));
+            return false;
         }
         /// <summary>
         /// Perform the authorization

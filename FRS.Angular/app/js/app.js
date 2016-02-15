@@ -6816,17 +6816,26 @@
                 vm.authMsg = '';
 
                 if (vm.loginForm.$valid) {
-                    var data = "grant_type=password&username=" + vm.account.email + "&password=" + vm.account.password;
+                    var data = "grant_type=password&username=" + vm.account.email + "&password=" + vm.account.password + "&userTimeZone=" + getCookie("_timeZoneOffset");
                     vm.submitButton = true;
                     $http
-                        .post(window.frsApiUrl +'/token', data, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } })
+                        .post(window.frsApiUrl + '/token', data, {
+                            headers: {
+                                'Content-Type': 'application/x-www-form-urlencoded'
+                            }
+                        })
                         .success(function (response) {
                             $localStorage['authorizationData'] = { token: response.access_token, userName: response.userName };
+                            
+                            // Add Authorization token to every http request
+                            $http.defaults.headers.common = {
+                                'Authorization': 'Bearer ' + $localStorage['authorizationData'].token
+                            };
 
                             // assumes if ok, response is an object with some data, if not, a string with error
                             // customize according to your api
                             $state.go('app.dashboard');
-
+                            
                         })
                         .error(function (err, status) {
                             vm.submitButton = false;
@@ -6845,6 +6854,7 @@
                     vm.loginForm.account_password.$dirty = true;
                 }
             };
+
         }
     }
 })();
@@ -7578,7 +7588,7 @@
                 templateUrl: helper.basepath('../../../../app/views/LoadMetaData.html'),
                 controller: 'LoadMetaDataController',
                 controllerAs: 'mdc',
-                resolve: helper.resolveFor('ui.grid', 'loaders.css', 'spinkit','ui.select')
+                resolve: helper.resolveFor('ui.grid', 'loaders.css', 'spinkit', 'ui.select')
             })
             .state('app.CreateMetaData', {
                 url: '/CreateMetaData',
@@ -8201,7 +8211,6 @@
             if (newValue === false)
                 $rootScope.$broadcast('closeSidebarMenu');
         });
-
     }
 
 })();
@@ -8265,7 +8274,7 @@
         $http.get(window.frsApiUrl + '/api/LoadMetaDataBase').success(function (response) {
             vm.LoadTypes = response.LoadTypes;
         });
-        
+
 
 
         //ui-grid
@@ -8281,10 +8290,10 @@
                 LoadTypeId: 0,
                 CreatedDate: ''
             },
-            
+
         };
         vm.gridOptions = {
-            paginationPageSizes: [10,25,50,100,500],
+            paginationPageSizes: [10, 25, 50, 100, 500],
             paginationPageSize: 10,
             useExternalPagination: true,
             useExternalSorting: true,
@@ -8296,8 +8305,8 @@
             columnDefs: [
                 // name is for display on the table header, field is for mapping as in 
                 //sortId is kept locally it is not the property of ui.grid
-              { name: 'Id', field: 'LoadMetaDataId', sortId: 0 , width:'8%'},
-              { name: 'Name', field: 'Name', sortId: 1},
+              { name: 'Id', field: 'LoadMetaDataId', sortId: 0, width: '8%' },
+              { name: 'Name', field: 'Name', sortId: 1 },
               { name: 'Load Type', field: 'LoadType', sortId: 2 },
               { name: 'Source', field: 'Source', sortId: 3 },
               { name: 'Currency', field: 'Currency', sortId: 4 },
@@ -8319,7 +8328,7 @@
                                     temp = 0;
                                 }
                         });
-                        
+
                     }
                     getPage();
                 });
@@ -8350,7 +8359,7 @@
                 //var firstRow = (paginationOptions.pageNumber - 1) * paginationOptions.pageSize;
                 vm.gridOptions.data = data.LoadMetaDatas; //.slice(firstRow, firstRow + paginationOptions.pageSize);
                 $scope.loading = false;
-            }).error(function() {
+            }).error(function () {
                 $scope.loading = false;
             });
         };
@@ -8379,7 +8388,7 @@
 
         getPage();
 
-       
+
     }
 })();
 //Create MetaData
@@ -8405,7 +8414,7 @@
         //#endregion
         vm.submitted = false;
         //vm.submitForm = function () {
-            
+
         //};
         //#region DropDowns
         $scope.LoadTypes = [];
@@ -8568,7 +8577,7 @@
         activate();
     }
 
-    
+
 })();
 
 /**=========================================================
@@ -8600,7 +8609,7 @@
         }
 
         function saveLoadMetaDataDetail(metaData, onReady, onError) {
-                
+
             var urlMetaData = window.frsApiUrl + '/api/LoadMetaData';
 
             onError = onError || function () { alert('Failure saving Meta Data'); };
@@ -8616,7 +8625,7 @@
                     data: JSON.stringify(metaData),
                 }
               )
-              .then(onReady,onError);
+              .then(onReady, onError);
         }
     }
 })();
@@ -8640,7 +8649,7 @@
         activate();
 
         function activate() {
-            
+
             //functionality starts here
             $scope.LoadId;
             $scope.LoadMetadataId;
