@@ -2664,8 +2664,8 @@
         .module('app.dashboard', [])
         .controller('DashboardController', DashboardController);
 
-    DashboardController.$inject = ['$state', '$scope', '$rootScope', 'ChartData', '$timeout', '$localStorage'];
-    function DashboardController($state, $scope, $rootScope, ChartData, $timeout, $localStorage) {
+    DashboardController.$inject = ['$http','$state', '$scope', '$rootScope', 'ChartData', '$timeout', '$localStorage'];
+    function DashboardController($http,$state, $scope, $rootScope, ChartData, $timeout, $localStorage) {
 
         if (!$localStorage['authorizationData']) {
             $state.go('page.login');
@@ -2779,10 +2779,14 @@
 
         $rootScope.logout = function () {
             delete $localStorage['authorizationData'];
-            $http.get(frsApiUrl + "/Account/Logout").success(function() {
-                console.log("LogedOut");
-                $state.go('page.login');
-            });
+            $http.post(frsApiUrl + "/api/Account/Logout")
+                .success(function () {
+                    console.log("LoggedOut");
+                    $state.go('page.login');
+                })
+                .error(function (err) {
+                    showErrors(err);
+                });
             
         }
     }
@@ -6875,8 +6879,8 @@
         .module('app.pages')
         .controller('RegisterFormController', RegisterFormController);
 
-    RegisterFormController.$inject = ['$http', '$state'];
-    function RegisterFormController($http, $state) {
+    RegisterFormController.$inject = ['$http', '$state', 'toaster'];
+    function RegisterFormController($http, $state, toaster) {
         var vm = this;
 
         activate();
@@ -6885,17 +6889,22 @@
 
         function activate() {
             // bind here all data from the form
-            vm.account = {};
+            vm.register = {};
             // place the message if something goes wrong
             vm.authMsg = '';
-
             vm.register = function () {
                 vm.authMsg = '';
 
                 if (vm.registerForm.$valid) {
-
+                    debugger;
                     $http
-                      .post(frsApiUrl + '/Account/Register', { Email: vm.account.email, Password: vm.account.password, ConfirmPassword: vm.account.account_password_confirm })
+                      .post(frsApiUrl + '/api/Account/Register', {
+                          Email: vm.register.email,
+                          Password: vm.register.password,
+                          ConfirmPassword: vm.register.account_password_confirm,
+                          FirstName : vm.register.FirstName,
+                          LastName: vm.register.LastName,
+                        })
                       .then(function (response) {
                           // assumes if ok, response is an object with some data, if not, a string with error
                           // customize according to your api
@@ -6904,9 +6913,10 @@
                           } else {
                               $state.go('app.dashboard');
                           }
-                      }, function () {
+                      }, function (err) {
                           vm.authMsg = 'Server Request Error';
-                      });
+                          toaster.error("Error", showErrors(err));
+                    });
                 }
                 else {
                     // set as dirty if the user click directly to login so we show the validation messages
@@ -8105,7 +8115,8 @@
           .state('page.register', {
               url: '/register',
               title: 'Register',
-              templateUrl: 'app/pages/register.html'
+              templateUrl: 'app/pages/register.html',
+              resolve: helper.resolveFor('toaster')
           })
           .state('page.recover', {
               url: '/recover',
@@ -10558,13 +10569,15 @@ function hideProgress() {
 
 function showErrors(err) {
     if (!err)
-        return;
+        return null;
+    if (!err.data)
+        return null;
     var errors = "";
     for (var key in err.data.ModelState) {
         var errMsg = err.data.ModelState[key][0];
         errors += errMsg + "<br/>";
     }
-                
-    if($.trim(errors) !== "")
-        toaster.error(err.statusText, errors);
+
+    if ($.trim(errors) !== "")
+        return errors;
 }
