@@ -147,6 +147,9 @@ namespace FRS.Implementation.Services
                     icon = childMenu.MenuImagePath,
                     sref = childMenu.MenuTargetController
                 }));
+
+                // Mark heading false
+                menuView.heading = false;
             }
 
             return menuViews;
