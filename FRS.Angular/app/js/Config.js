@@ -48,7 +48,7 @@
             .state('app.CreateMetaData', {
                 url: '/CreateMetaData',
                 title: 'New MetaData',
-                templateUrl: helper.basepath('../../../../app/views/CreateMetaData.html'),
+                templateUrl: helper.basepath('../../../../app/views/CreateMetaData/CreateMetaData.html'),
                 controller: 'CreateMetaDataController',
                 controllerAs: 'cmdc',
                 resolve: helper.resolveFor('oitozero.ngSweetAlert')
