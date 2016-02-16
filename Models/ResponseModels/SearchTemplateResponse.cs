@@ -8,10 +8,10 @@ namespace FRS.Models.ResponseModels
         
         public SearchTemplateResponse()
         {
-            LoadData = new List<T>();
+            Data = new List<T>();
         }
 
-        public IEnumerable<T> LoadData { get; set; }
+        public IEnumerable<T> Data { get; set; }
 
         public int TotalCount { get; set; }
         public int TotalRecords { get; set; }

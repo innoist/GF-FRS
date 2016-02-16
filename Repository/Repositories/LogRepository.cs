@@ -44,36 +44,35 @@ namespace FRS.Repository.Repositories
         }
 
 
-        //public SearchLoadMetaDataResponse SearchLoadMetaData(LoadMetaDataSearchRequest searchRequest)
-        //{
-        //    int fromRow = (searchRequest.PageNo - 1) * searchRequest.PageSize;
-        //    int toRow = searchRequest.PageSize;
-        //    Expression<Func<LoadMetaData, bool>> query =
-        //        s =>
-        //            (
-        //            (searchRequest.LoadMetaDataId == 0 || searchRequest.LoadMetaDataId.Equals(s.LoadMetaDataId)) &&
-        //            (searchRequest.CreatedDate == null || DbFunctions.TruncateTime(searchRequest.CreatedDate) == DbFunctions.TruncateTime(s.CreatedOn)) &&
-        //            (searchRequest.Name == null || s.Name.Contains(searchRequest.Name)) &&
-        //            (searchRequest.LoadTypeId == 0 || searchRequest.LoadTypeId == s.LoadTypeId)
-        //            );
+        public SearchTemplateResponse<Log> SearchLogs(LogSearchRequest searchRequest)
+        {
+            int fromRow = (searchRequest.PageNo - 1) * searchRequest.PageSize;
+            int toRow = searchRequest.PageSize;
+            Expression<Func<Log, bool>> query =
+                s =>
+                    (
+                    (String.IsNullOrEmpty(searchRequest.Severity)|| s.Severity.Contains(searchRequest.Severity)) &&
+                    (searchRequest.CreatedDate == null || DbFunctions.TruncateTime(searchRequest.CreatedDate) == DbFunctions.TruncateTime(s.Timestamp)) &&
+                     (String.IsNullOrEmpty(searchRequest.Message) || s.Message.Contains(searchRequest.Message))
+                    );
 
-        //    IEnumerable<LoadMetaData> loadMetaDatas = searchRequest.IsAsc
-        //        ? DbSet
-        //            .Where(query)
-        //            .OrderBy(orderClause[searchRequest.OrderByColumn])
-        //            .Skip(fromRow)
-        //            .Take(toRow)
-        //            .ToList()
-        //        : DbSet
-        //            .Where(query)
-        //            .OrderByDescending(orderClause[searchRequest.OrderByColumn])
-        //            .Skip(fromRow)
-        //            .Take(toRow)
-        //            .ToList();
-        //    return new SearchLoadMetaDataResponse { LoadMetaDatas = loadMetaDatas, TotalCount = DbSet.Count(query), FilteredCount = DbSet.Count(query) };
-        //}
+            IEnumerable<Log> loadMetaDatas = searchRequest.IsAsc
+                ? DbSet
+                    .Where(query)
+                    .OrderBy(orderClause[searchRequest.OrderByColumn])
+                    .Skip(fromRow)
+                    .Take(toRow)
+                    .ToList()
+                : DbSet
+                    .Where(query)
+                    .OrderByDescending(orderClause[searchRequest.OrderByColumn])
+                    .Skip(fromRow)
+                    .Take(toRow)
+                    .ToList();
+            return new SearchTemplateResponse<Log> { Data = loadMetaDatas, TotalCount = DbSet.Count(query), FilteredCount = DbSet.Count(query) };
+        }
 
 
-    
-}
+
+    }
 }
