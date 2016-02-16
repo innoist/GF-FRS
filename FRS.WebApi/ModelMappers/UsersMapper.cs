@@ -28,5 +28,23 @@ namespace FRS.WebApi.ModelMappers
             }
             return toReturn;
         }
+        public static AspNetUser MapUserFromClientToServer(this UsersModel source)
+        {
+            var toReturn = new AspNetUser
+            {
+                Address = source.Address,
+                CompanyName = source.CompanyName,
+                Email = source.Email,
+                FirstName = source.FirstName,
+                Id = source.Id,
+                ImageName = source.ImageName,
+                LastName = source.LastName,
+                Telephone = source.Telephone,
+                UserName = source.UserName,
+            };
+
+            
+            return toReturn;
+        }
     }
 }

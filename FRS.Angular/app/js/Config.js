@@ -69,6 +69,13 @@
                 controllerAs: 'uc',
                 resolve: helper.resolveFor('ui.grid')
             })
+            .state('app.Profile', {
+                url: '/Profile',
+                title: 'Profile',
+                templateUrl: helper.basepath('../../../../app/views/Users/Profile.html'),
+                controller: 'ProfileController',
+                controllerAs: 'upc'
+            })
         .state('page', {
             url: '/page',
             templateUrl: 'app/pages/page.html',

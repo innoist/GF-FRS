@@ -33,6 +33,7 @@
             'app.LoadMetaData',
             'app.CreateMetaData',
             'app.Load',
-            'app.Users'
+            'app.Users',
+            'app.Profile'
         ]);
 })();
