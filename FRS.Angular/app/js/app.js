@@ -48,12 +48,12 @@
 })();
 
 
-(function () {
-    'use strict';
+//(function () {
+//    'use strict';
 
-    angular
-        .module('app.LoadMetaData', []);
-})();
+//    angular
+//        .module('app.LoadMetaData', []);
+//})();
 (function () {
     'use strict';
 
@@ -2664,8 +2664,8 @@
         .module('app.dashboard', [])
         .controller('DashboardController', DashboardController);
 
-    DashboardController.$inject = ['$state', '$scope', '$rootScope', 'ChartData', '$timeout', '$localStorage'];
-    function DashboardController($state, $scope, $rootScope, ChartData, $timeout, $localStorage) {
+    DashboardController.$inject = ['$http','$state', '$scope', '$rootScope', 'ChartData', '$timeout', '$localStorage'];
+    function DashboardController($http,$state, $scope, $rootScope, ChartData, $timeout, $localStorage) {
 
         if (!$localStorage['authorizationData']) {
             $state.go('page.login');
@@ -2779,10 +2779,14 @@
 
         $rootScope.logout = function () {
             delete $localStorage['authorizationData'];
-            $http.get(frsApiUrl + "/Account/Logout").success(function() {
-                console.log("LogedOut");
-                $state.go('page.login');
-            });
+            $http.post(frsApiUrl + "/api/Account/Logout")
+                .success(function () {
+                    console.log("LoggedOut");
+                    $state.go('page.login');
+                })
+                .error(function (err) {
+                    showErrors(err);
+                });
             
         }
     }
@@ -6875,8 +6879,8 @@
         .module('app.pages')
         .controller('RegisterFormController', RegisterFormController);
 
-    RegisterFormController.$inject = ['$http', '$state'];
-    function RegisterFormController($http, $state) {
+    RegisterFormController.$inject = ['$http', '$state', 'toaster'];
+    function RegisterFormController($http, $state, toaster) {
         var vm = this;
 
         activate();
@@ -6885,17 +6889,22 @@
 
         function activate() {
             // bind here all data from the form
-            vm.account = {};
+            vm.register = {};
             // place the message if something goes wrong
             vm.authMsg = '';
-
             vm.register = function () {
                 vm.authMsg = '';
 
                 if (vm.registerForm.$valid) {
-
+                    debugger;
                     $http
-                      .post(frsApiUrl + '/Account/Register', { Email: vm.account.email, Password: vm.account.password, ConfirmPassword: vm.account.account_password_confirm })
+                      .post(frsApiUrl + '/api/Account/Register', {
+                          Email: vm.register.email,
+                          Password: vm.register.password,
+                          ConfirmPassword: vm.register.account_password_confirm,
+                          FirstName : vm.register.FirstName,
+                          LastName: vm.register.LastName,
+                        })
                       .then(function (response) {
                           // assumes if ok, response is an object with some data, if not, a string with error
                           // customize according to your api
@@ -6904,9 +6913,10 @@
                           } else {
                               $state.go('app.dashboard');
                           }
-                      }, function () {
+                      }, function (err) {
                           vm.authMsg = 'Server Request Error';
-                      });
+                          toaster.error("Error", showErrors(err));
+                    });
                 }
                 else {
                     // set as dirty if the user click directly to login so we show the validation messages
@@ -8105,7 +8115,8 @@
           .state('page.register', {
               url: '/register',
               title: 'Register',
-              templateUrl: 'app/pages/register.html'
+              templateUrl: 'app/pages/register.html',
+              resolve: helper.resolveFor('toaster')
           })
           .state('page.recover', {
               url: '/recover',
@@ -8224,177 +8235,177 @@
  * Load Meta Data view
  =========================================================*/
 
-(function () {
-    'use strict';
+//(function () {
+//    'use strict';
 
-    angular
-        .module('app.LoadMetaData', [])
-        .controller('LoadMetaDataController', LoadMetaDataController);
+//    angular
+//        .module('app.LoadMetaData', [])
+//        .controller('LoadMetaDataController', LoadMetaDataController);
 
-    LoadMetaDataController.$inject = ['$http', '$rootScope', '$scope', '$state', 'uiGridConstants'];
+//    LoadMetaDataController.$inject = ['$http', '$rootScope', '$scope', '$state', 'uiGridConstants'];
 
-    function LoadMetaDataController($http, $rootScope, $scope, $state, uiGridConstants) {
+//    function LoadMetaDataController($http, $rootScope, $scope, $state, uiGridConstants) {
 
-        var vm = this;
+//        var vm = this;
 
-        //datepicker
-        vm.today = function () {
-            vm.dt = new Date();
-        };
-        vm.today();
+//        //datepicker
+//        vm.today = function () {
+//            vm.dt = new Date();
+//        };
+//        vm.today();
 
-        vm.clear = function () {
-            vm.dt = null;
-        };
+//        vm.clear = function () {
+//            vm.dt = null;
+//        };
 
-        // Disable weekend selection
-        vm.disabled = function (date, mode) {
-            return (mode === 'day' && (date.getDay() === 0 || date.getDay() === 6));
-        };
-        vm.open = function ($event) {
-            $event.preventDefault();
-            $event.stopPropagation();
+//        // Disable weekend selection
+//        vm.disabled = function (date, mode) {
+//            return (mode === 'day' && (date.getDay() === 0 || date.getDay() === 6));
+//        };
+//        vm.open = function ($event) {
+//            $event.preventDefault();
+//            $event.stopPropagation();
 
-            vm.opened = true;
-        };
+//            vm.opened = true;
+//        };
 
-        vm.dateOptions = {
-            formatYear: 'yy',
-            startingDay: 1
-        };
+//        vm.dateOptions = {
+//            formatYear: 'yy',
+//            startingDay: 1
+//        };
 
-        vm.initDate = new Date();
-        vm.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
-        vm.format = vm.formats[0];
-
-
-        //ui-select
-        vm.disabled = undefined;
-        vm.LoadType = {};
-        vm.LoadTypes = [
-          //{ Id: '1', Name: 'a'}
-        ];
-
-        $http.get(window.frsApiUrl + '/api/LoadMetaDataBase').success(function (response) {
-            vm.LoadTypes = response.LoadTypes;
-        });
+//        vm.initDate = new Date();
+//        vm.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
+//        vm.format = vm.formats[0];
 
 
+//        //ui-select
+//        vm.disabled = undefined;
+//        vm.LoadType = {};
+//        vm.LoadTypes = [
+//          //{ Id: '1', Name: 'a'}
+//        ];
 
-        //ui-grid
-        var paginationOptions = {
-            'params': {
-                SortBy: 0,
-                SearchString: '',
-                IsAsc: true,
-                PageNo: 1,
-                PageSize: 10,
-                sort: null,
-                Name: '',
-                LoadTypeId: 0,
-                CreatedDate: ''
-            },
-
-        };
-        vm.gridOptions = {
-            paginationPageSizes: [10, 25, 50, 100, 500],
-            paginationPageSize: 10,
-            useExternalPagination: true,
-            useExternalSorting: true,
-            //enableFiltering: true,
-            flatEntityAccess: true,
-            //fastWatch: true,
-            enableGridMenu: true,
-            //useExternalFiltering: true,
-            columnDefs: [
-                // name is for display on the table header, field is for mapping as in 
-                //sortId is kept locally it is not the property of ui.grid
-              { name: 'Id', field: 'LoadMetaDataId', sortId: 0, width: '8%' },
-              { name: 'Name', field: 'Name', sortId: 1 },
-              { name: 'Load Type', field: 'LoadType', sortId: 2 },
-              { name: 'Source', field: 'Source', sortId: 3 },
-              { name: 'Currency', field: 'Currency', sortId: 4 },
-              { name: 'Created Date', field: 'CreatedOnString', sortId: 5 }
-            ],
-            onRegisterApi: function (gridApi) {
-                vm.gridApi = gridApi;
-                vm.gridApi.core.on.sortChanged($scope, function (grid, sortColumns) {
-                    if (sortColumns.length == 0) {
-                        paginationOptions.params.sort = null;
-                        paginationOptions.params.SortBy = 0;
-                    } else {
-                        paginationOptions.params.sort = sortColumns[0].sort.direction;
-                        var temp = -1;
-                        angular.forEach(vm.gridOptions.columnDefs, function (value, key) {
-                            if (temp == -1)
-                                if (value.field == sortColumns[0].field) {
-                                    paginationOptions.params.SortBy = value.sortId;
-                                    temp = 0;
-                                }
-                        });
-
-                    }
-                    getPage();
-                });
-                gridApi.pagination.on.paginationChanged($scope, function (newPage, pageSize) {
-                    paginationOptions.params.PageNo = newPage;
-                    paginationOptions.params.PageSize = pageSize;
-                    getPage();
-                });
-            }
-        };
-        var getPage = function () {
-            $scope.loading = true;
-            switch (paginationOptions.params.sort) {
-                case uiGridConstants.ASC:
-                    paginationOptions.params.IsAsc = true;
-                    break;
-                case uiGridConstants.DESC:
-                    paginationOptions.params.IsAsc = false;
-                    break;
-                default:
-                    //url = '/data/100.json';
-                    break;
-            }
-
-            $http.get(window.frsApiUrl + '/api/LoadMetaData', paginationOptions)
-            .success(function (data) {
-                vm.gridOptions.totalItems = data.TotalCount;
-                //var firstRow = (paginationOptions.pageNumber - 1) * paginationOptions.pageSize;
-                vm.gridOptions.data = data.LoadMetaDatas; //.slice(firstRow, firstRow + paginationOptions.pageSize);
-                $scope.loading = false;
-            }).error(function () {
-                $scope.loading = false;
-            });
-        };
-
-        $scope.resetFilter = function () {
-            vm.dt = null;
-            vm.name = '';
-            vm.LoadType.selected = null;
-
-            paginationOptions.params.CreatedDate = '';
-            paginationOptions.params.IsAsc = true;
-            paginationOptions.params.PageNo = 1;
-            paginationOptions.params.sort = null;
-            paginationOptions.params.SortBy = 0;
-            paginationOptions.params.Name = '';
-            paginationOptions.params.LoadTypeId = 0;
-            getPage();
-        }
-
-        $scope.fiterData = function () {
-            paginationOptions.params.Name = vm.name;
-            paginationOptions.params.CreatedDate = vm.dt;
-            paginationOptions.params.LoadTypeId = vm.LoadType.selected == null ? 0 : vm.LoadType.selected.Id;
-            getPage();
-        }
-
-        getPage();
+//        $http.get(window.frsApiUrl + '/api/LoadMetaDataBase').success(function (response) {
+//            vm.LoadTypes = response.LoadTypes;
+//        });
 
 
-    }
-})();
+
+//        //ui-grid
+//        var paginationOptions = {
+//            'params': {
+//                SortBy: 0,
+//                SearchString: '',
+//                IsAsc: true,
+//                PageNo: 1,
+//                PageSize: 10,
+//                sort: null,
+//                Name: '',
+//                LoadTypeId: 0,
+//                CreatedDate: ''
+//            },
+
+//        };
+//        vm.gridOptions = {
+//            paginationPageSizes: [10, 25, 50, 100, 500],
+//            paginationPageSize: 10,
+//            useExternalPagination: true,
+//            useExternalSorting: true,
+//            //enableFiltering: true,
+//            flatEntityAccess: true,
+//            //fastWatch: true,
+//            enableGridMenu: true,
+//            //useExternalFiltering: true,
+//            columnDefs: [
+//                // name is for display on the table header, field is for mapping as in 
+//                //sortId is kept locally it is not the property of ui.grid
+//              { name: 'Id', field: 'LoadMetaDataId', sortId: 0, width: '8%' },
+//              { name: 'Name', field: 'Name', sortId: 1 },
+//              { name: 'Load Type', field: 'LoadType', sortId: 2 },
+//              { name: 'Source', field: 'Source', sortId: 3 },
+//              { name: 'Currency', field: 'Currency', sortId: 4 },
+//              { name: 'Created Date', field: 'CreatedOnString', sortId: 5 }
+//            ],
+//            onRegisterApi: function (gridApi) {
+//                vm.gridApi = gridApi;
+//                vm.gridApi.core.on.sortChanged($scope, function (grid, sortColumns) {
+//                    if (sortColumns.length == 0) {
+//                        paginationOptions.params.sort = null;
+//                        paginationOptions.params.SortBy = 0;
+//                    } else {
+//                        paginationOptions.params.sort = sortColumns[0].sort.direction;
+//                        var temp = -1;
+//                        angular.forEach(vm.gridOptions.columnDefs, function (value, key) {
+//                            if (temp == -1)
+//                                if (value.field == sortColumns[0].field) {
+//                                    paginationOptions.params.SortBy = value.sortId;
+//                                    temp = 0;
+//                                }
+//                        });
+
+//                    }
+//                    getPage();
+//                });
+//                gridApi.pagination.on.paginationChanged($scope, function (newPage, pageSize) {
+//                    paginationOptions.params.PageNo = newPage;
+//                    paginationOptions.params.PageSize = pageSize;
+//                    getPage();
+//                });
+//            }
+//        };
+//        var getPage = function () {
+//            $scope.loading = true;
+//            switch (paginationOptions.params.sort) {
+//                case uiGridConstants.ASC:
+//                    paginationOptions.params.IsAsc = true;
+//                    break;
+//                case uiGridConstants.DESC:
+//                    paginationOptions.params.IsAsc = false;
+//                    break;
+//                default:
+//                    //url = '/data/100.json';
+//                    break;
+//            }
+
+//            $http.get(window.frsApiUrl + '/api/LoadMetaData', paginationOptions)
+//            .success(function (data) {
+//                vm.gridOptions.totalItems = data.TotalCount;
+//                //var firstRow = (paginationOptions.pageNumber - 1) * paginationOptions.pageSize;
+//                vm.gridOptions.data = data.LoadMetaDatas; //.slice(firstRow, firstRow + paginationOptions.pageSize);
+//                $scope.loading = false;
+//            }).error(function () {
+//                $scope.loading = false;
+//            });
+//        };
+
+//        $scope.resetFilter = function () {
+//            vm.dt = null;
+//            vm.name = '';
+//            vm.LoadType.selected = null;
+
+//            paginationOptions.params.CreatedDate = '';
+//            paginationOptions.params.IsAsc = true;
+//            paginationOptions.params.PageNo = 1;
+//            paginationOptions.params.sort = null;
+//            paginationOptions.params.SortBy = 0;
+//            paginationOptions.params.Name = '';
+//            paginationOptions.params.LoadTypeId = 0;
+//            getPage();
+//        }
+
+//        $scope.fiterData = function () {
+//            paginationOptions.params.Name = vm.name;
+//            paginationOptions.params.CreatedDate = vm.dt;
+//            paginationOptions.params.LoadTypeId = vm.LoadType.selected == null ? 0 : vm.LoadType.selected.Id;
+//            getPage();
+//        }
+
+//        getPage();
+
+
+//    }
+//})();
 //Create MetaData
 (function () {
 
@@ -8591,50 +8602,50 @@
  * Load Meta Data service
  =========================================================*/
 
-(function () {
-    'use strict';
+//(function () {
+//    'use strict';
 
-    angular
-        .module('app.LoadMetaData')
-        .service('LoadMetaDataService', LoadMetaDataService);
+//    angular
+//        .module('app.LoadMetaData')
+//        .service('LoadMetaDataService', LoadMetaDataService);
 
-    LoadMetaDataService.$inject = ['$http', '$state', '$localStorage'];
-    function LoadMetaDataService($http, $state, $localStorage) {
-        this.getLoadMetaData = getLoadMetaData;
-        this.saveLoadMetaDataDetail = saveLoadMetaDataDetail;
+//    LoadMetaDataService.$inject = ['$http', '$state', '$localStorage'];
+//    function LoadMetaDataService($http, $state, $localStorage) {
+//        this.getLoadMetaData = getLoadMetaData;
+//        this.saveLoadMetaDataDetail = saveLoadMetaDataDetail;
 
-        function getLoadMetaData(onReady, onError) {
-            var urlMetaData = window.frsApiUrl + '/api/LoadMetaDataBase';
+//        function getLoadMetaData(onReady, onError) {
+//            var urlMetaData = window.frsApiUrl + '/api/LoadMetaDataBase';
 
-            onError = onError || function () { alert('Failure loading Meta Data'); };
+//            onError = onError || function () { alert('Failure loading Meta Data'); };
 
-            $http
-              .get(urlMetaData)
-              .success(onReady)
-              .error(onError);
-        }
+//            $http
+//              .get(urlMetaData)
+//              .success(onReady)
+//              .error(onError);
+//        }
 
-        function saveLoadMetaDataDetail(metaData, onReady, onError) {
+//        function saveLoadMetaDataDetail(metaData, onReady, onError) {
 
-            var urlMetaData = window.frsApiUrl + '/api/LoadMetaData';
+//            var urlMetaData = window.frsApiUrl + '/api/LoadMetaData';
 
-            onError = onError || function () { alert('Failure saving Meta Data'); };
+//            onError = onError || function () { alert('Failure saving Meta Data'); };
 
-            $http(
-                {
-                    method: 'POST',
-                    url: urlMetaData,
-                    headers: {
-                        //'Content-Type': 'application/x-www-form-urlencoded',
-                        'Authorization': 'Bearer ' + $localStorage['authorizationData'].token
-                    },
-                    data: JSON.stringify(metaData),
-                }
-              )
-              .then(onReady, onError);
-        }
-    }
-})();
+//            $http(
+//                {
+//                    method: 'POST',
+//                    url: urlMetaData,
+//                    headers: {
+//                        //'Content-Type': 'application/x-www-form-urlencoded',
+//                        'Authorization': 'Bearer ' + $localStorage['authorizationData'].token
+//                    },
+//                    data: JSON.stringify(metaData),
+//                }
+//              )
+//              .then(onReady, onError);
+//        }
+//    }
+//})();
 
 
 /**=========================================================
@@ -9961,7 +9972,7 @@
         ////////////////
 
         function getMenu(onReady, onError) {
-            var menuJson = '../../server/sidebar-menu.js',
+            var menuJson = frsApiUrl +'/api/Menu',
                 menuURL = menuJson + '?v=' + (new Date().getTime()); // jumps cache
 
             onError = onError || function () { alert('Failure loading menu'); };
@@ -10558,13 +10569,15 @@ function hideProgress() {
 
 function showErrors(err) {
     if (!err)
-        return;
+        return null;
+    if (!err.data)
+        return null;
     var errors = "";
     for (var key in err.data.ModelState) {
         var errMsg = err.data.ModelState[key][0];
         errors += errMsg + "<br/>";
     }
-                
-    if($.trim(errors) !== "")
-        toaster.error(err.statusText, errors);
+
+    if ($.trim(errors) !== "")
+        return errors;
 }

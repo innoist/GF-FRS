@@ -59,8 +59,11 @@
   <ItemGroup>
     <Content Include="app\documentation\readme.md" />
     <Content Include="app\i18n\es_AR.json" />
+    <Content Include="app\img\logo.png" />
     <Content Include="app\js\angular-local-storage.min.js" />
     <Content Include="app\vendor\datatable-bootstrap\images\Sorting icons.psd" />
+    <Content Include="app\views\LoadMetaData\LoadMetaData.html" />
+    <Content Include="app\views\LoadMetaData\LoadMetaData.js" />
     <Content Include="master\.bowerrc" />
     <Content Include="master\.jshintrc" />
     <Content Include="master\bower.json" />
@@ -524,7 +527,7 @@
     <Content Include="app\img\dummy.png" />
     <Content Include="app\img\lock-bg.jpg" />
     <Content Include="app\img\logo-single.png" />
-    <Content Include="app\img\logo.png" />
+    <Content Include="app\img\logo1.png" />
     <Content Include="app\img\mb-sample.jpg" />
     <Content Include="app\img\mockup.png" />
     <Content Include="app\img\preloader\preloader.empty.png" />
