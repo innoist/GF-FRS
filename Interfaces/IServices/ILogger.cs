@@ -1,4 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using FRS.Models.LoggerModels;
+using FRS.Models.RequestModels;
+using FRS.Models.ResponseModels;
+using System.Collections.Generic;
 using System.Diagnostics;
 
 namespace FRS.Interfaces.IServices
@@ -17,6 +20,6 @@ namespace FRS.Interfaces.IServices
         /// Write to the log 
         /// </summary>
         void Write(object message, string category, int priority, int eventId, TraceEventType severity, string title, IDictionary<string, object> properties);
-
+        SearchTemplateResponse<Log> SearchLogs(LogSearchRequest searchRequest);
     }
 }

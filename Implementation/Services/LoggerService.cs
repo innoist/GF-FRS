@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using FRS.Interfaces.IServices;
 using Microsoft.Practices.EnterpriseLibrary.Logging;
+using FRS.Models.LoggerModels;
+using FRS.Models.ResponseModels;
+using FRS.Models.RequestModels;
+using FRS.Interfaces.Repository;
 
 namespace FRS.Implementation.Services
 {
@@ -11,6 +15,13 @@ namespace FRS.Implementation.Services
     /// </summary>
     public sealed class LoggerService : ILogger
     {
+        private readonly ILogRepository LogRepository;
+
+
+        public LoggerService(ILogRepository LogRepository)
+        {
+            this.LogRepository = LogRepository;
+        }
         /// <summary>
         /// Write Log to database
         /// </summary>
@@ -45,5 +56,10 @@ namespace FRS.Implementation.Services
             }
             
         }
+        public SearchTemplateResponse<Log> SearchLogs(LogSearchRequest searchRequest)
+        {
+            return LogRepository.SearchLogs(searchRequest);
+        }
+
     }
 }

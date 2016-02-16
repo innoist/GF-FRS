@@ -241,17 +241,20 @@
     <Compile Include="Areas\Load\LoadAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LogController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="ModelMappers\LoadMapper.cs" />
     <Compile Include="ModelMappers\LoadMetaDataMapper.cs" />
+    <Compile Include="ModelMappers\Log\LogMapper.cs" />
     <Compile Include="ModelMappers\UsersMapper.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Load\LoadModel.cs" />
+    <Compile Include="Models\Log\LogModel.cs" />
     <Compile Include="Models\MetaData\LoadMetaData.cs" />
     <Compile Include="Models\Users\UsersModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
