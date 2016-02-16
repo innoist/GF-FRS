@@ -262,6 +262,7 @@
     <Compile Include="Results\ChallengeResult.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\Load\BaseDataLoad.cs" />
+    <Compile Include="ViewModels\Log\LogViewModel.cs" />
     <Compile Include="ViewModels\MetaData\BaseDataLoadMetaData.cs" />
     <Compile Include="ViewModels\MetaData\LoadMetaDataListViewModel.cs" />
   </ItemGroup>
