@@ -1,39 +1,46 @@
-﻿using System;
+﻿using FRS.Implementation.Services;
+using FRS.Interfaces.IServices;
+using FRS.Models.LoggerModels;
+using FRS.Models.RequestModels;
+using FRS.WebApi.ViewModels.Log;
+using FRS.WebBase.Mvc;
+using FRS.WebBase.UnityConfiguration;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Web;
 using System.Web.Http;
+using System.Web.Http.Cors;
+using FRS.WebApi.ModelMappers.Log;
 
 namespace FRS.WebApi.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class LogController : ApiController
     {
-        // GET api/<controller>
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
+        private readonly ILogger loggerService = UnityWebActivator.Container.Resolve<ILogger>();
 
-        // GET api/<controller>/5
-        public string Get(int id)
+        [HttpGet]
+        [Authorize]
+        [ApiException]
+        public LogViewModel Get([FromUri]LogSearchRequest searchRequest)
         {
-            return "value";
-        }
+            if (searchRequest == null || !ModelState.IsValid)
+            {
+                throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
+            }
 
-        // POST api/<controller>
-        public void Post([FromBody]string value)
-        {
-        }
+            var response = loggerService.SearchLogs(searchRequest);
+            LogViewModel listViewModel = new LogViewModel
+            {
+                LogDatas = response.Data.Select(x => x.CreateFromServerToClient()).ToList(),
+                FilteredCount = response.FilteredCount,
+                TotalCount = response.TotalCount
+            };
 
-        // PUT api/<controller>/5
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        // DELETE api/<controller>/5
-        public void Delete(int id)
-        {
+            return listViewModel;
         }
     }
 }
