@@ -1,4 +1,6 @@
 ﻿using FRS.Models.IdentityModels;
+using FRS.Models.RequestModels;
+using FRS.Models.ResponseModels;
 
 namespace FRS.Interfaces.Repository
 {
@@ -19,5 +21,6 @@ namespace FRS.Interfaces.Repository
         /// </summary>
         AspNetUser GetLoggedInUser();
 
+        UsersSearchResponse GetUsersSearchResponse(UsersSearchRequest searchRequest);
     }
 }

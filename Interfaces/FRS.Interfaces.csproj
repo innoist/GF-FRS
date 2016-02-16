@@ -62,6 +62,7 @@
     <Compile Include="IServices\IMT940LoadDetailService.cs" />
     <Compile Include="IServices\IMT940LoadService.cs" />
     <Compile Include="IServices\IRegisterUserService.cs" />
+    <Compile Include="IServices\IUsersService.cs" />
     <Compile Include="IServices\IWebApiAuthenticationService.cs" />
     <Compile Include="Repository\ICurrencyRepository.cs" />
     <Compile Include="Repository\IEmployeeRepository.cs" />

@@ -1,0 +1,23 @@
+﻿<h3>
+    <!-- START Language list-->
+    <div class="pull-right">
+        <a ui-sref="app.CreateMetaData" class="btn btn-info btn-labeled">
+            <span class="btn-label">
+                <i class="fa fa-plus"></i>
+            </span>New
+        </a>
+        <!--<button class="btn btn-warning btn-labeled" ng-click="isFilterOpen = !isFilterOpen" ng-show="!isFilterOpen">
+                <span class="btn-label">
+                    <i class="fa fa-filter"></i>
+                </span>Filter
+            </button>-->
+    </div>
+    <!-- END Language list    -->
+    Users
+    <small>Details</small>
+</h3>
+
+<div class="container-fluid">
+    <div ui-grid="mdc.UsersGridView" ui-grid-pagination ui-grid-move-columns ui-grid-resize-columns class="table-uigrid">
+    </div>
+</div>
