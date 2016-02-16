@@ -7,6 +7,7 @@
     "text": "Dashboard",
     "sref": "#",
     "icon": "icon-speedometer",
+    "heading": "false",
     "submenu": [
       {"text": "Dashboard",       "sref": "app.dashboard"},
       { "text": "Loads", "sref": "app.Load" }
