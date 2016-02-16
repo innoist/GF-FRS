@@ -111,7 +111,9 @@
     <Compile Include="Common\HelperIcon.cs" />
     <Compile Include="Common\ClaimParamters.cs" />
     <Compile Include="Common\LoadMetaDataForLoad.cs" />
+
     <Compile Include="Common\OrderByLogs.cs" />
+    <Compile Include="Common\OrderByUsers.cs" />
     <Compile Include="Common\OrderByLoadMetaData.cs" />
     <Compile Include="DomainModels\Currency.cs" />
     <Compile Include="DomainModels\Employee.cs" />
@@ -155,9 +157,11 @@
     </Compile>
     <Compile Include="RequestModels\LogSearchRequest.cs" />
     <Compile Include="RequestModels\LoadMetaDataSearchRequest.cs" />
+    <Compile Include="RequestModels\UsersSearchRequest.cs" />
     <Compile Include="ResponseModels\BaseDataLoadMetaDataResponse.cs" />
     <Compile Include="ResponseModels\MT940LoadBaseDataResponse.cs" />
     <Compile Include="ResponseModels\SearchTemplateResponse.cs" />
+    <Compile Include="ResponseModels\UsersSearchResponse.cs" />
     <Compile Include="ResponseModels\SearchLoadMetaDataResponse.cs" />
   </ItemGroup>
   <ItemGroup>
