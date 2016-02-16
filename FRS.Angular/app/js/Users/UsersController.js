@@ -10,9 +10,9 @@
         .module('app.Users', [])
         .controller('UsersController', UsersController);
 
-    UsersController.$inject = ['uiGridConstants', 'UsersService'];
+    UsersController.$inject = ['$scope', '$http','uiGridConstants', 'UsersService'];
 
-    function UsersController(uiGridConstants, UsersService) {
+    function UsersController($scope, $http, uiGridConstants, UsersService) {
         var vm = this;
 
         var paginationOptions = {
@@ -24,9 +24,8 @@
                 PageSize: 10,
                 sort: null,
                 Name: '',
-                LoadTypeId: 0,
-                CreatedDate: ''
-            },
+                UserId: null
+    },
 
         };
         vm.UsersGridView = {
@@ -42,14 +41,14 @@
             columnDefs: [
                 // name is for display on the table header, field is for mapping as in 
                 //sortId is kept locally it is not the property of ui.grid
-              { name: 'Id', field: 'UserId', sortId: 0, width: '8%', enableSorting: false },
-              { name: 'First Name', field: 'FirstName', sortId: 1 },
-              { name: 'Last Name', field: 'LastName', sortId: 2 },
-              { name: 'User Role', field: 'Role', sortId: 3 },
-              { name: 'Email', field: 'Email', sortId: 4 },
-              { name: 'Address', field: 'Address', sortId: 5 },
-              { name: 'Telephone', field: 'Telephone', sortId: 6 },
-              { name: 'Company', field: 'Company', sortId: 7 }
+              { name: 'Id', field: 'Id', sortId: 0, width: '8%', enableSorting: true },
+              { name: 'First Name', field: 'FirstName', sortId: 1, enableSorting: false },
+              { name: 'Last Name', field: 'LastName', sortId: 2, enableSorting: false },
+              { name: 'User Name', field: 'UserName', sortId: 3, enableSorting: false },
+              { name: 'Email', field: 'Email', sortId: 4, enableSorting: false },
+              { name: 'Address', field: 'Address', sortId: 5, enableSorting: false },
+              { name: 'Phone No.', field: 'Telephone', sortId: 6, enableSorting: false },
+              { name: 'Company', field: 'CompanyName', sortId: 7, enableSorting: false }
             ],
             onRegisterApi: function (gridApi) {
                 vm.gridApi = gridApi;
@@ -60,7 +59,7 @@
                     } else {
                         paginationOptions.params.sort = sortColumns[0].sort.direction;
                         var temp = -1;
-                        angular.forEach(vm.gridOptions.columnDefs, function (value, key) {
+                        angular.forEach(vm.UsersGridView.columnDefs, function (value, key) {
                             if (temp == -1)
                                 if (value.field == sortColumns[0].field) {
                                     paginationOptions.params.SortBy = value.sortId;
@@ -79,7 +78,6 @@
             }
         };
         var getPage = function () {
-            $scope.loading = true;
             switch (paginationOptions.params.sort) {
                 case uiGridConstants.ASC:
                     paginationOptions.params.IsAsc = true;
@@ -91,12 +89,14 @@
                     break;
             }
 
-            $http.get(window.frsApiUrl + '/api/Users', paginationOptions)
-            .success(function (data) {
-                vm.gridOptions.totalItems = data.TotalCount;
-                //var firstRow = (paginationOptions.pageNumber - 1) * paginationOptions.pageSize;
-                vm.gridOptions.data = data.LoadMetaDatas; //.slice(firstRow, firstRow + paginationOptions.pageSize);
-            }).error(function () {
+            UsersService.paginationOpts = paginationOptions;
+            UsersService.getUsers(function (data) {
+                vm.UsersGridView.totalItems = data.TotalCount || 0;
+                vm.UsersGridView.data = data.Data || [];
+            },
+            function (err) {
+                alert("Error loading data");
+                console.log(err);
             });
         };
 

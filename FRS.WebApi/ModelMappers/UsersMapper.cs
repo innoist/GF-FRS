@@ -16,7 +16,6 @@ namespace FRS.WebApi.ModelMappers
                 Id = source.Id,
                 ImageName = source.ImageName,
                 LastName = source.LastName,
-                PhoneNumber = source.PhoneNumber,
                 Telephone = source.Telephone,
                 UserName = source.UserName,
 

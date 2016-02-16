@@ -56,14 +56,14 @@
             .state('app.Load', {
                 url: '/Load',
                 title: 'Load',
-                templateUrl: helper.basepath('../../../../app/views/Load.html'),
+                templateUrl: helper.basepath('../../../../app/views/Load/Load.html'),
                 controller: 'LoadController',
                 controllerAs: 'ldc',
                 resolve: helper.resolveFor('parsley')
             })
             .state('app.Users', {
-                url: '/Load',
-                title: 'Load',
+                url: '/Users',
+                title: 'Users',
                 templateUrl: helper.basepath('../../../../app/views/Users/Users.html'),
                 controller: 'UsersController',
                 controllerAs: 'uc',

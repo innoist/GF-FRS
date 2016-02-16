@@ -1,11 +1,12 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
+using System.Net;
+using System.Web;
 using System.Web.Http;
 using System.Web.Http.Cors;
 using FRS.Interfaces.IServices;
 using FRS.Models.RequestModels;
 using FRS.WebApi.ModelMappers;
-using FRS.WebApi.Models.Users;
+using FRS.WebApi.ViewModels.Users;
 using FRS.WebBase.Mvc;
 using FRS.WebBase.UnityConfiguration;
 using Microsoft.Practices.Unity;
@@ -29,9 +30,20 @@ namespace FRS.WebApi.Areas.Load.Controllers
 
         [Authorize]
         [ApiException]
-        public IEnumerable<UsersModel> Get(UsersSearchRequest searchRequest)
+        public UsersListViewModel Get([FromUri]UsersSearchRequest searchRequest)
         {
-            return usersService.GetAllUsers().Select(x => x.MapUserFromServerToClient()).ToList();
+            if (searchRequest == null || !ModelState.IsValid)
+            {
+                throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
+            }
+
+            var response = usersService.GetAllUsers(searchRequest);
+            return new UsersListViewModel
+            {
+                Data = response.Users.Select(x=>x.MapUserFromServerToClient()).ToList(),
+                FilteredCount = response.FilteredCount,
+                TotalCount = response.TotalCount
+            };
         }
 
         #endregion

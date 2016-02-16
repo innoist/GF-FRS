@@ -6,6 +6,7 @@
     UsersService.$inject = ['$http'];
     function UsersService($http) {
         this.getUsers = getUsers;
+        this.paginationOpts = {};
 
         function getUsers(onSuccess, onError) {
             var url = window.frsApiUrl + '/api/Users';
@@ -15,8 +16,8 @@
 
 
             $http
-              .get(url)
-              .success(onReady)
+              .get(url, this.paginationOpts)
+              .success(onSuccess)
               .error(onError);
         }
     }
