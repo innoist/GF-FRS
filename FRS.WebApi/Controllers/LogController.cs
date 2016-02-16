@@ -14,6 +14,7 @@ using System.Web;
 using System.Web.Http;
 using System.Web.Http.Cors;
 using FRS.WebApi.ModelMappers.Log;
+using Microsoft.Practices.Unity;
 
 namespace FRS.WebApi.Controllers
 {
