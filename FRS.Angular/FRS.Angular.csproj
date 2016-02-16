@@ -62,6 +62,8 @@
     <Content Include="app\img\logo.png" />
     <Content Include="app\js\angular-local-storage.min.js" />
     <Content Include="app\vendor\datatable-bootstrap\images\Sorting icons.psd" />
+    <Content Include="app\views\LoadMetaData\LoadMetaData.html" />
+    <Content Include="app\views\LoadMetaData\LoadMetaData.js" />
     <Content Include="master\.bowerrc" />
     <Content Include="master\.jshintrc" />
     <Content Include="master\bower.json" />
