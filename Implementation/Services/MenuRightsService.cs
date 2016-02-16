@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
+using Cares.Commons;
 using FRS.Interfaces.IServices;
 using FRS.Interfaces.Repository;
 using FRS.Models.IdentityModels;
@@ -56,7 +58,7 @@ namespace FRS.Implementation.Services
         {
             List<UserRole> roles = menuRepository.Roles().OrderBy(dbRole => dbRole.Name).ToList();
             List<Menu> menues = menuRepository.GetAll().ToList();
-            IList<string> postedMenuIdstrings = menuIds.Split(new[] { ',' });
+            IList<string> postedMenuIdstrings = menuIds.Split(',');
             IList<int> postedMenuIds = new List<int>();
             if (postedMenuIdstrings.Count > 0 && !string.IsNullOrEmpty(postedMenuIdstrings[0]))
                 postedMenuIds = postedMenuIdstrings.Select(int.Parse).ToList();
@@ -99,6 +101,55 @@ namespace FRS.Implementation.Services
                 MenuRights = FindMenuItemsByRoleId(string.IsNullOrEmpty(roleId) && roles.Count > 0 ? roles[0].Id : roleId).ToList(),
                 Menus = menuRepository.GetAll().ToList(),
             };
+        }
+
+        /// <summary>
+        /// Returns a complete menu for client side
+        /// </summary>
+        public IEnumerable<MenuView> GetForRole()
+        {
+            Claim userRoleClaim = ClaimHelper.GetClaimToString(ClaimTypes.Role);
+            if (userRoleClaim == null || string.IsNullOrEmpty(userRoleClaim.Value))
+            {
+                return null;
+            }
+
+            IEnumerable<MenuRight> menuRights = menuRightRepository.GetByRoleName(userRoleClaim.Value).ToList();
+            // Get Parent Items 
+            IEnumerable<Menu> parents = menuRights.Where(menu => menu.Menu.IsRootItem).OrderBy(menu => menu.Menu.SortOrder).Select(menu => menu.Menu).ToList();
+
+            List<MenuView> menuViews = new List<MenuView>();
+            foreach (Menu parent in parents)
+            {
+                MenuView menuView = new MenuView
+                {
+                    text = parent.MenuTitle,
+                    heading = true,
+                    icon = parent.MenuImagePath,
+                    sref = parent.MenuTargetController,
+                    submenu = new List<MenuView>()
+                };
+
+                menuViews.Add(menuView);
+
+                // Insert Sub menus if any
+                List<Menu> childs = menuRights
+                                    .Where(menu => !menu.Menu.IsRootItem && menu.Menu.ParentItem_MenuId == parent.MenuId)
+                                    .OrderBy(menu => menu.Menu.SortOrder).Select(menu => menu.Menu).ToList();
+                if (!childs.Any())
+                {
+                    continue;
+                }            
+                   
+                childs.ForEach(childMenu => menuView.submenu.Add(new MenuView
+                {
+                    text = childMenu.MenuTitle,
+                    icon = childMenu.MenuImagePath,
+                    sref = childMenu.MenuTargetController
+                }));
+            }
+
+            return menuViews;
         }
 
         #endregion

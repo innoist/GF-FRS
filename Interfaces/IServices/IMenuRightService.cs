@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using FRS.Models.IdentityModels;
 using FRS.Models.MenuModels;
 
@@ -23,5 +24,10 @@ namespace FRS.Interfaces.IServices
         /// Get Role Menu Rights
         /// </summary>
         UserMenuResponse GetRoleMenuRights(string roleId);
+
+        /// <summary>
+        /// Returns a complete menu for client side
+        /// </summary>
+        IEnumerable<MenuView> GetForRole();
     }
 }

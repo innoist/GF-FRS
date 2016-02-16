@@ -1,4 +1,5 @@
-﻿using System.Data.Entity;
+﻿using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using FRS.Interfaces.Repository;
 using FRS.Models.MenuModels;
@@ -41,5 +42,12 @@ namespace FRS.Repository.Repositories
                     .Include(menu => menu.Menu.ParentItem);
         }
 
+        public IEnumerable<MenuRight> GetByRoleName(string role)
+        {
+            return
+                DbSet.Where(menu => menu.AspNetRole.Name.ToLower() == role.ToLower())
+                    .Include(menu => menu.Menu)
+                    .Include(menu => menu.Menu.ParentItem).ToList();
+        }
     }
 }

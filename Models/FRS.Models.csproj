@@ -142,6 +142,7 @@
     <Compile Include="LoggerModels\LogCategory.cs" />
     <Compile Include="LoggerModels\CategoryLog.cs" />
     <Compile Include="LoggerModels\Log.cs" />
+    <Compile Include="MenuModels\MenuView.cs" />
     <Compile Include="MenuModels\Menu.cs" />
     <Compile Include="MenuModels\MenuRight.cs" />
     <Compile Include="MenuModels\UserMenuResponse.cs" />
