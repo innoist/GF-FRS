@@ -48,7 +48,8 @@
               { name: 'Email', field: 'Email', sortId: 4, enableSorting: false },
               { name: 'Address', field: 'Address', sortId: 5, enableSorting: false },
               { name: 'Phone No.', field: 'Telephone', sortId: 6, enableSorting: false },
-              { name: 'Company', field: 'CompanyName', sortId: 7, enableSorting: false }
+              { name: 'Company', field: 'CompanyName', sortId: 7, enableSorting: false },
+              { name: 'Role', field: 'Role', sortId: 8, enableSorting: false }
             ],
             onRegisterApi: function (gridApi) {
                 vm.gridApi = gridApi;

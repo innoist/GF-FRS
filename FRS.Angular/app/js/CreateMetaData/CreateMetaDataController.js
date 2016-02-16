@@ -12,9 +12,9 @@
         .module('app.CreateMetaData', [])
         .controller('CreateMetaDataController', CreateMetaDataController);
 
-    CreateMetaDataController.$inject = ['$http', '$scope', '$state', 'LoadMetaDataService', 'SweetAlert', 'toaster'];
+    CreateMetaDataController.$inject = ['$http', '$scope', '$state', 'CreateMetaDataService', 'SweetAlert', 'toaster'];
 
-    function CreateMetaDataController($http, $scope, $state, LoadMetaDataService, SweetAlert, toaster) {
+    function CreateMetaDataController($http, $scope, $state, CreateMetaDataService, SweetAlert, toaster) {
         var vm = this;
         function activate() {
             // Load base data
@@ -42,7 +42,7 @@
 
         //#region Get Data from DB
         $scope.GetBaseData = function () {
-            LoadMetaDataService.getLoadMetaData(onSuccess);
+            CreateMetaDataService.getLoadMetaData(onSuccess);
             function onSuccess(data) {
                 //vm.gridOptions.data = data.LoadMetaDatas;
                 $scope.LoadTypes = data.LoadTypes;
@@ -72,7 +72,7 @@
             vm.LoadMetaData.Name = $scope.Name;
             vm.LoadMetaData.Description = $scope.Description;
 
-            LoadMetaDataService.saveLoadMetaDataDetail(vm.LoadMetaData, onSuccess, onError);
+            CreateMetaDataService.saveLoadMetaDataDetail(vm.LoadMetaData, onSuccess, onError);
             function onSuccess(response) {
                 debugger;
                 if (response.data == true) {
