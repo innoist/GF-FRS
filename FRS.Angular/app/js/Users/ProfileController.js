@@ -42,9 +42,10 @@
                 toaster.error(showErrors(err));
             });
         }
-        debugger;
-        if ($stateParams.Id != null) {
-            ProfileService.loadProfile($stateParams.Id, function(response) {
+        
+        if ($stateParams.Name !== "") {
+            debugger;
+            ProfileService.loadProfile($stateParams.Name, function(response) {
                 vm.user = response;
             });
         }

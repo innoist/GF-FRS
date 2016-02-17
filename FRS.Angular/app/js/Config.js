@@ -86,7 +86,7 @@
             //    resolve: helper.resolveFor('ui.select')
             //})
             .state('app.Profile', {
-                url: '/Profile/:Id',
+                url: '/Profile/:Name',
                 title: 'Profile',
                 templateUrl: helper.basepath('../../../../app/views/Users/Profile.html'),
                 controller: 'ProfileController',

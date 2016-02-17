@@ -69,6 +69,10 @@ namespace FRS.Repository.Repositories
         {
             return DbSet.FirstOrDefault(user => user.Id == userId);
         }
+        public AspNetUser FindUserByUserName(string userName)
+        {
+            return DbSet.FirstOrDefault(user => user.UserName == userName);
+        }
 
         /// <summary>
         /// Get User By Domain Key

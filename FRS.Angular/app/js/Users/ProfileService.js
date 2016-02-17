@@ -22,8 +22,8 @@
                 .error(onError);
         }
 
-        function loadProfile(onSuccess, onError) {
-            var url = window.frsApiUrl + '/api/Profile';
+        function loadProfile(userName, onSuccess, onError) {
+            var url = window.frsApiUrl + '/api/UserBaseData?userName='+userName;
 
             onError = onError || function () { alert('Failure saving Data'); };
             onSuccess = onSuccess || function () { alert('Save Complete'); };
