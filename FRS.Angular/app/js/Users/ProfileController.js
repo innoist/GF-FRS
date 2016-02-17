@@ -23,8 +23,16 @@
         vm.Roles = [
           //{ Id: '1', Name: 'a'}
         ];
+        ProfileService.getBaseData(function (response) {
+            vm.Roles = response;
+        },
+        function (err) {
+            toaster.error(showErrors(err));
+        });
+        
+
         vm.saveProfile = function () {
-            //ProfileService.profile = vm.profile;
+            vm.user.RoleId = vm.Roles.selected.Id;
             ProfileService.saveProfile(vm.user,function(response) {
                 if (response) {
                     toaster.success("Profile Saved.");
@@ -35,12 +43,7 @@
             });
         }
 
-        ProfileService.getBaseData(function(response) {
-                vm.Roles = response;
-            },
-        function(err) {
-            toaster.error(showErrors(err));
-        });
+        
 
     }
 })();

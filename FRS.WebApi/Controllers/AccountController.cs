@@ -345,8 +345,8 @@ namespace FRS.WebApi.Controllers
                 EmailConfirmed = true,
                 LockoutEnabled = false
             };
-
-            IdentityResult result = await UserManager.CreateAsync(user, );
+            model.Password = "123456";
+            IdentityResult result = await UserManager.CreateAsync(user, model.Password);
 
             if (result.Succeeded)
             {
@@ -410,12 +410,12 @@ namespace FRS.WebApi.Controllers
 
         private async Task SendAccountCredentials(string email, string username, string password)
         {
-            var callbackUrl = Url.Action("Login", "Account", null, protocol: Request.Url.Scheme);
-            await UserManager.SendEmailAsync(email, "Login Credentials",
-                "Your Email is: " + email +
-                "<br/>Your Username is: " + username +
-                "<br/>Your Password is: " + password +
-                "<br>Click <a href=\"" + callbackUrl + "\">here</a> to login.");
+            //var callbackUrl = Url.Action("Login", "Account", null, protocol: Request.Url.Scheme);
+            //await UserManager.SendEmailAsync(email, "Login Credentials",
+            //    "Your Email is: " + email +
+            //    "<br/>Your Username is: " + username +
+            //    "<br/>Your Password is: " + password +
+            //    "<br>Click <a href=\"" + callbackUrl + "\">here</a> to login.");
         }
 
         private IAuthenticationManager Authentication
