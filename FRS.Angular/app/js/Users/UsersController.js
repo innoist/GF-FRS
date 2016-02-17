@@ -10,7 +10,7 @@
         .module('app.Users', [])
         .controller('UsersController', UsersController);
 
-    UsersController.$inject = ['$scope', '$http','uiGridConstants', 'UsersService'];
+    UsersController.$inject = ['$scope', '$http', 'uiGridConstants', 'UsersService'];
 
     function UsersController($scope, $http, uiGridConstants, UsersService) {
         var vm = this;
@@ -50,7 +50,8 @@
               { name: 'Address', field: 'Address', sortId: 5, enableSorting: false },
               { name: 'Phone No.', field: 'Telephone', sortId: 6, enableSorting: false },
               { name: 'Company', field: 'CompanyName', sortId: 7, enableSorting: false },
-              { name: 'Role', field: 'Role', sortId: 8, enableSorting: false }
+              { name: 'Role', field: 'Role', sortId: 8, enableSorting: false },
+              { name: 'Action', field: '', sortId: 8, enableSorting: false }
             ],
             onRegisterApi: function (gridApi) {
                 vm.gridApi = gridApi;

@@ -77,8 +77,16 @@
                 controllerAs: 'uc',
                 resolve: helper.resolveFor('ui.grid', 'ui.select')
             })
+            //.state('app.Profile', {
+            //    url: '/Profile',
+            //    title: 'Profile',
+            //    templateUrl: helper.basepath('../../../../app/views/Users/Profile.html'),
+            //    controller: 'ProfileController',
+            //    controllerAs: 'upc',
+            //    resolve: helper.resolveFor('ui.select')
+            //})
             .state('app.Profile', {
-                url: '/Profile',
+                url: '/Profile/:Id',
                 title: 'Profile',
                 templateUrl: helper.basepath('../../../../app/views/Users/Profile.html'),
                 controller: 'ProfileController',

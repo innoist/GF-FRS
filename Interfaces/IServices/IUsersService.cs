@@ -8,6 +8,7 @@ namespace FRS.Interfaces.IServices
     public interface IUsersService
     {
         IEnumerable<AspNetUser> GetAllUsers();
+        AspNetUser GetUser(string Id);
         UsersSearchResponse GetAllUsers(UsersSearchRequest searchRequest);
         IEnumerable<UserRole> GetAllRoles();
     }

@@ -28,5 +28,12 @@ namespace FRS.WebApi.Controllers
             return roles;
         }
         
+        [HttpGet]
+        public UsersModel Get(string Id)
+        {
+            var user = usersService.GetUser(Id).MapUserFromServerToClient();
+            return user;
+        }
+        
     }
 }

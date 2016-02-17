@@ -7,6 +7,7 @@
     function UsersService($http) {
         this.getUsers = getUsers;
         this.getBaseData = getBaseData;
+        this.loadProfile = loadProfile;
         this.paginationOpts = {};
 
         function getUsers(onSuccess, onError) {
@@ -28,6 +29,16 @@
 
             $http
                 .get(url)
+                .success(onSuccess)
+                .error(onError);
+        }
+
+        function loadProfile(data, onSuccess, onError) {
+            var url = window.frsApiUrl + '/api/UserBaseData';
+            onError = onError || function () { alert('Failure loading Data'); };
+
+            $http
+                .get(url,data)
                 .success(onSuccess)
                 .error(onError);
         }

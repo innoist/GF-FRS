@@ -13,9 +13,9 @@
         .module('app.Profile', [])
         .controller('ProfileController', ProfileController);
 
-    ProfileController.$inject = ['$scope', '$state', 'ProfileService', 'toaster'];
+    ProfileController.$inject = ['$scope','$stateParams', '$state', 'ProfileService', 'toaster'];
 
-    function ProfileController($scope, $state, ProfileService, toaster) {
+    function ProfileController($scope,$stateParams, $state, ProfileService, toaster) {
         var vm = this;
         //ui-select
         vm.disabled = undefined;
@@ -30,7 +30,6 @@
             toaster.error(showErrors(err));
         });
         
-
         vm.saveProfile = function () {
             vm.user.RoleId = vm.Roles.selected.Id;
             ProfileService.saveProfile(vm.user,function(response) {
@@ -43,8 +42,12 @@
                 toaster.error(showErrors(err));
             });
         }
-
-        
+        debugger;
+        if ($stateParams.Id != null) {
+            ProfileService.loadProfile($stateParams.Id, function(response) {
+                vm.user = response;
+            });
+        }
 
     }
 })();
