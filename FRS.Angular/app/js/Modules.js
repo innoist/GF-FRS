@@ -34,6 +34,8 @@
             'app.CreateMetaData',
             'app.Load',
             'app.Users',
-            'app.Profile'
+            'app.Profile',
+            'app.rightsManagement'
         ]);
 })();
+

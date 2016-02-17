@@ -64,6 +64,8 @@
     <Content Include="app\js\angular-local-storage.min.js" />
     <Content Include="app\js\Config.js" />
     <Content Include="app\js\CreateMetaData\CreateMetaDataController.js" />
+    <Content Include="app\js\RightsManagement\rightsManagement.service.js" />
+    <Content Include="app\js\RightsManagement\rightsManagement.controller.js" />
     <Content Include="app\js\CreateMetaData\CreateMetaDataService.js" />
     <Content Include="app\js\LoadMetaData\LoadMetaDataService.js" />
     <Content Include="app\js\Load\LoadController.js" />
@@ -78,6 +80,7 @@
     <Content Include="app\views\LoadMetaData\LoadMetaData.html" />
     <Content Include="app\js\LoadMetaData\LoadMetaDataController.js" />
     <Content Include="app\views\Log\LogLV.html" />
+    <Content Include="app\views\RightsManagement\index.html" />
     <Content Include="app\views\Users\Profile.html" />
     <Content Include="app\views\Users\Users.html" />
     <Content Include="master\.bowerrc" />

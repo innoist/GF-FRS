@@ -158,6 +158,7 @@
     <Compile Include="RequestModels\LogSearchRequest.cs" />
     <Compile Include="RequestModels\LoadMetaDataSearchRequest.cs" />
     <Compile Include="RequestModels\UsersSearchRequest.cs" />
+    <Compile Include="RequestModels\RightsManagementRequest.cs" />
     <Compile Include="ResponseModels\BaseDataLoadMetaDataResponse.cs" />
     <Compile Include="ResponseModels\MT940LoadBaseDataResponse.cs" />
     <Compile Include="ResponseModels\SearchTemplateResponse.cs" />

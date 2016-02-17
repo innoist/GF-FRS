@@ -25,18 +25,18 @@
         // Application Routes
         // -----------------------------------
         $stateProvider
-          .state('app', {
-              url: '/FRS',
-              abstract: true,
-              templateUrl: helper.basepath('../../../../app/views/FRS.html'),
-              resolve: helper.resolveFor('fastclick', 'modernizr', 'icons', 'screenfull', 'animo', 'sparklines', 'slimscroll', 'classyloader', 'toaster', 'whirl')
-          })
-          .state('app.dashboard', {
-              url: '/dashboard',
-              title: 'Dashboard',
-              templateUrl: helper.basepath('../../../../app/views/dashboard.html'),
-              resolve: helper.resolveFor('flot-chart', 'flot-chart-plugins', 'weather-icons')
-          })
+            .state('app', {
+                url: '/FRS',
+                abstract: true,
+                templateUrl: helper.basepath('../../../../app/views/FRS.html'),
+                resolve: helper.resolveFor('fastclick', 'modernizr', 'icons', 'screenfull', 'animo', 'sparklines', 'slimscroll', 'classyloader', 'toaster', 'whirl')
+            })
+            .state('app.dashboard', {
+                url: '/dashboard',
+                title: 'Dashboard',
+                templateUrl: helper.basepath('../../../../app/views/dashboard.html'),
+                resolve: helper.resolveFor('flot-chart', 'flot-chart-plugins', 'weather-icons')
+            })
             .state('app.LoadMetaData', {
                 url: '/LoadMetaData',
                 title: 'Load MetaData',
@@ -53,14 +53,14 @@
                 controllerAs: 'cmdc',
                 resolve: helper.resolveFor('oitozero.ngSweetAlert')
             })
-             .state('app.LogsModule', {
-                 url: '/Log',
-                 title: 'Logs',
-                 templateUrl: helper.basepath('../../../../app/views/Log/Log.html'),
-                 controller: 'LogController',
-                 controllerAs: 'mdc',
-                 resolve: helper.resolveFor('ui.grid', 'loaders.css', 'spinkit', 'ui.select')
-             })
+            .state('app.LogsModule', {
+                url: '/Log',
+                title: 'Logs',
+                templateUrl: helper.basepath('../../../../app/views/Log/Log.html'),
+                controller: 'LogController',
+                controllerAs: 'mdc',
+                resolve: helper.resolveFor('ui.grid', 'loaders.css', 'spinkit', 'ui.select')
+            })
             .state('app.Load', {
                 url: '/Load',
                 title: 'Load',
@@ -85,39 +85,49 @@
                 controllerAs: 'upc',
                 resolve: helper.resolveFor('ui.select')
             })
-        .state('page', {
-            url: '/page',
-            templateUrl: 'app/pages/page.html',
-            resolve: helper.resolveFor('modernizr', 'icons'),
-            controller: ['$rootScope', function ($rootScope) {
-                $rootScope.app.layout.isBoxed = false;
-            }]
-        })
-          .state('page.login', {
-              url: '/login',
-              title: 'Login',
-              templateUrl: 'app/pages/login.html'
-          })
-          .state('page.register', {
-              url: '/register',
-              title: 'Register',
-              templateUrl: 'app/pages/register.html'
-          })
-          .state('page.recover', {
-              url: '/recover',
-              title: 'Recover',
-              templateUrl: 'app/pages/recover.html'
-          })
-          .state('page.lock', {
-              url: '/lock',
-              title: 'Lock',
-              templateUrl: 'app/pages/lock.html'
-          })
-          .state('page.404', {
-              url: '/404',
-              title: 'Not Found',
-              templateUrl: 'app/pages/404.html'
-          })
+            .state('app.rightsManagement', {
+                url: '/RightsManagement',
+                title: 'Rights Management',
+                templateUrl: helper.basepath('../../../../app/views/RightsManagement/index.html'),
+                controller: 'RightsManagementController',
+                controllerAs: 'rightsManagement',
+                resolve: helper.resolveFor('ui.grid', 'loaders.css', 'spinkit', 'ui.select')
+            })
+            .state('page', {
+                url: '/page',
+                templateUrl: 'app/pages/page.html',
+                resolve: helper.resolveFor('modernizr', 'icons'),
+                controller: [
+                    '$rootScope', function ($rootScope) {
+                        $rootScope.app.layout.isBoxed = false;
+                    }
+                ]
+            })
+            .state('page.login', {
+                url: '/login',
+                title: 'Login',
+                templateUrl: 'app/pages/login.html'
+            })
+            .state('page.register', {
+                url: '/register',
+                title: 'Register',
+                templateUrl: 'app/pages/register.html'
+            })
+            .state('page.recover', {
+                url: '/recover',
+                title: 'Recover',
+                templateUrl: 'app/pages/recover.html'
+            })
+            .state('page.lock', {
+                url: '/lock',
+                title: 'Lock',
+                templateUrl: 'app/pages/lock.html'
+            })
+            .state('page.404', {
+                url: '/404',
+                title: 'Not Found',
+                templateUrl: 'app/pages/404.html'
+            });
 
         //
         // CUSTOM RESOLVES
@@ -135,7 +145,6 @@
         //     }
         //   )
         // })
-        ;
 
     } // routesConfig
 

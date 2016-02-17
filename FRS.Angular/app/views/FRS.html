@@ -7,7 +7,8 @@
 <!-- Main section-->
 <section>
    <!-- Page content-->
-   <div ui-view="" autoscroll="false" ng-class="app.viewAnimation" class="content-wrapper"></div>
+    <div ui-view="" autoscroll="false" ng-class="app.viewAnimation" class="content-wrapper"></div>
+    <toaster-container toaster-options="{'position-class': 'toast-bottom-right', 'close-button':true}"></toaster-container>
 </section>
 <!-- Page footer-->
 <footer ng-include="'../../app/views/partials/footer.html'" style="height: 40px !important; padding: 10px 20px !important"></footer>

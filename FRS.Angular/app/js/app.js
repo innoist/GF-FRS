@@ -7500,10 +7500,7 @@
 
 
 })();
-
-
-
-
+          
 
 (function () {
     'use strict';
@@ -8723,13 +8720,16 @@
         .module('app.sidebar')
         .service('SidebarLoader', SidebarLoader);
 
-    SidebarLoader.$inject = ['$http'];
-    function SidebarLoader($http) {
+    SidebarLoader.$inject = ['$http', '$localStorage'];
+    function SidebarLoader($http, $localStorage) {
         this.getMenu = getMenu;
 
         ////////////////
 
         function getMenu(onReady, onError) {
+            if (!$localStorage['authorizationData']) {
+                return;
+            }
             var menuJson = frsApiUrl +'/api/Menu',
             //var menuJson = '../../server/sidebar-menu.js',
                 menuURL = menuJson + '?v=' + (new Date().getTime()); // jumps cache
