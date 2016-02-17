@@ -6,16 +6,41 @@
                 <i class="fa fa-plus"></i>
             </span>New
         </a>
-        <!--<button class="btn btn-warning btn-labeled" ng-click="isFilterOpen = !isFilterOpen" ng-show="!isFilterOpen">
-                <span class="btn-label">
-                    <i class="fa fa-filter"></i>
-                </span>Filter
-            </button>-->
+        <button class="btn btn-warning btn-labeled" ng-click="isFilterOpen = !isFilterOpen" ng-show="!isFilterOpen">
+            <span class="btn-label">
+                <i class="fa fa-filter"></i>
+            </span>Filter
+        </button>
     </div>
     <!-- END Language list    -->
     Users
     <small>Details</small>
 </h3>
+<div class="container-fluid" ng-show="isFilterOpen">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="col-md-3">
+                <input type="text" placeholder="Name" class="form-control" ng-model="uc.name" />
+            </div>
+            <div class="col-md-3">
+                <input type="tel" placeholder="Phone no." class="form-control" ng-model ="uc.phone"/>
+            </div>
+            <div class="col-md-3">
+                <ui-select ng-model="uc.Roles.selected" theme="bootstrap" ng-disabled="uc.disabled">
+                    <ui-select-match placeholder="Select or LoadType...">{{$select.selected.Name}}</ui-select-match>
+                    <ui-select-choices repeat="role in uc.Roles | propsFilter: {Name: $select.search}">
+                        <div ng-bind-html="role.Name | highlight: $select.search"></div>
+                    </ui-select-choices>
+                </ui-select>
+            </div>
+            <button class="btn btn-success" ng-click="uc.fiterData()">Filter</button>
+            <button class="btn btn-default" ng-click="uc.resetFilter()">Reset</button>
+
+            <a class="pull-right" title="Hide filter Section" ng-click="isFilterOpen = !isFilterOpen"><i class="fa fa-compress"></i></a>
+        </div>
+
+    </div>
+</div>
 
 <div class="container-fluid">
     <div ui-grid="uc.UsersGridView" ui-grid-pagination ui-grid-move-columns ui-grid-resize-columns class="table-uigrid">

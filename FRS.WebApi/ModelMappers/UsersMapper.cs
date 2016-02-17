@@ -46,5 +46,14 @@ namespace FRS.WebApi.ModelMappers
             
             return toReturn;
         }
+
+        public static RoleDDL MapRoleFromServerToClient(this UserRole source)
+        {
+            return new RoleDDL
+            {
+                Id = source.Id,
+                Name = source.Name
+            };
+        }
     }
 }

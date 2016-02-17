@@ -24,7 +24,8 @@
                 PageSize: 10,
                 sort: null,
                 Name: '',
-                UserId: null
+                Role: null,
+                PhoneNumber: null
     },
 
         };
@@ -100,6 +101,43 @@
                 console.log(err);
             });
         };
+
+        //ui-select
+        vm.disabled = undefined;
+        vm.Role = {};
+        vm.Roles = [
+          //{ Id: '1', Name: 'a'}
+        ];
+
+        $http.get(window.frsApiUrl + '/api/UserBaseData').success(function (response) {
+            debugger;
+            vm.Roles = response;
+        });
+
+        vm.resetFilter = function () {
+            vm.phone = '';
+            vm.name = '';
+            vm.Roles.selected = null;
+
+            paginationOptions.params.CreatedDate = '';
+            paginationOptions.params.IsAsc = true;
+            paginationOptions.params.PageNo = 1;
+            paginationOptions.params.sort = null;
+            paginationOptions.params.SortBy = 0;
+
+            //Custom Filter parameters
+            paginationOptions.params.Name = '';
+            paginationOptions.params.Role = '';
+            paginationOptions.params.PhoneNumber = '';
+            getPage();
+        }
+
+        vm.fiterData = function () {
+            paginationOptions.params.Name = vm.name;
+            paginationOptions.params.CreatedDate = vm.dt;
+            paginationOptions.params.Role = vm.Roles.selected == null ? '' : vm.Roles.selected.Id;
+            getPage();
+        }
 
         getPage();
     }

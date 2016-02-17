@@ -9,5 +9,6 @@ namespace FRS.Interfaces.IServices
     {
         IEnumerable<AspNetUser> GetAllUsers();
         UsersSearchResponse GetAllUsers(UsersSearchRequest searchRequest);
+        IEnumerable<UserRole> GetAllRoles();
     }
 }

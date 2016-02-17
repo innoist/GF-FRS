@@ -75,7 +75,7 @@
                 templateUrl: helper.basepath('../../../../app/views/Users/Users.html'),
                 controller: 'UsersController',
                 controllerAs: 'uc',
-                resolve: helper.resolveFor('ui.grid')
+                resolve: helper.resolveFor('ui.grid', 'ui.select')
             })
             .state('app.Profile', {
                 url: '/Profile',

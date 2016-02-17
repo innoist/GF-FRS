@@ -85,7 +85,10 @@ namespace FRS.Repository.Repositories
             Expression<Func<AspNetUser, bool>> query =
                 s =>
                     (
-                    (searchRequest.UserId == null || searchRequest.UserId.Equals(s.Id))
+                    (searchRequest.Name == null || s.FirstName.Contains(searchRequest.Name)) &&
+                    (searchRequest.Name == null || s.LastName.Contains(searchRequest.Name)) &&
+                    (searchRequest.PhoneNumber == null || s.Telephone.Contains(searchRequest.PhoneNumber)) &&
+                    (searchRequest.Role == null || s.AspNetRoles.FirstOrDefault().Id == searchRequest.Role)
                     );
 
             IEnumerable<AspNetUser> users = searchRequest.IsAsc

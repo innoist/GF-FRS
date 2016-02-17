@@ -34,6 +34,7 @@ namespace FRS.Repository
             unityContainer.RegisterType<IFileContentRepository, FileContentRepository>();
             unityContainer.RegisterType<ILogRepository, LogRepository>();
             unityContainer.RegisterType<IMT940LoadRepository, MT940LoadRepository>();
+            unityContainer.RegisterType<IAspNetRoleRepository, AspNetRoleRepository>();
         }
     }
 }

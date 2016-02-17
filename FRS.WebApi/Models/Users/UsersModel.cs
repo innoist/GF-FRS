@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace FRS.WebApi.Models.Users
+﻿namespace FRS.WebApi.Models.Users
 {
     public class UsersModel
     {
@@ -14,5 +12,12 @@ namespace FRS.WebApi.Models.Users
         public string LastName { get; set; }
         public string Telephone { get; set; }
         public string Role { get; set; }
+    }
+
+
+    public class RoleDDL
+    {
+        public string Id { get; set; }
+        public string Name { get; set; }
     }
 }

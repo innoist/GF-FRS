@@ -28,7 +28,7 @@ namespace FRS.WebApi.Areas.Load.Controllers
 
         #region Public
 
-        [Authorize]
+        //[Authorize]
         [ApiException]
         public UsersListViewModel Get([FromUri]UsersSearchRequest searchRequest)
         {
@@ -45,6 +45,8 @@ namespace FRS.WebApi.Areas.Load.Controllers
                 TotalCount = response.TotalCount
             };
         }
+        
+        
 
         #endregion
     }

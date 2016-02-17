@@ -4,9 +4,9 @@ namespace FRS.Models.RequestModels
 {
     public class UsersSearchRequest : GetPagedListRequest
     {
-        public string UserId { get; set; }
+        public string Role { get; set; }
         public string Name { get; set; }
-        public int LoadTypeId { get; set; }
+        public string PhoneNumber { get; set; }
 
         public OrderByUsers OrderByColumn
         {
