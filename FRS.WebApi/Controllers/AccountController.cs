@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
 using System.Web.Http.Cors;
+using FRS.Implementation.Identity;
 using FRS.Models.IdentityModels;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
@@ -333,17 +334,31 @@ namespace FRS.WebApi.Controllers
                 return BadRequest(ModelState);
             }
 
-            //var user = new ApplicationUser() { UserName = model.Email, Email = model.Email };
-            var user = new AspNetUser { UserName = model.Email, Email = model.Email };
-
-            IdentityResult result = await UserManager.CreateAsync(user, model.Password);
-
-            if (!result.Succeeded)
+            var user = new AspNetUser
             {
-                return GetErrorResult(result);
-            }
+                UserName = model.Email.Split('@')[0], 
+                Email = model.Email,
+                FirstName = model.FirstName,
+                LastName = model.LastName,
+                Telephone = model.Phone,
+                Address = model.Address,
+                EmailConfirmed = true,
+                LockoutEnabled = false
+            };
 
-            return Ok();
+            IdentityResult result = await UserManager.CreateAsync(user, );
+
+            if (result.Succeeded)
+            {
+                var roleManager = HttpContext.Current.GetOwinContext().Get<ApplicationRoleManager>();
+                var roleName = roleManager.FindById(model.RoleId).Name;
+                UserManager.AddToRole(user.Id, roleName);
+
+                await SendAccountCredentials(model.Email, user.UserName, model.Password);
+                return Ok(true);
+            }
+            return GetErrorResult(result);
+            
         }
 
         // POST api/Account/RegisterExternal
@@ -392,6 +407,16 @@ namespace FRS.WebApi.Controllers
         }
 
         #region Helpers
+
+        private async Task SendAccountCredentials(string email, string username, string password)
+        {
+            var callbackUrl = Url.Action("Login", "Account", null, protocol: Request.Url.Scheme);
+            await UserManager.SendEmailAsync(email, "Login Credentials",
+                "Your Email is: " + email +
+                "<br/>Your Username is: " + username +
+                "<br/>Your Password is: " + password +
+                "<br>Click <a href=\"" + callbackUrl + "\">here</a> to login.");
+        }
 
         private IAuthenticationManager Authentication
         {

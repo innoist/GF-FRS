@@ -109,8 +109,7 @@
           //{ Id: '1', Name: 'a'}
         ];
 
-        $http.get(window.frsApiUrl + '/api/UserBaseData').success(function (response) {
-            debugger;
+        UsersService.getBaseData(function(response) {
             vm.Roles = response;
         });
 

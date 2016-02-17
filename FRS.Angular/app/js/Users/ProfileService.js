@@ -9,11 +9,33 @@
     function ProfileService($http) {
         this.loadProfile = loadProfile;
         this.saveProfile = saveProfile;
-        this.profile = {};
+        this.getBaseData = getBaseData;
 
-        function saveProfile(onSuccess, onError) {
+        function saveProfile(data,onSuccess, onError) {
+            var url = window.frsApiUrl + '/api/Account/Register';
+
+            onError = onError || function () { alert('Failure loading Data'); };
+
+            $http
+                .post(url,data)
+                .success(onSuccess)
+                .error(onError);
+        }
+
+        function loadProfile(onSuccess, onError) {
             var url = window.frsApiUrl + '/api/Profile';
 
+            onError = onError || function () { alert('Failure saving Data'); };
+            onSuccess = onSuccess || function () { alert('Save Complete'); };
+
+            $http
+                .get(url)
+                .success(onSuccess)
+                .error(onError);
+        }
+
+        function getBaseData(onSuccess, onError) {
+            var url = window.frsApiUrl + '/api/UserBaseData';
             onError = onError || function () { alert('Failure loading Data'); };
 
             $http
@@ -24,15 +46,5 @@
     }
 
 
-    function loadProfile(onSuccess, onError) {
-        var url = window.frsApiUrl + '/api/Profile';
-
-        onError = onError || function () { alert('Failure saving Data'); };
-        onSuccess = onSuccess || function () { alert('Save Complete'); };
-
-        $http
-            .post(url, this.profile)
-            .success(onSuccess)
-            .error(onError);
-    }
+    
 })();

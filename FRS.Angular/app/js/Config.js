@@ -82,7 +82,8 @@
                 title: 'Profile',
                 templateUrl: helper.basepath('../../../../app/views/Users/Profile.html'),
                 controller: 'ProfileController',
-                controllerAs: 'upc'
+                controllerAs: 'upc',
+                resolve: helper.resolveFor('ui.select')
             })
             .state('app.rightsManagement', {
                 url: '/RightsManagement',
