@@ -1,4 +1,6 @@
-﻿using System.Web.Http;
+﻿using System.Net.Http.Formatting;
+using System.Runtime.Serialization;
+using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
@@ -46,6 +48,13 @@ namespace FRS.WebApi
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            // Set MVC resolver
+            DependencyResolver.SetResolver(new UnityDependencyResolver(container));
+            // Set Web Api resolver
+            GlobalConfiguration.Configuration.DependencyResolver = new UnityDependencyResolver(container);
+            // Configure Formatter
+            GlobalConfiguration.Configuration.Formatters.Clear();
+            GlobalConfiguration.Configuration.Formatters.Add(new JsonMediaTypeFormatter());
         }
 
         /// <summary>

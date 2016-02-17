@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -10,8 +11,6 @@ using FRS.Models.RequestModels;
 using FRS.WebApi.Models;
 using FRS.WebApi.ViewModels.RightsManagement;
 using FRS.WebBase.Mvc;
-using FRS.WebBase.UnityConfiguration;
-using Microsoft.Practices.Unity;
 
 namespace FRS.WebApi.Areas.Load.Controllers
 {
@@ -20,11 +19,25 @@ namespace FRS.WebApi.Areas.Load.Controllers
     {
         #region Private
 
-        private readonly IMenuRightsService menuRightsService = UnityWebActivator.Container.Resolve<IMenuRightsService>();
+        private readonly IMenuRightsService menuRightsService;
 
         #endregion
 
         #region Constructor
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        public RightsManagementController(IMenuRightsService menuRightsService)
+        {
+            if (menuRightsService == null)
+            {
+                throw new ArgumentNullException("menuRightsService");
+            }
+
+            this.menuRightsService = menuRightsService;
+        }
+
         #endregion
 
         #region Public
