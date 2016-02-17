@@ -2540,14 +2540,21 @@
         .module('app.core')
         .run(appRun);
 
-    appRun.$inject = ['$rootScope', '$state', '$stateParams', '$window', '$templateCache', 'Colors'];
+    appRun.$inject = ['$rootScope', '$state', '$stateParams', '$window', '$templateCache', 'Colors', '$http'];
 
-    function appRun($rootScope, $state, $stateParams, $window, $templateCache, Colors) {
+    function appRun($rootScope, $state, $stateParams, $window, $templateCache, Colors, $http) {
 
         // Set reference to access them from any scope
         $rootScope.$state = $state;
         $rootScope.$stateParams = $stateParams;
         $rootScope.$storage = $window.localStorage;
+
+        // Add Authorization token to every http request
+        if ($window.localStorage && $window.localStorage["ngStorage-authorizationData"] && $http) {
+            $http.defaults.headers.common = {
+                'Authorization': 'Bearer ' + JSON.parse(localStorage["ngStorage-authorizationData"]).token
+            };
+        }
 
         // Uncomment this to disable template cache
         /*$rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
