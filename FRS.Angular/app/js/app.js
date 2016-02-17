@@ -9327,10 +9327,9 @@ function hideProgress() {
 }
 
 function showErrors(err) {
-    if (!err)
+    if (!err || !err.data || !err.data.ModelState)
         return null;
-    if (!err.data)
-        return null;
+
     var errors = "";
     for (var key in err.data.ModelState) {
         var errMsg = err.data.ModelState[key][0];
