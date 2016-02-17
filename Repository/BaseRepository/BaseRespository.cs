@@ -182,7 +182,7 @@ namespace FRS.Repository.BaseRepository
         /// </summary>
         public IEnumerable<UserRole> Roles()
         {
-            return db.UserRoles.Where(r => !r.Name.Equals("Admin"));
+            return db.UserRoles.Where(r => !r.Name.Equals(FRSApplicationRoles.SystemAdministrator));
         }
 
         #endregion

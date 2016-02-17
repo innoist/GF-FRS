@@ -153,6 +153,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="RequestModels\LoadMetaDataSearchRequest.cs" />
+    <Compile Include="RequestModels\RightsManagementRequest.cs" />
     <Compile Include="ResponseModels\BaseDataLoadMetaDataResponse.cs" />
     <Compile Include="ResponseModels\MT940LoadBaseDataResponse.cs" />
     <Compile Include="ResponseModels\SearchLoadMetaDataResponse.cs" />

@@ -43,7 +43,8 @@
             'app.utils',
             'app.LoadMetaData',
             'app.CreateMetaData',
-            'app.Load'
+            'app.Load',
+            'app.rightsManagement'
         ]);
 })();
 
@@ -7619,6 +7620,14 @@
                 controller: 'LoadController',
                 controllerAs: 'ldc',
                 resolve: helper.resolveFor('parsley')
+            })
+            .state('app.rightsManagement', {
+                url: '/RightsManagement',
+                title: 'Rights Management',
+                templateUrl: helper.basepath('../../../../app/views/RightsManagement/index.html'),
+                controller: 'RightsManagementController',
+                controllerAs: 'rightsManagement',
+                resolve: helper.resolveFor('ui.grid', 'loaders.css', 'spinkit', 'ui.select')
             })
           .state('app.dashboard_v2', {
               url: '/dashboard_v2',
