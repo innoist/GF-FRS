@@ -24,7 +24,7 @@ namespace FRS.WebApi.Controllers
         private readonly ILogger loggerService = UnityWebActivator.Container.Resolve<ILogger>();
 
         [HttpGet]
-        [Authorize]
+        //[Authorize]
         [ApiException]
         public LogViewModel Get([FromUri]LogSearchRequest searchRequest)
         {

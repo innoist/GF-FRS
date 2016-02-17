@@ -53,6 +53,14 @@
                 controllerAs: 'cmdc',
                 resolve: helper.resolveFor('oitozero.ngSweetAlert')
             })
+             .state('app.LogsModule', {
+                 url: '/Log',
+                 title: 'Logs',
+                 templateUrl: helper.basepath('../../../../app/views/Log/Log.html'),
+                 controller: 'LogController',
+                 controllerAs: 'mdc',
+                 resolve: helper.resolveFor('ui.grid', 'loaders.css', 'spinkit', 'ui.select')
+             })
             .state('app.Load', {
                 url: '/Load',
                 title: 'Load',
