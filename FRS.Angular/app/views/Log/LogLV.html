@@ -1,0 +1,30 @@
+﻿<h3>
+    <!-- START Language list-->
+    <div class="pull-right">
+      
+        <button class="btn btn-warning btn-labeled" ng-click="isFilterOpen = !isFilterOpen" ng-show="!isFilterOpen">
+            <span class="btn-label">
+                <i class="fa fa-filter"></i>
+            </span>Filter
+        </button>
+    </div>
+    <!-- END Language list    -->
+    Logs
+    <small>Details</small>
+</h3>
+<div class="container-fluid">
+    <!-- Grid view to show listview with searching, sorting and pagination-->
+    <div ui-grid="mdc.gridOptions" ui-grid-pagination ui-grid-move-columns ui-grid-resize-columns class="table-uigrid">
+
+        <!--<div class="" ng-hide="!loading">
+            <div class="line-scale-pulse-out" style="position: absolute; left: 0;  right: 0; top: 100px; vertical-align: middle; text-align: center">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+
+        </div>-->
+    </div>
+</div>

@@ -131,6 +131,25 @@
           <Property Name="Name" Type="nvarchar" MaxLength="15" Nullable="false" />
           <Property Name="StatusId" Type="tinyint" Nullable="false" />
         </EntityType>
+        <EntityType Name="Log">
+          <Key>
+            <PropertyRef Name="LogID" />
+          </Key>
+          <Property Name="LogID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EventID" Type="int" />
+          <Property Name="Priority" Type="int" Nullable="false" />
+          <Property Name="Severity" Type="nvarchar" MaxLength="32" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="Timestamp" Type="datetime" Nullable="false" />
+          <Property Name="MachineName" Type="nvarchar" MaxLength="32" Nullable="false" />
+          <Property Name="AppDomainName" Type="nvarchar" MaxLength="512" Nullable="false" />
+          <Property Name="ProcessID" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="ProcessName" Type="nvarchar" MaxLength="512" Nullable="false" />
+          <Property Name="ThreadName" Type="nvarchar" MaxLength="512" />
+          <Property Name="Win32ThreadId" Type="nvarchar" MaxLength="128" />
+          <Property Name="Message" Type="nvarchar" MaxLength="1500" />
+          <Property Name="FormattedMessage" Type="ntext" />
+        </EntityType>
         <EntityType Name="Menu">
           <Key>
             <PropertyRef Name="MenuId" />
@@ -219,7 +238,7 @@
           <Property Name="FileName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="FileExtension" Type="nvarchar" MaxLength="10" Nullable="false" />
           <Property Name="StatusId" Type="tinyint" Nullable="false" />
-          <Property Name="CustomerStatementCount" Type="int" />
+          <Property Name="CustomerStatementCount" Type="int" Nullable="false" />
           <Property Name="FileContentId" Type="bigint" Nullable="false" />
           <Property Name="CreatedBy" Type="nvarchar" MaxLength="128" Nullable="false" />
           <Property Name="CreatedOn" Type="datetime" Nullable="false" />
@@ -511,6 +530,7 @@
           <EntitySet Name="Load" EntityType="Self.Load" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LoadMetaData" EntityType="Self.LoadMetaData" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LoadType" EntityType="Self.LoadType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Log" EntityType="Self.Log" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Menu" EntityType="Self.Menu" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MenuRight" EntityType="Self.MenuRight" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MT940Balance" EntityType="Self.MT940Balance" Schema="dbo" store:Type="Tables" />
@@ -745,6 +765,7 @@
             <End Role="Currency" EntitySet="Currencies" />
             <End Role="LoadMetaData" EntitySet="LoadMetaDatas" />
           </AssociationSet>
+          <EntitySet Name="Logs" EntityType="angularModel.Log" />
           </EntityContainer>
         <EntityType Name="Menu">
           <Key>
@@ -1042,7 +1063,7 @@
           <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="ModifiedBy" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="ModifiedOn" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="CustomerStatementCount" Type="Int32" />
+          <Property Name="CustomerStatementCount" Type="Int32" Nullable="false" />
           <Property Name="FileContentId" Type="Int64" Nullable="false" />
           <NavigationProperty Name="FileContent" Relationship="angularModel.FK_MT940Load_FileContent" FromRole="MT940Load" ToRole="FileContent" />
           <NavigationProperty Name="Loads" Relationship="angularModel.FK_Load_MT940Load" FromRole="MT940Load" ToRole="Load" />
@@ -1247,6 +1268,25 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Log">
+          <Key>
+            <PropertyRef Name="LogID" />
+          </Key>
+          <Property Name="LogID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EventID" Type="Int32" />
+          <Property Name="Priority" Type="Int32" Nullable="false" />
+          <Property Name="Severity" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="true" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="Timestamp" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="MachineName" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="true" />
+          <Property Name="AppDomainName" Type="String" Nullable="false" MaxLength="512" FixedLength="false" Unicode="true" />
+          <Property Name="ProcessID" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="ProcessName" Type="String" Nullable="false" MaxLength="512" FixedLength="false" Unicode="true" />
+          <Property Name="ThreadName" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+          <Property Name="Win32ThreadId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Message" Type="String" MaxLength="1500" FixedLength="false" Unicode="true" />
+          <Property Name="FormattedMessage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1502,6 +1542,26 @@
               <MappingFragment StoreEntitySet="Status">
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Value" ColumnName="Value" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Logs">
+            <EntityTypeMapping TypeName="angularModel.Log">
+              <MappingFragment StoreEntitySet="Log">
+                <ScalarProperty Name="FormattedMessage" ColumnName="FormattedMessage" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="Win32ThreadId" ColumnName="Win32ThreadId" />
+                <ScalarProperty Name="ThreadName" ColumnName="ThreadName" />
+                <ScalarProperty Name="ProcessName" ColumnName="ProcessName" />
+                <ScalarProperty Name="ProcessID" ColumnName="ProcessID" />
+                <ScalarProperty Name="AppDomainName" ColumnName="AppDomainName" />
+                <ScalarProperty Name="MachineName" ColumnName="MachineName" />
+                <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Severity" ColumnName="Severity" />
+                <ScalarProperty Name="Priority" ColumnName="Priority" />
+                <ScalarProperty Name="EventID" ColumnName="EventID" />
+                <ScalarProperty Name="LogID" ColumnName="LogID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

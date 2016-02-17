@@ -9,7 +9,7 @@
 
     // Setup Service
     angular
-        .module('app.rightsManagement', [])
+        .module('app.rightsManagement')
     // ReSharper disable FunctionsUsedBeforeDeclared
         .service('RightsManagementService', RightsManagementService);
 
@@ -23,10 +23,10 @@
 
         this.rightsUri = window.frsApiUrl + '/api/RightsManagement';
 
-        this.get = function (onReady, onError) {
+        this.get = function (data, onReady, onError) {
             onError = onError || function () { alert('Failed to load rights'); };
             $http
-              .get(this.rightsUri)
+              .get(this.rightsUri + "/?RoleId=" + (data || ""))
               .success(onReady)
               .error(onError);
         }

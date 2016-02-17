@@ -31,6 +31,7 @@ namespace FRS.Implementation
             unityContainer.RegisterType<ILoadMetaDataService, LoadMetaDetaService>();
             unityContainer.RegisterType<IFileContentService, FileContentService>();
             unityContainer.RegisterType<IMT940LoadService, MT940LoadService>();
+            unityContainer.RegisterType<IUsersService, UsersService>();
         }
     }
 }

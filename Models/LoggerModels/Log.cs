@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using FRS.Models.LoggerModels;
 
 namespace FRS.Models.LoggerModels
 {
