@@ -5,6 +5,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
 using FRS.Commons;
+using FRS.Implementation.Identity;
 using FRS.Models.IdentityModels;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
@@ -44,8 +45,13 @@ namespace FRS.WebApi.Providers
             context.OwinContext.Response.Headers.Add("Access-Control-Allow-Origin", new[] { allowedOrigin });
 
             var userManager = context.OwinContext.GetUserManager<ApplicationUserManager>();
-
-            AspNetUser user = await userManager.FindAsync(context.UserName, context.Password);
+            var userName = context.UserName;
+            if (context.UserName.Contains("@"))
+            {
+                var aspNetUser = await userManager.FindByEmailAsync(context.UserName);
+                userName = aspNetUser.UserName;
+            }
+            AspNetUser user = await userManager.FindAsync(userName, context.Password);
 
             if (user == null)
             {

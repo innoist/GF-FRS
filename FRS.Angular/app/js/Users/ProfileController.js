@@ -36,6 +36,7 @@
             ProfileService.saveProfile(vm.user,function(response) {
                 if (response) {
                     toaster.success("Profile Saved.");
+                    $state.go('app.dashboard');
                 }
 
             }, function(err) {
