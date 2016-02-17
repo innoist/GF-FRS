@@ -43,9 +43,9 @@
                 </div>
                 <div class="form-group">
                     <label>Role</label>
-                    <ui-select ng-model="uc.Roles.selected" theme="bootstrap" ng-disabled="uc.disabled">
+                    <ui-select ng-model="upc.Roles.selected" theme="bootstrap" ng-disabled="upc.disabled">
                         <ui-select-match placeholder="Select a Role...">{{$select.selected.Name}}</ui-select-match>
-                        <ui-select-choices repeat="role in uc.Roles | propsFilter: {Name: $select.search}">
+                        <ui-select-choices repeat="role in upc.Roles | propsFilter: {Name: $select.search}">
                             <div ng-bind-html="role.Name | highlight: $select.search"></div>
                         </ui-select-choices>
                     </ui-select>

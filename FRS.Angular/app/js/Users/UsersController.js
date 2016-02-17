@@ -23,7 +23,7 @@
                 PageNo: 1,
                 PageSize: 10,
                 sort: null,
-                Name: '',
+                Name: null,
                 Role: null,
                 PhoneNumber: null
     },
@@ -125,9 +125,9 @@
             paginationOptions.params.SortBy = 0;
 
             //Custom Filter parameters
-            paginationOptions.params.Name = '';
-            paginationOptions.params.Role = '';
-            paginationOptions.params.PhoneNumber = '';
+            paginationOptions.params.Name = null;
+            paginationOptions.params.Role = null;
+            paginationOptions.params.PhoneNumber = null;
             getPage();
         }
 
