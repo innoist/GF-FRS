@@ -9201,12 +9201,12 @@ function hideProgress() {
 }
 
 function showErrors(err) {
-    if (!err || !err.data || !err.data.ModelState)
+    if (!err || !err.ModelState || !err.data)
         return null;
 
     var errors = "";
-    for (var key in err.data.ModelState) {
-        var errMsg = err.data.ModelState[key][0];
+    for (var key in err.ModelState) {
+        var errMsg = err.ModelState[key][0];
         errors += errMsg + "<br/>";
     }
 

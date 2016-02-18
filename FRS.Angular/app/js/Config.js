@@ -106,7 +106,7 @@
                 templateUrl: 'app/pages/page.html',
                 resolve: helper.resolveFor('modernizr', 'icons', 'toaster'),
                 controller: [
-                    '$rootScope', function ($rootScope) {
+                    '$rootScope', function($rootScope) {
                         $rootScope.app.layout.isBoxed = false;
                     }
                 ]
@@ -125,8 +125,10 @@
             .state('account.recover', {
                 url: '/recover',
                 title: 'Recover',
-                templateUrl: 'app/Views/Users/Recover.html'
-            })
+                templateUrl: 'app/Views/Users/Recover.html',
+                controller: 'ForgotPasswordController',
+                controllerAs: 'forgotPassword'
+    })
             .state('account.lock', {
                 url: '/lock',
                 title: 'Lock',

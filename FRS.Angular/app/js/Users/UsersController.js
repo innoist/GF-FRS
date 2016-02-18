@@ -14,7 +14,16 @@
 
     function UsersController($scope, $http, uiGridConstants, UsersService) {
         var vm = this;
-
+        var actionBtnTemplate = '<div uib-dropdown="dropdown" class="btn-group">' +
+            '<button type="button" class="btn btn-inverse">Action</button>' +
+            '<button type="button" uib-dropdown-toggle="" class="btn dropdown-toggle btn-inverse">' + 
+            '</button>' +
+            '<ul role="menu" class="dropdown-menu">' +
+            '</li><li>' +
+            '<a href="#">Another action</a>' +
+            '</li><li><a href="#">Something else here</a>' +
+            '</li>' +
+            '<li class="divider"></li><li><a href="#">Separated link</a></li></ul></div>';
         var paginationOptions = {
             'params': {
                 SortBy: 0,
@@ -42,7 +51,7 @@
             columnDefs: [
                 // name is for display on the table header, field is for mapping as in 
                 //sortId is kept locally it is not the property of ui.grid
-              { name: 'Id', field: 'Id', sortId: 0, width: '8%', enableSorting: true },
+              { name: 'Id', field: 'Id', sortId: 0, width: '8%', enableSorting: true, cellTemplate: '<a class="ui-grid-cell-contents" ui-sref="app.Profile({Name : row.entity.UserName})">{{row.entity.Id}} </a>' },
               { name: 'First Name', field: 'FirstName', sortId: 1, enableSorting: false },
               { name: 'Last Name', field: 'LastName', sortId: 2, enableSorting: false },
               { name: 'User Name', field: 'UserName', sortId: 3, enableSorting: false },
@@ -51,7 +60,7 @@
               { name: 'Phone No.', field: 'Telephone', sortId: 6, enableSorting: false },
               { name: 'Company', field: 'CompanyName', sortId: 7, enableSorting: false },
               { name: 'Role', field: 'Role', sortId: 8, enableSorting: false },
-              { name: 'Action', field: '', sortId: 8, enableSorting: false }
+              //{ name: 'Action', field: '', sortId: 8, enableSorting: false, cellTemplate: actionBtnTemplate }
             ],
             onRegisterApi: function (gridApi) {
                 vm.gridApi = gridApi;

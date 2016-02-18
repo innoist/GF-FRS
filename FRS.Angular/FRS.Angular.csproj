@@ -58,6 +58,8 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="app\css\select2.css" />
+    <Content Include="app\css\select2.png" />
     <Content Include="app\documentation\readme.md" />
     <Content Include="app\i18n\es_AR.json" />
     <Content Include="app\img\logo.png" />
