@@ -114,6 +114,7 @@ namespace FRS.WebApi.Controllers
 
         // POST api/Account/ChangePassword
         [Route("ChangePassword")]
+        [HttpPost]
         public async Task<IHttpActionResult> ChangePassword(ChangePasswordBindingModel model)
         {
             if (!ModelState.IsValid)

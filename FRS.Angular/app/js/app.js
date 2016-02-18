@@ -2406,6 +2406,11 @@
               {
                   name: 'load.module', files: ['/app/js/Load/LoadController.js']
               }
+              ,
+              {
+                  name: 'changePassword.module', files: ['/app/js/Users/changePassword.conroller.js',
+                                                        '/app/js/Users/changePassword.service.js']
+              }
             ]
         })
     ;
@@ -4263,7 +4268,7 @@ function hideProgress() {
 }
 
 function showErrors(err) {
-    if (!err || !err.ModelState || !err.data)
+    if (!err || !err.ModelState)
         return null;
 
     var errors = "";

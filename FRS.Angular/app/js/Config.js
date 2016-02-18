@@ -94,6 +94,12 @@
                 controllerAs: 'upc',
                 resolve: helper.resolveFor('ui.select', 'profile.module')
             })
+            .state('app.changePassword', {
+                url: '/changePassword',
+                title: 'Change Password',
+                templateUrl: helper.basepath('../../../../app/views/Users/ChangePassword.html'),
+                resolve: helper.resolveFor('changePassword.module')
+            })
             .state('app.rightsManagement', {
                 url: '/RightsManagement',
                 title: 'Rights Management',
