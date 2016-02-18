@@ -9,9 +9,6 @@
  * 
  */
 
-
-
-
 (function () {
     'use strict';
 
@@ -5826,6 +5823,10 @@
               {
                   name: 'colorpicker.module', files: ['../../vendor/angular-bootstrap-colorpicker/css/colorpicker.css',
                                                              '../../vendor/angular-bootstrap-colorpicker/js/bootstrap-colorpicker-module.js']
+              },
+              {
+                  name: 'rightsManagement.module', files: ['/app/js/RightsManagement/rightsManagement.controller.js',
+                                                             '/app/js/RightsManagement/rightsManagement.service.js']
               }
             ]
         })

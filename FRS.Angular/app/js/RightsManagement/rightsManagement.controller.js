@@ -6,18 +6,9 @@
 (function () {
     'use strict';
 
-    angular
-        .module('app.rightsManagement', []);
-})();
-
-(function () {
-    'use strict';
-
-    angular
-        .module('app.rightsManagement', [])
-// ReSharper disable FunctionsUsedBeforeDeclared
-        .controller('RightsManagementController', RightsManagementController);
-
+    var core = angular.module('app.core');
+    // ReSharper disable FunctionsUsedBeforeDeclared
+    core.lazy.controller('RightsManagementController', RightsManagementController);
 
     RightsManagementController.$inject = ['$scope', 'RightsManagementService', 'toaster'];
     // ReSharper restore FunctionsUsedBeforeDeclared
@@ -29,7 +20,7 @@
         var vm = this;
 
         $scope.role = {};
-        
+
         // Wire Role Change
         $scope.$watch("role.selected", function (newValue, oldValue) {
             if (oldValue && newValue && (oldValue.Id !== newValue.Id)) {
@@ -50,7 +41,7 @@
             vm.rights = data.Rights;
             // If Selected Role then get the role from roles list and select it
             if (data.SelectedRoleId) {
-                var selectedRole = $(data.Roles).filter(function(index, item) {
+                var selectedRole = $(data.Roles).filter(function (index, item) {
                     return item.Id === data.SelectedRoleId;
                 });
                 if (selectedRole.length > 0) {
@@ -97,7 +88,7 @@
                         parent = parent[0];
                         if (!data.IsSelected) {
                             // Check if other siblings are also unchecked then uncheck parent
-                            var siblingMenuItems = $(vm.rights).filter(function(index, item) {
+                            var siblingMenuItems = $(vm.rights).filter(function (index, item) {
                                 return item.ParentId === data.ParentId && item.MenuId !== data.MenuId && item.IsSelected;
                             });
                             if (siblingMenuItems.length === 0) {
@@ -113,9 +104,9 @@
         };
 
         // Get Selected Menus
-        vm.getSelectedMenuIds = function() {
+        vm.getSelectedMenuIds = function () {
             var selectedMenuIds = "";
-            $(vm.rights).each(function(index, item) {
+            $(vm.rights).each(function (index, item) {
                 if (item.IsSelected) {
                     if (!selectedMenuIds) {
                         selectedMenuIds = item.MenuId;
@@ -129,7 +120,7 @@
         };
 
         // ON Update Rights Success
-        vm.onUpdateSuccess = function() {
+        vm.onUpdateSuccess = function () {
             toaster.pop("success", "Rights updated successfully", "Notification");
             // Reset Form
             vm.rightsForm.$setPristine();
@@ -141,7 +132,7 @@
         };
 
         // Update Rights
-        vm.update = function() {
+        vm.update = function () {
             // Get the Selected Menu Ids
             var selectedMenuIds = vm.getSelectedMenuIds();
             RightsManagementService.save({
