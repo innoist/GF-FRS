@@ -1,7 +1,10 @@
 ﻿(function () {
-    angular
-        .module('app.pages')
-        .controller('ResetPasswordController', ResetPasswordController);
+    //angular
+    //    .module('app.pages')
+    //    .controller('ResetPasswordController', ResetPasswordController);
+    var core = angular.module('app.core');
+    // ReSharper disable FunctionsUsedBeforeDeclared
+    core.lazy.controller('ResetPasswordController', ResetPasswordController);
 
     ResetPasswordController.$inject = ['$http', '$state'];
     function ResetPasswordController($http, $state) {

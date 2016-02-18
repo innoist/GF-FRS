@@ -1,7 +1,10 @@
 ﻿(function() {
-    angular
-        .module('app.Users')
-        .service('UsersService', UsersService);
+    //angular
+    //    .module('app.Users')
+    //    .service('UsersService', UsersService);
+    var core = angular.module('app.core');
+    // ReSharper disable FunctionsUsedBeforeDeclared
+    core.lazy.service('UsersService', UsersService);
 
     UsersService.$inject = ['$http'];
     function UsersService($http) {

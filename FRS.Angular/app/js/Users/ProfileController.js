@@ -1,17 +1,20 @@
-﻿(function() {
-    'use strict';
+﻿//(function() {
+//    'use strict';
 
-    angular.module('app.Profile',[]);
+//    angular.module('app.Profile',[]);
 
 
-})();
+//})();
 
 (function() {
     'use strict';
 
-    angular
-        .module('app.Profile', [])
-        .controller('ProfileController', ProfileController);
+    //angular
+    //    .module('app.Profile', [])
+    //    .controller('ProfileController', ProfileController);
+    var core = angular.module('app.core');
+    // ReSharper disable FunctionsUsedBeforeDeclared
+    core.lazy.controller('ProfileController', ProfileController);
 
     ProfileController.$inject = ['$scope','$stateParams', '$state', 'ProfileService', 'toaster'];
 

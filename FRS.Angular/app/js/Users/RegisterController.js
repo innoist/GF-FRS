@@ -6,9 +6,12 @@
 (function () {
     'use strict';
 
-    angular
-        .module('app.pages')
-        .controller('RegisterFormController', RegisterFormController);
+    //angular
+    //    .module('app.pages')
+    //    .controller('RegisterFormController', RegisterFormController);
+    var core = angular.module('app.core');
+    // ReSharper disable FunctionsUsedBeforeDeclared
+    core.lazy.controller('RegisterFormController', RegisterFormController);
 
     RegisterFormController.$inject = ['$http', '$state', 'toaster'];
     function RegisterFormController($http, $state, toaster) {

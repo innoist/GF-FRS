@@ -1,7 +1,10 @@
 ﻿(function() {
-    angular
-        .module('app.pages')
-        .controller('ForgotPasswordController', ForgotPasswordController);
+    //angular
+    //    .module('app.pages')
+    //    .controller('ForgotPasswordController', ForgotPasswordController);
+    var core = angular.module('app.core');
+    // ReSharper disable FunctionsUsedBeforeDeclared
+    core.lazy.controller('ForgotPasswordController', ForgotPasswordController);
 
     ForgotPasswordController.$inject = ['$http', '$state', 'toaster'];
     function ForgotPasswordController($http, $state, toaster) {

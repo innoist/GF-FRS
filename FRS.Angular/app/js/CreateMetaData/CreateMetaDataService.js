@@ -1,9 +1,12 @@
 ﻿(function () {
     'use strict';
 
-    angular
-        .module('app.CreateMetaData')
-        .service('CreateMetaDataService', CreateMetaDataService);
+    //angular
+    //    .module('app.CreateMetaData')
+    //    .service('CreateMetaDataService', CreateMetaDataService);
+    var core = angular.module('app.core');
+    // ReSharper disable FunctionsUsedBeforeDeclared
+    core.lazy.service('CreateMetaDataService', CreateMetaDataService);
 
     CreateMetaDataService.$inject = ['$http', '$state', '$localStorage'];
     function CreateMetaDataService($http, $state, $localStorage) {

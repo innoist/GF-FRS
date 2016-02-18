@@ -52,7 +52,7 @@
                 templateUrl: helper.basepath('../../../../app/views/LoadMetaData/LoadMetaData.html'),
                 controller: 'LoadMetaDataController',
                 controllerAs: 'mdc',
-                resolve: helper.resolveFor('ui.grid', 'ui.select')
+                resolve: helper.resolveFor('ui.grid', 'ui.select', 'loadMetaData.module')
             })
             .state('app.CreateMetaData', {
                 url: '/CreateMetaData',
@@ -60,7 +60,7 @@
                 templateUrl: helper.basepath('../../../../app/views/CreateMetaData/CreateMetaData.html'),
                 controller: 'CreateMetaDataController',
                 controllerAs: 'cmdc',
-                resolve: helper.resolveFor('oitozero.ngSweetAlert')
+                resolve: helper.resolveFor('oitozero.ngSweetAlert', 'createMetaData.module')
             })
             .state('app.LogsModule', {
                 url: '/Log',
@@ -76,7 +76,7 @@
                 templateUrl: helper.basepath('../../../../app/views/Load/Load.html'),
                 controller: 'LoadController',
                 controllerAs: 'ldc',
-                resolve: helper.resolveFor('parsley')
+                resolve: helper.resolveFor('parsley', 'load.module')
             })
             .state('app.Users', {
                 url: '/Users',
@@ -84,7 +84,7 @@
                 templateUrl: helper.basepath('../../../../app/views/Users/Users.html'),
                 controller: 'UsersController',
                 controllerAs: 'uc',
-                resolve: helper.resolveFor('ui.grid', 'ui.select')
+                resolve: helper.resolveFor('ui.grid', 'ui.select', 'users.module')
             })
             .state('app.Profile', {
                 url: '/Profile/:Name',
@@ -92,7 +92,7 @@
                 templateUrl: helper.basepath('../../../../app/views/Users/Profile.html'),
                 controller: 'ProfileController',
                 controllerAs: 'upc',
-                resolve: helper.resolveFor('ui.select')
+                resolve: helper.resolveFor('ui.select', 'profile.module')
             })
             .state('app.rightsManagement', {
                 url: '/RightsManagement',
@@ -116,19 +116,22 @@
                 url: '/login',
                 title: 'Login',
                 //templateUrl: 'app/pages/login.html'
-                templateUrl: 'app/Views/Users/login.html'
+                templateUrl: 'app/Views/Users/login.html',
+                resolve: helper.resolveFor('login.module'),
             })
             .state('account.register', {
                 url: '/register',
                 title: 'Register',
-                templateUrl: 'app/Views/Users/Register.html'
+                templateUrl: 'app/Views/Users/Register.html',
+                resolve: helper.resolveFor('register.module'),
             })
             .state('account.recover', {
                 url: '/recover',
                 title: 'Recover',
                 templateUrl: 'app/Views/Users/Recover.html',
                 controller: 'ForgotPasswordController',
-                controllerAs: 'forgotPassword'
+                controllerAs: 'forgotPassword',
+                resolve: helper.resolveFor('recover.module'),
     })
             .state('account.lock', {
                 url: '/lock',
@@ -145,7 +148,8 @@
                 title: 'Reset Password',
                 templateUrl: 'app/Views/Users/ResetPassword.html',
                 controller: 'ResetPasswordController',
-                controllerAs: 'resetPassword'
+                controllerAs: 'resetPassword',
+                resolve: helper.resolveFor('resetPassword.module'),
             });
         
         //
