@@ -138,6 +138,13 @@
                 url: '/404',
                 title: 'Not Found',
                 templateUrl: 'app/pages/404.html'
+            })
+            .state('account.ResetPassword', {
+                url: '/ResetPassword',
+                title: 'Reset Password',
+                templateUrl: 'app/Views/Users/ResetPassword.html',
+                controller: 'ResetPasswordController',
+                controllerAs: 'resetPassword'
             });
 
         //

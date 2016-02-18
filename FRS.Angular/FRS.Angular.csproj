@@ -79,6 +79,7 @@
     <Content Include="app\js\Users\ProfileController.js" />
     <Content Include="app\js\Users\ProfileService.js" />
     <Content Include="app\js\Users\RegisterController.js" />
+    <Content Include="app\js\Users\ResetPasswordController.js" />
     <Content Include="app\js\Users\UsersController.js" />
     <Content Include="app\js\Users\UsersService.js" />
     <Content Include="app\vendor\datatable-bootstrap\images\Sorting icons.psd" />
@@ -87,6 +88,7 @@
     <Content Include="app\views\Log\LogLV.html" />
     <Content Include="app\views\RightsManagement\index.html" />
     <Content Include="app\views\Users\Profile.html" />
+    <Content Include="app\views\Users\ResetPassword.html" />
     <Content Include="app\views\Users\Users.html" />
     <Content Include="master\.bowerrc" />
     <Content Include="master\.jshintrc" />

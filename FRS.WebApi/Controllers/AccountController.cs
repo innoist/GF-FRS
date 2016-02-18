@@ -133,7 +133,7 @@ namespace FRS.WebApi.Controllers
         }
 
         // POST api/Account/ForgotPassword
-        [Route("ForgotPassword")]
+        [Route("ForgotPassword", Name = "ForgotPassword")]
         [HttpPost]
         [AllowAnonymous]
         public async Task<IHttpActionResult> ForgotPassword(ForgotPasswordViewModel model)
@@ -149,7 +149,7 @@ namespace FRS.WebApi.Controllers
                 }
 
                 var code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
-                var callbackUrl = Url.Link("api/Account/ResetPassword", new { userId = user.Id, code = code });
+                var callbackUrl = Url.Link("ResetPassword", new { userId = user.Id, code = code });
                 await
                     UserManager.SendEmailAsync(user.Email, "Reset Password",
                         "Please reset your password by clicking here: <a href=\"" + callbackUrl + "\">link</a>");
@@ -162,7 +162,9 @@ namespace FRS.WebApi.Controllers
         }
 
         // POST api/Account/ResetPassword
-        [Route("ResetPassword")]
+        [Route("ResetPassword", Name = "ResetPassword")]
+        [HttpGet]
+        [AllowAnonymous]
         public async Task<IHttpActionResult> ResetPassword(ResetPasswordViewModel model)
         {
             if (!ModelState.IsValid)
