@@ -9,6 +9,7 @@ using System.Web.Http;
 using System.Web.Http.Cors;
 using FRS.Implementation.Identity;
 using FRS.Models.IdentityModels;
+using FRS.Models.IdentityModels.ViewModels;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
@@ -17,6 +18,13 @@ using Microsoft.Owin.Security.OAuth;
 using FRS.WebApi.Models;
 using FRS.WebApi.Providers;
 using FRS.WebApi.Results;
+using AddExternalLoginBindingModel = FRS.Models.IdentityModels.ViewModels.AddExternalLoginBindingModel;
+using ChangePasswordBindingModel = FRS.Models.IdentityModels.ViewModels.ChangePasswordBindingModel;
+using RegisterBindingModel = FRS.WebApi.Models.RegisterBindingModel;
+using RegisterExternalBindingModel = FRS.Models.IdentityModels.ViewModels.RegisterExternalBindingModel;
+using RemoveLoginBindingModel = FRS.Models.IdentityModels.ViewModels.RemoveLoginBindingModel;
+using SetPasswordBindingModel = FRS.Models.IdentityModels.ViewModels.SetPasswordBindingModel;
+
 
 namespace FRS.WebApi.Controllers
 {
@@ -121,11 +129,67 @@ namespace FRS.WebApi.Controllers
                 return GetErrorResult(result);
             }
 
-            return Ok();
+            return Ok(true);
+        }
+
+        // POST api/Account/ForgotPassword
+        [Route("ForgotPassword")]
+        [HttpPost]
+        [AllowAnonymous]
+        public async Task<IHttpActionResult> ForgotPassword(ForgotPasswordViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = await UserManager.FindByEmailAsync(model.Email);
+                if (user == null || !(await UserManager.IsEmailConfirmedAsync(user.Id)))
+                {
+                    ModelState.AddModelError("", "Email not found.");
+                    // Don't reveal that the user does not exist or is not confirmed
+                    return BadRequest(ModelState);
+                }
+
+                var code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
+                var callbackUrl = Url.Link("api/Account/ResetPassword", new { userId = user.Id, code = code });
+                await
+                    UserManager.SendEmailAsync(user.Email, "Reset Password",
+                        "Please reset your password by clicking here: <a href=\"" + callbackUrl + "\">link</a>");
+
+                //return Redirect("");
+                return Ok(true);
+            }
+            // If we got this far, something failed, redisplay form
+            return Ok(model);
+        }
+
+        // POST api/Account/ResetPassword
+        [Route("ResetPassword")]
+        public async Task<IHttpActionResult> ResetPassword(ResetPasswordViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            var user = await UserManager.FindByEmailAsync(model.Email);
+            if (user == null)
+            {
+                // Don't reveal that the user does not exist
+                //TempData["message"] = new MessageViewModel { Message = "Something went wrong.Try reseting your password again.", IsError = true };
+                //return RedirectToAction("Login", "Account");
+                return BadRequest("Something went wrong.Try reseting your password again.");
+            }
+            var result = await UserManager.ResetPasswordAsync(user.Id, model.Code, model.Password);
+            if (result.Succeeded)
+            {
+                //TempData["message"] = new MessageViewModel { Message = "Password has been updated.", IsUpdated = true };
+                return Ok("Password has been updated.");
+            }
+            AddErrors(result);
+            return BadRequest(ModelState);
         }
 
         // POST api/Account/SetPassword
         [Route("SetPassword")]
+        [AllowAnonymous]
         public async Task<IHttpActionResult> SetPassword(SetPasswordBindingModel model)
         {
             if (!ModelState.IsValid)
@@ -326,7 +390,7 @@ namespace FRS.WebApi.Controllers
                 Email = model.Email,
                 FirstName = model.FirstName,
                 LastName = model.LastName,
-                Telephone = model.Phone,
+                Telephone = model.Telephone,
                 Address = model.Address,
                 EmailConfirmed = true,
                 LockoutEnabled = false
@@ -382,15 +446,21 @@ namespace FRS.WebApi.Controllers
         }
         
         #region Helpers
-
+        private void AddErrors(IdentityResult result)
+        {
+            foreach (var error in result.Errors)
+            {
+                ModelState.AddModelError("", error);
+            }
+        }
         private async Task SendAccountCredentials(string email, string username, string password)
         {
-            //var callbackUrl = Url.Action("Login", "Account", null, protocol: Request.Url.Scheme);
-            //await UserManager.SendEmailAsync(email, "Login Credentials",
-            //    "Your Email is: " + email +
-            //    "<br/>Your Username is: " + username +
-            //    "<br/>Your Password is: " + password +
-            //    "<br>Click <a href=\"" + callbackUrl + "\">here</a> to login.");
+            //var callbackUrl = this.Url.Link("/",null);
+            await UserManager.SendEmailAsync(email, "Login Credentials",
+                "Your Email is: " + email +
+                "<br/>Your Username is: " + username +
+                "<br/>Your Password is: " + password +
+                "<br>Click <a href=\"" + "" + "\">here</a> to login.");
         }
 
         private IAuthenticationManager Authentication

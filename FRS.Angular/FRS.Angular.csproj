@@ -58,6 +58,8 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="app\css\select2.css" />
+    <Content Include="app\css\select2.png" />
     <Content Include="app\documentation\readme.md" />
     <Content Include="app\i18n\es_AR.json" />
     <Content Include="app\img\logo.png" />
@@ -72,8 +74,11 @@
     <Content Include="app\js\Log\LogController.js" />
     <Content Include="app\js\Log\LogDataService.js" />
     <Content Include="app\js\Modules.js" />
+    <Content Include="app\js\Users\ForgetPasswordController.js" />
+    <Content Include="app\js\Users\LoginController.js" />
     <Content Include="app\js\Users\ProfileController.js" />
     <Content Include="app\js\Users\ProfileService.js" />
+    <Content Include="app\js\Users\RegisterController.js" />
     <Content Include="app\js\Users\UsersController.js" />
     <Content Include="app\js\Users\UsersService.js" />
     <Content Include="app\vendor\datatable-bootstrap\images\Sorting icons.psd" />
@@ -568,11 +573,11 @@
     <Content Include="app\js\app.js" />
     <Content Include="app\js\base.js" />
     <Content Include="app\pages\404.html" />
-    <Content Include="app\pages\lock.html" />
-    <Content Include="app\pages\login.html" />
+    <Content Include="app\views\Users\Lock.html" />
+    <Content Include="app\views\Users\Login.html" />
     <Content Include="app\pages\page.html" />
-    <Content Include="app\pages\recover.html" />
-    <Content Include="app\pages\register.html" />
+    <Content Include="app\views\Users\Recover.html" />
+    <Content Include="app\views\Users\Register.html" />
     <Content Include="app\vendor\datatable-bootstrap\css\dataTables.bootstrap.css" />
     <Content Include="app\vendor\datatable-bootstrap\images\back_disabled.png" />
     <Content Include="app\vendor\datatable-bootstrap\images\back_enabled.png" />

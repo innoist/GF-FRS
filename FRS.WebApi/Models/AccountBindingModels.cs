@@ -48,7 +48,7 @@ namespace FRS.WebApi.Models
         public string Address { get; set; }
         
         [Required (ErrorMessage = "Phone is required")]
-        public string Phone { get; set; }
+        public string Telephone { get; set; }
         public string RoleId { get; set; }
         public string Password { get; set; }
 

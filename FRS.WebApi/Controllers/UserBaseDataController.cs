@@ -21,11 +21,18 @@ namespace FRS.WebApi.Controllers
         #endregion
 
         // GET: api/UserBaseData
-        [HttpGet]
+        //[HttpGet]
         public IEnumerable<RoleDDL> Get()
         {
             var roles = usersService.GetAllRoles().Select(x => x.MapRoleFromServerToClient()).ToList();
             return roles;
+        }
+        
+        //[HttpGet]
+        public UsersModel Get([FromUri]string userName)
+        {
+            var user = usersService.GetUser(userName).MapUserFromServerToClient();
+            return user;
         }
         
     }

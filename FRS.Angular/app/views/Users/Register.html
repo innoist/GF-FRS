@@ -18,13 +18,13 @@
              </div>
              <div class="form-group has-feedback">
                  <label class="text-muted">First Name</label>
-                 <input type="email" name="account_FirstName" placeholder="Enter First Name" autocomplete="off" ng-model="reg.register.FirstName" required="" class="form-control" />
+                 <input type="text" name="account_FirstName" placeholder="Enter First Name" autocomplete="off" ng-model="reg.register.FirstName" required="" class="form-control" />
                  <span class="fa fa-envelope form-control-feedback text-muted"></span>
                  <span ng-show="reg.registerForm.account_FirstName.$dirty &amp;&amp; reg.registerForm.account_FirstName.$error.required" class="text-danger">This field is required</span>
              </div>
              <div class="form-group has-feedback">
                  <label class="text-muted">Last Name</label>
-                 <input type="email" name="account_LastName" placeholder="Enter Last Name" autocomplete="off" ng-model="reg.register.LastName" required="" class="form-control" />
+                 <input type="text" name="account_LastName" placeholder="Enter Last Name" autocomplete="off" ng-model="reg.register.LastName" required="" class="form-control" />
                  <span class="fa fa-envelope form-control-feedback text-muted"></span>
                  <span ng-show="reg.registerForm.account_LastName.$dirty &amp;&amp; reg.registerForm.account_LastName.$error.required" class="text-danger">This field is required</span>
              </div>
@@ -54,7 +54,7 @@
             <button type="submit" class="btn btn-block btn-primary mt-lg">Create account</button>
          </form>
          <div ng-show="reg.authMsg" class="alert alert-danger text-center">{{reg.authMsg}}</div>
-         <p class="pt-lg text-center">Have an account?</p><a ui-sref="page.login" class="btn btn-block btn-default">Signin</a>
+         <p class="pt-lg text-center">Have an account?</p><a ui-sref="account.login" class="btn btn-block btn-default">Signin</a>
       </div>
    </div>
    <!-- END panel-->

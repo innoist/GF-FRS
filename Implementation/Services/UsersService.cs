@@ -25,6 +25,12 @@ namespace FRS.Implementation.Services
         {
             return userRepository.GetAll();
         }
+
+        public AspNetUser GetUser(string userName)
+        {
+            return userRepository.FindUserByUserName(userName);
+        }
+
         public UsersSearchResponse GetAllUsers(UsersSearchRequest searchRequest)
         {
             return userRepository.GetUsersSearchResponse(searchRequest);

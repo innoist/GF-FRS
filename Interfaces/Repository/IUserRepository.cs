@@ -22,5 +22,6 @@ namespace FRS.Interfaces.Repository
         AspNetUser GetLoggedInUser();
 
         UsersSearchResponse GetUsersSearchResponse(UsersSearchRequest searchRequest);
+        AspNetUser FindUserByUserName(string userName);
     }
 }

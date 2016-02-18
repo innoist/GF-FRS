@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Configuration;
+using System.Net;
+using System.Net.Mail;
+using System.Threading.Tasks;
 using FRS.Implementation.Identity;
 using FRS.Models.IdentityModels;
 using FRS.Repository.BaseRepository;
@@ -66,6 +69,48 @@ namespace FRS.WebApi
                     new DataProtectorTokenProvider<AspNetUser, string>(dataProtectionProvider.Create("ASP.NET Identity"));
             }
             return manager;
+        }
+
+        /// <summary>
+        /// Send Email
+        /// </summary>
+        /// <param name="email">email of reciever</param>
+        /// <param name="subject">Subject Of the Email</param>
+        /// <param name="body">Body message of email</param>
+        /// <returns></returns>
+        public override Task SendEmailAsync(string email, string subject, string body)
+        {
+
+            string fromAddress = ConfigurationManager.AppSettings["FromAddress"];
+            string fromPwd = ConfigurationManager.AppSettings["FromPassword"];
+            string fromDisplayName = ConfigurationManager.AppSettings["FromDisplayName"];
+            //string cc = ConfigurationManager.AppSettings["CC"];
+            string bcc = ConfigurationManager.AppSettings["BCC"];
+
+            //Getting the file from config, to send
+            MailMessage oEmail = new MailMessage
+            {
+                From = new MailAddress(fromAddress, fromDisplayName),
+                Subject = subject,
+                IsBodyHtml = true,
+                Body = body,
+                Priority = MailPriority.High,
+
+
+            };
+            oEmail.Bcc.Add(bcc);
+            oEmail.To.Add(email);
+            string smtpServer = ConfigurationManager.AppSettings["SMTPServer"];
+            string smtpPort = ConfigurationManager.AppSettings["SMTPPort"];
+            string enableSsl = ConfigurationManager.AppSettings["EnableSSL"];
+            SmtpClient client = new SmtpClient(smtpServer, Convert.ToInt32(smtpPort))
+            {
+                EnableSsl = enableSsl == "1",
+                Credentials = new NetworkCredential(fromAddress, fromPwd)
+            };
+
+            return client.SendMailAsync(oEmail);
+
         }
     }
 }
