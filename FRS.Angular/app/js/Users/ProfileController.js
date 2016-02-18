@@ -36,7 +36,12 @@
         if ($stateParams.Name !== "") {
             ProfileService.loadProfile($stateParams.Name, function (response) {
                 vm.user = response;
-                //vm.Roles.selected = 1;
+                var selectedRole = $(vm.Roles).filter(function (index, item) {
+                    return item.Name === response.Role;
+                });
+                if (selectedRole.length > 0) {
+                    vm.Roles.selected = selectedRole[0];
+                }
             });
         }
 
