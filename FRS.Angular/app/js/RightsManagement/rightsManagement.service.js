@@ -8,10 +8,9 @@
     'use strict';
 
     // Setup Service
-    angular
-        .module('app.rightsManagement')
+    var core = angular.module('app.core');
     // ReSharper disable FunctionsUsedBeforeDeclared
-        .service('RightsManagementService', RightsManagementService);
+    core.lazy.service('RightsManagementService', RightsManagementService);
 
 
     RightsManagementService.$inject = ['$http'];

@@ -11,8 +11,9 @@
         .module('app.routes')
         .config(routesConfig);
 
-    routesConfig.$inject = ['$stateProvider', '$locationProvider', '$urlRouterProvider', 'RouteHelpersProvider'];
-    function routesConfig($stateProvider, $locationProvider, $urlRouterProvider, helper) {
+    routesConfig.$inject = ['$stateProvider', '$locationProvider', '$urlRouterProvider', 'RouteHelpersProvider',
+        '$controllerProvider', '$provide'];
+    function routesConfig($stateProvider, $locationProvider, $urlRouterProvider, helper, $controllerProvider, $provide) {
 
         // Set the following to true to enable the HTML5 Mode
         // You may have to set <base> tag in index and a routing configuration in your server
@@ -20,6 +21,14 @@
 
         // defaults to dashboard
         $urlRouterProvider.otherwise('/FRS/dashboard');
+
+        var core = angular.module('app.core');
+        // Lazy loading
+        core.lazy = {
+            controller: $controllerProvider.register,
+            factory: $provide.factory,
+            service: $provide.service
+        }
 
         //
         // Application Routes
@@ -91,7 +100,7 @@
                 templateUrl: helper.basepath('../../../../app/views/RightsManagement/index.html'),
                 controller: 'RightsManagementController',
                 controllerAs: 'rightsManagement',
-                resolve: helper.resolveFor('ui.grid', 'loaders.css', 'spinkit', 'ui.select')
+                resolve: helper.resolveFor('rightsManagement.module', 'ui.grid', 'loaders.css', 'spinkit', 'ui.select')
             })
             .state('page', {
                 url: '/page',
@@ -128,7 +137,7 @@
                 title: 'Not Found',
                 templateUrl: 'app/pages/404.html'
             });
-
+        
         //
         // CUSTOM RESOLVES
         //   Add your own resolves properties
