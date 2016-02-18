@@ -64,6 +64,7 @@
     <Content Include="app\i18n\es_AR.json" />
     <Content Include="app\img\logo.png" />
     <Content Include="app\js\angular-local-storage.min.js" />
+    <Content Include="app\js\app.js" />
     <Content Include="app\js\Config.js" />
     <Content Include="app\js\CreateMetaData\CreateMetaDataController.js" />
     <Content Include="app\js\RightsManagement\rightsManagement.service.js" />
@@ -572,7 +573,6 @@
     <Content Include="app\img\user\11.jpg" />
     <Content Include="app\img\user\12.jpg" />
     <Content Include="app\img\user\13.jpg" />
-    <Content Include="app\js\app.js" />
     <Content Include="app\js\base.js" />
     <Content Include="app\pages\404.html" />
     <Content Include="app\views\Users\Lock.html" />
