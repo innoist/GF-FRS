@@ -121,7 +121,7 @@ namespace FRS.WebApi.Controllers
                 return GetErrorResult(result);
             }
 
-            return Ok();
+            return Ok(true);
         }
 
         // POST api/Account/SetPassword
@@ -326,7 +326,7 @@ namespace FRS.WebApi.Controllers
                 Email = model.Email,
                 FirstName = model.FirstName,
                 LastName = model.LastName,
-                Telephone = model.Phone,
+                Telephone = model.Telephone,
                 Address = model.Address,
                 EmailConfirmed = true,
                 LockoutEnabled = false

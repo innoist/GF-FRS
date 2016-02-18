@@ -29,7 +29,7 @@
                 url: '/FRS',
                 abstract: true,
                 templateUrl: helper.basepath('../../../../app/views/FRS.html'),
-                resolve: helper.resolveFor('fastclick', 'modernizr', 'icons', 'screenfull', 'animo', 'sparklines', 'slimscroll', 'classyloader', 'toaster', 'whirl')
+                resolve: helper.resolveFor('fastclick', 'modernizr', 'icons', 'screenfull', 'animo', 'sparklines', 'slimscroll', 'classyloader', 'toaster', 'whirl', 'loaders.css', 'spinkit')
             })
             .state('app.dashboard', {
                 url: '/dashboard',
@@ -43,7 +43,7 @@
                 templateUrl: helper.basepath('../../../../app/views/LoadMetaData/LoadMetaData.html'),
                 controller: 'LoadMetaDataController',
                 controllerAs: 'mdc',
-                resolve: helper.resolveFor('ui.grid', 'loaders.css', 'spinkit', 'ui.select')
+                resolve: helper.resolveFor('ui.grid', 'ui.select')
             })
             .state('app.CreateMetaData', {
                 url: '/CreateMetaData',
@@ -101,37 +101,38 @@
                 controllerAs: 'rightsManagement',
                 resolve: helper.resolveFor('ui.grid', 'loaders.css', 'spinkit', 'ui.select')
             })
-            .state('page', {
-                url: '/page',
+            .state('account', {
+                url: '/account',
                 templateUrl: 'app/pages/page.html',
-                resolve: helper.resolveFor('modernizr', 'icons'),
+                resolve: helper.resolveFor('modernizr', 'icons', 'toaster'),
                 controller: [
                     '$rootScope', function ($rootScope) {
                         $rootScope.app.layout.isBoxed = false;
                     }
                 ]
             })
-            .state('page.login', {
+            .state('account.login', {
                 url: '/login',
                 title: 'Login',
-                templateUrl: 'app/pages/login.html'
+                //templateUrl: 'app/pages/login.html'
+                templateUrl: 'app/Views/Users/login.html'
             })
-            .state('page.register', {
+            .state('account.register', {
                 url: '/register',
                 title: 'Register',
-                templateUrl: 'app/pages/register.html'
+                templateUrl: 'app/Views/Users/Register.html'
             })
-            .state('page.recover', {
+            .state('account.recover', {
                 url: '/recover',
                 title: 'Recover',
-                templateUrl: 'app/pages/recover.html'
+                templateUrl: 'app/Views/Users/Recover.html'
             })
-            .state('page.lock', {
+            .state('account.lock', {
                 url: '/lock',
                 title: 'Lock',
-                templateUrl: 'app/pages/lock.html'
+                templateUrl: 'app/Views/Users/Lock.html'
             })
-            .state('page.404', {
+            .state('account.404', {
                 url: '/404',
                 title: 'Not Found',
                 templateUrl: 'app/pages/404.html'
