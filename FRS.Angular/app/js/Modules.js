@@ -35,8 +35,6 @@
             'app.Load',
             'app.Users',
             'app.Profile'
-            //,
-            //'app.rightsManagement'
         ]);
 })();
 

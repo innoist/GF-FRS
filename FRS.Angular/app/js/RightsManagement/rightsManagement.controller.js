@@ -6,13 +6,6 @@
 (function () {
     'use strict';
 
-    angular
-        .module('app.rightsManagement', []);
-})();
-
-(function () {
-    'use strict';
-
     var core = angular.module('app.core');
     // ReSharper disable FunctionsUsedBeforeDeclared
     core.lazy.controller('RightsManagementController', RightsManagementController);
