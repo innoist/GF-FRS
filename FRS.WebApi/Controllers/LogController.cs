@@ -18,7 +18,7 @@ using Microsoft.Practices.Unity;
 
 namespace FRS.WebApi.Controllers
 {
-    [EnableCors(origins: "*", headers: "*", methods: "*")]
+    //[EnableCors(origins: "*", headers: "*", methods: "*")]
     public class LogController : ApiController
     {
         private readonly ILogger loggerService = UnityWebActivator.Container.Resolve<ILogger>();
