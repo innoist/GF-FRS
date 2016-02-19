@@ -2410,6 +2410,11 @@
               {
                   name: 'changePassword.module', files: ['/app/js/Users/changePassword.conroller.js',
                                                         '/app/js/Users/changePassword.service.js']
+              },
+
+              {
+                  name: 'log.module', files: ['/app/js/Log/LogController.js',
+                                                        '/app/js/Log/LogDataService.js']
               }
             ]
         })

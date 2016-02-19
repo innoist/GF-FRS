@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace FRS.WebApi.Models.Log
 {
@@ -12,7 +9,7 @@ namespace FRS.WebApi.Models.Log
         /// <summary>
         /// Event Id
         /// </summary>
-        public int EventId { get; set; }
+        public int? EventId { get; set; }
 
         /// <summary>
         /// Priority

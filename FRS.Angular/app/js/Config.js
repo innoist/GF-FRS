@@ -65,10 +65,10 @@
             .state('app.LogsModule', {
                 url: '/Log',
                 title: 'Logs',
-                templateUrl: helper.basepath('../../../../app/views/Log/Log.html'),
-                controller: 'LogController',
-                controllerAs: 'mdc',
-                resolve: helper.resolveFor('ui.grid', 'loaders.css', 'spinkit', 'ui.select')
+                templateUrl: helper.basepath('../../../../app/views/Log/LogLV.html'),
+                controller: 'LogsController',
+                controllerAs: 'lc',
+                resolve: helper.resolveFor('ui.grid', 'ui.select', 'log.module')
             })
             .state('app.Load', {
                 url: '/Load',

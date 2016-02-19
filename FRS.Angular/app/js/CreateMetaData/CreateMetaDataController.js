@@ -126,6 +126,28 @@
         }
         //#endregion
 
+        $scope.cancelBtn = function () {
+            SweetAlert.swal({
+                title: 'Are you sure?',
+                text: 'All data you entered in form will be lost!',
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#DD6B55',
+                confirmButtonText: 'Yes, cancel saving form.!',
+                cancelButtonText: 'No, stay on this page!',
+                closeOnConfirm: true,
+                closeOnCancel: false
+            }, function (isConfirm) {
+                if (isConfirm) {
+                    //SweetAlert.swal('Deleted!', 'Your imaginary file has been deleted.', 'success');
+                    $state.go('app.LoadMetaData');
+                } else {
+                    SweetAlert.swal('Cancelled', 'Stay on this page', 'error');
+                }
+            });
+            
+        }
+
         //#region Edit LoadMetaData
         $scope.editLoadMetaData = function (loadMetaDataId) {
             $http.get(window.frsApiUrl + '/api/LoadMetaData/' + loadMetaDataId)

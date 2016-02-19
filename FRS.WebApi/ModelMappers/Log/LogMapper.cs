@@ -11,15 +11,15 @@ namespace FRS.WebApi.ModelMappers.Log
         {
             return new Models.Log.LogModel
             {
-                LogId = source.LogId,
-                EventId = source.EventId,
+                LogId = source.LogID,
+                EventId = source.EventID,
                 Priority = source.Priority,
                 Severity = source.Severity,
                 Title = source.Title,
                 Timestamp = source.Timestamp,
                 MachineName = source.MachineName,
                 AppDomainName = source.AppDomainName,
-                ProcessId = source.ProcessId,
+                ProcessId = source.ProcessID,
                 ProcessName = source.ProcessName,                
                 Message = source.Message
             };

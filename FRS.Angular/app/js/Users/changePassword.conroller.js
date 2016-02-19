@@ -20,7 +20,6 @@
 				    NewPassword: $scope.NewPassword,
 				    ConfirmPassword: $scope.ConfirmPassword,
 				};
-			    debugger;
 			    changePasswordService.changePassword(data, function(response) {
 			            if (response) {
 
@@ -33,7 +32,6 @@
 			        	vm.changePasswordForm.$setPristine();
 			        });
 			} else {
-			    debugger;
 				vm.changePasswordForm.OldPassword.$dirty = true;
 				vm.changePasswordForm.NewPassword.$dirty = true;
 				vm.changePasswordForm.ConfirmPassword.$dirty = true;

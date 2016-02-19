@@ -1,10 +1,10 @@
 ﻿
-(function () {
-    'use strict';
+//(function () {
+//    'use strict';
 
-    angular
-        .module('app.LogsModule', []);
-})();
+//    angular
+//        .module('app.LogsModule', []);
+//})();
 
 /**=========================================================
  * Module: load Log
@@ -15,13 +15,13 @@
 (function () {
     'use strict';
 
-    angular
-        .module('app.LogsModule', [])
-        .controller('LogsController', LogsController);
+    var core = angular.module('app.core');
+    // ReSharper disable FunctionsUsedBeforeDeclared
+    core.lazy.controller('LogsController', LogsController);
 
-    LogsController.$inject = ['$http', '$rootScope', '$scope', '$state', 'uiGridConstants'];
+    LogsController.$inject = ['$http', '$scope', '$state', 'uiGridConstants'];
 
-    function LogsController($http, $rootScope, $scope, $state, uiGridConstants) {
+    function LogsController($http, $scope, $state, uiGridConstants) {
 
         var vm = this;
 
@@ -104,9 +104,7 @@
                 vm.gridOptions.totalItems = data.TotalCount;
                 //var firstRow = (paginationOptions.pageNumber - 1) * paginationOptions.pageSize;
                 vm.gridOptions.data = data.LogDatas; //.slice(firstRow, firstRow + paginationOptions.pageSize);
-                $scope.loading = false;
             }).error(function () {
-                $scope.loading = false;
             });
         };
 

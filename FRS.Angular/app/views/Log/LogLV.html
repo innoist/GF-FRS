@@ -12,9 +12,57 @@
     Logs
     <small>Details</small>
 </h3>
+
+<div class="container-fluid" ng-show="isFilterOpen">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="col-md-3">
+                <input type="text" placeholder="Name" class="form-control" ng-model="lc.name" />
+            </div>
+            <div class="col-md-3">
+                <p class="input-group">
+                    <input type="text" placeholder="Select Date"
+                           uib-datepicker-popup="{{lc.format}}"
+                           ng-model="lc.dt"
+                           is-open="lc.opened"
+                           min-date="lc.minDate"
+                           max-date="'lc.maxDate'"
+                           uib-datepicker-options="lc.dateOptions"
+                           date-disabled="lc.disabled(date, mode)"
+                           close-text="Close"
+                           class="form-control"
+                           ng-disabled="true" />
+                    <span class="input-group-btn">
+                        <button type="button" ng-click="lc.open($event)" class="btn btn-default">
+                            <em class="fa fa-calendar"></em>
+                        </button>
+                    </span>
+                </p>
+            </div>
+            <div class="col-md-3">
+                <ui-select ng-model="lc.LoadType.selected" theme="bootstrap" ng-disabled="lc.disabled">
+                    <ui-select-match placeholder="Select or LoadType...">{{$select.selected.Name}}</ui-select-match>
+                    <ui-select-choices repeat="loadtype in lc.LoadTypes | propsFilter: {Name: $select.search, Id: $select.search}">
+                        <div ng-bind-html="loadtype.Name | highlight: $select.search"></div>
+                        <small>
+                            Id:
+                            <span ng-bind-html="''+loadtype.Id | highlight: $select.search"></span>
+                        </small>
+                    </ui-select-choices>
+                </ui-select>
+            </div>
+            <button class="btn btn-success" ng-click="fiterData()">Filter</button>
+            <button class="btn btn-default" ng-click="resetFilter()">Reset</button>
+
+            <a class="pull-right" title="Hide filter Section" ng-click="isFilterOpen = !isFilterOpen"><i class="fa fa-compress"></i></a>
+        </div>
+
+    </div>
+</div>
+
 <div class="container-fluid">
     <!-- Grid view to show listview with searching, sorting and pagination-->
-    <div ui-grid="mdc.gridOptions" ui-grid-pagination ui-grid-move-columns ui-grid-resize-columns class="table-uigrid">
+    <div ui-grid="lc.gridOptions" ui-grid-pagination ui-grid-move-columns ui-grid-resize-columns class="table-uigrid">
 
         <!--<div class="" ng-hide="!loading">
             <div class="line-scale-pulse-out" style="position: absolute; left: 0;  right: 0; top: 100px; vertical-align: middle; text-align: center">

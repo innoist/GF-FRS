@@ -56,7 +56,7 @@ namespace FRS.Repository.Repositories
                      (String.IsNullOrEmpty(searchRequest.Message) || s.Message.Contains(searchRequest.Message))
                     );
 
-            IEnumerable<Log> loadMetaDatas = searchRequest.IsAsc
+            IEnumerable<Log> logData = searchRequest.IsAsc
                 ? DbSet
                     .Where(query)
                     .OrderBy(orderClause[searchRequest.OrderByColumn])
@@ -69,7 +69,7 @@ namespace FRS.Repository.Repositories
                     .Skip(fromRow)
                     .Take(toRow)
                     .ToList();
-            return new SearchTemplateResponse<Log> { Data = loadMetaDatas, TotalCount = DbSet.Count(query), FilteredCount = DbSet.Count(query) };
+            return new SearchTemplateResponse<Log> { Data = logData, TotalCount = DbSet.Count(query), FilteredCount = DbSet.Count(query) };
         }
 
 
