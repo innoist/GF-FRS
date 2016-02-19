@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
-using System.Web.Http.Cors;
 using FRS.Interfaces.IServices;
 using FRS.WebApi.ModelMappers;
 using FRS.WebApi.Models.Users;
@@ -10,7 +9,6 @@ using Microsoft.Practices.Unity;
 
 namespace FRS.WebApi.Controllers
 {
-    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class UserBaseDataController : ApiController
     {
 

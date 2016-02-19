@@ -42,10 +42,6 @@ namespace FRS.WebApi.Providers
 
         public override async Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
         {
-            var allowedOrigin = context.OwinContext.Get<string>("as:clientAllowedOrigin") ?? "*";
-
-            context.OwinContext.Response.Headers.Add("Access-Control-Allow-Origin", new[] { allowedOrigin });
-
             var userManager = context.OwinContext.GetUserManager<ApplicationUserManager>();
             var userName = context.UserName;
             if (context.UserName.Contains("@"))
