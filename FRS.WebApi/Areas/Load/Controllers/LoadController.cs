@@ -11,7 +11,7 @@ using Microsoft.Practices.Unity;
 
 namespace FRS.WebApi.Areas.Load.Controllers
 {
-    [EnableCors(origins: "*", headers: "*", methods: "*")]
+    //[EnableCors(origins: "*", headers: "*", methods: "*")]
     public class LoadController : ApiController
     {
         #region Private
