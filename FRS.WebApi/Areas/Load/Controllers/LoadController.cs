@@ -1,6 +1,5 @@
 ﻿using System.Linq;
 using System.Web.Http;
-using System.Web.Http.Cors;
 using FRS.Interfaces.IServices;
 using FRS.Models.Common;
 using FRS.Models.ResponseModels;
@@ -11,7 +10,6 @@ using Microsoft.Practices.Unity;
 
 namespace FRS.WebApi.Areas.Load.Controllers
 {
-    //[EnableCors(origins: "*", headers: "*", methods: "*")]
     public class LoadController : ApiController
     {
         #region Private

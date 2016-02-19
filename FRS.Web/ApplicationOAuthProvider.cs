@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using System.Web.Http.Cors;
 using Cares.Models.IdentityModels;
 using FRS.Implementation.Identity;
 using FRS.Models.IdentityModels;
@@ -12,6 +13,7 @@ using Microsoft.Owin.Security.OAuth;
 
 namespace FRS.Web
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class ApplicationOAuthProvider : OAuthAuthorizationServerProvider
     {
         private readonly string _publicClientId;
@@ -28,6 +30,10 @@ namespace FRS.Web
 
         public override async Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
         {
+            var allowedOrigin = context.OwinContext.Get<string>("as:clientAllowedOrigin") ?? "*";
+
+            context.OwinContext.Response.Headers.Add("Access-Control-Allow-Origin", new[] { allowedOrigin });
+
             var userManager = context.OwinContext.GetUserManager<ApplicationUserManager>();
 
             AspNetUser user = await userManager.FindAsync(context.UserName, context.Password);

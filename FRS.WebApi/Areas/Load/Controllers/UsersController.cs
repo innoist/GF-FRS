@@ -2,7 +2,6 @@
 using System.Net;
 using System.Web;
 using System.Web.Http;
-using System.Web.Http.Cors;
 using FRS.Interfaces.IServices;
 using FRS.Models.RequestModels;
 using FRS.WebApi.ModelMappers;
@@ -14,7 +13,6 @@ using Microsoft.Practices.Unity;
 namespace FRS.WebApi.Areas.Load.Controllers
 {
 
-    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class UsersController : ApiController
     {
         #region Private

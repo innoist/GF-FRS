@@ -28,8 +28,6 @@ using SetPasswordBindingModel = FRS.Models.IdentityModels.ViewModels.SetPassword
 
 namespace FRS.WebApi.Controllers
 {
-    [EnableCors(origins: "*", headers: "*", methods: "*")]
-    [Authorize]
     [RoutePrefix("api/Account")]
     public class AccountController : ApiController
     {
@@ -282,7 +280,7 @@ namespace FRS.WebApi.Controllers
         [HostAuthentication(DefaultAuthenticationTypes.ExternalCookie)]
         [AllowAnonymous]
         [Route("ExternalLogin", Name = "ExternalLogin")]
-        public async Task<IHttpActionResult> GetExternalLogin(string provider, string error = null)
+       public async Task<IHttpActionResult> GetExternalLogin(string provider, string error = null)
         {
             if (error != null)
             {

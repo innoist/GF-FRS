@@ -122,7 +122,6 @@ namespace FRS.Implementation.Identity
         public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options,
             IOwinContext context)
         {
-
             string connectionString = ConfigurationManager.ConnectionStrings["BaseDbContext"].ConnectionString;
 
 

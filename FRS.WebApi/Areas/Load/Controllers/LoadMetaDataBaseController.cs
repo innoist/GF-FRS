@@ -1,6 +1,5 @@
 ﻿using System.Linq;
 using System.Web.Http;
-using System.Web.Http.Cors;
 using FRS.Interfaces.IServices;
 using FRS.Models.ResponseModels;
 using FRS.WebApi.ModelMappers;
@@ -10,7 +9,6 @@ using Microsoft.Practices.Unity;
 
 namespace FRS.WebApi.Areas.Load.Controllers
 {
-    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class LoadMetaDataBaseController : ApiController
     {
         #region Private
