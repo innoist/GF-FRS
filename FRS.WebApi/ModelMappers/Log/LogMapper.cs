@@ -16,7 +16,7 @@ namespace FRS.WebApi.ModelMappers.Log
                 Priority = source.Priority,
                 Severity = source.Severity,
                 Title = source.Title,
-                Timestamp = source.Timestamp,
+                Timestamp = source.Timestamp.ToString("F"),
                 MachineName = source.MachineName,
                 AppDomainName = source.AppDomainName,
                 ProcessId = source.ProcessID,

@@ -7,7 +7,7 @@ namespace FRS.Models.RequestModels
     {
         public string Severity { get; set; }
         public string Message { get; set; }
-        public DateTime? CreatedDate { get; set; }
+        public DateTime? Timestamp { get; set; }
         
 
         public OrderByLogs OrderByColumn

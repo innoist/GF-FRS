@@ -17,11 +17,11 @@
     <div class="panel panel-default">
         <div class="panel-body">
             <div class="col-md-3">
-                <input type="text" placeholder="Name" class="form-control" ng-model="lc.name" />
+                <input type="text" placeholder="Message" class="form-control" ng-model="lc.message" />
             </div>
             <div class="col-md-3">
                 <p class="input-group">
-                    <input type="text" placeholder="Select Date"
+                    <input type="text" placeholder="Select Time Stamp"
                            uib-datepicker-popup="{{lc.format}}"
                            ng-model="lc.dt"
                            is-open="lc.opened"
@@ -40,16 +40,7 @@
                 </p>
             </div>
             <div class="col-md-3">
-                <ui-select ng-model="lc.LoadType.selected" theme="bootstrap" ng-disabled="lc.disabled">
-                    <ui-select-match placeholder="Select or LoadType...">{{$select.selected.Name}}</ui-select-match>
-                    <ui-select-choices repeat="loadtype in lc.LoadTypes | propsFilter: {Name: $select.search, Id: $select.search}">
-                        <div ng-bind-html="loadtype.Name | highlight: $select.search"></div>
-                        <small>
-                            Id:
-                            <span ng-bind-html="''+loadtype.Id | highlight: $select.search"></span>
-                        </small>
-                    </ui-select-choices>
-                </ui-select>
+                <input type="text" placeholder="Severity" class="form-control" ng-model="lc.severity" />
             </div>
             <button class="btn btn-success" ng-click="fiterData()">Filter</button>
             <button class="btn btn-default" ng-click="resetFilter()">Reset</button>

@@ -25,6 +25,37 @@
 
         var vm = this;
 
+        //datepicker
+        vm.today = function () {
+            vm.dt = new Date();
+        };
+        vm.today();
+
+        vm.clear = function () {
+            vm.dt = null;
+        };
+
+        // Disable weekend selection
+        vm.disabled = function (date, mode) {
+            return (mode === 'day' && (date.getDay() === 0 || date.getDay() === 6));
+        };
+        vm.open = function ($event) {
+            $event.preventDefault();
+            $event.stopPropagation();
+
+            vm.opened = true;
+        };
+
+        vm.dateOptions = {
+            formatYear: 'yy',
+            startingDay: 1
+        };
+
+        vm.initDate = new Date();
+        vm.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
+        vm.format = vm.formats[0];
+
+
         var paginationOptions = {
             'params': {
                 SortBy: 0,
@@ -53,8 +84,8 @@
             columnDefs: [
                 // name is for display on the table header, field is for mapping as in 
                 //sortId is kept locally it is not the property of ui.grid
-              { name: 'Severity', field: 'Severity', sortId: 0, width: '25%' },
-              { name: 'Timestamp', field: 'Timestamp', sortId: 1, width: '25%' },
+              { name: 'Severity', field: 'Severity', sortId: 0, width: '15%' },
+              { name: 'Timestamp', field: 'Timestamp', sortId: 1, width: '20%' },
               { name: 'Message', field: 'Message', sortId: 2 }
              
             ],
@@ -109,9 +140,9 @@
         };
 
         $scope.resetFilter = function () {
-            //vm.dt = null;
-            //vm.name = '';
-            //vm.LoadType.selected = null;
+            vm.dt = null;
+            vm.message = '';
+            vm.severity = '';
 
             paginationOptions.params.Severity = '';
             paginationOptions.params.IsAsc = true;
@@ -124,9 +155,9 @@
         }
 
         $scope.fiterData = function () {
-            paginationOptions.params.Message = vm.Message;
-            paginationOptions.params.Severity = vm.Severity;
-            paginationOptions.params.Timestamp = vm.Timestamp;
+            paginationOptions.params.Message = vm.message;
+            paginationOptions.params.Severity = vm.severity;
+            paginationOptions.params.Timestamp = vm.dt;
             getPage();
         }
 

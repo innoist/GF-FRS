@@ -29,7 +29,7 @@ namespace FRS.WebApi.Models.Log
         /// <summary>
         /// Time Stamp
         /// </summary>
-        public DateTime Timestamp { get; set; }
+        public string Timestamp { get; set; }
 
         /// <summary>
         /// Machine Name

@@ -52,7 +52,7 @@ namespace FRS.Repository.Repositories
                 s =>
                     (
                     (String.IsNullOrEmpty(searchRequest.Severity)|| s.Severity.Contains(searchRequest.Severity)) &&
-                    (searchRequest.CreatedDate == null || DbFunctions.TruncateTime(searchRequest.CreatedDate) == DbFunctions.TruncateTime(s.Timestamp)) &&
+                    (searchRequest.Timestamp == null || DbFunctions.TruncateTime(searchRequest.Timestamp) == DbFunctions.TruncateTime(s.Timestamp)) &&
                      (String.IsNullOrEmpty(searchRequest.Message) || s.Message.Contains(searchRequest.Message))
                     );
 
