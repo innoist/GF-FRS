@@ -1,9 +1,9 @@
-﻿(function () {
-    'use strict';
+﻿//(function () {
+//    'use strict';
 
-    angular
-        .module('app.LoadMetaData', []);
-})();
+//    angular
+//        .module('app.LoadMetaData', []);
+//})();
 
 /**=========================================================
  * Module: load meta data
@@ -13,9 +13,12 @@
 (function () {
     'use strict';
 
-    angular
-        .module('app.LoadMetaData', [])
-        .controller('LoadMetaDataController', LoadMetaDataController);
+    //angular
+    //    .module('app.LoadMetaData', [])
+    //    .controller('LoadMetaDataController', LoadMetaDataController);
+    var core = angular.module('app.core');
+    // ReSharper disable FunctionsUsedBeforeDeclared
+    core.lazy.controller('LoadMetaDataController', LoadMetaDataController);
 
     LoadMetaDataController.$inject = ['$http', '$rootScope', '$scope', '$state', 'uiGridConstants'];
 

@@ -2374,6 +2374,42 @@
               {
                   name: 'rightsManagement.module', files: ['/app/js/RightsManagement/rightsManagement.controller.js',
                                                              '/app/js/RightsManagement/rightsManagement.service.js']
+              },
+              {
+                  name: 'login.module', files: ['/app/js/Users/LoginController.js']
+              },
+              {
+                  name: 'register.module', files: ['/app/js/Users/RegisterController.js']
+              },
+              {
+                  name: 'recover.module', files: ['/app/js/Users/ForgetPasswordController.js']
+              },
+              {
+                  name: 'resetPassword.module', files: ['/app/js/Users/ResetPasswordController.js']
+              },
+              {
+                  name: 'users.module', files: ['/app/js/Users/UsersController.js',
+                                                '/app/js/Users/UsersService.js']
+              },
+              {
+                  name: 'profile.module', files: ['/app/js/Users/ProfileController.js',
+                                                '/app/js/Users/ProfileService.js']
+              },
+              {
+                  name: 'loadMetaData.module', files: ['/app/js/LoadMetaData/LoadMetaDataController.js',
+                                                '/app/js/LoadMetaData/LoadMetaDataService.js']
+              },
+              {
+                  name: 'createMetaData.module', files: ['/app/js/CreateMetaData/CreateMetaDataController.js',
+                                                '/app/js/CreateMetaData/CreateMetaDataService.js']
+              },
+              {
+                  name: 'load.module', files: ['/app/js/Load/LoadController.js']
+              }
+              ,
+              {
+                  name: 'changePassword.module', files: ['/app/js/Users/changePassword.conroller.js',
+                                                        '/app/js/Users/changePassword.service.js']
               }
             ]
         })
@@ -4232,7 +4268,7 @@ function hideProgress() {
 }
 
 function showErrors(err) {
-    if (!err || !err.ModelState || !err.data)
+    if (!err || !err.ModelState)
         return null;
 
     var errors = "";

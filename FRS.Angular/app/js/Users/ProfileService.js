@@ -1,8 +1,11 @@
 ﻿(function() {
     'use strict';
 
-    angular.module('app.Profile')
-        .service('ProfileService', ProfileService);
+    //angular.module('app.Profile')
+    //    .service('ProfileService', ProfileService);
+    var core = angular.module('app.core');
+    // ReSharper disable FunctionsUsedBeforeDeclared
+    core.lazy.service('ProfileService', ProfileService);
 
     ProfileService.$inject = ['$http'];
 

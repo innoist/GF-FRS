@@ -64,6 +64,7 @@
     <Content Include="app\i18n\es_AR.json" />
     <Content Include="app\img\logo.png" />
     <Content Include="app\js\angular-local-storage.min.js" />
+    <Content Include="app\js\app.js" />
     <Content Include="app\js\Config.js" />
     <Content Include="app\js\CreateMetaData\CreateMetaDataController.js" />
     <Content Include="app\js\RightsManagement\rightsManagement.service.js" />
@@ -74,11 +75,13 @@
     <Content Include="app\js\Log\LogController.js" />
     <Content Include="app\js\Log\LogDataService.js" />
     <Content Include="app\js\Modules.js" />
+    <Content Include="app\js\Users\changePassword.service.js" />
     <Content Include="app\js\Users\ForgetPasswordController.js" />
     <Content Include="app\js\Users\LoginController.js" />
     <Content Include="app\js\Users\ProfileController.js" />
     <Content Include="app\js\Users\ProfileService.js" />
     <Content Include="app\js\Users\RegisterController.js" />
+    <Content Include="app\js\Users\ResetPasswordController.js" />
     <Content Include="app\js\Users\UsersController.js" />
     <Content Include="app\js\Users\UsersService.js" />
     <Content Include="app\vendor\datatable-bootstrap\images\Sorting icons.psd" />
@@ -86,7 +89,9 @@
     <Content Include="app\js\LoadMetaData\LoadMetaDataController.js" />
     <Content Include="app\views\Log\LogLV.html" />
     <Content Include="app\views\RightsManagement\index.html" />
+    <Content Include="app\views\Users\ChangePassword.html" />
     <Content Include="app\views\Users\Profile.html" />
+    <Content Include="app\views\Users\ResetPassword.html" />
     <Content Include="app\views\Users\Users.html" />
     <Content Include="master\.bowerrc" />
     <Content Include="master\.jshintrc" />
@@ -516,6 +521,7 @@
     <Content Include="vendor\weather-icons\font\weathericons-regular-webfont.ttf" />
     <Content Include="vendor\weather-icons\font\weathericons-regular-webfont.woff" />
     <Content Include="vendor\weather-icons\font\weathericons-regular-webfont.woff2" />
+    <Content Include="app\js\Users\changePassword.conroller.js" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -570,7 +576,6 @@
     <Content Include="app\img\user\11.jpg" />
     <Content Include="app\img\user\12.jpg" />
     <Content Include="app\img\user\13.jpg" />
-    <Content Include="app\js\app.js" />
     <Content Include="app\js\base.js" />
     <Content Include="app\pages\404.html" />
     <Content Include="app\views\Users\Lock.html" />

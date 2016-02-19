@@ -1,9 +1,9 @@
-﻿(function () {
-    'use strict';
+﻿//(function () {
+//    'use strict';
 
-    angular
-        .module('app.Load', []);
-})();
+//    angular
+//        .module('app.Load', []);
+//})();
 
 /**=========================================================
  * Module: load
@@ -11,9 +11,12 @@
  =========================================================*/
 (function () {
     'use strict';
-    angular
-        .module('app.Load')
-        .controller('LoadController', LoadController);
+    //angular
+    //    .module('app.Load')
+    //    .controller('LoadController', LoadController);
+    var core = angular.module('app.core');
+    // ReSharper disable FunctionsUsedBeforeDeclared
+    core.lazy.controller('LoadController', LoadController);
 
     LoadController.$inject = ['$http', '$scope'];
 

@@ -1,17 +1,20 @@
-﻿(function() {
-    'use strict';
+﻿//(function() {
+//    'use strict';
 
-    angular.module('app.Profile',[]);
+//    angular.module('app.Profile',[]);
 
 
-})();
+//})();
 
 (function() {
     'use strict';
 
-    angular
-        .module('app.Profile', [])
-        .controller('ProfileController', ProfileController);
+    //angular
+    //    .module('app.Profile', [])
+    //    .controller('ProfileController', ProfileController);
+    var core = angular.module('app.core');
+    // ReSharper disable FunctionsUsedBeforeDeclared
+    core.lazy.controller('ProfileController', ProfileController);
 
     ProfileController.$inject = ['$scope','$stateParams', '$state', 'ProfileService', 'toaster'];
 
@@ -33,7 +36,12 @@
         if ($stateParams.Name !== "") {
             ProfileService.loadProfile($stateParams.Name, function (response) {
                 vm.user = response;
-                //vm.Roles.selected = 1;
+                var selectedRole = $(vm.Roles).filter(function (index, item) {
+                    return item.Name === response.Role;
+                });
+                if (selectedRole.length > 0) {
+                    vm.Roles.selected = selectedRole[0];
+                }
             });
         }
 

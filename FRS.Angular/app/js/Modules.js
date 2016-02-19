@@ -29,12 +29,7 @@
             'app.tables',
             'app.extras',
             'app.mailbox',
-            'app.utils',
-            'app.LoadMetaData',
-            'app.CreateMetaData',
-            'app.Load',
-            'app.Users',
-            'app.Profile'
+            'app.utils'
         ]);
 })();
 

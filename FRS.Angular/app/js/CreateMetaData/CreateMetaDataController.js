@@ -1,16 +1,19 @@
-﻿(function () {
-    'use strict';
+﻿//(function () {
+//    'use strict';
 
-    angular
-        .module('app.CreateMetaData', []);
-})();
+//    angular
+//        .module('app.CreateMetaData', []);
+//})();
 
 //Create MetaData
 (function () {
 
-    angular
-        .module('app.CreateMetaData', [])
-        .controller('CreateMetaDataController', CreateMetaDataController);
+    //angular
+    //    .module('app.CreateMetaData', [])
+    //    .controller('CreateMetaDataController', CreateMetaDataController);
+    var core = angular.module('app.core');
+    // ReSharper disable FunctionsUsedBeforeDeclared
+    core.lazy.controller('CreateMetaDataController', CreateMetaDataController);
 
     CreateMetaDataController.$inject = ['$http', '$scope', '$state', 'CreateMetaDataService', 'SweetAlert', 'toaster'];
 

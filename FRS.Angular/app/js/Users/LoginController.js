@@ -6,9 +6,13 @@
 (function () {
     'use strict';
 
-    angular
-        .module('app.pages')
-        .controller('LoginFormController', LoginFormController);
+    //angular
+    //    .module('app.pages')
+    //    .controller('LoginFormController', LoginFormController);
+
+    var core = angular.module('app.core');
+    // ReSharper disable FunctionsUsedBeforeDeclared
+    core.lazy.controller('LoginFormController', LoginFormController);
 
     LoginFormController.$inject = ['$http', '$state', '$localStorage'];
     function LoginFormController($http, $state, $localStorage) {

@@ -1,14 +1,17 @@
-﻿(function () {
-    'use strict';
+﻿//(function () {
+//    'use strict';
 
-    angular.module('app.Users', []);
-})();
+//    angular.module('app.Users', []);
+//})();
 
 
 (function() {
-    angular
-        .module('app.Users', [])
-        .controller('UsersController', UsersController);
+    //angular
+    //    .module('app.Users', [])
+    //    .controller('UsersController', UsersController);
+    var core = angular.module('app.core');
+    // ReSharper disable FunctionsUsedBeforeDeclared
+    core.lazy.controller('UsersController', UsersController);
 
     UsersController.$inject = ['$scope', '$http', 'uiGridConstants', 'UsersService'];
 
