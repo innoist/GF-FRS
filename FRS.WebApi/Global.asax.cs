@@ -87,7 +87,7 @@ namespace FRS.WebApi
         private bool IsWebApiRequest()
         {
             return System.Web.HttpContext.Current.Request.AppRelativeCurrentExecutionFilePath != null && 
-                System.Web.HttpContext.Current.Request.AppRelativeCurrentExecutionFilePath.StartsWith("~/Api");
+                System.Web.HttpContext.Current.Request.AppRelativeCurrentExecutionFilePath.ToLower().StartsWith("~/api");
         }
     }
 }

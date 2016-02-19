@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Web;
 using System.Web.Http;
 using FRS.Interfaces.IServices;
 using FRS.Models.MenuModels;
@@ -38,7 +39,12 @@ namespace FRS.WebApi.Areas.Load.Controllers
         [ApiException]
         public IEnumerable<MenuView> Get()
         {
-            return menuRightsService.GetForRole();
+            if (HttpContext.Current.Cache["Menu"] == null)
+            {
+                HttpContext.Current.Cache["Menu"] = menuRightsService.GetForRole();
+            }
+
+            return HttpContext.Current.Cache["Menu"] as List<MenuView>;
         }
         
         #endregion
