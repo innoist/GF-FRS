@@ -98,8 +98,7 @@
             columnDefs: [
                 // name is for display on the table header, field is for mapping as in 
                 //sortId is kept locally it is not the property of ui.grid
-              { name: 'Id', field: 'LoadMetaDataId', sortId: 0, width: '8%' },
-              { name: 'Name', field: 'Name', sortId: 1 },
+              { name: 'Name', field: 'Name', sortId: 1, cellTemplate: '<div class="ui-grid-cell-contents"><a ui-sref="app.CreateMetaData({Id : row.entity.LoadMetaDataId})">{{row.entity.Name}}</a> </div>' },
               { name: 'Load Type', field: 'LoadType', sortId: 2 },
               { name: 'Source', field: 'Source', sortId: 3 },
               { name: 'Currency', field: 'Currency', sortId: 4 },

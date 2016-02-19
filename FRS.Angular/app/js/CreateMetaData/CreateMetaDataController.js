@@ -1,28 +1,25 @@
-﻿//(function () {
-//    'use strict';
-
-//    angular
-//        .module('app.CreateMetaData', []);
-//})();
-
-//Create MetaData
+﻿//Create MetaData
 (function () {
 
-    //angular
-    //    .module('app.CreateMetaData', [])
-    //    .controller('CreateMetaDataController', CreateMetaDataController);
     var core = angular.module('app.core');
     // ReSharper disable FunctionsUsedBeforeDeclared
     core.lazy.controller('CreateMetaDataController', CreateMetaDataController);
 
-    CreateMetaDataController.$inject = ['$http', '$scope', '$state', 'CreateMetaDataService', 'SweetAlert', 'toaster'];
+    CreateMetaDataController.$inject = ['$http', '$scope', '$state', '$stateParams', 'CreateMetaDataService', 'SweetAlert', 'toaster'];
 
-    function CreateMetaDataController($http, $scope, $state, CreateMetaDataService, SweetAlert, toaster) {
+    function CreateMetaDataController($http, $scope, $state, $stateParams, CreateMetaDataService, SweetAlert, toaster) {
         var vm = this;
-        function activate() {
-            // Load base data
-            $scope.GetBaseData();
-        }
+        var metaDataId = 0;
+
+        //#region Get Data from DB
+        CreateMetaDataService.getLoadMetaData(function (data) {
+            vm.LoadTypes = data.LoadTypes;
+            vm.Sources = data.Sources;
+            vm.Currencies = data.Currencies;
+            vm.Status = data.Statuses;
+        });
+        
+        //#endregion
 
         //#region Web Model properties
         vm.LoadMetaData = {
@@ -30,31 +27,9 @@
         }
         //#endregion
         vm.submitted = false;
-        //vm.submitForm = function () {
-
-        //};
-        //#region DropDowns
-        $scope.LoadTypes = [];
-        $scope.Sources = [];
-        $scope.Currencies = [];
-        $scope.Statuses = [];
-        //#endregion
-        //$scope.IsShowEdit = false;
         $scope.Currency = '';
         $scope.IsReadOnly = false;
 
-        //#region Get Data from DB
-        $scope.GetBaseData = function () {
-            CreateMetaDataService.getLoadMetaData(onSuccess);
-            function onSuccess(data) {
-                //vm.gridOptions.data = data.LoadMetaDatas;
-                $scope.LoadTypes = data.LoadTypes;
-                $scope.Sources = data.Sources;
-                $scope.Currencies = data.Currencies;
-                $scope.Statuses = data.Statuses;
-            }
-        }
-        //#endregion
         vm.validateInput = function (property, type) {
             if (!property || !type) {
                 return false;
@@ -70,49 +45,25 @@
                 toaster.pop("error", "Fields are required", "Notification");
                 return false;
             }
+            vm.LoadMetaData.LoadMetaDataId = metaDataId;
             vm.LoadMetaData.Header = $scope.Header;
             vm.LoadMetaData.Footer = $scope.Footer;
             vm.LoadMetaData.Name = $scope.Name;
             vm.LoadMetaData.Description = $scope.Description;
+            vm.LoadMetaData.LoadTypeId = vm.LoadTypes.selected.Id;
+            vm.LoadMetaData.SourceId = vm.Sources.selected.Id;
+            vm.LoadMetaData.CurrencyId = vm.Currencies.selected.Id;
+            vm.LoadMetaData.StatusId = vm.Status.selected.Id;
 
             CreateMetaDataService.saveLoadMetaDataDetail(vm.LoadMetaData, onSuccess, onError);
             function onSuccess(response) {
-                debugger;
                 if (response.data == true) {
                     toaster.pop("success", "Metadata Saved successfully", "Notification");
-                    //$scope.GetBaseData();
-                    //(function () {
-                    //    SweetAlert.swal({
-                    //        title: 'Done !',
-                    //        text: 'Record has been Saved Successfully.',
-                    //        type: 'success',
-                    //        //showCancelButton: true,
-                    //        //confirmButtonColor: '#DD6B55',
-                    //        //confirmButtonText: 'Yes, delete it!',
-                    //        //closeOnConfirm: false
-                    //    //}, function () {
-                    //    //    SweetAlert.swal('Booyah!');
-                    //    });
-                    //})();
-
                 }
             }
             function onError(err) {
                 toaster.error(err.statusText, err.data.Message);
                 showErrors(err);
-                //(function () {
-                //    SweetAlert.swal({
-                //        title: 'Alas !',
-                //        text: 'Something went wrong.',
-                //        type: 'error',
-                //        //showCancelButton: true,
-                //        //confirmButtonColor: '#DD6B55',
-                //        //confirmButtonText: 'Yes, delete it!',
-                //        //closeOnConfirm: false
-                //        //}, function () {
-                //        //    SweetAlert.swal('Booyah!');
-                //    });
-                //})();
             }
 
             if (isNew) {
@@ -136,32 +87,18 @@
                 confirmButtonText: 'Yes, cancel saving form.!',
                 cancelButtonText: 'No, stay on this page!',
                 closeOnConfirm: true,
-                closeOnCancel: false
+                closeOnCancel: true,
             }, function (isConfirm) {
                 if (isConfirm) {
                     //SweetAlert.swal('Deleted!', 'Your imaginary file has been deleted.', 'success');
                     $state.go('app.LoadMetaData');
                 } else {
-                    SweetAlert.swal('Cancelled', 'Stay on this page', 'error');
+                    //SweetAlert.swal('Cancelled', 'Stay on this page', 'error');
                 }
             });
-            
+
         }
 
-        //#region Edit LoadMetaData
-        $scope.editLoadMetaData = function (loadMetaDataId) {
-            $http.get(window.frsApiUrl + '/api/LoadMetaData/' + loadMetaDataId)
-                .success(function (data) {
-                    if (data != null) {
-                        vm.LoadMetaData = data;
-                        $("#load-type-sel").text(data.LoadType).append('&nbsp;<b class="caret"></b>');
-                        $("#source-sel").text(data.Source).append('&nbsp;<b class="caret"></b>');
-                        $("#currency-sel").text(data.Currency).append('&nbsp;<b class="caret"></b>');
-                        $("#status-sel").text(data.Status).append('&nbsp;<b class="caret"></b>');
-                    }
-                });
-        }
-        //#endregion
 
         //#region Delete Data
         $scope.deleteLoadMetaData = function (loadMetaDataId) {
@@ -187,35 +124,54 @@
             $scope.StatusId = 0;
             $scope.Currency = '';
             vm.submitted = false;
+            vm.LoadTypes.selected = null;
+            vm.Sources.selected = null;
+            vm.Currencies.selected = null;
+            vm.Status.selected = null;
         }
 
-        $scope.showEdit = function () {
-            $scope.IsReadOnly = false;
-            //$scope.IsShowEdit = true;
-            $scope.editLoadMetaData(5);
-        }
+        if ($stateParams.Id !== "") {
+            metaDataId = $stateParams.Id;
+            CreateMetaDataService.loadMetaDataById(metaDataId, function (response) {
+                $scope.Header = response.Header;
+                $scope.Footer = response.Footer;
+                $scope.Name = response.Name;
+                $scope.Description = response.Description;
+                var selectedLoadType = $(vm.LoadTypes).filter(function (index, item) {
+                    return item.Id === response.LoadTypeId;
+                });
+                if (selectedLoadType.length > 0) {
+                    vm.LoadTypes.selected = selectedLoadType[0];
+                }
 
-        $scope.LoadTypeChange = function (load) {
-            vm.LoadMetaData.LoadTypeId = load.Id;
-            $("#load-type-sel").text(load.Name).append('&nbsp;<b class="caret"></b>');
-        }
+                var selectedSource = $(vm.Sources).filter(function (index, item) {
+                    return item.Id === response.SourceId;
+                });
+                if (selectedSource.length > 0) {
+                    vm.Sources.selected = selectedSource[0];
+                }
 
-        $scope.SourceChange = function (source) {
-            vm.LoadMetaData.SourceId = source.Id;
-            $("#source-sel").text(source.Name).append('&nbsp;<b class="caret"></b>');
-        }
+                var selectedCurrency = $(vm.Currencies).filter(function (index, item) {
+                    return item.Id === response.CurrencyId;
+                });
+                if (selectedCurrency.length > 0) {
+                    vm.Currencies.selected = selectedCurrency[0];
+                }
 
-        $scope.CurrencyChange = function (currency) {
-            vm.LoadMetaData.CurrencyId = currency.Id;
-            $("#currency-sel").text(currency.Name).append('&nbsp;<b class="caret"></b>');
+                var selectedStatus = $(vm.Status).filter(function (index, item) {
+                    return item.Id === response.StatusId;
+                });
+                if (selectedStatus.length > 0) {
+                    vm.Status.selected = selectedStatus[0];
+                }
+                toaster.success("", "Metadata loaded successfully.");
+            },
+                function (err) {
+                    toaster.error("", showErrors(err));
+                });
+        } else {
+            metaDataId = 0;
         }
-
-        $scope.StatusChange = function (status) {
-            vm.LoadMetaData.StatusId = status.Id;
-            $("#status-sel").text(status.Name).append('&nbsp;<b class="caret"></b>');
-        }
-
-        activate();
     }
 
 

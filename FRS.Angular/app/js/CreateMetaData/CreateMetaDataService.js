@@ -1,9 +1,5 @@
 ﻿(function () {
     'use strict';
-
-    //angular
-    //    .module('app.CreateMetaData')
-    //    .service('CreateMetaDataService', CreateMetaDataService);
     var core = angular.module('app.core');
     // ReSharper disable FunctionsUsedBeforeDeclared
     core.lazy.service('CreateMetaDataService', CreateMetaDataService);
@@ -12,6 +8,16 @@
     function CreateMetaDataService($http, $state, $localStorage) {
         this.getLoadMetaData = getLoadMetaData;
         this.saveLoadMetaDataDetail = saveLoadMetaDataDetail;
+        this.loadMetaDataById = function (Id, onReady, onError) {
+            var urlMetaData = window.frsApiUrl + '/api/LoadMetaData/' + Id;
+
+            onError = onError || function () { alert('Failure loading Meta Data'); };
+
+            $http
+              .get(urlMetaData)
+              .success(onReady)
+              .error(onError);
+        };
 
         function getLoadMetaData(onReady, onError) {
             var urlMetaData = window.frsApiUrl + '/api/LoadMetaDataBase';
@@ -43,5 +49,7 @@
               )
               .then(onReady, onError);
         }
+
+
     }
 })();

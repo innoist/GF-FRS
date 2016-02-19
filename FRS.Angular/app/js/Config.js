@@ -55,12 +55,12 @@
                 resolve: helper.resolveFor('ui.grid', 'ui.select', 'loadMetaData.module')
             })
             .state('app.CreateMetaData', {
-                url: '/CreateMetaData',
+                url: '/CreateMetaData/:Id',
                 title: 'New MetaData',
                 templateUrl: helper.basepath('../../../../app/views/CreateMetaData/CreateMetaData.html'),
                 controller: 'CreateMetaDataController',
                 controllerAs: 'cmdc',
-                resolve: helper.resolveFor('oitozero.ngSweetAlert', 'createMetaData.module')
+                resolve: helper.resolveFor('oitozero.ngSweetAlert', 'createMetaData.module', 'ui.select')
             })
             .state('app.LogsModule', {
                 url: '/Log',

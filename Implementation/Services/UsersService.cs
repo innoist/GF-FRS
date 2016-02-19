@@ -38,7 +38,7 @@ namespace FRS.Implementation.Services
 
         public IEnumerable<UserRole> GetAllRoles()
         {
-            return aspNetRoleRepository.GetAll().ToList();
+            return aspNetRoleRepository.GetAll().Where(x => x.Name != "SystemAdministrator").ToList();
         }
     }
 }

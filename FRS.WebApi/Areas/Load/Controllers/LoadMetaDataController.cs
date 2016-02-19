@@ -27,15 +27,13 @@ namespace FRS.WebApi.Areas.Load.Controllers
         #region Get
         [ApiException]
         [Authorize]
-        public LoadMetaData Get(long? id)
+        public LoadMetaData Get(long id)
         {
-            if (id == null || id <= 0)
+            if (id <= 0)
             {
                 throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
             }
-
-
-            var loadMetaData = loadMetaDataService.FindById((long)id);
+            var loadMetaData = loadMetaDataService.FindById(id);
             return loadMetaData.CreateFromServerToClient();
         }
 

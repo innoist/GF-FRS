@@ -54,10 +54,9 @@
             columnDefs: [
                 // name is for display on the table header, field is for mapping as in 
                 //sortId is kept locally it is not the property of ui.grid
-              { name: 'Id', field: 'Id', sortId: 0, width: '8%', enableSorting: true, cellTemplate: '<a class="ui-grid-cell-contents" ui-sref="app.Profile({Name : row.entity.UserName})">{{row.entity.Id}} </a>' },
+              { name: 'User Name', field: 'UserName', sortId: 3, enableSorting: false, cellTemplate: '<div class="ui-grid-cell-contents"><a ui-sref="app.Profile({Name : row.entity.UserName})">{{row.entity.UserName}}</a> </div>' },
               { name: 'First Name', field: 'FirstName', sortId: 1, enableSorting: false },
               { name: 'Last Name', field: 'LastName', sortId: 2, enableSorting: false },
-              { name: 'User Name', field: 'UserName', sortId: 3, enableSorting: false },
               { name: 'Email', field: 'Email', sortId: 4, enableSorting: false },
               { name: 'Address', field: 'Address', sortId: 5, enableSorting: false },
               { name: 'Phone No.', field: 'Telephone', sortId: 6, enableSorting: false },

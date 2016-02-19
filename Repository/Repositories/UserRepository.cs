@@ -92,7 +92,8 @@ namespace FRS.Repository.Repositories
                     (searchRequest.Name == null || s.FirstName.Contains(searchRequest.Name)) &&
                     (searchRequest.Name == null || s.LastName.Contains(searchRequest.Name)) &&
                     (searchRequest.PhoneNumber == null || s.Telephone.Contains(searchRequest.PhoneNumber)) &&
-                    (searchRequest.Role == null || s.AspNetRoles.FirstOrDefault().Id == searchRequest.Role)
+                    (searchRequest.Role == null || s.AspNetRoles.FirstOrDefault().Id == searchRequest.Role) &&
+                    (s.AspNetRoles.FirstOrDefault().Name != "SystemAdministrator")
                     );
 
             IEnumerable<AspNetUser> users = searchRequest.IsAsc
