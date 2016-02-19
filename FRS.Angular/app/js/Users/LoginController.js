@@ -16,6 +16,11 @@
 
     LoginFormController.$inject = ['$http', '$state', '$localStorage'];
     function LoginFormController($http, $state, $localStorage) {
+
+        if ($localStorage['authorizationData']) {
+            $state.go('app.dashboard');
+        }
+
         var vm = this;
 
         activate();

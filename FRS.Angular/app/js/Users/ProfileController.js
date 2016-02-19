@@ -54,7 +54,7 @@
                 }
 
             }, function(err) {
-                toaster.error(showErrors(err));
+                toaster.pop("error","Alert",showErrors(err));
             });
         }
         
