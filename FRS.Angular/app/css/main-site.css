@@ -35,3 +35,16 @@
       height: 30px;
       width: 100%
     }
+
+.preloader-progress-bar {
+    background-size: auto !important;
+    /*width: 128px !important;*/
+    height: 128px !important;
+}
+
+.preloader-progress {
+    height: 128px !important;
+    background-size: auto !important;
+    width: 128px !important;
+
+}

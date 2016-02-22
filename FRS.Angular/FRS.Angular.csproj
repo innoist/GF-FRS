@@ -63,6 +63,8 @@
     <Content Include="app\documentation\readme.md" />
     <Content Include="app\i18n\es_AR.json" />
     <Content Include="app\img\logo.png" />
+    <Content Include="app\img\preloader\preloader.full.png" />
+    <Content Include="app\img\preloader\preloader.empty.png" />
     <Content Include="app\js\angular-local-storage.min.js" />
     <Content Include="app\js\app.js" />
     <Content Include="app\js\Config.js" />
@@ -152,8 +154,6 @@
     <Content Include="app\img\logo1.png" />
     <Content Include="app\img\mb-sample.jpg" />
     <Content Include="app\img\mockup.png" />
-    <Content Include="app\img\preloader\preloader.empty.png" />
-    <Content Include="app\img\preloader\preloader.full.png" />
     <Content Include="app\img\profile-bg.jpg" />
     <Content Include="app\img\user\01.jpg" />
     <Content Include="app\img\user\02.jpg" />

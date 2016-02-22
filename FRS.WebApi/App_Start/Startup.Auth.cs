@@ -39,7 +39,7 @@ namespace FRS.WebApi
                 TokenEndpointPath = new PathString("/Token"),
                 Provider = new ApplicationOAuthProvider(PublicClientId, UnityWebActivator.Container),
                 AuthorizeEndpointPath = new PathString("/api/Account/ExternalLogin"),
-                AccessTokenExpireTimeSpan = TimeSpan.FromMinutes(20),
+                AccessTokenExpireTimeSpan = TimeSpan.FromDays(15),
                 // In production mode set AllowInsecureHttp = false
                 AllowInsecureHttp = true
             });
