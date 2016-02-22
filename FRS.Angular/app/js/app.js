@@ -3476,8 +3476,8 @@
         .module('app.sidebar')
         .controller('UserBlockController', UserBlockController);
 
-    UserBlockController.$inject = ['$rootScope', '$scope', '$localStorage'];
-    function UserBlockController($rootScope, $scope, $localStorage) {
+    UserBlockController.$inject = ['$http', '$state','$rootScope', '$scope', '$localStorage'];
+    function UserBlockController($http, $state, $rootScope, $scope, $localStorage) {
 
         activate();
 
@@ -4065,15 +4065,21 @@ function hideProgress() {
 }
 
 function showErrors(err) {
-    if (!err || !err.ModelState)
+    if (!err)
         return null;
 
     var errors = "";
-    for (var key in err.ModelState) {
-        var errMsg = err.ModelState[key][0];
-        errors += errMsg + "<br/>";
+    if (err.data) {
+        for (var key in err.data.ModelState) {
+            var errMsg = err.data.ModelState[key][0];
+            errors += errMsg + "<br/>";
+        }
+    } else {
+        for (var key in err.ModelState) {
+            var errMsg = err.ModelState[key][0];
+            errors += errMsg + "<br/>";
+        }
     }
-
     if ($.trim(errors) !== "")
         return errors;
 }

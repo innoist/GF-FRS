@@ -1,12 +1,12 @@
 ﻿<h3>
     <!-- START Language list-->
     <div class="pull-right">
-        <button ng-click="saveLoadMetaDataDetail(false)" type="button" class="btn btn-labeled btn-success">
+        <button ng-click="saveLoadMetaDataDetail(false)" ng-disabled="!cmdc.formValidate.$dirty" type="button" class="btn btn-labeled btn-success">
             <span class="btn-label">
                 <i class="fa fa-check"></i>
             </span><span class="hidden-480">Save</span>
         </button>
-        <button ng-click="saveLoadMetaDataDetail(true)" type="button" class="btn btn-labeled btn-info">
+        <button ng-click="saveLoadMetaDataDetail(true)" ng-disabled="!cmdc.formValidate.$dirty" type="button" class="btn btn-labeled btn-info">
             <span class="btn-label">
                 <i class="fa fa-plus"></i>
             </span><span class="hidden-480">Save and New</span>
@@ -31,37 +31,37 @@
                 <fieldset>
                     <div class="row">
                         <div class="col-sm-12">
-                            <div class="col-sm-3">
-                                
-                                <label for="load-type" class="control-label">Load Type</label>
-                                <ui-select id="load-type" ng-model="cmdc.LoadTypes.selected" theme="bootstrap" ng-disabled="cmdc.disabled" style="width: 100%">
+                            <div class="col-sm-3" ng-class="{ 'has-error': cmdc.validateInput(cmdc.formValidate.LoadType, 'required') }">
+
+                                <label for="load-type" class="control-label requiredLabel">Load Type</label>
+                                <ui-select required="" name="LoadType" id="load-type" ng-model="cmdc.LoadTypes.selected" theme="bootstrap" ng-disabled="cmdc.disabled" style="width: 100%">
                                     <ui-select-match placeholder="Select a Load Type...">{{$select.selected.Name}}</ui-select-match>
                                     <ui-select-choices repeat="role in cmdc.LoadTypes | propsFilter: {Name: $select.search}">
                                         <div ng-bind-html="role.Name | highlight: $select.search"></div>
                                     </ui-select-choices>
                                 </ui-select>
                             </div>
-                            <div class="col-sm-3">
-                                <label for="load-type" class="control-label">Source</label>
-                                <ui-select id="load-type" ng-model="cmdc.Sources.selected" theme="bootstrap" ng-disabled="cmdc.disabled" style="width: 100%">
+                            <div class="col-sm-3" ng-class="{ 'has-error': cmdc.validateInput(cmdc.formValidate.Currency, 'required') }">
+                                <label for="Source" class="control-label requiredLabel">Source</label>
+                                <ui-select required=""name="Source" id="Source" ng-model="cmdc.Sources.selected" theme="bootstrap" ng-disabled="cmdc.disabled" style="width: 100%">
                                     <ui-select-match placeholder="Select a Role...">{{$select.selected.Name}}</ui-select-match>
                                     <ui-select-choices repeat="role in cmdc.Sources | propsFilter: {Name: $select.search}">
                                         <div ng-bind-html="role.Name | highlight: $select.search"></div>
                                     </ui-select-choices>
                                 </ui-select>
                             </div>
-                            <div class="col-sm-3">
-                                <label for="load-type" class="control-label">Currency</label>
-                                <ui-select id="load-type" ng-model="cmdc.Currencies.selected" theme="bootstrap" ng-disabled="cmdc.disabled" style="width: 100%">
+                            <div class="col-sm-3" ng-class="{ 'has-error': cmdc.validateInput(cmdc.formValidate.Currency, 'required') }">
+                                <label for="Currency" class="control-label requiredLabel">Currency</label>
+                                <ui-select required=""name="Currency" id="Currency" ng-model="cmdc.Currencies.selected" theme="bootstrap" ng-disabled="cmdc.disabled" style="width: 100%">
                                     <ui-select-match placeholder="Select a Role...">{{$select.selected.Name}}</ui-select-match>
                                     <ui-select-choices repeat="role in cmdc.Currencies | propsFilter: {Name: $select.search}">
                                         <div ng-bind-html="role.Name | highlight: $select.search"></div>
                                     </ui-select-choices>
                                 </ui-select>
                             </div>
-                            <div class="col-sm-3">
-                                <label for="load-type" class="control-label">Status</label>
-                                <ui-select id="load-type" ng-model="cmdc.Status.selected" theme="bootstrap" ng-disabled="cmdc.disabled" style="width: 100%">
+                            <div class="col-sm-3" ng-class="{ 'has-error': cmdc.validateInput(cmdc.formValidate.Status, 'required') }">
+                                <label for="Status" class="control-label requiredLabel">Status</label>
+                                <ui-select required=""name="Status" id="Status" ng-model="cmdc.Status.selected" theme="bootstrap" ng-disabled="cmdc.disabled" style="width: 100%">
                                     <ui-select-match placeholder="Select a Role...">{{$select.selected.Name}}</ui-select-match>
                                     <ui-select-choices repeat="role in cmdc.Status | propsFilter: {Name: $select.search}">
                                         <div ng-bind-html="role.Name | highlight: $select.search"></div>

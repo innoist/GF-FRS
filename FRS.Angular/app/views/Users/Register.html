@@ -30,28 +30,29 @@
              </div>
             <div class="form-group has-feedback">
                <label class="text-muted">Password</label>
-               <input id="id-password" type="password" name="account_password" ng-model="reg.register.password" ng-pattern="/^[a-zA-Z0-9]{6,10}$/" required="" class="form-control" />
+               <input id="id-password" placeholder="Password" type="password" name="account_password" ng-model="reg.register.password" ng-pattern="/^[a-zA-Z0-9]{6,10}$/" required="" class="form-control" />
                <span class="fa fa-lock form-control-feedback text-muted"></span>
                <span ng-show="reg.registerForm.account_password.$dirty &amp;&amp; reg.registerForm.account_password.$error.required" class="text-danger">This field is required</span>
                <span ng-show="reg.registerForm.account_password.$dirty &amp;&amp; reg.registerForm.account_password.$error.pattern" class="text-danger">Input should match 'a-zA-Z0-9' and 6-10 length</span>
             </div>
              <div class="form-group has-feedback">
                  <label class="text-muted">Retype Password</label>
-                 <input type="password" name="account_password_confirm" ng-model="reg.register.account_password_confirm" ui-validate="'$value==reg.register.password'" ui-validate-watch="'password'" class="form-control" />
+                 <input type="password" placeholder="Confirm Password" name="account_password_confirm" ng-model="reg.register.account_password_confirm" ui-validate="'$value==reg.register.password'" ui-validate-watch="'password'" class="form-control" />
                  <span class="fa fa-lock form-control-feedback text-muted"></span>
+                 <span ng-show="reg.registerForm.account_password_confirm.$dirty &amp;&amp; reg.registerForm.account_password_confirm.$error.required" class="text-danger">This field is required</span>
                  <span ng-show="reg.registerForm.account_password_confirm.$dirty &amp;&amp; reg.registerForm.account_password_confirm.$error.validator" class="text-danger">Password does Not match</span>
              </div>
              
-            <div class="clearfix">
+            <!--<div class="clearfix">
                <div class="checkbox c-checkbox pull-left mt0">
                   <label>
                      <input type="checkbox" required="" name="account_agreed" ng-model="reg.register.agreed" />
                      <span class="fa fa-check"></span>I agree with the <a href="#">terms</a>
                   </label>
                </div>
-            </div>
-            <div ng-show="reg.registerForm.account_agreed.$dirty &amp;&amp; reg.registerForm.account_agreed.$error.required" class="text-danger">You must agree the terms</div>
-            <button type="submit" class="btn btn-block btn-primary mt-lg">Create account</button>
+            </div>-->
+            <!--<div ng-show="reg.registerForm.account_agreed.$dirty &amp;&amp; reg.registerForm.account_agreed.$error.required" class="text-danger">You must agree the terms</div>-->
+             <button type="submit" class="btn btn-block btn-primary mt-lg" ng-disabled="reg.submitBtn">Create account</button>
          </form>
          <div ng-show="reg.authMsg" class="alert alert-danger text-center">{{reg.authMsg}}</div>
          <p class="pt-lg text-center">Have an account?</p><a ui-sref="account.login" class="btn btn-block btn-default">Signin</a>

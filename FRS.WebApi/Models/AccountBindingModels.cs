@@ -44,13 +44,18 @@ namespace FRS.WebApi.Models
         [Required (ErrorMessage = "Last Name is required")]
         public string LastName { get; set; }
         
-        [Required (ErrorMessage = "Address is required")]
+        //[Required (ErrorMessage = "Address is required")]
         public string Address { get; set; }
         
-        [Required (ErrorMessage = "Phone is required")]
+        //[Required (ErrorMessage = "Phone is required")]
         public string Telephone { get; set; }
         public string RoleId { get; set; }
+        [Required(ErrorMessage = "Password is required")]
         public string Password { get; set; }
+
+        [Required(ErrorMessage = "Confirm Password is required")]
+        [Compare("Password", ErrorMessage = "Passwords donot match")]
+        public string ConfirmPassword { get; set; }
 
         
     }

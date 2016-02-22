@@ -1,7 +1,7 @@
 ﻿<h3>
     <!-- START Language list-->
     <div class="pull-right">
-        <button class="btn btn-success btn-labeled" form="saveUser" type="submit">
+        <button class="btn btn-success btn-labeled" ng-disabled="!upc.userForm.$dirty" form="saveUser" type="submit">
             <span class="btn-label">
                 <i class="fa fa-save"></i>
             </span>Save
@@ -21,33 +21,34 @@
         <div class="panel panel-default">
             <form class="form-validate" name="upc.userForm" novalidate="" ng-submit="upc.saveProfile()" id="saveUser">
                 <div class="panel-body">
-                    <div class="form-group">
-                        <label>First Name</label>
+                    <div class="form-group" ng-class="{ 'has-error': upc.validateInput(upc.userForm.FirstName, 'required') }">
+                        <label class="requiredLabel">First Name</label>
                         <input required="" type="text" placeholder="Enter First Name" class="form-control" ng-model="upc.user.FirstName" name="FirstName" />
                         <span ng-show="upc.userForm.FirstName.$dirty &amp;&amp; upc.userForm.FirstName.$error.required" class="text-danger">This field is required</span>
                     </div>
-                    <div class="form-group">
-                        <label>Last Name</label>
+                    <div class="form-group" ng-class="{ 'has-error': upc.validateInput(upc.userForm.LastName, 'required') }">
+                        <label class="requiredLabel">Last Name</label>
                         <input required="" type="text" placeholder="Enter Last Name" class="form-control" ng-model="upc.user.LastName" name="LastName" />
                         <span ng-show="upc.userForm.LastName.$dirty &amp;&amp; upc.userForm.LastName.$error.required" class="text-danger">This field is required</span>
                     </div>
-                    <div class="form-group">
-                        <label>Email address</label>
+                    <div class="form-group" ng-class="{ 'has-error': upc.validateInput(upc.userForm.Email, 'required') }">
+                        <label class="requiredLabel">Email address</label>
                         <input required="" type="email" placeholder="Enter email" class="form-control" ng-model="upc.user.Email" name="Email" />
                         <span ng-show="upc.userForm.Email.$dirty &amp;&amp; upc.userForm.Email.$error.required" class="text-danger">This field is required</span>
+                        <span ng-show="upc.userForm.Email.$dirty &amp;&amp; upc.userForm.Email.$error.email" class="text-danger">This field must be a valid email address</span>
                     </div>
-                    <div class="form-group">
-                        <label>Address</label>
+                    <div class="form-group" ng-class="{ 'has-error': upc.validateInput(upc.userForm.Address, 'required') }">
+                        <label class="requiredLabel">Address</label>
                         <input required="" type="text" placeholder="Enter address" class="form-control" ng-model="upc.user.Address" name="Address" />
                         <span ng-show="upc.userForm.Address.$dirty &amp;&amp; upc.userForm.Address.$error.required" class="text-danger">This field is required</span>
                     </div>
-                    <div class="form-group">
-                        <label>Phone</label>
+                    <div class="form-group" ng-class="{ 'has-error': upc.validateInput(upc.userForm.Phone, 'required') }">
+                        <label class="requiredLabel">Phone</label>
                         <input required="" type="text" placeholder="Enter Phone" class="form-control" ng-model="upc.user.Telephone" name="Phone" />
                         <span ng-show="upc.userForm.Phone.$dirty &amp;&amp; upc.userForm.Phone.$error.required" class="text-danger">This field is required</span>
                     </div>
-                    <div class="form-group">
-                        <label>Role</label>
+                    <div class="form-group" ng-class="{ 'has-error': upc.validateInput(upc.userForm.Role, 'required') }">
+                        <label class="requiredLabel">Role</label>
                         <ui-select required="" ng-model="upc.Roles.selected" theme="bootstrap" ng-disabled="upc.disabled" name="Role" style="width: 100%">
                             <ui-select-match placeholder="Select a Role...">{{$select.selected.Name}}</ui-select-match>
                             <ui-select-choices repeat="role in upc.Roles | propsFilter: {Name: $select.search}">

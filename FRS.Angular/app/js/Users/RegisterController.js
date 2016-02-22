@@ -28,8 +28,9 @@
             vm.authMsg = '';
             vm.register = function () {
                 vm.authMsg = '';
-
+                
                 if (vm.registerForm.$valid) {
+                    vm.submitBtn = true;
                     $http
                       .post(frsApiUrl + '/api/Account/Register', {
                           Email: vm.register.email,
@@ -41,12 +42,14 @@
                       .then(function (response) {
                           // assumes if ok, response is an object with some data, if not, a string with error
                           // customize according to your api
+                          vm.submitBtn = false;
                           if (!response.account) {
-                              vm.authMsg = response;
-                          } else {
-                              $state.go('app.dashboard');
+                              toaster.success("Success", "Account Created successfully. Login to continue.");
+                              $state.go('account.login');
                           }
+                          
                       }, function (err) {
+                          vm.submitBtn = false;
                           vm.authMsg = 'Server Request Error';
                           toaster.error("Error", showErrors(err));
                       });
@@ -56,7 +59,7 @@
                     /*jshint -W106*/
                     vm.registerForm.account_email.$dirty = true;
                     vm.registerForm.account_password.$dirty = true;
-                    vm.registerForm.account_agreed.$dirty = true;
+                    //vm.registerForm.account_agreed.$dirty = true;
                     vm.registerForm.account_FirstName.$dirty = true;
                     vm.registerForm.account_LastName.$dirty = true;
                     vm.registerForm.account_password_confirm.$dirty = true;

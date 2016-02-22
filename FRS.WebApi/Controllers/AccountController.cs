@@ -396,13 +396,24 @@ namespace FRS.WebApi.Controllers
                 EmailConfirmed = true,
                 LockoutEnabled = false
             };
-            model.Password = "123456";
+            if(string.IsNullOrEmpty(model.Password))
+                model.Password = "123456";
             IdentityResult result = await UserManager.CreateAsync(user, model.Password);
 
             if (result.Succeeded)
             {
                 var roleManager = HttpContext.Current.GetOwinContext().Get<ApplicationRoleManager>();
-                var roleName = roleManager.FindById(model.RoleId).Name;
+                string roleName;
+                if (!string.IsNullOrEmpty(model.RoleId))
+                {
+                    roleName = roleManager.FindById(model.RoleId).Name;
+                }
+                else
+                {
+                    var role = await roleManager.FindByNameAsync("Client");
+                    roleName = role.Name;
+                }
+                    
                 UserManager.AddToRole(user.Id, roleName);
 
                 await SendAccountCredentials(model.Email, user.UserName, model.Password);

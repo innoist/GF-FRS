@@ -31,7 +31,12 @@
                 }
             });
         }
-        
+        vm.validateInput = function (property, type) {
+            if (!property || !type) {
+                return false;
+            }
+            return (property.$dirty || vm.submitted) && property.$error[type];
+        };
         vm.saveProfile = function() {
             if (vm.userForm.$valid) {
                 vm.user.RoleId = vm.Roles.selected.Id;

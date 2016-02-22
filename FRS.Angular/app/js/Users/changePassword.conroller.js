@@ -12,7 +12,8 @@
 
 	changePasswordController.$inject = ['$scope','changePasswordService', 'toaster'];
 	function changePasswordController($scope, changePasswordService, toaster) {
-		var vm = this;
+	    var vm = this;
+
 		vm.resetPassword = function () {
 			if (vm.changePasswordForm.$valid) {
 				var data = {
@@ -39,9 +40,11 @@
 			
 		}
 
-
+		vm.validateInput = function (property, type) {
+		    if (!property || !type) {
+		        return false;
+		    }
+		    return (property.$dirty || vm.submitted) && property.$error[type];
+		};
 	}
-
-
-}
-)();
+})();
