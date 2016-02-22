@@ -20,7 +20,7 @@
         $locationProvider.html5Mode(false);
 
         // defaults to dashboard
-        $urlRouterProvider.otherwise('/account/404');
+        $urlRouterProvider.otherwise('/account/login');
 
         var core = angular.module('app.core');
         // Lazy loading
