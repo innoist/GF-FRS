@@ -6,7 +6,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http.Cors;
-using FRS.Commons;
 using FRS.Implementation.Identity;
 using FRS.Models.IdentityModels;
 using Microsoft.AspNet.Identity.Owin;
