@@ -57,7 +57,8 @@
             }
 
             if (isNew) {
-
+                //reseting form
+                vm.formValidate.$setPristine();
                 $state.go('app.CreateMetaData');
             }
             if (!isNew) {

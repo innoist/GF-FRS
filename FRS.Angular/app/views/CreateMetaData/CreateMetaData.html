@@ -41,9 +41,9 @@
                                     </ui-select-choices>
                                 </ui-select>
                             </div>
-                            <div class="col-sm-3" ng-class="{ 'has-error': cmdc.validateInput(cmdc.formValidate.Currency, 'required') }">
+                            <div class="col-sm-3" ng-class="{ 'has-error': cmdc.validateInput(cmdc.formValidate.Source, 'required') }">
                                 <label for="Source" class="control-label requiredLabel">Source</label>
-                                <ui-select required=""name="Source" id="Source" ng-model="cmdc.Sources.selected" theme="bootstrap" ng-disabled="cmdc.disabled" style="width: 100%">
+                                <ui-select required="" name="Source" id="Source" ng-model="cmdc.Sources.selected" theme="bootstrap" ng-disabled="cmdc.disabled" style="width: 100%">
                                     <ui-select-match placeholder="Select a Role...">{{$select.selected.Name}}</ui-select-match>
                                     <ui-select-choices repeat="role in cmdc.Sources | propsFilter: {Name: $select.search}">
                                         <div ng-bind-html="role.Name | highlight: $select.search"></div>
