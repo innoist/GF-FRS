@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Security.Claims;
 using System.Threading;
 using System.Threading.Tasks;
@@ -81,7 +82,7 @@ namespace FRS.WebApi.Providers
                 throw new ArgumentException("ClaimsSecurityService");
             }
 
-            ClaimsSecurityService.AddClaimsToIdentity(FRSApplicationRoles.User, context.UserName, 
+            ClaimsSecurityService.AddClaimsToIdentity(user.AspNetRoles.FirstOrDefault().Name, context.UserName, 
                 user.Id, timeZoneOffSetValue, oAuthIdentity);
             
             var props = new AuthenticationProperties(new Dictionary<string, string>
@@ -96,7 +97,7 @@ namespace FRS.WebApi.Providers
                         "userId", user.Id
                     },
                     {
-                        "UserRole", FRSApplicationRoles.User
+                        "UserRole", user.AspNetRoles.FirstOrDefault().Name
                     }
                 });
 

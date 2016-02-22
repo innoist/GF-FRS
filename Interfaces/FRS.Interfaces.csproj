@@ -54,6 +54,7 @@
     <Compile Include="IServices\IClaimsSecurityService.cs" />
     <Compile Include="IServices\IEmployeeService.cs" />
     <Compile Include="IServices\IFileContentService.cs" />
+    <Compile Include="IServices\ILoadTypeService.cs" />
     <Compile Include="IServices\IMT940BalanceService.cs" />
     <Compile Include="IServices\ILoadMetaDataService.cs" />
     <Compile Include="IServices\ILoadService.cs" />

@@ -32,7 +32,7 @@
             if (vm.formValidate.$valid) {
                 console.log('Submitted!!');
             } else {
-                toaster.pop("error", "Fields are required", "Notification");
+                toaster.pop("error", "Error", "Fields are required");
                 return false;
             }
             vm.LoadMetaData.LoadMetaDataId = metaDataId;
@@ -48,7 +48,7 @@
             CreateMetaDataService.saveLoadMetaDataDetail(vm.LoadMetaData, onSuccess, onError);
             function onSuccess(response) {
                 if (response.data == true) {
-                    toaster.pop("success", "Metadata Saved successfully", "Notification");
+                    toaster.pop("success", "Notification", "Metadata Saved successfully");
                 }
             }
             function onError(err) {
@@ -120,12 +120,6 @@
             vm.Status.selected = null;
         }
 
-        //if ($stateParams.Id !== "") {
-        //    metaDataId = $stateParams.Id;
-
-        //} else {
-        //    metaDataId = 0;
-        //}
         metaDataId = $stateParams.Id;
         CreateMetaDataService.loadMetaDataById(metaDataId, function (response) {
             vm.LoadTypes = response.LoadTypes;

@@ -1,11 +1,4 @@
-﻿//(function () {
-//    'use strict';
-
-//    angular
-//        .module('app.LoadMetaData', []);
-//})();
-
-/**=========================================================
+﻿/**=========================================================
  * Module: load meta data
  * Load Meta Data view Controller
  =========================================================*/
@@ -13,9 +6,6 @@
 (function () {
     'use strict';
 
-    //angular
-    //    .module('app.LoadMetaData', [])
-    //    .controller('LoadMetaDataController', LoadMetaDataController);
     var core = angular.module('app.core');
     // ReSharper disable FunctionsUsedBeforeDeclared
     core.lazy.controller('LoadMetaDataController', LoadMetaDataController);
@@ -88,12 +78,15 @@
         vm.gridOptions = {
             paginationPageSizes: [10, 25, 50, 100, 500],
             paginationPageSize: 10,
+            enableSorting: true,
+            //suppressRemoveSort: true,
             useExternalPagination: true,
             useExternalSorting: true,
             //enableFiltering: true,
             flatEntityAccess: true,
             //fastWatch: true,
             enableGridMenu: true,
+            enableColumnMenus: false,
             //useExternalFiltering: true,
             columnDefs: [
                 // name is for display on the table header, field is for mapping as in 
@@ -178,7 +171,7 @@
             getPage();
         }
 
-        getPage();
+        $scope.resetFilter();
 
 
     }

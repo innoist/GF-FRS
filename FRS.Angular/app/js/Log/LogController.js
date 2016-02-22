@@ -80,6 +80,7 @@
             flatEntityAccess: true,
             //fastWatch: true,
             enableGridMenu: true,
+            enableColumnMenus: false,
             //useExternalFiltering: true,
             columnDefs: [
                 // name is for display on the table header, field is for mapping as in 

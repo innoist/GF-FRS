@@ -1,11 +1,9 @@
 ﻿using System.Linq;
 using System.Web.Http;
 using FRS.Interfaces.IServices;
+using FRS.Models.Common.DropDown;
 using FRS.Models.ResponseModels;
-using FRS.WebApi.ModelMappers;
 using FRS.WebApi.ViewModels.MetaData;
-using FRS.WebBase.UnityConfiguration;
-using Microsoft.Practices.Unity;
 
 namespace FRS.WebApi.Areas.Load.Controllers
 {
@@ -13,22 +11,23 @@ namespace FRS.WebApi.Areas.Load.Controllers
     {
         #region Private
 
-        private readonly ILoadMetaDataService loadMetaDataService = UnityWebActivator.Container.Resolve<ILoadMetaDataService>();
+        private readonly ILoadTypeService loadTypeService;
+        
+
+        public LoadMetaDataBaseController(ILoadTypeService loadTypeService)
+        {
+            this.loadTypeService = loadTypeService;
+        }
+
         #endregion
 
         #region Public
         public BaseDataLoadMetaData Get()
         {
-            //BaseDataLoadMetaDataResponse response = loadMetaDataService.GetBaseDataResponse();
-            //BaseDataLoadMetaData baseData = new BaseDataLoadMetaData
-            //{
-            //    LoadTypes = response.LoadTypes,
-            //    Sources = response.Sources,
-            //    Currencies = response.Currencies,
-            //    Statuses = response.Statuses
-            //};
-            //return baseData;
-            return null;
+            return new BaseDataLoadMetaData
+            {
+                LoadTypes = loadTypeService.GetLoadTypes().Select(x => new DropDownModel{Id = x.Value, Name = x.Name})
+            };
         }
         #endregion
     }

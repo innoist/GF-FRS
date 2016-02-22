@@ -1,17 +1,8 @@
-﻿//(function() {
-//    'use strict';
-
-//    angular.module('app.Profile',[]);
-
-
-//})();
+﻿
 
 (function() {
     'use strict';
 
-    //angular
-    //    .module('app.Profile', [])
-    //    .controller('ProfileController', ProfileController);
     var core = angular.module('app.core');
     // ReSharper disable FunctionsUsedBeforeDeclared
     core.lazy.controller('ProfileController', ProfileController);
@@ -21,11 +12,7 @@
     function ProfileController($scope,$stateParams, $state, ProfileService, toaster) {
         var vm = this;
         //ui-select
-        vm.disabled = undefined;
-        vm.Role = {};
-        vm.Roles = [
-          //{ Id: '1', Name: 'a'}
-        ];
+        
         ProfileService.getBaseData(function (response) {
             vm.Roles = response;
         },
@@ -44,21 +31,29 @@
                 }
             });
         }
+        
+        vm.saveProfile = function() {
+            if (vm.userForm.$valid) {
+                vm.user.RoleId = vm.Roles.selected.Id;
+                ProfileService.saveProfile(vm.user, function(response) {
+                    if (response) {
+                        toaster.success("Profile Saved.");
+                        $state.go('app.Users');
+                    }
 
-        vm.saveProfile = function () {
-            vm.user.RoleId = vm.Roles.selected.Id;
-            ProfileService.saveProfile(vm.user,function(response) {
-                if (response) {
-                    toaster.success("Profile Saved.");
-                    //$state.go('app.dashboard');
-                }
-
-            }, function(err) {
-                toaster.pop("error","Alert",showErrors(err));
-            });
+                }, function(err) {
+                    toaster.pop("error", "Alert", showErrors(err));
+                });
+            } else {
+            vm.userForm.FirstName.$dirty = true;
+            vm.userForm.LastName.$dirty = true;
+            vm.userForm.Address.$dirty = true;
+            vm.userForm.Phone.$dirty = true;
+            vm.userForm.Email.$dirty = true;
+            vm.userForm.Role.$dirty = true;
         }
-        
-        
+        }
+
 
     }
 })();

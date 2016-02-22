@@ -19,7 +19,7 @@ namespace FRS.Implementation
         public static void RegisterType(IUnityContainer unityContainer)
         {
             UnityConfig.UnityContainer = unityContainer;
-            FRS.Repository.TypeRegistrations.RegisterType(unityContainer);
+            Repository.TypeRegistrations.RegisterType(unityContainer);
             unityContainer.RegisterType<IMenuRightsService, MenuRightsService>();
             unityContainer.RegisterType<ILogger, LoggerService>();
             unityContainer.RegisterType<IUserStore<ApplicationUser>, UserStore<ApplicationUser>>();
@@ -32,6 +32,7 @@ namespace FRS.Implementation
             unityContainer.RegisterType<IFileContentService, FileContentService>();
             unityContainer.RegisterType<IMT940LoadService, MT940LoadService>();
             unityContainer.RegisterType<IUsersService, UsersService>();
+            unityContainer.RegisterType<ILoadTypeService, LoadTypeService>();
         }
     }
 }

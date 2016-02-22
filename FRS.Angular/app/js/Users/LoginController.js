@@ -46,7 +46,7 @@
                             }
                         })
                         .success(function (response) {
-                            $localStorage['authorizationData'] = { token: response.access_token, userName: response.userName };
+                            $localStorage['authorizationData'] = { token: response.access_token, userName: response.userName, UserRole: response.UserRole };
 
                             // Add Authorization token to every http request
                             $http.defaults.headers.common = {
