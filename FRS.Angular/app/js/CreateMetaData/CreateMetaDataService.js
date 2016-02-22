@@ -6,10 +6,9 @@
 
     CreateMetaDataService.$inject = ['$http', '$state', '$localStorage'];
     function CreateMetaDataService($http, $state, $localStorage) {
-        this.getLoadMetaData = getLoadMetaData;
         this.saveLoadMetaDataDetail = saveLoadMetaDataDetail;
         this.loadMetaDataById = function (Id, onReady, onError) {
-            var urlMetaData = window.frsApiUrl + '/api/LoadMetaData/' + Id;
+            var urlMetaData = window.frsApiUrl + '/api/LoadMetaData?id=' + Id;
 
             onError = onError || function () { alert('Failure loading Meta Data'); };
 
@@ -19,16 +18,6 @@
               .error(onError);
         };
 
-        function getLoadMetaData(onReady, onError) {
-            var urlMetaData = window.frsApiUrl + '/api/LoadMetaDataBase';
-
-            onError = onError || function () { alert('Failure loading Meta Data'); };
-
-            $http
-              .get(urlMetaData)
-              .success(onReady)
-              .error(onError);
-        }
 
         function saveLoadMetaDataDetail(metaData, onReady, onError) {
 

@@ -19,16 +19,16 @@ namespace FRS.WebApi.Areas.Load.Controllers
         #region Public
         public BaseDataLoadMetaData Get()
         {
-            BaseDataLoadMetaDataResponse response = loadMetaDataService.GetBaseDataResponse();
-            BaseDataLoadMetaData baseData = new BaseDataLoadMetaData
-            {
-                LoadMetaDatas = response.LoadMetaDatas.Select(x => x.CreateFromServerToClient()).ToList(),
-                LoadTypes = response.LoadTypes,
-                Sources = response.Sources,
-                Currencies = response.Currencies,
-                Statuses = response.Statuses
-            };
-            return baseData;
+            //BaseDataLoadMetaDataResponse response = loadMetaDataService.GetBaseDataResponse();
+            //BaseDataLoadMetaData baseData = new BaseDataLoadMetaData
+            //{
+            //    LoadTypes = response.LoadTypes,
+            //    Sources = response.Sources,
+            //    Currencies = response.Currencies,
+            //    Statuses = response.Statuses
+            //};
+            //return baseData;
+            return null;
         }
         #endregion
     }

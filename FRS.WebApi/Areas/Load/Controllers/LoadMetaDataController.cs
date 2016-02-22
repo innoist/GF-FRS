@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Http;
 using FRS.Interfaces.IServices;
 using FRS.Models.RequestModels;
+using FRS.Models.ResponseModels;
 using FRS.WebApi.ModelMappers;
 using FRS.WebApi.Models.MetaData;
 using FRS.WebApi.ViewModels.MetaData;
@@ -19,22 +20,39 @@ namespace FRS.WebApi.Areas.Load.Controllers
     {
         #region Private
 
-        private readonly ILoadMetaDataService loadMetaDataService = UnityWebActivator.Container.Resolve<ILoadMetaDataService>();
+        private readonly ILoadMetaDataService loadMetaDataService;
         #endregion
 
         #region Public
 
+        public LoadMetaDataController(ILoadMetaDataService loadMetaDataService)
+        {
+            this.loadMetaDataService = loadMetaDataService;
+        }
+
         #region Get
         [ApiException]
         [Authorize]
-        public LoadMetaData Get(long id)
+        public BaseDataLoadMetaData Get(long? id)
         {
             if (id <= 0)
             {
                 throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
             }
-            var loadMetaData = loadMetaDataService.FindById(id);
-            return loadMetaData.CreateFromServerToClient();
+            BaseDataLoadMetaDataResponse response = loadMetaDataService.GetBaseDataResponse(id);
+            BaseDataLoadMetaData baseData = new BaseDataLoadMetaData
+            {
+                LoadTypes = response.LoadTypes,
+                Sources = response.Sources,
+                Currencies = response.Currencies,
+                Statuses = response.Statuses
+                
+            };
+            if (response.MetaData != null)
+            {
+                baseData.MetaData = response.MetaData.CreateFromServerToClient();
+            }
+            return baseData;
         }
 
         [HttpGet]

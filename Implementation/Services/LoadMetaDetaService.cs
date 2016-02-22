@@ -101,16 +101,20 @@ namespace FRS.Implementation.Services
             }
         }
 
-        public BaseDataLoadMetaDataResponse GetBaseDataResponse()
+        public BaseDataLoadMetaDataResponse GetBaseDataResponse(long ? id)
         {
-            return new BaseDataLoadMetaDataResponse
+            var toReturn = new BaseDataLoadMetaDataResponse
             {
-                LoadMetaDatas = loadMetaDataRepository.GetAll(),
                 LoadTypes = loadTypeRepository.GetLoadTypesDropDown(),
                 Sources = sourceRepository.GetSourcesDropDown(),
                 Currencies = currencyRepository.GetCurrenciesDropDown(),
                 Statuses = statusRepository.GetStatusesDropDown()
             };
+            if (id != null)
+            {
+                toReturn.MetaData = loadMetaDataRepository.Find((long) id);
+            }
+            return toReturn;
         }
 
         public bool SaveMetaData(LoadMetaData loadMetaData)

@@ -11,16 +11,6 @@
         var vm = this;
         var metaDataId = 0;
 
-        //#region Get Data from DB
-        CreateMetaDataService.getLoadMetaData(function (data) {
-            vm.LoadTypes = data.LoadTypes;
-            vm.Sources = data.Sources;
-            vm.Currencies = data.Currencies;
-            vm.Status = data.Statuses;
-        });
-        
-        //#endregion
-
         //#region Web Model properties
         vm.LoadMetaData = {
 
@@ -130,48 +120,61 @@
             vm.Status.selected = null;
         }
 
-        if ($stateParams.Id !== "") {
-            metaDataId = $stateParams.Id;
-            CreateMetaDataService.loadMetaDataById(metaDataId, function (response) {
-                $scope.Header = response.Header;
-                $scope.Footer = response.Footer;
-                $scope.Name = response.Name;
-                $scope.Description = response.Description;
-                var selectedLoadType = $(vm.LoadTypes).filter(function (index, item) {
-                    return item.Id === response.LoadTypeId;
+        //if ($stateParams.Id !== "") {
+        //    metaDataId = $stateParams.Id;
+
+        //} else {
+        //    metaDataId = 0;
+        //}
+        metaDataId = $stateParams.Id;
+        CreateMetaDataService.loadMetaDataById(metaDataId, function (response) {
+            vm.LoadTypes = response.LoadTypes;
+            vm.Sources = response.Sources;
+            vm.Currencies = response.Currencies;
+            vm.Status = response.Statuses;
+
+            if (response.MetaData) {
+                $scope.Header = response.MetaData.Header;
+                $scope.Footer = response.MetaData.Footer;
+                $scope.Name = response.MetaData.Name;
+                $scope.Description = response.MetaData.Description;
+                metaDataId = response.MetaData.LoadMetaDataId;
+                var selectedLoadType = $(vm.LoadTypes).filter(function(index, item) {
+                    return item.Id === response.MetaData.LoadTypeId;
                 });
                 if (selectedLoadType.length > 0) {
                     vm.LoadTypes.selected = selectedLoadType[0];
                 }
 
-                var selectedSource = $(vm.Sources).filter(function (index, item) {
-                    return item.Id === response.SourceId;
+                var selectedSource = $(vm.Sources).filter(function(index, item) {
+                    return item.Id === response.MetaData.SourceId;
                 });
                 if (selectedSource.length > 0) {
                     vm.Sources.selected = selectedSource[0];
                 }
 
-                var selectedCurrency = $(vm.Currencies).filter(function (index, item) {
-                    return item.Id === response.CurrencyId;
+                var selectedCurrency = $(vm.Currencies).filter(function(index, item) {
+                    return item.Id === response.MetaData.CurrencyId;
                 });
                 if (selectedCurrency.length > 0) {
                     vm.Currencies.selected = selectedCurrency[0];
                 }
 
-                var selectedStatus = $(vm.Status).filter(function (index, item) {
-                    return item.Id === response.StatusId;
+                var selectedStatus = $(vm.Status).filter(function(index, item) {
+                    return item.Id === response.MetaData.StatusId;
                 });
                 if (selectedStatus.length > 0) {
                     vm.Status.selected = selectedStatus[0];
                 }
                 toaster.success("", "Metadata loaded successfully.");
-            },
+            } else {
+                metaDataId = 0;
+            }
+
+        },
                 function (err) {
                     toaster.error("", showErrors(err));
                 });
-        } else {
-            metaDataId = 0;
-        }
     }
 
 

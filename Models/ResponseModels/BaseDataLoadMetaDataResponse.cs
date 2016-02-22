@@ -10,6 +10,6 @@ namespace FRS.Models.ResponseModels
         public IEnumerable<DropDownModel> Sources { get; set; }
         public IEnumerable<DropDownModel> Currencies { get; set; }
         public IEnumerable<DropDownModel> Statuses { get; set; }
-        public IEnumerable<LoadMetaData> LoadMetaDatas { get; set; } 
+        public LoadMetaData MetaData { get; set; }
     }
 }

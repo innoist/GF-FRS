@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using FRS.Models.Common.DropDown;
+using FRS.WebApi.Models.MetaData;
 
 namespace FRS.WebApi.ViewModels.MetaData
 {
@@ -9,6 +10,6 @@ namespace FRS.WebApi.ViewModels.MetaData
         public IEnumerable<DropDownModel> Sources { get; set; }
         public IEnumerable<DropDownModel> Currencies { get; set; }
         public IEnumerable<DropDownModel> Statuses { get; set; }
-        public IList<Models.MetaData.LoadMetaData> LoadMetaDatas { get; set; }
+        public LoadMetaData MetaData { get; set; }
     }
 }
