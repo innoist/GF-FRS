@@ -13,10 +13,12 @@
     // ReSharper disable FunctionsUsedBeforeDeclared
     core.lazy.controller('UsersController', UsersController);
 
-    UsersController.$inject = ['$scope', '$http', 'uiGridConstants', 'UsersService'];
+    UsersController.$inject = ['$scope', '$http', '$localStorage', 'uiGridConstants', 'UsersService'];
 
-    function UsersController($scope, $http, uiGridConstants, UsersService) {
+    function UsersController($scope, $http, $localStorage, uiGridConstants, UsersService) {
         var vm = this;
+        if ($localStorage['authorizationData'].UserRole !== "SystemAdministrator")
+            vm.SysAdmin = false;
         var actionBtnTemplate = '<div uib-dropdown="dropdown" class="btn-group">' +
             '<button type="button" class="btn btn-inverse">Action</button>' +
             '<button type="button" uib-dropdown-toggle="" class="btn dropdown-toggle btn-inverse">' + 

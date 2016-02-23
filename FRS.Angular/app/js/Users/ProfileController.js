@@ -7,9 +7,9 @@
     // ReSharper disable FunctionsUsedBeforeDeclared
     core.lazy.controller('ProfileController', ProfileController);
 
-    ProfileController.$inject = ['$scope','$stateParams', '$state', 'ProfileService', 'toaster'];
+    ProfileController.$inject = ['$scope', '$stateParams', '$state', '$localStorage', 'ProfileService', 'toaster'];
 
-    function ProfileController($scope,$stateParams, $state, ProfileService, toaster) {
+    function ProfileController($scope, $stateParams, $state, $localStorage, ProfileService, toaster) {
         var vm = this;
         //ui-select
         
@@ -23,6 +23,9 @@
         if ($stateParams.Name !== "") {
             ProfileService.loadProfile($stateParams.Name, function (response) {
                 vm.user = response;
+                if ($localStorage['authorizationData'].UserRole !== "SystemAdministrator")
+                    vm.disabled = true;
+
                 var selectedRole = $(vm.Roles).filter(function (index, item) {
                     return item.Name === response.Role;
                 });

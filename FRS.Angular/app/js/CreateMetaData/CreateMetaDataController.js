@@ -20,6 +20,10 @@
         $scope.Currency = '';
         $scope.IsReadOnly = false;
 
+        $scope.clear = function ($event) {
+            $event.stopPropagation();
+            vm.LoadTypes.selected = null;
+        };
         vm.validateInput = function (property, type) {
             if (!property || !type) {
                 return false;
@@ -69,24 +73,29 @@
         //#endregion
 
         $scope.cancelBtn = function () {
-            SweetAlert.swal({
-                title: 'Are you sure?',
-                text: 'All data you entered in form will be lost!',
-                type: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#DD6B55',
-                confirmButtonText: 'Yes, cancel saving form.!',
-                cancelButtonText: 'No, stay on this page!',
-                closeOnConfirm: true,
-                closeOnCancel: true,
-            }, function (isConfirm) {
-                if (isConfirm) {
-                    //SweetAlert.swal('Deleted!', 'Your imaginary file has been deleted.', 'success');
-                    $state.go('app.LoadMetaData');
-                } else {
-                    //SweetAlert.swal('Cancelled', 'Stay on this page', 'error');
-                }
-            });
+            if (!vm.formValidate.$dirty) {
+                $state.go('app.LoadMetaData');
+            } else {
+                SweetAlert.swal({
+                    title: 'Are you sure?',
+                    text: 'All data you entered in form will be lost!',
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#DD6B55',
+                    confirmButtonText: 'Yes, cancel saving form.!',
+                    cancelButtonText: 'No, stay on this page!',
+                    closeOnConfirm: true,
+                    closeOnCancel: true,
+                }, function (isConfirm) {
+                    if (isConfirm) {
+                        //SweetAlert.swal('Deleted!', 'Your imaginary file has been deleted.', 'success');
+                        $state.go('app.LoadMetaData');
+                    } else {
+                        //SweetAlert.swal('Cancelled', 'Stay on this page', 'error');
+                    }
+                });
+            }
+            
 
         }
 
@@ -129,6 +138,7 @@
             vm.Status = response.Statuses;
 
             if (response.MetaData) {
+                $scope.update = true;
                 $scope.Header = response.MetaData.Header;
                 $scope.Footer = response.MetaData.Footer;
                 $scope.Name = response.MetaData.Name;

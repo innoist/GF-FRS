@@ -87,7 +87,7 @@
                 //sortId is kept locally it is not the property of ui.grid
               { name: 'Severity', field: 'Severity', sortId: 0, width: '15%' },
               { name: 'Timestamp', field: 'Timestamp', sortId: 1, width: '20%' },
-              { name: 'Message', field: 'Message', sortId: 2 }
+              { name: 'Message', field: 'Message', sortId: 2, cellTemplate: '<div class="ui-grid-cell-contents" title="{{row.entity.Message}}">{{row.entity.Message}}</div>' }
              
             ],
             onRegisterApi: function (gridApi) {

@@ -4,9 +4,10 @@
         <button ng-click="saveLoadMetaDataDetail(false)" ng-disabled="!cmdc.formValidate.$dirty" type="button" class="btn btn-labeled btn-success">
             <span class="btn-label">
                 <i class="fa fa-check"></i>
-            </span><span class="hidden-480">Save</span>
+            </span><span class="hidden-480" ng-if="!update">Save</span>
+            <span class="hidden-480" ng-if="update">Update</span>
         </button>
-        <button ng-click="saveLoadMetaDataDetail(true)" ng-disabled="!cmdc.formValidate.$dirty" type="button" class="btn btn-labeled btn-info">
+        <button ng-click="saveLoadMetaDataDetail(true)" ng-disabled="!cmdc.formValidate.$dirty" ng-if="!update" type="button" class="btn btn-labeled btn-info">
             <span class="btn-label">
                 <i class="fa fa-plus"></i>
             </span><span class="hidden-480">Save and New</span>
@@ -35,10 +36,16 @@
 
                                 <label for="load-type" class="control-label requiredLabel">Load Type</label>
                                 <ui-select required="" name="LoadType" id="load-type" ng-model="cmdc.LoadTypes.selected" theme="bootstrap" ng-disabled="cmdc.disabled" style="width: 100%">
-                                    <ui-select-match placeholder="Select a Load Type...">{{$select.selected.Name}}</ui-select-match>
+                                    <ui-select-match placeholder="Select a Load Type...">
+                                        {{$select.selected.Name}}
+                                        <span class="resetDdl" ng-click="clear($event)">
+                                            <i class="fa fa-times"></i>
+                                        </span>
+                                    </ui-select-match>
                                     <ui-select-choices repeat="role in cmdc.LoadTypes | propsFilter: {Name: $select.search}">
                                         <div ng-bind-html="role.Name | highlight: $select.search"></div>
                                     </ui-select-choices>
+                                    
                                 </ui-select>
                             </div>
                             <div class="col-sm-3" ng-class="{ 'has-error': cmdc.validateInput(cmdc.formValidate.Source, 'required') }">

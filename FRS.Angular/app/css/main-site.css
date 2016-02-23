@@ -48,3 +48,12 @@
     width: 128px !important;
 
 }
+
+.ui-grid-header-cell .ui-grid-sort-priority-number {
+    display: none;
+}
+
+.resetDdl {
+    position: absolute;
+    right: 25px;
+}
