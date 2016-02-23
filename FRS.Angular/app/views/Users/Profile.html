@@ -4,7 +4,8 @@
         <button class="btn btn-success btn-labeled" ng-disabled="!upc.userForm.$dirty" form="saveUser" type="submit">
             <span class="btn-label">
                 <i class="fa fa-save"></i>
-            </span>Save
+            </span><span class="hidden-480" ng-if="!update">Save</span>
+            <span class="hidden-480" ng-if="update">Update</span>
         </button>
         <a ui-sref="app.Users" class="btn btn-danger btn-labeled">
             <span class="btn-label">

@@ -22,7 +22,10 @@
         
         if ($stateParams.Name !== "") {
             ProfileService.loadProfile($stateParams.Name, function (response) {
+                if (!response)
+                    return;
                 vm.user = response;
+                $scope.update = true;
                 if ($localStorage['authorizationData'].UserRole !== "SystemAdministrator")
                     vm.disabled = true;
 
