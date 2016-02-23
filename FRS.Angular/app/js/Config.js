@@ -98,6 +98,8 @@
                 url: '/changePassword',
                 title: 'Change Password',
                 templateUrl: helper.basepath('../../../../app/views/Users/ChangePassword.html'),
+                controller: 'changePasswordController',
+                controllerAs: 'changePassword',
                 resolve: helper.resolveFor('changePassword.module')
             })
             .state('app.rightsManagement', {
