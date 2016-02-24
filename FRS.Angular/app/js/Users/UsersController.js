@@ -17,8 +17,15 @@
 
     function UsersController($scope, $http, $localStorage, uiGridConstants, UsersService) {
         var vm = this;
-        if ($localStorage['authorizationData'].UserRole !== "SystemAdministrator")
-            vm.SysAdmin = false;
+        if ($localStorage['authorizationData'].UserRole !== "SystemAdministrator") {
+            vm.SysAdmin = function () {
+                return false;
+            };
+        } else {
+            vm.SysAdmin = function () {
+                return true;
+            };
+        }
         var actionBtnTemplate = '<div uib-dropdown="dropdown" class="btn-group">' +
             '<button type="button" class="btn btn-inverse">Action</button>' +
             '<button type="button" uib-dropdown-toggle="" class="btn dropdown-toggle btn-inverse">' + 

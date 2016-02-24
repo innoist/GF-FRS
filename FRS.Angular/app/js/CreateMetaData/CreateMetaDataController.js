@@ -23,6 +23,7 @@
         $scope.clear = function ($event) {
             $event.stopPropagation();
             vm.LoadTypes.selected = null;
+            vm.formValidate.$dirty = true;
         };
         vm.validateInput = function (property, type) {
             if (!property || !type) {

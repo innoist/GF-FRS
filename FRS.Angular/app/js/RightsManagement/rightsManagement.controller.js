@@ -121,7 +121,7 @@
 
         // ON Update Rights Success
         vm.onUpdateSuccess = function () {
-            toaster.pop("success", "Rights updated successfully", "Notification");
+            toaster.pop("success", "Notification", "Rights updated successfully");
             // Reset Form
             vm.rightsForm.$setPristine();
         };
