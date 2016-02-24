@@ -85,7 +85,7 @@ namespace FRS.WebApi.Areas.Load.Controllers
             {
                 throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
             }
-
+            HttpContext.Current.Session["Menu"] = null;
             menuRightsService.SaveRoleMenuRight(request.RoleId, request.SelectedMenuIds, null);
         }
 

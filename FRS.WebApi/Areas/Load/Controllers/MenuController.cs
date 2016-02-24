@@ -39,12 +39,12 @@ namespace FRS.WebApi.Areas.Load.Controllers
         [ApiException]
         public IEnumerable<MenuView> Get()
         {
-            if (HttpContext.Current.Cache["Menu"] == null)
+            if (HttpContext.Current.Session["Menu"] == null)
             {
-                HttpContext.Current.Cache["Menu"] = menuRightsService.GetForRole();
+                HttpContext.Current.Session["Menu"] = menuRightsService.GetForRole();
             }
 
-            return HttpContext.Current.Cache["Menu"] as List<MenuView>;
+            return HttpContext.Current.Session["Menu"] as List<MenuView>;
         }
         
         #endregion
