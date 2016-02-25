@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IServices\IClaimsSecurityService.cs" />
+    <Compile Include="IServices\ICurrencyService.cs" />
     <Compile Include="IServices\IEmployeeService.cs" />
     <Compile Include="IServices\IFileContentService.cs" />
     <Compile Include="IServices\ILoadTypeService.cs" />

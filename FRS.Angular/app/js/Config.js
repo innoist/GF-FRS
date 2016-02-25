@@ -110,6 +110,14 @@
                 controllerAs: 'rightsManagement',
                 resolve: helper.resolveFor('rightsManagement.module', 'ui.grid', 'loaders.css', 'spinkit', 'ui.select')
             })
+            .state('app.Currency', {
+                url: '/Currency',
+                title: 'Currency',
+                templateUrl: helper.basepath('../../../../app/views/Currency/Currency.html'),
+                controller: 'CurrencyController',
+                controllerAs: 'cc',
+                resolve: helper.resolveFor('currency.module', 'ui.grid')
+            })
             .state('account', {
                 url: '/account',
                 templateUrl: 'app/pages/page.html',

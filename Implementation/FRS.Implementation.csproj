@@ -178,6 +178,7 @@
       <DependentUpon>JobType.resx</DependentUpon>
     </Compile>
     <Compile Include="Services\ClaimsSecurityService.cs" />
+    <Compile Include="Services\CurrencyService.cs" />
     <Compile Include="Services\EmployeeService.cs" />
     <Compile Include="Services\FileContentService.cs" />
     <Compile Include="Services\LoadMetaDetaService.cs" />

@@ -2188,8 +2188,12 @@
               }
               ,
               {
-                  name: 'changePassword.module', files: ['/app/js/Users/changePassword.conroller.js',
+                  name: 'changePassword.module', files: ['/app/js/Users/changePassword.controller.js',
                                                         '/app/js/Users/changePassword.service.js']
+              },
+              {
+                  name: 'currency.module', files: ['/app/js/currency/currency.controller.js',
+                                                        '/app/js/currency/currency.service.js']
               },
 
               {

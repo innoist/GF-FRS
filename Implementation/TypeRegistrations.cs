@@ -33,6 +33,7 @@ namespace FRS.Implementation
             unityContainer.RegisterType<IMT940LoadService, MT940LoadService>();
             unityContainer.RegisterType<IUsersService, UsersService>();
             unityContainer.RegisterType<ILoadTypeService, LoadTypeService>();
+            unityContainer.RegisterType<ICurrencyService, CurrencyService>();
         }
     }
 }
