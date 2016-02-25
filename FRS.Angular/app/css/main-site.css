@@ -49,6 +49,7 @@
 
 }
 
+/*Hide priority number 1 in Grid*/
 .ui-grid-header-cell .ui-grid-sort-priority-number {
     display: none;
 }
@@ -56,4 +57,9 @@
 .resetDdl {
     position: absolute;
     right: 25px;
+}
+
+/*Indent submenus*/
+nav li ul li {
+    padding-left: 30px !important;
 }

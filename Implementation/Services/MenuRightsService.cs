@@ -126,32 +126,45 @@ namespace FRS.Implementation.Services
                     text = parent.MenuTitle,
                     heading = true,
                     icon = parent.MenuImagePath,
-                    sref = parent.MenuTargetController,
-                    submenu = new List<MenuView>()
+                    sref = parent.MenuTargetController
                 };
 
                 menuViews.Add(menuView);
 
-                // Insert Sub menus if any
-                List<Menu> childs = menuRights
-                                    .Where(menu => !menu.Menu.IsRootItem && menu.Menu.ParentItem_MenuId == parent.MenuId)
+                List<Menu> NotParentMenu = menuRights
+                                    .Where(menu => !menu.Menu.IsRootItem && menu.Menu.ParentItem_MenuId.Equals(parent.MenuId))
                                     .OrderBy(menu => menu.Menu.SortOrder).Select(menu => menu.Menu).ToList();
-                if (!childs.Any())
-                {
-                    continue;
-                }            
-                   
-                childs.ForEach(childMenu => menuView.submenu.Add(new MenuView
-                {
-                    text = childMenu.MenuTitle,
-                    icon = childMenu.MenuImagePath,
-                    sref = childMenu.MenuTargetController
-                }));
 
-                // Mark heading false
-                menuView.heading = false;
+                foreach (var menus in NotParentMenu)
+                {
+                    MenuView menuViewz = new MenuView
+                    {
+                        text = menus.MenuTitle,
+                        icon = menus.MenuImagePath,
+                        sref = menus.MenuTargetController,
+                        submenu = new List<MenuView>()
+                    };
+
+                    menuViews.Add(menuViewz);
+
+                    // Insert Sub menus if any
+                    List<Menu> childs = menuRights
+                                        .Where(menu => !menu.Menu.IsRootItem && menu.Menu.ParentItem_MenuId == menus.MenuId)
+                                        .OrderBy(menu => menu.Menu.SortOrder).Select(menu => menu.Menu).ToList();
+
+                    if (!childs.Any())
+                    {
+                        continue;
+                    }
+
+                    childs.ForEach(childMenu => menuViewz.submenu.Add(new MenuView
+                    {
+                        text = childMenu.MenuTitle,
+                        icon = childMenu.MenuImagePath,
+                        sref = childMenu.MenuTargetController
+                    }));
+                }
             }
-
             return menuViews;
         }
 
