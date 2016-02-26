@@ -2199,6 +2199,22 @@
                   name: 'newCurrency.module', files: ['/app/js/currency/Create/newCurrency.controller.js',
                                                         '/app/js/currency/Create/newCurrency.service.js']
               },
+              {
+                  name: 'status.module', files: ['/app/js/status/Index/status.controller.js',
+                                                 '/app/js/status/Index/status.service.js']
+              },
+              {
+                  name: 'createStatus.module', files: ['/app/js/status/Create/createStatus.controller.js',
+                                                       '/app/js/status/Create/createStatus.service.js']
+              },
+              {
+                  name: 'loadType.module', files: ['/app/js/LoadType/Index/loadType.controller.js',
+                                                       '/app/js/LoadType/Index/loadType.service.js']
+              },
+              {
+                  name: 'createLoadType.module', files: ['/app/js/LoadType/Create/CreateLoadType.controller.js',
+                                                         '/app/js/LoadType/Create/CreateLoadType.service.js']
+              },
 
               {
                   name: 'log.module', files: ['/app/js/Log/LogController.js',

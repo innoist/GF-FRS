@@ -36,9 +36,9 @@ namespace FRS.MT940Loader
         public string TransactionReference { get; set; }
         public int TransactionCount { get; set; }
         public string CreatedBy { get; set; }
-        public System.DateTime CreatedOn { get; set; }
+        public Nullable<System.DateTime> CreatedOn { get; set; }
         public string ModifiedBy { get; set; }
-        public System.DateTime ModifiedOn { get; set; }
+        public Nullable<System.DateTime> ModifiedOn { get; set; }
     
         public virtual MT940Balance ClosingAvailableBalance { get; set; }
         public virtual MT940Balance ClosingBalance { get; set; }

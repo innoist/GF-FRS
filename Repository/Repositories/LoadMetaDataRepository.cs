@@ -63,7 +63,7 @@ namespace FRS.Repository.Repositories
                     SourceName = metaData.Source.Name,
                     Currency = metaData.Currency.Sign,
                     Header = metaData.Header,
-                    Trailer = metaData.Footer
+                    Trailer = metaData.Trailer
                     //LastModified = metaData.ModifiedOn.ToString("dd/MM/yyyy", new CultureInfo("en"))
                 };
             }

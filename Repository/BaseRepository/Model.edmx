@@ -113,7 +113,7 @@
           <Property Name="LoadTypeId" Type="tinyint" Nullable="false" />
           <Property Name="SourceId" Type="tinyint" Nullable="false" />
           <Property Name="Header" Type="nvarchar" MaxLength="256" Nullable="false" />
-          <Property Name="Footer" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="Trailer" Type="nvarchar" MaxLength="256" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="CurrencyId" Type="tinyint" Nullable="false" />
           <Property Name="Description" Type="nvarchar" MaxLength="1024" />
@@ -458,6 +458,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_LoadType_Status">
+          <End Role="Status" Type="Self.Status" Multiplicity="1" />
+          <End Role="LoadType" Type="Self.LoadType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="Value" />
+            </Principal>
+            <Dependent Role="LoadType">
+              <PropertyRef Name="StatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_MT940CustomerStatement_MT940Load">
           <End Role="MT940Load" Type="Self.MT940Load" Multiplicity="1" />
           <End Role="MT940CustomerStatement" Type="Self.MT940CustomerStatement" Multiplicity="*" />
@@ -502,6 +514,18 @@
               <PropertyRef Name="Value" />
             </Principal>
             <Dependent Role="MT940Load">
+              <PropertyRef Name="StatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Source_Status">
+          <End Role="Status" Type="Self.Status" Multiplicity="1" />
+          <End Role="Source" Type="Self.Source" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="Value" />
+            </Principal>
+            <Dependent Role="Source">
               <PropertyRef Name="StatusId" />
             </Dependent>
           </ReferentialConstraint>
@@ -603,6 +627,10 @@
             <End Role="Status" EntitySet="Status" />
             <End Role="LoadMetaData" EntitySet="LoadMetaData" />
           </AssociationSet>
+          <AssociationSet Name="FK_LoadType_Status" Association="Self.FK_LoadType_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="LoadType" EntitySet="LoadType" />
+          </AssociationSet>
           <AssociationSet Name="FK_MT940CustomerStatement_MT940Load" Association="Self.FK_MT940CustomerStatement_MT940Load">
             <End Role="MT940Load" EntitySet="MT940Load" />
             <End Role="MT940CustomerStatement" EntitySet="MT940CustomerStatement" />
@@ -618,6 +646,10 @@
           <AssociationSet Name="FK_MT940Load_Status" Association="Self.FK_MT940Load_Status">
             <End Role="Status" EntitySet="Status" />
             <End Role="MT940Load" EntitySet="MT940Load" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Source_Status" Association="Self.FK_Source_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="Source" EntitySet="Source" />
           </AssociationSet>
           <AssociationSet Name="RefMenu01" Association="Self.RefMenu01">
             <End Role="Menu" EntitySet="Menu" />
@@ -766,6 +798,14 @@
             <End Role="LoadMetaData" EntitySet="LoadMetaDatas" />
           </AssociationSet>
           <EntitySet Name="Logs" EntityType="angularModel.Log" />
+          <AssociationSet Name="FK_LoadType_Status" Association="angularModel.FK_LoadType_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="LoadType" EntitySet="LoadTypes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Source_Status" Association="angularModel.FK_Source_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="Source" EntitySet="Sources" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="Menu">
           <Key>
@@ -958,7 +998,6 @@
           <Property Name="LoadTypeId" Type="Byte" Nullable="false" />
           <Property Name="SourceId" Type="Byte" Nullable="false" />
           <Property Name="Header" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
-          <Property Name="Footer" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="CurrencyId" Type="Byte" Nullable="false" />
           <Property Name="Description" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
@@ -972,6 +1011,7 @@
           <NavigationProperty Name="Source" Relationship="angularModel.FK_LoadMetaData_Source" FromRole="LoadMetaData" ToRole="Source" />
           <NavigationProperty Name="Status" Relationship="angularModel.FK_LoadMetaData_Status" FromRole="LoadMetaData" ToRole="Status" />
           <NavigationProperty Name="Currency" Relationship="angularModel.FK_LoadMetaData_Currency" FromRole="LoadMetaData" ToRole="Currency" />
+          <Property Name="Trailer" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="LoadType">
           <Key>
@@ -981,6 +1021,7 @@
           <Property Name="Name" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
           <Property Name="StatusId" Type="Byte" Nullable="false" />
           <NavigationProperty Name="LoadMetaDatas" Relationship="angularModel.FK_LoadMetaData_LoadType" FromRole="LoadType" ToRole="LoadMetaData" />
+          <NavigationProperty Name="Status" Relationship="angularModel.FK_LoadType_Status" FromRole="LoadType" ToRole="Status" />
         </EntityType>
         <EntityType Name="MT940Balance">
           <Key>
@@ -1078,6 +1119,7 @@
           <Property Name="Name" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Name="StatusId" Type="Byte" Nullable="false" />
           <NavigationProperty Name="LoadMetaDatas" Relationship="angularModel.FK_LoadMetaData_Source" FromRole="Source" ToRole="LoadMetaData" />
+          <NavigationProperty Name="Status" Relationship="angularModel.FK_Source_Status" FromRole="Source" ToRole="Status" />
         </EntityType>
         <EntityType Name="Status">
           <Key>
@@ -1087,6 +1129,8 @@
           <Property Name="Name" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="LoadMetaDatas" Relationship="angularModel.FK_LoadMetaData_Status" FromRole="Status" ToRole="LoadMetaData" />
           <NavigationProperty Name="MT940Load" Relationship="angularModel.FK_MT940Load_Status" FromRole="Status" ToRole="MT940Load" />
+          <NavigationProperty Name="LoadTypes" Relationship="angularModel.FK_LoadType_Status" FromRole="Status" ToRole="LoadType" />
+          <NavigationProperty Name="Sources" Relationship="angularModel.FK_Source_Status" FromRole="Status" ToRole="Source" />
         </EntityType>
         <Association Name="FK_Balance_Currency">
           <End Type="angularModel.Currency" Role="Currency" Multiplicity="1" />
@@ -1287,6 +1331,30 @@
           <Property Name="Message" Type="String" MaxLength="1500" FixedLength="false" Unicode="true" />
           <Property Name="FormattedMessage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
+        <Association Name="FK_LoadType_Status">
+          <End Type="angularModel.Status" Role="Status" Multiplicity="1" />
+          <End Type="angularModel.LoadType" Role="LoadType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="Value" />
+            </Principal>
+            <Dependent Role="LoadType">
+              <PropertyRef Name="StatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Source_Status">
+          <End Type="angularModel.Status" Role="Status" Multiplicity="1" />
+          <End Type="angularModel.Source" Role="Source" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="Value" />
+            </Principal>
+            <Dependent Role="Source">
+              <PropertyRef Name="StatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1427,6 +1495,7 @@
           <EntitySetMapping Name="LoadMetaDatas">
             <EntityTypeMapping TypeName="angularModel.LoadMetaData">
               <MappingFragment StoreEntitySet="LoadMetaData">
+                <ScalarProperty Name="Trailer" ColumnName="Trailer" />
                 <ScalarProperty Name="StatusId" ColumnName="StatusId" />
                 <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
                 <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
@@ -1435,7 +1504,6 @@
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="CurrencyId" ColumnName="CurrencyId" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Footer" ColumnName="Footer" />
                 <ScalarProperty Name="Header" ColumnName="Header" />
                 <ScalarProperty Name="SourceId" ColumnName="SourceId" />
                 <ScalarProperty Name="LoadTypeId" ColumnName="LoadTypeId" />

@@ -246,7 +246,9 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CurrencyController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LoadTypeController.cs" />
     <Compile Include="Controllers\LogController.cs" />
+    <Compile Include="Controllers\StatusController.cs" />
     <Compile Include="Controllers\UserBaseDataController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -254,22 +256,27 @@
     <Compile Include="ModelMappers\CurrencyMapper.cs" />
     <Compile Include="ModelMappers\LoadMapper.cs" />
     <Compile Include="ModelMappers\LoadMetaDataMapper.cs" />
+    <Compile Include="ModelMappers\LoadTypeMapper.cs" />
     <Compile Include="ModelMappers\Log\LogMapper.cs" />
+    <Compile Include="ModelMappers\StatusMapper.cs" />
     <Compile Include="ModelMappers\UsersMapper.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Currency\CurrencyModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\LoadType\LoadType.cs" />
     <Compile Include="Models\Load\LoadModel.cs" />
     <Compile Include="Models\Log\LogModel.cs" />
     <Compile Include="Models\MenuRight.cs" />
     <Compile Include="Models\MetaData\LoadMetaData.cs" />
+    <Compile Include="Models\Status\StatusModel.cs" />
     <Compile Include="Models\UserRole.cs" />
     <Compile Include="Models\Users\UsersModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
     <Compile Include="Results\ChallengeResult.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\LoadType\LoadTypeViewModel.cs" />
     <Compile Include="ViewModels\Load\BaseDataLoad.cs" />
     <Compile Include="ViewModels\Log\LogViewModel.cs" />
     <Compile Include="ViewModels\MetaData\BaseDataLoadMetaData.cs" />

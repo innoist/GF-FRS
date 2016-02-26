@@ -46,6 +46,8 @@
         <AssociationConnector Association="angularModel.FK_MT940Load_Status" />
         <AssociationConnector Association="angularModel.FK_LoadMetaData_Currency" />
         <EntityTypeShape EntityType="angularModel.Log" Width="1.5" PointX="0.75" PointY="13.75" />
+        <AssociationConnector Association="angularModel.FK_LoadType_Status" />
+        <AssociationConnector Association="angularModel.FK_Source_Status" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -42,7 +42,7 @@
             }
             vm.LoadMetaData.LoadMetaDataId = metaDataId;
             vm.LoadMetaData.Header = $scope.Header;
-            vm.LoadMetaData.Footer = $scope.Footer;
+            vm.LoadMetaData.Trailer = $scope.Footer;
             vm.LoadMetaData.Name = $scope.Name;
             vm.LoadMetaData.Description = $scope.Description;
             vm.LoadMetaData.LoadTypeId = vm.LoadTypes.selected.Id;
@@ -141,7 +141,7 @@
             if (response.MetaData) {
                 $scope.update = true;
                 $scope.Header = response.MetaData.Header;
-                $scope.Footer = response.MetaData.Footer;
+                $scope.Footer = response.MetaData.Trailer;
                 $scope.Name = response.MetaData.Name;
                 $scope.Description = response.MetaData.Description;
                 metaDataId = response.MetaData.LoadMetaDataId;

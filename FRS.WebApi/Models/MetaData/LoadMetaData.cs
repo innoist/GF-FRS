@@ -17,7 +17,7 @@ namespace FRS.WebApi.Models.MetaData
         public string Header { get; set; }
 
         [Required(ErrorMessage = "Trailer is required.")]
-        public string Footer { get; set; }
+        public string Trailer { get; set; }
 
         [Required (ErrorMessage = "Name field is required.")]
         public string Name { get; set; }

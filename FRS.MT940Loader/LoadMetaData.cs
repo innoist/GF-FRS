@@ -24,7 +24,6 @@ namespace FRS.MT940Loader
         public byte LoadTypeId { get; set; }
         public byte SourceId { get; set; }
         public string Header { get; set; }
-        public string Footer { get; set; }
         public string Name { get; set; }
         public byte CurrencyId { get; set; }
         public string Description { get; set; }
@@ -33,6 +32,7 @@ namespace FRS.MT940Loader
         public string ModifiedBy { get; set; }
         public System.DateTime ModifiedOn { get; set; }
         public byte StatusId { get; set; }
+        public string Trailer { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Load> Loads { get; set; }

@@ -113,7 +113,7 @@
           <Property Name="LoadTypeId" Type="tinyint" Nullable="false" />
           <Property Name="SourceId" Type="tinyint" Nullable="false" />
           <Property Name="Header" Type="nvarchar" MaxLength="256" Nullable="false" />
-          <Property Name="Footer" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="Trailer" Type="nvarchar" MaxLength="256" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="CurrencyId" Type="tinyint" Nullable="false" />
           <Property Name="Description" Type="nvarchar" MaxLength="1024" />
@@ -161,9 +161,9 @@
           <Property Name="TransactionReference" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="TransactionCount" Type="int" Nullable="false" />
           <Property Name="CreatedBy" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime" />
           <Property Name="ModifiedBy" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="ModifiedOn" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedOn" Type="datetime" />
         </EntityType>
         <EntityType Name="MT940CustomerStatementTransaction">
           <Key>
@@ -183,9 +183,9 @@
           <Property Name="Value" Type="nvarchar" MaxLength="1024" />
           <Property Name="ValueDate" Type="datetime" Nullable="false" />
           <Property Name="CreatedBy" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime" />
           <Property Name="ModifiedBy" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="ModifiedOn" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedOn" Type="datetime" />
         </EntityType>
         <EntityType Name="MT940Load">
           <Key>
@@ -655,7 +655,6 @@
           <Property Name="LoadTypeId" Type="Byte" Nullable="false" />
           <Property Name="SourceId" Type="Byte" Nullable="false" />
           <Property Name="Header" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Footer" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="CurrencyId" Type="Byte" Nullable="false" />
           <Property Name="Description" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
@@ -668,6 +667,7 @@
           <NavigationProperty Name="LoadType" Relationship="Self.FK_LoadMetaData_LoadType" FromRole="LoadMetaData" ToRole="LoadType" />
           <NavigationProperty Name="Source" Relationship="Self.FK_LoadMetaData_Source" FromRole="LoadMetaData" ToRole="Source" />
           <NavigationProperty Name="Status" Relationship="Self.FK_LoadMetaData_Status" FromRole="LoadMetaData" ToRole="Status" />
+          <Property Name="Trailer" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="LoadType">
           <Key>
@@ -713,9 +713,9 @@
           <Property Name="TransactionReference" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="TransactionCount" Type="Int32" Nullable="false" />
           <Property Name="CreatedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
           <Property Name="ModifiedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="ModifiedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
           <NavigationProperty Name="ClosingAvailableBalance" Relationship="Self.FK_CustomerStatement_Balance_ClosingAviBal" FromRole="MT940CustomerStatement" ToRole="MT940Balance" />
           <NavigationProperty Name="ClosingBalance" Relationship="Self.FK_CustomerStatement_Balance_ClosingBal" FromRole="MT940CustomerStatement" ToRole="MT940Balance" />
           <NavigationProperty Name="ForwardAvailableBalance" Relationship="Self.FK_CustomerStatement_Balance_ForAvailBal" FromRole="MT940CustomerStatement" ToRole="MT940Balance" />
@@ -741,9 +741,9 @@
           <Property Name="Value" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
           <Property Name="ValueDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="CreatedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
           <Property Name="ModifiedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="ModifiedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
           <NavigationProperty Name="MT940CustomerStatement" Relationship="Self.FK_MT940CustomerStatementTransaction_MT940CustomerStatement" FromRole="MT940CustomerStatementTransaction" ToRole="MT940CustomerStatement" />
         </EntityType>
         <EntityType Name="MT940Load">
@@ -1212,11 +1212,11 @@
           <EntitySetMapping Name="LoadMetaDatas">
             <EntityTypeMapping TypeName="FRS.MT940Loader.ADOModel.LoadMetaData">
               <MappingFragment StoreEntitySet="LoadMetaData">
+                <ScalarProperty Name="Trailer" ColumnName="Trailer" />
                 <ScalarProperty Name="LoadMetaDataId" ColumnName="LoadMetaDataId" />
                 <ScalarProperty Name="LoadTypeId" ColumnName="LoadTypeId" />
                 <ScalarProperty Name="SourceId" ColumnName="SourceId" />
                 <ScalarProperty Name="Header" ColumnName="Header" />
-                <ScalarProperty Name="Footer" ColumnName="Footer" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="CurrencyId" ColumnName="CurrencyId" />
                 <ScalarProperty Name="Description" ColumnName="Description" />

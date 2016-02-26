@@ -75,6 +75,11 @@
     <Compile Include="Currency.cs">
       <DependentUpon>FRSMT940LoaderModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="FRSMT940LoaderModel.Context1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FRSMT940LoaderModel.Context.tt</DependentUpon>
+    </Compile>
     <Compile Include="Handlers\DatabaseHandler.cs" />
     <Compile Include="Employee.cs">
       <DependentUpon>FRSMT940LoaderModel.tt</DependentUpon>

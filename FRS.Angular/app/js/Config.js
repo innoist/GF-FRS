@@ -126,6 +126,38 @@
                 controllerAs: 'ncc',
                 resolve: helper.resolveFor('newCurrency.module', 'oitozero.ngSweetAlert')
             })
+            .state('app.CreateStatus', {
+                url: '/CreateStatus/:Id',
+                title: 'Create Status',
+                templateUrl: helper.basepath('../../../../app/views/Status/CreateStatus.html'),
+                controller: 'CreateStatusController',
+                controllerAs: 'csc',
+                resolve: helper.resolveFor('createStatus.module', 'oitozero.ngSweetAlert')
+            })
+            .state('app.Status', {
+                url: '/Status',
+                title: 'Status',
+                templateUrl: helper.basepath('../../../../app/views/Status/Status.html'),
+                controller: 'StatusController',
+                controllerAs: 'sc',
+                resolve: helper.resolveFor('status.module', 'ui.grid')
+            })
+            .state('app.LoadType', {
+                url: '/LoadType',
+                title: 'Load Type',
+                templateUrl: helper.basepath('../../../../app/views/LoadType/LoadType.html'),
+                controller: 'LoadTypeController',
+                controllerAs: 'ltc',
+                resolve: helper.resolveFor('loadType.module', 'ui.grid')
+            })
+            .state('app.CreateLoadType', {
+                url: '/CreateLoadType/:Id',
+                title: 'Create Load Type',
+                templateUrl: helper.basepath('../../../../app/views/LoadType/CreateLoadType.html'),
+                controller: 'CreateLoadTypeController',
+                controllerAs: 'cltc',
+                resolve: helper.resolveFor('createLoadType.module', 'oitozero.ngSweetAlert', 'ui.select')
+            })
             .state('account', {
                 url: '/account',
                 templateUrl: 'app/pages/page.html',

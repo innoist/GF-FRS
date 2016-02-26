@@ -9,5 +9,7 @@ namespace FRS.Models.DomainModels
 
         public virtual ICollection<LoadMetaData> LoadMetaDatas { get; set; }
         public virtual ICollection<MT940Load> MT940Load { get; set; }
+        public virtual ICollection<Source> Sources { get; set; }
+        public virtual ICollection<LoadType> LoadTypes { get; set; }
     }
 }

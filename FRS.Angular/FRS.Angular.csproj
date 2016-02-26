@@ -73,6 +73,10 @@
     <Content Include="app\js\Currency\Index\currency.controller.js" />
     <Content Include="app\js\Currency\Create\newCurrency.service.js" />
     <Content Include="app\js\Currency\Create\newCurrency.controller.js" />
+    <Content Include="app\js\LoadType\Create\CreateLoadType.controller.js" />
+    <Content Include="app\js\LoadType\Create\CreateLoadType.service.js" />
+    <Content Include="app\js\LoadType\Index\loadType.controller.js" />
+    <Content Include="app\js\LoadType\Index\loadType.service.js" />
     <Content Include="app\js\RightsManagement\rightsManagement.service.js" />
     <Content Include="app\js\RightsManagement\rightsManagement.controller.js" />
     <Content Include="app\js\CreateMetaData\CreateMetaDataService.js" />
@@ -81,6 +85,10 @@
     <Content Include="app\js\Log\LogController.js" />
     <Content Include="app\js\Log\LogDataService.js" />
     <Content Include="app\js\Modules.js" />
+    <Content Include="app\js\Status\Create\createStatus.controller.js" />
+    <Content Include="app\js\Status\Create\createStatus.service.js" />
+    <Content Include="app\js\Status\Index\status.controller.js" />
+    <Content Include="app\js\Status\Index\status.service.js" />
     <Content Include="app\js\Users\changePassword.service.js" />
     <Content Include="app\js\Users\ForgetPasswordController.js" />
     <Content Include="app\js\Users\LoginController.js" />
@@ -95,8 +103,12 @@
     <Content Include="app\views\Currency\NewCurrency.html" />
     <Content Include="app\views\LoadMetaData\LoadMetaData.html" />
     <Content Include="app\js\LoadMetaData\LoadMetaDataController.js" />
+    <Content Include="app\views\LoadType\CreateLoadType.html" />
+    <Content Include="app\views\LoadType\LoadType.html" />
     <Content Include="app\views\Log\LogLV.html" />
     <Content Include="app\views\RightsManagement\index.html" />
+    <Content Include="app\views\Status\CreateStatus.html" />
+    <Content Include="app\views\Status\Status.html" />
     <Content Include="app\views\Users\ChangePassword.html" />
     <Content Include="app\views\Users\Profile.html" />
     <Content Include="app\views\Users\ResetPassword.html" />

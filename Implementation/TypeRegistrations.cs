@@ -34,6 +34,7 @@ namespace FRS.Implementation
             unityContainer.RegisterType<IUsersService, UsersService>();
             unityContainer.RegisterType<ILoadTypeService, LoadTypeService>();
             unityContainer.RegisterType<ICurrencyService, CurrencyService>();
+            unityContainer.RegisterType<IStatusService, StatusService>();
         }
     }
 }

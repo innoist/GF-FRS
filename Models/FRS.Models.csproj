@@ -111,7 +111,6 @@
     <Compile Include="Common\HelperIcon.cs" />
     <Compile Include="Common\ClaimParamters.cs" />
     <Compile Include="Common\LoadMetaDataForLoad.cs" />
-
     <Compile Include="Common\OrderByLogs.cs" />
     <Compile Include="Common\OrderByUsers.cs" />
     <Compile Include="Common\OrderByLoadMetaData.cs" />
@@ -160,6 +159,7 @@
     <Compile Include="RequestModels\UsersSearchRequest.cs" />
     <Compile Include="RequestModels\RightsManagementRequest.cs" />
     <Compile Include="ResponseModels\BaseDataLoadMetaDataResponse.cs" />
+    <Compile Include="ResponseModels\LoadTypeBaseData.cs" />
     <Compile Include="ResponseModels\MT940LoadBaseDataResponse.cs" />
     <Compile Include="ResponseModels\SearchTemplateResponse.cs" />
     <Compile Include="ResponseModels\UsersSearchResponse.cs" />

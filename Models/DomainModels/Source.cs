@@ -9,5 +9,6 @@ namespace FRS.Models.DomainModels
         public byte StatusId { get; set; }
 
         public virtual ICollection<LoadMetaData> LoadMetaDatas { get; set; }
+        public virtual Status Status { get; set; }
     }
 }
