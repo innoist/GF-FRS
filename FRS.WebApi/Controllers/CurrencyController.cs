@@ -1,8 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Web;
 using System.Web.Http;
 using FRS.Interfaces.IServices;
+using FRS.WebApi.ModelMappers;
 using FRS.WebApi.Models.Currency;
+using FRS.WebBase.Mvc;
 
 namespace FRS.WebApi.Controllers
 {
@@ -28,13 +33,41 @@ namespace FRS.WebApi.Controllers
         {
             var currencies =
                 currencyService.GetCurrencies()
-                    .Select(x => new CurrencyModel {Name = x.Name, Sign = x.Sign, Value = x.Value}).ToList();
+                    .Select(x => x.MapFromServerToClient()).ToList();
             
             return currencies;
+        }
+        
+        [HttpGet]
+        public CurrencyModel Get(int Id)
+        {
+            var currency = currencyService.GetCurrency(Id).MapFromServerToClient();
+            return currency;
         }
         #endregion
 
         #region Post
+
+        [HttpPost]
+        [Authorize]
+        [ApiException]
+        public IHttpActionResult Post(CurrencyModel model)
+        {
+            if (model == null || !ModelState.IsValid)
+            {
+                throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
+            }
+            var result = false;
+            try
+            {
+                result =  currencyService.SaveCurrency(model.MapFromClientToServer());
+            }
+            catch (Exception e)
+            {
+                InternalServerError(e);
+            }
+            return Json(result);
+        }
         #endregion
 
         #region Delete

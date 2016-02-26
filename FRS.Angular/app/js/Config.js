@@ -118,6 +118,14 @@
                 controllerAs: 'cc',
                 resolve: helper.resolveFor('currency.module', 'ui.grid')
             })
+            .state('app.NewCurrency', {
+                url: '/NewCurrency/:Id',
+                title: 'New Currency',
+                templateUrl: helper.basepath('../../../../app/views/Currency/NewCurrency.html'),
+                controller: 'NewCurrencyController',
+                controllerAs: 'ncc',
+                resolve: helper.resolveFor('newCurrency.module', 'oitozero.ngSweetAlert')
+            })
             .state('account', {
                 url: '/account',
                 templateUrl: 'app/pages/page.html',

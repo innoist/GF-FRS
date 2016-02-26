@@ -69,8 +69,10 @@
     <Content Include="app\js\app.js" />
     <Content Include="app\js\Config.js" />
     <Content Include="app\js\CreateMetaData\CreateMetaDataController.js" />
-    <Content Include="app\js\Currency\currency.service.js" />
-    <Content Include="app\js\Currency\currency.controller.js" />
+    <Content Include="app\js\Currency\Index\currency.service.js" />
+    <Content Include="app\js\Currency\Index\currency.controller.js" />
+    <Content Include="app\js\Currency\Create\newCurrency.service.js" />
+    <Content Include="app\js\Currency\Create\newCurrency.controller.js" />
     <Content Include="app\js\RightsManagement\rightsManagement.service.js" />
     <Content Include="app\js\RightsManagement\rightsManagement.controller.js" />
     <Content Include="app\js\CreateMetaData\CreateMetaDataService.js" />
@@ -90,6 +92,7 @@
     <Content Include="app\js\Users\UsersService.js" />
     <Content Include="app\vendor\datatable-bootstrap\images\Sorting icons.psd" />
     <Content Include="app\views\Currency\Currency.html" />
+    <Content Include="app\views\Currency\NewCurrency.html" />
     <Content Include="app\views\LoadMetaData\LoadMetaData.html" />
     <Content Include="app\js\LoadMetaData\LoadMetaDataController.js" />
     <Content Include="app\views\Log\LogLV.html" />

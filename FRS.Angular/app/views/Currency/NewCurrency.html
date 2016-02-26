@@ -1,0 +1,66 @@
+﻿<h3>
+    <!-- START Language list-->
+    <div class="pull-right">
+        <button ng-click="saveCurrency(false)" ng-disabled="!ncc.formValidate.$dirty" type="button" class="btn btn-labeled btn-success">
+            <span class="btn-label">
+                <i class="fa fa-check"></i>
+            </span><span class="hidden-480" ng-if="!update">Save</span>
+            <span class="hidden-480" ng-if="update">Update</span>
+        </button>
+        <button ng-click="saveCurrency(true)" ng-disabled="!ncc.formValidate.$dirty" ng-if="!update" type="button" class="btn btn-labeled btn-info">
+            <span class="btn-label">
+                <i class="fa fa-plus"></i>
+            </span><span class="hidden-480">Save and New</span>
+        </button>
+        <button class="btn btn-labeled btn-danger" ng-click="cancelBtn()">
+            <span class="btn-label">
+                <i class="fa fa-times"></i>
+            </span><span class="hidden-480">Cancel</span>
+        </button>
+    </div>
+    <!-- END Language list    -->
+    Currency
+    <small>Create</small>
+</h3>
+
+<div class="panel panel-default">
+
+
+    <div class="panel-body">
+        <form class="form-horizontal form-validate" name="ncc.formValidate" novalidate="">
+            <div class="form-group">
+                <fieldset>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="col-md-12" ng-class="{ 'has-error': ncc.validateInput(ncc.formValidate.Name, 'required') }">
+                                <label for="Name" class="control-label requiredLabel">Name</label>
+                                <input id="Name" type="text" placeholder="Currency Name"
+                                       ng-model="Name" name="Name"
+                                       uib-tooltip="{{ ncc.validateInput(ncc.formValidate.Name, 'required') ? 'Name field is required.' : '' }}"
+                                       uib-tooltip-trigger="focus"
+                                       uib-tooltip-placement="bottom"
+                                       required class="form-control">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="col-md-12" ng-class="{ 'has-error': ncc.validateInput(ncc.formValidate.Sign, 'required') }">
+                                <label for="Sign" class="control-label requiredLabel">Sign</label>
+                                <input id="Sign" type="text" placeholder="Currency Sign" required="" class="form-control" ng-model="Sign" name="Sign"
+                                       uib-tooltip="{{ ncc.validateInput(ncc.formValidate.Sign, 'required') ? 'Currency Sign field is required.' : '' }}"
+                                       uib-tooltip-trigger="focus"
+                                       uib-tooltip-placement="bottom">
+                            </div>
+                        </div>
+                    </div>
+
+                </fieldset>
+
+
+
+            </div>
+        </form>
+    </div>
+</div>

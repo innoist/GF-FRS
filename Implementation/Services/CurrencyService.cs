@@ -19,5 +19,24 @@ namespace FRS.Implementation.Services
         {
             return currencyRepository.GetAll().ToList();
         }
+
+        public Currency GetCurrency(int Id)
+        {
+            return currencyRepository.Find(Id);
+        }
+
+        public bool SaveCurrency(Currency currency)
+        {
+            if (currency.Value == 0)
+            {
+                currencyRepository.Add(currency);
+            }
+            else
+            {
+                currencyRepository.Update(currency);
+            }
+            currencyRepository.SaveChanges();
+            return true;
+        }
     }
 }

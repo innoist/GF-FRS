@@ -2192,8 +2192,12 @@
                                                         '/app/js/Users/changePassword.service.js']
               },
               {
-                  name: 'currency.module', files: ['/app/js/currency/currency.controller.js',
-                                                        '/app/js/currency/currency.service.js']
+                  name: 'currency.module', files: ['/app/js/currency/Index/currency.controller.js',
+                                                        '/app/js/currency/Index/currency.service.js']
+              },
+              {
+                  name: 'newCurrency.module', files: ['/app/js/currency/Create/newCurrency.controller.js',
+                                                        '/app/js/currency/Create/newCurrency.service.js']
               },
 
               {

@@ -251,6 +251,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="ModelMappers\CurrencyMapper.cs" />
     <Compile Include="ModelMappers\LoadMapper.cs" />
     <Compile Include="ModelMappers\LoadMetaDataMapper.cs" />
     <Compile Include="ModelMappers\Log\LogMapper.cs" />
