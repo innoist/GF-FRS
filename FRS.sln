@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+# Visual Studio 2013
+VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FRS.Repository", "Repository\FRS.Repository.csproj", "{852BDC39-3388-4CB1-A959-F3BD06E9DF92}"
 EndProject
@@ -10,8 +10,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FRS.Models", "Models\FRS.Models.csproj", "{81067904-2176-4648-87AB-014B0D76B85E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FRS.Implementation", "Implementation\FRS.Implementation.csproj", "{42D2E6C0-74F1-46FB-B7BA-43251156275D}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FRS.Web", "FRS.Web\FRS.Web.csproj", "{426080DD-D8CB-49F2-9645-DFD962ADFFDF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FRS.Commons", "FRS.Commons\FRS.Commons.csproj", "{C495B1EB-AC68-44F5-B2FA-D36083EB7BEC}"
 EndProject
@@ -58,10 +56,6 @@ Global
 		{42D2E6C0-74F1-46FB-B7BA-43251156275D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{42D2E6C0-74F1-46FB-B7BA-43251156275D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{42D2E6C0-74F1-46FB-B7BA-43251156275D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{426080DD-D8CB-49F2-9645-DFD962ADFFDF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{426080DD-D8CB-49F2-9645-DFD962ADFFDF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{426080DD-D8CB-49F2-9645-DFD962ADFFDF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{426080DD-D8CB-49F2-9645-DFD962ADFFDF}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C495B1EB-AC68-44F5-B2FA-D36083EB7BEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C495B1EB-AC68-44F5-B2FA-D36083EB7BEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C495B1EB-AC68-44F5-B2FA-D36083EB7BEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
