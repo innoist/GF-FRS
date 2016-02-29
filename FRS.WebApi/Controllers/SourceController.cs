@@ -32,7 +32,7 @@ namespace FRS.WebApi.Controllers
         public IEnumerable<SourceModel> Get()
         {
             var sources =
-                sourceService.GetSources().Select(x => x.MapFromServerToClient()).ToList();
+                sourceService.GetSources().OrderBy(x=>x.Name).Select(x => x.MapFromServerToClient()).ToList();
             
             return sources;
         }

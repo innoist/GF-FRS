@@ -39,7 +39,10 @@
                     field: 'Name',
                     sortId: 1,
                     cellTemplate: '<div class="ui-grid-cell-contents"><a ui-sref="app.NewCurrency({Id : row.entity.Value})">{{row.entity.Name}}</a> </div>',
-                    filter: {placeholder: 'Search by Name'}
+                    filter: { placeholder: 'Search by Name' },
+                    sort: {
+                        direction: uiGridConstants.ASC
+                    }
     },
               { name: 'Sign', field: 'Sign', sortId: 2, filter: { placeholder: 'Search by Sign' } }
             ]

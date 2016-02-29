@@ -32,7 +32,10 @@
                     field: 'Name',
                     sortId: 1,
                     cellTemplate: '<div class="ui-grid-cell-contents"><a ui-sref="app.CreateLoadType({Id : row.entity.Value})">{{row.entity.Name}}</a> </div>',
-                    filter: {placeholder: 'Search by Name'}
+                    filter: { placeholder: 'Search by Name' },
+                    sort: {
+                        direction: uiGridConstants.ASC
+                    }
     },
               { name: 'Status', field: 'StatusName', sortId: 2, filter: { placeholder: 'Search by Status' } }
             ]

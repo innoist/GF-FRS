@@ -90,9 +90,6 @@
 
         }
 
-        if ($stateParams.Id === "")
-            return;
-
         SourceId = $stateParams.Id;
         CreateSourceService.loadSourceById(SourceId, function(response) {
             vm.Status = response.Statuses;
