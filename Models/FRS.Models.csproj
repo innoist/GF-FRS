@@ -162,6 +162,7 @@
     <Compile Include="ResponseModels\LoadTypeBaseData.cs" />
     <Compile Include="ResponseModels\MT940LoadBaseDataResponse.cs" />
     <Compile Include="ResponseModels\SearchTemplateResponse.cs" />
+    <Compile Include="ResponseModels\SourceBaseData.cs" />
     <Compile Include="ResponseModels\UsersSearchResponse.cs" />
     <Compile Include="ResponseModels\SearchLoadMetaDataResponse.cs" />
   </ItemGroup>

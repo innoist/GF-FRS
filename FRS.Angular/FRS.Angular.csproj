@@ -85,6 +85,10 @@
     <Content Include="app\js\Log\LogController.js" />
     <Content Include="app\js\Log\LogDataService.js" />
     <Content Include="app\js\Modules.js" />
+    <Content Include="app\js\Source\Create\source.create.controller.js" />
+    <Content Include="app\js\Source\Create\source.create.service.js" />
+    <Content Include="app\js\Source\Index\source.index.controller.js" />
+    <Content Include="app\js\Source\Index\source.index.service.js" />
     <Content Include="app\js\Status\Create\createStatus.controller.js" />
     <Content Include="app\js\Status\Create\createStatus.service.js" />
     <Content Include="app\js\Status\Index\status.controller.js" />
@@ -107,6 +111,7 @@
     <Content Include="app\views\LoadType\LoadType.html" />
     <Content Include="app\views\Log\LogLV.html" />
     <Content Include="app\views\RightsManagement\index.html" />
+    <Content Include="app\views\Source\SourceCreate.html" />
     <Content Include="app\views\Status\CreateStatus.html" />
     <Content Include="app\views\Status\Status.html" />
     <Content Include="app\views\Users\ChangePassword.html" />
@@ -134,6 +139,7 @@
     <Content Include="vendor\weather-icons\font\weathericons-regular-webfont.woff" />
     <Content Include="vendor\weather-icons\font\weathericons-regular-webfont.woff2" />
     <Content Include="app\js\Users\changePassword.controller.js" />
+    <Content Include="app\views\Source\SourceIndex.html" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

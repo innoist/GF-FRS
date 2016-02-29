@@ -158,6 +158,22 @@
                 controllerAs: 'cltc',
                 resolve: helper.resolveFor('createLoadType.module', 'oitozero.ngSweetAlert', 'ui.select')
             })
+            .state('app.Sources', {
+                url: '/Sources',
+                title: 'Sources - Reference Data',
+                templateUrl: helper.basepath('../../../../app/views/Source/SourceIndex.html'),
+                controller: 'SourceIndexController',
+                controllerAs: 'sic',
+                resolve: helper.resolveFor('source.index.module', 'ui.grid')
+            })
+            .state('app.CreateSources', {
+                url: '/CreateSource/:Id',
+                title: 'Create Sources - Reference Data',
+                templateUrl: helper.basepath('../../../../app/views/Source/SourceCreate.html'),
+                controller: 'SourceCreateController',
+                controllerAs: 'scc',
+                resolve: helper.resolveFor('source.create.module', 'oitozero.ngSweetAlert', 'ui.select')
+            })
             .state('account', {
                 url: '/account',
                 templateUrl: 'app/pages/page.html',

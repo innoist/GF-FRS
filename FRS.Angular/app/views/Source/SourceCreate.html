@@ -1,0 +1,71 @@
+﻿<h3>
+    <!-- START Language list-->
+    <div class="pull-right">
+        <button ng-click="saveSource(false)" ng-disabled="!scc.formValidate.$dirty" type="button" class="btn btn-labeled btn-success">
+            <span class="btn-label">
+                <i class="fa fa-check"></i>
+            </span><span class="hidden-480" ng-if="!update">Save</span>
+            <span class="hidden-480" ng-if="update">Update</span>
+        </button>
+        <button ng-click="saveSource(true)" ng-disabled="!scc.formValidate.$dirty" ng-if="!update" type="button" class="btn btn-labeled btn-info">
+            <span class="btn-label">
+                <i class="fa fa-plus"></i>
+            </span><span class="hidden-480">Save and New</span>
+        </button>
+        <button class="btn btn-labeled btn-danger" ng-click="cancelBtn()">
+            <span class="btn-label">
+                <i class="fa fa-times"></i>
+            </span><span class="hidden-480">Cancel</span>
+        </button>
+    </div>
+    <!-- END Language list    -->
+    Metadata
+    <small>Create</small>
+</h3>
+
+<div class="panel panel-default">
+
+    <div class="panel-body">
+        <form class="form-horizontal form-validate" name="scc.formValidate" novalidate="">
+            <div class="form-group">
+                <fieldset>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="col-sm-12" ng-class="{ 'has-error': scc.validateInput(scc.formValidate.Status, 'required') }">
+                                <label for="status" class="control-label requiredLabel">Status</label>
+                                <ui-select required="" name="Status" id="status" ng-model="scc.Status.selected" theme="bootstrap" ng-disabled="scc.disabled" style="width: 100%">
+                                    <ui-select-match placeholder="Select a Status...">
+                                        {{$select.selected.Name}}
+                                        <span class="resetDdl" ng-click="clear($event)">
+                                            <i class="fa fa-times"></i>
+                                        </span>
+                                    </ui-select-match>
+                                    <ui-select-choices repeat="status in scc.Status | propsFilter: {Name: $select.search}">
+                                        <div ng-bind-html="status.Name | highlight: $select.search"></div>
+                                    </ui-select-choices>
+
+                                </ui-select>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="col-md-12" ng-class="{ 'has-error': scc.validateInput(scc.formValidate.Name, 'required') }">
+                                <label for="name" class="control-label requiredLabel">Name</label>
+                                <input id="name" ng-model="Name" name="Name" type="text" placeholder="Name" required=""
+                                       uib-tooltip="{{ scc.validateInput(scc.formValidate.Name, 'required') ? 'This field is required.' : ''}}"
+                                       uib-tooltip-trigger="focus"
+                                       uib-tooltip-placement="bottom"
+                                       class="form-control">
+                            </div>
+
+                        </div>
+                    </div>
+
+                </fieldset>
+            </div>
+        </form>
+    </div>
+</div>

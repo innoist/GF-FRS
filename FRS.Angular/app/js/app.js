@@ -2215,6 +2215,14 @@
                   name: 'createLoadType.module', files: ['/app/js/LoadType/Create/CreateLoadType.controller.js',
                                                          '/app/js/LoadType/Create/CreateLoadType.service.js']
               },
+              {
+                  name: 'source.create.module', files: ['/app/js/Source/Create/source.create.controller.js',
+                                                        '/app/js/Source/Create/source.create.service.js']
+              },
+              {
+                  name: 'source.index.module', files: ['/app/js/Source/Index/source.index.controller.js',
+                                                       '/app/js/Source/Index/source.index.service.js']
+              },
 
               {
                   name: 'log.module', files: ['/app/js/Log/LogController.js',

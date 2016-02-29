@@ -7,5 +7,6 @@ namespace FRS.Interfaces.Repository
     public interface ISourceRepository : IBaseRepository<Source, long>
     {
         IEnumerable<DropDownModel> GetSourcesDropDown();
+        IEnumerable<Source> GetSources();
     }
 }

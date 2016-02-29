@@ -33,6 +33,11 @@ namespace FRS.Repository.Repositories
                 Name = x.Name
             });
         }
+        
+        public IEnumerable<Source> GetSources()
+        {
+            return DbSet.Include(x => x.Status).Select(x => x);
+        }
         #endregion
     }
 }

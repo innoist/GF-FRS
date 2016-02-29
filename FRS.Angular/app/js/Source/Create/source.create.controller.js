@@ -3,29 +3,30 @@
 
     var core = angular.module('app.core');
     // ReSharper disable FunctionsUsedBeforeDeclared
-    core.lazy.controller('CreateLoadTypeController', CreateLoadTypeController);
+    core.lazy.controller('SourceCreateController', SourceCreateController);
 
-    CreateLoadTypeController.$inject = ['$scope', '$state', '$stateParams', 'CreateLoadTypeService', 'SweetAlert', 'toaster'];
+    SourceCreateController.$inject = ['$scope', '$state', '$stateParams', 'CreateSourceService', 'SweetAlert', 'toaster'];
 
-    function CreateLoadTypeController($scope, $state, $stateParams, CreateLoadTypeService, SweetAlert, toaster) {
+    function SourceCreateController($scope, $state, $stateParams, CreateSourceService, SweetAlert, toaster) {
         var vm = this;
-        var loadTypeId = 0;
+        var SourceId = 0;
 
         vm.submitted = false;
-        vm.LoadType = {};
-        $scope.clear = function ($event) {
-            $event.stopPropagation();
-            vm.Status.selected = null;
-            vm.formValidate.$dirty = true;
-        };
+        vm.Source = {};
         vm.validateInput = function (property, type) {
             if (!property || !type) {
                 return false;
             }
             return (property.$dirty || vm.submitted) && property.$error[type];
         };
+
+        $scope.clear = function ($event) {
+            $event.stopPropagation();
+            vm.Status.selected = null;
+            vm.formValidate.$dirty = true;
+        };
         //#region Post Data
-        $scope.saveLoadType = function (isNew) {
+        $scope.saveSource = function (isNew) {
             vm.submitted = true;
             if (vm.formValidate.$valid) {
                 console.log('Submitted!!');
@@ -33,14 +34,14 @@
                 toaster.pop("error", "Error", "Fields are required");
                 return false;
             }
-            vm.LoadType.Value = loadTypeId;
-            vm.LoadType.Name = $scope.Name;
-            vm.LoadType.StatusId = vm.Status.selected.Value;
+            vm.Source.Value = SourceId;
+            vm.Source.Name = $scope.Name;
+            vm.Source.StatusId = vm.Status.selected.Value;
 
-            CreateLoadTypeService.saveLoadType(vm.LoadType, onSuccess, onError);
+            CreateSourceService.saveSource(vm.Source, onSuccess, onError);
             function onSuccess(response) {
                 if (response.data == true) {
-                    toaster.pop("success", "Notification", "Load Type Saved successfully");
+                    toaster.pop("success", "Notification", "Source Saved successfully");
                 }
             }
             function onError(err) {
@@ -51,15 +52,15 @@
             if (isNew) {
                 //reseting form
                 //vm.formValidate.$setPristine();
-                $state.go('app.CreateLoadType');
+                $state.go('app.CreateSources');
             }
             if (!isNew) {
-                $state.go('app.LoadType');
+                $state.go('app.Sources');
             }
             //reseting form
             vm.formValidate.$setPristine();
             vm.submitted = false;
-            loadTypeId = 0;
+            SourceId = 0;
             $scope.Name = "";
             vm.Status.selected = null;
         }
@@ -67,7 +68,7 @@
 
         $scope.cancelBtn = function () {
             if (!vm.formValidate.$dirty) {
-                $state.go('app.LoadType');
+                $state.go('app.Sources');
             } else {
                 SweetAlert.swal({
                     title: 'Are you sure?',
@@ -81,7 +82,7 @@
                     closeOnCancel: true,
                 }, function (isConfirm) {
                     if (isConfirm) {
-                        $state.go('app.LoadType');
+                        $state.go('app.Sources');
                     }
                 });
             }
@@ -89,29 +90,32 @@
 
         }
 
-        loadTypeId = $stateParams.Id;
-        CreateLoadTypeService.loadLoadTypeById(loadTypeId, function (response) {
+        if ($stateParams.Id === "")
+            return;
+
+        SourceId = $stateParams.Id;
+        CreateSourceService.loadSourceById(SourceId, function(response) {
             vm.Status = response.Statuses;
 
-            if (response.LoadType) {
+            if (response.Source) {
                 $scope.update = true;
-                $scope.Name = response.LoadType.Name;
-                loadTypeId = response.LoadType.Value;
+                $scope.Name = response.Source.Name;
+                SourceId = response.Source.Value;
 
                 var selectedStatus = $(vm.Status).filter(function (index, item) {
-                    return item.Value === response.LoadType.StatusId;
+                    return item.Value === response.Source.StatusId;
                 });
                 if (selectedStatus.length > 0) {
                     vm.Status.selected = selectedStatus[0];
                 }
-                toaster.success("", "Load Type loaded successfully.");
+                toaster.success("", "Source loaded successfully.");
             } else {
-                loadTypeId = 0;
+                SourceId = 0;
             }
 
         },
         function (err) {
             toaster.error("", showErrors(err));
         });
-    }
+        }
 })();
