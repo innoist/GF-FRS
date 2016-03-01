@@ -1,4 +1,7 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
+using System.Net;
+using System.Web;
 using System.Web.Http;
 using FRS.Interfaces.IServices;
 using FRS.Models.Common;
@@ -44,47 +47,31 @@ namespace FRS.WebApi.Areas.Load.Controllers
         #endregion
 
         #region Post
-        //[HttpPost]
-        //public Models.MetaData.LoadMetaData Post(Models.Load.LoadModel load)
-        //{
-        //    if (loadMetaData == null || !ModelState.IsValid)
-        //    {
-        //        throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
-        //    }
-        //    if (loadService != null)
-        //    {
-        //        try
-        //        {
-        //            return loadService.SaveLoad(load.CreateFromClientToServer()).CreateFromServerToClient();
-        //        }
-        //        catch (Exception)
-        //        {
-        //            return null;
-        //        }
-        //    }
-        //    return null;
-        //}
-
-        #endregion
-
-        #region Delete
-        //[HttpDelete]
-        //public bool Delete(long loadMetaDataId)
-        //{
-        //    if (loadMetaDataService != null)
-        //    {
-        //        try
-        //        {
-        //            loadMetaDataService.DeleteMetaData(loadMetaDataId);
-        //            return true;
-        //        }
-        //        catch (Exception)
-        //        {
-        //            return false;
-        //        }
-        //    }
-        //    return false;
-        //}
+        [HttpPost]
+        public IHttpActionResult Post(Models.Load.LoadModel load)
+        {
+            if (load == null || !ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            if (HttpContext.Current.Request.Files.Count > 0)
+            {
+                var file = HttpContext.Current.Request.Files.Get(0);
+            }
+            var result = false;
+            if (loadService != null)
+            {
+                try
+                {
+                    result = loadService.SaveLoad(load.CreateFromClientToServer());
+                }
+                catch (Exception e)
+                {
+                    return BadRequest("Invalid Request");
+                }
+            }
+            return Json(result);
+        }
 
         #endregion
 

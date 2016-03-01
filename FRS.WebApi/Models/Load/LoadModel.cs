@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Web;
 
 namespace FRS.WebApi.Models.Load
 {
@@ -15,5 +16,7 @@ namespace FRS.WebApi.Models.Load
         public DateTime CreatedOn { get; set; }
         public string ModifiedBy { get; set; }
         public DateTime ModifiedOn { get; set; }
+        public string Name { get; set; }
+        public HttpPostedFileBase File { get; set; }
     }
 }

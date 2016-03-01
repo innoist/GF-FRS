@@ -1,118 +1,83 @@
-﻿//(function () {
-//    'use strict';
-
-//    angular
-//        .module('app.Load', []);
-//})();
-
-/**=========================================================
+﻿/**=========================================================
  * Module: load
  * Load view
  =========================================================*/
 (function () {
     'use strict';
-    //angular
-    //    .module('app.Load')
-    //    .controller('LoadController', LoadController);
+
     var core = angular.module('app.core');
     // ReSharper disable FunctionsUsedBeforeDeclared
     core.lazy.controller('LoadController', LoadController);
 
-    LoadController.$inject = ['$http', '$scope'];
+    LoadController.$inject = ['$http', '$scope', 'SweetAlert'];
 
-    function LoadController($http, $scope) {
+    function LoadController($http, $scope, SweetAlert) {
         var vm = this;
 
         activate();
 
         function activate() {
 
-            //functionality starts here
-            $scope.LoadId;
-            $scope.LoadMetadataId;
-            $scope.MT940LoadId;
-            $scope.Attachment;
-            $scope.FileName;
-            $scope.FileExtension;
-            $scope.IsShowEdit = false;
-            $scope.LoadMetadataDropDown = [];
-            $scope.MetaDataWithFileTypes = [];
-            // readonly properties
-            $scope.LoadTypeName;
-            $scope.SourceName;
-            $scope.LastModified;
+            vm.validateInput = function (property, type) {
+                if (!property || !type) {
+                    return false;
+                }
+                return (property.$dirty || vm.submitted) && property.$error[type];
+            };
 
-
+            $scope.clear = function ($event) {
+                $event.stopPropagation();
+                vm.LoadMetaDatas.selected = null;
+            };
             // show/hide file uploading facility
             $scope.IsLoadTypeMT940 = false;
 
             //#region Get Data from DB
             $scope.getLoadList = function () {
                 $http.get(window.frsApiUrl + '/api/Load')
-                    .success(function (data, status, headers, config) {
+                    .success(function (data) {
                         $scope.loadList = data.Loads;
-                        $scope.LoadMetadataDropDown = data.LoadMetadataDropDown;
+                        vm.LoadMetaDatas = data.LoadMetadataDropDown;
                         $scope.MetaDataWithFileTypes = data.MetaDataWithFileTypes;
                     });
             }
-            //#endregion
 
-            //#region Post Data
-            $scope.saveMT940Detail = function () {
+            $scope.finalize = function () {
+                debugger;
+                //var file = $('#loadFile').get(0).files[0];
+                var file = vm.loadFile;
+                var fd = new FormData();
+                fd.append('loadFile', file);
+
                 var load = {
-                    LoadId: $scope.LoadId,
-                    LoadMetadataId: $scope.LoadMetadataId.Id,
-                    Attachment: $scope.Attachment,
-                    FileName: $scope.FileName,
-                    FileExtension: $scope.FileExtension,
+                    LoadMetadataId: $scope.LoadMetadataId,
+                    File: fd
                 };
-                $http.post(window.frsApiUrl + '/api/Load', load)
-                    .success(function (data, status, headers, config) {
+
+                $http({
+                    url: window.frsApiUrl + '/api/Load',
+                    data: load,
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' }
+                })
+                    .then(function (data) {
+                        SweetAlert.swal({
+                            title: 'Success',
+                            text: 'Load Created Successfully.',
+                            type: 'success'
+                        });
                         console.log(data);
-                    });
+                    }, function(err) {
+                        showErrors(err);
+                });
+                
             }
-            //#endregion
-
-            //#region Delete Data
-            $scope.deleteLoad = function (loadId) {
-                $http.delete(window.frsApiUrl + '/api/Load', { params: { loadId: loadId } })
-                            .success(function (data, status, headers, config) {
-                                if (data != false) {
-                                    $scope.getLoadList();
-                                }
-                            });
-            }
-            //#endregion
-
-            //#region Functions
-            $scope.defaultModel = function () {
-                $scope.LoadId = 0;
-                $scope.LoadMetadataId = 0;
-                $scope.MT940LoadId = 0;
-                $scope.Attachment = '';
-                $scope.FileName = '';
-                $scope.FileExtension = '';
-                $scope.IsLoadTypeMT940 = false;
-                $scope.LoadTypeName = '';
-                $scope.SourceName = '';
-                $scope.LastModified = '';
-            }
-
-            $scope.showEdit = function () {
-                $scope.IsShowEdit = true;
-            }
-
-            $scope.onEditCancel = function () {
-                $scope.defaultModel();
-                $scope.IsShowEdit = false;
-            }
-
-            $scope.showHideFileUploader = function (loadMetadata) {
-                if (loadMetadata.Id != null) {
-                    var url = window.frsApiUrl + '/api/Load?metaDataId=' + loadMetadata.Id;
-                    $("#source-sel").text(loadMetadata.Name).append('&nbsp;<b class="caret"></b>');
+            // Wire Source Change
+            $scope.$watch("ldc.LoadMetaDatas.selected", function (newValue, oldValue) {
+                if (newValue) {
+                    var url = window.frsApiUrl + '/api/Load?metaDataId=' + newValue.Id;
                     $http.get(url)
-                        .success(function (data, status, headers, config) {
+                        .success(function (data) {
                             if (data != null) {
                                 $scope.IsLoadTypeMT940 = data.IsLoadTypeMT940;
                                 $scope.LoadTypeName = data.LoadType;
@@ -120,28 +85,32 @@
                                 $scope.Trailer = data.Trailer;
                                 $scope.Header = data.Header;
                                 $scope.Currency = data.Currency;
-
-                            } else {
-                                $scope.IsLoadTypeMT940 = false;
-                                $scope.Trailer = '';
-                                $scope.Header = '';
-                                $scope.Currency = '';
+                                $scope.LoadMetadataId = newValue.Id;
                             }
                         });
-                } else {
+                }else{
                     $scope.IsLoadTypeMT940 = false;
-                    $scope.LoadTypeName = '';
-                    $scope.SourceName = '';
                     $scope.Trailer = '';
                     $scope.Header = '';
                     $scope.Currency = '';
+                    $scope.LoadTypeName = '';
+                    $scope.SourceName = '';
+                    $scope.LoadMetadataId = 0;
                 }
-            }
+            });
+            //#endregion
+
+            //#region Post Data
+            
+            //#endregion
+
+            //#region Functions
 
             // get data on page load
             $scope.getLoadList();
             //#endregion
             $scope.readPhotoURL = function (input) {
+                debugger;
                 if (input.files && input.files[0]) {
                     $scope.FileName = input.files[0].name;
                     $scope.FileExtension = input.files[0].type.split('/')[1];
@@ -164,6 +133,7 @@
                     reader.readAsDataURL(input.files[0]);
                 }
             }
+            
 
         }
     }

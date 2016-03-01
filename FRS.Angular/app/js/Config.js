@@ -76,7 +76,7 @@
                 templateUrl: helper.basepath('../../../../app/views/Load/Load.html'),
                 controller: 'LoadController',
                 controllerAs: 'ldc',
-                resolve: helper.resolveFor('parsley', 'load.module')
+                resolve: helper.resolveFor('parsley', 'load.module', 'ui.select', 'oitozero.ngSweetAlert', 'filestyle')
             })
             .state('app.Users', {
                 url: '/Users',

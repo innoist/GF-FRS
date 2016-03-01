@@ -1,10 +1,13 @@
-﻿namespace FRS.WebApi.ModelMappers
+﻿using FRS.Models.DomainModels;
+using FRS.WebApi.Models.Load;
+
+namespace FRS.WebApi.ModelMappers
 {
     public static class LoadMapper
     {
-        public static Models.Load.LoadModel CreateFromServerToClient(this FRS.Models.DomainModels.Load source)
+        public static LoadModel CreateFromServerToClient(this Load source)
         {
-            return new Models.Load.LoadModel
+            return new LoadModel
             {
                 LoadMetaDataId = source.LoadMetaDataId,
                 CreatedBy = source.CreatedBy,
@@ -20,9 +23,9 @@
             };
         }
 
-        public static FRS.Models.DomainModels.Load CreateFromClientToServer(this Models.Load.LoadModel source)
+        public static Load CreateFromClientToServer(this LoadModel source)
         {
-            return new FRS.Models.DomainModels.Load
+            return new Load
             {
                 LoadMetaDataId = source.LoadMetaDataId,
                 CreatedBy = source.CreatedBy,

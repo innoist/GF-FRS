@@ -1,7 +1,7 @@
 ﻿<h3>
     <!-- START Language list-->
     <div class="pull-right">
-        
+
     </div>
     <!-- END Language list    -->
     Load
@@ -13,7 +13,7 @@
 <div class="panel panel-default">
     <div class="panel-heading">Create New Load</div>
     <div class="panel-body">
-        <div form-wizard="" validate-steps="true" validate-form="" steps="4">
+        <form form-wizard="" validate-steps="true" validate-form="" steps="4" name="ldc.formValidate">
             <div class="form-wizard wizard-horizontal">
                 <!-- START wizard steps indicator-->
                 <ol class="row">
@@ -29,7 +29,7 @@
                         <h4>Confirmation</h4>
                         <small class="text-muted">Short Description</small>
                     </li>
-                    <li ng-class="{'active':wizard.active(4)}" ng-click="wizard.go(4)" class="col-md-3">
+                    <li ng-class="{'active':wizard.active(4)}" class="col-md-3">
                         <h4>Done!</h4>
                         <small class="text-muted">Short Description</small>
                     </li>
@@ -40,14 +40,11 @@
                     <fieldset>
                         <legend>Load</legend>
                         <!-- START row -->
-                        
                         <div class="row">
-                            <div class="form-horizontal">
-                                <div class="form-group margin-top-20">
-                                    <label class="control-label col-md-2">Name</label>
-                                    <div class="col-md-6">
-                                        <input type="text" name="name" data-parsley-group="step1" placeholder="Your name here" required="required" class="form-control" />
-                                    </div>
+                            <div class="col-md-12">
+                                <label class="control-label requiredLabel">Name</label>
+                                <div class="controls">
+                                    <input type="text" name="name" ng-model="LoadName" data-parsley-group="step1" placeholder="Load name here" required="required" class="form-control" />
                                 </div>
                             </div>
                         </div>
@@ -55,7 +52,7 @@
                     </fieldset>
                     <ul class="pager">
                         <li class="next">
-                            <a href="#" ng-click="wizard.go(2)">Next <span>&rarr;</span></a>
+                            <a ng-click="wizard.go(2)">Next <span>&rarr;</span></a>
                         </li>
                     </ul>
                 </div>
@@ -66,76 +63,82 @@
                         <legend>MetaData</legend>
                         <!-- START row -->
                         <div class="row">
-                            <div class="form-horizontal">
-                                <div class="form-group margin-top-20">
-                                    <label for="source-sel" class="control-label col-md-2">Source</label>
-                                    <div uib-dropdown="dropdown" class="col-md-6">
-                                        <button id="source-sel" uib-dropdown-toggle="" class="btn btn-default" style="width: 100%">
-                                            Select <span class="pull-right"><b class="caret"></b></span>
-                                        </button>
-                                        <ul role="menu" class="dropdown-menu animated flipInX" style="width: 100%; text-align: left">
-                                            <li ng-repeat="obj in LoadMetadataDropDown">
-                                                <a ng-click="showHideFileUploader(obj)">{{obj.Name}}</a>
-                                            </li>
-                                        </ul>
-                                    </div>
+                            <div class="col-md-12">
+                                <div class="col-md-12 controls" ng-class="{ 'has-error': ldc.validateInput(ldc.formValidate.LoadMetaDatas, 'required') }">
+                                    <label for="LoadMetaDatas" class="control-label requiredLabel">Metadata</label>
+                                    <ui-select required="" name="LoadMetaDatas" id="LoadMetaDatas" ng-model="ldc.LoadMetaDatas.selected" theme="bootstrap" data-parsley-group="step2">
+                                        <ui-select-match placeholder="Select a Metadata...">
+                                            {{$select.selected.Name}}
+                                            <span class="resetDdl" ng-click="clear($event)">
+                                                <i class="fa fa-times"></i>
+                                            </span>
+                                        </ui-select-match>
+                                        <ui-select-choices repeat="obj in ldc.LoadMetaDatas | propsFilter: {Name: $select.search}">
+                                            <div ng-bind-html="obj.Name | highlight: $select.search"></div>
+                                        </ui-select-choices>
+                                    </ui-select>
                                 </div>
                             </div>
-                            
+
                         </div>
                         <!-- END row -->
                         <div class="row">
-                            
-                            <form class="form-horizontal">
-                                <div class="form-group margin-top-20">
-                                          <label class="control-label col-md-2">Load Type</label>
-                                          <div class="col-md-6">
-                                              <input class="form-control" type="text" ng-model="LoadTypeName" ng-readonly="true" />
-                                          </div>
-                                      </div>
-                                <div class="form-group margin-top-20">
-                                    <label class="control-label col-md-2">Source</label>
-                                    <div class="col-md-6">
-                                        <input class="form-control" type="text" ng-model="SourceName" ng-readonly="true" />
-                                    </div>
+                            <div class="col-md-12">
+                                <div class="col-md-12">
+                                    <label class="control-label requiredLabel">Load Type</label>
+                                    <input class="form-control" type="text" ng-model="LoadTypeName" ng-readonly="true" required="required" data-parsley-group="step2" />
                                 </div>
-                            
-                                <div class="form-group margin-top-20">
-                                    <label class="control-label col-md-2">Header</label>
-                                    <div class="col-md-6">
-                                        <input class="form-control" type="text" ng-model="Header" ng-readonly="true" />
-                                    </div>
-                                </div>
-                                
-                                <div class="form-group margin-top-20">
-                                    <label class="control-label col-sm-2">Trailer</label>
-                                    <div class="col-md-6">
-                                        <input class="form-control" type="text" ng-model="Trailer" ng-readonly="true" />
-                                    </div>
-                                </div>
-                                
-                                <div class="form-group margin-top-20" ng-show="IsLoadTypeMT940">
-                                    <label class="control-label col-sm-2">Upload File</label>
-                                    <div class="col-md-6">
-                                        <input class="form-control" type="file" onchange=" angular.element(this).scope().readPhotoURL(this) " />
-                                    </div>
-                                </div>
-                            </form>
-
+                            </div>
                         </div>
-                        
-                        
-                        
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="col-md-12">
+                                    <label class="control-label requiredLabel">Source</label>
+                                    <input class="form-control" type="text" ng-model="SourceName" ng-readonly="true" required="" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="col-md-12">
+                                    <label class="control-label requiredLabel">Header</label>
+                                    <input class="form-control" type="text" ng-model="Header" ng-readonly="true" required="" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="col-md-12">
+                                    <label class="control-label requiredLabel">Trailer</label>
+                                    <input class="form-control" type="text" ng-model="Trailer" ng-readonly="true" required="" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12" ng-if="IsLoadTypeMT940">
+                                <div class="col-md-12">
+                                    <label class="control-label requiredLabel">Upload File</label>
+                                    <input filestyle="" type="file" data-button-text="Upload File" data-class-button="btn btn-success"
+                                           file-model="ldc.loadFile"
+                                           data-classinput="form-control inline" nv-file-select=""
+                                           class="form-control"
+                                           data-parsley-group="step2"
+                                           required="required"
+                                           id="loadFile"/>
+                                </div>
+                            </div>
+                        </div>
+
 
                     </fieldset>
                     <ul class="pager">
                         <li class="previous">
-                            <a href="#" ng-click="wizard.go(1)">
+                            <a ng-click="wizard.go(1)">
                                 <span>&larr; Previous</span>
                             </a>
                         </li>
                         <li class="next">
-                            <a href="#" ng-click="wizard.go(3)">Next <span>&rarr;</span></a>
+                            <a ng-click="wizard.go(3)">Next <span>&rarr;</span></a>
                         </li>
                     </ul>
                 </div>
@@ -143,19 +146,55 @@
                 <!-- START Wizard Step inputs -->
                 <div id="step3" ng-show="wizard.active(3)">
                     <fieldset>
-                        <legend>Confirmation</legend>
+                        <legend>Summary & Confirmation</legend>
                         <!-- START row -->
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <div class="form-group">
-                                    <label>Email</label>
-                                    <input type="text" name="email" data-parsley-group="step3" placeholder="john@snow.com" required="required" class="form-control" />
+                                    <label class="control-label">Load Name</label>:
+                                    <span><code>{{LoadName}}</code></span>
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <div class="form-group">
-                                    <label>Phone</label>
-                                    <input type="text" name="phone" data-parsley-group="step3" placeholder="11-2345-6789" required="required" class="form-control" />
+                                    <label class="control-label">Metadata</label>:
+                                    <span><code>{{ldc.LoadMetaDatas.selected.Name}}</code></span>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="control-label">Load Type</label>:
+                                    <span><code>{{LoadTypeName}}</code></span>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="control-label">Source</label>:
+                                    <span><code>{{SourceName}}</code></span>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="control-label">Header</label>:
+                                    <span><code>{{Header}}</code></span>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="control-label">Trailer</label>:
+                                    <span><code>{{Trailer}}</code></span>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="control-label">Currency</label>:
+                                    <span><code>{{Currency}}</code></span>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="control-label">File</label>:
+                                    <span><code>{{ldc.loadFile.name}}</code></span>
                                 </div>
                             </div>
                         </div>
@@ -163,12 +202,13 @@
                     </fieldset>
                     <ul class="pager">
                         <li class="previous">
-                            <a href="#" ng-click="wizard.go(2)">
+                            <a ng-click="wizard.go(2)">
                                 <span>&larr; Previous</span>
                             </a>
                         </li>
                         <li class="next">
-                            <a href="#" ng-click="wizard.go(4)">Next <span>&rarr;</span></a>
+                            <!--<a ng-click="wizard.go(4)">Next <span>&rarr;</span></a>-->
+                            <a ng-click="finalize();">Next <span>&rarr;</span></a>
                         </li>
                     </ul>
                 </div>
@@ -184,7 +224,7 @@
                     </div>
                     <ul class="pager">
                         <li class="previous">
-                            <a href="#" ng-click="wizard.go(3)">
+                            <a ng-click="wizard.go(3)">
                                 <span>&larr; Previous</span>
                             </a>
                         </li>
@@ -192,7 +232,7 @@
                 </div>
                 <!-- END Wizard Step inputs -->
             </div>
-        </div>
+        </form>
     </div>
 </div>
 <!-- END panel -->
