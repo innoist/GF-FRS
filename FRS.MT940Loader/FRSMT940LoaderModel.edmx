@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="FRSMT940Loader.DBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="FRSMT940Loader.DBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="AspNetRoles">
           <Key>
             <PropertyRef Name="Id" />
@@ -60,6 +60,10 @@
           <Property Name="FileContent" Type="varbinary(max)" />
           <Property Name="FileContentBase64" Type="nvarchar(max)" />
           <Property Name="Description" Type="nvarchar" MaxLength="124" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="ModifiedBy" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ModifiedOn" Type="datetime2" Precision="7" Nullable="false" />
         </EntityType>
         <EntityType Name="Load">
           <Key>
@@ -68,15 +72,15 @@
           <Property Name="LoadId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="LoadMetaDataId" Type="tinyint" Nullable="false" />
           <Property Name="MT940LoadId" Type="bigint" />
+          <Property Name="Name" Type="nvarchar" MaxLength="128" Nullable="false" />
           <Property Name="Start" Type="datetime" Nullable="false" />
           <Property Name="Finish" Type="datetime" />
           <Property Name="InProgress" Type="bit" Nullable="false" />
           <Property Name="ReadOnly" Type="bit" Nullable="false" />
           <Property Name="CreatedBy" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime2" Precision="7" Nullable="false" />
           <Property Name="ModifiedBy" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="ModifiedOn" Type="datetime" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ModifiedOn" Type="datetime2" Precision="7" Nullable="false" />
         </EntityType>
         <EntityType Name="LoadMetaData">
           <Key>
@@ -91,9 +95,9 @@
           <Property Name="CurrencyId" Type="tinyint" Nullable="false" />
           <Property Name="Description" Type="nvarchar" MaxLength="1024" />
           <Property Name="CreatedBy" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime2" Precision="7" Nullable="false" />
           <Property Name="ModifiedBy" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="ModifiedOn" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedOn" Type="datetime2" Precision="7" Nullable="false" />
           <Property Name="StatusId" Type="tinyint" Nullable="false" />
         </EntityType>
         <EntityType Name="LoadType">
@@ -132,6 +136,10 @@
           <Property Name="DebitOrCredit" Type="char" MaxLength="1" Nullable="false" />
           <Property Name="EntryDate" Type="datetime" Nullable="false" />
           <Property Name="Value" Type="decimal" Precision="30" Scale="2" Nullable="false" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime2" Precision="7" Nullable="false" StoreGeneratedPattern="Computed" />
+          <Property Name="ModifiedBy" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ModifiedOn" Type="datetime2" Precision="7" Nullable="false" StoreGeneratedPattern="Computed" />
         </EntityType>
         <EntityType Name="MT940CustomerStatement">
           <Key>
@@ -146,16 +154,16 @@
           <Property Name="ClosingBalanceId" Type="bigint" />
           <Property Name="Description" Type="nvarchar" MaxLength="1024" />
           <Property Name="ForwardAvailableBalanceId" Type="bigint" />
-          <Property Name="OpeningBalanceId" Type="bigint" Nullable="false" />
+          <Property Name="OpeningBalanceId" Type="bigint" />
           <Property Name="ReleatedMessage" Type="nvarchar" MaxLength="1024" />
           <Property Name="SequenceNumber" Type="int" Nullable="false" />
           <Property Name="StatementNumber" Type="int" Nullable="false" />
           <Property Name="TransactionReference" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="TransactionCount" Type="int" Nullable="false" />
           <Property Name="CreatedBy" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="CreatedOn" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime2" Precision="7" Nullable="false" StoreGeneratedPattern="Computed" />
           <Property Name="ModifiedBy" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="ModifiedOn" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="ModifiedOn" Type="datetime2" Precision="7" Nullable="false" StoreGeneratedPattern="Computed" />
         </EntityType>
         <EntityType Name="MT940CustomerStatementTransaction">
           <Key>
@@ -168,16 +176,16 @@
           <Property Name="Amount" Type="money" Nullable="false" />
           <Property Name="DebitOrCredit" Type="char" MaxLength="1" Nullable="false" />
           <Property Name="Description" Type="nvarchar" MaxLength="1024" />
-          <Property Name="EntryDate" Type="datetime2" Precision="7" />
+          <Property Name="EntryDate" Type="datetime" />
           <Property Name="FundsCode" Type="nvarchar" MaxLength="50" />
           <Property Name="Reference" Type="nvarchar" MaxLength="16" />
           <Property Name="TransactionType" Type="nvarchar" MaxLength="4" />
           <Property Name="Value" Type="nvarchar" MaxLength="1024" />
-          <Property Name="ValueDate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="ValueDate" Type="datetime" Nullable="false" />
           <Property Name="CreatedBy" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="CreatedOn" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime2" Precision="7" Nullable="false" StoreGeneratedPattern="Computed" />
           <Property Name="ModifiedBy" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="ModifiedOn" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="ModifiedOn" Type="datetime2" Precision="7" Nullable="false" StoreGeneratedPattern="Computed" />
         </EntityType>
         <EntityType Name="MT940Load">
           <Key>
@@ -271,7 +279,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_CustomerStatement_Balance_OpenBal">
-          <End Role="MT940Balance" Type="Self.MT940Balance" Multiplicity="1" />
+          <End Role="MT940Balance" Type="Self.MT940Balance" Multiplicity="0..1" />
           <End Role="MT940CustomerStatement" Type="Self.MT940CustomerStatement" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="MT940Balance">
@@ -499,8 +507,7 @@
             <End Role="Source" EntitySet="Source" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="FRSMT940Loader.DBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -563,6 +570,10 @@
           <Property Name="FileContentBase64" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Description" Type="String" MaxLength="124" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="MT940Load" Relationship="Self.FK_MT940Load_FileContent" FromRole="FileContent" ToRole="MT940Load" />
+          <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="ModifiedBy" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ModifiedOn" Type="DateTime" Nullable="false" Precision="7" />
         </EntityType>
         <EntityType Name="Load">
           <Key>
@@ -576,9 +587,9 @@
           <Property Name="InProgress" Type="Boolean" Nullable="false" />
           <Property Name="ReadOnly" Type="Boolean" Nullable="false" />
           <Property Name="CreatedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="7" />
           <Property Name="ModifiedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="ModifiedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedOn" Type="DateTime" Nullable="false" Precision="7" />
           <Property Name="Name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="LoadMetaData" Relationship="Self.FK_Load_LoadMetaData" FromRole="Load" ToRole="LoadMetaData" />
           <NavigationProperty Name="MT940Load" Relationship="Self.FK_Load_MT940Load" FromRole="Load" ToRole="MT940Load" />
@@ -596,9 +607,9 @@
           <Property Name="CurrencyId" Type="Byte" Nullable="false" />
           <Property Name="Description" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
           <Property Name="CreatedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="7" />
           <Property Name="ModifiedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="ModifiedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedOn" Type="DateTime" Nullable="false" Precision="7" />
           <Property Name="StatusId" Type="Byte" Nullable="false" />
           <NavigationProperty Name="Loads" Relationship="Self.FK_Load_LoadMetaData" FromRole="LoadMetaData" ToRole="Load" />
           <NavigationProperty Name="LoadType" Relationship="Self.FK_LoadMetaData_LoadType" FromRole="LoadMetaData" ToRole="LoadType" />
@@ -648,6 +659,10 @@
           <NavigationProperty Name="MT940CustomerStatement1" Relationship="Self.FK_CustomerStatement_Balance_ClosingBal" FromRole="MT940Balance" ToRole="MT940CustomerStatement" />
           <NavigationProperty Name="MT940CustomerStatement2" Relationship="Self.FK_CustomerStatement_Balance_ForAvailBal" FromRole="MT940Balance" ToRole="MT940CustomerStatement" />
           <NavigationProperty Name="MT940CustomerStatement3" Relationship="Self.FK_CustomerStatement_Balance_OpenBal" FromRole="MT940Balance" ToRole="MT940CustomerStatement" />
+          <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="7" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="ModifiedBy" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ModifiedOn" Type="DateTime" Nullable="false" Precision="7" annotation:StoreGeneratedPattern="Computed" />
         </EntityType>
         <EntityType Name="MT940CustomerStatement">
           <Key>
@@ -662,20 +677,20 @@
           <Property Name="ClosingBalanceId" Type="Int64" />
           <Property Name="Description" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
           <Property Name="ForwardAvailableBalanceId" Type="Int64" />
-          <Property Name="OpeningBalanceId" Type="Int64" Nullable="false" />
+          <Property Name="OpeningBalanceId" Type="Int64" />
           <Property Name="ReleatedMessage" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
           <Property Name="SequenceNumber" Type="Int32" Nullable="false" />
           <Property Name="StatementNumber" Type="Int32" Nullable="false" />
           <Property Name="TransactionReference" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="TransactionCount" Type="Int32" Nullable="false" />
           <Property Name="CreatedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="7" annotation:StoreGeneratedPattern="Computed" />
           <Property Name="ModifiedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="ModifiedOn" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="ModifiedOn" Type="DateTime" Nullable="false" Precision="7" annotation:StoreGeneratedPattern="Computed" />
           <NavigationProperty Name="ClosingAvailableBalance" Relationship="Self.FK_CustomerStatement_Balance_ClosingAviBal" FromRole="MT940CustomerStatement" ToRole="MT940Balance" />
           <NavigationProperty Name="ClosingBalance" Relationship="Self.FK_CustomerStatement_Balance_ClosingBal" FromRole="MT940CustomerStatement" ToRole="MT940Balance" />
           <NavigationProperty Name="ForwardAvailableBalance" Relationship="Self.FK_CustomerStatement_Balance_ForAvailBal" FromRole="MT940CustomerStatement" ToRole="MT940Balance" />
-          <NavigationProperty Name="OpeningBalance" Relationship="Self.FK_CustomerStatement_Balance_OpenBal" FromRole="MT940CustomerStatement" ToRole="MT940Balance" />
+          <NavigationProperty Name="OpeningBalance" Relationship="FRSMT940Loader.DBModel.FK_CustomerStatement_Balance_OpenBal" FromRole="MT940CustomerStatement" ToRole="MT940Balance" />
           <NavigationProperty Name="MT940Load" Relationship="Self.FK_MT940CustomerStatement_MT940Load" FromRole="MT940CustomerStatement" ToRole="MT940Load" />
           <NavigationProperty Name="MT940CustomerStatementTransaction" Relationship="Self.FK_MT940CustomerStatementTransaction_MT940CustomerStatement" FromRole="MT940CustomerStatement" ToRole="MT940CustomerStatementTransaction" />
         </EntityType>
@@ -690,16 +705,16 @@
           <Property Name="Amount" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
           <Property Name="DebitOrCredit" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="Description" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
-          <Property Name="EntryDate" Type="DateTime" Precision="7" />
+          <Property Name="EntryDate" Type="DateTime" Precision="3" />
           <Property Name="FundsCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Reference" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
           <Property Name="TransactionType" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
           <Property Name="Value" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
-          <Property Name="ValueDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="ValueDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="CreatedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="7" annotation:StoreGeneratedPattern="Computed" />
           <Property Name="ModifiedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="ModifiedOn" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="ModifiedOn" Type="DateTime" Nullable="false" Precision="7" annotation:StoreGeneratedPattern="Computed" />
           <NavigationProperty Name="MT940CustomerStatement" Relationship="Self.FK_MT940CustomerStatementTransaction_MT940CustomerStatement" FromRole="MT940CustomerStatementTransaction" ToRole="MT940CustomerStatement" />
         </EntityType>
         <EntityType Name="MT940Load">
@@ -888,7 +903,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_CustomerStatement_Balance_OpenBal">
-          <End Role="MT940Balance" Type="Self.MT940Balance" Multiplicity="1" />
+          <End Role="MT940Balance" Type="Self.MT940Balance" Multiplicity="0..1" />
           <End Role="MT940CustomerStatement" Type="Self.MT940CustomerStatement" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="MT940Balance">
@@ -1092,6 +1107,10 @@
           <EntitySetMapping Name="FileContents">
             <EntityTypeMapping TypeName="FRSMT940Loader.DBModel.FileContent">
               <MappingFragment StoreEntitySet="FileContent">
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
                 <ScalarProperty Name="FileContentId" ColumnName="FileContentId" />
                 <ScalarProperty Name="FileContent1" ColumnName="FileContent" />
                 <ScalarProperty Name="FileContentBase64" ColumnName="FileContentBase64" />
@@ -1168,6 +1187,10 @@
           <EntitySetMapping Name="MT940Balance">
             <EntityTypeMapping TypeName="FRSMT940Loader.DBModel.MT940Balance">
               <MappingFragment StoreEntitySet="MT940Balance">
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
                 <ScalarProperty Name="MT940BalanceId" ColumnName="MT940BalanceId" />
                 <ScalarProperty Name="CurrencyId" ColumnName="CurrencyId" />
                 <ScalarProperty Name="DebitOrCredit" ColumnName="DebitOrCredit" />

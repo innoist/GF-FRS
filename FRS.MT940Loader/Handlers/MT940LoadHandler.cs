@@ -13,6 +13,7 @@ namespace FRS.MT940Loader.Handlers
         private DatabaseHandler _dbHandler;
         private MT940Loader _mt940Loader;
         private short _AppConfigLoadTypeMT940Id = short.MinValue;
+        private byte _processedCustomerStatementCount = 0;
 
         internal DatabaseHandler DbHandler
         {
@@ -37,6 +38,19 @@ namespace FRS.MT940Loader.Handlers
             set
             {
                 _mt940Loader = value;
+            }
+        }
+
+        internal byte ProcessedCustomerStatementCount
+        {
+            get
+            {
+                return _processedCustomerStatementCount;
+            }
+
+            set
+            {
+                _processedCustomerStatementCount = value;
             }
         }
 
@@ -121,19 +135,24 @@ namespace FRS.MT940Loader.Handlers
 
         }
 
-        public void UpdateLoadForMT940LoadCompletion(Load updateLoadOnCompletion)
+        public void SummariseMT940LoadOnCompletion(Load load, MT940Load mt940Load)
         {
-            _dbHandler.DbContext.Loads.Attach(updateLoadOnCompletion);
-            DbEntityEntry<Load> entry = _dbHandler.DbContext.Entry(updateLoadOnCompletion);
-            entry.Property(e => e.Finish).IsModified = true;
-            entry.Property(e => e.InProgress).IsModified = true;
-            entry.Property(e => e.ModifiedBy).IsModified = true;            
+            //Load modified fields
+            _dbHandler.DbContext.Entry(load).Property(e => e.Finish).IsModified = true;
+            _dbHandler.DbContext.Entry(load).Property(e => e.InProgress).IsModified = true;
+            _dbHandler.DbContext.Entry(load).Property(e => e.ModifiedBy).IsModified = true;
+            //_dbHandler.DbContext.Entry(load).Property(e => e.ModifiedOn).IsModified = true;
+
+            //MT940Load modified fields
+            _dbHandler.DbContext.Entry(mt940Load).Property(e => e.CustomerStatementCount).IsModified = true;
+            _dbHandler.DbContext.Entry(mt940Load).Property(e => e.ModifiedBy).IsModified = true;
+           // _dbHandler.DbContext.Entry(mt940Load).Property(e => e.ModifiedOn).IsModified = true;
 
             //Commit changes to database
             _dbHandler.DbContext.SaveChanges();
         }
 
-        private MT940Balance AddMT940Balance(TransactionBalance transactionBalance)
+        private MT940Balance AddMT940Balance(TransactionBalance transactionBalance, string userId)
         {
             Currency currency = (from c in _dbHandler.DbContext.Currencies
                                  where c.Name == transactionBalance.Currency.Code
@@ -141,7 +160,7 @@ namespace FRS.MT940Loader.Handlers
 
             MT940Balance mt940Balance= _dbHandler.DbContext.MT940Balance.Create();
             
-            return (mt940Balance = transactionBalance.ConvertTransactionBalanceToMT940Balance(currency.Value));
+            return (mt940Balance = transactionBalance.ConvertTransactionBalanceToMT940Balance(currency.Value, userId));
         }
         private MT940CustomerStatement AddMT940CustomerStatement(MT940CustomerStatement customerStatement)
         {            
@@ -230,7 +249,7 @@ namespace FRS.MT940Loader.Handlers
             
             if (customerStatementMessages != null)
             {
-                byte customerStatementSequence = 1;
+                byte customerStatementSequence = 0;
                 bool isSaveChanges = false;
                 foreach (CustomerStatementMessage customerStatement in customerStatementMessages)
                 {
@@ -238,7 +257,7 @@ namespace FRS.MT940Loader.Handlers
                     
                     #region **START** Set common customer statement data
                     mt940CustomerStatement.MT940LoadId = Convert.ToInt64(load.MT940LoadId);
-                    mt940CustomerStatement.Sequence = customerStatementSequence;
+                    mt940CustomerStatement.Sequence = ++customerStatementSequence;
                     mt940CustomerStatement.ReadOnly = false;
                     mt940CustomerStatement.AccountNumber = customerStatement.Account;
                     mt940CustomerStatement.Description = customerStatement.Description;
@@ -253,19 +272,19 @@ namespace FRS.MT940Loader.Handlers
                     #region **START** Customer Statement Balances
                     if (customerStatement.ClosingAvailableBalance != null)
                     {
-                        mt940CustomerStatement.ClosingAvailableBalance = AddMT940Balance(customerStatement.ClosingAvailableBalance);
+                        mt940CustomerStatement.ClosingAvailableBalance = AddMT940Balance(customerStatement.ClosingAvailableBalance, userId);
                     }
                     if (customerStatement.ClosingBalance != null)
                     {
-                        mt940CustomerStatement.ClosingBalance = AddMT940Balance(customerStatement.ClosingBalance);
+                        mt940CustomerStatement.ClosingBalance = AddMT940Balance(customerStatement.ClosingBalance, userId);
                     }
                     if (customerStatement.ForwardAvailableBalance != null)
                     {
-                        mt940CustomerStatement.ForwardAvailableBalance = AddMT940Balance(customerStatement.ForwardAvailableBalance);
+                        mt940CustomerStatement.ForwardAvailableBalance = AddMT940Balance(customerStatement.ForwardAvailableBalance, userId);
                     }
                     if (customerStatement.OpeningBalance != null)
                     {
-                        mt940CustomerStatement.OpeningBalance = AddMT940Balance(customerStatement.OpeningBalance);
+                        mt940CustomerStatement.OpeningBalance = AddMT940Balance(customerStatement.OpeningBalance, userId);
                     }
                     #endregion **END** Customer Statement Balances
 
@@ -274,14 +293,14 @@ namespace FRS.MT940Loader.Handlers
                     AddMT940CustomerStatement(mt940CustomerStatement);
 
                     #region **START** Customer Statement Transactions
-                    byte transactionSequence = 1;
+                    byte transactionSequence = 0;
                     foreach (Transaction transaction in customerStatement.Transactions)
                     {
                         //Create a new MT940 Customer Statement Transaction
                         MT940CustomerStatementTransaction mt940CustomerStatementTransaction = new MT940CustomerStatementTransaction
                         {
                             MT940CustomerStatement = mt940CustomerStatement,
-                            Sequence = transactionSequence,
+                            Sequence = ++transactionSequence,
                             ReadOnly = false,
                             Amount = transaction.Amount.Value,
                             DebitOrCredit = transaction.DebitCredit.ConvertToDebitOrCredit(),
@@ -298,18 +317,15 @@ namespace FRS.MT940Loader.Handlers
 
                         //Associate this transaction with customer statement (master)
                         AddMT940CustomerStatementTransaction(mt940CustomerStatementTransaction);
-
-                        //Increment the sequence for next transactions
-                        transactionSequence++;
+                        
                     }
                     #endregion **END** Customer Statement Transactions
-
-                    //Increment the sequence for next customer statement
-                    customerStatementSequence++;
 
                     //Set the save flag to true, to be used for committing changes later on
                     isSaveChanges = true;
                 }
+                
+                _processedCustomerStatementCount = customerStatementSequence;                
 
                 //If required commit changes to database
                 if (isSaveChanges)
@@ -319,7 +335,14 @@ namespace FRS.MT940Loader.Handlers
             }
         }
 
-        
+        /// <summary>
+        /// Method to get the number number of customer statements processed by current MT940 file load process
+        /// </summary>
+        /// <returns>Number of Customer Statement records processed</returns>
+        public int GetProcessedCustomerStatementCount()
+        {
+            return Convert.ToInt16(_processedCustomerStatementCount);
+        }
 
         #endregion **END - Public Methods**
     }

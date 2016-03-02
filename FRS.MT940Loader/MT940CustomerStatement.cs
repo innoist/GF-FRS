@@ -29,7 +29,7 @@ namespace FRS.MT940Loader
         public Nullable<long> ClosingBalanceId { get; set; }
         public string Description { get; set; }
         public Nullable<long> ForwardAvailableBalanceId { get; set; }
-        public long OpeningBalanceId { get; set; }
+        public Nullable<long> OpeningBalanceId { get; set; }
         public string ReleatedMessage { get; set; }
         public int SequenceNumber { get; set; }
         public int StatementNumber { get; set; }
