@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'D:\Work\Company Projects\GitHub\GF-FRS\FRS.MT940Loader\FRSMT940LoaderModel.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\ISTWORK\CODE\git1\GF-FRS\FRS.MT940Loader\FRSMT940LoaderModel.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

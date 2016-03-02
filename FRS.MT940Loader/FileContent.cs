@@ -22,8 +22,8 @@ namespace FRS.MT940Loader
     
         public long FileContentId { get; set; }
         public byte[] FileContent1 { get; set; }
-        public string Description { get; set; }
         public string FileContentBase64 { get; set; }
+        public string Description { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MT940Load> MT940Load { get; set; }

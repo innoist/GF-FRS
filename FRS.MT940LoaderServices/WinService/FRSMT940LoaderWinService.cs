@@ -3,23 +3,41 @@ using System.Reflection;
 using System.ServiceModel;
 using System.ServiceProcess;
 using System.Threading;
-using FRS.MT940LoaderService.WCF;
+using FRS.MT940LoaderService.Wcf;
+using FRS.MT940LoaderService.Logging;
+using NLog;
 
 namespace FRS.MT940LoaderService.WinService
 {
     partial class FRSMT940LoaderWinService : ServiceBase
     {
+        private string _serviceName = "IST FRS.MT940Loader WindowService V1.0.0.0";
+
         public ServiceHost serviceHost = null;
         public FRSMT940LoaderWinService()
         {
             // Name the Windows Service
-            ServiceName = "IST FRS.MT940Loader WindowService V1.0.0.0";
+            ServiceName = _serviceName;
             InitializeComponent();
         }
 
         public static void Main()
         {
             //Run(new FRSMT940LoaderWinService());
+            //FRSNLogManager.Instance.Debug("We're going to throw an exception now.");
+            FRSNLogManager.Instance.Info("123");
+            FRSNLogManager.Instance.Trace("123456");
+
+            int k = 42;
+            int l = 100;
+
+            FRSNLogManager.Instance.Trace("Sample trace message, k={0}, l={1}", k, l);
+            FRSNLogManager.Instance.Debug("Sample debug message, k={0}, l={1}", k, l);
+            FRSNLogManager.Instance.Info("Sample informational message, k={0}, l={1}", k, l);
+            FRSNLogManager.Instance.Warn("Sample warning message, k={0}, l={1}", k, l);
+            FRSNLogManager.Instance.Error("Sample error message, k={0}, l={1}", k, l);
+            FRSNLogManager.Instance.Fatal("Sample fatal error message, k={0}, l={1}", k, l);
+            FRSNLogManager.Instance.Log(LogLevel.Info, "Sample informational message, k={0}, l={1}", k, l);
 
             ServiceBase[] servicesToRun = new ServiceBase[] {
                 new FRSMT940LoaderWinService()
@@ -43,7 +61,7 @@ namespace FRS.MT940LoaderService.WinService
             }
 
             // Create a ServiceHost for the FRSMT940LoaderWCFService type and provide the base address.
-            serviceHost = new ServiceHost(typeof(FRSMT940LoaderWCFService));
+            serviceHost = new ServiceHost(typeof(FRSMT940WcfLoaderService));
 
             // Open the ServiceHostBase to create listeners and start listening for messages.
             serviceHost.Open();

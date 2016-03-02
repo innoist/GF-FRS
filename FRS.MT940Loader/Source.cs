@@ -26,5 +26,6 @@ namespace FRS.MT940Loader
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<LoadMetaData> LoadMetaDatas { get; set; }
+        public virtual Status Status { get; set; }
     }
 }

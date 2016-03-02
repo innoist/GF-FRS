@@ -34,12 +34,20 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DevTrends.WCFDataAnnotations, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\WCFDataAnnotations.1.1.0\lib\net40\DevTrends.WCFDataAnnotations.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>..\packages\NLog.4.2.3\lib\net45\NLog.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -57,15 +65,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="WCF\FRSMT940LoaderWCFService.cs" />
+    <Compile Include="FRSNLogManager.cs" />
+    <Compile Include="Wcf\FRSMT940WcfLoaderService.cs" />
     <Compile Include="WinService\FRSMT940LoaderWinService.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="WinService\FRSMT940LoaderWinService.Designer.cs">
       <DependentUpon>FRSMT940LoaderWinService.cs</DependentUpon>
     </Compile>
-    <Compile Include="WCF\IFRSMT940LoaderWCFService.cs" />
-    <Compile Include="InputOutput\ProcessMT940AfterInsertInput.cs" />
+    <Compile Include="Wcf\IFRSMT940WcfLoaderService.cs" />
+    <Compile Include="InputOutput\ProcessMT940AfterInsertRequest.cs" />
     <Compile Include="InputOutput\ProcessMT940AfterInsertReturn.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="MT940LoaderWinServiceInstaller.cs">
@@ -74,6 +83,13 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <Content Include="NLog.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="NLog.xsd">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -85,7 +101,6 @@
       <Name>FRS.MT940Loader</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
