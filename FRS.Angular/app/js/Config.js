@@ -54,6 +54,14 @@
                 controllerAs: 'mdc',
                 resolve: helper.resolveFor('ui.grid', 'ui.select', 'loadMetaData.module')
             })
+            .state('app.MT940Loads', {
+                url: '/MT940Loads',
+                title: 'MT940 Loads',
+                templateUrl: helper.basepath('../../../../app/views/MT940Loads/MT940Loads.html'),
+                controller: 'MT940LoadsController',
+                controllerAs: 'mt940lc',
+                resolve: helper.resolveFor('ui.grid', 'ui.select', 'MT940Loads.module')
+            })
             .state('app.CreateMetaData', {
                 url: '/CreateMetaData/:Id',
                 title: 'New MetaData',

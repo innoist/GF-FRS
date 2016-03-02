@@ -1,25 +1,21 @@
 ﻿using System;
-using System.Collections.Generic;
 
-namespace FRS.Models.DomainModels
+namespace FRS.WebApi.Models.MT940Load
 {
-    public class MT940Load
+    public class MT940LoadModel
     {
         public long MT940LoadId { get; set; }
         public string Path { get; set; }
+        public string Status { get; set; }
         public string FileName { get; set; }
         public string FileExtension { get; set; }
         public byte StatusId { get; set; }
         public string CreatedBy { get; set; }
         public DateTime CreatedOn { get; set; }
+        public string CreatedOnString { get; set; }
         public string ModifiedBy { get; set; }
         public DateTime ModifiedOn { get; set; }
         public int? CustomerStatementCount { get; set; }
         public long FileContentId { get; set; }
-
-        public virtual FileContent FileContent { get; set; }
-        public virtual ICollection<Load> Loads { get; set; }
-        public virtual ICollection<MT940CustomerStatement> MT940CustomerStatement { get; set; }
-        public virtual Status Status { get; set; }
     }
 }

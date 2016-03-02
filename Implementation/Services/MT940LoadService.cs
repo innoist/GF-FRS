@@ -4,6 +4,8 @@ using FRS.Interfaces.IServices;
 using FRS.Interfaces.Repository;
 using FRS.Models.DomainModels;
 using FRS.Models.IdentityModels;
+using FRS.Models.RequestModels;
+using FRS.Models.ResponseModels;
 
 namespace FRS.Implementation.Services
 {
@@ -53,6 +55,11 @@ namespace FRS.Implementation.Services
         public IEnumerable<MT940Load> GetAll()
         {
             return mt940LoadRepository.GetAll();
+        }
+
+        public SearchTemplateResponse<MT940Load> GetMt940SearchResponse(MT940LoadSearchRequest searchRequest)
+        {
+            return mt940LoadRepository.GetMt940SearchResponse(searchRequest);
         }
 
         public bool SaveMT940Load(MT940Load mt940Load)

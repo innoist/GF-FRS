@@ -2198,6 +2198,10 @@
                                                 '/app/js/LoadMetaData/LoadMetaDataService.js']
               },
               {
+                  name: 'MT940Loads.module', files: ['/app/js/MT940Loads/MT940Load.controller.js',
+                                                       '/app/js/MT940Loads/MT940Load.service.js']
+              },
+              {
                   name: 'createMetaData.module', files: ['/app/js/CreateMetaData/CreateMetaDataController.js',
                                                 '/app/js/CreateMetaData/CreateMetaDataService.js']
               },
