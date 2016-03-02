@@ -72,7 +72,7 @@ namespace FRS.MT940Loader
 
         public MT940Loader()
         {
-
+            OperationFaults = new List<MT940LoaderFault>();
         }
 
         public MT940Loader(string filePath, string headerSeperator, string trailerSeperator)
@@ -89,8 +89,6 @@ namespace FRS.MT940Loader
                 _filename = GetFileNameFromPath(filePath);
                 HeaderSeperator = headerSeperator;
                 TrailerSeperator = trailerSeperator;
-
-                OperationFaults = new List<MT940LoaderFault>();
 
                 return;
             }
@@ -114,9 +112,9 @@ namespace FRS.MT940Loader
             {
                 Separator header = new Separator(HeaderSeperator);
                 Separator trailer = new Separator(TrailerSeperator);
-                GenericFormat genericFomat = new GenericFormat(header, trailer);
+                GenericFormat genericFormat = new GenericFormat(header, trailer);
                 string fileData = Encoding.ASCII.GetString(Convert.FromBase64String(base64MT940Content));
-                return Mt940Parser.ParseData(genericFomat, fileData, CultureInfo.CurrentCulture);
+                return Mt940Parser.ParseData(genericFormat, fileData, CultureInfo.CurrentCulture);
             }
             catch (Exception ex)
             {
@@ -190,7 +188,7 @@ namespace FRS.MT940Loader
         #region Start - Exception and Fault Methods
         private void ClearList<T>(List<T> list)
         {
-            if (list != null)
+            if(list!=null)
             {
                 list.Clear();
             }
