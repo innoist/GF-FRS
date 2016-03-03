@@ -26,9 +26,6 @@ namespace FRS.MT940Loader
         }
     
         public virtual DbSet<AspNetRole> AspNetRoles { get; set; }
-        public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
-        public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
-        public virtual DbSet<AspNetUserRole> AspNetUserRoles { get; set; }
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
         public virtual DbSet<Currency> Currencies { get; set; }
         public virtual DbSet<Employee> Employees { get; set; }
@@ -36,6 +33,7 @@ namespace FRS.MT940Loader
         public virtual DbSet<Load> Loads { get; set; }
         public virtual DbSet<LoadMetaData> LoadMetaDatas { get; set; }
         public virtual DbSet<LoadType> LoadTypes { get; set; }
+        public virtual DbSet<Log> Logs { get; set; }
         public virtual DbSet<MT940Balance> MT940Balance { get; set; }
         public virtual DbSet<MT940CustomerStatement> MT940CustomerStatement { get; set; }
         public virtual DbSet<MT940CustomerStatementTransaction> MT940CustomerStatementTransaction { get; set; }

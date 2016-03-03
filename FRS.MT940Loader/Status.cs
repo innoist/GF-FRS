@@ -18,7 +18,9 @@ namespace FRS.MT940Loader
         public Status()
         {
             this.LoadMetaDatas = new HashSet<LoadMetaData>();
+            this.LoadTypes = new HashSet<LoadType>();
             this.MT940Load = new HashSet<MT940Load>();
+            this.Sources = new HashSet<Source>();
         }
     
         public byte Value { get; set; }
@@ -27,6 +29,10 @@ namespace FRS.MT940Loader
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<LoadMetaData> LoadMetaDatas { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<LoadType> LoadTypes { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MT940Load> MT940Load { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Source> Sources { get; set; }
     }
 }

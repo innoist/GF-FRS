@@ -28,9 +28,9 @@ namespace FRS.MT940Loader
         public string Value { get; set; }
         public System.DateTime ValueDate { get; set; }
         public string CreatedBy { get; set; }
-        public Nullable<System.DateTime> CreatedOn { get; set; }
+        public System.DateTime CreatedOn { get; set; }
         public string ModifiedBy { get; set; }
-        public Nullable<System.DateTime> ModifiedOn { get; set; }
+        public System.DateTime ModifiedOn { get; set; }
     
         public virtual MT940CustomerStatement MT940CustomerStatement { get; set; }
     }

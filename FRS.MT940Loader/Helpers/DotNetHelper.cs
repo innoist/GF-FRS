@@ -58,14 +58,16 @@ namespace FRS.MT940Loader.Helpers
             return sb.ToString();
         }
 
-        public static MT940Balance ConvertTransactionBalanceToMT940Balance(this TransactionBalance source, byte currencyValue)
+        public static MT940Balance ConvertTransactionBalanceToMT940Balance(this TransactionBalance source, byte currencyValue, string userId)
         {
             return new MT940Balance
             {
                 CurrencyId = currencyValue,
                 DebitOrCredit = source.DebitCredit.ConvertToDebitOrCredit(),
                 EntryDate = source.EntryDate,
-                Value = source.Balance.Value
+                Value = source.Balance.Value,
+                CreatedBy = userId,
+                ModifiedBy = userId
             };
         }
 

@@ -21,9 +21,9 @@ namespace FRS.Models.DomainModels
         public string TransactionReference { get; set; }
         public int TransactionCount { get; set; }
         public string CreatedBy { get; set; }
-        public Nullable<System.DateTime> CreatedOn { get; set; }
+        public DateTime CreatedOn { get; set; }
         public string ModifiedBy { get; set; }
-        public Nullable<System.DateTime> ModifiedOn { get; set; }
+        public DateTime ModifiedOn { get; set; }
 
         public virtual MT940Balance MT940Balance { get; set; }
         public virtual MT940Balance MT940Balance1 { get; set; }

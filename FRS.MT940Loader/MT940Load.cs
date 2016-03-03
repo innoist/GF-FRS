@@ -26,7 +26,7 @@ namespace FRS.MT940Loader
         public string FileName { get; set; }
         public string FileExtension { get; set; }
         public byte StatusId { get; set; }
-        public Nullable<int> CustomerStatementCount { get; set; }
+        public int CustomerStatementCount { get; set; }
         public long FileContentId { get; set; }
         public string CreatedBy { get; set; }
         public System.DateTime CreatedOn { get; set; }

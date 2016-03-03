@@ -25,7 +25,7 @@ namespace FRS.MT940Loader
         public byte Sequence { get; set; }
         public bool ReadOnly { get; set; }
         public string AccountNumber { get; set; }
-        public long ClosingAvailableBalanceId { get; set; }
+        public Nullable<long> ClosingAvailableBalanceId { get; set; }
         public Nullable<long> ClosingBalanceId { get; set; }
         public string Description { get; set; }
         public Nullable<long> ForwardAvailableBalanceId { get; set; }
@@ -36,9 +36,9 @@ namespace FRS.MT940Loader
         public string TransactionReference { get; set; }
         public int TransactionCount { get; set; }
         public string CreatedBy { get; set; }
-        public Nullable<System.DateTime> CreatedOn { get; set; }
+        public System.DateTime CreatedOn { get; set; }
         public string ModifiedBy { get; set; }
-        public Nullable<System.DateTime> ModifiedOn { get; set; }
+        public System.DateTime ModifiedOn { get; set; }
     
         public virtual MT940Balance ClosingAvailableBalance { get; set; }
         public virtual MT940Balance ClosingBalance { get; set; }

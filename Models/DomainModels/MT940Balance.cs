@@ -9,6 +9,10 @@ namespace FRS.Models.DomainModels
         public string DebitOrCredit { get; set; }
         public System.DateTime EntryDate { get; set; }
         public decimal Value { get; set; }
+        public string CreatedBy { get; set; }
+        public System.DateTime CreatedOn { get; set; }
+        public string ModifiedBy { get; set; }
+        public System.DateTime ModifiedOn { get; set; }
 
         public virtual Currency Currency { get; set; }
         public virtual ICollection<MT940CustomerStatement> MT940CustomerStatement { get; set; }

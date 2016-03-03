@@ -87,6 +87,10 @@
           <Property Name="FileContent" Type="varbinary(max)" />
           <Property Name="FileContentBase64" Type="nvarchar(max)" />
           <Property Name="Description" Type="nvarchar" MaxLength="124" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="ModifiedBy" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ModifiedOn" Type="datetime2" Precision="7" Nullable="false" />
         </EntityType>
         <EntityType Name="Load">
           <Key>
@@ -95,15 +99,15 @@
           <Property Name="LoadId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="LoadMetaDataId" Type="tinyint" Nullable="false" />
           <Property Name="MT940LoadId" Type="bigint" />
+          <Property Name="Name" Type="nvarchar" MaxLength="128" Nullable="false" />
           <Property Name="Start" Type="datetime" Nullable="false" />
           <Property Name="Finish" Type="datetime" />
           <Property Name="InProgress" Type="bit" Nullable="false" />
           <Property Name="ReadOnly" Type="bit" Nullable="false" />
           <Property Name="CreatedBy" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime2" Precision="7" Nullable="false" />
           <Property Name="ModifiedBy" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="ModifiedOn" Type="datetime" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ModifiedOn" Type="datetime2" Precision="7" Nullable="false" />
         </EntityType>
         <EntityType Name="LoadMetaData">
           <Key>
@@ -118,9 +122,9 @@
           <Property Name="CurrencyId" Type="tinyint" Nullable="false" />
           <Property Name="Description" Type="nvarchar" MaxLength="1024" />
           <Property Name="CreatedBy" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime2" Precision="7" Nullable="false" />
           <Property Name="ModifiedBy" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="ModifiedOn" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedOn" Type="datetime2" Precision="7" Nullable="false" />
           <Property Name="StatusId" Type="tinyint" Nullable="false" />
         </EntityType>
         <EntityType Name="LoadType">
@@ -182,6 +186,10 @@
           <Property Name="DebitOrCredit" Type="char" MaxLength="1" Nullable="false" />
           <Property Name="EntryDate" Type="datetime" Nullable="false" />
           <Property Name="Value" Type="decimal" Precision="30" Scale="2" Nullable="false" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="ModifiedBy" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ModifiedOn" Type="datetime2" Precision="7" Nullable="false" />
         </EntityType>
         <EntityType Name="MT940CustomerStatement">
           <Key>
@@ -192,7 +200,7 @@
           <Property Name="Sequence" Type="tinyint" Nullable="false" />
           <Property Name="ReadOnly" Type="bit" Nullable="false" />
           <Property Name="AccountNumber" Type="nvarchar" MaxLength="16" Nullable="false" />
-          <Property Name="ClosingAvailableBalanceId" Type="bigint" Nullable="false" />
+          <Property Name="ClosingAvailableBalanceId" Type="bigint" />
           <Property Name="ClosingBalanceId" Type="bigint" />
           <Property Name="Description" Type="nvarchar" MaxLength="1024" />
           <Property Name="ForwardAvailableBalanceId" Type="bigint" />
@@ -203,9 +211,9 @@
           <Property Name="TransactionReference" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="TransactionCount" Type="int" Nullable="false" />
           <Property Name="CreatedBy" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="CreatedOn" Type="datetime2" Precision="7" Nullable="false" />
           <Property Name="ModifiedBy" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="ModifiedOn" Type="datetime" />
+          <Property Name="ModifiedOn" Type="datetime2" Precision="7" Nullable="false" />
         </EntityType>
         <EntityType Name="MT940CustomerStatementTransaction">
           <Key>
@@ -225,9 +233,9 @@
           <Property Name="Value" Type="nvarchar" MaxLength="1024" />
           <Property Name="ValueDate" Type="datetime" Nullable="false" />
           <Property Name="CreatedBy" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="CreatedOn" Type="datetime2" Precision="7" Nullable="false" />
           <Property Name="ModifiedBy" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="ModifiedOn" Type="datetime" />
+          <Property Name="ModifiedOn" Type="datetime2" Precision="7" Nullable="false" />
         </EntityType>
         <EntityType Name="MT940Load">
           <Key>
@@ -285,7 +293,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_CustomerStatement_Balance_ClosingAviBal">
-          <End Role="MT940Balance" Type="Self.MT940Balance" Multiplicity="1" />
+          <End Role="MT940Balance" Type="Self.MT940Balance" Multiplicity="0..1" />
           <End Role="MT940CustomerStatement" Type="Self.MT940CustomerStatement" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="MT940Balance">
@@ -731,16 +739,10 @@
           <EntitySet Name="Loads" EntityType="angularModel.Load" />
           <EntitySet Name="LoadMetaDatas" EntityType="angularModel.LoadMetaData" />
           <EntitySet Name="LoadTypes" EntityType="angularModel.LoadType" />
-          <EntitySet Name="MT940Balance" EntityType="angularModel.MT940Balance" />
-          <EntitySet Name="MT940CustomerStatement" EntityType="angularModel.MT940CustomerStatement" />
           <EntitySet Name="MT940CustomerStatementTransaction" EntityType="angularModel.MT940CustomerStatementTransaction" />
           <EntitySet Name="MT940Load" EntityType="angularModel.MT940Load" />
           <EntitySet Name="Sources" EntityType="angularModel.Source" />
           <EntitySet Name="Status" EntityType="angularModel.Status" />
-          <AssociationSet Name="FK_Balance_Currency" Association="angularModel.FK_Balance_Currency">
-            <End Role="Currency" EntitySet="Currencies" />
-            <End Role="MT940Balance" EntitySet="MT940Balance" />
-          </AssociationSet>
           <AssociationSet Name="FK_MT940Load_FileContent" Association="angularModel.FK_MT940Load_FileContent">
             <End Role="FileContent" EntitySet="FileContents" />
             <End Role="MT940Load" EntitySet="MT940Load" />
@@ -765,6 +767,29 @@
             <End Role="Status" EntitySet="Status" />
             <End Role="LoadMetaData" EntitySet="LoadMetaDatas" />
           </AssociationSet>
+          <AssociationSet Name="FK_MT940Load_Status" Association="angularModel.FK_MT940Load_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="MT940Load" EntitySet="MT940Load" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LoadMetaData_Currency" Association="angularModel.FK_LoadMetaData_Currency">
+            <End Role="Currency" EntitySet="Currencies" />
+            <End Role="LoadMetaData" EntitySet="LoadMetaDatas" />
+          </AssociationSet>
+          <EntitySet Name="Logs" EntityType="angularModel.Log" />
+          <AssociationSet Name="FK_LoadType_Status" Association="angularModel.FK_LoadType_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="LoadType" EntitySet="LoadTypes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Source_Status" Association="angularModel.FK_Source_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="Source" EntitySet="Sources" />
+          </AssociationSet>
+          <EntitySet Name="MT940Balance" EntityType="angularModel.MT940Balance" />
+          <EntitySet Name="MT940CustomerStatement" EntityType="angularModel.MT940CustomerStatement" />
+          <AssociationSet Name="FK_Balance_Currency" Association="angularModel.FK_Balance_Currency">
+            <End Role="Currency" EntitySet="Currencies" />
+            <End Role="MT940Balance" EntitySet="MT940Balance" />
+          </AssociationSet>
           <AssociationSet Name="FK_CustomerStatement_Balance_ClosingAviBal" Association="angularModel.FK_CustomerStatement_Balance_ClosingAviBal">
             <End Role="MT940Balance" EntitySet="MT940Balance" />
             <End Role="MT940CustomerStatement" EntitySet="MT940CustomerStatement" />
@@ -788,23 +813,6 @@
           <AssociationSet Name="FK_MT940CustomerStatementTransaction_MT940CustomerStatement" Association="angularModel.FK_MT940CustomerStatementTransaction_MT940CustomerStatement">
             <End Role="MT940CustomerStatement" EntitySet="MT940CustomerStatement" />
             <End Role="MT940CustomerStatementTransaction" EntitySet="MT940CustomerStatementTransaction" />
-          </AssociationSet>
-          <AssociationSet Name="FK_MT940Load_Status" Association="angularModel.FK_MT940Load_Status">
-            <End Role="Status" EntitySet="Status" />
-            <End Role="MT940Load" EntitySet="MT940Load" />
-          </AssociationSet>
-          <AssociationSet Name="FK_LoadMetaData_Currency" Association="angularModel.FK_LoadMetaData_Currency">
-            <End Role="Currency" EntitySet="Currencies" />
-            <End Role="LoadMetaData" EntitySet="LoadMetaDatas" />
-          </AssociationSet>
-          <EntitySet Name="Logs" EntityType="angularModel.Log" />
-          <AssociationSet Name="FK_LoadType_Status" Association="angularModel.FK_LoadType_Status">
-            <End Role="Status" EntitySet="Status" />
-            <End Role="LoadType" EntitySet="LoadTypes" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Source_Status" Association="angularModel.FK_Source_Status">
-            <End Role="Status" EntitySet="Status" />
-            <End Role="Source" EntitySet="Sources" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="Menu">
@@ -958,8 +966,8 @@
           <Property Name="Value" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Sign" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="MT940Balance" Relationship="angularModel.FK_Balance_Currency" FromRole="Currency" ToRole="MT940Balance" />
           <NavigationProperty Name="LoadMetaDatas" Relationship="angularModel.FK_LoadMetaData_Currency" FromRole="Currency" ToRole="LoadMetaData" />
+          <NavigationProperty Name="MT940Balance" Relationship="angularModel.FK_Balance_Currency" FromRole="Currency" ToRole="MT940Balance" />
         </EntityType>
         <EntityType Name="FileContent">
           <Key>
@@ -970,6 +978,10 @@
           <Property Name="Description" Type="String" MaxLength="124" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="MT940Load" Relationship="angularModel.FK_MT940Load_FileContent" FromRole="FileContent" ToRole="MT940Load" />
           <Property Name="FileContentBase64" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="ModifiedBy" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ModifiedOn" Type="DateTime" Nullable="false" Precision="7" />
         </EntityType>
         <EntityType Name="Load">
           <Key>
@@ -983,9 +995,9 @@
           <Property Name="InProgress" Type="Boolean" Nullable="false" />
           <Property Name="ReadOnly" Type="Boolean" Nullable="false" />
           <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="7" />
           <Property Name="ModifiedBy" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="ModifiedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedOn" Type="DateTime" Nullable="false" Precision="7" />
           <NavigationProperty Name="LoadMetaData" Relationship="angularModel.FK_Load_LoadMetaData" FromRole="Load" ToRole="LoadMetaData" />
           <NavigationProperty Name="MT940Load" Relationship="angularModel.FK_Load_MT940Load" FromRole="Load" ToRole="MT940Load" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
@@ -1002,9 +1014,9 @@
           <Property Name="CurrencyId" Type="Byte" Nullable="false" />
           <Property Name="Description" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
           <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="7" />
           <Property Name="ModifiedBy" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="ModifiedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedOn" Type="DateTime" Nullable="false" Precision="7" />
           <Property Name="StatusId" Type="Byte" Nullable="false" />
           <NavigationProperty Name="Loads" Relationship="angularModel.FK_Load_LoadMetaData" FromRole="LoadMetaData" ToRole="Load" />
           <NavigationProperty Name="LoadType" Relationship="angularModel.FK_LoadMetaData_LoadType" FromRole="LoadMetaData" ToRole="LoadType" />
@@ -1023,51 +1035,6 @@
           <NavigationProperty Name="LoadMetaDatas" Relationship="angularModel.FK_LoadMetaData_LoadType" FromRole="LoadType" ToRole="LoadMetaData" />
           <NavigationProperty Name="Status" Relationship="angularModel.FK_LoadType_Status" FromRole="LoadType" ToRole="Status" />
         </EntityType>
-        <EntityType Name="MT940Balance">
-          <Key>
-            <PropertyRef Name="MT940BalanceId" />
-          </Key>
-          <Property Name="MT940BalanceId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CurrencyId" Type="Byte" Nullable="false" />
-          <Property Name="DebitOrCredit" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
-          <Property Name="EntryDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Value" Type="Decimal" Nullable="false" Precision="30" Scale="2" />
-          <NavigationProperty Name="Currency" Relationship="angularModel.FK_Balance_Currency" FromRole="MT940Balance" ToRole="Currency" />
-          <NavigationProperty Name="MT940CustomerStatement" Relationship="angularModel.FK_CustomerStatement_Balance_ClosingAviBal" FromRole="MT940Balance" ToRole="MT940CustomerStatement" />
-          <NavigationProperty Name="MT940CustomerStatement1" Relationship="angularModel.FK_CustomerStatement_Balance_ClosingBal" FromRole="MT940Balance" ToRole="MT940CustomerStatement" />
-          <NavigationProperty Name="MT940CustomerStatement2" Relationship="angularModel.FK_CustomerStatement_Balance_ForAvailBal" FromRole="MT940Balance" ToRole="MT940CustomerStatement" />
-          <NavigationProperty Name="MT940CustomerStatement3" Relationship="angularModel.FK_CustomerStatement_Balance_OpenBal" FromRole="MT940Balance" ToRole="MT940CustomerStatement" />
-        </EntityType>
-        <EntityType Name="MT940CustomerStatement">
-          <Key>
-            <PropertyRef Name="MT940CustomerStatementId" />
-          </Key>
-          <Property Name="MT940CustomerStatementId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="MT940LoadId" Type="Int64" Nullable="false" />
-          <Property Name="Sequence" Type="Byte" Nullable="false" />
-          <Property Name="ReadOnly" Type="Boolean" Nullable="false" />
-          <Property Name="AccountNumber" Type="String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="true" />
-          <Property Name="ClosingAvailableBalanceId" Type="Int64" Nullable="false" />
-          <Property Name="ClosingBalanceId" Type="Int64" />
-          <Property Name="Description" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
-          <Property Name="ForwardAvailableBalanceId" Type="Int64" />
-          <Property Name="OpeningBalanceId" Type="Int64" />
-          <Property Name="ReleatedMessage" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
-          <Property Name="SequenceNumber" Type="Int32" Nullable="false" />
-          <Property Name="StatementNumber" Type="Int32" Nullable="false" />
-          <Property Name="TransactionReference" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="TransactionCount" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="MT940Balance" Relationship="angularModel.FK_CustomerStatement_Balance_ClosingAviBal" FromRole="MT940CustomerStatement" ToRole="MT940Balance" />
-          <NavigationProperty Name="MT940Balance1" Relationship="angularModel.FK_CustomerStatement_Balance_ClosingBal" FromRole="MT940CustomerStatement" ToRole="MT940Balance" />
-          <NavigationProperty Name="MT940Balance2" Relationship="angularModel.FK_CustomerStatement_Balance_ForAvailBal" FromRole="MT940CustomerStatement" ToRole="MT940Balance" />
-          <NavigationProperty Name="MT940Balance3" Relationship="angularModel.FK_CustomerStatement_Balance_OpenBal" FromRole="MT940CustomerStatement" ToRole="MT940Balance" />
-          <NavigationProperty Name="MT940Load" Relationship="angularModel.FK_MT940CustomerStatement_MT940Load" FromRole="MT940CustomerStatement" ToRole="MT940Load" />
-          <NavigationProperty Name="MT940CustomerStatementTransaction" Relationship="angularModel.FK_MT940CustomerStatementTransaction_MT940CustomerStatement" FromRole="MT940CustomerStatement" ToRole="MT940CustomerStatementTransaction" />
-          <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
-          <Property Name="ModifiedBy" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
-        </EntityType>
         <EntityType Name="MT940CustomerStatementTransaction">
           <Key>
             <PropertyRef Name="MT940CustomerStatementTransactionId" />
@@ -1085,11 +1052,11 @@
           <Property Name="TransactionType" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
           <Property Name="Value" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
           <Property Name="ValueDate" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="MT940CustomerStatement" Relationship="angularModel.FK_MT940CustomerStatementTransaction_MT940CustomerStatement" FromRole="MT940CustomerStatementTransaction" ToRole="MT940CustomerStatement" />
           <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="7" Nullable="false" />
           <Property Name="ModifiedBy" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="7" Nullable="false" />
+          <NavigationProperty Name="MT940CustomerStatement" Relationship="angularModel.FK_MT940CustomerStatementTransaction_MT940CustomerStatement" FromRole="MT940CustomerStatementTransaction" ToRole="MT940CustomerStatement" />
         </EntityType>
         <EntityType Name="MT940Load">
           <Key>
@@ -1108,8 +1075,8 @@
           <Property Name="FileContentId" Type="Int64" Nullable="false" />
           <NavigationProperty Name="FileContent" Relationship="angularModel.FK_MT940Load_FileContent" FromRole="MT940Load" ToRole="FileContent" />
           <NavigationProperty Name="Loads" Relationship="angularModel.FK_Load_MT940Load" FromRole="MT940Load" ToRole="Load" />
-          <NavigationProperty Name="MT940CustomerStatement" Relationship="angularModel.FK_MT940CustomerStatement_MT940Load" FromRole="MT940Load" ToRole="MT940CustomerStatement" />
           <NavigationProperty Name="Status" Relationship="angularModel.FK_MT940Load_Status" FromRole="MT940Load" ToRole="Status" />
+          <NavigationProperty Name="MT940CustomerStatement" Relationship="angularModel.FK_MT940CustomerStatement_MT940Load" FromRole="MT940Load" ToRole="MT940CustomerStatement" />
         </EntityType>
         <EntityType Name="Source">
           <Key>
@@ -1132,18 +1099,6 @@
           <NavigationProperty Name="LoadTypes" Relationship="angularModel.FK_LoadType_Status" FromRole="Status" ToRole="LoadType" />
           <NavigationProperty Name="Sources" Relationship="angularModel.FK_Source_Status" FromRole="Status" ToRole="Source" />
         </EntityType>
-        <Association Name="FK_Balance_Currency">
-          <End Type="angularModel.Currency" Role="Currency" Multiplicity="1" />
-          <End Type="angularModel.MT940Balance" Role="MT940Balance" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Currency">
-              <PropertyRef Name="Value" />
-            </Principal>
-            <Dependent Role="MT940Balance">
-              <PropertyRef Name="CurrencyId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_MT940Load_FileContent">
           <End Type="angularModel.FileContent" Role="FileContent" Multiplicity="1" />
           <End Type="angularModel.MT940Load" Role="MT940Load" Multiplicity="*" />
@@ -1216,8 +1171,136 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_MT940Load_Status">
+          <End Type="angularModel.Status" Role="Status" Multiplicity="1" />
+          <End Type="angularModel.MT940Load" Role="MT940Load" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="Value" />
+            </Principal>
+            <Dependent Role="MT940Load">
+              <PropertyRef Name="StatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LoadMetaData_Currency">
+          <End Type="angularModel.Currency" Role="Currency" Multiplicity="1" />
+          <End Type="angularModel.LoadMetaData" Role="LoadMetaData" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Currency">
+              <PropertyRef Name="Value" />
+            </Principal>
+            <Dependent Role="LoadMetaData">
+              <PropertyRef Name="CurrencyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Log">
+          <Key>
+            <PropertyRef Name="LogID" />
+          </Key>
+          <Property Name="LogID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EventID" Type="Int32" />
+          <Property Name="Priority" Type="Int32" Nullable="false" />
+          <Property Name="Severity" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="true" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="Timestamp" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="MachineName" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="true" />
+          <Property Name="AppDomainName" Type="String" Nullable="false" MaxLength="512" FixedLength="false" Unicode="true" />
+          <Property Name="ProcessID" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="ProcessName" Type="String" Nullable="false" MaxLength="512" FixedLength="false" Unicode="true" />
+          <Property Name="ThreadName" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+          <Property Name="Win32ThreadId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Message" Type="String" MaxLength="1500" FixedLength="false" Unicode="true" />
+          <Property Name="FormattedMessage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_LoadType_Status">
+          <End Type="angularModel.Status" Role="Status" Multiplicity="1" />
+          <End Type="angularModel.LoadType" Role="LoadType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="Value" />
+            </Principal>
+            <Dependent Role="LoadType">
+              <PropertyRef Name="StatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Source_Status">
+          <End Type="angularModel.Status" Role="Status" Multiplicity="1" />
+          <End Type="angularModel.Source" Role="Source" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="Value" />
+            </Principal>
+            <Dependent Role="Source">
+              <PropertyRef Name="StatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="MT940Balance">
+          <Key>
+            <PropertyRef Name="MT940BalanceId" />
+          </Key>
+          <Property Name="MT940BalanceId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CurrencyId" Type="Byte" Nullable="false" />
+          <Property Name="DebitOrCredit" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="EntryDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Value" Type="Decimal" Nullable="false" Precision="30" Scale="2" />
+          <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="ModifiedBy" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ModifiedOn" Type="DateTime" Nullable="false" Precision="7" />
+          <NavigationProperty Name="Currency" Relationship="angularModel.FK_Balance_Currency" FromRole="MT940Balance" ToRole="Currency" />
+          <NavigationProperty Name="MT940CustomerStatement" Relationship="angularModel.FK_CustomerStatement_Balance_ClosingAviBal" FromRole="MT940Balance" ToRole="MT940CustomerStatement" />
+          <NavigationProperty Name="MT940CustomerStatement1" Relationship="angularModel.FK_CustomerStatement_Balance_ClosingBal" FromRole="MT940Balance" ToRole="MT940CustomerStatement" />
+          <NavigationProperty Name="MT940CustomerStatement2" Relationship="angularModel.FK_CustomerStatement_Balance_ForAvailBal" FromRole="MT940Balance" ToRole="MT940CustomerStatement" />
+          <NavigationProperty Name="MT940CustomerStatement3" Relationship="angularModel.FK_CustomerStatement_Balance_OpenBal" FromRole="MT940Balance" ToRole="MT940CustomerStatement" />
+        </EntityType>
+        <EntityType Name="MT940CustomerStatement">
+          <Key>
+            <PropertyRef Name="MT940CustomerStatementId" />
+          </Key>
+          <Property Name="MT940CustomerStatementId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MT940LoadId" Type="Int64" Nullable="false" />
+          <Property Name="Sequence" Type="Byte" Nullable="false" />
+          <Property Name="ReadOnly" Type="Boolean" Nullable="false" />
+          <Property Name="AccountNumber" Type="String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Name="ClosingAvailableBalanceId" Type="Int64" />
+          <Property Name="ClosingBalanceId" Type="Int64" />
+          <Property Name="Description" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+          <Property Name="ForwardAvailableBalanceId" Type="Int64" />
+          <Property Name="OpeningBalanceId" Type="Int64" />
+          <Property Name="ReleatedMessage" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+          <Property Name="SequenceNumber" Type="Int32" Nullable="false" />
+          <Property Name="StatementNumber" Type="Int32" Nullable="false" />
+          <Property Name="TransactionReference" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="TransactionCount" Type="Int32" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="ModifiedBy" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ModifiedOn" Type="DateTime" Nullable="false" Precision="7" />
+          <NavigationProperty Name="MT940Balance" Relationship="angularModel.FK_CustomerStatement_Balance_ClosingAviBal" FromRole="MT940CustomerStatement" ToRole="MT940Balance" />
+          <NavigationProperty Name="MT940Balance1" Relationship="angularModel.FK_CustomerStatement_Balance_ClosingBal" FromRole="MT940CustomerStatement" ToRole="MT940Balance" />
+          <NavigationProperty Name="MT940Balance2" Relationship="angularModel.FK_CustomerStatement_Balance_ForAvailBal" FromRole="MT940CustomerStatement" ToRole="MT940Balance" />
+          <NavigationProperty Name="MT940Balance3" Relationship="angularModel.FK_CustomerStatement_Balance_OpenBal" FromRole="MT940CustomerStatement" ToRole="MT940Balance" />
+          <NavigationProperty Name="MT940Load" Relationship="angularModel.FK_MT940CustomerStatement_MT940Load" FromRole="MT940CustomerStatement" ToRole="MT940Load" />
+          <NavigationProperty Name="MT940CustomerStatementTransaction" Relationship="angularModel.FK_MT940CustomerStatementTransaction_MT940CustomerStatement" FromRole="MT940CustomerStatement" ToRole="MT940CustomerStatementTransaction" />
+        </EntityType>
+        <Association Name="FK_Balance_Currency">
+          <End Type="angularModel.Currency" Role="Currency" Multiplicity="1" />
+          <End Type="angularModel.MT940Balance" Role="MT940Balance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Currency">
+              <PropertyRef Name="Value" />
+            </Principal>
+            <Dependent Role="MT940Balance">
+              <PropertyRef Name="CurrencyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_CustomerStatement_Balance_ClosingAviBal">
-          <End Type="angularModel.MT940Balance" Role="MT940Balance" Multiplicity="1" />
+          <End Type="angularModel.MT940Balance" Role="MT940Balance" Multiplicity="0..1" />
           <End Type="angularModel.MT940CustomerStatement" Role="MT940CustomerStatement" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="MT940Balance">
@@ -1285,73 +1368,6 @@
             </Principal>
             <Dependent Role="MT940CustomerStatementTransaction">
               <PropertyRef Name="MT940CustomerStatementId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_MT940Load_Status">
-          <End Type="angularModel.Status" Role="Status" Multiplicity="1" />
-          <End Type="angularModel.MT940Load" Role="MT940Load" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Status">
-              <PropertyRef Name="Value" />
-            </Principal>
-            <Dependent Role="MT940Load">
-              <PropertyRef Name="StatusId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_LoadMetaData_Currency">
-          <End Type="angularModel.Currency" Role="Currency" Multiplicity="1" />
-          <End Type="angularModel.LoadMetaData" Role="LoadMetaData" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Currency">
-              <PropertyRef Name="Value" />
-            </Principal>
-            <Dependent Role="LoadMetaData">
-              <PropertyRef Name="CurrencyId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="Log">
-          <Key>
-            <PropertyRef Name="LogID" />
-          </Key>
-          <Property Name="LogID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="EventID" Type="Int32" />
-          <Property Name="Priority" Type="Int32" Nullable="false" />
-          <Property Name="Severity" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="true" />
-          <Property Name="Title" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
-          <Property Name="Timestamp" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="MachineName" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="true" />
-          <Property Name="AppDomainName" Type="String" Nullable="false" MaxLength="512" FixedLength="false" Unicode="true" />
-          <Property Name="ProcessID" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
-          <Property Name="ProcessName" Type="String" Nullable="false" MaxLength="512" FixedLength="false" Unicode="true" />
-          <Property Name="ThreadName" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
-          <Property Name="Win32ThreadId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="Message" Type="String" MaxLength="1500" FixedLength="false" Unicode="true" />
-          <Property Name="FormattedMessage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <Association Name="FK_LoadType_Status">
-          <End Type="angularModel.Status" Role="Status" Multiplicity="1" />
-          <End Type="angularModel.LoadType" Role="LoadType" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Status">
-              <PropertyRef Name="Value" />
-            </Principal>
-            <Dependent Role="LoadType">
-              <PropertyRef Name="StatusId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Source_Status">
-          <End Type="angularModel.Status" Role="Status" Multiplicity="1" />
-          <End Type="angularModel.Source" Role="Source" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Status">
-              <PropertyRef Name="Value" />
-            </Principal>
-            <Dependent Role="Source">
-              <PropertyRef Name="StatusId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1467,6 +1483,10 @@
           <EntitySetMapping Name="FileContents">
             <EntityTypeMapping TypeName="angularModel.FileContent">
               <MappingFragment StoreEntitySet="FileContent">
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
                 <ScalarProperty Name="FileContentBase64" ColumnName="FileContentBase64" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="FileContent1" ColumnName="FileContent" />
@@ -1517,42 +1537,6 @@
                 <ScalarProperty Name="StatusId" ColumnName="StatusId" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Value" ColumnName="Value" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="MT940Balance">
-            <EntityTypeMapping TypeName="angularModel.MT940Balance">
-              <MappingFragment StoreEntitySet="MT940Balance">
-                <ScalarProperty Name="Value" ColumnName="Value" />
-                <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
-                <ScalarProperty Name="DebitOrCredit" ColumnName="DebitOrCredit" />
-                <ScalarProperty Name="CurrencyId" ColumnName="CurrencyId" />
-                <ScalarProperty Name="MT940BalanceId" ColumnName="MT940BalanceId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="MT940CustomerStatement">
-            <EntityTypeMapping TypeName="angularModel.MT940CustomerStatement">
-              <MappingFragment StoreEntitySet="MT940CustomerStatement">
-                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
-                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
-                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="TransactionCount" ColumnName="TransactionCount" />
-                <ScalarProperty Name="TransactionReference" ColumnName="TransactionReference" />
-                <ScalarProperty Name="StatementNumber" ColumnName="StatementNumber" />
-                <ScalarProperty Name="SequenceNumber" ColumnName="SequenceNumber" />
-                <ScalarProperty Name="ReleatedMessage" ColumnName="ReleatedMessage" />
-                <ScalarProperty Name="OpeningBalanceId" ColumnName="OpeningBalanceId" />
-                <ScalarProperty Name="ForwardAvailableBalanceId" ColumnName="ForwardAvailableBalanceId" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="ClosingBalanceId" ColumnName="ClosingBalanceId" />
-                <ScalarProperty Name="ClosingAvailableBalanceId" ColumnName="ClosingAvailableBalanceId" />
-                <ScalarProperty Name="AccountNumber" ColumnName="AccountNumber" />
-                <ScalarProperty Name="ReadOnly" ColumnName="ReadOnly" />
-                <ScalarProperty Name="Sequence" ColumnName="Sequence" />
-                <ScalarProperty Name="MT940LoadId" ColumnName="MT940LoadId" />
-                <ScalarProperty Name="MT940CustomerStatementId" ColumnName="MT940CustomerStatementId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1630,6 +1614,46 @@
                 <ScalarProperty Name="Priority" ColumnName="Priority" />
                 <ScalarProperty Name="EventID" ColumnName="EventID" />
                 <ScalarProperty Name="LogID" ColumnName="LogID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MT940Balance">
+            <EntityTypeMapping TypeName="angularModel.MT940Balance">
+              <MappingFragment StoreEntitySet="MT940Balance">
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+                <ScalarProperty Name="DebitOrCredit" ColumnName="DebitOrCredit" />
+                <ScalarProperty Name="CurrencyId" ColumnName="CurrencyId" />
+                <ScalarProperty Name="MT940BalanceId" ColumnName="MT940BalanceId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MT940CustomerStatement">
+            <EntityTypeMapping TypeName="angularModel.MT940CustomerStatement">
+              <MappingFragment StoreEntitySet="MT940CustomerStatement">
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="TransactionCount" ColumnName="TransactionCount" />
+                <ScalarProperty Name="TransactionReference" ColumnName="TransactionReference" />
+                <ScalarProperty Name="StatementNumber" ColumnName="StatementNumber" />
+                <ScalarProperty Name="SequenceNumber" ColumnName="SequenceNumber" />
+                <ScalarProperty Name="ReleatedMessage" ColumnName="ReleatedMessage" />
+                <ScalarProperty Name="OpeningBalanceId" ColumnName="OpeningBalanceId" />
+                <ScalarProperty Name="ForwardAvailableBalanceId" ColumnName="ForwardAvailableBalanceId" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ClosingBalanceId" ColumnName="ClosingBalanceId" />
+                <ScalarProperty Name="ClosingAvailableBalanceId" ColumnName="ClosingAvailableBalanceId" />
+                <ScalarProperty Name="AccountNumber" ColumnName="AccountNumber" />
+                <ScalarProperty Name="ReadOnly" ColumnName="ReadOnly" />
+                <ScalarProperty Name="Sequence" ColumnName="Sequence" />
+                <ScalarProperty Name="MT940LoadId" ColumnName="MT940LoadId" />
+                <ScalarProperty Name="MT940CustomerStatementId" ColumnName="MT940CustomerStatementId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

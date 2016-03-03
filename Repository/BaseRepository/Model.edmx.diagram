@@ -24,30 +24,30 @@
         <EntityTypeShape EntityType="angularModel.Load" Width="1.5" PointX="14.125" PointY="9.25" />
         <EntityTypeShape EntityType="angularModel.LoadMetaData" Width="1.5" PointX="12.25" PointY="8.625" />
         <EntityTypeShape EntityType="angularModel.LoadType" Width="1.5" PointX="8.375" PointY="14.25" />
-        <EntityTypeShape EntityType="angularModel.MT940Balance" Width="1.5" PointX="3.375" PointY="12.5" />
-        <EntityTypeShape EntityType="angularModel.MT940CustomerStatement" Width="2.625" PointX="9.875" PointY="2.875" />
         <EntityTypeShape EntityType="angularModel.MT940CustomerStatementTransaction" Width="2.625" PointX="15.125" PointY="3.375" />
         <EntityTypeShape EntityType="angularModel.MT940Load" Width="1.5" PointX="7.625" PointY="9.375" />
         <EntityTypeShape EntityType="angularModel.Source" Width="1.5" PointX="8.375" PointY="16.75" />
         <EntityTypeShape EntityType="angularModel.Status" Width="1.5" PointX="5.375" PointY="10.5" />
-        <AssociationConnector Association="angularModel.FK_Balance_Currency" />
         <AssociationConnector Association="angularModel.FK_MT940Load_FileContent" />
         <AssociationConnector Association="angularModel.FK_Load_LoadMetaData" />
         <AssociationConnector Association="angularModel.FK_Load_MT940Load" />
         <AssociationConnector Association="angularModel.FK_LoadMetaData_LoadType" />
         <AssociationConnector Association="angularModel.FK_LoadMetaData_Source" />
         <AssociationConnector Association="angularModel.FK_LoadMetaData_Status" />
+        <AssociationConnector Association="angularModel.FK_MT940Load_Status" />
+        <AssociationConnector Association="angularModel.FK_LoadMetaData_Currency" />
+        <EntityTypeShape EntityType="angularModel.Log" Width="1.5" PointX="0.75" PointY="13.75" />
+        <AssociationConnector Association="angularModel.FK_LoadType_Status" />
+        <AssociationConnector Association="angularModel.FK_Source_Status" />
+        <EntityTypeShape EntityType="angularModel.MT940Balance" Width="1.5" PointX="7.625" PointY="20.5" />
+        <EntityTypeShape EntityType="angularModel.MT940CustomerStatement" Width="1.5" PointX="9.875" PointY="7.375" />
+        <AssociationConnector Association="angularModel.FK_Balance_Currency" />
         <AssociationConnector Association="angularModel.FK_CustomerStatement_Balance_ClosingAviBal" />
         <AssociationConnector Association="angularModel.FK_CustomerStatement_Balance_ClosingBal" />
         <AssociationConnector Association="angularModel.FK_CustomerStatement_Balance_ForAvailBal" />
         <AssociationConnector Association="angularModel.FK_CustomerStatement_Balance_OpenBal" />
         <AssociationConnector Association="angularModel.FK_MT940CustomerStatement_MT940Load" />
         <AssociationConnector Association="angularModel.FK_MT940CustomerStatementTransaction_MT940CustomerStatement" />
-        <AssociationConnector Association="angularModel.FK_MT940Load_Status" />
-        <AssociationConnector Association="angularModel.FK_LoadMetaData_Currency" />
-        <EntityTypeShape EntityType="angularModel.Log" Width="1.5" PointX="0.75" PointY="13.75" />
-        <AssociationConnector Association="angularModel.FK_LoadType_Status" />
-        <AssociationConnector Association="angularModel.FK_Source_Status" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

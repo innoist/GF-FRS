@@ -4,6 +4,7 @@ using FRS.MT940Loader.Helpers;
 using Raptorious.SharpMt940Lib;
 using System.Linq;
 using System.Collections.Generic;
+using System.Data.Entity.Infrastructure;
 
 namespace FRS.MT940Loader.Handlers
 {
@@ -12,6 +13,7 @@ namespace FRS.MT940Loader.Handlers
         private DatabaseHandler _dbHandler;
         private MT940Loader _mt940Loader;
         private short _AppConfigLoadTypeMT940Id = short.MinValue;
+        private byte _processedCustomerStatementCount = 0;
 
         internal DatabaseHandler DbHandler
         {
@@ -39,6 +41,19 @@ namespace FRS.MT940Loader.Handlers
             }
         }
 
+        internal byte ProcessedCustomerStatementCount
+        {
+            get
+            {
+                return _processedCustomerStatementCount;
+            }
+
+            set
+            {
+                _processedCustomerStatementCount = value;
+            }
+        }
+
         /// <summary>
         /// Default constructor
         /// </summary>
@@ -56,7 +71,7 @@ namespace FRS.MT940Loader.Handlers
         /// </summary>
         /// <param name="loadMetadata">Load metadata object</param>
         /// <param name="faults">Faults collection</param>
-        private void ValidateAssociatedLoadMetadata(LoadMetaData loadMetadata, List<MT940LoaderFault> faults)
+        private void ValidateAssociatedLoadMetadataForNullOrEmpty(LoadMetaData loadMetadata, List<MT940LoaderFault> faults)
         {
             //Validate the associated Load Metadata
             if (loadMetadata == null)
@@ -85,7 +100,7 @@ namespace FRS.MT940Loader.Handlers
         /// </summary>
         /// <param name="mt940Load">MT940 load object</param>
         /// <param name="faults">Fault collection</param>
-        private void ValidateAssociatedMT940Load(MT940Load mt940Load, List<MT940LoaderFault> faults)
+        private void ValidateAssociatedMT940LoadForNullOrEmpty(MT940Load mt940Load, List<MT940LoaderFault> faults)
         {
             if (mt940Load == null)
             {
@@ -119,20 +134,37 @@ namespace FRS.MT940Loader.Handlers
             }
 
         }
-        private MT940Balance AddMT940Balance(TransactionBalance balance)
+
+        public void SummariseMT940LoadOnCompletion(Load load, MT940Load mt940Load)
+        {
+            //Load modified fields
+            _dbHandler.DbContext.Entry(load).Property(e => e.Finish).IsModified = true;
+            _dbHandler.DbContext.Entry(load).Property(e => e.InProgress).IsModified = true;
+            _dbHandler.DbContext.Entry(load).Property(e => e.ModifiedBy).IsModified = true;
+            //_dbHandler.DbContext.Entry(load).Property(e => e.ModifiedOn).IsModified = true;
+
+            //MT940Load modified fields
+            _dbHandler.DbContext.Entry(mt940Load).Property(e => e.CustomerStatementCount).IsModified = true;
+            _dbHandler.DbContext.Entry(mt940Load).Property(e => e.ModifiedBy).IsModified = true;
+           // _dbHandler.DbContext.Entry(mt940Load).Property(e => e.ModifiedOn).IsModified = true;
+
+            //Commit changes to database
+            _dbHandler.DbContext.SaveChanges();
+        }
+
+        private MT940Balance AddMT940Balance(TransactionBalance transactionBalance, string userId)
         {
             Currency currency = (from c in _dbHandler.DbContext.Currencies
-                                 where c.Name == balance.Currency.Code
+                                 where c.Name == transactionBalance.Currency.Code
                                  select c).FirstOrDefault();
 
-            var balanceToSave = balance.ConvertTransactionBalanceToMT940Balance(currency.Value);
-            _dbHandler.DbContext.MT940Balance.Add(balanceToSave);
-            return balanceToSave;
+            MT940Balance mt940Balance= _dbHandler.DbContext.MT940Balance.Create();
+            
+            return (mt940Balance = transactionBalance.ConvertTransactionBalanceToMT940Balance(currency.Value, userId));
         }
         private MT940CustomerStatement AddMT940CustomerStatement(MT940CustomerStatement customerStatement)
-        {
-            _dbHandler.DbContext.MT940CustomerStatement.Add(customerStatement);
-            return customerStatement;
+        {            
+            return _dbHandler.DbContext.MT940CustomerStatement.Add(customerStatement); ;
         }
         private long AddMT940CustomerStatementTransaction(MT940CustomerStatementTransaction customerStatementTransaction)
         {
@@ -157,21 +189,26 @@ namespace FRS.MT940Loader.Handlers
         /// </summary>
         /// <param name="id">Load record's primary key</param>
         /// <returns>Faults collection</returns>
-        public List<MT940LoaderFault> ValidateLoad(long id)
+        public List<MT940LoaderFault> ValidateLoadForNullOrEmpty(long id)
         {
             List<MT940LoaderFault> faults = new List<MT940LoaderFault>();
             Load load = _dbHandler.GetLoadById(id);
 
             //Validate the Load record
+            //If no load record was returned
             if (load == null)
+            {
                 faults.Add(new MT940LoaderFault(FRSLoadValidationFaults.NRF_C_NoRecordFoundWithId,
                                                 string.Format(FRSLoadValidationFaults.NRF_NoRecordFoundWithId, "Load", "LoadId", id.ToString())));
+            }
+            else
+            {
+                //Validate the associated Load Metadata record
+                ValidateAssociatedLoadMetadataForNullOrEmpty(load.LoadMetaData, faults);
 
-            //Validate the associated Load Metadata record
-            ValidateAssociatedLoadMetadata(load.LoadMetaData, faults);
-
-            //Validate the associated MT940Load
-            ValidateAssociatedMT940Load(load.MT940Load, faults);
+                //Validate the associated MT940Load
+                ValidateAssociatedMT940LoadForNullOrEmpty(load.MT940Load, faults);
+            }
 
             //Return null if there are no faults
             return faults.Count > 0 ? faults : null;
@@ -186,9 +223,8 @@ namespace FRS.MT940Loader.Handlers
         {
             List<MT940LoaderFault> faults = new List<MT940LoaderFault>();
 
-            if (_mt940Loader.ValidBase64MT940Content(base64Content))
-                return null;
-
+            _mt940Loader.ValidBase64MT940Content(base64Content);
+                
             return faults;
         }
 
@@ -210,52 +246,61 @@ namespace FRS.MT940Loader.Handlers
         public void LoadMT940(Load load, string base64Content, string userId)
         {
             ICollection<CustomerStatementMessage> customerStatementMessages = _mt940Loader.LoadBase64MT940Content(base64Content);
-            //load id and userid needed
-            //error handling
-            //exception handling
-            //
+            
             if (customerStatementMessages != null)
             {
-                byte customerStatementSequence = 1;
+                byte customerStatementSequence = 0;
                 bool isSaveChanges = false;
                 foreach (CustomerStatementMessage customerStatement in customerStatementMessages)
                 {
-                    MT940CustomerStatement mt940CustomerStatement = new MT940CustomerStatement()
-                    {
-                        MT940LoadId = Convert.ToInt64(load.MT940LoadId),
-                        Sequence = customerStatementSequence++,
-                        ReadOnly = false,
-                        AccountNumber = customerStatement.Account,
-                        Description = customerStatement.Description,
-                        ReleatedMessage = customerStatement.RelatedMessage,
-                        SequenceNumber = customerStatement.SequenceNumber,
-                        StatementNumber = customerStatement.StatementNumber,
-                        TransactionReference = customerStatement.TransactionReference,
-                        TransactionCount = customerStatement.Transactions.Count,
-                        CreatedBy = userId,
-                        ModifiedBy = userId
-                    };
+                    MT940CustomerStatement mt940CustomerStatement = _dbHandler.DbContext.MT940CustomerStatement.Create();
+                    
+                    #region **START** Set common customer statement data
+                    mt940CustomerStatement.MT940LoadId = Convert.ToInt64(load.MT940LoadId);
+                    mt940CustomerStatement.Sequence = ++customerStatementSequence;
+                    mt940CustomerStatement.ReadOnly = false;
+                    mt940CustomerStatement.AccountNumber = customerStatement.Account;
+                    mt940CustomerStatement.Description = customerStatement.Description;
+                    mt940CustomerStatement.ReleatedMessage = customerStatement.RelatedMessage;
+                    mt940CustomerStatement.SequenceNumber = customerStatement.SequenceNumber;
+                    mt940CustomerStatement.StatementNumber = customerStatement.StatementNumber;
+                    mt940CustomerStatement.TransactionReference = customerStatement.TransactionReference;
+                    mt940CustomerStatement.TransactionCount = customerStatement.Transactions.Count;
+                    mt940CustomerStatement.CreatedBy = userId;
+                    mt940CustomerStatement.ModifiedBy = userId;
+
+                    #region **START** Customer Statement Balances
                     if (customerStatement.ClosingAvailableBalance != null)
-                        mt940CustomerStatement.ClosingAvailableBalance =
-                            AddMT940Balance(customerStatement.ClosingAvailableBalance);
+                    {
+                        mt940CustomerStatement.ClosingAvailableBalance = AddMT940Balance(customerStatement.ClosingAvailableBalance, userId);
+                    }
                     if (customerStatement.ClosingBalance != null)
-                        mt940CustomerStatement.ClosingBalance = AddMT940Balance(customerStatement.ClosingBalance);
+                    {
+                        mt940CustomerStatement.ClosingBalance = AddMT940Balance(customerStatement.ClosingBalance, userId);
+                    }
                     if (customerStatement.ForwardAvailableBalance != null)
-                        mt940CustomerStatement.ForwardAvailableBalance =
-                            AddMT940Balance(customerStatement.ForwardAvailableBalance);
+                    {
+                        mt940CustomerStatement.ForwardAvailableBalance = AddMT940Balance(customerStatement.ForwardAvailableBalance, userId);
+                    }
                     if (customerStatement.OpeningBalance != null)
-                        mt940CustomerStatement.OpeningBalance = AddMT940Balance(customerStatement.OpeningBalance);
+                    {
+                        mt940CustomerStatement.OpeningBalance = AddMT940Balance(customerStatement.OpeningBalance, userId);
+                    }
+                    #endregion **END** Customer Statement Balances
+
+                    #endregion **END** Set common customer statement data
 
                     AddMT940CustomerStatement(mt940CustomerStatement);
-                    byte customerStatementTransactionSequence = 1;
+
+                    #region **START** Customer Statement Transactions
+                    byte transactionSequence = 0;
                     foreach (Transaction transaction in customerStatement.Transactions)
                     {
-                        //Add to MT940 Customer Transaction
+                        //Create a new MT940 Customer Statement Transaction
                         MT940CustomerStatementTransaction mt940CustomerStatementTransaction = new MT940CustomerStatementTransaction
                         {
-                            //MT940CustomerStatementId = MT940CustomerStatementId,
                             MT940CustomerStatement = mt940CustomerStatement,
-                            Sequence = customerStatementTransactionSequence++,
+                            Sequence = ++transactionSequence,
                             ReadOnly = false,
                             Amount = transaction.Amount.Value,
                             DebitOrCredit = transaction.DebitCredit.ConvertToDebitOrCredit(),
@@ -269,16 +314,35 @@ namespace FRS.MT940Loader.Handlers
                             CreatedBy = userId,
                             ModifiedBy = userId,
                         };
+
+                        //Associate this transaction with customer statement (master)
                         AddMT940CustomerStatementTransaction(mt940CustomerStatementTransaction);
+                        
                     }
+                    #endregion **END** Customer Statement Transactions
+
+                    //Set the save flag to true, to be used for committing changes later on
                     isSaveChanges = true;
                 }
+                
+                _processedCustomerStatementCount = customerStatementSequence;                
+
+                //If required commit changes to database
                 if (isSaveChanges)
+                {
                     _dbHandler.DbContext.SaveChanges();
+                }
             }
         }
 
-        
+        /// <summary>
+        /// Method to get the number number of customer statements processed by current MT940 file load process
+        /// </summary>
+        /// <returns>Number of Customer Statement records processed</returns>
+        public int GetProcessedCustomerStatementCount()
+        {
+            return Convert.ToInt16(_processedCustomerStatementCount);
+        }
 
         #endregion **END - Public Methods**
     }
