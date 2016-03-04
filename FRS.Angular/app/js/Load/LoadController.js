@@ -43,23 +43,17 @@
             }
 
             $scope.finalize = function () {
-                debugger;
-                //var file = $('#loadFile').get(0).files[0];
-                var file = vm.loadFile;
-                var fd = new FormData();
-                fd.append('loadFile', file);
 
                 var load = {
                     LoadMetadataId: $scope.LoadMetadataId,
-                    File: fd
-                };
+                    FileBase64Content: $scope.Attachment,
+                    FileName: $scope.FileName,
+                    FileExtension: $scope.FileExtension,
+                    Name: vm.LoadName
 
-                $http({
-                    url: window.frsApiUrl + '/api/Load',
-                    data: load,
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' }
-                })
+            };
+
+                $http.post(window.frsApiUrl + '/api/Load',load)
                     .then(function (data) {
                         SweetAlert.swal({
                             title: 'Success',
@@ -100,35 +94,16 @@
             });
             //#endregion
 
-            //#region Post Data
-            
-            //#endregion
-
-            //#region Functions
-
             // get data on page load
             $scope.getLoadList();
             //#endregion
-            $scope.readPhotoURL = function (input) {
-                debugger;
+            $scope.readFile = function (input) {
                 if (input.files && input.files[0]) {
-                    $scope.FileName = input.files[0].name;
-                    $scope.FileExtension = input.files[0].type.split('/')[1];
+                    $scope.FileName = input.files[0].name.split('.')[0];
+                    $scope.FileExtension = input.files[0].name.split('.')[1];
                     var reader = new FileReader();
                     reader.onload = function (e) {
-                        var img = new Image;
-                        img.onload = function () {
-                            if (img.height > 250 || img.width > 250) {
-                                //   toastr.error("Image Max. width 1280 and height 1024px; please resize the image and try again");
-                            } else {
-                                $('#vehicleImage')
-                                    .attr('src', e.target.result)
-                                    .width(120)
-                                    .height(120);
-                            }
-                        };
-                        img.src = reader.result;
-                        $scope.Attachment = img.src;
+                        $scope.Attachment = reader.result;
                     };
                     reader.readAsDataURL(input.files[0]);
                 }

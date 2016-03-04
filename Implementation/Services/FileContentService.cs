@@ -11,12 +11,6 @@ namespace FRS.Implementation.Services
 
         private readonly IFileContentRepository fileContentRepository;
 
-        private void SetProperties(FileContent metaData, FileContent dbVersion)
-        {
-            dbVersion.FileContentId = metaData.FileContentId;
-            dbVersion.FileContentBase64 = metaData.FileContentBase64;
-            dbVersion.Description = metaData.Description;
-        }
         #endregion
 
         #region Constructor
@@ -37,18 +31,7 @@ namespace FRS.Implementation.Services
 
         public bool SaveFileContent(FileContent fileContent)
         {
-            FileContent dbVersion = fileContentRepository.Find(fileContent.FileContentId);
-            if (dbVersion != null)
-            {
-                SetProperties(fileContent, dbVersion);
-                fileContentRepository.Update(dbVersion);
-            }
-            else
-            {
-                dbVersion = new FileContent();
-                SetProperties(fileContent, dbVersion);
-                fileContentRepository.Add(dbVersion);
-            }
+            fileContentRepository.Add(fileContent);
             fileContentRepository.SaveChanges();
             return true;
         }

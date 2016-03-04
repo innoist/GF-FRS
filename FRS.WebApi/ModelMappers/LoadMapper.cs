@@ -1,4 +1,5 @@
-﻿using FRS.Models.DomainModels;
+﻿using System;
+using FRS.Models.DomainModels;
 using FRS.WebApi.Models.Load;
 using FRS.WebApi.Models.MT940Load;
 
@@ -24,22 +25,43 @@ namespace FRS.WebApi.ModelMappers
             };
         }
 
-        public static Load CreateFromClientToServer(this LoadModel source)
+        public static Load CreateFromClientToServer(this LoadModel source, string userId)
         {
-            return new Load
+            var load = new Load
             {
                 LoadMetaDataId = source.LoadMetaDataId,
-                CreatedBy = source.CreatedBy,
+                CreatedBy = userId,
                 CreatedOn = source.CreatedOn,
                 Finish = source.Finish,
                 InProgress = source.InProgress,
                 LoadId = source.LoadId,
                 MT940LoadId = source.MT940LoadId,
-                ModifiedBy = source.ModifiedBy,
+                ModifiedBy = userId,
                 ModifiedOn = source.ModifiedOn,
                 ReadOnly = source.ReadOnly,
-                Start = source.Start
+                Start = DateTime.UtcNow,
+                Name = source.Name,
+                MT940Load = new MT940Load
+                {
+                    FileContent = new FileContent
+                    {
+                        FileContentBase64 = source.FileBase64Content,
+                        CreatedBy = userId,
+                        ModifiedBy = userId
+
+                    },
+                    FileName = source.FileName,
+                    FileExtension = source.FileExtension,
+                    CreatedBy = userId,
+                    ModifiedBy = userId,
+                    Path = "C:/",
+                    CustomerStatementCount = 1,
+                    StatusId = 2
+
+                },
             };
+
+            return load;
         }
 
         public static MT940LoadModel CreateFromServerToClient(this MT940Load source)

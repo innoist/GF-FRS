@@ -62,6 +62,14 @@
                 controllerAs: 'mt940lc',
                 resolve: helper.resolveFor('ui.grid', 'ui.select', 'MT940Loads.module')
             })
+            .state('app.CustomerStatements', {
+                url: '/CustomerStatements',
+                title: 'Customer Statements',
+                templateUrl: helper.basepath('../../../../app/views/CustomerStatements/CustomerStatements.html'),
+                controller: 'CustomerStatementsController',
+                controllerAs: 'custsc',
+                resolve: helper.resolveFor('ui.grid', 'ui.select', 'CustomerStatements.module')
+            })
             .state('app.CreateMetaData', {
                 url: '/CreateMetaData/:Id',
                 title: 'New MetaData',

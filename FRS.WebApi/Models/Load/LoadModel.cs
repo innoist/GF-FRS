@@ -17,6 +17,10 @@ namespace FRS.WebApi.Models.Load
         public string ModifiedBy { get; set; }
         public DateTime ModifiedOn { get; set; }
         public string Name { get; set; }
-        public HttpPostedFileBase File { get; set; }
+
+        //File Properties
+        public string FileBase64Content { get; set; }
+        public string FileName { get; set; }
+        public string FileExtension { get; set; }
     }
 }

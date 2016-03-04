@@ -1,13 +1,11 @@
-﻿using System.Collections.Generic;
-using FRS.Models.DomainModels;
+﻿using FRS.Models.DomainModels;
+using FRS.Models.RequestModels;
+using FRS.Models.ResponseModels;
 
 namespace FRS.Interfaces.IServices
 {
     public interface IMT940CustomerStatementService
     {
-        IEnumerable<MT940CustomerStatement> GetAll();
-        bool SaveCustomerStatement(MT940CustomerStatement customerStatement);
-        bool UpdateCustomerStatement(MT940CustomerStatement customerStatement);
-        void DeleteCustomerStatement(MT940CustomerStatement customerStatement);
+        SearchTemplateResponse<MT940CustomerStatement> GetMt940SearchResponse(MT940CustomerStatementSearchrequest searchRequest);
     }
 }

@@ -9,6 +9,7 @@ using FRS.Models.ResponseModels;
 using FRS.WebApi.ModelMappers;
 using FRS.WebApi.ViewModels.Load;
 using FRS.WebBase.UnityConfiguration;
+using Microsoft.AspNet.Identity;
 using Microsoft.Practices.Unity;
 
 namespace FRS.WebApi.Areas.Load.Controllers
@@ -54,16 +55,12 @@ namespace FRS.WebApi.Areas.Load.Controllers
             {
                 return BadRequest(ModelState);
             }
-            if (HttpContext.Current.Request.Files.Count > 0)
-            {
-                var file = HttpContext.Current.Request.Files.Get(0);
-            }
             var result = false;
             if (loadService != null)
             {
                 try
                 {
-                    result = loadService.SaveLoad(load.CreateFromClientToServer());
+                    result = loadService.SaveLoad(load.CreateFromClientToServer(User.Identity.GetUserId()));
                 }
                 catch (Exception e)
                 {

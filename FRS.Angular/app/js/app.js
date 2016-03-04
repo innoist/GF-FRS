@@ -2202,6 +2202,10 @@
                                                        '/app/js/MT940Loads/MT940Load.service.js']
               },
               {
+                  name: 'CustomerStatements.module', files: ['/app/js/CustomerStatements/customerStatements.controller.js',
+                                                             '/app/js/CustomerStatements/customerStatements.service.js']
+              },
+              {
                   name: 'createMetaData.module', files: ['/app/js/CreateMetaData/CreateMetaDataController.js',
                                                 '/app/js/CreateMetaData/CreateMetaDataService.js']
               },
