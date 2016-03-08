@@ -99,9 +99,11 @@
               //    //    direction: uiGridConstants.ASC
               //    //}
               //},
+              { name: 'Name', field: 'Name', sortId: 2 },
               { name: 'File', field: 'FileName', sortId: 3 },
               { name: 'Status', field: 'Status', sortId: 4 },
-              { name: 'Created Date', field: 'CreatedOnString', sortId: 5 }
+              { name: 'Created Date', field: 'CreatedOnString', sortId: 5 },
+              { name: 'Action', width: '10%', cellTemplate: '<div class="ui-grid-cell-contents"><a ui-sref="app.CustomerStatements({Id : row.entity.MT940LoadId})" class="btn btn-xs btn-green">Details</a></div>' }
             ],
             onRegisterApi: function (gridApi) {
                 vm.gridApi = gridApi;

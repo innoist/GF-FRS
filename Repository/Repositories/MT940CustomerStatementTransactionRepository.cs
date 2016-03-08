@@ -39,7 +39,8 @@ namespace FRS.Repository.Repositories
             Expression<Func<MT940CustomerStatementTransaction, bool>> query =
                 s =>
                     (
-                    (string.IsNullOrEmpty(searchRequest.DebitOrCredit) || searchRequest.DebitOrCredit.Equals(s.DebitOrCredit))
+                    (string.IsNullOrEmpty(searchRequest.DebitOrCredit) || searchRequest.DebitOrCredit.Equals(s.DebitOrCredit)) &&
+                    (searchRequest.MT940CustomerStatementId == 0 || searchRequest.MT940CustomerStatementId == s.MT940CustomerStatementId)
                     );
 
             IEnumerable<MT940CustomerStatementTransaction> list = searchRequest.IsAsc

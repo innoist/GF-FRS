@@ -10,9 +10,9 @@
     // ReSharper disable FunctionsUsedBeforeDeclared
     core.lazy.controller('CustomerStatementsController', CustomerStatementsController);
 
-    CustomerStatementsController.$inject = ['$scope', '$state', 'uiGridConstants', 'CustomerStatementsService'];
+    CustomerStatementsController.$inject = ['$scope', '$state', '$stateParams', 'uiGridConstants', 'CustomerStatementsService'];
 
-    function CustomerStatementsController($scope, $state, uiGridConstants, CustomerStatementsService) {
+    function CustomerStatementsController($scope, $state, $stateParams, uiGridConstants, CustomerStatementsService) {
 
         var vm = this;
 
@@ -71,10 +71,12 @@
                 PageNo: 1,
                 PageSize: 10,
                 sort: null,
-                AccountNumber: vm.accountNumber
+                AccountNumber: vm.accountNumber,
+                MT940LoadId: $stateParams.Id == "" ? 0 : $stateParams.Id
             },
-
         };
+        $scope.specificDetail = $stateParams.Id == "" ? false : true;
+        
         vm.gridOptions = {
             paginationPageSizes: [10, 25, 50, 100, 500],
             paginationPageSize: 10,
@@ -103,7 +105,8 @@
               { name: 'A/c #', field: 'AccountNumber', sortId: 1 },
               { name: 'Description', field: 'Description', sortId: 2 },
               { name: 'Related Message', field: 'ReleatedMessage', sortId: 3 },
-              { name: 'Transaction Reference', field: 'TransactionReference', sortId: 5 }
+              { name: 'Transaction Reference', field: 'TransactionReference', sortId: 5 },
+              { name: 'Action', width: '10%', cellTemplate: '<div class="ui-grid-cell-contents"><a ui-sref="app.CustomerStatementTransactions({Id : row.entity.MT940CustomerStatementId, MT940LoadId: ' + $stateParams.Id + '})" class="btn btn-xs btn-green">Details</a></div>' }
             ],
             onRegisterApi: function (gridApi) {
                 vm.gridApi = gridApi;

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using FRS.Models.DomainModels;
 using FRS.WebApi.Models.Load;
 using FRS.WebApi.Models.MT940Load;
@@ -79,7 +80,8 @@ namespace FRS.WebApi.ModelMappers
                 FileExtension = source.FileExtension,
                 FileName = source.FileName,
                 MT940LoadId = source.MT940LoadId,
-                Path = source.Path
+                Path = source.Path,
+                Name = source.Loads.FirstOrDefault() != null ? source.Loads.FirstOrDefault().Name : "N/A"
             };
         }
 

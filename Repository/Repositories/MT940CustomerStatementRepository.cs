@@ -38,7 +38,8 @@ namespace FRS.Repository.Repositories
             Expression<Func<MT940CustomerStatement, bool>> query =
                 s =>
                     (
-                    (string.IsNullOrEmpty(searchRequest.AccountNumber) || searchRequest.AccountNumber.Equals(s.AccountNumber))
+                    (string.IsNullOrEmpty(searchRequest.AccountNumber) || searchRequest.AccountNumber.Equals(s.AccountNumber)) &&
+                    (searchRequest.MT940LoadId == 0 || searchRequest.MT940LoadId == s.MT940LoadId)
                     );
 
             IEnumerable<MT940CustomerStatement> MT940Loads = searchRequest.IsAsc

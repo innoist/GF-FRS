@@ -63,7 +63,7 @@
                 resolve: helper.resolveFor('ui.grid', 'ui.select', 'MT940Loads.module')
             })
             .state('app.CustomerStatements', {
-                url: '/CustomerStatements',
+                url: '/CustomerStatements/:Id',
                 title: 'Customer Statements',
                 templateUrl: helper.basepath('../../../../app/views/CustomerStatements/CustomerStatements.html'),
                 controller: 'CustomerStatementsController',
@@ -71,7 +71,7 @@
                 resolve: helper.resolveFor('ui.grid', 'ui.select', 'CustomerStatements.module')
             })
             .state('app.CustomerStatementTransactions', {
-                url: '/CustomerStatementTransactions',
+                url: '/CustomerStatementTransactions/:Id?/:MT940LoadId?',
                 title: 'Customer Statement Transactions',
                 templateUrl: helper.basepath('../../../../app/views/CustomerStatementTransactions/CustomerStatementTransactions.html'),
                 controller: 'CustomerStatementTransactionsController',

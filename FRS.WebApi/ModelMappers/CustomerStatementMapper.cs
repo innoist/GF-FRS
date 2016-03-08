@@ -15,6 +15,7 @@ namespace FRS.WebApi.ModelMappers
                 Description = source.Description,
                 ReleatedMessage = source.ReleatedMessage,
                 TransactionReference = source.TransactionReference,
+                MT940CustomerStatementId = source.MT940CustomerStatementId
             };
         }
         

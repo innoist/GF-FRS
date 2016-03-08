@@ -10,9 +10,9 @@
     // ReSharper disable FunctionsUsedBeforeDeclared
     core.lazy.controller('CustomerStatementTransactionsController', CustomerStatementTransactionsController);
 
-    CustomerStatementTransactionsController.$inject = ['$scope', '$state', 'uiGridConstants', 'CustomerStatementTransactionService'];
+    CustomerStatementTransactionsController.$inject = ['$scope', '$state', '$stateParams', 'uiGridConstants', 'CustomerStatementTransactionService'];
 
-    function CustomerStatementTransactionsController($scope, $state, uiGridConstants, CustomerStatementTransactionService) {
+    function CustomerStatementTransactionsController($scope, $state, $stateParams, uiGridConstants, CustomerStatementTransactionService) {
 
         var vm = this;
 
@@ -70,10 +70,15 @@
                 PageNo: 1,
                 PageSize: 10,
                 sort: null,
-                DebitOrCredit: null
+                DebitOrCredit: null,
+                MT940CustomerStatementId: $stateParams.Id == null || $stateParams.Id == "" ? 0 : $stateParams.Id
             },
 
         };
+        
+        $scope.specificDetail = $stateParams.Id == null || $stateParams.Id == "" ? false : true;
+        $scope.MT940CustomerStatementId = $stateParams.Id;
+        $scope.MT940LoadId = $stateParams.MT940LoadId;
         vm.gridOptions = {
             paginationPageSizes: [10, 25, 50, 100, 500],
             paginationPageSize: 10,
