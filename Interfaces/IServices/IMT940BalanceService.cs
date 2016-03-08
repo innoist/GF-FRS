@@ -1,13 +1,11 @@
-﻿using System.Collections.Generic;
-using FRS.Models.DomainModels;
+﻿using FRS.Models.DomainModels;
+using FRS.Models.RequestModels;
+using FRS.Models.ResponseModels;
 
 namespace FRS.Interfaces.IServices
 {
     public interface IMT940BalanceService
     {
-        IEnumerable<MT940Balance> GetAll();
-        bool SaveloadBalance(MT940Balance loadBalance);
-        bool UpdateloadBalance(MT940Balance loadBalance);
-        void DeleteloadBalance(MT940Balance loadBalance);
+        SearchTemplateResponse<MT940Balance> GetMt940BalanceSearchResponse(MT940BalanceSearchRequest searchRequest);
     }
 }

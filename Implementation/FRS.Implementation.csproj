@@ -186,6 +186,7 @@
     <Compile Include="Services\LoadTypeService.cs" />
     <Compile Include="Services\MT940CustomerStatementTransactionService.cs" />
     <Compile Include="Services\MT90CustomerStatementService.cs" />
+    <Compile Include="Services\MT940BalanceService.cs" />
     <Compile Include="Services\MT940LoadService.cs" />
     <Compile Include="Services\RegisterUserService.cs" />
     <Compile Include="Services\LoggerService.cs" />

@@ -245,6 +245,7 @@
     <Compile Include="Areas\Load\LoadAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CurrencyController.cs" />
+    <Compile Include="Controllers\MT940BalanceController.cs" />
     <Compile Include="Controllers\MT940CustomerStatementTransactionController.cs" />
     <Compile Include="Controllers\CustomerStatementController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -263,6 +264,7 @@
     <Compile Include="ModelMappers\LoadMetaDataMapper.cs" />
     <Compile Include="ModelMappers\LoadTypeMapper.cs" />
     <Compile Include="ModelMappers\Log\LogMapper.cs" />
+    <Compile Include="ModelMappers\MT940BalanceMapper.cs" />
     <Compile Include="ModelMappers\SourceMapper.cs" />
     <Compile Include="ModelMappers\StatusMapper.cs" />
     <Compile Include="ModelMappers\UsersMapper.cs" />
@@ -275,6 +277,7 @@
     <Compile Include="Models\Log\LogModel.cs" />
     <Compile Include="Models\MenuRight.cs" />
     <Compile Include="Models\MetaData\LoadMetaData.cs" />
+    <Compile Include="Models\MT940Balance\MT940BalanceModel.cs" />
     <Compile Include="Models\MT940CustomerStatementTransaction\MT940CustomerStatementModel.cs" />
     <Compile Include="Models\MT940CustomerStatement\MT940CustomerStatementModel.cs" />
     <Compile Include="Models\MT940Load\MT940LoadModel.cs" />
@@ -293,6 +296,7 @@
     <Compile Include="ViewModels\MetaData\LoadMetaDataListViewModel.cs" />
     <Compile Include="ViewModels\MT940CustomerStatementTransaction\MT940CustomerStatementTransactionLV.cs" />
     <Compile Include="ViewModels\MT940CustomerStatement\MT940CustomerStatementListViewModel.cs" />
+    <Compile Include="ViewModels\MT940Balance\MT940BalanceListViewModel.cs" />
     <Compile Include="ViewModels\MT940Load\MT940LoadListViewModel.cs" />
     <Compile Include="ViewModels\Source\SourceViewModel.cs" />
     <Compile Include="ViewModels\Users\UsersListViewModel.cs" />

@@ -78,6 +78,14 @@
                 controllerAs: 'custstc',
                 resolve: helper.resolveFor('ui.grid', 'ui.select', 'CustomerStatementTransactions.module')
             })
+            .state('app.MT940Balance', {
+                url: '/MT940Balance',
+                title: 'MT940 Balance',
+                templateUrl: helper.basepath('../../../../app/views/MT940Balance/MT940Balance.html'),
+                controller: 'MT940BalanceController',
+                controllerAs: 'mt940bal',
+                resolve: helper.resolveFor('ui.grid', 'ui.select', 'MT940Balance.module')
+            })
             .state('app.CreateMetaData', {
                 url: '/CreateMetaData/:Id',
                 title: 'New MetaData',

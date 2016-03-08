@@ -2210,6 +2210,10 @@
                                                                         '/app/js/CustomerStatementTransactions/customerStatementTransactions.service.js']
               },
               {
+                  name: 'MT940Balance.module', files: ['/app/js/MT940Balance/MT940Balance.controller.js',
+                                                       '/app/js/MT940Balance/MT940Balance.service.js']
+              },
+              {
                   name: 'createMetaData.module', files: ['/app/js/CreateMetaData/CreateMetaDataController.js',
                                                 '/app/js/CreateMetaData/CreateMetaDataService.js']
               },

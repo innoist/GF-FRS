@@ -111,6 +111,7 @@
     <Compile Include="Common\HelperIcon.cs" />
     <Compile Include="Common\ClaimParamters.cs" />
     <Compile Include="Common\LoadMetaDataForLoad.cs" />
+    <Compile Include="Common\OrderByMT940Balance.cs" />
     <Compile Include="Common\OrderByCustomerStatement.cs" />
     <Compile Include="Common\OrderByCustomerStatementTransaction.cs" />
     <Compile Include="Common\OrderByMT940Load.cs" />
@@ -159,6 +160,7 @@
     </Compile>
     <Compile Include="RequestModels\MT940CustomerStatementTransactionSearchrequest.cs" />
     <Compile Include="RequestModels\MT940CustomerStatementSearchrequest.cs" />
+    <Compile Include="RequestModels\MT940BalanceSearchRequest.cs" />
     <Compile Include="RequestModels\MT940LoadSearchRequest.cs" />
     <Compile Include="RequestModels\LogSearchRequest.cs" />
     <Compile Include="RequestModels\LoadMetaDataSearchRequest.cs" />
