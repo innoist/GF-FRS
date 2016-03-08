@@ -8,11 +8,11 @@
 
     var core = angular.module('app.core');
     // ReSharper disable FunctionsUsedBeforeDeclared
-    core.lazy.controller('CustomerStatementsController', CustomerStatementsController);
+    core.lazy.controller('CustomerStatementTransactionsController', CustomerStatementTransactionsController);
 
-    CustomerStatementsController.$inject = ['$scope', '$state', 'uiGridConstants', 'CustomerStatementsService'];
+    CustomerStatementTransactionsController.$inject = ['$scope', '$state', 'uiGridConstants', 'CustomerStatementTransactionService'];
 
-    function CustomerStatementsController($scope, $state, uiGridConstants, CustomerStatementsService) {
+    function CustomerStatementTransactionsController($scope, $state, uiGridConstants, CustomerStatementTransactionService) {
 
         var vm = this;
 
@@ -49,11 +49,10 @@
 
         //ui-select
         vm.disabled = undefined;
-        vm.Status = {};
-        vm.Statuses = [
-          { Id: '1', Name: 'Inactive'},
-          { Id: '2', Name: 'Active'},
-          { Id: '5', Name: 'Pending'}
+        vm.DebitOrCredit = {};
+        vm.DebitsCredits = [
+          { Id: 'D', Name: 'Debit'},
+          { Id: 'C', Name: 'Credit'}
         ];
 
         //$http.get(window.frsApiUrl + '/api/LoadMetaDataBase').success(function (response) {
@@ -71,7 +70,7 @@
                 PageNo: 1,
                 PageSize: 10,
                 sort: null,
-                AccountNumber: vm.accountNumber
+                DebitOrCredit: null
             },
 
         };
@@ -100,10 +99,14 @@
               //    //    direction: uiGridConstants.ASC
               //    //}
               //},
-              { name: 'A/c #', field: 'AccountNumber', sortId: 1 },
-              { name: 'Description', field: 'Description', sortId: 2 },
-              { name: 'Related Message', field: 'ReleatedMessage', sortId: 3 },
-              { name: 'Transaction Reference', field: 'TransactionReference', sortId: 5 }
+              { name: 'Customer Statement Id', field: 'MT940CustomerStatementId', sortId: 0 },
+              { name: 'TransactionType', field: 'TransactionType', sortId: 1 },
+              { name: 'Amount', field: 'Amount', sortId: 2 },
+              { name: 'Debit Or Credit', field: 'DebitOrCredit', sortId: 3 },
+              { name: 'Reference', field: 'Reference', sortId: 4 },
+              { name: 'Description', field: 'Description', sortId: 5 }
+              
+              
             ],
             onRegisterApi: function (gridApi) {
                 vm.gridApi = gridApi;
@@ -145,7 +148,7 @@
                     break;
             }
 
-            CustomerStatementsService.getGridData(
+            CustomerStatementTransactionService.getGridData(
                 function onSuccess(data) {
                     vm.gridOptions.totalItems = data.TotalCount;
                     vm.gridOptions.data = data.Data;
@@ -156,21 +159,18 @@
 
         $scope.resetFilter = function () {
             //vm.dt = null;
-            //vm.name = '';
-            //vm.Status.selected = null;
-
+            vm.DebitOrCredit.selected = null;
+            paginationOptions.params.DebitOrCredit = null;
             paginationOptions.params.IsAsc = true;
             paginationOptions.params.PageNo = 1;
             paginationOptions.params.sort = null;
             paginationOptions.params.SortBy = 0;
-            paginationOptions.params.accountNumber = vm.accountNumber = '';
             getPage();
         }
 
         $scope.fiterData = function () {
-            paginationOptions.params.accountNumber = vm.accountNumber;
             //paginationOptions.params.CreatedDate = vm.dt;
-            //paginationOptions.params.LoadTypeId = vm.Statuses.selected == null ? 0 : vm.Status.selected.Id;
+            paginationOptions.params.DebitOrCredit = vm.DebitOrCredit.selected == null ? "" : vm.DebitOrCredit.selected.Id;
             getPage();
         }
 

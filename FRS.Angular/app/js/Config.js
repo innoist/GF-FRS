@@ -70,6 +70,14 @@
                 controllerAs: 'custsc',
                 resolve: helper.resolveFor('ui.grid', 'ui.select', 'CustomerStatements.module')
             })
+            .state('app.CustomerStatementTransactions', {
+                url: '/CustomerStatementTransactions',
+                title: 'Customer Statement Transactions',
+                templateUrl: helper.basepath('../../../../app/views/CustomerStatementTransactions/CustomerStatementTransactions.html'),
+                controller: 'CustomerStatementTransactionsController',
+                controllerAs: 'custstc',
+                resolve: helper.resolveFor('ui.grid', 'ui.select', 'CustomerStatementTransactions.module')
+            })
             .state('app.CreateMetaData', {
                 url: '/CreateMetaData/:Id',
                 title: 'New MetaData',

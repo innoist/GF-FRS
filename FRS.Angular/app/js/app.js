@@ -2206,6 +2206,10 @@
                                                              '/app/js/CustomerStatements/customerStatements.service.js']
               },
               {
+                  name: 'CustomerStatementTransactions.module', files: ['/app/js/CustomerStatementTransactions/customerStatementTransactions.controller.js',
+                                                                        '/app/js/CustomerStatementTransactions/customerStatementTransactions.service.js']
+              },
+              {
                   name: 'createMetaData.module', files: ['/app/js/CreateMetaData/CreateMetaDataController.js',
                                                 '/app/js/CreateMetaData/CreateMetaDataService.js']
               },

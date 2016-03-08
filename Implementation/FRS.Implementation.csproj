@@ -184,6 +184,7 @@
     <Compile Include="Services\LoadMetaDetaService.cs" />
     <Compile Include="Services\LoadService.cs" />
     <Compile Include="Services\LoadTypeService.cs" />
+    <Compile Include="Services\MT940CustomerStatementTransactionService.cs" />
     <Compile Include="Services\MT90CustomerStatementService.cs" />
     <Compile Include="Services\MT940LoadService.cs" />
     <Compile Include="Services\RegisterUserService.cs" />

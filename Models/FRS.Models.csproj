@@ -112,6 +112,7 @@
     <Compile Include="Common\ClaimParamters.cs" />
     <Compile Include="Common\LoadMetaDataForLoad.cs" />
     <Compile Include="Common\OrderByCustomerStatement.cs" />
+    <Compile Include="Common\OrderByCustomerStatementTransaction.cs" />
     <Compile Include="Common\OrderByMT940Load.cs" />
     <Compile Include="Common\OrderByLogs.cs" />
     <Compile Include="Common\OrderByUsers.cs" />
@@ -156,6 +157,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="RequestModels\MT940CustomerStatementTransactionSearchrequest.cs" />
     <Compile Include="RequestModels\MT940CustomerStatementSearchrequest.cs" />
     <Compile Include="RequestModels\MT940LoadSearchRequest.cs" />
     <Compile Include="RequestModels\LogSearchRequest.cs" />

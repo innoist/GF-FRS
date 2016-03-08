@@ -2,15 +2,15 @@
 
 namespace FRS.Models.RequestModels
 {
-    public class MT940CustomerStatementSearchrequest : GetPagedListRequest
+    public class MT940CustomerStatementTransactionSearchrequest : GetPagedListRequest
     {
-        public string AccountNumber { get; set; }
+        public string DebitOrCredit { get; set; }
 
-        public OrderByCustomerStatement OrderByColumn
+        public OrderByCustomerStatementTransaction OrderByColumn
         {
             get
             {
-                return (OrderByCustomerStatement)SortBy;
+                return (OrderByCustomerStatementTransaction)SortBy;
             }
             set
             {

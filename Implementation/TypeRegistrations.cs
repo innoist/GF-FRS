@@ -37,6 +37,7 @@ namespace FRS.Implementation
             unityContainer.RegisterType<IStatusService, StatusService>();
             unityContainer.RegisterType<ISourceService, SourceService>();
             unityContainer.RegisterType<IMT940CustomerStatementService, MT940CustomerStatementService>();
+            unityContainer.RegisterType<IMT940CustomerStatementTransactionService, MT940CustomerStatementTransactionService>();
         }
     }
 }
