@@ -62,7 +62,9 @@
     var support = {};
 
     window.frsApiUrl = "http://localhost:4897";
-
+    
+    //Cloud
+    //window.frsApiUrl = "http://frswebapi.azurewebsites.net";
 
 
     var

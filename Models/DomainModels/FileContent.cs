@@ -13,6 +13,7 @@ namespace FRS.Models.DomainModels
         public string ModifiedBy { get; set; }
         public System.DateTime ModifiedOn { get; set; }
 
+        public virtual ICollection<OracleGLLoad> OracleGLLoads { get; set; }
         public virtual ICollection<MT940Load> MT940Load { get; set; }
     }
 }

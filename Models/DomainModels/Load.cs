@@ -16,8 +16,10 @@ namespace FRS.Models.DomainModels
         public string ModifiedBy { get; set; }
         public DateTime ModifiedOn { get; set; }
         public string Name { get; set; }
+        public long? OracleGLLoadId { get; set; }
 
         public virtual LoadMetaData LoadMetaData { get; set; }
+        public virtual OracleGLLoad OracleGLLoad { get; set; }
         public virtual MT940Load MT940Load { get; set; }
     }
 }

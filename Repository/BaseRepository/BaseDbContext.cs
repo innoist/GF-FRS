@@ -129,6 +129,9 @@ namespace FRS.Repository.BaseRepository
         public DbSet<Currency> Currencies { get; set; }
         public DbSet<Status> Statuses { get; set; }
         public DbSet<FileContent> FileContents { get; set; }
+        public DbSet<FiscalYear> FiscalYears { get; set; }
+        public DbSet<OracleGLEntry> OracleGLEntries { get; set; }
+        public DbSet<OracleGLLoad> OracleGLLoads { get; set; }
         /// <summary>
         /// Execute store procedure for creating d
         /// </summary>

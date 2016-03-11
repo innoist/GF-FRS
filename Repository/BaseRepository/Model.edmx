@@ -92,6 +92,13 @@
           <Property Name="ModifiedBy" Type="nvarchar" MaxLength="128" Nullable="false" />
           <Property Name="ModifiedOn" Type="datetime2" Precision="7" Nullable="false" />
         </EntityType>
+        <EntityType Name="FiscalYear">
+          <Key>
+            <PropertyRef Name="Value" />
+          </Key>
+          <Property Name="Value" Type="smallint" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="5" Nullable="false" />
+        </EntityType>
         <EntityType Name="Load">
           <Key>
             <PropertyRef Name="LoadId" />
@@ -99,6 +106,7 @@
           <Property Name="LoadId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="LoadMetaDataId" Type="tinyint" Nullable="false" />
           <Property Name="MT940LoadId" Type="bigint" />
+          <Property Name="OracleGLLoadId" Type="bigint" />
           <Property Name="Name" Type="nvarchar" MaxLength="128" Nullable="false" />
           <Property Name="Start" Type="datetime" Nullable="false" />
           <Property Name="Finish" Type="datetime" />
@@ -249,9 +257,57 @@
           <Property Name="CustomerStatementCount" Type="int" Nullable="false" />
           <Property Name="FileContentId" Type="bigint" Nullable="false" />
           <Property Name="CreatedBy" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime2" Precision="7" />
           <Property Name="ModifiedBy" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="ModifiedOn" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedOn" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OracleGLEntry">
+          <Key>
+            <PropertyRef Name="OracleGLEntryId" />
+          </Key>
+          <Property Name="OracleGLEntryId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OracleGLLoadId" Type="bigint" Nullable="false" />
+          <Property Name="UniqueReferenceKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="JournalEntryHeaderNumber" Type="nvarchar" MaxLength="128" />
+          <Property Name="JournalEntryDescription" Type="nvarchar" MaxLength="1024" />
+          <Property Name="LineNumber" Type="int" />
+          <Property Name="LineDescription" Type="nvarchar" MaxLength="1024" />
+          <Property Name="AccountNumber" Type="nvarchar" MaxLength="128" />
+          <Property Name="AccountDescription" Type="nvarchar" MaxLength="1024" />
+          <Property Name="SubAccountDescription" Type="nvarchar" MaxLength="1024" />
+          <Property Name="EffectiveDate" Type="datetime2" Precision="7" />
+          <Property Name="EntrySource" Type="nvarchar" MaxLength="36" />
+          <Property Name="EnteredDr" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="EnteredCr" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="AccountedDr" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="AccountedCr" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Currency" Type="nvarchar" MaxLength="10" />
+          <Property Name="ExchangeRate" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Period" Type="nvarchar" MaxLength="10" />
+          <Property Name="FiscalYearId" Type="smallint" />
+          <Property Name="JECreationDate" Type="datetime2" Precision="7" />
+          <Property Name="JELastUpdateDate" Type="datetime2" Precision="7" />
+          <Property Name="StatusId" Type="tinyint" Nullable="false" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="ModifiedBy" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ModifiedOn" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OracleGLLoad">
+          <Key>
+            <PropertyRef Name="OracleGLLoadId" />
+          </Key>
+          <Property Name="OracleGLLoadId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Path" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="FileName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="FileExtension" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="OracleGLEntryCount" Type="int" Nullable="false" />
+          <Property Name="FileContentId" Type="bigint" Nullable="false" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="ModifiedBy" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ModifiedOn" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="StatusId" Type="tinyint" Nullable="false" />
         </EntityType>
         <EntityType Name="Source">
           <Key>
@@ -430,6 +486,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Load_OracleGLLoad">
+          <End Role="OracleGLLoad" Type="Self.OracleGLLoad" Multiplicity="0..1" />
+          <End Role="Load" Type="Self.Load" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OracleGLLoad">
+              <PropertyRef Name="OracleGLLoadId" />
+            </Principal>
+            <Dependent Role="Load">
+              <PropertyRef Name="OracleGLLoadId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_LoadMetaData_LoadType">
           <End Role="LoadType" Type="Self.LoadType" Multiplicity="1" />
           <End Role="LoadMetaData" Type="Self.LoadMetaData" Multiplicity="*" />
@@ -526,6 +594,66 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_OracleGLEntry_FiscalYear">
+          <End Role="FiscalYear" Type="Self.FiscalYear" Multiplicity="0..1" />
+          <End Role="OracleGLEntry" Type="Self.OracleGLEntry" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FiscalYear">
+              <PropertyRef Name="Value" />
+            </Principal>
+            <Dependent Role="OracleGLEntry">
+              <PropertyRef Name="FiscalYearId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OracleGLEntry_OracleGLLoad">
+          <End Role="OracleGLLoad" Type="Self.OracleGLLoad" Multiplicity="1" />
+          <End Role="OracleGLEntry" Type="Self.OracleGLEntry" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OracleGLLoad">
+              <PropertyRef Name="OracleGLLoadId" />
+            </Principal>
+            <Dependent Role="OracleGLEntry">
+              <PropertyRef Name="OracleGLLoadId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OracleGLEntry_Status">
+          <End Role="Status" Type="Self.Status" Multiplicity="1" />
+          <End Role="OracleGLEntry" Type="Self.OracleGLEntry" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="Value" />
+            </Principal>
+            <Dependent Role="OracleGLEntry">
+              <PropertyRef Name="StatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OracleGLLoad_FileContent">
+          <End Role="FileContent" Type="Self.FileContent" Multiplicity="1" />
+          <End Role="OracleGLLoad" Type="Self.OracleGLLoad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FileContent">
+              <PropertyRef Name="FileContentId" />
+            </Principal>
+            <Dependent Role="OracleGLLoad">
+              <PropertyRef Name="FileContentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OracleGLLoad_Status">
+          <End Role="Status" Type="Self.Status" Multiplicity="1" />
+          <End Role="OracleGLLoad" Type="Self.OracleGLLoad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="Value" />
+            </Principal>
+            <Dependent Role="OracleGLLoad">
+              <PropertyRef Name="StatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Source_Status">
           <End Role="Status" Type="Self.Status" Multiplicity="1" />
           <End Role="Source" Type="Self.Source" Multiplicity="*" />
@@ -559,6 +687,7 @@
           <EntitySet Name="Currency" EntityType="Self.Currency" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FileContent" EntityType="Self.FileContent" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FiscalYear" EntityType="Self.FiscalYear" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Load" EntityType="Self.Load" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LoadMetaData" EntityType="Self.LoadMetaData" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LoadType" EntityType="Self.LoadType" Schema="dbo" store:Type="Tables" />
@@ -569,6 +698,8 @@
           <EntitySet Name="MT940CustomerStatement" EntityType="Self.MT940CustomerStatement" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MT940CustomerStatementTransaction" EntityType="Self.MT940CustomerStatementTransaction" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MT940Load" EntityType="Self.MT940Load" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OracleGLEntry" EntityType="Self.OracleGLEntry" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OracleGLLoad" EntityType="Self.OracleGLLoad" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Source" EntityType="Self.Source" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Status" EntityType="Self.Status" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_AspNetUsers_Employee" Association="Self.FK_AspNetUsers_Employee">
@@ -623,6 +754,10 @@
             <End Role="MT940Load" EntitySet="MT940Load" />
             <End Role="Load" EntitySet="Load" />
           </AssociationSet>
+          <AssociationSet Name="FK_Load_OracleGLLoad" Association="Self.FK_Load_OracleGLLoad">
+            <End Role="OracleGLLoad" EntitySet="OracleGLLoad" />
+            <End Role="Load" EntitySet="Load" />
+          </AssociationSet>
           <AssociationSet Name="FK_LoadMetaData_LoadType" Association="Self.FK_LoadMetaData_LoadType">
             <End Role="LoadType" EntitySet="LoadType" />
             <End Role="LoadMetaData" EntitySet="LoadMetaData" />
@@ -654,6 +789,26 @@
           <AssociationSet Name="FK_MT940Load_Status" Association="Self.FK_MT940Load_Status">
             <End Role="Status" EntitySet="Status" />
             <End Role="MT940Load" EntitySet="MT940Load" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OracleGLEntry_FiscalYear" Association="Self.FK_OracleGLEntry_FiscalYear">
+            <End Role="FiscalYear" EntitySet="FiscalYear" />
+            <End Role="OracleGLEntry" EntitySet="OracleGLEntry" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OracleGLEntry_OracleGLLoad" Association="Self.FK_OracleGLEntry_OracleGLLoad">
+            <End Role="OracleGLLoad" EntitySet="OracleGLLoad" />
+            <End Role="OracleGLEntry" EntitySet="OracleGLEntry" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OracleGLEntry_Status" Association="Self.FK_OracleGLEntry_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="OracleGLEntry" EntitySet="OracleGLEntry" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OracleGLLoad_FileContent" Association="Self.FK_OracleGLLoad_FileContent">
+            <End Role="FileContent" EntitySet="FileContent" />
+            <End Role="OracleGLLoad" EntitySet="OracleGLLoad" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OracleGLLoad_Status" Association="Self.FK_OracleGLLoad_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="OracleGLLoad" EntitySet="OracleGLLoad" />
           </AssociationSet>
           <AssociationSet Name="FK_Source_Status" Association="Self.FK_Source_Status">
             <End Role="Status" EntitySet="Status" />
@@ -813,6 +968,33 @@
           <AssociationSet Name="FK_MT940CustomerStatementTransaction_MT940CustomerStatement" Association="angularModel.FK_MT940CustomerStatementTransaction_MT940CustomerStatement">
             <End Role="MT940CustomerStatement" EntitySet="MT940CustomerStatement" />
             <End Role="MT940CustomerStatementTransaction" EntitySet="MT940CustomerStatementTransaction" />
+          </AssociationSet>
+          <EntitySet Name="FiscalYears" EntityType="angularModel.FiscalYear" />
+          <EntitySet Name="OracleGLEntries" EntityType="angularModel.OracleGLEntry" />
+          <EntitySet Name="OracleGLLoads" EntityType="angularModel.OracleGLLoad" />
+          <AssociationSet Name="FK_OracleGLLoad_FileContent" Association="angularModel.FK_OracleGLLoad_FileContent">
+            <End Role="FileContent" EntitySet="FileContents" />
+            <End Role="OracleGLLoad" EntitySet="OracleGLLoads" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OracleGLEntry_FiscalYear" Association="angularModel.FK_OracleGLEntry_FiscalYear">
+            <End Role="FiscalYear" EntitySet="FiscalYears" />
+            <End Role="OracleGLEntry" EntitySet="OracleGLEntries" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Load_OracleGLLoad" Association="angularModel.FK_Load_OracleGLLoad">
+            <End Role="OracleGLLoad" EntitySet="OracleGLLoads" />
+            <End Role="Load" EntitySet="Loads" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OracleGLEntry_OracleGLLoad" Association="angularModel.FK_OracleGLEntry_OracleGLLoad">
+            <End Role="OracleGLLoad" EntitySet="OracleGLLoads" />
+            <End Role="OracleGLEntry" EntitySet="OracleGLEntries" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OracleGLEntry_Status" Association="angularModel.FK_OracleGLEntry_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="OracleGLEntry" EntitySet="OracleGLEntries" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OracleGLLoad_Status" Association="angularModel.FK_OracleGLLoad_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="OracleGLLoad" EntitySet="OracleGLLoads" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="Menu">
@@ -982,6 +1164,7 @@
           <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="7" />
           <Property Name="ModifiedBy" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="ModifiedOn" Type="DateTime" Nullable="false" Precision="7" />
+          <NavigationProperty Name="OracleGLLoads" Relationship="angularModel.FK_OracleGLLoad_FileContent" FromRole="FileContent" ToRole="OracleGLLoad" />
         </EntityType>
         <EntityType Name="Load">
           <Key>
@@ -1001,6 +1184,8 @@
           <NavigationProperty Name="LoadMetaData" Relationship="angularModel.FK_Load_LoadMetaData" FromRole="Load" ToRole="LoadMetaData" />
           <NavigationProperty Name="MT940Load" Relationship="angularModel.FK_Load_MT940Load" FromRole="Load" ToRole="MT940Load" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="OracleGLLoadId" Type="Int64" />
+          <NavigationProperty Name="OracleGLLoad" Relationship="angularModel.FK_Load_OracleGLLoad" FromRole="Load" ToRole="OracleGLLoad" />
         </EntityType>
         <EntityType Name="LoadMetaData">
           <Key>
@@ -1068,9 +1253,9 @@
           <Property Name="FileExtension" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="StatusId" Type="Byte" Nullable="false" />
           <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="7" />
           <Property Name="ModifiedBy" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="ModifiedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedOn" Type="DateTime" Nullable="false" Precision="7" />
           <Property Name="CustomerStatementCount" Type="Int32" Nullable="false" />
           <Property Name="FileContentId" Type="Int64" Nullable="false" />
           <NavigationProperty Name="FileContent" Relationship="angularModel.FK_MT940Load_FileContent" FromRole="MT940Load" ToRole="FileContent" />
@@ -1098,6 +1283,8 @@
           <NavigationProperty Name="MT940Load" Relationship="angularModel.FK_MT940Load_Status" FromRole="Status" ToRole="MT940Load" />
           <NavigationProperty Name="LoadTypes" Relationship="angularModel.FK_LoadType_Status" FromRole="Status" ToRole="LoadType" />
           <NavigationProperty Name="Sources" Relationship="angularModel.FK_Source_Status" FromRole="Status" ToRole="Source" />
+          <NavigationProperty Name="OracleGLEntries" Relationship="angularModel.FK_OracleGLEntry_Status" FromRole="Status" ToRole="OracleGLEntry" />
+          <NavigationProperty Name="OracleGLLoads" Relationship="angularModel.FK_OracleGLLoad_Status" FromRole="Status" ToRole="OracleGLLoad" />
         </EntityType>
         <Association Name="FK_MT940Load_FileContent">
           <End Type="angularModel.FileContent" Role="FileContent" Multiplicity="1" />
@@ -1371,6 +1558,141 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="FiscalYear">
+          <Key>
+            <PropertyRef Name="Value" />
+          </Key>
+          <Property Name="Value" Type="Int16" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="OracleGLEntries" Relationship="angularModel.FK_OracleGLEntry_FiscalYear" FromRole="FiscalYear" ToRole="OracleGLEntry" />
+        </EntityType>
+        <EntityType Name="OracleGLEntry">
+          <Key>
+            <PropertyRef Name="OracleGLEntryId" />
+          </Key>
+          <Property Name="OracleGLEntryId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OracleGLLoadId" Type="Int64" Nullable="false" />
+          <Property Name="UniqueReferenceKey" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="JournalEntryHeaderNumber" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="JournalEntryDescription" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+          <Property Name="LineNumber" Type="Int32" />
+          <Property Name="LineDescription" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+          <Property Name="AccountNumber" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="AccountDescription" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+          <Property Name="SubAccountDescription" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+          <Property Name="EffectiveDate" Type="DateTime" Precision="7" />
+          <Property Name="EntrySource" Type="String" MaxLength="36" FixedLength="false" Unicode="true" />
+          <Property Name="EnteredDr" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="EnteredCr" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="AccountedDr" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="AccountedCr" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Currency" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="ExchangeRate" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Period" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="FiscalYearId" Type="Int16" />
+          <Property Name="JECreationDate" Type="DateTime" Precision="7" />
+          <Property Name="JELastUpdateDate" Type="DateTime" Precision="7" />
+          <Property Name="StatusId" Type="Byte" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="ModifiedBy" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ModifiedOn" Type="DateTime" Nullable="false" Precision="7" />
+          <NavigationProperty Name="FiscalYear" Relationship="angularModel.FK_OracleGLEntry_FiscalYear" FromRole="OracleGLEntry" ToRole="FiscalYear" />
+          <NavigationProperty Name="OracleGLLoad" Relationship="angularModel.FK_OracleGLEntry_OracleGLLoad" FromRole="OracleGLEntry" ToRole="OracleGLLoad" />
+          <NavigationProperty Name="Status" Relationship="angularModel.FK_OracleGLEntry_Status" FromRole="OracleGLEntry" ToRole="Status" />
+        </EntityType>
+        <EntityType Name="OracleGLLoad">
+          <Key>
+            <PropertyRef Name="OracleGLLoadId" />
+          </Key>
+          <Property Name="OracleGLLoadId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Path" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FileName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FileExtension" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="OracleGLEntryCount" Type="Int32" Nullable="false" />
+          <Property Name="FileContentId" Type="Int64" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="ModifiedBy" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ModifiedOn" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="StatusId" Type="Byte" Nullable="false" />
+          <NavigationProperty Name="FileContent" Relationship="angularModel.FK_OracleGLLoad_FileContent" FromRole="OracleGLLoad" ToRole="FileContent" />
+          <NavigationProperty Name="Loads" Relationship="angularModel.FK_Load_OracleGLLoad" FromRole="OracleGLLoad" ToRole="Load" />
+          <NavigationProperty Name="OracleGLEntries" Relationship="angularModel.FK_OracleGLEntry_OracleGLLoad" FromRole="OracleGLLoad" ToRole="OracleGLEntry" />
+          <NavigationProperty Name="Status" Relationship="angularModel.FK_OracleGLLoad_Status" FromRole="OracleGLLoad" ToRole="Status" />
+        </EntityType>
+        <Association Name="FK_OracleGLLoad_FileContent">
+          <End Type="angularModel.FileContent" Role="FileContent" Multiplicity="1" />
+          <End Type="angularModel.OracleGLLoad" Role="OracleGLLoad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FileContent">
+              <PropertyRef Name="FileContentId" />
+            </Principal>
+            <Dependent Role="OracleGLLoad">
+              <PropertyRef Name="FileContentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OracleGLEntry_FiscalYear">
+          <End Type="angularModel.FiscalYear" Role="FiscalYear" Multiplicity="0..1" />
+          <End Type="angularModel.OracleGLEntry" Role="OracleGLEntry" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FiscalYear">
+              <PropertyRef Name="Value" />
+            </Principal>
+            <Dependent Role="OracleGLEntry">
+              <PropertyRef Name="FiscalYearId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Load_OracleGLLoad">
+          <End Type="angularModel.OracleGLLoad" Role="OracleGLLoad" Multiplicity="0..1" />
+          <End Type="angularModel.Load" Role="Load" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OracleGLLoad">
+              <PropertyRef Name="OracleGLLoadId" />
+            </Principal>
+            <Dependent Role="Load">
+              <PropertyRef Name="OracleGLLoadId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OracleGLEntry_OracleGLLoad">
+          <End Type="angularModel.OracleGLLoad" Role="OracleGLLoad" Multiplicity="1" />
+          <End Type="angularModel.OracleGLEntry" Role="OracleGLEntry" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OracleGLLoad">
+              <PropertyRef Name="OracleGLLoadId" />
+            </Principal>
+            <Dependent Role="OracleGLEntry">
+              <PropertyRef Name="OracleGLLoadId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OracleGLEntry_Status">
+          <End Type="angularModel.Status" Role="Status" Multiplicity="1" />
+          <End Type="angularModel.OracleGLEntry" Role="OracleGLEntry" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="Value" />
+            </Principal>
+            <Dependent Role="OracleGLEntry">
+              <PropertyRef Name="StatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OracleGLLoad_Status">
+          <End Type="angularModel.Status" Role="Status" Multiplicity="1" />
+          <End Type="angularModel.OracleGLLoad" Role="OracleGLLoad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="Value" />
+            </Principal>
+            <Dependent Role="OracleGLLoad">
+              <PropertyRef Name="StatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1497,6 +1819,7 @@
           <EntitySetMapping Name="Loads">
             <EntityTypeMapping TypeName="angularModel.Load">
               <MappingFragment StoreEntitySet="Load">
+                <ScalarProperty Name="OracleGLLoadId" ColumnName="OracleGLLoadId" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
                 <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
@@ -1654,6 +1977,64 @@
                 <ScalarProperty Name="Sequence" ColumnName="Sequence" />
                 <ScalarProperty Name="MT940LoadId" ColumnName="MT940LoadId" />
                 <ScalarProperty Name="MT940CustomerStatementId" ColumnName="MT940CustomerStatementId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FiscalYears">
+            <EntityTypeMapping TypeName="angularModel.FiscalYear">
+              <MappingFragment StoreEntitySet="FiscalYear">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OracleGLEntries">
+            <EntityTypeMapping TypeName="angularModel.OracleGLEntry">
+              <MappingFragment StoreEntitySet="OracleGLEntry">
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+                <ScalarProperty Name="JELastUpdateDate" ColumnName="JELastUpdateDate" />
+                <ScalarProperty Name="JECreationDate" ColumnName="JECreationDate" />
+                <ScalarProperty Name="FiscalYearId" ColumnName="FiscalYearId" />
+                <ScalarProperty Name="Period" ColumnName="Period" />
+                <ScalarProperty Name="ExchangeRate" ColumnName="ExchangeRate" />
+                <ScalarProperty Name="Currency" ColumnName="Currency" />
+                <ScalarProperty Name="AccountedCr" ColumnName="AccountedCr" />
+                <ScalarProperty Name="AccountedDr" ColumnName="AccountedDr" />
+                <ScalarProperty Name="EnteredCr" ColumnName="EnteredCr" />
+                <ScalarProperty Name="EnteredDr" ColumnName="EnteredDr" />
+                <ScalarProperty Name="EntrySource" ColumnName="EntrySource" />
+                <ScalarProperty Name="EffectiveDate" ColumnName="EffectiveDate" />
+                <ScalarProperty Name="SubAccountDescription" ColumnName="SubAccountDescription" />
+                <ScalarProperty Name="AccountDescription" ColumnName="AccountDescription" />
+                <ScalarProperty Name="AccountNumber" ColumnName="AccountNumber" />
+                <ScalarProperty Name="LineDescription" ColumnName="LineDescription" />
+                <ScalarProperty Name="LineNumber" ColumnName="LineNumber" />
+                <ScalarProperty Name="JournalEntryDescription" ColumnName="JournalEntryDescription" />
+                <ScalarProperty Name="JournalEntryHeaderNumber" ColumnName="JournalEntryHeaderNumber" />
+                <ScalarProperty Name="UniqueReferenceKey" ColumnName="UniqueReferenceKey" />
+                <ScalarProperty Name="OracleGLLoadId" ColumnName="OracleGLLoadId" />
+                <ScalarProperty Name="OracleGLEntryId" ColumnName="OracleGLEntryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OracleGLLoads">
+            <EntityTypeMapping TypeName="angularModel.OracleGLLoad">
+              <MappingFragment StoreEntitySet="OracleGLLoad">
+                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="FileContentId" ColumnName="FileContentId" />
+                <ScalarProperty Name="OracleGLEntryCount" ColumnName="OracleGLEntryCount" />
+                <ScalarProperty Name="FileExtension" ColumnName="FileExtension" />
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
+                <ScalarProperty Name="Path" ColumnName="Path" />
+                <ScalarProperty Name="OracleGLLoadId" ColumnName="OracleGLLoadId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

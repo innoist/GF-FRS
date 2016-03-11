@@ -11,5 +11,7 @@ namespace FRS.Models.DomainModels
         public virtual ICollection<MT940Load> MT940Load { get; set; }
         public virtual ICollection<Source> Sources { get; set; }
         public virtual ICollection<LoadType> LoadTypes { get; set; }
+        public virtual ICollection<OracleGLEntry> OracleGLEntries { get; set; }
+        public virtual ICollection<OracleGLLoad> OracleGLLoads { get; set; }
     }
 }

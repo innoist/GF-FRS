@@ -152,6 +152,8 @@
     <Content Include="vendor\weather-icons\font\weathericons-regular-webfont.woff2" />
     <Content Include="app\js\Users\changePassword.controller.js" />
     <Content Include="app\views\Source\SourceIndex.html" />
+    <None Include="Properties\PublishProfiles\GFFRS - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\GFFRS - Web Deploy.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -389,7 +391,6 @@
     <Content Include="vendor\codemirror\mode\soy\soy.js" />
     <Content Include="vendor\codemirror\mode\sparql\sparql.js" />
     <Content Include="vendor\codemirror\mode\spreadsheet\spreadsheet.js" />
-    <Content Include="vendor\codemirror\mode\sql\sql.js" />
     <Content Include="vendor\codemirror\mode\stex\stex.js" />
     <Content Include="vendor\codemirror\mode\stylus\stylus.js" />
     <Content Include="vendor\codemirror\mode\swift\swift.js" />
@@ -594,7 +595,9 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="vendor\codemirror\mode\sql\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
