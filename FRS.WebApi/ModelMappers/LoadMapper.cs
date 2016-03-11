@@ -70,17 +70,12 @@ namespace FRS.WebApi.ModelMappers
             return new MT940LoadModel()
             {
                 CreatedOnString = source.CreatedOn.ToString("yy-MMM-dd"),
+                ModifiedOnString = source.ModifiedOn.ToString("yy-MMM-dd"),
                 StatusId = source.StatusId,
                 Status = source.Status.Name,
-                CreatedBy = source.CreatedBy,
-                ModifiedBy = source.ModifiedBy,
-                ModifiedOn = source.ModifiedOn,
                 CustomerStatementCount = source.CustomerStatementCount,
-                FileContentId = source.FileContentId,
-                FileExtension = source.FileExtension,
-                FileName = source.FileName,
+                FileName = source.FileName + "." + source.FileExtension,
                 MT940LoadId = source.MT940LoadId,
-                Path = source.Path,
                 Name = source.Loads.FirstOrDefault() != null ? source.Loads.FirstOrDefault().Name : "N/A"
             };
         }

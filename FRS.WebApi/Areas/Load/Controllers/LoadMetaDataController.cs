@@ -68,7 +68,7 @@ namespace FRS.WebApi.Areas.Load.Controllers
             var response = loadMetaDataService.SearchLoadMetaData(searchRequest);
             LoadMetaDataListViewModel listViewModel = new LoadMetaDataListViewModel
             {
-                LoadMetaDatas = response.LoadMetaDatas.Select(x => x.CreateFromServerToClient()).ToList(),
+                LoadMetaDatas = response.LoadMetaDatas.Select(x => x.CreateFromServerToClient()).OrderBy(x=>x.Status).ThenBy(x=>x.ModifiedOn).ToList(),
                 FilteredCount = response.FilteredCount,
                 TotalCount = response.TotalCount
             };

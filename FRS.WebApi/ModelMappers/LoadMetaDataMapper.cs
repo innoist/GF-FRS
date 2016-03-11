@@ -19,7 +19,8 @@
                 LoadType = source.LoadType.Name,
                 Source = source.Source.Name,
                 Status = source.Status.Name,
-                CreatedOnString = source.CreatedOn.ToShortDateString()
+                CreatedOnString = source.CreatedOn.ToString("yy-MMM-dd"),
+                ModifiedOnString = source.ModifiedOn.ToString("yy-MMM-dd"),
             };
         }
 

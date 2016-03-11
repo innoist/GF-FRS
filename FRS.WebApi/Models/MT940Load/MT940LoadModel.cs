@@ -13,6 +13,7 @@ namespace FRS.WebApi.Models.MT940Load
         public string CreatedBy { get; set; }
         public DateTime CreatedOn { get; set; }
         public string CreatedOnString { get; set; }
+        public string ModifiedOnString { get; set; }
         public string ModifiedBy { get; set; }
         public string Name { get; set; }
         public DateTime ModifiedOn { get; set; }
