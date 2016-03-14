@@ -63,3 +63,15 @@
 nav li ul li {
     padding-left: 30px !important;
 }
+
+.zoomEffect {
+    transition: all;
+    transition-delay: 0.3s;
+    /*transition-timing-function: ease-in-out;*/
+}
+
+.zoomEffect:hover, .zoomEffect:focus {
+    transform: scale(3, 3);
+    position: absolute !important
+    /*transform: scaleX(2)*/
+}

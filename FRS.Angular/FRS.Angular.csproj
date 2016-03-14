@@ -189,7 +189,6 @@
     <Content Include="app\img\dummy.png" />
     <Content Include="app\img\lock-bg.jpg" />
     <Content Include="app\img\logo-single.png" />
-    <Content Include="app\img\logo1.png" />
     <Content Include="app\img\mb-sample.jpg" />
     <Content Include="app\img\mockup.png" />
     <Content Include="app\img\profile-bg.jpg" />

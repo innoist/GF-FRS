@@ -111,7 +111,7 @@
               { name: 'File', field: 'FileName', sortId: 3 },
                 {
                     name: 'Progress', field: 'Progress', sortId: 3,
-                    cellTemplate: '<div class="ui-grid-cell-contents"><span><i class="fa fa-check-square-o"></i></span></div>'
+                    cellTemplate: '<div class="ui-grid-cell-contents"><span class=""><i class="fa fa-check-square-o"></i></span></div>'
 
                 },
               { name: 'Statement Count', field: 'CustomerStatementCount', sortId: 3 },
