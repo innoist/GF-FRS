@@ -12023,8 +12023,8 @@ module.filter('px', function() {
             pageForward: 'Page forward',
             pageToLast: 'Page to last'
           },
-          sizes: 'items per page',
-          totalItems: 'items',
+          sizes: 'records per page',
+          totalItems: 'records',
           through: 'through',
           of: 'of'
         },

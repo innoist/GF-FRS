@@ -4,6 +4,7 @@ using System.Web;
 using System.Web.Http;
 using FRS.Interfaces.IServices;
 using FRS.Models.RequestModels;
+using FRS.Models.ResponseModels;
 using FRS.WebApi.ModelMappers;
 using FRS.WebApi.ViewModels.MetaData;
 using FRS.WebApi.ViewModels.MT940Load;
@@ -27,28 +28,23 @@ namespace FRS.WebApi.Controllers
 
         #region Get
         [ApiException]
+        [HttpGet]
         [Authorize]
-        public BaseDataLoadMetaData Get(long? id)
+        public MT940LoadDetail Get(long id)
         {
-            //if (id <= 0)
-            //{
-            //    throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
-            //}
-            //BaseDataLoadMetaDataResponse response = mt940LoadService.GetBaseDataResponse(id);
-            //BaseDataLoadMetaData baseData = new BaseDataLoadMetaData
-            //{
-            //    LoadTypes = response.LoadTypes,
-            //    Sources = response.Sources,
-            //    Currencies = response.Currencies,
-            //    Statuses = response.Statuses
-                
-            //};
-            //if (response.MetaData != null)
-            //{
-            //    baseData.MetaData = response.MetaData.CreateFromServerToClient();
-            //}
-            //return baseData;
-            return null;
+            if (id <= 0)
+            {
+                throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
+            }
+            var detail = mt940LoadService.GetMt940LoadDetail(id);
+            MT940LoadDetail model = new MT940LoadDetail()
+            {
+                Load = detail.Load.CreateFromServerToClient(),
+                LoadMetaData = detail.LoadMetaData.CreateFromServerToClient(),
+                Mt940LoadModel = detail.Mt940Load.CreateFromServerToClient()
+            };
+
+            return model;
         }
 
         [HttpGet]

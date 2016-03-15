@@ -62,6 +62,14 @@
                 controllerAs: 'mt940lc',
                 resolve: helper.resolveFor('ui.grid', 'ui.select', 'MT940Loads.module')
             })
+            .state('app.MT940LoadDetail', {
+                url: '/MT940LoadDetail/:MT940LoadId',
+                title: 'MT940 Load Detail',
+                templateUrl: helper.basepath('../../../../app/views/MT940Loads/MT940LoadDetail.html'),
+                controller: 'MT940LoadDetailController',
+                controllerAs: 'mt940ldc',
+                resolve: helper.resolveFor('ui.grid', 'ui.select', 'MT940Loads.module')
+            })
             .state('app.CustomerStatements', {
                 url: '/CustomerStatements/:Id',
                 title: 'Customer Statements',

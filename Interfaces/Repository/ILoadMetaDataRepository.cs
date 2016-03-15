@@ -12,5 +12,6 @@ namespace FRS.Interfaces.Repository
         IEnumerable<DropDownModel> LoadMetadataDropDown();
         LoadMetaDataForLoad IsLoadTypeMT940(long loadMetaDataId);
         SearchLoadMetaDataResponse SearchLoadMetaData(LoadMetaDataSearchRequest searchRequest);
+        LoadMetaData GetMetaData(long metadataId);
     }
 }

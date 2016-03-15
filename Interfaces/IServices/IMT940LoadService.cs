@@ -11,5 +11,6 @@ namespace FRS.Interfaces.IServices
         SearchTemplateResponse<MT940Load> GetMt940SearchResponse(MT940LoadSearchRequest searchRequest); 
         bool SaveMT940Load(MT940Load mt940Load);
         void DeleteMT940Load(long mt940LoadId);
+        MT940LoadDetailResponse GetMt940LoadDetail(long mt940LoadId);
     }
 }

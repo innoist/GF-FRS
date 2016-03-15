@@ -21,8 +21,11 @@ namespace FRS.WebApi.ModelMappers
                 MT940LoadId = source.MT940LoadId,
                 ModifiedBy = source.ModifiedBy,
                 ModifiedOn = source.ModifiedOn,
+                ModifiedOnStr = source.ModifiedOn.ToString("dd-MMM-yy"),
                 ReadOnly = source.ReadOnly,
-                Start = source.Start
+                Start = source.Start,
+                StartString = source.Start.ToString("dd-MMM-yy"),
+                Name = source.Name
             };
         }
 
@@ -69,8 +72,8 @@ namespace FRS.WebApi.ModelMappers
         {
             return new MT940LoadModel()
             {
-                CreatedOnString = source.CreatedOn.ToString("yy-MMM-dd"),
-                ModifiedOnString = source.ModifiedOn.ToString("yy-MMM-dd"),
+                CreatedOnString = source.CreatedOn.ToString("dd-MMM-yy"),
+                ModifiedOnString = source.ModifiedOn.ToString("dd-MMM-yy"),
                 StatusId = source.StatusId,
                 Status = source.Status.Name,
                 CustomerStatementCount = source.CustomerStatementCount,

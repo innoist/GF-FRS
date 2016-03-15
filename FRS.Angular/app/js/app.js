@@ -1304,7 +1304,7 @@
         // Load a title dynamically
         $rootScope.currTitle = $state.current.title;
         $rootScope.pageTitle = function () {
-            var title = $rootScope.app.name + ' - ' + ($rootScope.currTitle || $rootScope.app.description);
+            var title = $rootScope.app.name + ' - ' + ($rootScope.currTitle || $rootScope.app.name);
             document.title = title;
             return title;
         };
@@ -2199,7 +2199,8 @@
               },
               {
                   name: 'MT940Loads.module', files: ['/app/js/MT940Loads/MT940Load.controller.js',
-                                                       '/app/js/MT940Loads/MT940Load.service.js']
+                                                       '/app/js/MT940Loads/MT940Load.service.js',
+                                                        '/app/js/MT940Loads/MT940LoadDetail.controller.js']
               },
               {
                   name: 'CustomerStatements.module', files: ['/app/js/CustomerStatements/customerStatements.controller.js',

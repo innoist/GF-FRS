@@ -102,11 +102,15 @@
               //    //    direction: uiGridConstants.ASC
               //    //}
               //},
-              { name: 'A/c #', field: 'AccountNumber', sortId: 1 },
+                {
+                    name: 'A/c #', field: 'AccountNumber', sortId: 1,
+                    cellTemplate: '<div class="ui-grid-cell-contents"><a ui-sref="app.CustomerStatementTransactions({Id : row.entity.MT940CustomerStatementId, MT940LoadId: ' + $stateParams.Id + '})">{{row.entity.AccountNumber}}</a></div>'
+                    
+                },
               { name: 'Description', field: 'Description', sortId: 2 },
               { name: 'Related Message', field: 'ReleatedMessage', sortId: 3 },
               { name: 'Transaction Reference', field: 'TransactionReference', sortId: 5 },
-              { name: 'Action', width: '10%', cellTemplate: '<div class="ui-grid-cell-contents"><a ui-sref="app.CustomerStatementTransactions({Id : row.entity.MT940CustomerStatementId, MT940LoadId: ' + $stateParams.Id + '})" class="btn btn-xs btn-green">Details</a></div>' }
+            //{ name: 'Action', width: '10%' , cellTemplate: '<div class="ui-grid-cell-contents"><a ui-sref="app.CustomerStatementTransactions({Id : row.entity.MT940CustomerStatementId, MT940LoadId: ' + $stateParams.Id + '})" class="btn btn-xs btn-green">Details</a></div>' }
             ],
             onRegisterApi: function (gridApi) {
                 vm.gridApi = gridApi;

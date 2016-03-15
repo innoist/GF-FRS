@@ -303,6 +303,7 @@
     <Compile Include="ViewModels\MT940CustomerStatementTransaction\MT940CustomerStatementTransactionLV.cs" />
     <Compile Include="ViewModels\MT940CustomerStatement\MT940CustomerStatementListViewModel.cs" />
     <Compile Include="ViewModels\MT940Balance\MT940BalanceListViewModel.cs" />
+    <Compile Include="ViewModels\MT940Load\MT940LoadDetail.cs" />
     <Compile Include="ViewModels\MT940Load\MT940LoadListViewModel.cs" />
     <Compile Include="ViewModels\Source\SourceViewModel.cs" />
     <Compile Include="ViewModels\Users\UsersListViewModel.cs" />

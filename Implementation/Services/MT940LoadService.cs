@@ -14,14 +14,18 @@ namespace FRS.Implementation.Services
         #region Private
 
         private readonly IMT940LoadRepository mt940LoadRepository;
+        private readonly ILoadRepository loadRepository;
+        private readonly ILoadMetaDataRepository loadMetaDataRepository;
 
         #endregion
 
         #region Constructor
 
-        public MT940LoadService(IMT940LoadRepository mt940LoadRepository)
+        public MT940LoadService(IMT940LoadRepository mt940LoadRepository, ILoadMetaDataRepository loadMetaDataRepository, ILoadRepository loadRepository)
         {
             this.mt940LoadRepository = mt940LoadRepository;
+            this.loadMetaDataRepository = loadMetaDataRepository;
+            this.loadRepository = loadRepository;
         }
 
         #endregion
@@ -51,6 +55,19 @@ namespace FRS.Implementation.Services
                 mt940LoadRepository.Delete(mt940Load);
                 mt940LoadRepository.SaveChanges();
             }
+        }
+
+        public MT940LoadDetailResponse GetMt940LoadDetail(long mt940LoadId)
+        {
+            MT940LoadDetailResponse response = new MT940LoadDetailResponse
+            {
+                Load = loadRepository.GetLoad(mt940LoadId),
+                Mt940Load = mt940LoadRepository.Find(mt940LoadId)
+                
+            };
+            response.LoadMetaData = loadMetaDataRepository.GetMetaData(response.Load.LoadMetaDataId);
+
+            return response;
         }
     }
 }

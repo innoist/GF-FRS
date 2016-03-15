@@ -39,13 +39,13 @@
 .preloader-progress-bar {
     background-size: auto !important;
     /*width: 128px !important;*/
-    height: 128px !important;
+    height: 88px !important;
 }
 
 .preloader-progress {
-    height: 128px !important;
+    height: 88px !important;
     background-size: auto !important;
-    width: 128px !important;
+    width: 250px !important;
 
 }
 

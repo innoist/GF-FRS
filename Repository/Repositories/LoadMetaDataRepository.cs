@@ -99,6 +99,11 @@ namespace FRS.Repository.Repositories
             return new SearchLoadMetaDataResponse { LoadMetaDatas = loadMetaDatas, TotalCount = DbSet.Count(query), FilteredCount = DbSet.Count(query) };
         }
 
+        public LoadMetaData GetMetaData(long metadataId)
+        {
+            return DbSet.SingleOrDefault(x => x.LoadMetaDataId == metadataId);
+        }
+
         #endregion
     }
 }

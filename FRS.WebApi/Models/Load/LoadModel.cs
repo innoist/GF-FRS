@@ -9,6 +9,7 @@ namespace FRS.WebApi.Models.Load
         public byte LoadMetaDataId { get; set; }
         public long? MT940LoadId { get; set; }
         public DateTime Start { get; set; }
+        public string StartString { get; set; }
         public DateTime? Finish { get; set; }
         public bool InProgress { get; set; }
         public bool ReadOnly { get; set; }
@@ -16,6 +17,7 @@ namespace FRS.WebApi.Models.Load
         public DateTime CreatedOn { get; set; }
         public string ModifiedBy { get; set; }
         public DateTime ModifiedOn { get; set; }
+        public string ModifiedOnStr { get; set; }
         public string Name { get; set; }
 
         //File Properties

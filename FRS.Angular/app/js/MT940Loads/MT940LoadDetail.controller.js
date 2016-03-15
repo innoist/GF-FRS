@@ -8,11 +8,11 @@
 
     var core = angular.module('app.core');
     // ReSharper disable FunctionsUsedBeforeDeclared
-    core.lazy.controller('MT940LoadsController', MT940LoadsController);
+    core.lazy.controller('MT940LoadDetailController', MT940LoadDetailController);
 
-    MT940LoadsController.$inject = ['$scope', '$state', 'uiGridConstants', 'MT940Service'];
+    MT940LoadDetailController.$inject = ['$scope', '$state', '$stateParams', 'uiGridConstants', 'MT940Service'];
 
-    function MT940LoadsController($scope, $state, uiGridConstants, MT940Service) {
+    function MT940LoadDetailController($scope, $state, $stateParams, uiGridConstants, MT940Service) {
 
         var vm = this;
 
@@ -51,16 +51,12 @@
         vm.disabled = undefined;
         vm.Status = {};
         vm.Statuses = [
-          { Id: '1', Name: 'Inactive'},
-          { Id: '2', Name: 'Active'},
-          { Id: '5', Name: 'Pending'}
+          { Id: '1', Name: 'Inactive' },
+          { Id: '2', Name: 'Active' },
+          { Id: '5', Name: 'Pending' }
         ];
 
-        //$http.get(window.frsApiUrl + '/api/LoadMetaDataBase').success(function (response) {
-        //    vm.Statuses = response.Statuses;
-        //});
-
-
+        
 
         //ui-grid
         var paginationOptions = {
@@ -71,9 +67,23 @@
                 PageNo: 1,
                 PageSize: 10,
                 sort: null,
+                MT940LoadId: 0
             },
-
         };
+
+        if ($stateParams.MT940LoadId != "") {
+            paginationOptions.params.MT940LoadId = $stateParams.MT940LoadId;
+            MT940Service.getMT940Detail($stateParams.MT940LoadId, function (response) {
+                var load = response.Load;
+                var mt940LoadModel = response.Mt940LoadModel;
+                var loadMetadata = response.LoadMetaData;
+
+                vm.load = load;
+                vm.mt940Load = mt940LoadModel;
+                vm.loadMetadata = loadMetadata;
+            });
+        }
+
         vm.gridOptions = {
             paginationPageSizes: [10, 25, 50, 100, 500],
             paginationPageSize: 10,
@@ -99,25 +109,15 @@
               //    //    direction: uiGridConstants.ASC
               //    //}
               //},
-              
-              {
-                  name: 'ID',
-                  field: 'MT940LoadId', sortId: 2,
-                  cellTemplate: '<div class="ui-grid-cell-contents"><a ui-sref="app.MT940LoadDetail({MT940LoadId : row.entity.MT940LoadId})">{{ row.entity.MT940LoadId}}</a></div>'
-              },
-              { name: 'Name', field: 'Name', sortId: 2 },
-              { name: 'Created On', field: 'CreatedOnString', sortId: 5 },
-              { name: 'Modified On', field: 'ModifiedOnString', sortId: 5 },
-              { name: 'File', field: 'FileName', sortId: 3 },
                 {
-                    name: 'Progress', field: 'Progress', sortId: 3,
-                    cellTemplate: '<div class="ui-grid-cell-contents"><span class=""><i class="fa fa-check-square-o"></i></span></div>'
+                    name: 'A/c #', field: 'AccountNumber', sortId: 1,
+                    //cellTemplate: '<div class="ui-grid-cell-contents"><a ui-sref="app.CustomerStatementTransactions({Id : row.entity.MT940CustomerStatementId, MT940LoadId: ' + $stateParams.Id + '})">{{row.entity.AccountNumber}}</a></div>'
 
                 },
-              { name: 'Statement Count', field: 'CustomerStatementCount', sortId: 3 },
-              { name: 'Status', field: 'Status', sortId: 4 }
-              
-              //{ name: 'Action', width: '10%', cellTemplate: '<div class="ui-grid-cell-contents"><a ui-sref="app.CustomerStatements({Id : row.entity.MT940LoadId})" class="btn btn-xs btn-green">Details</a></div>' }
+              { name: 'Description', field: 'Description', sortId: 2 },
+              { name: 'Related Message', field: 'ReleatedMessage', sortId: 3 },
+              { name: 'Transaction Reference', field: 'TransactionReference', sortId: 5 },
+            //{ name: 'Action', width: '10%' , cellTemplate: '<div class="ui-grid-cell-contents"><a ui-sref="app.CustomerStatementTransactions({Id : row.entity.MT940CustomerStatementId, MT940LoadId: ' + $stateParams.Id + '})" class="btn btn-xs btn-green">Details</a></div>' }
             ],
             onRegisterApi: function (gridApi) {
                 vm.gridApi = gridApi;
@@ -159,35 +159,40 @@
                     break;
             }
 
-            MT940Service.getGridData(
+            MT940Service.getCustomerStatements(
                 function onSuccess(data) {
                     vm.gridOptions.totalItems = data.TotalCount;
-                    vm.gridOptions.data = data.Mt940Loads;
-            }, null, paginationOptions);
+                    vm.gridOptions.data = data.Data;
+                }, null, paginationOptions);
 
-            
+
         };
 
         $scope.resetFilter = function () {
-            vm.dt = null;
+            //vm.dt = null;
             //vm.name = '';
-            vm.Status.selected = null;
+            //vm.Status.selected = null;
 
             paginationOptions.params.IsAsc = true;
             paginationOptions.params.PageNo = 1;
             paginationOptions.params.sort = null;
             paginationOptions.params.SortBy = 0;
+            paginationOptions.params.accountNumber = vm.accountNumber = '';
             getPage();
         }
 
         $scope.fiterData = function () {
-            //paginationOptions.params.Name = vm.name;
+            paginationOptions.params.accountNumber = vm.accountNumber;
             //paginationOptions.params.CreatedDate = vm.dt;
-            paginationOptions.params.LoadTypeId = vm.Statuses.selected == null ? 0 : vm.Status.selected.Id;
+            //paginationOptions.params.LoadTypeId = vm.Statuses.selected == null ? 0 : vm.Status.selected.Id;
             getPage();
         }
 
         $scope.resetFilter();
+        //Set Id 
+        
+
+        
 
 
     }

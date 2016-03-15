@@ -1,4 +1,5 @@
 ﻿using System.Data.Entity;
+using System.Linq;
 using FRS.Interfaces.Repository;
 using FRS.Models.DomainModels;
 using FRS.Repository.BaseRepository;
@@ -18,5 +19,9 @@ namespace FRS.Repository.Repositories
         }
 
 
+        public Load GetLoad(long mt940LoadId)
+        {
+            return DbSet.FirstOrDefault(x => x.MT940LoadId == mt940LoadId);
+        }
     }
 }

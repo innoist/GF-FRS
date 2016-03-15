@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using FRS.Models.Common.DropDown;
-using FRS.Models.DomainModels;
 
 namespace FRS.Models.ResponseModels
 {
