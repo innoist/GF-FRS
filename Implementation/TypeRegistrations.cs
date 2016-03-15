@@ -39,6 +39,7 @@ namespace FRS.Implementation
             unityContainer.RegisterType<IMT940CustomerStatementService, MT940CustomerStatementService>();
             unityContainer.RegisterType<IMT940CustomerStatementTransactionService, MT940CustomerStatementTransactionService>();
             unityContainer.RegisterType<IMT940BalanceService, MT940BalanceService>();
+            unityContainer.RegisterType<IOracleGLLoadService, OracleGLLoadService>();
         }
     }
 }

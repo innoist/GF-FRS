@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using FRS.Models.DomainModels;
+﻿using FRS.Models.DomainModels;
 using FRS.WebApi.Models.MT940CustomerStatement;
 using FRS.WebApi.Models.MT940CustomerStatementTransaction;
 

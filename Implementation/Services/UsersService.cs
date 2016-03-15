@@ -5,7 +5,6 @@ using FRS.Interfaces.Repository;
 using FRS.Models.IdentityModels;
 using FRS.Models.RequestModels;
 using FRS.Models.ResponseModels;
-using Microsoft.AspNet.Identity;
 
 namespace FRS.Implementation.Services
 {

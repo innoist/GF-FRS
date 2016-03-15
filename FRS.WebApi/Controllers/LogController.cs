@@ -1,18 +1,12 @@
-﻿using FRS.Implementation.Services;
-using FRS.Interfaces.IServices;
-using FRS.Models.LoggerModels;
+﻿using FRS.Interfaces.IServices;
 using FRS.Models.RequestModels;
 using FRS.WebApi.ViewModels.Log;
 using FRS.WebBase.Mvc;
 using FRS.WebBase.UnityConfiguration;
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
 using System.Web;
 using System.Web.Http;
-using System.Web.Http.Cors;
 using FRS.WebApi.ModelMappers.Log;
 using Microsoft.Practices.Unity;
 

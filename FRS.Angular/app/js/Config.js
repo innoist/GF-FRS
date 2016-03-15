@@ -54,6 +54,14 @@
                 controllerAs: 'mdc',
                 resolve: helper.resolveFor('ui.grid', 'ui.select', 'loadMetaData.module')
             })
+            .state('app.OracleGlLoad', {
+                url: '/OracleGlLoad',
+                title: 'Oracle GL Loads',
+                templateUrl: helper.basepath('../../../../app/views/OracleGlLoad/OracleGlLoad.html'),
+                controller: 'OracleGlLoadController',
+                controllerAs: 'ogllc',
+                resolve: helper.resolveFor('ui.grid', 'ui.select', 'OracleGlLoad.module')
+            })
             .state('app.MT940Loads', {
                 url: '/MT940Loads',
                 title: 'MT940 Loads',

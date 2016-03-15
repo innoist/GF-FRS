@@ -1,0 +1,65 @@
+﻿<h3>
+    <!-- START Language list-->
+    <div class="pull-right">
+        <a ui-sref="app.Load" class="btn btn-info btn-labeled">
+            <span class="btn-label">
+                <i class="fa fa-plus"></i>
+            </span>New
+        </a>
+        <button class="btn btn-warning btn-labeled" ng-click="isFilterOpen = !isFilterOpen" ng-show="!isFilterOpen">
+            <span class="btn-label">
+                <i class="fa fa-filter"></i>
+            </span>Filter
+        </button>
+    </div>
+    <!-- END Language list    -->
+    Loads (Oracle GL)
+    <small>Oracle GL Bank Loads</small>
+</h3>
+<div class="container-fluid" ng-show="isFilterOpen">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="col-md-3">
+                <input type="text" placeholder="Name" class="form-control" ng-model="ogllc.name" />
+            </div>
+            <div class="col-md-3">
+                <p class="input-group">
+                    <input type="text" placeholder="Select Date"
+                           uib-datepicker-popup="{{ogllc.format}}"
+                           ng-model="ogllc.dt"
+                           is-open="ogllc.opened"
+                           min-date="ogllc.minDate"
+                           max-date="'ogllc.maxDate'"
+                           uib-datepicker-options="ogllc.dateOptions"
+                           date-disabled="ogllc.disabled(date, mode)"
+                           close-text="Close"
+                           class="form-control"
+                           ng-disabled="true" />
+                    <span class="input-group-btn">
+                        <button type="button" ng-click="ogllc.open($event)" class="btn btn-default">
+                            <em class="fa fa-calendar"></em>
+                        </button>
+                    </span>
+                </p>
+            </div>
+            <div class="col-md-3">
+                <ui-select ng-model="ogllc.Status.selected" theme="bootstrap" ng-disabled="ogllc.disabled">
+                    <ui-select-match placeholder="Select a status...">{{$select.selected.Name}}</ui-select-match>
+                    <ui-select-choices repeat="obj in ogllc.Statuses | propsFilter: {Name: $select.search, Id: $select.search}">
+                        <div ng-bind-html="obj.Name | highlight: $select.search"></div>
+                    </ui-select-choices>
+                </ui-select>
+            </div>
+            <button class="btn btn-success" ng-click="fiterData()">Filter</button>
+            <button class="btn btn-default" ng-click="resetFilter()">Reset</button>
+
+            <a class="pull-right" title="Hide filter Section" ng-click="isFilterOpen = !isFilterOpen"><i class="fa fa-compress"></i></a>
+        </div>
+
+    </div>
+</div>
+
+<div class="container-fluid animated">
+    <!-- Grid view to show listview with searching, sorting and pagination-->
+    <div ui-grid="ogllc.gridOptions" ui-grid-pagination ui-grid-move-columns ui-grid-resize-columns class="table-uigrid flip"></div>
+</div>

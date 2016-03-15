@@ -79,6 +79,9 @@
     <Content Include="app\js\CustomerStatementTransactions\customerStatementTransactions.service.js" />
     <Content Include="app\js\CustomerStatements\customerStatements.controller.js" />
     <Content Include="app\js\CustomerStatements\customerStatements.service.js" />
+    <Content Include="app\js\OracleGlLoads\OracleGlLoad.controller.js" />
+    <Content Include="app\js\OracleGlLoads\OracleGlLoad.service.js" />
+    <Content Include="app\js\OracleGlLoads\OracleGlLoadDetail.controller.js" />
     <Content Include="app\js\MT940Loads\MT940LoadDetail.controller.js" />
     <Content Include="app\js\MT940Loads\MT940Load.controller.js" />
     <Content Include="app\js\MT940Loads\MT940Load.service.js" />
@@ -124,6 +127,7 @@
     <Content Include="app\views\CustomerStatements\CustomerStatements.html" />
     <Content Include="app\views\MT940Loads\MT940LoadDetail.html" />
     <Content Include="app\views\MT940Loads\MT940Loads.html" />
+    <Content Include="app\views\OracleGlLoad\OracleGlLoad.html" />
     <Content Include="app\views\RightsManagement\index.html" />
     <Content Include="app\views\Source\SourceCreate.html" />
     <Content Include="app\views\Status\CreateStatus.html" />

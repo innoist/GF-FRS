@@ -6,7 +6,6 @@ using FRS.Interfaces.IServices;
 using FRS.Models.RequestModels;
 using FRS.WebApi.ModelMappers;
 using FRS.WebApi.ViewModels.MT940Balance;
-using FRS.WebApi.ViewModels.MT940CustomerStatementTransaction;
 using FRS.WebBase.Mvc;
 
 namespace FRS.WebApi.Controllers

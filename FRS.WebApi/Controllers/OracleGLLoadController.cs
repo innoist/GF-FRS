@@ -6,22 +6,23 @@ using FRS.Interfaces.IServices;
 using FRS.Models.RequestModels;
 using FRS.WebApi.ModelMappers;
 using FRS.WebApi.ViewModels.MT940Load;
+using FRS.WebApi.ViewModels.OracleGlLoad;
 using FRS.WebBase.Mvc;
 
 namespace FRS.WebApi.Controllers
 {
-    public class MT940LoadController : ApiController
+    public class OracleGLLoadController : ApiController
     {
         #region Private
 
-        private readonly IMT940LoadService mt940LoadService;
+        private readonly IOracleGLLoadService oracleGlLoadService;
         #endregion
 
         #region Public
 
-        public MT940LoadController(IMT940LoadService mt940LoadService)
+        public OracleGLLoadController(IOracleGLLoadService oracleGlLoadService)
         {
-            this.mt940LoadService = mt940LoadService;
+            this.oracleGlLoadService = oracleGlLoadService;
         }
 
         #region Get
@@ -30,35 +31,36 @@ namespace FRS.WebApi.Controllers
         [Authorize]
         public MT940LoadDetail Get(long id)
         {
-            if (id <= 0)
-            {
-                throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
-            }
-            var detail = mt940LoadService.GetMt940LoadDetail(id);
-            MT940LoadDetail model = new MT940LoadDetail()
-            {
-                Load = detail.Load.CreateFromServerToClient(),
-                LoadMetaData = detail.LoadMetaData.CreateFromServerToClient(),
-                Mt940LoadModel = detail.Mt940Load.CreateFromServerToClient()
-            };
+            //if (id <= 0)
+            //{
+            //    throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
+            //}
+            //var detail = mt940LoadService.GetMt940LoadDetail(id);
+            //MT940LoadDetail model = new MT940LoadDetail()
+            //{
+            //    Load = detail.Load.CreateFromServerToClient(),
+            //    LoadMetaData = detail.LoadMetaData.CreateFromServerToClient(),
+            //    Mt940LoadModel = detail.Mt940Load.CreateFromServerToClient()
+            //};
 
-            return model;
+            //return model;
+            return null;
         }
 
         [HttpGet]
         [Authorize]
         [ApiException]
-        public MT940LoadListViewModel Get([FromUri]MT940LoadSearchRequest searchRequest)
+        public OracleGLLoadLVModel Get([FromUri]OracleGLLoadSearchRequest searchRequest)
         {
             if (searchRequest == null || !ModelState.IsValid)
             {
                 throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
             }
 
-            var response = mt940LoadService.GetMt940SearchResponse(searchRequest);
-            MT940LoadListViewModel listViewModel = new MT940LoadListViewModel
+            var response = oracleGlLoadService.GetOracleGLSearchResponse(searchRequest);
+            OracleGLLoadLVModel listViewModel = new OracleGLLoadLVModel
             {
-                Mt940Loads = response.Data.Select(x => x.CreateFromServerToClient()).ToList(),
+                OracleGlLoads = response.Data.Select(x => x.CreateFromServerToClient()).ToList(),
                 FilteredCount = response.FilteredCount,
                 TotalCount = response.TotalCount
             };

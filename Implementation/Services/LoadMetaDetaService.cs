@@ -3,7 +3,6 @@ using FRS.Interfaces.IServices;
 using FRS.Interfaces.Repository;
 using FRS.Models.Common;
 using FRS.Models.DomainModels;
-using FRS.Models.IdentityModels;
 using FRS.Models.RequestModels;
 using FRS.Models.ResponseModels;
 
