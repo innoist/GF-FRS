@@ -124,6 +124,7 @@
     <Compile Include="DomainModels\FiscalYear.cs" />
     <Compile Include="DomainModels\Load.cs" />
     <Compile Include="DomainModels\LoadMetaData.cs" />
+    <Compile Include="DomainModels\LoadStatus.cs" />
     <Compile Include="DomainModels\LoadType.cs" />
     <Compile Include="DomainModels\MT940Balance.cs" />
     <Compile Include="DomainModels\MT940CustomerStatement.cs" />

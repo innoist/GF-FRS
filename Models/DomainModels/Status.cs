@@ -13,5 +13,6 @@ namespace FRS.Models.DomainModels
         public virtual ICollection<LoadType> LoadTypes { get; set; }
         public virtual ICollection<OracleGLEntry> OracleGLEntries { get; set; }
         public virtual ICollection<OracleGLLoad> OracleGLLoads { get; set; }
+        public virtual ICollection<LoadStatu> LoadStatus { get; set; }
     }
 }

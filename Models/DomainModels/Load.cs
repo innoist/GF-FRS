@@ -6,6 +6,7 @@ namespace FRS.Models.DomainModels
     {
         public long LoadId { get; set; }
         public byte LoadMetaDataId { get; set; }
+        public byte LoadStatusId { get; set; }
         public long? MT940LoadId { get; set; }
         public DateTime Start { get; set; }
         public DateTime? Finish { get; set; }
@@ -21,5 +22,6 @@ namespace FRS.Models.DomainModels
         public virtual LoadMetaData LoadMetaData { get; set; }
         public virtual OracleGLLoad OracleGLLoad { get; set; }
         public virtual MT940Load MT940Load { get; set; }
+        public virtual LoadStatu LoadStatu { get; set; }
     }
 }

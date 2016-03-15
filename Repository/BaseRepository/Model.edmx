@@ -111,6 +111,7 @@
           <Property Name="Start" Type="datetime" Nullable="false" />
           <Property Name="Finish" Type="datetime" />
           <Property Name="InProgress" Type="bit" Nullable="false" />
+          <Property Name="LoadStatusId" Type="tinyint" Nullable="false" />
           <Property Name="ReadOnly" Type="bit" Nullable="false" />
           <Property Name="CreatedBy" Type="nvarchar" MaxLength="128" Nullable="false" />
           <Property Name="CreatedOn" Type="datetime2" Precision="7" Nullable="false" />
@@ -133,6 +134,14 @@
           <Property Name="CreatedOn" Type="datetime2" Precision="7" Nullable="false" />
           <Property Name="ModifiedBy" Type="nvarchar" MaxLength="128" Nullable="false" />
           <Property Name="ModifiedOn" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="StatusId" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LoadStatus">
+          <Key>
+            <PropertyRef Name="Value" />
+          </Key>
+          <Property Name="Value" Type="tinyint" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="15" Nullable="false" />
           <Property Name="StatusId" Type="tinyint" Nullable="false" />
         </EntityType>
         <EntityType Name="LoadType">
@@ -462,39 +471,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Load_LoadMetaData">
-          <End Role="LoadMetaData" Type="Self.LoadMetaData" Multiplicity="1" />
+        <Association Name="FK_Load_LoadStatus">
+          <End Role="LoadStatus" Type="Self.LoadStatus" Multiplicity="1" />
           <End Role="Load" Type="Self.Load" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="LoadMetaData">
-              <PropertyRef Name="LoadMetaDataId" />
+            <Principal Role="LoadStatus">
+              <PropertyRef Name="Value" />
             </Principal>
             <Dependent Role="Load">
-              <PropertyRef Name="LoadMetaDataId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Load_MT940Load">
-          <End Role="MT940Load" Type="Self.MT940Load" Multiplicity="0..1" />
-          <End Role="Load" Type="Self.Load" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="MT940Load">
-              <PropertyRef Name="MT940LoadId" />
-            </Principal>
-            <Dependent Role="Load">
-              <PropertyRef Name="MT940LoadId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Load_OracleGLLoad">
-          <End Role="OracleGLLoad" Type="Self.OracleGLLoad" Multiplicity="0..1" />
-          <End Role="Load" Type="Self.Load" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="OracleGLLoad">
-              <PropertyRef Name="OracleGLLoadId" />
-            </Principal>
-            <Dependent Role="Load">
-              <PropertyRef Name="OracleGLLoadId" />
+              <PropertyRef Name="LoadStatusId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -530,6 +515,18 @@
               <PropertyRef Name="Value" />
             </Principal>
             <Dependent Role="LoadMetaData">
+              <PropertyRef Name="StatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LoadStatus_Status">
+          <End Role="Status" Type="Self.Status" Multiplicity="1" />
+          <End Role="LoadStatus" Type="Self.LoadStatus" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="Value" />
+            </Principal>
+            <Dependent Role="LoadStatus">
               <PropertyRef Name="StatusId" />
             </Dependent>
           </ReferentialConstraint>
@@ -690,6 +687,7 @@
           <EntitySet Name="FiscalYear" EntityType="Self.FiscalYear" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Load" EntityType="Self.Load" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LoadMetaData" EntityType="Self.LoadMetaData" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LoadStatus" EntityType="Self.LoadStatus" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LoadType" EntityType="Self.LoadType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Log" EntityType="Self.Log" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Menu" EntityType="Self.Menu" Schema="dbo" store:Type="Tables" />
@@ -746,16 +744,8 @@
             <End Role="Menu" EntitySet="Menu" />
             <End Role="MenuRight" EntitySet="MenuRight" />
           </AssociationSet>
-          <AssociationSet Name="FK_Load_LoadMetaData" Association="Self.FK_Load_LoadMetaData">
-            <End Role="LoadMetaData" EntitySet="LoadMetaData" />
-            <End Role="Load" EntitySet="Load" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Load_MT940Load" Association="Self.FK_Load_MT940Load">
-            <End Role="MT940Load" EntitySet="MT940Load" />
-            <End Role="Load" EntitySet="Load" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Load_OracleGLLoad" Association="Self.FK_Load_OracleGLLoad">
-            <End Role="OracleGLLoad" EntitySet="OracleGLLoad" />
+          <AssociationSet Name="FK_Load_LoadStatus" Association="Self.FK_Load_LoadStatus">
+            <End Role="LoadStatus" EntitySet="LoadStatus" />
             <End Role="Load" EntitySet="Load" />
           </AssociationSet>
           <AssociationSet Name="FK_LoadMetaData_LoadType" Association="Self.FK_LoadMetaData_LoadType">
@@ -769,6 +759,10 @@
           <AssociationSet Name="FK_LoadMetaData_Status" Association="Self.FK_LoadMetaData_Status">
             <End Role="Status" EntitySet="Status" />
             <End Role="LoadMetaData" EntitySet="LoadMetaData" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LoadStatus_Status" Association="Self.FK_LoadStatus_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="LoadStatus" EntitySet="LoadStatus" />
           </AssociationSet>
           <AssociationSet Name="FK_LoadType_Status" Association="Self.FK_LoadType_Status">
             <End Role="Status" EntitySet="Status" />
@@ -996,6 +990,15 @@
             <End Role="Status" EntitySet="Status" />
             <End Role="OracleGLLoad" EntitySet="OracleGLLoads" />
           </AssociationSet>
+          <EntitySet Name="LoadStatus" EntityType="angularModel.LoadStatu" />
+          <AssociationSet Name="FK_Load_LoadStatus" Association="angularModel.FK_Load_LoadStatus">
+            <End Role="LoadStatu" EntitySet="LoadStatus" />
+            <End Role="Load" EntitySet="Loads" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LoadStatus_Status" Association="angularModel.FK_LoadStatus_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="LoadStatu" EntitySet="LoadStatus" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="Menu">
           <Key>
@@ -1186,6 +1189,8 @@
           <Property Name="Name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="OracleGLLoadId" Type="Int64" />
           <NavigationProperty Name="OracleGLLoad" Relationship="angularModel.FK_Load_OracleGLLoad" FromRole="Load" ToRole="OracleGLLoad" />
+          <Property Name="LoadStatusId" Type="Byte" Nullable="false" />
+          <NavigationProperty Name="LoadStatu" Relationship="angularModel.FK_Load_LoadStatus" FromRole="Load" ToRole="LoadStatu" />
         </EntityType>
         <EntityType Name="LoadMetaData">
           <Key>
@@ -1285,6 +1290,7 @@
           <NavigationProperty Name="Sources" Relationship="angularModel.FK_Source_Status" FromRole="Status" ToRole="Source" />
           <NavigationProperty Name="OracleGLEntries" Relationship="angularModel.FK_OracleGLEntry_Status" FromRole="Status" ToRole="OracleGLEntry" />
           <NavigationProperty Name="OracleGLLoads" Relationship="angularModel.FK_OracleGLLoad_Status" FromRole="Status" ToRole="OracleGLLoad" />
+          <NavigationProperty Name="LoadStatus" Relationship="angularModel.FK_LoadStatus_Status" FromRole="Status" ToRole="LoadStatu" />
         </EntityType>
         <Association Name="FK_MT940Load_FileContent">
           <End Type="angularModel.FileContent" Role="FileContent" Multiplicity="1" />
@@ -1693,6 +1699,40 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="LoadStatu">
+          <Key>
+            <PropertyRef Name="Value" />
+          </Key>
+          <Property Name="Value" Type="Byte" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="StatusId" Type="Byte" Nullable="false" />
+          <NavigationProperty Name="Loads" Relationship="angularModel.FK_Load_LoadStatus" FromRole="LoadStatu" ToRole="Load" />
+          <NavigationProperty Name="Status" Relationship="angularModel.FK_LoadStatus_Status" FromRole="LoadStatu" ToRole="Status" />
+        </EntityType>
+        <Association Name="FK_Load_LoadStatus">
+          <End Type="angularModel.LoadStatu" Role="LoadStatu" Multiplicity="1" />
+          <End Type="angularModel.Load" Role="Load" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LoadStatu">
+              <PropertyRef Name="Value" />
+            </Principal>
+            <Dependent Role="Load">
+              <PropertyRef Name="LoadStatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LoadStatus_Status">
+          <End Type="angularModel.Status" Role="Status" Multiplicity="1" />
+          <End Type="angularModel.LoadStatu" Role="LoadStatu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="Value" />
+            </Principal>
+            <Dependent Role="LoadStatu">
+              <PropertyRef Name="StatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1819,6 +1859,7 @@
           <EntitySetMapping Name="Loads">
             <EntityTypeMapping TypeName="angularModel.Load">
               <MappingFragment StoreEntitySet="Load">
+                <ScalarProperty Name="LoadStatusId" ColumnName="LoadStatusId" />
                 <ScalarProperty Name="OracleGLLoadId" ColumnName="OracleGLLoadId" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
@@ -2035,6 +2076,15 @@
                 <ScalarProperty Name="FileName" ColumnName="FileName" />
                 <ScalarProperty Name="Path" ColumnName="Path" />
                 <ScalarProperty Name="OracleGLLoadId" ColumnName="OracleGLLoadId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LoadStatus">
+            <EntityTypeMapping TypeName="angularModel.LoadStatu">
+              <MappingFragment StoreEntitySet="LoadStatus">
+                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

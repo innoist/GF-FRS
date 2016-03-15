@@ -132,6 +132,7 @@ namespace FRS.Repository.BaseRepository
         public DbSet<FiscalYear> FiscalYears { get; set; }
         public DbSet<OracleGLEntry> OracleGLEntries { get; set; }
         public DbSet<OracleGLLoad> OracleGLLoads { get; set; }
+        public DbSet<LoadStatu> LoadStatus { get; set; }
         /// <summary>
         /// Execute store procedure for creating d
         /// </summary>

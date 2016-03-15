@@ -57,7 +57,10 @@
         <AssociationConnector Association="angularModel.FK_OracleGLEntry_OracleGLLoad" />
         <AssociationConnector Association="angularModel.FK_OracleGLEntry_Status" />
         <AssociationConnector Association="angularModel.FK_OracleGLLoad_Status" />
-      </Diagram>
+        <EntityTypeShape EntityType="angularModel.LoadStatu" Width="1.5" PointX="7.625" PointY="25.875" />
+        <AssociationConnector Association="angularModel.FK_Load_LoadStatus" />
+        <AssociationConnector Association="angularModel.FK_LoadStatus_Status" />
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>
