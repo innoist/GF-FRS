@@ -166,6 +166,22 @@
                 controllerAs: 'rightsManagement',
                 resolve: helper.resolveFor('rightsManagement.module', 'ui.grid', 'loaders.css', 'spinkit', 'ui.select')
             })
+            .state('app.LoadStatus', {
+                url: '/LoadStatus',
+                title: 'Load Status',
+                templateUrl: helper.basepath('../../../../app/views/LoadStatus/LoadStatus.html'),
+                controller: 'LoadStatusController',
+                controllerAs: 'lsc',
+                resolve: helper.resolveFor('LoadStatus.module', 'ui.grid')
+            })
+            .state('app.NewLoadStatus', {
+                url: '/NewLoadStatus',
+                title: 'New Load Status',
+                templateUrl: helper.basepath('../../../../app/views/LoadStatus/NewLoadStatus.html'),
+                controller: 'NewLoadStatusController',
+                controllerAs: 'nlsc',
+                resolve: helper.resolveFor('LoadStatus.module', 'ui.grid', 'ui.select')
+            })
             .state('app.FiscalYear', {
                 url: '/FiscalYear',
                 title: 'FiscalYear',

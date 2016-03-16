@@ -35,6 +35,7 @@ namespace FRS.Implementation
             unityContainer.RegisterType<ILoadTypeService, LoadTypeService>();
             unityContainer.RegisterType<ICurrencyService, CurrencyService>();
             unityContainer.RegisterType<IFiscalYearService, FiscalYearService>();
+            unityContainer.RegisterType<ILoadStatusService, LoadStatusService>();
             unityContainer.RegisterType<IStatusService, StatusService>();
             unityContainer.RegisterType<ISourceService, SourceService>();
             unityContainer.RegisterType<IMT940CustomerStatementService, MT940CustomerStatementService>();

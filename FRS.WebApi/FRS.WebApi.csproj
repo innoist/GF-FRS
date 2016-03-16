@@ -245,6 +245,7 @@
     <Compile Include="Areas\Load\Controllers\UsersController.cs" />
     <Compile Include="Areas\Load\LoadAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\LoadStatusController.cs" />
     <Compile Include="Controllers\FiscalYearController.cs" />
     <Compile Include="Controllers\CurrencyController.cs" />
     <Compile Include="Controllers\MT940BalanceController.cs" />
@@ -261,7 +262,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="ModelMappers\CurrencyMapper.cs" />
+    <Compile Include="ModelMappers\ReferenceDataMapper.cs" />
     <Compile Include="ModelMappers\CustomerStatementMapper.cs" />
     <Compile Include="ModelMappers\LoadMapper.cs" />
     <Compile Include="ModelMappers\LoadMetaDataMapper.cs" />
@@ -277,6 +278,7 @@
     <Compile Include="Models\Currency\CurrencyModel.cs" />
     <Compile Include="Models\FiscalYearModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\LoadStatusModel.cs" />
     <Compile Include="Models\LoadType\LoadType.cs" />
     <Compile Include="Models\Load\LoadModel.cs" />
     <Compile Include="Models\Log\LogModel.cs" />
@@ -300,6 +302,7 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\LoadStatus\LoadStatusViewModel.cs" />
     <Compile Include="ViewModels\LoadType\LoadTypeViewModel.cs" />
     <Compile Include="ViewModels\Load\BaseDataLoad.cs" />
     <Compile Include="ViewModels\Log\LogViewModel.cs" />

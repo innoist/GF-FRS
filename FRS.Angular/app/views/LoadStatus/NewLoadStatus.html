@@ -1,0 +1,64 @@
+﻿<h3>
+    <!-- START Language list-->
+    <div class="pull-right">
+        <button ng-click="save(false)" ng-disabled="!nlsc.formValidate.$dirty" type="button" class="btn btn-labeled btn-success">
+            <span class="btn-label">
+                <i class="fa fa-check"></i>
+            </span><span class="hidden-480" ng-if="!update">Save</span>
+            <span class="hidden-480" ng-if="update">Update</span>
+        </button>
+        <button ng-click="save(true)" ng-disabled="!nlsc.formValidate.$dirty" ng-if="!update" type="button" class="btn btn-labeled btn-info">
+            <span class="btn-label">
+                <i class="fa fa-plus"></i>
+            </span><span class="hidden-480">Save and New</span>
+        </button>
+        <button class="btn btn-labeled btn-danger" ng-click="cancelBtn()">
+            <span class="btn-label">
+                <i class="fa fa-times"></i>
+            </span><span class="hidden-480">Cancel</span>
+        </button>
+    </div>
+    <!-- END Language list    -->
+    Fiscal Year
+    <small>Create</small>
+</h3>
+
+<div class="panel panel-default">
+    <div class="panel-body">
+        <form class="form-horizontal form-validate" name="nlsc.formValidate" novalidate="">
+            <div class="form-group">
+                <fieldset>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="col-md-12" ng-class="{ 'has-error': nlsc.validateInput(nlsc.formValidate.Name, 'required') }">
+                                <label for="Name" class="control-label requiredLabel">Name</label>
+                                <input id="Name" type="text" placeholder="Year Name"
+                                       ng-model="Name" name="Name"
+                                       uib-tooltip="{{ nlsc.validateInput(nlsc.formValidate.Name, 'required') ? 'Name field is required.' : '' }}"
+                                       uib-tooltip-trigger="focus"
+                                       uib-tooltip-placement="bottom"
+                                       required class="form-control">
+
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="col-md-12" ng-class="{ 'has-error': nlsc.validateInput(nlsc.formValidate.Value, 'required') }">
+                                <label for="Value" class="control-label requiredLabel">Value</label>
+                                <input id="Value" type="text" placeholder="Value"
+                                       ng-model="Value" name="Value"
+                                       uib-tooltip="{{ nlsc.validateInput(nlsc.formValidate.Value, 'required') ? 'Value field is required.' : '' }}"
+                                       uib-tooltip-trigger="focus"
+                                       uib-tooltip-placement="bottom"
+                                       required class="form-control">
+
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+        </form>
+    </div>
+</div>

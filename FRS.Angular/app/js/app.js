@@ -2237,6 +2237,11 @@
                                                      '/app/js/FiscalYear/newFiscalYear.controller.js']
               },
               {
+                  name: 'LoadStatus.module', files: ['/app/js/LoadStatus/loadStatus.controller.js',
+                                                     '/app/js/LoadStatus/loadStatus.service.js',
+                                                     '/app/js/LoadStatus/newLoadStatus.controller.js']
+              },
+              {
                   name: 'currency.module', files: ['/app/js/currency/Index/currency.controller.js',
                                                         '/app/js/currency/Index/currency.service.js']
               },

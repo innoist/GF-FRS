@@ -4,7 +4,7 @@ using FRS.WebApi.Models.Currency;
 
 namespace FRS.WebApi.ModelMappers
 {
-    public static class CurrencyMapper
+    public static class ReferenceDataMapper
     {
         public static Currency MapFromClientToServer(this CurrencyModel source)
         {
@@ -24,6 +24,7 @@ namespace FRS.WebApi.ModelMappers
                 Value = source.Value
             };
         }
+        
         public static FiscalYear MapFromClientToServer(this FiscalYearModel source)
         {
             return new FiscalYear
@@ -38,6 +39,26 @@ namespace FRS.WebApi.ModelMappers
             {
                 Name = source.Name,
                 Value = source.Value
+            };
+        }
+        
+        public static LoadStatu MapFromClientToServer(this LoadStatusModel source)
+        {
+            return new LoadStatu
+            {
+                Name = source.Name,
+                Value = source.Value,
+                StatusId = source.StatusId
+            };
+        }
+        public static LoadStatusModel MapFromServerToClient(this LoadStatu source)
+        {
+            return new LoadStatusModel
+            {
+                Name = source.Name,
+                Value = source.Value,
+                Status = source.Status.Name,
+                StatusId = source.StatusId
             };
         }
     }

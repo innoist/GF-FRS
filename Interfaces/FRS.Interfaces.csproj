@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IServices\IClaimsSecurityService.cs" />
+    <Compile Include="IServices\ILoadStatusService.cs" />
     <Compile Include="IServices\IFiscalYearService.cs" />
     <Compile Include="IServices\ICurrencyService.cs" />
     <Compile Include="IServices\IEmployeeService.cs" />
@@ -71,6 +72,7 @@
     <Compile Include="IServices\IUsersService.cs" />
     <Compile Include="IServices\IWebApiAuthenticationService.cs" />
     <Compile Include="Repository\IAspNetRoleRepository.cs" />
+    <Compile Include="Repository\ILoadStatusRepository.cs" />
     <Compile Include="Repository\IFiscalYearRepository.cs" />
     <Compile Include="Repository\ICurrencyRepository.cs" />
     <Compile Include="Repository\IEmployeeRepository.cs" />

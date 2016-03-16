@@ -167,6 +167,7 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\AspNetRoleRepository.cs" />
+    <Compile Include="Repositories\LoadStatusRepository.cs" />
     <Compile Include="Repositories\FiscalYearRepository.cs" />
     <Compile Include="Repositories\CurrencyRepository.cs" />
     <Compile Include="Repositories\EmployeeRepository.cs" />
