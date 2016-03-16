@@ -62,6 +62,14 @@
                 controllerAs: 'ogllc',
                 resolve: helper.resolveFor('ui.grid', 'ui.select', 'OracleGlLoad.module')
             })
+            .state('app.OracleGlLoadDetail', {
+                url: '/OracleGlLoadDetail',
+                title: 'Oracle GL Load Detail',
+                templateUrl: helper.basepath('../../../../app/views/OracleGlLoad/OracleGlLoadDetail.html'),
+                controller: 'OracleGlLoadController',
+                controllerAs: 'ogllc',
+                resolve: helper.resolveFor('ui.grid', 'ui.select', 'OracleGlLoad.module')
+            })
             .state('app.MT940Loads', {
                 url: '/MT940Loads',
                 title: 'MT940 Loads',
@@ -157,6 +165,22 @@
                 controller: 'RightsManagementController',
                 controllerAs: 'rightsManagement',
                 resolve: helper.resolveFor('rightsManagement.module', 'ui.grid', 'loaders.css', 'spinkit', 'ui.select')
+            })
+            .state('app.FiscalYear', {
+                url: '/FiscalYear',
+                title: 'FiscalYear',
+                templateUrl: helper.basepath('../../../../app/views/FiscalYear/FiscalYear.html'),
+                controller: 'FiscalYearController',
+                controllerAs: 'fyc',
+                resolve: helper.resolveFor('FiscalYear.module', 'ui.grid')
+            })
+            .state('app.NewFiscalYear', {
+                url: '/NewFiscalYear/:Id',
+                title: 'New Fiscal Year',
+                templateUrl: helper.basepath('../../../../app/views/FiscalYear/NewFiscalYear.html'),
+                controller: 'NewFiscalYearController',
+                controllerAs: 'nfyc',
+                resolve: helper.resolveFor('FiscalYear.module', 'oitozero.ngSweetAlert')
             })
             .state('app.Currency', {
                 url: '/Currency',

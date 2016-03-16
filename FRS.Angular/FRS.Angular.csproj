@@ -73,6 +73,9 @@
     <Content Include="app\js\Currency\Index\currency.controller.js" />
     <Content Include="app\js\Currency\Create\newCurrency.service.js" />
     <Content Include="app\js\Currency\Create\newCurrency.controller.js" />
+    <Content Include="app\js\FiscalYear\fiscalYear.controller.js" />
+    <Content Include="app\js\FiscalYear\fiscalYear.service.js" />
+    <Content Include="app\js\FiscalYear\newFiscalYear.controller.js" />
     <Content Include="app\js\MT940Balance\MT940Balance.controller.js" />
     <Content Include="app\js\MT940Balance\MT940Balance.service.js" />
     <Content Include="app\js\CustomerStatementTransactions\customerStatementTransactions.controller.js" />
@@ -115,6 +118,8 @@
     <Content Include="app\js\Users\UsersController.js" />
     <Content Include="app\js\Users\UsersService.js" />
     <Content Include="app\vendor\datatable-bootstrap\images\Sorting icons.psd" />
+    <Content Include="app\views\FiscalYear\FiscalYear.html" />
+    <Content Include="app\views\FiscalYear\NewFiscalYear.html" />
     <Content Include="app\views\Currency\Currency.html" />
     <Content Include="app\views\Currency\NewCurrency.html" />
     <Content Include="app\views\CustomerStatementTransactions\CustomerStatementTransactions.html" />
@@ -127,6 +132,7 @@
     <Content Include="app\views\CustomerStatements\CustomerStatements.html" />
     <Content Include="app\views\MT940Loads\MT940LoadDetail.html" />
     <Content Include="app\views\MT940Loads\MT940Loads.html" />
+    <Content Include="app\views\OracleGlLoad\OracleGlLoadDetail.html" />
     <Content Include="app\views\OracleGlLoad\OracleGlLoad.html" />
     <Content Include="app\views\RightsManagement\index.html" />
     <Content Include="app\views\Source\SourceCreate.html" />

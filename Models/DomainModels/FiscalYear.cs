@@ -2,7 +2,7 @@
 
 namespace FRS.Models.DomainModels
 {
-    public partial class FiscalYear
+    public class FiscalYear
     {
         public short Value { get; set; }
         public string Name { get; set; }

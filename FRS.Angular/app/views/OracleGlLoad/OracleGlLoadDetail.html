@@ -1,0 +1,121 @@
+﻿<h3>
+    <!-- START Language list-->
+    <div class="pull-right">
+        <a class="btn btn-info btn-labeled" ng-if="!mt940ldc.load.InProgress">
+            <span class="btn-label">
+                <i class="fa fa-refresh fa-spin"></i>
+            </span>Process
+        </a>
+    </div>
+    <!-- END Language list    -->
+    {{mt940ldc.load.Name}} - Load (Oracle GL)
+    <small>Details</small>
+</h3>
+<div class="panel panel-default">
+    <div class="panel-heading">Further Details</div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-6">
+                <p class="lead bb">Load</p>
+                <form class="form-horizontal p-20">
+                    <div class="form-group">
+                        <div class="col-sm-4">Name</div>
+                        <div class="col-sm-8">
+                            <strong>{{mt940ldc.load.Name}}</strong>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-4">Start</div>
+                        <div class="col-sm-8">
+                            <strong>{{mt940ldc.load.StartString}}</strong>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-4">In Progress</div>
+                        <div class="col-sm-8">
+                            <strong class="btn btn-xs" ng-class="{'btn-warning':!mt940ldc.load.InProgress, 'btn-success': mt940ldc.load.InProgress}"><span ng-if="mt940ldc.load.InProgress">Yes</span><span ng-if="!mt940ldc.load.InProgress">No</span></strong>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-4">Modified On</div>
+                        <div class="col-sm-8">
+                            <strong>{{mt940ldc.load.ModifiedOnStr}}</strong>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-6">
+                <p class="lead bb">Load Metadata</p>
+                <form class="form-horizontal p-20">
+                    <div class="form-group">
+                        <div class="col-sm-4">Name</div>
+                        <div class="col-sm-8">
+                            <strong>{{mt940ldc.loadMetadata.Name}}</strong>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-4">Header</div>
+                        <div class="col-sm-8">
+                            <strong>{{mt940ldc.loadMetadata.Header}}</strong>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-4">Trailer</div>
+                        <div class="col-sm-8">
+                            <strong>{{mt940ldc.loadMetadata.Trailer}}</strong>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-4">Description</div>
+                        <div class="col-sm-8">
+                            <strong>{{mt940ldc.loadMetadata.Description}}</strong>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-4">Modified On</div>
+                        <div class="col-sm-8">
+                            <strong>{{mt940ldc.loadMetadata.ModifiedOnString}}</strong>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <p class="lead bb">Bank Load - MT940 Load</p>
+                <form class="form-horizontal p-20">
+                    <div class="form-group">
+                        <div class="col-sm-4">File</div>
+                        <div class="col-sm-8">
+                            <strong>{{mt940ldc.mt940Load.FileName}}</strong>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-4">Status</div>
+                        <div class="col-sm-8">
+                            <strong class="btn btn-xs" ng-class="{ 'btn-success': mt940ldc.mt940Load.Status == 'Active'}">{{mt940ldc.mt940Load.Status}}</strong>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-4">Statement Count</div>
+                        <div class="col-sm-8">
+                            <strong>{{mt940ldc.mt940Load.CustomerStatementCount}}</strong>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!--<div class="alert alert-warning">
+            <em class="fa fa-exclamation-circle fa-lg fa-fw"></em>Shipping address is different than billing address
+        </div>-->
+    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading">Statements</div>
+    <div class="panel-body">
+        <div class="container-fluid animated">
+            <!-- Grid view to show listview with searching, sorting and pagination-->
+            <div ui-grid="mt940ldc.gridOptions" ui-grid-pagination ui-grid-move-columns ui-grid-resize-columns class="table-uigrid flip"></div>
+        </div>
+    </div>
+</div>

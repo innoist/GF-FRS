@@ -2232,6 +2232,11 @@
                                                         '/app/js/Users/changePassword.service.js']
               },
               {
+                  name: 'FiscalYear.module', files: ['/app/js/FiscalYear/fiscalYear.controller.js',
+                                                     '/app/js/FiscalYear/fiscalYear.service.js',
+                                                     '/app/js/FiscalYear/newFiscalYear.controller.js']
+              },
+              {
                   name: 'currency.module', files: ['/app/js/currency/Index/currency.controller.js',
                                                         '/app/js/currency/Index/currency.service.js']
               },
