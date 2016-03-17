@@ -99,10 +99,11 @@
               //    //    direction: uiGridConstants.ASC
               //    //}
               //},
-              { name: 'Balance', field: 'Value', sortId: 0 },
-              { name: 'Debit Or Credit', field: 'DebitOrCredit', sortId: 3 },
-              { name: 'Currency', field: 'Currency', sortId: 4 },
-              { name: 'Entry date', field: 'EntryDate', sortId: 5 }
+              { name: 'Id', field: 'MT940BalanceId', sortId: 0 },
+              { name: 'Type', field: 'DebitOrCredit', sortId: 3 },
+              { name: 'Entry', field: 'EntryDate', sortId: 5 },
+              { name: 'Value', field: 'Value', sortId: 0 },
+              { name: 'Actions' }//, cellTemplate: '<div class="ui-grid-cell-contents"><a ui-sref="">{{row.entity.Name}}</a> </div>' }
               
               
             ],
