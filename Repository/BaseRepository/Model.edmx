@@ -140,7 +140,7 @@
           <Key>
             <PropertyRef Name="Value" />
           </Key>
-          <Property Name="Value" Type="tinyint" Nullable="false" />
+          <Property Name="Value" Type="tinyint" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="nvarchar" MaxLength="15" Nullable="false" />
           <Property Name="StatusId" Type="tinyint" Nullable="false" />
         </EntityType>
@@ -1703,7 +1703,7 @@
           <Key>
             <PropertyRef Name="Value" />
           </Key>
-          <Property Name="Value" Type="Byte" Nullable="false" />
+          <Property Name="Value" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
           <Property Name="StatusId" Type="Byte" Nullable="false" />
           <NavigationProperty Name="Loads" Relationship="angularModel.FK_Load_LoadStatus" FromRole="LoadStatu" ToRole="Load" />

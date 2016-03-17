@@ -101,17 +101,6 @@
         }
 
 
-        //#region Delete Data
-        $scope.deleteLoadMetaData = function (loadMetaDataId) {
-            $http.delete('/api/LoadMetaData', { params: { loadMetaDataId: loadMetaDataId } })
-                        .success(function (data, status, headers, config) {
-                            if (data != false) {
-                                $scope.getLoadMetaDataList();
-                            }
-                        });
-        }
-        //#endregion
-
         //#region Functions
         var defaultModel = function () {
             $scope.LoadMetaDataId = 0;

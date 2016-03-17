@@ -30,6 +30,7 @@
             }
             vm.FiscalYear.Name = $scope.Name;
             vm.FiscalYear.Value = $scope.Value;
+            vm.FiscalYear.StatusId = vm.Status.selected.Value;
 
             LoadStatusService.save(vm.FiscalYear, onSuccess, onError);
             function onSuccess(response) {
@@ -58,7 +59,11 @@
             $scope.Value = "";
         }
         //#endregion
-
+        $scope.clear = function ($event) {
+            $event.stopPropagation();
+            vm.Status.selected = null;
+            vm.formValidate.$dirty = true;
+        };
         $scope.cancelBtn = function () {
             if (!vm.formValidate.$dirty) {
                 $state.go('app.LoadStatus');
@@ -84,17 +89,25 @@
         }
 
         loadStatusId = $stateParams.Id;
-        LoadStatusService.loadYearById(loadStatusId, function (response) {
+        LoadStatusService.loadLoadStatusById(loadStatusId, function (response) {
             if (response) {
-                $scope.update = true;
+                vm.Status = response.Statuses;
+                
                 if (response.LoadStatus) {
+                    $scope.update = true;
                     $scope.Name = response.LoadStatus.Name;
                     $scope.Value = response.LoadStatus.Value;
                     loadStatusId = response.LoadStatus.Value;
-                }
-                
+                    
+                    var selectedStatus = $(vm.Status).filter(function (index, item) {
+                        return item.Value === response.LoadStatus.StatusId;
+                    });
+                    if (selectedStatus.length > 0) {
+                        vm.Status.selected = selectedStatus[0];
+                    }
 
-                toaster.success("", "Load Status loaded successfully.");
+                    toaster.success("", "Load Status loaded successfully.");
+                }
             } else {
                 loadStatusId = 0;
             }

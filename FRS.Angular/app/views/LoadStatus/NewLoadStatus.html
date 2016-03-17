@@ -19,7 +19,7 @@
         </button>
     </div>
     <!-- END Language list    -->
-    Fiscal Year
+    Load Status
     <small>Create</small>
 </h3>
 
@@ -29,27 +29,29 @@
             <div class="form-group">
                 <fieldset>
                     <div class="row">
-                        <div class="col-sm-12">
+                        <div class="col-md-12">
+                            
+                            <div class="col-md-12" ng-class="{ 'has-error': nlsc.validateInput(nlsc.formValidate.Status, 'required') }">
+                                <label for="Status" class="control-label requiredLabel">Status</label>
+                                <ui-select required="" name="Status" id="Status" ng-model="nlsc.Status.selected" theme="bootstrap" ng-disabled="nlsc.disabled" style="width: 100%">
+                                    <ui-select-match placeholder="Select a Status...">
+                                        {{$select.selected.Name}}
+                                        <span class="resetDdl" ng-click="clear($event)">
+                                            <i class="fa fa-times"></i>
+                                        </span>
+                                    </ui-select-match>
+                                    <ui-select-choices repeat="obj in nlsc.Status | propsFilter: {Name: $select.search}">
+                                        <div ng-bind-html="obj.Name | highlight: $select.search"></div>
+                                    </ui-select-choices>
+                                </ui-select>
+                            </div>
+                            
+                            
                             <div class="col-md-12" ng-class="{ 'has-error': nlsc.validateInput(nlsc.formValidate.Name, 'required') }">
                                 <label for="Name" class="control-label requiredLabel">Name</label>
-                                <input id="Name" type="text" placeholder="Year Name"
+                                <input id="Name" type="text" placeholder="Load Status Name"
                                        ng-model="Name" name="Name"
                                        uib-tooltip="{{ nlsc.validateInput(nlsc.formValidate.Name, 'required') ? 'Name field is required.' : '' }}"
-                                       uib-tooltip-trigger="focus"
-                                       uib-tooltip-placement="bottom"
-                                       required class="form-control">
-
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div class="col-md-12" ng-class="{ 'has-error': nlsc.validateInput(nlsc.formValidate.Value, 'required') }">
-                                <label for="Value" class="control-label requiredLabel">Value</label>
-                                <input id="Value" type="text" placeholder="Value"
-                                       ng-model="Value" name="Value"
-                                       uib-tooltip="{{ nlsc.validateInput(nlsc.formValidate.Value, 'required') ? 'Value field is required.' : '' }}"
                                        uib-tooltip-trigger="focus"
                                        uib-tooltip-placement="bottom"
                                        required class="form-control">

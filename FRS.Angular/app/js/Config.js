@@ -175,12 +175,12 @@
                 resolve: helper.resolveFor('LoadStatus.module', 'ui.grid')
             })
             .state('app.NewLoadStatus', {
-                url: '/NewLoadStatus',
+                url: '/NewLoadStatus/:Id',
                 title: 'New Load Status',
                 templateUrl: helper.basepath('../../../../app/views/LoadStatus/NewLoadStatus.html'),
                 controller: 'NewLoadStatusController',
                 controllerAs: 'nlsc',
-                resolve: helper.resolveFor('LoadStatus.module', 'ui.grid', 'ui.select')
+                resolve: helper.resolveFor('LoadStatus.module', 'ui.select', 'oitozero.ngSweetAlert')
             })
             .state('app.FiscalYear', {
                 url: '/FiscalYear',

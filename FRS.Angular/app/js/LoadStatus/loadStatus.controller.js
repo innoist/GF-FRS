@@ -38,7 +38,7 @@
                     name: 'Id',
                     field: 'Value',
                     sortId: 1,
-                    //cellTemplate: '<div class="ui-grid-cell-contents"><a ui-sref="app.NewFiscalYear({Id : row.entity.Value})">{{row.entity.Value}}</a> </div>',
+                    cellTemplate: '<div class="ui-grid-cell-contents"><a ui-sref="app.NewLoadStatus({Id : row.entity.Value})">{{row.entity.Value}}</a> </div>',
                     filter: { placeholder: 'Search by Id' },
                     sort: {
                         direction: uiGridConstants.ASC
