@@ -8,6 +8,7 @@
         public string Currency { get; set; }
         public string EntryDate { get; set; }
         public decimal Value { get; set; }
+        
         public string CreatedBy { get; set; }
         public System.DateTime CreatedOn { get; set; }
         public string ModifiedBy { get; set; }

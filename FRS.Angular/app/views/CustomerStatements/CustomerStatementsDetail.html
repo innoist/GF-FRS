@@ -1,113 +1,243 @@
 ﻿<h3>
     <!-- START Language list-->
     <div class="pull-right">
-        <a class="btn btn-info btn-labeled" ng-if="!mt940CustStatDetail.load.InProgress">
+        
+        <button class="btn btn-info btn-labeled" ng-click="backPage()">
             <span class="btn-label">
-                <i class="fa fa-refresh fa-spin"></i>
-            </span>Process
-        </a>
+                <i class="fa fa-backward"></i>
+            </span>Back
+        </button>
     </div>
     <!-- END Language list    -->
-    {{mt940CustStatDetail.objCustomerStatement.AccountNumber}} - Load (MT940)
+    {{mt940CustStatDetail.objCustomerStatement.AccountNumber}} - (Account Number)
     <small>Details</small>
 </h3>
-<!--<div class="panel panel-default">
+<div class="panel panel-default">
     <div class="panel-heading">Further Details</div>
     <div class="panel-body">
         <div class="row">
-            <div class="col-md-6">
-                <p class="lead bb">Load</p>
-                <form class="form-horizontal p-20">
-                    <div class="form-group">
-                        <div class="col-sm-4">Name</div>
-                        <div class="col-sm-8">
-                            <strong>{{mt940CustStatDetail.load.Name}}</strong>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-4">Start</div>
-                        <div class="col-sm-8">
-                            <strong>{{mt940CustStatDetail.load.StartString}}</strong>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-4">In Progress</div>
-                        <div class="col-sm-8">
-                            <strong class="btn btn-xs" ng-class="{'btn-warning':!mt940CustStatDetail.load.InProgress, 'btn-success': mt940CustStatDetail.load.InProgress}"><span ng-if="mt940CustStatDetail.load.InProgress">Yes</span><span ng-if="!mt940CustStatDetail.load.InProgress">No</span></strong>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-4">Modified On</div>
-                        <div class="col-sm-8">
-                            <strong>{{mt940CustStatDetail.load.ModifiedOnStr}}</strong>
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <div class="col-md-6">
-                <p class="lead bb">Load Metadata</p>
-                <form class="form-horizontal p-20">
-                    <div class="form-group">
-                        <div class="col-sm-4">Name</div>
-                        <div class="col-sm-8">
-                            <strong>{{mt940CustStatDetail.loadMetadata.Name}}</strong>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-4">Header</div>
-                        <div class="col-sm-8">
-                            <strong>{{mt940CustStatDetail.loadMetadata.Header}}</strong>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-4">Trailer</div>
-                        <div class="col-sm-8">
-                            <strong>{{mt940CustStatDetail.loadMetadata.Trailer}}</strong>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-4">Description</div>
-                        <div class="col-sm-8">
-                            <strong>{{mt940CustStatDetail.loadMetadata.Description}}</strong>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-4">Modified On</div>
-                        <div class="col-sm-8">
-                            <strong>{{mt940CustStatDetail.loadMetadata.ModifiedOnString}}</strong>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-        <div class="row">
             <div class="col-md-12">
-                <p class="lead bb">Bank Load - MT940 Load</p>
+                <p class="lead bb">Customer Statement Detail</p>
                 <form class="form-horizontal p-20">
                     <div class="form-group">
-                        <div class="col-sm-4">File</div>
-                        <div class="col-sm-8">
-                            <strong>{{mt940CustStatDetail.mt940Load.FileName}}</strong>
+                        <div class="col-sm-2">Message</div>
+                        <div class="col-sm-4">
+                            <strong>{{mt940CustStatDetail.objCustomerStatement.ReleatedMessage}}</strong>
+                        </div>
+                        <div class="col-sm-2">Statement Number</div>
+                        <div class="col-sm-4">
+                            <strong>{{mt940CustStatDetail.objCustomerStatement.StatementNumber}}</strong>
                         </div>
                     </div>
                     <div class="form-group">
-                        <div class="col-sm-4">Status</div>
-                        <div class="col-sm-8">
-                            <strong class="btn btn-xs" ng-class="{ 'btn-success': mt940CustStatDetail.mt940Load.Status == 'Active'}">{{mt940CustStatDetail.mt940Load.Status}}</strong>
+                        <div class="col-sm-2">Transaction Ref.</div>
+                        <div class="col-sm-4">
+                            <strong>{{mt940CustStatDetail.objCustomerStatement.TransactionReference}}</strong>
                         </div>
+                        <!--<div class="col-sm-2">Transaction Count</div>
+                        <div class="col-sm-4">
+                            <strong>{{mt940CustStatDetail.objCustomerStatement.TransactionCount}}</strong>
+                        </div>-->
                     </div>
-                    <div class="form-group">
-                        <div class="col-sm-4">Statement Count</div>
-                        <div class="col-sm-8">
-                            <strong>{{mt940CustStatDetail.mt940Load.CustomerStatementCount}}</strong>
+                    
+              
+                  
+                    
+                    <!--<div class="form-group">
+                            <div class="col-sm-4">Start</div>
+                            <div class="col-sm-8">
+                                <strong>{{mt940CustStatDetail.load.StartString}}</strong>
+                            </div>
                         </div>
-                    </div>
+                        <div class="form-group">
+                            <div class="col-sm-4">In Progress</div>
+                            <div class="col-sm-8">
+                                <strong class="btn btn-xs" ng-class="{'btn-warning':!mt940CustStatDetail.load.InProgress, 'btn-success': mt940CustStatDetail.load.InProgress}"><span ng-if="mt940CustStatDetail.load.InProgress">Yes</span><span ng-if="!mt940CustStatDetail.load.InProgress">No</span></strong>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-4">Modified On</div>
+                            <div class="col-sm-8">
+                                <strong>{{mt940CustStatDetail.load.ModifiedOnStr}}</strong>
+                            </div>
+                        </div>--> 
                 </form>
             </div>
+            
+            <div class="col-md-3">
+                <p class="lead bb">Closing Available Balance</p>
+                <form class="form-horizontal p-20">
+                    <div class="form-group">
+                        <div class="col-sm-4">Amount</div>
+                        <div class="col-sm-8">
+                            <strong>{{mt940CustStatDetail.objCustomerStatement.MT940ClosingAvailableBalance.Value}}</strong>
+                        </div>
+                    </div>
+                    
+                
+                    <div class="form-group">
+                        <div class="col-sm-4">Currency</div>
+                        <div class="col-sm-8">
+                            <strong>{{mt940CustStatDetail.objCustomerStatement.MT940ClosingAvailableBalance.Currency}}</strong>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <div class="col-sm-4">Entry Date</div>
+                        <div class="col-sm-8">
+                            <strong>{{mt940CustStatDetail.objCustomerStatement.MT940ClosingAvailableBalance.EntryDate}}</strong>
+                        </div>
+                    </div>
+
+
+
+
+                    <div class="form-group">
+                        <div class="col-sm-4">Type</div>
+                        <div class="col-sm-8">
+                            <strong>{{mt940CustStatDetail.objCustomerStatement.MT940ClosingAvailableBalance.DebitOrCredit}}</strong>
+                        </div>
+                    </div>
+    
+                    
+                </form>
+               
+                
+               
+            </div>
+            
+            <div class="col-md-3">
+                <p class="lead bb">Closing Balance</p>
+                <form class="form-horizontal p-20">
+                    <div class="form-group">
+                        <div class="col-sm-4">Amount</div>
+                        <div class="col-sm-8">
+                            <strong>{{mt940CustStatDetail.objCustomerStatement.MT940ClosingBalance.Value}}</strong>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <div class="col-sm-4">Currency</div>
+                        <div class="col-sm-8">
+                            <strong>{{mt940CustStatDetail.objCustomerStatement.MT940ClosingBalance.Currency}}</strong>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <div class="col-sm-4">Entry Date</div>
+                        <div class="col-sm-8">
+                            <strong>{{mt940CustStatDetail.objCustomerStatement.MT940ClosingBalance.EntryDate}}</strong>
+                        </div>
+                    </div>
+
+
+
+
+                    <div class="form-group">
+                        <div class="col-sm-4">Type</div>
+                        <div class="col-sm-8">
+                            <strong>{{mt940CustStatDetail.objCustomerStatement.MT940ClosingBalance.DebitOrCredit}}</strong>
+                        </div>
+                    </div>
+
+
+                </form>
+
+
+
+            </div>
+            <div class="col-md-3">
+                <p class="lead bb">Forward Available Balance</p>
+                <form class="form-horizontal p-20">
+                    <div class="form-group">
+                        <div class="col-sm-4">Amount</div>
+                        <div class="col-sm-8">
+                            <strong>{{mt940CustStatDetail.objCustomerStatement.MT940ForwardAvailableBalanceModel.Value}}</strong>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <div class="col-sm-4">Currency</div>
+                        <div class="col-sm-8">
+                            <strong>{{mt940CustStatDetail.objCustomerStatement.MT940ForwardAvailableBalanceModel.Currency}}</strong>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <div class="col-sm-4">Entry Date</div>
+                        <div class="col-sm-8">
+                            <strong>{{mt940CustStatDetail.objCustomerStatement.MT940ForwardAvailableBalanceModel.EntryDate}}</strong>
+                        </div>
+                    </div>
+
+
+
+
+                    <div class="form-group">
+                        <div class="col-sm-4">Type</div>
+                        <div class="col-sm-8">
+                            <strong>{{mt940CustStatDetail.objCustomerStatement.MT940ForwardAvailableBalanceModel.DebitOrCredit}}</strong>
+                        </div>
+                    </div>
+
+
+                </form>
+
+
+
+            </div>
+            <div class="col-md-3">
+                <p class="lead bb">Opening Balance</p>
+                <form class="form-horizontal p-20">
+                    <div class="form-group">
+                        <div class="col-sm-4">Amount</div>
+                        <div class="col-sm-8">
+                            <strong>{{mt940CustStatDetail.objCustomerStatement.MT940OpeningBalance.Value}}</strong>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <div class="col-sm-4">Currency</div>
+                        <div class="col-sm-8">
+                            <strong>{{mt940CustStatDetail.objCustomerStatement.MT940OpeningBalance.Currency}}</strong>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <div class="col-sm-4">Entry Date</div>
+                        <div class="col-sm-8">
+                            <strong>{{mt940CustStatDetail.objCustomerStatement.MT940OpeningBalance.EntryDate}}</strong>
+                        </div>
+                    </div>
+
+
+
+
+                    <div class="form-group">
+                        <div class="col-sm-4">Type</div>
+                        <div class="col-sm-8">
+                            <strong>{{mt940CustStatDetail.objCustomerStatement.MT940OpeningBalance.DebitOrCredit}}</strong>
+                        </div>
+                    </div>
+
+
+                </form>
+
+
+
+            </div>
         </div>
+    
        
     </div>
-</div>-->
+</div>
 <div class="panel panel-default">
     <div class="panel-heading">Transactions</div>
     <div class="panel-body">

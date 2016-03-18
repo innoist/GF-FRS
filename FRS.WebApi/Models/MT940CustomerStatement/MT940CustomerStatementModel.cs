@@ -1,4 +1,5 @@
 ﻿using System;
+using FRS.WebApi.Models.MT940Balance;
 
 namespace FRS.WebApi.Models.MT940CustomerStatement
 {
@@ -23,5 +24,13 @@ namespace FRS.WebApi.Models.MT940CustomerStatement
         public DateTime CreatedOn { get; set; }
         public string ModifiedBy { get; set; }
         public DateTime ModifiedOn { get; set; }
+
+        public MT940BalanceModel MT940ClosingAvailableBalance { get; set; }
+        public MT940BalanceModel MT940ClosingBalance { get; set; }
+        public MT940BalanceModel MT940ForwardAvailableBalanceModel { get; set; }
+        public MT940BalanceModel MT940OpeningBalance { get; set; }
+
+
+
     }
 }

@@ -14,7 +14,13 @@ namespace FRS.WebApi.ModelMappers
                 Description = source.Description,
                 ReleatedMessage = source.ReleatedMessage,
                 TransactionReference = source.TransactionReference,
-                MT940CustomerStatementId = source.MT940CustomerStatementId
+                MT940CustomerStatementId = source.MT940CustomerStatementId,
+                StatementNumber =  source.StatementNumber,
+                TransactionCount =  source.TransactionCount,
+                MT940ClosingAvailableBalance = source.MT940Balance!=null?source.MT940Balance.MapFromServerToClient():null,
+                MT940ClosingBalance = source.MT940Balance1 != null ? source.MT940Balance1.MapFromServerToClient() : null,
+                MT940ForwardAvailableBalanceModel = source.MT940Balance2 != null ? source.MT940Balance2.MapFromServerToClient() : null,
+                MT940OpeningBalance = source.MT940Balance3 != null ? source.MT940Balance3.MapFromServerToClient() : null
             };
         }
         
@@ -28,7 +34,9 @@ namespace FRS.WebApi.ModelMappers
                 Amount = source.Amount,
                 Reference = source.Reference,
                 MT940CustomerStatementTransactionId = source.MT940CustomerStatementTransactionId,
-                MT940CustomerStatementId = source.MT940CustomerStatementId
+                MT940CustomerStatementId = source.MT940CustomerStatementId,
+                Value = source.Value,
+                FundsCode =  string.IsNullOrEmpty(source.FundsCode) ? "-" : source.FundsCode
             };
         }
     }

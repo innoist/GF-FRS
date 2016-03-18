@@ -17,6 +17,10 @@
 
         var vm = this;
 
+
+        $scope.backPage = function() {
+            window.history.back();
+        }
         //datepicker
         vm.today = function () {
             vm.dt = new Date();
@@ -75,15 +79,17 @@
 
             paginationOptions.params.MT940CustomerStatementId = $stateParams.MT940CustomerStatementId;
             CustomerStatementsService.CustomerStatementDetail($stateParams.MT940CustomerStatementId, function (response) {
+                debugger
                 var load = response;
                 //var mt940LoadModel = response.Mt940LoadModel;
                 //var loadMetadata = response.LoadMetaData;
-
+                
                 vm.objCustomerStatement = load;
                 //vm.mt940Load = mt940LoadModel;
                 //vm.loadMetadata = loadMetadata;
             });
         }
+
 
         vm.gridOptions = {
             paginationPageSizes: [10, 25, 50, 100, 500],
