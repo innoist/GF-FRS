@@ -1,16 +1,16 @@
 ﻿using System.Collections.Generic;
-using FRS.WebApi.Models.OracleGLEntry;
+using FRS.WebApi.Models.OracleGLLoad;
 
 namespace FRS.WebApi.ViewModels.OracleGlLoad
 {
-    public class OracleGLEntryLVModel
+    public class OracleGLLoadLVModel
     {
-        public OracleGLEntryLVModel()
+        public OracleGLLoadLVModel()
         {
-            OracleGlEntries = new List<OracleGLEntryModel>();
+            OracleGlLoads = new List<OracleGLLoadModel>();
         }
 
-        public IEnumerable<OracleGLEntryModel> OracleGlEntries { get; set; }
+        public IEnumerable<OracleGLLoadModel> OracleGlLoads { get; set; }
 
         public int TotalCount { get; set; }
         public int TotalRecords { get; set; }

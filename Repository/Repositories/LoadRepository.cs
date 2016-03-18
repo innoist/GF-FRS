@@ -23,5 +23,10 @@ namespace FRS.Repository.Repositories
         {
             return DbSet.FirstOrDefault(x => x.MT940LoadId == mt940LoadId);
         }
+
+        public Load GetLoadByOracleGlId(long id)
+        {
+            return DbSet.SingleOrDefault(x => x.OracleGLLoadId == id);
+        }
     }
 }

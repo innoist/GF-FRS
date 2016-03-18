@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using FRS.Models.DomainModels;
+using FRS.WebApi.Models.OracleGLEntry;
 using FRS.WebApi.Models.OracleGLLoad;
 
 namespace FRS.WebApi.ModelMappers
@@ -38,6 +39,52 @@ namespace FRS.WebApi.ModelMappers
                 Path = source.Path,
                 OracleGLLoadId = source.OracleGLLoadId,
                 ModifiedOn = source.ModifiedOn
+            };
+        }
+        
+        public static OracleGLEntryModel CreateFromServerToClient(this OracleGLEntry source)
+        {
+            return new OracleGLEntryModel()
+            {
+                ModifiedBy = source.ModifiedBy,
+                CreatedBy = source.CreatedBy,
+                StatusId = source.StatusId,
+                CreatedOn = source.CreatedOn,
+                OracleGLLoadId = source.OracleGLLoadId,
+                AccountDescription = source.AccountDescription,
+                AccountNumber = source.AccountNumber,
+                AccountedCr = source.AccountedCr,
+                AccountedDr = source.AccountedDr,
+                Currency = source.Currency,
+                EffectiveDate = source.EffectiveDate,
+                EnteredCr = source.EnteredCr,
+                UniqueReferenceKey = source.UniqueReferenceKey,
+                EntrySource = source.EntrySource,
+                Period = source.Period,
+                OracleGLEntryId = source.OracleGLEntryId
+                
+            };
+        }
+        public static OracleGLEntry CreateFromClientToServer(this OracleGLEntryModel source)
+        {
+            return new OracleGLEntry()
+            {
+                ModifiedBy = source.ModifiedBy,
+                CreatedBy = source.CreatedBy,
+                StatusId = source.StatusId,
+                CreatedOn = source.CreatedOn,
+                OracleGLLoadId = source.OracleGLLoadId,
+                AccountDescription = source.AccountDescription,
+                AccountNumber = source.AccountNumber,
+                AccountedCr = source.AccountedCr,
+                AccountedDr = source.AccountedDr,
+                Currency = source.Currency,
+                EffectiveDate = source.EffectiveDate,
+                EnteredCr = source.EnteredCr,
+                UniqueReferenceKey = source.UniqueReferenceKey,
+                EntrySource = source.EntrySource,
+                Period = source.Period,
+                OracleGLEntryId = source.OracleGLEntryId
             };
         }
     }

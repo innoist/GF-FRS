@@ -54,6 +54,14 @@
                 controllerAs: 'mdc',
                 resolve: helper.resolveFor('ui.grid', 'ui.select', 'loadMetaData.module')
             })
+            .state('app.OracleGlEntry', {
+                url: '/OracleGlEntry',
+                title: 'Oracle GL Entries',
+                templateUrl: helper.basepath('../../../../app/views/OracleGLEntries/OracleGLEntries.html'),
+                controller: 'OracleGlEntryController',
+                controllerAs: 'oglec',
+                resolve: helper.resolveFor('ui.grid', 'ui.select', 'OracleGlEntry.module')
+            })
             .state('app.OracleGlLoad', {
                 url: '/OracleGlLoad',
                 title: 'Oracle GL Loads',

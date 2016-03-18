@@ -183,6 +183,7 @@
     <Compile Include="Repositories\MT940CustomerStatementRepository.cs" />
     <Compile Include="Repositories\MT940CustomerStatementTransactionRepository.cs" />
     <Compile Include="Repositories\MT940LoadDetailRepository.cs" />
+    <Compile Include="Repositories\OracleGLEntryRepository.cs" />
     <Compile Include="Repositories\OracleGLLoadRepository.cs" />
     <Compile Include="Repositories\MT940LoadRepository.cs" />
     <Compile Include="Repositories\SourceRepository.cs" />

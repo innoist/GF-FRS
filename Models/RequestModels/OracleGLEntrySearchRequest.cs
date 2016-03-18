@@ -2,15 +2,16 @@
 
 namespace FRS.Models.RequestModels
 {
-    public class OracleGLEntrySearchRequest : GetPagedListRequest
+    public class OracleGLLoadSearchRequest : GetPagedListRequest
     {
         public long OracleGLLoadId { get; set; }
+        public byte StatusId { get; set; }
 
-        public OrderByOracleGLEntry OrderByColumn
+        public OrderByOracleGLLoad OrderByColumn
         {
             get
             {
-                return (OrderByOracleGLEntry)SortBy;
+                return (OrderByOracleGLLoad)SortBy;
             }
             set
             {
