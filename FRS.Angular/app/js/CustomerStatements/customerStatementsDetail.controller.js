@@ -71,19 +71,17 @@
                 MT940LoadId: 0
             },
         };
-
         if ($stateParams.MT940CustomerStatementId != "") {
 
             paginationOptions.params.MT940CustomerStatementId = $stateParams.MT940CustomerStatementId;
             CustomerStatementsService.CustomerStatementDetail($stateParams.MT940CustomerStatementId, function (response) {
-            debugger
-                var load = response.Load;
-                var mt940LoadModel = response.Mt940LoadModel;
-                var loadMetadata = response.LoadMetaData;
+                var load = response;
+                //var mt940LoadModel = response.Mt940LoadModel;
+                //var loadMetadata = response.LoadMetaData;
 
-                vm.load = load;
-                vm.mt940Load = mt940LoadModel;
-                vm.loadMetadata = loadMetadata;
+                vm.objCustomerStatement = load;
+                //vm.mt940Load = mt940LoadModel;
+                //vm.loadMetadata = loadMetadata;
             });
         }
 
@@ -102,24 +100,15 @@
             //useExternalFiltering: true,
             columnDefs: [
                 // name is for display on the table header, field is for mapping as in 
-                //sortId is kept locally it is not the property of ui.grid
-              //{
-              //    name: 'Name',
-              //    field: 'Name',
-              //    sortId: 1,
-              //    cellTemplate: '<div class="ui-grid-cell-contents"><a ui-sref="">{{row.entity.Name}}</a> </div>',
-              //    //sort: {
-              //    //    direction: uiGridConstants.ASC
-              //    //}
-              //},
-                {
-                    name: 'A/c #', field: 'AccountNumber', sortId: 1,
-                    cellTemplate: '<div class="ui-grid-cell-contents"><a ui-sref="app.CustomerStatementsDetailController({Id : row.entity.MT940CustomerStatementId})">{{row.entity.AccountNumber}}</a></div>'
-
-                },
-              { name: 'Description', field: 'Description', sortId: 2 },
-              { name: 'Related Message', field: 'ReleatedMessage', sortId: 3 },
-              { name: 'Transaction Reference', field: 'TransactionReference', sortId: 5 },
+                  { name: 'Customer Statement Id', field: 'MT940CustomerStatementId', sortId: 0 },
+              { name: 'TransactionType', field: 'TransactionType', sortId: 1 },
+              { name: 'Amount', field: 'Amount', sortId: 2 },
+              { name: 'Debit Or Credit', field: 'DebitOrCredit', sortId: 3 },
+              { name: 'Reference', field: 'Reference', sortId: 4 },
+              { name: 'Description', field: 'Description', sortId: 5 },
+                { name: 'Funds Code', field: 'FundsCode' },
+                { name: 'Value', field: 'Value' }
+                
             //{ name: 'Action', width: '10%' , cellTemplate: '<div class="ui-grid-cell-contents"><a ui-sref="app.CustomerStatementTransactions({Id : row.entity.MT940CustomerStatementId, MT940LoadId: ' + $stateParams.Id + '})" class="btn btn-xs btn-green">Details</a></div>' }
             ],
             onRegisterApi: function (gridApi) {
@@ -162,8 +151,9 @@
                     break;
             }
 
-            MT940Service.getCustomerStatements(
+            CustomerStatementsService.getCustomerTransactionGridData(
                 function onSuccess(data) {
+                    debugger
                     vm.gridOptions.totalItems = data.TotalCount;
                     vm.gridOptions.data = data.Data;
                 }, null, paginationOptions);
