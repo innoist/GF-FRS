@@ -41,13 +41,12 @@ namespace FRS.WebApi.ModelMappers
                 
                 FundsCode =  string.IsNullOrEmpty(source.FundsCode) ? "-" : source.FundsCode,
                 
+               
                 Sequence = source.Sequence,
                 ReadOnly = source.ReadOnly,
-                Sequence = source.Sequence,
-                ReadOnly = source.ReadOnly,
-                Value = source.Value,
+                
                 ValueDate = source.ValueDate.ToString("dd-MMM-yy"),
-                EntryDate = source.EntryDate.HasValue ? source.EntryDate.Value.ToString("dd-MMM-yy") : "N/A"
+                EntryDate = source.EntryDate.HasValue ? source.EntryDate.Value.ToString("dd-MMM-yy") : "N/A",
                 Value = source.Value
             };
         }
