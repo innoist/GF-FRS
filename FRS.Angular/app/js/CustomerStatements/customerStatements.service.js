@@ -31,6 +31,17 @@
                 .success(onReady)
                 .error(onError);
         }
+
+        this.getCustomerTransactionGridData = function (onReady, onError, paginationOptions) {
+
+            onError = onError || function () { alert('Failed to load rights'); };
+            $http
+                .get(window.frsApiUrl + '/api/MT940CustomerStatementTransaction', paginationOptions)
+                .success(onReady)
+                .error(onError);
+
+
+        }
     }
 
 

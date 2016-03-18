@@ -105,7 +105,7 @@
             })
             
              .state('app.CustomerStatementsDetail', {
-                 url: '/CustomerStatements/:MT940CustomerStatementId',
+                 url: '/CustomerStatementDetail/:MT940CustomerStatementId',
                  title: 'MT940 Customer Statment Detail',
 
                  templateUrl: helper.basepath('../../../../app/views/CustomerStatements/CustomerStatementsDetail.html'),
