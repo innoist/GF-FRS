@@ -39,6 +39,7 @@ namespace FRS.Repository
             unityContainer.RegisterType<IMT940LoadRepository, MT940LoadRepository>();
             unityContainer.RegisterType<IAspNetRoleRepository, AspNetRoleRepository>();
             unityContainer.RegisterType<IOracleGLLoadRepository, OracleGLLoadRepository>();
+            unityContainer.RegisterType<IOracleGLEntryRepository, OracleGLEntryRepository>();
         }
     }
 }

@@ -114,6 +114,7 @@
     <Compile Include="Common\OrderByMT940Balance.cs" />
     <Compile Include="Common\OrderByCustomerStatement.cs" />
     <Compile Include="Common\OrderByCustomerStatementTransaction.cs" />
+    <Compile Include="Common\OrderByOracleGLEntry.cs" />
     <Compile Include="Common\OrderByOracleGLLoad.cs" />
     <Compile Include="Common\OrderByMT940Load.cs" />
     <Compile Include="Common\OrderByLogs.cs" />
@@ -166,6 +167,7 @@
     <Compile Include="RequestModels\MT940CustomerStatementTransactionSearchrequest.cs" />
     <Compile Include="RequestModels\MT940CustomerStatementSearchrequest.cs" />
     <Compile Include="RequestModels\MT940BalanceSearchRequest.cs" />
+    <Compile Include="RequestModels\OracleGLEntrySearchRequest.cs" />
     <Compile Include="RequestModels\OracleGLLoadSearchRequest.cs" />
     <Compile Include="RequestModels\MT940LoadSearchRequest.cs" />
     <Compile Include="RequestModels\LogSearchRequest.cs" />
@@ -176,6 +178,7 @@
     <Compile Include="ResponseModels\LoadStatusResponse.cs" />
     <Compile Include="ResponseModels\LoadTypeBaseData.cs" />
     <Compile Include="ResponseModels\MT940LoadBaseDataResponse.cs" />
+    <Compile Include="ResponseModels\OracleGLLoadDetail.cs" />
     <Compile Include="ResponseModels\MT940LoadDetail.cs" />
     <Compile Include="ResponseModels\SearchTemplateResponse.cs" />
     <Compile Include="ResponseModels\SourceBaseData.cs" />

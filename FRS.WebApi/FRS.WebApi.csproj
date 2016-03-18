@@ -254,6 +254,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoadTypeController.cs" />
     <Compile Include="Controllers\LogController.cs" />
+    <Compile Include="Controllers\OracleGLEntryController.cs" />
     <Compile Include="Controllers\OracleGLLoadController.cs" />
     <Compile Include="Controllers\MT940LoadController.cs" />
     <Compile Include="Controllers\SourceController.cs" />
@@ -288,6 +289,7 @@
     <Compile Include="Models\MT940CustomerStatementTransaction\MT940CustomerStatementModel.cs" />
     <Compile Include="Models\MT940CustomerStatement\MT940CustomerStatementModel.cs" />
     <Compile Include="Models\MT940Load\MT940LoadModel.cs" />
+    <Compile Include="Models\OracleGLEntry\OracleGLEntryModel.cs" />
     <Compile Include="Models\OracleGLLoad\OracleGLLoadModel.cs" />
     <Compile Include="Models\Source\SourceModel.cs" />
     <Compile Include="Models\Status\StatusModel.cs" />
@@ -314,6 +316,7 @@
     <Compile Include="ViewModels\MT940Load\MT940LoadDetail.cs" />
     <Compile Include="ViewModels\MT940Load\MT940LoadListViewModel.cs" />
     <Compile Include="ViewModels\OracleGlLoad\OracleGLLoadDetail.cs" />
+    <Compile Include="ViewModels\OracleGlLoad\OracleGLEntryLVModel.cs" />
     <Compile Include="ViewModels\OracleGlLoad\OracleGLLoadLVModel.cs" />
     <Compile Include="ViewModels\Source\SourceViewModel.cs" />
     <Compile Include="ViewModels\Users\UsersListViewModel.cs" />

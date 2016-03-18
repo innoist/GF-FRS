@@ -12,17 +12,31 @@ namespace FRS.Implementation.Services
         #region Private
 
         private readonly IOracleGLLoadRepository oracleGlLoadRepository;
+        private readonly ILoadRepository loadRepository;
 
         #endregion
 
         #region Constructor
 
-        public OracleGLLoadService(IOracleGLLoadRepository oracleGlLoadRepository)
+        public OracleGLLoadService(IOracleGLLoadRepository oracleGlLoadRepository, ILoadRepository loadRepository)
         {
             this.oracleGlLoadRepository = oracleGlLoadRepository;
+            this.loadRepository = loadRepository;
         }
 
         #endregion
+
+        public OracleGLLoadDetailResponse GetOracleGlLoadDetailResponse(long oracleGlLoadId)
+        {
+            OracleGLLoadDetailResponse response = new OracleGLLoadDetailResponse()
+            {
+                OracleGlLoad = oracleGlLoadRepository.Find(oracleGlLoadId),
+                Load = loadRepository.GetLoadByOracleGlId(oracleGlLoadId)
+            };
+
+            return response;
+
+        }
 
         public SearchTemplateResponse<OracleGLLoad> GetOracleGLSearchResponse(OracleGLLoadSearchRequest searchRequest)
         {

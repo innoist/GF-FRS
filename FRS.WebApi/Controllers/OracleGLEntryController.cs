@@ -10,54 +10,55 @@ using FRS.WebBase.Mvc;
 
 namespace FRS.WebApi.Controllers
 {
-    public class OracleGLLoadController : ApiController
+    public class OracleGLEntryController : ApiController
     {
         #region Private
 
-        private readonly IOracleGLLoadService oracleGlLoadService;
+        private readonly IOracleGLEntryService oracleGlEntryService;
+
         #endregion
 
         #region Public
 
-        public OracleGLLoadController(IOracleGLLoadService oracleGlLoadService)
+        public OracleGLEntryController(IOracleGLEntryService oracleGlEntryService)
         {
-            this.oracleGlLoadService = oracleGlLoadService;
+            this.oracleGlEntryService = oracleGlEntryService;
         }
 
         #region Get
-        [ApiException]
+        //[ApiException]
+        //[HttpGet]
+        //[Authorize]
+        //public OracleGLLoadDetail Get(long id)
+        //{
+        //    if (id <= 0)
+        //    {
+        //        throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
+        //    }
+        //    var detail = oracleGlLoadService.GetOracleGlLoadDetailResponse(id);
+        //    OracleGLLoadDetail model = new OracleGLLoadDetail
+        //    {
+        //        Load = detail.Load.CreateFromServerToClient(),
+        //        OracleGlLoad = detail.OracleGlLoad.CreateFromServerToClient()
+        //    };
+
+        //    return model;
+        //}
+
         [HttpGet]
         [Authorize]
-        public OracleGLLoadDetail Get(long id)
-        {
-            if (id <= 0)
-            {
-                throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
-            }
-            var detail = oracleGlLoadService.GetOracleGlLoadDetailResponse(id);
-            OracleGLLoadDetail model = new OracleGLLoadDetail
-            {
-                Load = detail.Load.CreateFromServerToClient(),
-                OracleGlLoad = detail.OracleGlLoad.CreateFromServerToClient()
-            };
-
-            return model;
-        }
-
-        [HttpGet]
-        [Authorize]
         [ApiException]
-        public OracleGLLoadLVModel Get([FromUri]OracleGLLoadSearchRequest searchRequest)
+        public OracleGLEntryLVModel Get([FromUri]OracleGLEntrySearchRequest searchRequest)
         {
             if (searchRequest == null || !ModelState.IsValid)
             {
                 throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
             }
 
-            var response = oracleGlLoadService.GetOracleGLSearchResponse(searchRequest);
-            OracleGLLoadLVModel listViewModel = new OracleGLLoadLVModel
+            var response = oracleGlEntryService.GetOracleGLEntrySearchResponse(searchRequest);
+            OracleGLEntryLVModel listViewModel = new OracleGLEntryLVModel
             {
-                OracleGlLoads = response.Data.Select(x => x.CreateFromServerToClient()).ToList(),
+                OracleGlEntries = response.Data.Select(x => x.CreateFromServerToClient()).ToList(),
                 FilteredCount = response.FilteredCount,
                 TotalCount = response.TotalCount
             };

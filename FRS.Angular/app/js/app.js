@@ -2209,6 +2209,10 @@
                                                        '/app/js/OracleGlLoads/OracleGlLoadDetail.controller.js']
               },
               {
+                  name: 'OracleGlEntry.module', files: ['/app/js/OracleGLEntries/OracleGLEntry.controller.js',
+                                                        '/app/js/OracleGLEntries/OracleGLEntry.service.js']
+              },
+              {
                   name: 'CustomerStatements.module', files: ['/app/js/CustomerStatements/customerStatements.controller.js',
                                                              '/app/js/CustomerStatements/customerStatements.service.js',
                                                             '/app/js/CustomerStatements/customerStatementsDetail.controller.js']

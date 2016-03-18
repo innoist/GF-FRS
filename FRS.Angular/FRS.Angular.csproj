@@ -86,6 +86,8 @@
     <Content Include="app\js\CustomerStatementTransactions\customerStatementTransactions.service.js" />
     <Content Include="app\js\CustomerStatements\customerStatements.controller.js" />
     <Content Include="app\js\CustomerStatements\customerStatements.service.js" />
+    <Content Include="app\js\OracleGLEntries\OracleGLEntry.controller.js" />
+    <Content Include="app\js\OracleGLEntries\OracleGLEntry.service.js" />
     <Content Include="app\js\OracleGlLoads\OracleGlLoad.controller.js" />
     <Content Include="app\js\OracleGlLoads\OracleGlLoad.service.js" />
     <Content Include="app\js\OracleGlLoads\OracleGlLoadDetail.controller.js" />
@@ -139,6 +141,7 @@
     <Content Include="app\views\CustomerStatements\CustomerStatements.html" />
     <Content Include="app\views\MT940Loads\MT940LoadDetail.html" />
     <Content Include="app\views\MT940Loads\MT940Loads.html" />
+    <Content Include="app\views\OracleGLEntries\OracleGLEntries.html" />
     <Content Include="app\views\OracleGlLoad\OracleGlLoadDetail.html" />
     <Content Include="app\views\OracleGlLoad\OracleGlLoad.html" />
     <Content Include="app\views\RightsManagement\index.html" />
