@@ -103,7 +103,7 @@
               {
                   name: 'ID',
                   field: 'OracleGLLoadId', sortId: 2,
-                  cellTemplate: '<div class="ui-grid-cell-contents"><a ui-sref="app.OracleGLLoadDetail({OracleGLLoadId : row.entity.OracleGLLoadId})">{{ row.entity.OracleGLLoadId}}</a></div>'
+                  cellTemplate: '<div class="ui-grid-cell-contents"><a ui-sref="app.OracleGlLoadDetail({Id : row.entity.OracleGLLoadId})">{{ row.entity.OracleGLLoadId}}</a></div>'
               },
               { name: 'Name', field: 'Name', sortId: 2 },
               { name: 'Modified On', field: 'ModifiedOnString', sortId: 5 },

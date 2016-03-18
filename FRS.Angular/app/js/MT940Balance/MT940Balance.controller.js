@@ -103,7 +103,15 @@
               { name: 'Type', field: 'DebitOrCredit', sortId: 3 },
               { name: 'Entry', field: 'EntryDate', sortId: 5 },
               { name: 'Value', field: 'Value', sortId: 0 },
-              { name: 'Actions' }//, cellTemplate: '<div class="ui-grid-cell-contents"><a ui-sref="">{{row.entity.Name}}</a> </div>' }
+              { name: 'Actions' , cellTemplate: '<div class="ui-grid-cell-contents"><div uib-dropdown="dropdown" style="position:absolute;" class="btn-group btn-xs dropdown">' +
+                  '<a type="button" class="btn btn-xs btn-info">Detail</a>' +
+                  '<a type="button" uib-dropdown-toggle="" class="btn btn-xs dropdown-toggle btn-info" aria-haspopup="true" aria-expanded="false">' +
+                  '<span class="caret"></span><span class="sr-only">info</span>' +
+                  '</a>' +
+                  '<ul role="menu" class="dropdown-menu">' +
+                  '<li><a href="javascript:;">Action</a></li>' +
+                  '<li><a href="javascript:;">Another action</a></li>' +
+                  '</ul></div></div>' }
               
               
             ],

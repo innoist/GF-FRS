@@ -56,12 +56,6 @@
           { Id: '5', Name: 'Pending'}
         ];
 
-        //$http.get(window.frsApiUrl + '/api/LoadMetaDataBase').success(function (response) {
-        //    vm.Statuses = response.Statuses;
-        //});
-
-
-
         //ui-grid
         var paginationOptions = {
             'params': {
@@ -93,23 +87,18 @@
             columnDefs: [
                 // name is for display on the table header, field is for mapping as in 
                 //sortId is kept locally it is not the property of ui.grid
-              //{
-              //    name: 'Name',
-              //    field: 'Name',
-              //    sortId: 1,
-              //    cellTemplate: '<div class="ui-grid-cell-contents"><a ui-sref="">{{row.entity.Name}}</a> </div>',
-              //    //sort: {
-              //    //    direction: uiGridConstants.ASC
-              //    //}
-              //},
                 {
-                    name: 'A/c #', field: 'AccountNumber', sortId: 1,
-                    cellTemplate: '<div class="ui-grid-cell-contents"><a ui-sref="app.CustomerStatementsDetail({MT940CustomerStatementId : row.entity.MT940CustomerStatementId})">{{row.entity.AccountNumber}}</a></div>'
-                    
+                    name: 'ID', field: 'MT940CustomerStatementId', sortId: 1,
+                    sort: {
+                            direction: uiGridConstants.ASC
+                        },
+                    cellTemplate: '<div class="ui-grid-cell-contents"><a ui-sref="app.CustomerStatementsDetail({MT940CustomerStatementId : row.entity.MT940CustomerStatementId})">{{row.entity.MT940CustomerStatementId}}</a></div>'
                 },
-              { name: 'Description', field: 'Description', sortId: 2 },
-              { name: 'Related Message', field: 'ReleatedMessage', sortId: 3 },
+              { name: 'Sequence', field: 'Sequence', sortId: 2 },
+              { name: 'A/C#', field: 'AccountNumber', sortId: 2 },
+              { name: 'Statement No.', field: 'StatementNumber', sortId: 2 },
               { name: 'Transaction Reference', field: 'TransactionReference', sortId: 5 },
+              { name: 'Transactions', field: 'TransactionCount', sortId: 2 }
             //{ name: 'Action', width: '10%' , cellTemplate: '<div class="ui-grid-cell-contents"><a ui-sref="app.CustomerStatementTransactions({Id : row.entity.MT940CustomerStatementId, MT940LoadId: ' + $stateParams.Id + '})" class="btn btn-xs btn-green">Details</a></div>' }
             ],
             onRegisterApi: function (gridApi) {
