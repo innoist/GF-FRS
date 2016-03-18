@@ -33,7 +33,12 @@ namespace FRS.WebApi.ModelMappers
                 Amount = source.Amount,
                 Reference = source.Reference,
                 MT940CustomerStatementTransactionId = source.MT940CustomerStatementTransactionId,
-                MT940CustomerStatementId = source.MT940CustomerStatementId
+                MT940CustomerStatementId = source.MT940CustomerStatementId,
+                Sequence = source.Sequence,
+                ReadOnly = source.ReadOnly,
+                Value = source.Value,
+                ValueDate = source.ValueDate.ToString("dd-MMM-yy"),
+                EntryDate = source.EntryDate.HasValue ? source.EntryDate.Value.ToString("dd-MMM-yy") : "N/A"
             };
         }
     }

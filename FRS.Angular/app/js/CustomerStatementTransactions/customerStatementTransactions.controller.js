@@ -104,14 +104,14 @@
               //    //    direction: uiGridConstants.ASC
               //    //}
               //},
-              { name: 'Customer Statement Id', field: 'MT940CustomerStatementId', sortId: 0 },
-              { name: 'TransactionType', field: 'TransactionType', sortId: 1 },
-              { name: 'Amount', field: 'Amount', sortId: 2 },
-              { name: 'Debit Or Credit', field: 'DebitOrCredit', sortId: 3 },
+              { name: 'Id', field: 'MT940CustomerStatementId', sortId: 0 },
+              { name: 'Sequence', field: 'Sequence', sortId: 0 },
               { name: 'Reference', field: 'Reference', sortId: 4 },
-              { name: 'Description', field: 'Description', sortId: 5 }
-              
-              
+              { name: 'Type', field: 'TransactionType', sortId: 1 },
+              { name: 'Value', field: 'Value', sortId: 1, cellTemplate: '<div class="ui-grid-cell-contents"><span title="{{row.entity.Value}}">{{row.entity.Value}}</span></div>' },
+              { name: 'ValueDate', field: 'ValueDate', sortId: 1 },
+              { name: 'Amount', field: 'Amount', sortId: 2 },
+              { name: 'Entry', field: 'EntryDate', sortId: 2 }
             ],
             onRegisterApi: function (gridApi) {
                 vm.gridApi = gridApi;
