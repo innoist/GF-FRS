@@ -43,6 +43,11 @@ namespace FRS.WebApi.ModelMappers
                 
                 Sequence = source.Sequence,
                 ReadOnly = source.ReadOnly,
+                Sequence = source.Sequence,
+                ReadOnly = source.ReadOnly,
+                Value = source.Value,
+                ValueDate = source.ValueDate.ToString("dd-MMM-yy"),
+                EntryDate = source.EntryDate.HasValue ? source.EntryDate.Value.ToString("dd-MMM-yy") : "N/A"
                 Value = source.Value
             };
         }

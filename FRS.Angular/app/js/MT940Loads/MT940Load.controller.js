@@ -105,17 +105,20 @@
                   field: 'MT940LoadId', sortId: 2,
                   cellTemplate: '<div class="ui-grid-cell-contents"><a ui-sref="app.MT940LoadDetail({MT940LoadId : row.entity.MT940LoadId})">{{ row.entity.MT940LoadId}}</a></div>'
               },
-              { name: 'Name', field: 'Name', sortId: 2 },
-              { name: 'Created On', field: 'CreatedOnString', sortId: 5 },
-              { name: 'Modified On', field: 'ModifiedOnString', sortId: 5 },
-              { name: 'File', field: 'FileName', sortId: 3 },
+              { name: 'Load Name', field: 'Name', sortId: 2 },
+              { name: 'File Name', field: 'FileName', sortId: 3 },
+              { name: 'Start', field: 'CreatedOnString', sortId: 5 },
+              { name: 'Finish', field: 'ModifiedOnString', sortId: 5 },
+              
                 {
-                    name: 'Progress', field: 'Progress', sortId: 3,
-                    cellTemplate: '<div class="ui-grid-cell-contents"><span class=""><i class="fa fa-check-square-o"></i></span></div>'
+                    name: 'In Progress', field: 'Progress', sortId: 3,
+                    cellTemplate: "<div class='ui-grid-cell-contents'><button class='btn btn-xs' ng-class=" + '"' + "{'bg-green-light':row.entity.Progress, 'bg-primary-light' : !row.entity.Progress}" + '"' + ">{{row.entity.Progress}}</button></div>"
 
                 },
-              { name: 'Statement Count', field: 'CustomerStatementCount', sortId: 3 },
-              { name: 'Status', field: 'Status', sortId: 4 }
+              
+              { name: 'Load Status', field: 'Status', sortId: 4 },
+              { name: 'Statements', field: 'CustomerStatementCount', sortId: 3 },
+              { name: 'Modified', field: 'ModifiedOnString', sortId: 3 }
               
               //{ name: 'Action', width: '10%', cellTemplate: '<div class="ui-grid-cell-contents"><a ui-sref="app.CustomerStatements({Id : row.entity.MT940LoadId})" class="btn btn-xs btn-green">Details</a></div>' }
             ],

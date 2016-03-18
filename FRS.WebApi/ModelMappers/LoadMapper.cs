@@ -70,7 +70,7 @@ namespace FRS.WebApi.ModelMappers
 
         public static MT940LoadModel CreateFromServerToClient(this MT940Load source)
         {
-            return new MT940LoadModel()
+            var toReturn =  new MT940LoadModel()
             {
                 CreatedOnString = source.CreatedOn.ToString("dd-MMM-yy"),
                 ModifiedOnString = source.ModifiedOn.ToString("dd-MMM-yy"),
@@ -78,9 +78,20 @@ namespace FRS.WebApi.ModelMappers
                 Status = source.Status.Name,
                 CustomerStatementCount = source.CustomerStatementCount,
                 FileName = source.FileName + "." + source.FileExtension,
-                MT940LoadId = source.MT940LoadId,
-                Name = source.Loads.FirstOrDefault() != null ? source.Loads.FirstOrDefault().Name : "N/A"
+                MT940LoadId = source.MT940LoadId
             };
+            if (source.Loads.FirstOrDefault() != null)
+            {
+                var load = source.Loads.FirstOrDefault();
+
+                toReturn.Name = load.Name;
+                toReturn.Start = load.Start.ToString("DD-MM-YYYY HH:mm:SS");
+                toReturn.Finish = load.Finish.HasValue ? load.Finish.Value.ToString("DD-MM-YYYY HH:mm:SS") : "N/A";
+                toReturn.Status = load.LoadStatu.Name;
+                toReturn.Progress = load.InProgress;
+            }
+
+            return toReturn;
         }
 
         public static MT940Load CreateFromClientToServer(this MT940LoadModel source)
