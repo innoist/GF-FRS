@@ -24,6 +24,13 @@
 
             
         }
+        this.CustomerStatementDetail = function (Id, onReady, onError) {
+            onError = onError || function () { alert('Failed to load data'); };
+            $http
+                .get(window.frsApiUrl + '/api/CustomerStatement/' + Id)
+                .success(onReady)
+                .error(onError);
+        }
     }
 
 

@@ -73,6 +73,7 @@
     <Content Include="app\js\Currency\Index\currency.controller.js" />
     <Content Include="app\js\Currency\Create\newCurrency.service.js" />
     <Content Include="app\js\Currency\Create\newCurrency.controller.js" />
+    <Content Include="app\js\CustomerStatements\customerStatementsDetail.controller.js" />
     <Content Include="app\js\LoadStatus\loadStatus.controller.js" />
     <Content Include="app\js\LoadStatus\loadStatus.service.js" />
     <Content Include="app\js\LoadStatus\newLoadStatus.controller.js" />
@@ -121,6 +122,7 @@
     <Content Include="app\js\Users\UsersController.js" />
     <Content Include="app\js\Users\UsersService.js" />
     <Content Include="app\vendor\datatable-bootstrap\images\Sorting icons.psd" />
+    <Content Include="app\views\CustomerStatements\CustomerStatementsDetail.html" />
     <Content Include="app\views\LoadStatus\LoadStatus.html" />
     <Content Include="app\views\LoadStatus\NewLoadStatus.html" />
     <Content Include="app\views\FiscalYear\FiscalYear.html" />

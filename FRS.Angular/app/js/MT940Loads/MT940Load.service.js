@@ -9,7 +9,7 @@
     var core = angular.module('app.core');
     // ReSharper disable FunctionsUsedBeforeDeclared
     core.lazy.service('MT940Service', MT940Service);
-
+    
     MT940Service.$inject = ['$http'];
 
     function MT940Service($http) {

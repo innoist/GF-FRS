@@ -24,6 +24,7 @@ namespace FRS.Repository.Repositories
 
         public MT940CustomerStatementRepository(IUnityContainer container) : base(container)
         {
+
         }
 
         protected override IDbSet<MT940CustomerStatement> DbSet
@@ -58,5 +59,11 @@ namespace FRS.Repository.Repositories
             return new SearchTemplateResponse<MT940CustomerStatement> { Data = MT940Loads, TotalCount = DbSet.Count(query), FilteredCount = DbSet.Count(query) };
         }
 
+
+
+        public MT940CustomerStatement GetCustomerStatement(long mt940CustomerStatementId)
+        {
+            return DbSet.FirstOrDefault(x => x.MT940CustomerStatementId == mt940CustomerStatementId);
+        }
     }
 }

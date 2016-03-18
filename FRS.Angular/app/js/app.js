@@ -2202,6 +2202,7 @@
                                                        '/app/js/MT940Loads/MT940Load.service.js',
                                                         '/app/js/MT940Loads/MT940LoadDetail.controller.js']
               },
+
               {
                   name: 'OracleGlLoad.module', files: ['/app/js/OracleGlLoads/OracleGlLoad.controller.js',
                                                        '/app/js/OracleGlLoads/OracleGlLoad.service.js',
@@ -2209,7 +2210,8 @@
               },
               {
                   name: 'CustomerStatements.module', files: ['/app/js/CustomerStatements/customerStatements.controller.js',
-                                                             '/app/js/CustomerStatements/customerStatements.service.js']
+                                                             '/app/js/CustomerStatements/customerStatements.service.js',
+                                                            '/app/js/CustomerStatements/customerStatementsDetail.controller.js']
               },
               {
                   name: 'CustomerStatementTransactions.module', files: ['/app/js/CustomerStatementTransactions/customerStatementTransactions.controller.js',

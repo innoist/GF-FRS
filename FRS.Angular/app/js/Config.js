@@ -1,4 +1,5 @@
-﻿/**=========================================================
+﻿/// <reference path="../views/CustomerStatements/CustomerStatementsDetail.html" />
+/**=========================================================
  * Module: config.js
  * App routes and resources configuration
  =========================================================*/
@@ -94,6 +95,16 @@
                 controllerAs: 'custsc',
                 resolve: helper.resolveFor('ui.grid', 'ui.select', 'CustomerStatements.module')
             })
+            
+             .state('app.CustomerStatementsDetail', {
+                 url: '/CustomerStatements/:MT940CustomerStatementId',
+                 title: 'MT940 Customer Statment Detail',
+
+                 templateUrl: helper.basepath('../../../../app/views/CustomerStatements/CustomerStatementsDetail.html'),
+                 controller: 'CustomerStatementsDetailController',
+                 controllerAs: 'mt940CustStatDetail',
+                 resolve: helper.resolveFor('ui.grid', 'ui.select', 'CustomerStatements.module')
+             })
             .state('app.CustomerStatementTransactions', {
                 url: '/CustomerStatementTransactions/:Id?/:MT940LoadId?',
                 title: 'Customer Statement Transactions',

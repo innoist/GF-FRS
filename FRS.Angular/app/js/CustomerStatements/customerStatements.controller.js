@@ -104,7 +104,7 @@
               //},
                 {
                     name: 'A/c #', field: 'AccountNumber', sortId: 1,
-                    cellTemplate: '<div class="ui-grid-cell-contents"><a ui-sref="app.CustomerStatementTransactions({Id : row.entity.MT940CustomerStatementId, MT940LoadId: ' + $stateParams.Id + '})">{{row.entity.AccountNumber}}</a></div>'
+                    cellTemplate: '<div class="ui-grid-cell-contents"><a ui-sref="app.CustomerStatementsDetail({Id : row.entity.MT940CustomerStatementId})">{{row.entity.AccountNumber}}</a></div>'
                     
                 },
               { name: 'Description', field: 'Description', sortId: 2 },

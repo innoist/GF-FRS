@@ -7,6 +7,7 @@ using FRS.Models.RequestModels;
 using FRS.WebApi.ModelMappers;
 using FRS.WebApi.ViewModels.MT940CustomerStatement;
 using FRS.WebBase.Mvc;
+using FRS.WebApi.Models.MT940CustomerStatement;
 
 namespace FRS.WebApi.Controllers
 {
@@ -25,6 +26,23 @@ namespace FRS.WebApi.Controllers
         }
 
         #region Get
+
+        [ApiException]
+        [HttpGet]
+  //      [Authorize]
+        public MT940CustomerStatementModel Get(long id)
+        {
+            if (id <= 0)
+            {
+                throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
+            }
+            var detail = mt940CustomerStatementService.GetMt940CustomerStatementDetail(id);
+            MT940CustomerStatementModel model = detail.MapFromServerToClient();
+            
+
+            return model;
+        }
+
 
         [HttpGet]
         [Authorize]

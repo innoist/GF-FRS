@@ -8,5 +8,6 @@ namespace FRS.Interfaces.Repository
     {
         SearchTemplateResponse<MT940CustomerStatement> GetMt940SearchResponse(MT940CustomerStatementSearchrequest searchRequest);
 
+        MT940CustomerStatement GetCustomerStatement(long mt940CustomerStatementId);
     }
 }

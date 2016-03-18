@@ -19,5 +19,11 @@ namespace FRS.Implementation.Services
         {
             return mt940CustomerStatementRepository.GetMt940SearchResponse(searchRequest);
         }
+
+
+        public MT940CustomerStatement GetMt940CustomerStatementDetail(long mt940CustomerStatementId)
+        {
+            return mt940CustomerStatementRepository.GetCustomerStatement(mt940CustomerStatementId);
+        }
     }
 }

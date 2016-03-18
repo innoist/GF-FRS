@@ -7,5 +7,6 @@ namespace FRS.Interfaces.IServices
     public interface IMT940CustomerStatementService
     {
         SearchTemplateResponse<MT940CustomerStatement> GetMt940SearchResponse(MT940CustomerStatementSearchrequest searchRequest);
+        MT940CustomerStatement GetMt940CustomerStatementDetail(long mt940CustomerStatementId);
     }
 }

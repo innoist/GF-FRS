@@ -1,4 +1,5 @@
-﻿/**=========================================================
+﻿
+/**=========================================================
  * Module: load meta data
  * Load Meta Data view Controller
  =========================================================*/
@@ -6,17 +7,14 @@
 (function () {
     'use strict';
 
+    debugger
     var core = angular.module('app.core');
-    // ReSharper disable FunctionsUsedBeforeDeclared
-    core.lazy.controller('MT940LoadDetailController', MT940LoadDetailController);
-    
-    MT940LoadDetailController.$inject = ['$scope','$controller' , '$state', '$stateParams', 'uiGridConstants', 'MT940Service'];
+    core.lazy.controller('CustomerStatementsDetailController', CustomerStatementsDetailController);
 
-    function MT940LoadDetailController($scope, $controller, $state, $stateParams, uiGridConstants, MT940Service) {
-        //debugger
-        //var CS = $scope.$new();
-        //$controller('CustomerStatementsDetailController', { $scope: CS });
-        
+    CustomerStatementsDetailController.$inject = ['$scope', '$state', '$stateParams', 'uiGridConstants', 'CustomerStatementsService'];
+
+    function CustomerStatementsDetailController($scope, $state, $stateParams, uiGridConstants, CustomerStatementsService) {
+
         var vm = this;
 
         //datepicker
@@ -59,7 +57,7 @@
           { Id: '5', Name: 'Pending' }
         ];
 
-        
+
 
         //ui-grid
         var paginationOptions = {
@@ -74,10 +72,11 @@
             },
         };
 
-        if ($stateParams.MT940LoadId != "") {
+        if ($stateParams.MT940CustomerStatementId != "") {
+
+            paginationOptions.params.MT940CustomerStatementId = $stateParams.MT940CustomerStatementId;
+            CustomerStatementsService.CustomerStatementDetail($stateParams.MT940CustomerStatementId, function (response) {
             debugger
-            paginationOptions.params.MT940LoadId = $stateParams.MT940LoadId;
-            MT940Service.getMT940Detail($stateParams.MT940LoadId, function (response) {
                 var load = response.Load;
                 var mt940LoadModel = response.Mt940LoadModel;
                 var loadMetadata = response.LoadMetaData;
@@ -194,9 +193,9 @@
 
         $scope.resetFilter();
         //Set Id 
-        
 
-        
+
+
 
 
     }
