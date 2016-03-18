@@ -68,7 +68,11 @@
               { name: 'Year', field: 'Status', sortId: 4 },
               { name: 'Created On', field: 'Status', sortId: 4 },
               { name: 'Modified On', field: 'Status', sortId: 4 },
-              { name: 'Action', width: '10%', cellTemplate: '<div class="ui-grid-cell-contents"><a ui-sref="app.CustomerStatements({Id : row.entity.MT940LoadId})" class="btn btn-xs btn-green">Details</a></div>' }
+              {
+                  name: 'Actions', cellTemplate: '<div class="ui-grid-cell-contents"><div class="btn btn-xs">' +
+                    '<a class="btn btn-xs btn-info"><i class="fa fa-search"></i></a>' +
+                    '</div></div>'
+              }
             ],
             onRegisterApi: function (gridApi) {
                 vm.gridApi = gridApi;

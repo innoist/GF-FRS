@@ -104,7 +104,7 @@
               { name: 'Entry', field: 'EntryDate', sortId: 5 },
               { name: 'Value', field: 'Value', sortId: 0 },
               { name: 'Actions' , cellTemplate: '<div class="ui-grid-cell-contents"><div uib-dropdown="dropdown" style="position:absolute;" class="btn-group btn-xs dropdown">' +
-                  '<a type="button" class="btn btn-xs btn-info">Detail</a>' +
+                  '<a type="button" class="btn btn-xs btn-info"><i class="fa fa-search"></i></a>' +
                   '<a type="button" uib-dropdown-toggle="" class="btn btn-xs dropdown-toggle btn-info" aria-haspopup="true" aria-expanded="false">' +
                   '<span class="caret"></span><span class="sr-only">info</span>' +
                   '</a>' +

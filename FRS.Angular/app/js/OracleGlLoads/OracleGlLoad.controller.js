@@ -90,26 +90,21 @@
             columnDefs: [
                 // name is for display on the table header, field is for mapping as in 
                 //sortId is kept locally it is not the property of ui.grid
-              //{
-              //    name: 'Name',
-              //    field: 'Name',
-              //    sortId: 1,
-              //    cellTemplate: '<div class="ui-grid-cell-contents"><a ui-sref="">{{row.entity.Name}}</a> </div>',
-              //    //sort: {
-              //    //    direction: uiGridConstants.ASC
-              //    //}
-              //},
-              
               {
                   name: 'ID',
                   field: 'OracleGLLoadId', sortId: 2,
-                  cellTemplate: '<div class="ui-grid-cell-contents"><a ui-sref="app.OracleGlLoadDetail({Id : row.entity.OracleGLLoadId})">{{ row.entity.OracleGLLoadId}}</a></div>'
+                  //cellTemplate: '<div class="ui-grid-cell-contents"><a ui-sref="app.OracleGlLoadDetail({Id : row.entity.OracleGLLoadId})">{{ row.entity.OracleGLLoadId}}</a></div>'
               },
               { name: 'Name', field: 'Name', sortId: 2 },
               { name: 'Modified On', field: 'ModifiedOnString', sortId: 5 },
               { name: 'File', field: 'FileName', sortId: 3 },
               { name: 'OracleGL Entry Count', field: 'OracleGLEntryCount', sortId: 3 },
-              { name: 'Status', field: 'Status', sortId: 4 }
+              { name: 'Status', field: 'Status', sortId: 4 },
+              {
+                  name: 'Actions', cellTemplate: '<div class="ui-grid-cell-contents"><div class="btn btn-xs">' +
+                    '<a ui-sref="app.OracleGlLoadDetail({Id : row.entity.OracleGLLoadId})" class="btn btn-xs btn-info"><i class="fa fa-search"></i></a>' +
+                    '</div></div>'
+              }
               
               //{ name: 'Action', width: '10%', cellTemplate: '<div class="ui-grid-cell-contents"><a ui-sref="app.CustomerStatements({Id : row.entity.MT940LoadId})" class="btn btn-xs btn-green">Details</a></div>' }
             ],

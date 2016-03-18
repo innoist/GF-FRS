@@ -102,8 +102,8 @@
               
               {
                   name: 'ID',
-                  field: 'MT940LoadId', sortId: 2,
-                  cellTemplate: '<div class="ui-grid-cell-contents"><a ui-sref="app.MT940LoadDetail({MT940LoadId : row.entity.MT940LoadId})">{{ row.entity.MT940LoadId}}</a></div>'
+                  field: 'MT940LoadId', sortId: 2
+                  //cellTemplate: '<div class="ui-grid-cell-contents"><a ui-sref="app.MT940LoadDetail({MT940LoadId : row.entity.MT940LoadId})">{{ row.entity.MT940LoadId}}</a></div>'
               },
               { name: 'Load Name', field: 'Name', sortId: 2 },
               { name: 'File Name', field: 'FileName', sortId: 3 },
@@ -112,13 +112,18 @@
               
                 {
                     name: 'In Progress', field: 'Progress', sortId: 3,
-                    cellTemplate: "<div class='ui-grid-cell-contents'><button class='btn btn-xs' ng-class=" + '"' + "{'bg-green-light':row.entity.Progress, 'bg-primary-light' : !row.entity.Progress}" + '"' + ">{{row.entity.Progress}}</button></div>"
+                    cellTemplate: "<div class='ui-grid-cell-contents'><label class='label' ng-class=" + '"' + "{'bg-green-light':row.entity.Progress, 'bg-primary-light' : !row.entity.Progress}" + '"' + ">{{row.entity.Progress}}</label></div>"
 
                 },
               
               { name: 'Load Status', field: 'Status', sortId: 4 },
               { name: 'Statements', field: 'CustomerStatementCount', sortId: 3 },
-              { name: 'Modified', field: 'ModifiedOnString', sortId: 3 }
+              { name: 'Modified', field: 'ModifiedOnString', sortId: 3 },
+              {
+                  name: 'Actions', cellTemplate: '<div class="ui-grid-cell-contents"><div class="btn btn-xs">' +
+                    '<a ui-sref="app.MT940LoadDetail({MT940LoadId : row.entity.MT940LoadId})" class="btn btn-xs btn-info"><i class="fa fa-search"></i></a>'+
+                    '</div></div>'
+              }
               
               //{ name: 'Action', width: '10%', cellTemplate: '<div class="ui-grid-cell-contents"><a ui-sref="app.CustomerStatements({Id : row.entity.MT940LoadId})" class="btn btn-xs btn-green">Details</a></div>' }
             ],

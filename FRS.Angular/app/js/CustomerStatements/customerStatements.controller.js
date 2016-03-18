@@ -92,14 +92,18 @@
                     sort: {
                             direction: uiGridConstants.ASC
                         },
-                    cellTemplate: '<div class="ui-grid-cell-contents"><a ui-sref="app.CustomerStatementsDetail({MT940CustomerStatementId : row.entity.MT940CustomerStatementId})">{{row.entity.MT940CustomerStatementId}}</a></div>'
+                    //cellTemplate: '<div class="ui-grid-cell-contents"><a ui-sref="app.CustomerStatementsDetail({MT940CustomerStatementId : row.entity.MT940CustomerStatementId})">{{row.entity.MT940CustomerStatementId}}</a></div>'
                 },
               { name: 'Sequence', field: 'Sequence', sortId: 2 },
               { name: 'A/C#', field: 'AccountNumber', sortId: 2 },
               { name: 'Statement No.', field: 'StatementNumber', sortId: 2 },
               { name: 'Transaction Reference', field: 'TransactionReference', sortId: 5 },
-              { name: 'Transactions', field: 'TransactionCount', sortId: 2 }
-            //{ name: 'Action', width: '10%' , cellTemplate: '<div class="ui-grid-cell-contents"><a ui-sref="app.CustomerStatementTransactions({Id : row.entity.MT940CustomerStatementId, MT940LoadId: ' + $stateParams.Id + '})" class="btn btn-xs btn-green">Details</a></div>' }
+              { name: 'Transactions', field: 'TransactionCount', sortId: 2 },
+              {
+                  name: 'Actions', cellTemplate: '<div class="ui-grid-cell-contents"><div class="btn btn-xs">' +
+                    '<a ui-sref="app.CustomerStatementsDetail({MT940CustomerStatementId : row.entity.MT940CustomerStatementId})" class="btn btn-xs btn-info"><i class="fa fa-search"></i></a>' +
+                    '</div></div>'
+              }
             ],
             onRegisterApi: function (gridApi) {
                 vm.gridApi = gridApi;

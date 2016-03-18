@@ -86,16 +86,6 @@
             columnDefs: [
                 // name is for display on the table header, field is for mapping as in 
                 //sortId is kept locally it is not the property of ui.grid
-              //{
-              //    name: 'Name',
-              //    field: 'Name',
-              //    sortId: 1,
-              //    cellTemplate: '<div class="ui-grid-cell-contents"><a ui-sref="">{{row.entity.Name}}</a> </div>',
-              //    //sort: {
-              //    //    direction: uiGridConstants.ASC
-              //    //}
-              //},
-              
               {
                   name: 'ID',
                   field: 'OracleGLLoadId', sortId: 2,
@@ -107,7 +97,12 @@
               { name: 'Period', field: 'OracleGLEntryCount', sortId: 3 },
               { name: 'Year', field: 'Status', sortId: 4 },
               { name: 'Created On', field: 'Status', sortId: 4 },
-              { name: 'Modified On', field: 'Status', sortId: 4 }
+              { name: 'Modified On', field: 'Status', sortId: 4 },
+              {
+                  name: 'Actions', cellTemplate: '<div class="ui-grid-cell-contents"><div class="btn btn-xs">' +
+                    '<a href="javascript:;" class="btn btn-xs btn-info"><i class="fa fa-search"></i></a>' +
+                    '</div></div>'
+              }
               
               //{ name: 'Action', width: '10%', cellTemplate: '<div class="ui-grid-cell-contents"><a ui-sref="app.CustomerStatements({Id : row.entity.MT940LoadId})" class="btn btn-xs btn-green">Details</a></div>' }
             ],

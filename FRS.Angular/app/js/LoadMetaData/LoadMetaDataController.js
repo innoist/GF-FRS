@@ -91,14 +91,22 @@
             columnDefs: [
                 // name is for display on the table header, field is for mapping as in 
                 //sortId is kept locally it is not the property of ui.grid
-              { name: 'ID', field: 'LoadMetaDataId', sortId: 1, cellTemplate: '<div class="ui-grid-cell-contents"><a ui-sref="app.CreateMetaData({Id : row.entity.LoadMetaDataId})">{{row.entity.Name}}</a> </div>', },
+              {
+                  name: 'ID', field: 'LoadMetaDataId', sortId: 1,
+                  //cellTemplate: '<div class="ui-grid-cell-contents"><a ui-sref="app.CreateMetaData({Id : row.entity.LoadMetaDataId})">{{row.entity.Name}}</a> </div>',
+              },
               { name: 'Name',field: 'Name'},
               { name: 'Type', field: 'LoadType', sortId: 2 },
               { name: 'Source', field: 'Source', sortId: 3 },
               { name: 'Currency', field: 'Currency', sortId: 4 },
               { name: 'Created On', field: 'CreatedOnString', sortId: 5 },
               { name: 'Modified On', field: 'ModifiedOnString' },
-              { name: 'Status', field: 'Status' }
+              { name: 'Status', field: 'Status' },
+              {
+                  name: 'Actions', cellTemplate: '<div class="ui-grid-cell-contents"><div class="btn btn-xs">' +
+                    '<a ui-sref="app.CreateMetaData({Id : row.entity.LoadMetaDataId})" class="btn btn-xs btn-info"><i class="fa fa-search"></i></a>' +
+                    '</div></div>'
+              }
             ],
             onRegisterApi: function (gridApi) {
                 vm.gridApi = gridApi;
