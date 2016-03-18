@@ -1,14 +1,14 @@
 ﻿<h3>
     <!-- START Language list-->
     <div class="pull-right">
-        <a class="btn btn-info btn-labeled" ng-if="!ogllc.load.InProgress">
+        <a class="btn btn-info btn-labeled" ng-if="!oglldc.load.InProgress">
             <span class="btn-label">
                 <i class="fa fa-refresh fa-spin"></i>
             </span>Process
         </a>
     </div>
     <!-- END Language list    -->
-    {{ogllc.load.Name}} - ORACLE GL Load
+    {{oglldc.load.Name}} - ORACLE GL Load
     <small>Details</small>
 </h3>
 <div class="panel panel-default">
@@ -21,19 +21,19 @@
                     <div class="form-group">
                         <div class="col-sm-4">File</div>
                         <div class="col-sm-8">
-                            <strong>{{ogllc.OracleGlLoad.FileName}}</strong>
+                            <strong>{{oglldc.OracleGlLoad.FileName}}</strong>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-sm-4">Status</div>
                         <div class="col-sm-8">
-                            <strong class="btn btn-xs" ng-class="{ 'btn-success': ogllc.OracleGlLoad.Status == 'Active'}">{{ogllc.OracleGlLoad.Status}}</strong>
+                            <strong class="btn btn-xs" ng-class="{ 'btn-success': oglldc.OracleGlLoad.Status == 'Active'}">{{oglldc.OracleGlLoad.Status}}</strong>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-sm-4">Statement Count</div>
                         <div class="col-sm-8">
-                            <strong>{{ogllc.OracleGlLoad.CustomerStatementCount}}</strong>
+                            <strong>{{oglldc.OracleGlLoad.CustomerStatementCount}}</strong>
                         </div>
                     </div>
                 </form>
@@ -47,25 +47,25 @@
                     <div class="form-group">
                         <div class="col-sm-4">Name</div>
                         <div class="col-sm-8">
-                            <strong>{{ogllc.load.Name}}</strong>
+                            <strong>{{oglldc.load.Name}}</strong>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-sm-4">Start</div>
                         <div class="col-sm-8">
-                            <strong>{{ogllc.load.StartString}}</strong>
+                            <strong>{{oglldc.load.StartString}}</strong>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-sm-4">In Progress</div>
                         <div class="col-sm-8">
-                            <strong class="btn btn-xs" ng-class="{'btn-warning':!ogllc.load.InProgress, 'btn-success': ogllc.load.InProgress}"><span ng-if="ogllc.load.InProgress">Yes</span><span ng-if="!ogllc.load.InProgress">No</span></strong>
+                            <strong class="btn btn-xs" ng-class="{'btn-warning':!oglldc.load.InProgress, 'btn-success': oglldc.load.InProgress}"><span ng-if="oglldc.load.InProgress">Yes</span><span ng-if="!oglldc.load.InProgress">No</span></strong>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-sm-4">Modified On</div>
                         <div class="col-sm-8">
-                            <strong>{{ogllc.load.ModifiedOnStr}}</strong>
+                            <strong>{{oglldc.load.ModifiedOnStr}}</strong>
                         </div>
                     </div>
                 </form>
@@ -78,11 +78,11 @@
     </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading">Statements</div>
+    <div class="panel-heading">Oracle GL Entries</div>
     <div class="panel-body">
         <div class="container-fluid animated">
             <!-- Grid view to show listview with searching, sorting and pagination-->
-            <div ui-grid="ogllc.gridOptions" ui-grid-pagination ui-grid-move-columns ui-grid-resize-columns class="table-uigrid flip"></div>
+            <div ui-grid="oglldc.gridOptions" ui-grid-pagination ui-grid-move-columns ui-grid-resize-columns class="table-uigrid flip"></div>
         </div>
     </div>
 </div>

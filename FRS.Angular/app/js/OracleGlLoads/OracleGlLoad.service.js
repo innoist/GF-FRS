@@ -23,11 +23,11 @@
                 .error(onError);
         }
 
-        this.getCustomerStatements = function (onReady, onError, paginationOptions) {
+        this.getOracleGLEntries = function (onReady, onError, paginationOptions) {
 
             onError = onError || function () { alert('Failed to load data'); };
             $http
-                .get(window.frsApiUrl + '/api/CustomerStatement', paginationOptions)
+                .get(window.frsApiUrl + '/api/OracleGLEntry', paginationOptions)
                 .success(onReady)
                 .error(onError);
         }

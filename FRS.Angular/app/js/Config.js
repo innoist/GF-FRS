@@ -72,11 +72,11 @@
                 resolve: helper.resolveFor('ui.grid', 'ui.select', 'OracleGlLoad.module')
             })
             .state('app.OracleGlLoadDetail', {
-                url: '/OracleGlLoadDetail',
+                url: '/OracleGlLoadDetail/:Id',
                 title: 'Oracle GL Load Detail',
                 templateUrl: helper.basepath('../../../../app/views/OracleGlLoad/OracleGlLoadDetail.html'),
-                controller: 'OracleGlLoadController',
-                controllerAs: 'ogllc',
+                controller: 'OracleGlLoadDetailController',
+                controllerAs: 'oglldc',
                 resolve: helper.resolveFor('ui.grid', 'ui.select', 'OracleGlLoad.module')
             })
             .state('app.MT940Loads', {
