@@ -14,7 +14,12 @@ namespace FRS.WebApi.ModelMappers
                 Description = source.Description,
                 ReleatedMessage = source.ReleatedMessage,
                 TransactionReference = source.TransactionReference,
-                MT940CustomerStatementId = source.MT940CustomerStatementId
+                MT940CustomerStatementId = source.MT940CustomerStatementId,
+                Sequence = source.Sequence,
+                SequenceNumber = source.SequenceNumber,
+                StatementNumber = source.StatementNumber,
+                TransactionCount = source.TransactionCount,
+                ReadOnly = source.ReadOnly                
             };
         }
         
