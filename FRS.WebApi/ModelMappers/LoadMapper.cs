@@ -75,7 +75,6 @@ namespace FRS.WebApi.ModelMappers
                 CreatedOnString = source.CreatedOn.ToString("dd-MMM-yy hh:mm:ss"),
                 ModifiedOnString = source.ModifiedOn.ToString("dd-MMM-yy hh:mm:ss"),
                 StatusId = source.StatusId,
-                Status = source.Status.Name,
                 CustomerStatementCount = source.CustomerStatementCount,
                 FileName = source.FileName + "." + source.FileExtension,
                 MT940LoadId = source.MT940LoadId

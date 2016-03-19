@@ -90,35 +90,29 @@
             columnDefs: [
                 // name is for display on the table header, field is for mapping as in 
                 //sortId is kept locally it is not the property of ui.grid
-              //{
-              //    name: 'Name',
-              //    field: 'Name',
-              //    sortId: 1,
-              //    cellTemplate: '<div class="ui-grid-cell-contents"><a ui-sref="">{{row.entity.Name}}</a> </div>',
-              //    //sort: {
-              //    //    direction: uiGridConstants.ASC
-              //    //}
-              //},
-              
               {
                   name: 'ID',
-                  field: 'MT940LoadId', sortId: 2
-                  //cellTemplate: '<div class="ui-grid-cell-contents"><a ui-sref="app.MT940LoadDetail({MT940LoadId : row.entity.MT940LoadId})">{{ row.entity.MT940LoadId}}</a></div>'
+                  field: 'MT940LoadId', sortId: 1,
+                  //sort: {
+                  //    //    direction: uiGridConstants.ASC
+                  //    //}
               },
               { name: 'Load Name', field: 'Name', sortId: 2 },
               { name: 'File Name', field: 'FileName', sortId: 3 },
-              { name: 'Start', field: 'Start', sortId: 5 },
+              { name: 'Start', field: 'Start', sortId: 4 },
               { name: 'Finish', field: 'Finish', sortId: 5 },
               
                 {
-                    name: 'In Progress', field: 'Progress', sortId: 3,
+                    name: 'In Progress', field: 'Progress', sortId: 6,
                     cellTemplate: "<div class='ui-grid-cell-contents'><label class='label' ng-class=" + '"' + "{'bg-green-light':row.entity.Progress, 'bg-primary-light' : !row.entity.Progress}" + '"' + ">{{row.entity.ProgressTitle}}</label></div>"
 
                 },
-              
-              { name: 'Load Status', field: 'Status', sortId: 4 },
-              { name: 'Statements', field: 'CustomerStatementCount', sortId: 3 },
-              { name: 'Modified', field: 'ModifiedOnString', sortId: 3 },
+                {
+                    name: 'Load Status', field: 'Status', sortId: 7 ,
+                    cellTemplate: "<div class='ui-grid-cell-contents'><label class='label' ng-class=" + '"' + "{'bg-warning-light' : row.entity.Status == 'Created' || row.entity.Status == 'Submitted', 'bg-green-light' : row.entity.Status == 'Parsing' || row.entity.Status == 'Transforming' || row.entity.Status == 'Importing', 'bg-success' : row.entity.Status == 'Completed', 'bg-danger' : row.entity.Status == 'Failed'}" + '"' + ">{{row.entity.Status}}</label></div>"
+                },
+              { name: 'Statements', field: 'CustomerStatementCount', sortId: 8 },
+              { name: 'Modified', field: 'ModifiedOnString', sortId: 9 },
               {
                   name: 'Actions', cellTemplate: '<div class="ui-grid-cell-contents"><div class="btn btn-xs">' +
                     '<a ui-sref="app.MT940LoadDetail({MT940LoadId : row.entity.MT940LoadId})" class="btn btn-xs btn-info"><i class="fa fa-search"></i></a>'+

@@ -44,12 +44,16 @@ namespace FRS.Repository.Repositories
 
             IEnumerable<MT940Load> MT940Loads = searchRequest.IsAsc
                 ? DbSet
+                    .Include(x=>x.Loads)
+                    .Include(x=>x.Status)
                     .Where(query)
                     .OrderBy(orderClause[searchRequest.OrderByColumn])
                     .Skip(fromRow)
                     .Take(toRow)
                     .ToList()
                 : DbSet
+                    .Include(x => x.Loads)
+                    .Include(x => x.Status)
                     .Where(query)
                     .OrderByDescending(orderClause[searchRequest.OrderByColumn])
                     .Skip(fromRow)

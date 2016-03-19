@@ -47,7 +47,15 @@
                         <div class="form-group">
                             <div class="col-sm-4">Status</div>
                             <div class="col-sm-8">
-                                <strong class="btn btn-xs" ng-class="{ 'btn-success': mt940ldc.mt940Load.Status == 'Active'}">{{mt940ldc.mt940Load.Status}}</strong>
+                                <strong>
+                                    <label class='label' ng-class=" {
+                                           'bg-warning-light' : mt940ldc.mt940Load.Status == 'Created' || mt940ldc.mt940Load.Status == 'Submitted' , 
+                                           'bg-green-light' : mt940ldc.mt940Load.Status == 'Parsing' || mt940ldc.mt940Load.Status == 'Transforming' || mt940ldc.mt940Load.Status == 'Importing' , 
+                                           'bg-success' : mt940ldc.mt940Load.Status == 'Completed' , 
+                                           'bg-danger' : mt940ldc.mt940Load.Status == 'Failed' }">
+                                        {{mt940ldc.mt940Load.Status}}
+                                    </label>
+                                </strong>
                             </div>
                         </div>
                         <div class="form-group">
@@ -80,7 +88,7 @@
                     <div class="form-group">
                         <div class="col-sm-4">In Progress</div>
                         <div class="col-sm-8">
-                            <strong class="btn btn-xs" ng-class="{'btn-warning':!mt940ldc.load.InProgress, 'btn-success': mt940ldc.load.InProgress}"><span ng-if="mt940ldc.load.InProgress">Yes</span><span ng-if="!mt940ldc.load.InProgress">No</span></strong>
+                            <strong class="btn btn-xs" ng-class="{'bg-green-light':mt940ldc.load.InProgress, 'bg-primary-light': !mt940ldc.load.InProgress}">{{mt940ldc.mt940Load.ProgressTitle}}</strong>
                         </div>
                     </div>
                     <div class="form-group">
