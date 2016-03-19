@@ -16,5 +16,9 @@
         public byte StatusId { get; set; }
         public string Status { get; set; }
         public string Name { get; set; }
+        public string Start { get; set; }
+        public string Finish { get; set; }
+        public string ProgressTitle { get; set; }
+        public bool Progress { get; set; }
     }
 }

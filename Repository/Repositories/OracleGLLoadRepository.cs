@@ -38,19 +38,19 @@ namespace FRS.Repository.Repositories
             int toRow = searchRequest.PageSize;
             Expression<Func<OracleGLLoad, bool>> query =
                 s =>
-                    (
-                    (searchRequest.OracleGLLoadId == 0 || searchRequest.OracleGLLoadId == (s.OracleGLLoadId)) &&
-                    (searchRequest.StatusId == 0 || searchRequest.StatusId == s.StatusId)
-                    );
+                    (searchRequest.OracleGLLoadId == 0 || searchRequest.OracleGLLoadId == s.OracleGLLoadId) &&
+                    (searchRequest.StatusId == 0 || searchRequest.StatusId == s.StatusId);
 
             IEnumerable<OracleGLLoad> data = searchRequest.IsAsc
                 ? DbSet
+                    .Include(x=>x.Loads)
                     .Where(query)
                     .OrderBy(orderClause[searchRequest.OrderByColumn])
                     .Skip(fromRow)
                     .Take(toRow)
                     .ToList()
                 : DbSet
+                    .Include(x => x.Loads)
                     .Where(query)
                     .OrderByDescending(orderClause[searchRequest.OrderByColumn])
                     .Skip(fromRow)

@@ -9,7 +9,7 @@ namespace FRS.WebApi.ModelMappers
     {
         public static OracleGLLoadModel CreateFromServerToClient(this OracleGLLoad source)
         {
-            return new OracleGLLoadModel()
+            var toReturn = new OracleGLLoadModel()
             {
                 ModifiedBy = source.ModifiedBy,
                 CreatedBy = source.CreatedBy,
@@ -17,13 +17,25 @@ namespace FRS.WebApi.ModelMappers
                 Status = source.Status.Name,
                 CreatedOn = source.CreatedOn,
                 FileContentId = source.FileContentId,
-                ModifiedOnString = source.ModifiedOn.ToString("dd-MMM-yy"),
+                ModifiedOnString = source.ModifiedOn.ToString("dd-MMM-yy HH:mm:ss"),
                 FileName = source.FileName + "." + source.FileExtension,
                 OracleGLEntryCount = source.OracleGLEntryCount,
                 Path = source.Path,
                 OracleGLLoadId = source.OracleGLLoadId,
-                Name = source.Loads.FirstOrDefault() == null ? "N/A" : source.Loads.FirstOrDefault().Name
             };
+            if (source.Loads.FirstOrDefault() != null)
+            {
+                var load = source.Loads.FirstOrDefault();
+
+                toReturn.Name = load.Name;
+                toReturn.Start = load.Start.ToString("dd-MMM-yy HH:mm:ss");
+                toReturn.Finish = load.Finish.HasValue ? load.Finish.Value.ToString("dd-MMM-yy HH:mm:ss") : "N/A";
+                toReturn.Status = load.LoadStatu.Name;
+                toReturn.Progress = load.InProgress;
+                toReturn.ProgressTitle = load.InProgress ? "Yes" : "No";
+            }
+
+            return toReturn;
         }
         public static OracleGLLoad CreateFromClientToServer(this OracleGLLoadModel source)
         {

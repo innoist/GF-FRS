@@ -96,10 +96,21 @@
                   //cellTemplate: '<div class="ui-grid-cell-contents"><a ui-sref="app.OracleGlLoadDetail({Id : row.entity.OracleGLLoadId})">{{ row.entity.OracleGLLoadId}}</a></div>'
               },
               { name: 'Name', field: 'Name', sortId: 2 },
+              { name: 'Start', field: 'Start', sortId: 4 },
+              { name: 'Finish', field: 'Finish', sortId: 5 },
+
+                {
+                    name: 'In Progress', field: 'Progress', sortId: 6,
+                    cellTemplate: "<div class='ui-grid-cell-contents'><label class='label' ng-class=" + '"' + "{'bg-green-light':row.entity.Progress, 'bg-primary-light' : !row.entity.Progress}" + '"' + ">{{row.entity.ProgressTitle}}</label></div>"
+
+                },
+                {
+                    name: 'Load Status', field: 'Status', sortId: 7,
+                    cellTemplate: "<div class='ui-grid-cell-contents'><label class='label' ng-class=" + '"' + "{'bg-warning-light' : row.entity.Status == 'Created' || row.entity.Status == 'Submitted', 'bg-green-light' : row.entity.Status == 'Parsing' || row.entity.Status == 'Transforming' || row.entity.Status == 'Importing', 'bg-success' : row.entity.Status == 'Completed', 'bg-danger' : row.entity.Status == 'Failed'}" + '"' + ">{{row.entity.Status}}</label></div>"
+                },
               { name: 'Modified On', field: 'ModifiedOnString', sortId: 5 },
               { name: 'File', field: 'FileName', sortId: 3 },
               { name: 'OracleGL Entry Count', field: 'OracleGLEntryCount', sortId: 3 },
-              { name: 'Status', field: 'Status', sortId: 4 },
               {
                   name: 'Actions', cellTemplate: '<div class="ui-grid-cell-contents"><div class="btn btn-xs">' +
                     '<a ui-sref="app.OracleGlLoadDetail({Id : row.entity.OracleGLLoadId})" class="btn btn-xs btn-info"><i class="fa fa-search"></i></a>' +

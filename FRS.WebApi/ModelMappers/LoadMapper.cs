@@ -72,8 +72,8 @@ namespace FRS.WebApi.ModelMappers
         {
             var toReturn =  new MT940LoadModel()
             {
-                CreatedOnString = source.CreatedOn.ToString("dd-MMM-yy hh:mm:ss"),
-                ModifiedOnString = source.ModifiedOn.ToString("dd-MMM-yy hh:mm:ss"),
+                CreatedOnString = source.CreatedOn.ToString("dd-MMM-yy HH:mm:ss"),
+                ModifiedOnString = source.ModifiedOn.ToString("dd-MMM-yy HH:mm:ss"),
                 StatusId = source.StatusId,
                 CustomerStatementCount = source.CustomerStatementCount,
                 FileName = source.FileName + "." + source.FileExtension,
@@ -84,8 +84,8 @@ namespace FRS.WebApi.ModelMappers
                 var load = source.Loads.FirstOrDefault();
 
                 toReturn.Name = load.Name;
-                toReturn.Start = load.Start.ToString("dd-MMM-yy hh:mm:ss");
-                toReturn.Finish = load.Finish.HasValue ? load.Finish.Value.ToString("dd-MMM-yy hh:mm:ss") : "N/A";
+                toReturn.Start = load.Start.ToString("dd-MMM-yy HH:mm:ss");
+                toReturn.Finish = load.Finish.HasValue ? load.Finish.Value.ToString("dd-MMM-yy HH:mm:ss") : "N/A";
                 toReturn.Status = load.LoadStatu.Name;
                 toReturn.Progress = load.InProgress;
                 toReturn.ProgressTitle = load.InProgress ? "Yes" : "No";
