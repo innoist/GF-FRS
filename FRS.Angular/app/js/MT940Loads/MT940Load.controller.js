@@ -107,12 +107,12 @@
               },
               { name: 'Load Name', field: 'Name', sortId: 2 },
               { name: 'File Name', field: 'FileName', sortId: 3 },
-              { name: 'Start', field: 'CreatedOnString', sortId: 5 },
-              { name: 'Finish', field: 'ModifiedOnString', sortId: 5 },
+              { name: 'Start', field: 'Start', sortId: 5 },
+              { name: 'Finish', field: 'Finish', sortId: 5 },
               
                 {
                     name: 'In Progress', field: 'Progress', sortId: 3,
-                    cellTemplate: "<div class='ui-grid-cell-contents'><label class='label' ng-class=" + '"' + "{'bg-green-light':row.entity.Progress, 'bg-primary-light' : !row.entity.Progress}" + '"' + ">{{row.entity.Progress}}</label></div>"
+                    cellTemplate: "<div class='ui-grid-cell-contents'><label class='label' ng-class=" + '"' + "{'bg-green-light':row.entity.Progress, 'bg-primary-light' : !row.entity.Progress}" + '"' + ">{{row.entity.ProgressTitle}}</label></div>"
 
                 },
               

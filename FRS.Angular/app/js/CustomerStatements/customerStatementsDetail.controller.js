@@ -7,7 +7,6 @@
 (function () {
     'use strict';
 
-    debugger
     var core = angular.module('app.core');
     core.lazy.controller('CustomerStatementsDetailController', CustomerStatementsDetailController);
 
@@ -79,7 +78,6 @@
 
             paginationOptions.params.MT940CustomerStatementId = $stateParams.MT940CustomerStatementId;
             CustomerStatementsService.CustomerStatementDetail($stateParams.MT940CustomerStatementId, function (response) {
-                debugger
                 var load = response;
                 //var mt940LoadModel = response.Mt940LoadModel;
                 //var loadMetadata = response.LoadMetaData;
@@ -159,7 +157,6 @@
 
             CustomerStatementsService.getCustomerTransactionGridData(
                 function onSuccess(data) {
-                    debugger
                     vm.gridOptions.totalItems = data.TotalCount;
                     vm.gridOptions.data = data.Data;
                 }, null, paginationOptions);

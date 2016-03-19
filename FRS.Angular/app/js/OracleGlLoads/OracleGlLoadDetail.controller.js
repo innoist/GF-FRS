@@ -18,7 +18,6 @@
 
         if ($stateParams.Id != "") {
             OracleGlLoadService.getOracleGLLoadDetail($stateParams.Id, function (response) {
-                debugger;
                 vm.OracleGlLoad = response.OracleGlLoad;
                 vm.load = response.Load;
             });

@@ -16,6 +16,7 @@ namespace FRS.WebApi.Models.MT940Load
         public string ModifiedOnString { get; set; }
         public string Start { get; set; }
         public string Finish { get; set; }
+        public string ProgressTitle { get; set; }
         public bool Progress { get; set; }
         public string ModifiedBy { get; set; }
         public string Name { get; set; }

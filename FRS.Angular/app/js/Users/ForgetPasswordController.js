@@ -9,7 +9,6 @@
     ForgotPasswordController.$inject = ['$http', '$state', 'toaster'];
     function ForgotPasswordController($http, $state, toaster) {
         var vm = this;
-        debugger;
         vm.recoverPassword = function () {
 
             if (vm.recoverForm.$valid) {

@@ -13,9 +13,6 @@
     MT940LoadDetailController.$inject = ['$scope','$controller' , '$state', '$stateParams', 'uiGridConstants', 'MT940Service'];
 
     function MT940LoadDetailController($scope, $controller, $state, $stateParams, uiGridConstants, MT940Service) {
-        //debugger
-        //var CS = $scope.$new();
-        //$controller('CustomerStatementsDetailController', { $scope: CS });
         
         var vm = this;
 
@@ -104,24 +101,23 @@
             columnDefs: [
                 // name is for display on the table header, field is for mapping as in 
                 //sortId is kept locally it is not the property of ui.grid
-              //{
-              //    name: 'Name',
-              //    field: 'Name',
-              //    sortId: 1,
-              //    cellTemplate: '<div class="ui-grid-cell-contents"><a ui-sref="">{{row.entity.Name}}</a> </div>',
-              //    //sort: {
-              //    //    direction: uiGridConstants.ASC
-              //    //}
-              //},
-                {
-                    name: 'A/c #', field: 'AccountNumber', sortId: 1,
-                    cellTemplate: '<div class="ui-grid-cell-contents"><a ui-sref="app.CustomerStatementsDetail({MT940CustomerStatementId : row.entity.MT940CustomerStatementId})">{{row.entity.AccountNumber}}</a></div>'
-
-                },
-              { name: 'Description', field: 'Description', sortId: 2 },
-              { name: 'Related Message', field: 'ReleatedMessage', sortId: 3 },
+              {
+                  name: 'ID', field: 'MT940CustomerStatementId', sortId: 1,
+                  sort: {
+                      direction: uiGridConstants.ASC
+                  },
+                  //cellTemplate: '<div class="ui-grid-cell-contents"><a ui-sref="app.CustomerStatementsDetail({MT940CustomerStatementId : row.entity.MT940CustomerStatementId})">{{row.entity.MT940CustomerStatementId}}</a></div>'
+              },
+              { name: 'Sequence', field: 'Sequence', sortId: 2 },
+              { name: 'A/C#', field: 'AccountNumber', sortId: 2 },
+              { name: 'Statement No.', field: 'StatementNumber', sortId: 2 },
               { name: 'Transaction Reference', field: 'TransactionReference', sortId: 5 },
-            //{ name: 'Action', width: '10%' , cellTemplate: '<div class="ui-grid-cell-contents"><a ui-sref="app.CustomerStatementTransactions({Id : row.entity.MT940CustomerStatementId, MT940LoadId: ' + $stateParams.Id + '})" class="btn btn-xs btn-green">Details</a></div>' }
+              { name: 'Transactions', field: 'TransactionCount', sortId: 2 },
+              {
+                  name: 'Actions', cellTemplate: '<div class="ui-grid-cell-contents"><div class="btn btn-xs">' +
+                    '<a ui-sref="app.CustomerStatementsDetail({MT940CustomerStatementId : row.entity.MT940CustomerStatementId})" class="btn btn-xs btn-info"><i class="fa fa-search"></i></a>' +
+                    '</div></div>'
+              }
             ],
             onRegisterApi: function (gridApi) {
                 vm.gridApi = gridApi;
@@ -193,11 +189,5 @@
         }
 
         $scope.resetFilter();
-        //Set Id 
-        
-
-        
-
-
     }
 })();
