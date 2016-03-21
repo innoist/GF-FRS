@@ -35,7 +35,7 @@
                 // name is for display on the table header, field is for mapping as in 
                 //sortId is kept locally it is not the property of ui.grid
                 {
-                    name: 'Id',
+                    displayName: 'ID',
                     field: 'Value',
                     sortId: 1,
                     cellTemplate: '<div class="ui-grid-cell-contents"><a ui-sref="app.NewLoadStatus({Id : row.entity.Value})">{{row.entity.Value}}</a> </div>',

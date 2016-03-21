@@ -2102,7 +2102,7 @@
               },
               {
                   name: 'ui.grid', files: ['../../vendor/angular-ui-grid/ui-grid.min.css',
-                                                             '../../vendor/angular-ui-grid/ui-grid.min.js']
+                                                             '../../vendor/angular-ui-grid/ui-grid.js']
               },
               {
                   name: 'textAngular', files: ['../../vendor/textAngular/dist/textAngular.css',

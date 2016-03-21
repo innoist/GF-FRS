@@ -91,7 +91,7 @@
                 // name is for display on the table header, field is for mapping as in 
                 //sortId is kept locally it is not the property of ui.grid
               {
-                  name: 'ID',
+                  displayName: 'ID',
                   field: 'MT940LoadId', sortId: 1,
                   //sort: {
                   //    //    direction: uiGridConstants.ASC

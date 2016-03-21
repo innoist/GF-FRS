@@ -104,7 +104,7 @@
             //useExternalFiltering: true,
             columnDefs: [
                 // name is for display on the table header, field is for mapping as in 
-                  { name: 'Customer Statement Id', field: 'MT940CustomerStatementId', sortId: 0 },
+                  { displayName: 'ID', field: 'MT940CustomerStatementId', sortId: 0 },
               { name: 'TransactionType', field: 'TransactionType', sortId: 1 },
               { name: 'Amount', field: 'Amount', sortId: 2 },
               { name: 'Debit Or Credit', field: 'DebitOrCredit', sortId: 3 },

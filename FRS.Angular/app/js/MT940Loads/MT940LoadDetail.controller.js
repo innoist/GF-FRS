@@ -15,7 +15,7 @@
     function MT940LoadDetailController($scope, $controller, $state, $stateParams, uiGridConstants, MT940Service) {
         
         var vm = this;
-
+        $scope.toProcess = true;
         //datepicker
         vm.today = function () {
             vm.dt = new Date();
@@ -82,6 +82,7 @@
                 vm.load = load;
                 vm.mt940Load = mt940LoadModel;
                 vm.loadMetadata = loadMetadata;
+                $scope.toProcess = vm.mt940Load.Status != 'Created';
             });
         }
 
@@ -102,7 +103,7 @@
                 // name is for display on the table header, field is for mapping as in 
                 //sortId is kept locally it is not the property of ui.grid
               {
-                  name: 'ID', field: 'MT940CustomerStatementId', sortId: 1,
+                  displayName: 'ID', field: 'MT940CustomerStatementId', sortId: 1,
                   sort: {
                       direction: uiGridConstants.ASC
                   },

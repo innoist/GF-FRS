@@ -1,19 +1,19 @@
 ﻿<h3>
     <!-- START Language list-->
     <div class="pull-right">
-        <a class="btn btn-info btn-labeled" ng-if="!mt940ldc.load.InProgress">
+        <a class="btn btn-info btn-labeled" ng-disabled="toProcess">
             <span class="btn-label">
                 <i class="fa fa-refresh"></i>
             </span>Process
         </a>
         <a class="btn btn-inverse btn-labeled" onclick="history.back()">
             <span class="btn-label">
-                <i class="fa fa-bolt"></i>
+                <i class="fa fa-arrow-left"></i>
             </span>Back
         </a>
     </div>
     <!-- END Language list    -->
-    {{oglldc.load.Name}} - ORACLE GL Load
+    ORACLE GL Load - {{oglldc.OracleGlLoad.OracleGLLoadId}} ({{oglldc.OracleGlLoad.FileName}})
     <small>Details</small>
 </h3>
 <div class="panel panel-default">
@@ -44,9 +44,9 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <div class="col-sm-4">Statement Count</div>
+                        <div class="col-sm-4">OracleGL Entry Count</div>
                         <div class="col-sm-8">
-                            <strong>{{oglldc.OracleGlLoad.CustomerStatementCount}}</strong>
+                            <strong>{{oglldc.OracleGlLoad.OracleGLEntryCount}}</strong>
                         </div>
                     </div>
                 </form>

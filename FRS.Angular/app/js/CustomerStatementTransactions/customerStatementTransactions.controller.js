@@ -104,7 +104,7 @@
               //    //    direction: uiGridConstants.ASC
               //    //}
               //},
-              { name: 'Id', field: 'MT940CustomerStatementId', sortId: 0 },
+              { displayName: 'ID', field: 'MT940CustomerStatementId', sortId: 0 },
               { name: 'Sequence', field: 'Sequence', sortId: 0 },
               { name: 'Reference', field: 'Reference', sortId: 4 },
               { name: 'Type', field: 'TransactionType', sortId: 1 },

@@ -15,11 +15,13 @@
     function OracleGlLoadDetailController($scope, $state, $stateParams, uiGridConstants, OracleGlLoadService) {
 
         var vm = this;
-
+        $scope.toProcess = true;
         if ($stateParams.Id != "") {
             OracleGlLoadService.getOracleGLLoadDetail($stateParams.Id, function (response) {
                 vm.OracleGlLoad = response.OracleGlLoad;
                 vm.load = response.Load;
+
+                $scope.toProcess = vm.OracleGlLoad.Status != 'Created';
             });
         }
 
@@ -54,7 +56,7 @@
                 // name is for display on the table header, field is for mapping as in 
                 //sortId is kept locally it is not the property of ui.grid
               {
-                  name: 'ID',
+                  displayName: 'ID',
                   field: 'OracleGLLoadId', sortId: 2,
                   //sort: {
                   //    //    direction: uiGridConstants.ASC

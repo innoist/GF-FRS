@@ -99,7 +99,7 @@
               //    //    direction: uiGridConstants.ASC
               //    //}
               //},
-              { name: 'Id', field: 'MT940BalanceId', sortId: 0 },
+              { displayName: 'ID', field: 'MT940BalanceId', sortId: 0 },
               { name: 'Type', field: 'DebitOrCredit', sortId: 3 },
               { name: 'Entry', field: 'EntryDate', sortId: 5 },
               { name: 'Value', field: 'Value', sortId: 0 },
