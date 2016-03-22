@@ -254,6 +254,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoadTypeController.cs" />
     <Compile Include="Controllers\LogController.cs" />
+    <Compile Include="Controllers\ReconciledMappingController.cs" />
     <Compile Include="Controllers\OracleGLEntryController.cs" />
     <Compile Include="Controllers\OracleGLLoadController.cs" />
     <Compile Include="Controllers\MT940LoadController.cs" />
