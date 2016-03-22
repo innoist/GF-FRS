@@ -42,54 +42,58 @@ namespace FRS.WebApi.Providers
 
         public override async Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
         {
-            var userManager = context.OwinContext.GetUserManager<ApplicationUserManager>();
-            var userName = context.UserName;
-            if (context.UserName.Contains("@"))
-            {
-                var aspNetUser = await userManager.FindByEmailAsync(context.UserName);
-                userName = aspNetUser.UserName;
-            }
-            AspNetUser user = await userManager.FindAsync(userName, context.Password);
-
-            if (user == null)
-            {
-                context.SetError("invalid_grant", "The user name or password is incorrect.");
-                return;
-            }
-
-            // Get Form posted values
-            // Extract TimeZoneOffset.
-            var data = await context.Request.ReadFormAsync();
-            var timeZoneCookie = data["userTimeZone"];
-            var timeZoneOffSetValue = TimeSpan.FromMinutes(0);
-            if (!string.IsNullOrEmpty(timeZoneCookie))
+            try
             {
 
-                double offsetMinutes;
-                if (double.TryParse(timeZoneCookie, out offsetMinutes))
+
+                var userManager = context.OwinContext.GetUserManager<ApplicationUserManager>();
+                var userName = context.UserName;
+                if (context.UserName.Contains("@"))
                 {
-                    timeZoneOffSetValue = TimeSpan.FromMinutes(offsetMinutes);
+                    var aspNetUser = await userManager.FindByEmailAsync(context.UserName);
+                    userName = aspNetUser.UserName;
                 }
-            }
+                AspNetUser user = await userManager.FindAsync(userName, context.Password);
 
-            ClaimsIdentity oAuthIdentity = await user.GenerateUserIdentityAsync(userManager,
-               OAuthDefaults.AuthenticationType);
-
-            ClaimsSecurityService = _container.Resolve<IClaimsSecurityService>();
-            if (ClaimsSecurityService == null)
-            {
-                throw new ArgumentException("ClaimsSecurityService");
-            }
-
-            ClaimsSecurityService.AddClaimsToIdentity(user.AspNetRoles.FirstOrDefault().Name, context.UserName, 
-                user.Id, timeZoneOffSetValue, oAuthIdentity);
-            
-            var props = new AuthenticationProperties(new Dictionary<string, string>
+                if (user == null)
                 {
-                    { 
+                    context.SetError("invalid_grant", "The user name or password is incorrect.");
+                    return;
+                }
+
+                // Get Form posted values
+                // Extract TimeZoneOffset.
+                var data = await context.Request.ReadFormAsync();
+                var timeZoneCookie = data["userTimeZone"];
+                var timeZoneOffSetValue = TimeSpan.FromMinutes(0);
+                if (!string.IsNullOrEmpty(timeZoneCookie))
+                {
+
+                    double offsetMinutes;
+                    if (double.TryParse(timeZoneCookie, out offsetMinutes))
+                    {
+                        timeZoneOffSetValue = TimeSpan.FromMinutes(offsetMinutes);
+                    }
+                }
+
+                ClaimsIdentity oAuthIdentity = await user.GenerateUserIdentityAsync(userManager,
+                    OAuthDefaults.AuthenticationType);
+
+                ClaimsSecurityService = _container.Resolve<IClaimsSecurityService>();
+                if (ClaimsSecurityService == null)
+                {
+                    throw new ArgumentException("ClaimsSecurityService");
+                }
+
+                ClaimsSecurityService.AddClaimsToIdentity(user.AspNetRoles.FirstOrDefault().Name, context.UserName,
+                    user.Id, timeZoneOffSetValue, oAuthIdentity);
+
+                var props = new AuthenticationProperties(new Dictionary<string, string>
+                {
+                    {
                         "as:client_id", context.ClientId ?? string.Empty
                     },
-                    { 
+                    {
                         "userName", user.UserName
                     },
                     {
@@ -101,12 +105,17 @@ namespace FRS.WebApi.Providers
                 });
 
 
-            AuthenticationTicket ticket = new AuthenticationTicket(oAuthIdentity, props);
-            context.Validated(ticket);
-            HttpContext.Current.User = new ClaimsPrincipal(oAuthIdentity);
-            // Make sure the Principal's are in sync
-            Thread.CurrentPrincipal = HttpContext.Current.User;
-            context.Request.Context.Authentication.SignIn(oAuthIdentity);
+                AuthenticationTicket ticket = new AuthenticationTicket(oAuthIdentity, props);
+                context.Validated(ticket);
+                HttpContext.Current.User = new ClaimsPrincipal(oAuthIdentity);
+                // Make sure the Principal's are in sync
+                Thread.CurrentPrincipal = HttpContext.Current.User;
+                context.Request.Context.Authentication.SignIn(oAuthIdentity);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
         public override Task TokenEndpoint(OAuthTokenEndpointContext context)

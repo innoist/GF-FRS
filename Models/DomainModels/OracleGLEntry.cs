@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace FRS.Models.DomainModels
 {
@@ -35,5 +36,6 @@ namespace FRS.Models.DomainModels
         public virtual FiscalYear FiscalYear { get; set; }
         public virtual OracleGLLoad OracleGLLoad { get; set; }
         public virtual Status Status { get; set; }
+        public virtual ICollection<ReconciledMapping> ReconciledMappings { get; set; }
     }
 }

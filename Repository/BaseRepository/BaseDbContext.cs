@@ -133,6 +133,7 @@ namespace FRS.Repository.BaseRepository
         public DbSet<OracleGLEntry> OracleGLEntries { get; set; }
         public DbSet<OracleGLLoad> OracleGLLoads { get; set; }
         public DbSet<LoadStatu> LoadStatus { get; set; }
+        public DbSet<ReconciledMapping> ReconciledMappings { get; set; }
         /// <summary>
         /// Execute store procedure for creating d
         /// </summary>

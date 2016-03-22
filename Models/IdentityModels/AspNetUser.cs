@@ -35,5 +35,9 @@ namespace FRS.Models.IdentityModels
         public virtual ICollection<UserLogin> AspNetUserLogins { get; set; }
         public virtual ICollection<UserRole> AspNetRoles { get; set; }
         public virtual Employee Employee { get; set; }
+
+        public virtual ICollection<ReconciledMapping> ReconciledMappings { get; set; }
+        public virtual ICollection<ReconciledMapping> ReconciledMappings1 { get; set; }
+    
     }
 }

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="angularModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="angularModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="AspNetRoles">
           <Key>
             <PropertyRef Name="Id" />
@@ -140,7 +140,7 @@
           <Key>
             <PropertyRef Name="Value" />
           </Key>
-          <Property Name="Value" Type="tinyint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Value" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="15" Nullable="false" />
           <Property Name="StatusId" Type="tinyint" Nullable="false" />
         </EntityType>
@@ -317,6 +317,21 @@
           <Property Name="ModifiedBy" Type="nvarchar" MaxLength="128" Nullable="false" />
           <Property Name="ModifiedOn" Type="datetime2" Precision="7" Nullable="false" />
           <Property Name="StatusId" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ReconciledMapping">
+          <Key>
+            <PropertyRef Name="ReconciledMappingId" />
+          </Key>
+          <Property Name="ReconciledMappingId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OracleGLEntryId" Type="bigint" Nullable="false" />
+          <Property Name="MT940CustomerStatementTransactionId" Type="bigint" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="IsManual" Type="bit" Nullable="false" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="ModifiedBy" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ModifiedOn" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="Identifier" Type="nvarchar" MaxLength="500" />
         </EntityType>
         <EntityType Name="Source">
           <Key>
@@ -651,6 +666,54 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ReconciledMapping_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="ReconciledMapping" Type="Self.ReconciledMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ReconciledMapping">
+              <PropertyRef Name="CreatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReconciledMapping_AspNetUsers1">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="ReconciledMapping" Type="Self.ReconciledMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ReconciledMapping">
+              <PropertyRef Name="ModifiedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReconciledMapping_MT940CustomerStatementTransaction">
+          <End Role="MT940CustomerStatementTransaction" Type="Self.MT940CustomerStatementTransaction" Multiplicity="1" />
+          <End Role="ReconciledMapping" Type="Self.ReconciledMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MT940CustomerStatementTransaction">
+              <PropertyRef Name="MT940CustomerStatementTransactionId" />
+            </Principal>
+            <Dependent Role="ReconciledMapping">
+              <PropertyRef Name="MT940CustomerStatementTransactionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReconciledMapping_OracleGLEntry">
+          <End Role="OracleGLEntry" Type="Self.OracleGLEntry" Multiplicity="1" />
+          <End Role="ReconciledMapping" Type="Self.ReconciledMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OracleGLEntry">
+              <PropertyRef Name="OracleGLEntryId" />
+            </Principal>
+            <Dependent Role="ReconciledMapping">
+              <PropertyRef Name="OracleGLEntryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Source_Status">
           <End Role="Status" Type="Self.Status" Multiplicity="1" />
           <End Role="Source" Type="Self.Source" Multiplicity="*" />
@@ -698,6 +761,7 @@
           <EntitySet Name="MT940Load" EntityType="Self.MT940Load" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OracleGLEntry" EntityType="Self.OracleGLEntry" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OracleGLLoad" EntityType="Self.OracleGLLoad" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ReconciledMapping" EntityType="Self.ReconciledMapping" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Source" EntityType="Self.Source" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Status" EntityType="Self.Status" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_AspNetUsers_Employee" Association="Self.FK_AspNetUsers_Employee">
@@ -803,6 +867,22 @@
           <AssociationSet Name="FK_OracleGLLoad_Status" Association="Self.FK_OracleGLLoad_Status">
             <End Role="Status" EntitySet="Status" />
             <End Role="OracleGLLoad" EntitySet="OracleGLLoad" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReconciledMapping_AspNetUsers" Association="Self.FK_ReconciledMapping_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="ReconciledMapping" EntitySet="ReconciledMapping" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReconciledMapping_AspNetUsers1" Association="Self.FK_ReconciledMapping_AspNetUsers1">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="ReconciledMapping" EntitySet="ReconciledMapping" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReconciledMapping_MT940CustomerStatementTransaction" Association="Self.FK_ReconciledMapping_MT940CustomerStatementTransaction">
+            <End Role="MT940CustomerStatementTransaction" EntitySet="MT940CustomerStatementTransaction" />
+            <End Role="ReconciledMapping" EntitySet="ReconciledMapping" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReconciledMapping_OracleGLEntry" Association="Self.FK_ReconciledMapping_OracleGLEntry">
+            <End Role="OracleGLEntry" EntitySet="OracleGLEntry" />
+            <End Role="ReconciledMapping" EntitySet="ReconciledMapping" />
           </AssociationSet>
           <AssociationSet Name="FK_Source_Status" Association="Self.FK_Source_Status">
             <End Role="Status" EntitySet="Status" />
@@ -999,6 +1079,23 @@
             <End Role="Status" EntitySet="Status" />
             <End Role="LoadStatu" EntitySet="LoadStatus" />
           </AssociationSet>
+          <EntitySet Name="ReconciledMappings" EntityType="angularModel.ReconciledMapping" />
+          <AssociationSet Name="FK_ReconciledMapping_AspNetUsers" Association="angularModel.FK_ReconciledMapping_AspNetUsers">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="ReconciledMapping" EntitySet="ReconciledMappings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReconciledMapping_AspNetUsers1" Association="angularModel.FK_ReconciledMapping_AspNetUsers1">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="ReconciledMapping" EntitySet="ReconciledMappings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReconciledMapping_MT940CustomerStatementTransaction" Association="angularModel.FK_ReconciledMapping_MT940CustomerStatementTransaction">
+            <End Role="MT940CustomerStatementTransaction" EntitySet="MT940CustomerStatementTransaction" />
+            <End Role="ReconciledMapping" EntitySet="ReconciledMappings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReconciledMapping_OracleGLEntry" Association="angularModel.FK_ReconciledMapping_OracleGLEntry">
+            <End Role="OracleGLEntry" EntitySet="OracleGLEntries" />
+            <End Role="ReconciledMapping" EntitySet="ReconciledMappings" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="Menu">
           <Key>
@@ -1090,6 +1187,8 @@
           <Property Name="EmployeeId" Type="Int64" />
           <NavigationProperty Name="Employee" Relationship="angularModel.FK_AspNetUsers_Employee" FromRole="AspNetUser" ToRole="Employee" />
           <Property Name="UserDomainKey" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="ReconciledMappings" Relationship="angularModel.FK_ReconciledMapping_AspNetUsers" FromRole="AspNetUser" ToRole="ReconciledMapping" />
+          <NavigationProperty Name="ReconciledMappings1" Relationship="angularModel.FK_ReconciledMapping_AspNetUsers1" FromRole="AspNetUser" ToRole="ReconciledMapping" />
         </EntityType>
         <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
           <End Type="angularModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
@@ -1247,6 +1346,7 @@
           <Property Name="ModifiedBy" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="ModifiedOn" Type="DateTime" Precision="7" Nullable="false" />
           <NavigationProperty Name="MT940CustomerStatement" Relationship="angularModel.FK_MT940CustomerStatementTransaction_MT940CustomerStatement" FromRole="MT940CustomerStatementTransaction" ToRole="MT940CustomerStatement" />
+          <NavigationProperty Name="ReconciledMappings" Relationship="angularModel.FK_ReconciledMapping_MT940CustomerStatementTransaction" FromRole="MT940CustomerStatementTransaction" ToRole="ReconciledMapping" />
         </EntityType>
         <EntityType Name="MT940Load">
           <Key>
@@ -1606,6 +1706,7 @@
           <NavigationProperty Name="FiscalYear" Relationship="angularModel.FK_OracleGLEntry_FiscalYear" FromRole="OracleGLEntry" ToRole="FiscalYear" />
           <NavigationProperty Name="OracleGLLoad" Relationship="angularModel.FK_OracleGLEntry_OracleGLLoad" FromRole="OracleGLEntry" ToRole="OracleGLLoad" />
           <NavigationProperty Name="Status" Relationship="angularModel.FK_OracleGLEntry_Status" FromRole="OracleGLEntry" ToRole="Status" />
+          <NavigationProperty Name="ReconciledMappings" Relationship="angularModel.FK_ReconciledMapping_OracleGLEntry" FromRole="OracleGLEntry" ToRole="ReconciledMapping" />
         </EntityType>
         <EntityType Name="OracleGLLoad">
           <Key>
@@ -1730,6 +1831,73 @@
             </Principal>
             <Dependent Role="LoadStatu">
               <PropertyRef Name="StatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="ReconciledMapping">
+          <Key>
+            <PropertyRef Name="ReconciledMappingId" />
+          </Key>
+          <Property Name="ReconciledMappingId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OracleGLEntryId" Type="Int64" Nullable="false" />
+          <Property Name="MT940CustomerStatementTransactionId" Type="Int64" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="IsManual" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="ModifiedBy" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ModifiedOn" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="Identifier" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CreatedByRef" Relationship="angularModel.FK_ReconciledMapping_AspNetUsers" FromRole="ReconciledMapping" ToRole="AspNetUser" />
+          <NavigationProperty Name="ModifiedByRef" Relationship="angularModel.FK_ReconciledMapping_AspNetUsers1" FromRole="ReconciledMapping" ToRole="AspNetUser" />
+          <NavigationProperty Name="MT940CustomerStatementTransaction" Relationship="angularModel.FK_ReconciledMapping_MT940CustomerStatementTransaction" FromRole="ReconciledMapping" ToRole="MT940CustomerStatementTransaction" />
+          <NavigationProperty Name="OracleGLEntry" Relationship="angularModel.FK_ReconciledMapping_OracleGLEntry" FromRole="ReconciledMapping" ToRole="OracleGLEntry" />
+        </EntityType>
+        <Association Name="FK_ReconciledMapping_AspNetUsers">
+          <End Type="angularModel.AspNetUser" Role="AspNetUser" Multiplicity="1" />
+          <End Type="angularModel.ReconciledMapping" Role="ReconciledMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ReconciledMapping">
+              <PropertyRef Name="CreatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReconciledMapping_AspNetUsers1">
+          <End Type="angularModel.AspNetUser" Role="AspNetUser" Multiplicity="1" />
+          <End Type="angularModel.ReconciledMapping" Role="ReconciledMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ReconciledMapping">
+              <PropertyRef Name="ModifiedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReconciledMapping_MT940CustomerStatementTransaction">
+          <End Type="angularModel.MT940CustomerStatementTransaction" Role="MT940CustomerStatementTransaction" Multiplicity="1" />
+          <End Type="angularModel.ReconciledMapping" Role="ReconciledMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MT940CustomerStatementTransaction">
+              <PropertyRef Name="MT940CustomerStatementTransactionId" />
+            </Principal>
+            <Dependent Role="ReconciledMapping">
+              <PropertyRef Name="MT940CustomerStatementTransactionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReconciledMapping_OracleGLEntry">
+          <End Type="angularModel.OracleGLEntry" Role="OracleGLEntry" Multiplicity="1" />
+          <End Type="angularModel.ReconciledMapping" Role="ReconciledMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OracleGLEntry">
+              <PropertyRef Name="OracleGLEntryId" />
+            </Principal>
+            <Dependent Role="ReconciledMapping">
+              <PropertyRef Name="OracleGLEntryId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2085,6 +2253,22 @@
                 <ScalarProperty Name="StatusId" ColumnName="StatusId" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Value" ColumnName="Value" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ReconciledMappings">
+            <EntityTypeMapping TypeName="angularModel.ReconciledMapping">
+              <MappingFragment StoreEntitySet="ReconciledMapping">
+                <ScalarProperty Name="Identifier" ColumnName="Identifier" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="IsManual" ColumnName="IsManual" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="MT940CustomerStatementTransactionId" ColumnName="MT940CustomerStatementTransactionId" />
+                <ScalarProperty Name="OracleGLEntryId" ColumnName="OracleGLEntryId" />
+                <ScalarProperty Name="ReconciledMappingId" ColumnName="ReconciledMappingId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

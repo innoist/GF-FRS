@@ -135,6 +135,7 @@
     <Compile Include="DomainModels\MT940LoadDetail.cs" />
     <Compile Include="DomainModels\OracleGLEntry.cs" />
     <Compile Include="DomainModels\OracleGLLoad.cs" />
+    <Compile Include="DomainModels\ReconciledMapping.cs" />
     <Compile Include="DomainModels\Source.cs" />
     <Compile Include="DomainModels\Status.cs" />
     <Compile Include="DomainModels\UserDetail.cs" />

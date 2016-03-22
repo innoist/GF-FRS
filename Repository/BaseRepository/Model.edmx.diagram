@@ -49,7 +49,7 @@
         <AssociationConnector Association="angularModel.FK_MT940CustomerStatement_MT940Load" />
         <AssociationConnector Association="angularModel.FK_MT940CustomerStatementTransaction_MT940CustomerStatement" />
         <EntityTypeShape EntityType="angularModel.FiscalYear" Width="1.5" PointX="10" PointY="0.75" />
-        <EntityTypeShape EntityType="angularModel.OracleGLEntry" Width="1.5" PointX="12.25" PointY="1.125" />
+        <EntityTypeShape EntityType="angularModel.OracleGLEntry" Width="1.875" PointX="12.25" PointY="1.125" />
         <EntityTypeShape EntityType="angularModel.OracleGLLoad" Width="1.5" PointX="10" PointY="3.125" />
         <AssociationConnector Association="angularModel.FK_OracleGLLoad_FileContent" />
         <AssociationConnector Association="angularModel.FK_OracleGLEntry_FiscalYear" />
@@ -60,6 +60,11 @@
         <EntityTypeShape EntityType="angularModel.LoadStatu" Width="1.5" PointX="7.625" PointY="25.875" />
         <AssociationConnector Association="angularModel.FK_Load_LoadStatus" />
         <AssociationConnector Association="angularModel.FK_LoadStatus_Status" />
+        <EntityTypeShape EntityType="angularModel.ReconciledMapping" Width="1.5" PointX="18.5" PointY="2.5" />
+        <AssociationConnector Association="angularModel.FK_ReconciledMapping_AspNetUsers" />
+        <AssociationConnector Association="angularModel.FK_ReconciledMapping_AspNetUsers1" />
+        <AssociationConnector Association="angularModel.FK_ReconciledMapping_MT940CustomerStatementTransaction" />
+        <AssociationConnector Association="angularModel.FK_ReconciledMapping_OracleGLEntry" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

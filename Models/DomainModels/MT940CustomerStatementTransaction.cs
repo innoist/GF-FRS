@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace FRS.Models.DomainModels
 {
@@ -23,5 +24,6 @@ namespace FRS.Models.DomainModels
         public DateTime ModifiedOn { get; set; }
 
         public virtual MT940CustomerStatement MT940CustomerStatement { get; set; }
+        public virtual ICollection<ReconciledMapping> ReconciledMappings { get; set; }
     }
 }
