@@ -292,6 +292,7 @@
     <Compile Include="Models\MT940Load\MT940LoadModel.cs" />
     <Compile Include="Models\OracleGLEntry\OracleGLEntryModel.cs" />
     <Compile Include="Models\OracleGLLoad\OracleGLLoadModel.cs" />
+    <Compile Include="Models\ReconciledMapping\ReconciledMappingModel.cs" />
     <Compile Include="Models\Source\SourceModel.cs" />
     <Compile Include="Models\Status\StatusModel.cs" />
     <Compile Include="Models\UserRole.cs" />
@@ -319,6 +320,7 @@
     <Compile Include="ViewModels\OracleGlLoad\OracleGLLoadDetail.cs" />
     <Compile Include="ViewModels\OracleGlLoad\OracleGLEntryLVModel.cs" />
     <Compile Include="ViewModels\OracleGlLoad\OracleGLLoadLVModel.cs" />
+    <Compile Include="ViewModels\ReconciledMapping\ReconciledMappingViewModel.cs" />
     <Compile Include="ViewModels\Source\SourceViewModel.cs" />
     <Compile Include="ViewModels\Users\UsersListViewModel.cs" />
     <Compile Include="ViewModels\RightsManagement\RightsManagementViewModel.cs" />
