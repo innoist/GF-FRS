@@ -1,0 +1,101 @@
+﻿<h3>
+    <!-- START Language list-->
+    <div class="pull-right">
+        <a ui-sref="app.Load" class="btn btn-info btn-labeled">
+            <span class="btn-label">
+                <i class="fa fa-plus"></i>
+            </span>New
+        </a>
+        <button class="btn btn-warning btn-labeled" ng-click="isFilterOpen = !isFilterOpen" ng-show="!isFilterOpen">
+            <span class="btn-label">
+                <i class="fa fa-filter"></i>
+            </span>Filter
+        </button>
+    </div>
+    <!-- END Language list    -->
+    ORACLE GL Entries
+    <small>Oracle GL Entries</small>
+</h3>
+<div class="container-fluid">
+    <div class="">
+        <div class="col-md-6" ng-controller="OracleGlEntryController as oglec">
+            <div class="container-fluid" ng-show="isFilterOpen">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="col-md-6">
+                            <p class="input-group">
+                                <input type="text" placeholder="Select Date"
+                                       uib-datepicker-popup="{{oglec.format}}"
+                                       ng-model="oglec.dt"
+                                       is-open="oglec.opened"
+                                       min-date="oglec.minDate"
+                                       max-date="'oglec.maxDate'"
+                                       uib-datepicker-options="oglec.dateOptions"
+                                       date-disabled="oglec.disabled(date, mode)"
+                                       close-text="Close"
+                                       class="form-control"
+                                       ng-disabled="true" />
+                                <span class="input-group-btn">
+                                    <button type="button" ng-click="oglec.open($event)" class="btn btn-default">
+                                        <em class="fa fa-calendar"></em>
+                                    </button>
+                                </span>
+                            </p>
+                        </div>
+                        <button class="btn btn-success" ng-click="fiterData()">Filter</button>
+                        <button class="btn btn-default" ng-click="resetFilter()">Reset</button>
+
+                        <a class="pull-right" title="Hide filter Section" ng-click="isFilterOpen = !isFilterOpen"><i class="fa fa-compress"></i></a>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="container-fluid">
+                <!-- Grid view to show listview with searching, sorting and pagination-->
+                <div ui-grid="oglec.gridOptions" ui-grid-pagination ui-grid-move-columns ui-grid-resize-columns class="table-uigrid flip"></div>
+            </div>
+        </div>
+
+        <div class="col-md-6" ng-controller="CustomerStatementTransactionsController as custstc">
+            <div class="container-fluid" ng-show="isFilterOpen">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="col-md-6">
+                            <p class="input-group">
+                                <input type="text" placeholder="Select Date"
+                                       uib-datepicker-popup="{{custstc.format}}"
+                                       ng-model="custstc.dt"
+                                       is-open="custstc.opened"
+                                       min-date="custstc.minDate"
+                                       max-date="'custstc.maxDate'"
+                                       uib-datepicker-options="custstc.dateOptions"
+                                       date-disabled="custstc.disabled(date, mode)"
+                                       close-text="Close"
+                                       class="form-control"
+                                       ng-disabled="true" />
+                                <span class="input-group-btn">
+                                    <button type="button" ng-click="custstc.open($event)" class="btn btn-default">
+                                        <em class="fa fa-calendar"></em>
+                                    </button>
+                                </span>
+                            </p>
+                        </div>
+                        <button class="btn btn-success" ng-click="fiterData()">Filter</button>
+                        <button class="btn btn-default" ng-click="resetFilter()">Reset</button>
+
+                        <a class="pull-right" title="Hide filter Section" ng-click="isFilterOpen = !isFilterOpen"><i class="fa fa-compress"></i></a>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="container-fluid">
+                <!-- Grid view to show listview with searching, sorting and pagination-->
+                <div ui-grid="custstc.gridOptions" ui-grid-pagination ui-grid-move-columns ui-grid-resize-columns class="table-uigrid flip"></div>
+            </div>
+        </div>
+    </div>
+</div>

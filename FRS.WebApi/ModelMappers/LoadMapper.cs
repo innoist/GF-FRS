@@ -21,10 +21,10 @@ namespace FRS.WebApi.ModelMappers
                 MT940LoadId = source.MT940LoadId,
                 ModifiedBy = source.ModifiedBy,
                 ModifiedOn = source.ModifiedOn,
-                ModifiedOnStr = source.ModifiedOn.ToString("dd-MMM-yy"),
+                ModifiedOnStr = source.ModifiedOn.ToString("dd-MMM-yy HH:mm:ss"),
                 ReadOnly = source.ReadOnly,
                 Start = source.Start,
-                StartString = source.Start.ToString("dd-MMM-yy"),
+                StartString = source.Start.ToString("dd-MMM-yy HH:mm:ss"),
                 Name = source.Name
             };
         }
@@ -77,7 +77,8 @@ namespace FRS.WebApi.ModelMappers
                 StatusId = source.StatusId,
                 CustomerStatementCount = source.CustomerStatementCount,
                 FileName = source.FileName + "." + source.FileExtension,
-                MT940LoadId = source.MT940LoadId
+                MT940LoadId = source.MT940LoadId,
+                Status = source.Status.Name
             };
             if (source.Loads.FirstOrDefault() != null)
             {
@@ -86,7 +87,7 @@ namespace FRS.WebApi.ModelMappers
                 toReturn.Name = load.Name;
                 toReturn.Start = load.Start.ToString("dd-MMM-yy HH:mm:ss");
                 toReturn.Finish = load.Finish.HasValue ? load.Finish.Value.ToString("dd-MMM-yy HH:mm:ss") : "N/A";
-                toReturn.Status = load.LoadStatu.Name;
+                toReturn.LoadStatus = load.LoadStatu.Name;
                 toReturn.Progress = load.InProgress;
                 toReturn.ProgressTitle = load.InProgress ? "Yes" : "No";
             }

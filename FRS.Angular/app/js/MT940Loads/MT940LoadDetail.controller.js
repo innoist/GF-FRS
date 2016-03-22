@@ -82,7 +82,7 @@
                 vm.load = load;
                 vm.mt940Load = mt940LoadModel;
                 vm.loadMetadata = loadMetadata;
-                $scope.toProcess = vm.mt940Load.Status != 'Created';
+                $scope.toProcess = vm.mt940Load.LoadStatus != 'Created';
             });
         }
 

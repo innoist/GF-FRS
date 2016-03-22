@@ -17,7 +17,25 @@
     <small>Details</small>
 </h3>
 <div class="panel panel-default">
-    <div class="panel-heading">Further Details</div>
+    <div class="panel-heading">Further Details
+        <div class="pull-right">
+            <label class="ml-lg">Load Status: </label>
+            <label class='label' ng-class=" {
+                                           'bg-warning-light' : mt940ldc.mt940Load.LoadStatus == 'Created' || mt940ldc.mt940Load.LoadStatus == 'Submitted' ,
+                                           'bg-green-light' : mt940ldc.mt940Load.LoadStatus == 'Parsing' || mt940ldc.mt940Load.LoadStatus == 'Transforming' || mt940ldc.mt940Load.LoadStatus == 'Importing' ,
+                                           'bg-success' : mt940ldc.mt940Load.LoadStatus == 'Completed' ,
+                                           'bg-danger' : mt940ldc.mt940Load.LoadStatus == 'Failed' }">
+                {{mt940ldc.mt940Load.LoadStatus}}
+            </label>
+            <label class="ml-lg">Start: </label>
+            <label class="label label-primary">{{mt940ldc.mt940Load.Start}}</label>
+            <label class="ml-lg">Finish: </label>
+            <label class="label label-primary">{{mt940ldc.mt940Load.Finish}}</label>
+            <label class="ml-lg">Status: </label>
+            <label class="label" ng-class="{'bg-green-light' : mt940ldc.mt940Load.Status == 'Active', 'bg-warning-light' : mt940ldc.mt940Load.Status == 'Inactive'}">{{mt940ldc.mt940Load.Status}}</label>
+
+        </div>
+    </div>
     <div class="panel-body">
         <div class="row">
             <div class="col-md-12">
@@ -49,11 +67,11 @@
                             <div class="col-sm-8">
                                 <strong>
                                     <label class='label' ng-class=" {
-                                           'bg-warning-light' : mt940ldc.mt940Load.Status == 'Created' || mt940ldc.mt940Load.Status == 'Submitted' , 
-                                           'bg-green-light' : mt940ldc.mt940Load.Status == 'Parsing' || mt940ldc.mt940Load.Status == 'Transforming' || mt940ldc.mt940Load.Status == 'Importing' , 
-                                           'bg-success' : mt940ldc.mt940Load.Status == 'Completed' , 
-                                           'bg-danger' : mt940ldc.mt940Load.Status == 'Failed' }">
-                                        {{mt940ldc.mt940Load.Status}}
+                                           'bg-warning-light' : mt940ldc.mt940Load.LoadStatus == 'Created' || mt940ldc.mt940Load.LoadStatus == 'Submitted' , 
+                                           'bg-green-light' : mt940ldc.mt940Load.LoadStatus == 'Parsing' || mt940ldc.mt940Load.LoadStatus == 'Transforming' || mt940ldc.mt940Load.LoadStatus == 'Importing' , 
+                                           'bg-success' : mt940ldc.mt940Load.LoadStatus == 'Completed' , 
+                                           'bg-danger' : mt940ldc.mt940Load.LoadStatus == 'Failed' }">
+                                        {{mt940ldc.mt940Load.LoadStatus}}
                                     </label>
                                 </strong>
                             </div>

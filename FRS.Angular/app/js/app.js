@@ -2284,6 +2284,12 @@
                   name: 'log.module', files: ['/app/js/Log/LogController.js',
                                                         '/app/js/Log/LogDataService.js']
               }
+              ,
+
+              {
+                  name: 'ManualReconciliation.module', files: ['/app/js/ManualReconciliation/manualReconciliation.controller.js',
+                                                               '/app/js/ManualReconciliation/manualReconciliation.service.js']
+              }
             ]
         })
     ;

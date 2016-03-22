@@ -17,7 +17,24 @@
     <small>Details</small>
 </h3>
 <div class="panel panel-default">
-    <div class="panel-heading">Further Details</div>
+    <div class="panel-heading">Further Details
+        <div class="pull-right">
+            <label class="ml-lg">Load Status: </label>
+            <label class='label' ng-class=" {
+                                           'bg-warning-light' : oglldc.OracleGlLoad.LoadStatus == 'Created' || oglldc.OracleGlLoad.LoadStatus == 'Submitted' ,
+                                           'bg-green-light' : oglldc.OracleGlLoad.LoadStatus == 'Parsing' || oglldc.OracleGlLoad.LoadStatus == 'Transforming' || oglldc.OracleGlLoad.LoadStatus == 'Importing' ,
+                                           'bg-success' : oglldc.OracleGlLoad.LoadStatus == 'Completed' ,
+                                           'bg-danger' : oglldc.OracleGlLoad.LoadStatus == 'Failed' }">
+                {{oglldc.OracleGlLoad.LoadStatus}}
+            </label>
+            <label class="ml-lg">Start: </label>
+            <label class="label label-primary">{{oglldc.OracleGlLoad.Start}}</label>
+            <label class="ml-lg">Finish: </label>
+            <label class="label label-primary">{{oglldc.OracleGlLoad.Finish}}</label>
+            <label class="ml-lg">Status: </label>
+            <label class="label" ng-class="{'bg-green-light' : oglldc.OracleGlLoad.Status == 'Active', 'bg-warning-light' : oglldc.OracleGlLoad.Status == 'Inactive'}">{{oglldc.OracleGlLoad.Status}}</label>
+        </div>
+    </div>
     <div class="panel-body">
         <div class="row">
             <div class="col-md-12">
@@ -34,11 +51,11 @@
                         <div class="col-sm-8">
                             <strong>
                                 <label class='label' ng-class=" {
-                                           'bg-warning-light' : oglldc.OracleGlLoad.Status == 'Created' || oglldc.OracleGlLoad.Status == 'Submitted' ,
-                                           'bg-green-light' : oglldc.OracleGlLoad.Status == 'Parsing' || oglldc.OracleGlLoad.Status == 'Transforming' || oglldc.OracleGlLoad.Status == 'Importing' ,
-                                           'bg-success' : oglldc.OracleGlLoad.Status == 'Completed' ,
-                                           'bg-danger' : oglldc.OracleGlLoad.Status == 'Failed' }">
-                                    {{oglldc.OracleGlLoad.Status}}
+                                           'bg-warning-light' : oglldc.OracleGlLoad.LoadStatus == 'Created' || oglldc.OracleGlLoad.LoadStatus == 'Submitted' ,
+                                           'bg-green-light' : oglldc.OracleGlLoad.LoadStatus == 'Parsing' || oglldc.OracleGlLoad.LoadStatus == 'Transforming' || oglldc.OracleGlLoad.LoadStatus == 'Importing' ,
+                                           'bg-success' : oglldc.OracleGlLoad.LoadStatus == 'Completed' ,
+                                           'bg-danger' : oglldc.OracleGlLoad.LoadStatus == 'Failed' }">
+                                    {{oglldc.OracleGlLoad.LoadStatus}}
                                 </label>
                             </strong>
                         </div>
@@ -66,7 +83,7 @@
                     <div class="form-group">
                         <div class="col-sm-4">Start</div>
                         <div class="col-sm-8">
-                            <strong>{{oglldc.load.StartString}}</strong>
+                            <strong>{{oglldc.OracleGlLoad.Start}}</strong>
                         </div>
                     </div>
                     <div class="form-group">

@@ -281,6 +281,14 @@
                 controllerAs: 'scc',
                 resolve: helper.resolveFor('source.create.module', 'oitozero.ngSweetAlert', 'ui.select')
             })
+            .state('app.ManualReconciliation', {
+                url: '/ManualReconciliation',
+                title: 'Manual Reconciliation',
+                templateUrl: helper.basepath('../../../../app/views/ManualReconciliation/ManualReconciliation.html'),
+                controller: 'ManualReconciliationController',
+                controllerAs: 'mrmc',
+                resolve: helper.resolveFor('ManualReconciliation.module', 'ui.grid', 'ui.select')
+            })
             .state('account', {
                 url: '/account',
                 templateUrl: 'app/pages/page.html',

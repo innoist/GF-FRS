@@ -15,6 +15,7 @@
         public string ModifiedOnString { get; set; }
         public byte StatusId { get; set; }
         public string Status { get; set; }
+        public string LoadStatus { get; set; }
         public string Name { get; set; }
         public string Start { get; set; }
         public string Finish { get; set; }

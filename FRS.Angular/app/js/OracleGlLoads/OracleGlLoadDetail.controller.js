@@ -21,7 +21,7 @@
                 vm.OracleGlLoad = response.OracleGlLoad;
                 vm.load = response.Load;
 
-                $scope.toProcess = vm.OracleGlLoad.Status != 'Created';
+                $scope.toProcess = vm.OracleGlLoad.LoadStatus != 'Created';
             });
         }
 

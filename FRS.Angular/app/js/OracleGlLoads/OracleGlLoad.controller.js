@@ -105,8 +105,8 @@
 
                 },
                 {
-                    name: 'Load Status', field: 'Status', sortId: 7,
-                    cellTemplate: "<div class='ui-grid-cell-contents'><label class='label' ng-class=" + '"' + "{'bg-warning-light' : row.entity.Status == 'Created' || row.entity.Status == 'Submitted', 'bg-green-light' : row.entity.Status == 'Parsing' || row.entity.Status == 'Transforming' || row.entity.Status == 'Importing', 'bg-success' : row.entity.Status == 'Completed', 'bg-danger' : row.entity.Status == 'Failed'}" + '"' + ">{{row.entity.Status}}</label></div>"
+                    name: 'Load Status', field: 'LoadStatus', sortId: 7,
+                    cellTemplate: "<div class='ui-grid-cell-contents'><label class='label' ng-class=" + '"' + "{'bg-warning-light' : row.entity.LoadStatus == 'Created' || row.entity.LoadStatus == 'Submitted', 'bg-green-light' : row.entity.LoadStatus == 'Parsing' || row.entity.LoadStatus == 'Transforming' || row.entity.LoadStatus == 'Importing', 'bg-success' : row.entity.LoadStatus == 'Completed', 'bg-danger' : row.entity.LoadStatus == 'Failed'}" + '"' + ">{{row.entity.LoadStatus}}</label></div>"
                 },
               { name: 'Modified On', field: 'ModifiedOnString', sortId: 5 },
               { name: 'File', field: 'FileName', sortId: 3 },

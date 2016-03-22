@@ -80,6 +80,8 @@
     <Content Include="app\js\FiscalYear\fiscalYear.controller.js" />
     <Content Include="app\js\FiscalYear\fiscalYear.service.js" />
     <Content Include="app\js\FiscalYear\newFiscalYear.controller.js" />
+    <Content Include="app\js\ManualReconciliation\manualReconciliation.controller.js" />
+    <Content Include="app\js\ManualReconciliation\manualReconciliation.service.js" />
     <Content Include="app\js\MT940Balance\MT940Balance.controller.js" />
     <Content Include="app\js\MT940Balance\MT940Balance.service.js" />
     <Content Include="app\js\CustomerStatementTransactions\customerStatementTransactions.controller.js" />
@@ -132,6 +134,7 @@
     <Content Include="app\views\Currency\Currency.html" />
     <Content Include="app\views\Currency\NewCurrency.html" />
     <Content Include="app\views\CustomerStatementTransactions\CustomerStatementTransactions.html" />
+    <Content Include="app\views\ManualReconciliation\ManualReconciliation.html" />
     <Content Include="app\views\MT940Balance\MT940Balance.html" />
     <Content Include="app\views\LoadMetaData\LoadMetaData.html" />
     <Content Include="app\js\LoadMetaData\LoadMetaDataController.js" />

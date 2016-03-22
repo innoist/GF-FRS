@@ -21,7 +21,7 @@ namespace FRS.WebApi.ModelMappers
                 FileName = source.FileName + "." + source.FileExtension,
                 OracleGLEntryCount = source.OracleGLEntryCount,
                 Path = source.Path,
-                OracleGLLoadId = source.OracleGLLoadId,
+                OracleGLLoadId = source.OracleGLLoadId
             };
             if (source.Loads.FirstOrDefault() != null)
             {
@@ -30,7 +30,7 @@ namespace FRS.WebApi.ModelMappers
                 toReturn.Name = load.Name;
                 toReturn.Start = load.Start.ToString("dd-MMM-yy HH:mm:ss");
                 toReturn.Finish = load.Finish.HasValue ? load.Finish.Value.ToString("dd-MMM-yy HH:mm:ss") : "N/A";
-                toReturn.Status = load.LoadStatu.Name;
+                toReturn.LoadStatus = load.LoadStatu.Name;
                 toReturn.Progress = load.InProgress;
                 toReturn.ProgressTitle = load.InProgress ? "Yes" : "No";
             }

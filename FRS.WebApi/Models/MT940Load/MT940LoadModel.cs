@@ -7,6 +7,7 @@ namespace FRS.WebApi.Models.MT940Load
         public long MT940LoadId { get; set; }
         public string Path { get; set; }
         public string Status { get; set; }
+        public string LoadStatus { get; set; }
         public string FileName { get; set; }
         public string FileExtension { get; set; }
         public byte StatusId { get; set; }

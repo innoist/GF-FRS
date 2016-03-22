@@ -181,7 +181,8 @@ now {
 }
 .panel .panel-heading {
   border-bottom: 0;
-  font-size: 14px;
+  /*font-size: 14px;*/
+  font-size: 15px;
 }
 .panel .panel-heading a {
   text-decoration: none !important;
