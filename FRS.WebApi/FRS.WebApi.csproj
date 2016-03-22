@@ -264,6 +264,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="ModelMappers\ReconciledMappingMapper.cs" />
     <Compile Include="ModelMappers\ReferenceDataMapper.cs" />
     <Compile Include="ModelMappers\CustomerStatementMapper.cs" />
     <Compile Include="ModelMappers\LoadMapper.cs" />
