@@ -6,6 +6,7 @@ using FRS.Interfaces.IServices;
 using FRS.Models.RequestModels;
 using FRS.WebApi.ModelMappers;
 using FRS.WebApi.ViewModels.MT940Load;
+using FRS.WebApi.ViewModels.ReconciledMapping;
 using FRS.WebBase.Mvc;
 
 namespace FRS.WebApi.Controllers
@@ -24,28 +25,29 @@ namespace FRS.WebApi.Controllers
             this.reconciledMappingService = reconciledMappingService;
         }
 
-      
 
-        //[HttpGet]
-        //[Authorize]
-        //[ApiException]
-        //public MT940LoadListViewModel Get([FromUri]MT940LoadSearchRequest searchRequest)
-        //{
-        //    if (searchRequest == null || !ModelState.IsValid)
-        //    {
-        //        throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
-        //    }
 
-        //    var response = mt940LoadService.GetMt940SearchResponse(searchRequest);
-        //    MT940LoadListViewModel listViewModel = new MT940LoadListViewModel
-        //    {
-        //        Mt940Loads = response.Data.Select(x => x.CreateFromServerToClient()).ToList(),
-        //        FilteredCount = response.FilteredCount,
-        //        TotalCount = response.TotalCount
-        //    };
+        [HttpGet]
+        [Authorize]
+        [ApiException]
+        public ReconciledMappingViewModel Get([FromUri]ReconciledMappingSearchRequest searchRequest)
+        {
+            if (searchRequest == null || !ModelState.IsValid)
+            {
+                throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
+            }
 
-        //    return listViewModel;
-        //}
+            //var response = reconciledMappingService.GetReconciledMappingSearchResponse(searchRequest);
+            //MT940LoadListViewModel listViewModel = new MT940LoadListViewModel
+            //{
+            //    Mt940Loads = response.Data.Select(x => x.CreateFromServerToClient()).ToList(),
+            //    FilteredCount = response.FilteredCount,
+            //    TotalCount = response.TotalCount
+            //};
+
+            //return listViewModel;
+            return null;
+        }
 
         #endregion
 
