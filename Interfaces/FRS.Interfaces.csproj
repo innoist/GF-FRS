@@ -65,6 +65,7 @@
     <Compile Include="IServices\IMT940CustomerStatementTransactionService.cs" />
     <Compile Include="IServices\IMT940LoadDetailService.cs" />
     <Compile Include="IServices\IOracleGLEntryService.cs" />
+    <Compile Include="IServices\IReconciledMappingService.cs" />
     <Compile Include="IServices\IOracleGLLoadService.cs" />
     <Compile Include="IServices\IMT940LoadService.cs" />
     <Compile Include="IServices\IRegisterUserService.cs" />
@@ -91,6 +92,7 @@
     <Compile Include="Repository\IMT940CustomerStatementRepository.cs" />
     <Compile Include="Repository\IMT940CustomerStatementTransactionRepository.cs" />
     <Compile Include="Repository\IMT940LoadDetailRepository.cs" />
+    <Compile Include="Repository\IReconciledMappingRepository.cs" />
     <Compile Include="Repository\IOracleGLEntryRepository.cs" />
     <Compile Include="Repository\IOracleGLLoadRepository.cs" />
     <Compile Include="Repository\IMT940LoadRepository.cs" />

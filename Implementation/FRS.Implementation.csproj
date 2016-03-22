@@ -189,6 +189,7 @@
     <Compile Include="Services\MT940CustomerStatementTransactionService.cs" />
     <Compile Include="Services\MT90CustomerStatementService.cs" />
     <Compile Include="Services\MT940BalanceService.cs" />
+    <Compile Include="Services\ReconciledMappingService.cs" />
     <Compile Include="Services\OracleGLEntryService.cs" />
     <Compile Include="Services\OracleGLLoadService.cs" />
     <Compile Include="Services\MT940LoadService.cs" />
