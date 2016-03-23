@@ -6,6 +6,7 @@ namespace FRS.Models.RequestModels
     public class ReconciledMappingSearchRequest : GetPagedListRequest
     {
         public long ReconciledMappingId { get; set; }
+        public string Amount { get; set; }
 
         public DateTime? AccountDate { get; set; }
         public DateTime? TransactDate { get; set; }

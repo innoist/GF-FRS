@@ -14,14 +14,14 @@
 
     function ReconciliationSerice($http) {
 
-       // this.getLoadTypes = function (onReady, onError) {
-       //     var url = frsApiUrl + "/api/LoadType";
-       //    onError = onError || function () { alert('Failed to load data'); };
-       //    $http
-       //      .get(url)
-       //      .success(onReady)
-       //      .error(onError);
-       //}
+        this.getManual = function (onReady, onError) {
+            var url = frsApiUrl + "/api/ReconciledMapping";
+           onError = onError || function () { alert('Failed to load data'); };
+           $http
+             .get(url)
+             .success(onReady)
+             .error(onError);
+       }
 
     }
 })();

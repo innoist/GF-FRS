@@ -40,6 +40,7 @@ namespace FRS.Repository
             unityContainer.RegisterType<IAspNetRoleRepository, AspNetRoleRepository>();
             unityContainer.RegisterType<IOracleGLLoadRepository, OracleGLLoadRepository>();
             unityContainer.RegisterType<IOracleGLEntryRepository, OracleGLEntryRepository>();
+            unityContainer.RegisterType<IReconciledMappingRepository, ReconciledMappingRepository>();
         }
     }
 }
