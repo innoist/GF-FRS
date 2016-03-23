@@ -286,7 +286,7 @@
                 title: 'Manual Reconciliation',
                 templateUrl: helper.basepath('../../../../app/views/ManualReconciliation/ManualReconciliation.html'),
                 controller: 'ManualReconciliationController',
-                controllerAs: 'mrmc',
+                controllerAs: 'mrc',
                 resolve: helper.resolveFor('ManualReconciliation.module', 'ui.grid', 'ui.select')
             })
             .state('account', {

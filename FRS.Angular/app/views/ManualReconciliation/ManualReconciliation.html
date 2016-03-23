@@ -1,11 +1,11 @@
 ﻿<h3>
     <!-- START Language list-->
     <div class="pull-right">
-        <a ui-sref="app.Load" class="btn btn-info btn-labeled">
+        <!--<a ui-sref="app.Load" class="btn btn-info btn-labeled">
             <span class="btn-label">
                 <i class="fa fa-plus"></i>
             </span>New
-        </a>
+        </a>-->
         <button class="btn btn-warning btn-labeled" ng-click="isFilterOpen = !isFilterOpen" ng-show="!isFilterOpen">
             <span class="btn-label">
                 <i class="fa fa-filter"></i>
@@ -13,8 +13,8 @@
         </button>
     </div>
     <!-- END Language list    -->
-    ORACLE GL Entries
-    <small>Oracle GL Entries</small>
+    Reconciliation
+    <small>Manual Reconciliation</small>
 </h3>
 <div class="container-fluid">
     <div class="">
@@ -94,8 +94,13 @@
 
             <div class="container-fluid">
                 <!-- Grid view to show listview with searching, sorting and pagination-->
-                <div ui-grid="custstc.gridOptions" ui-grid-pagination ui-grid-move-columns ui-grid-resize-columns class="table-uigrid flip"></div>
+                <div ui-grid="custstc.gridOptions" ui-grid-selection ui-grid-pagination ui-grid-resize-columns class=""></div>
             </div>
         </div>
+    </div>
+    
+    <div class="col-md-12 mt-lg">
+        <!-- Grid view to show listview with searching, sorting and pagination-->
+        <div ui-grid="mrc.gridOptions" ui-grid-pagination ui-grid-move-columns ui-grid-resize-columns class="table-uigrid flip"></div>
     </div>
 </div>

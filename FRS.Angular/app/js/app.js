@@ -2288,7 +2288,11 @@
 
               {
                   name: 'ManualReconciliation.module', files: ['/app/js/ManualReconciliation/manualReconciliation.controller.js',
-                                                               '/app/js/ManualReconciliation/manualReconciliation.service.js']
+                                                               '/app/js/ManualReconciliation/manualReconciliation.service.js',
+                                                               '/app/js/CustomerStatementTransactions/customerStatementTransactions.service.js',
+                                                               '/app/js/CustomerStatementTransactions/customerStatementTransactions.controller.js',
+                                                               '/app/js/OracleGLEntries/OracleGLEntry.service.js',
+                                                               '/app/js/OracleGLEntries/OracleGLEntry.controller.js']
               }
             ]
         })
