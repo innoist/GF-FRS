@@ -143,9 +143,9 @@
                 });
 
                 gridApi.selection.on.rowSelectionChangedBatch($scope, function (rows) {
-                    debugger;
+                    
                     angular.forEach(rows, function(key, value) {
-                        
+                        debugger;
                     });
                     var msg = 'rows changed ' + rows.length;
                     console.log(msg);

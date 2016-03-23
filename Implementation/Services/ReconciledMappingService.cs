@@ -12,18 +12,15 @@ namespace FRS.Implementation.Services
         #region Private
 
         private readonly IReconciledMappingRepository rcRepository;
-        private readonly IReconciledMappingService rcServiceLoadRepository;
         //private readonly ILoadMetaDataRepository loadMetaDataRepository;
 
         #endregion
 
         #region Constructor
 
-        public ReconciledMappingService(IReconciledMappingService rcServiceLoadRepository, IReconciledMappingRepository mcRepository)
+        public ReconciledMappingService(IReconciledMappingRepository mcRepository)
         {
             this.rcRepository = mcRepository;
-            this.rcServiceLoadRepository = rcServiceLoadRepository;
-            
         }
 
         #endregion
