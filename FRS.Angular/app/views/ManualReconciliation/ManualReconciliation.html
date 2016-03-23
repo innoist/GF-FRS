@@ -1,10 +1,15 @@
 ﻿<h3>
     <!-- START Language list-->
     <div class="pull-right">
-        <a ng-click="done()" class="btn btn-success btn-labeled">
+        <a ng-click="reconcile()" class="btn bg-green-light btn-labeled" ng-disabled="toReconcile">
             <span class="btn-label">
-                <i class="fa fa-save"></i>
-            </span>Done
+                <i class="fa fa-cogs"></i>
+            </span>Reconcile
+        </a>
+        <a ng-click="done()" class="btn bg-purple-light btn-labeled">
+            <span class="btn-label">
+                <i class="fa fa-check"></i>
+            </span>Apply
         </a>
         <button class="btn btn-warning btn-labeled" ng-click="isFilterOpen = !isFilterOpen" title="Toggle filter section">
             <span class="btn-label">
@@ -98,9 +103,10 @@
             </div>
         </div>
     </div>
-    <h4 class="mt-lg">Mappings</h4>
+    
     <div class="col-md-12 mt-lg">
+        <h4 class="mt-lg">Mappings - {{mrc.OracleEntry.OracleGLEntryId}}</h4>
         <!-- Grid view to show listview with searching, sorting and pagination-->
-        <div ui-grid="mrc.gridOptions" ui-grid-pagination ui-grid-move-columns ui-grid-resize-columns class=""></div>
+        <div ui-grid="mrc.gridOptions" ui-grid-selection ui-grid-pagination ui-grid-move-columns ui-grid-resize-columns class=""></div>
     </div>
 </div>

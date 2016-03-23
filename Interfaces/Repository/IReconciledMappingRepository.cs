@@ -11,6 +11,7 @@ namespace FRS.Interfaces.Repository
 
         SearchTemplateResponse<ReconciledMapping> GetReconciledMappingSearchResponse(ReconciledMappingSearchRequest searchRequest);
         IEnumerable<ReconciledMapping> GetAll();
+        bool SaveMappings(IEnumerable<ReconciledMapping> mappings);
 
     }
 }

@@ -28,5 +28,20 @@ namespace FRS.WebApi.ModelMappers
                 Amount = source.MT940CustomerStatementTransaction.Amount.ToString("C0")
             };
         }
+
+        public static ReconciledMapping MapFromServerToClient(this ReconciledMappingModel source)
+        {
+            return new ReconciledMapping
+            {
+                MT940CustomerStatementTransactionId = source.MT940CustomerStatementTransactionId,
+                OracleGLEntryId = source.OracleGLEntryId,
+                IsDeleted = source.IsDeleted,
+                IsManual = source.IsManual,
+                CreatedBy = source.CreatedBy,
+                CreatedOn = source.CreatedOn,
+                ModifiedBy = source.ModifiedBy,
+                ModifiedOn = source.ModifiedOn
+            };
+        }
     }
 }

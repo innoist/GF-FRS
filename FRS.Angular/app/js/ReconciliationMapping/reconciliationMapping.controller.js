@@ -10,9 +10,9 @@
     // ReSharper disable FunctionsUsedBeforeDeclared
     core.lazy.controller('ReconciliationMappingController', ReconciliationMappingController);
 
-    ReconciliationMappingController.$inject = ['$scope', '$state', '$stateParams', 'uiGridConstants', 'ReconciliationSerice'];
+    ReconciliationMappingController.$inject = ['$scope', '$state', '$stateParams', 'uiGridConstants', 'ReconciliationMappingService'];
 
-    function ReconciliationMappingController($scope, $state, $stateParams, uiGridConstants, ReconciliationSerice) {
+    function ReconciliationMappingController($scope, $state, $stateParams, uiGridConstants, ReconciliationMappingService) {
 
 
         var vm = this;
@@ -151,7 +151,7 @@
                     break;
             }
 
-            ReconciliationSerice.getManual(
+            ReconciliationMappingService.getManual(
                 function onSuccess(data) {
                     vm.gridOptions.totalItems = data.TotalCount;
                     vm.gridOptions.data = data.ReconciledMappingModels;

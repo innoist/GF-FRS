@@ -10,83 +10,16 @@
     // ReSharper disable FunctionsUsedBeforeDeclared
     core.lazy.controller('ManualReconciliationController', ManualReconciliationController);
 
-    ManualReconciliationController.$inject = ['$scope', '$state', '$stateParams', 'uiGridConstants', 'ReconciliationSerice'];
+    ManualReconciliationController.$inject = ['$scope', '$state', 'uiGridConstants', 'ReconciliationSerice', 'toaster'];
 
-    function ManualReconciliationController($scope, $state, $stateParams, uiGridConstants, ReconciliationSerice) {
-
+    function ManualReconciliationController($scope, $state, uiGridConstants, ReconciliationSerice, toaster) {
 
         var vm = this;
-
-        //datepicker
-        vm.today = function () {
-            vm.dt = new Date();
-        };
-        vm.today();
-
-        vm.clear = function () {
-            vm.dt = null;
-        };
-
-        // Disable weekend selection
-        vm.disabled = function (date, mode) {
-            return (mode === 'day' && (date.getDay() === 0 || date.getDay() === 6));
-        };
-        vm.open = function ($event) {
-            $event.preventDefault();
-            $event.stopPropagation();
-
-            vm.opened = true;
-        };
-
-        vm.dateOptions = {
-            formatYear: 'yy',
-            startingDay: 1
-        };
-
-        vm.initDate = new Date();
-        vm.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
-        vm.format = vm.formats[0];
-
-
-        //ui-select
-        vm.disabled = undefined;
-        vm.DebitOrCredit = {};
-        vm.DebitsCredits = [
-          { Id: 'D', Name: 'Debit' },
-          { Id: 'C', Name: 'Credit' }
-        ];
-
-        //$http.get(window.frsApiUrl + '/api/LoadMetaDataBase').success(function (response) {
-        //    vm.Statuses = response.Statuses;
-        //});
-
-
-
-        //ui-grid
-        var paginationOptions = {
-            'params': {
-                SortBy: 0,
-                SearchString: '',
-                IsAsc: true,
-                PageNo: 1,
-                PageSize: 10,
-                sort: null,
-                DebitOrCredit: null,
-                MT940CustomerStatementId: $stateParams.Id == null || $stateParams.Id == "" ? 0 : $stateParams.Id
-            },
-
-        };
-
-        $scope.specificDetail = $stateParams.Id == null || $stateParams.Id == "" ? false : true;
-        $scope.MT940CustomerStatementId = $stateParams.Id;
-        $scope.MT940LoadId = $stateParams.MT940LoadId;
+        $scope.toReconcile = true;
         vm.gridOptions = {
             paginationPageSizes: [10, 25, 50, 100, 500],
             paginationPageSize: 10,
-            enableSorting: false,
-            //suppressRemoveSort: true,
-            useExternalPagination: true,
-            useExternalSorting: true,
+            enableSorting: true,
             //enableFiltering: true,
             flatEntityAccess: true,
             //fastWatch: true,
@@ -96,112 +29,54 @@
             columnDefs: [
                 // name is for display on the table header, field is for mapping as in 
                 //sortId is kept locally it is not the property of ui.grid
-              //{
-              //    name: 'Name',
-              //    field: 'Name',
-              //    sortId: 1,
-              //    cellTemplate: '<div class="ui-grid-cell-contents"><a ui-sref="">{{row.entity.Name}}</a> </div>',
-              //    //sort: {
-              //    //    direction: uiGridConstants.ASC
-              //    //}
-              //},
-               { displayName: 'Account Number', field: 'AccountNumber', sortId: 0 },
-              { name: 'Account Date', field: 'AccountDate', sortId: 1 },
-              { name: 'Transaction Date', field: 'TransactionDate', sortId: 2 },
-              { name: 'Amount', field: 'Amount', sortId: 3 },
-              { name: 'Debit/Credit', field: 'DebitOrCredit', sortId: 4 }
+              { name: 'Id', displayName: 'ID', field: 'MT940CustomerStatementId', sortId: 0 },
+              { name: 'Sequence', field: 'Sequence', sortId: 0 },
+              { name: 'Reference', field: 'Reference', sortId: 4 },
+              { name: 'Type', field: 'TransactionType', sortId: 1 },
+              { name: 'Value', field: 'Value', sortId: 1, cellTemplate: '<div class="ui-grid-cell-contents"><span title="{{row.entity.Value}}">{{row.entity.Value}}</span></div>' },
+              { name: 'ValueDate', field: 'ValueDate', sortId: 1 },
+              { name: 'Amount', field: 'Amount', sortId: 2 },
+              { name: 'Entry', field: 'EntryDate', sortId: 2 }
             ],
-            onRegisterApi: function (gridApi) {
+            onRegisterApi: function(gridApi) {
                 vm.gridApi = gridApi;
-                vm.gridApi.core.on.sortChanged($scope, function (grid, sortColumns) {
-                    if (sortColumns.length == 0) {
-                        paginationOptions.params.sort = null;
-                        paginationOptions.params.SortBy = 0;
-                    } else {
-                        paginationOptions.params.sort = sortColumns[0].sort.direction;
-                        var temp = -1;
-                        angular.forEach(vm.gridOptions.columnDefs, function (value, key) {
-                            if (temp == -1)
-                                if (value.field == sortColumns[0].field) {
-                                    paginationOptions.params.SortBy = value.sortId;
-                                    temp = 0;
-                                }
-                        });
-
+                gridApi.selection.on.rowSelectionChanged($scope, function(row) {
+                    if (row.isSelected === false) {
+                        window.Transactions.pop(row.entity);
                     }
-                    getPage();
-                });
-                gridApi.pagination.on.paginationChanged($scope, function (newPage, pageSize) {
-                    paginationOptions.params.PageNo = newPage;
-                    paginationOptions.params.PageSize = pageSize;
-                    getPage();
                 });
             }
         };
-        var getPage = function () {
-            switch (paginationOptions.params.sort) {
-                case uiGridConstants.ASC:
-                    paginationOptions.params.IsAsc = true;
-                    break;
-                case uiGridConstants.DESC:
-                    paginationOptions.params.IsAsc = false;
-                    break;
-                default:
-                    //url = '/data/100.json';
-                    break;
+        
+        vm.gridOptions.data = [];
+
+        $scope.done = function () {
+            if (window.OracleEntry && window.Transactions.length > 0) {
+                vm.OracleEntry = window.OracleEntry;
+                vm.gridOptions.data = window.Transactions;
+                toaster.info("Info", "Records are ready to reconcile and can be viewed in grid below. Press Reconcile Button to save changes.");
+                $scope.toReconcile = false;
+            } else {
+                $scope.toReconcile = true;
+                toaster.warning("Warning", "Please select records from grid to reconcile.");
             }
-
-            ReconciliationSerice.getManual(
-                function onSuccess(data) {
-                    vm.gridOptions.totalItems = data.TotalCount;
-                    vm.gridOptions.data = data.ReconciledMappingModels;
-                }, null, paginationOptions);
-
-
-        };
-
-        $scope.resetFilter = function () {
-            //vm.dt = null;
-            vm.DebitOrCredit.selected = null;
-            paginationOptions.params.DebitOrCredit = null;
-            paginationOptions.params.IsAsc = true;
-            paginationOptions.params.PageNo = 1;
-            paginationOptions.params.sort = null;
-            paginationOptions.params.SortBy = 0;
-            getPage();
         }
 
-        $scope.fiterData = function () {
-            //paginationOptions.params.CreatedDate = vm.dt;
-            paginationOptions.params.DebitOrCredit = vm.DebitOrCredit.selected == null ? "" : vm.DebitOrCredit.selected.Id;
-            getPage();
-        }
+        $scope.reconcile = function () {
 
-        $scope.resetFilter();
+            var data = {
+                OracleGlEntryId: window.OracleEntry.OracleGLEntryId,
+                TransactionIds: window.Transactions.map(function (value) {
+                    return value.MT940CustomerStatementTransactionId;
+                })
+            }
+            ReconciliationSerice.saveReconciledRecords(data, function(response) {
+                if (response) {
+                    toaster.success("Success", "Reconcilition was successful.");
+                    $state.go("app.ReconciliationMapping");
+                }
+            });
+        }
 
     }
 })();
-
-function MappingsGrid(vm) {
-    vm.gridOptions = {
-        paginationPageSizes: [10, 25, 50, 100, 500],
-        paginationPageSize: 10,
-        enableSorting: true,
-        flatEntityAccess: true,
-        //fastWatch: true,
-        enableGridMenu: true,
-        enableColumnMenus: false,
-        columnDefs: [
-            // name is for display on the table header, field is for mapping as in 
-            //sortId is kept locally it is not the property of ui.grid
-            { name: 'Id', displayName: 'ID', field: 'MT940CustomerStatementId'},
-            { name: 'Sequence', field: 'Sequence' },
-            { name: 'Reference', field: 'Reference' },
-            { name: 'Type', field: 'TransactionType' },
-            { name: 'Value', field: 'Value'},
-            { name: 'ValueDate', field: 'ValueDate'},
-            { name: 'Amount', field: 'Amount' },
-            { name: 'Entry', field: 'EntryDate' }
-        ],
-    }
-}

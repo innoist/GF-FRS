@@ -39,6 +39,11 @@ namespace FRS.Implementation.Services
             return true;
         }
 
+        public bool SaveReconciledMappings(IEnumerable<ReconciledMapping> reconciledMapping)
+        {
+            return rcRepository.SaveMappings(reconciledMapping);
+        }
+
         public void DeleteReconciledMapping(long reconciledMappingId)
         {
             var reconciledMapping = rcRepository.Find(reconciledMappingId);

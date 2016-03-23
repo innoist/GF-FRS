@@ -12,6 +12,7 @@ namespace FRS.Interfaces.IServices
 
         IEnumerable<ReconciledMapping> GetAll();
         bool SaveReconciledMapping(ReconciledMapping reconciledMapping);
+        bool SaveReconciledMappings(IEnumerable<ReconciledMapping> reconciledMapping);
         void DeleteReconciledMapping(long reconciledMappingId);
     }
 }

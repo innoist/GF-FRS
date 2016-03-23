@@ -14,7 +14,7 @@
 
 // ReSharper disable once InconsistentNaming
     function OracleGlEntryController($scope, $state, uiGridConstants, OracleGlEntryService) {
-        window.OracleEntry = {};
+        window.OracleEntry = undefined;
         var vm = this;
 
         //datepicker
@@ -102,11 +102,11 @@
               { name: 'Year', field: 'Status', sortId: 4 },
               { name: 'Created On', field: 'Status', sortId: 4 },
               { name: 'Modified On', field: 'Status', sortId: 4 },
-              {
-                  name: 'Actions', cellTemplate: '<div class="ui-grid-cell-contents"><div class="btn btn-xs">' +
-                    '<a href="javascript:;" class="btn btn-xs btn-info"><i class="fa fa-search"></i></a>' +
-                    '</div></div>'
-              }
+              //{
+              //    name: 'Actions', cellTemplate: '<div class="ui-grid-cell-contents"><div class="btn btn-xs">' +
+              //      '<a href="javascript:;" class="btn btn-xs btn-info"><i class="fa fa-search"></i></a>' +
+              //      '</div></div>'
+              //}
               
               //{ name: 'Action', width: '10%', cellTemplate: '<div class="ui-grid-cell-contents"><a ui-sref="app.CustomerStatements({Id : row.entity.MT940LoadId})" class="btn btn-xs btn-green">Details</a></div>' }
             ],
@@ -136,7 +136,6 @@
                     getPage();
                 });
                 gridApi.selection.on.rowSelectionChanged($scope, function (row) {
-                    debugger;
                     window.OracleEntry = row.entity;
                     console.log(row.entity);
                 });

@@ -71,8 +71,12 @@ namespace FRS.Repository.Repositories
 
           
         }
-      
 
-       
+        public bool SaveMappings(IEnumerable<ReconciledMapping> mappings)
+        {
+            db.ReconciledMappings.AddRange(mappings);
+            db.SaveChanges();
+            return true;
+        }
     }
 }

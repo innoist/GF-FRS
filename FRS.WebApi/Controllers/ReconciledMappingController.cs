@@ -1,13 +1,15 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Http;
 using FRS.Interfaces.IServices;
+using FRS.Models.DomainModels;
 using FRS.Models.RequestModels;
 using FRS.WebApi.ModelMappers;
-using FRS.WebApi.ViewModels.MT940Load;
 using FRS.WebApi.ViewModels.ReconciledMapping;
 using FRS.WebBase.Mvc;
+using Microsoft.AspNet.Identity;
 
 namespace FRS.WebApi.Controllers
 {
@@ -56,30 +58,29 @@ namespace FRS.WebApi.Controllers
         [HttpPost]
         [Authorize]
         [ApiException]
-        public IHttpActionResult Post(Models.MetaData.LoadMetaData loadMetaData)
+        public IHttpActionResult Post(ReconciliationViewModel model)
         {
             //HttpContext.Current.Session
-            //if (loadMetaData == null || !ModelState.IsValid)
-            //{
-            //    return BadRequest(ModelState);
-            //}
-            //if (loadMetaDataService != null)
-            //{
-            //    try
-            //    {
-            //        loadMetaData.CreatedBy = User.Identity.GetUserId();
-            //        loadMetaData.ModifiedBy = User.Identity.GetUserId();
-            //        loadMetaData.CreatedOn = DateTime.UtcNow;
-            //        loadMetaData.ModifiedOn = DateTime.Now;
-            //        var temp = loadMetaData.CreateFromClientToServer();
-            //        return Json(loadMetaDataService.SaveMetaData(temp));//.CreateFromServerToClient();
-            //    }
-            //    catch (Exception e)
-            //    {
-            //        return InternalServerError(e);
-            //    }
-            //}
-            return Json(true);
+            if (model == null || !ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            var userId = User.Identity.GetUserId();
+            var mappings = model.TransactionIds.Select(transactionId => new ReconciledMapping
+            {
+                OracleGLEntryId = model.OracleGlEntryId, 
+                MT940CustomerStatementTransactionId = transactionId, 
+                IsDeleted = false, 
+                IsManual = true, 
+                CreatedBy = userId, 
+                ModifiedBy = userId, 
+                CreatedOn = DateTime.UtcNow, 
+                ModifiedOn = DateTime.UtcNow,
+            }).ToList();
+
+            var result = reconciledMappingService.SaveReconciledMappings(mappings);
+
+            return Json(result);
         }
 
         #endregion

@@ -133,7 +133,6 @@
                     getPage();
                 });
                 gridApi.selection.on.rowSelectionChanged($scope, function (row) {
-                    debugger;
                     if (row.isSelected === true) {
                         window.Transactions.push(row.entity);
                     }else if (row.isSelected === false) {

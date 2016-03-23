@@ -8,11 +8,11 @@
 
     var core = angular.module('app.core');
     // ReSharper disable FunctionsUsedBeforeDeclared
-    core.lazy.service('ReconciliationSerice', ReconciliationSerice);
+    core.lazy.service('ReconciliationMappingService', ReconciliationMappingService);
 
-    ReconciliationSerice.$inject = ['$http'];
+    ReconciliationMappingService.$inject = ['$http'];
 
-    function ReconciliationSerice($http) {
+    function ReconciliationMappingService($http) {
 
         this.getManual = function (onReady, onError) {
             var url = frsApiUrl + "/api/ReconciledMapping";

@@ -14,11 +14,11 @@
 
     function ReconciliationSerice($http) {
 
-        this.getManual = function (onReady, onError) {
+        this.saveReconciledRecords = function (data, onReady, onError) {
             var url = frsApiUrl + "/api/ReconciledMapping";
-           onError = onError || function () { alert('Failed to load data'); };
+           onError = onError || function () { alert('Failed to save'); };
            $http
-             .get(url)
+             .post(url, data)
              .success(onReady)
              .error(onError);
        }
