@@ -34,7 +34,7 @@ namespace FRS.WebApi.Controllers
         [ApiException]
         public ReconciledMappingViewModel Get([FromUri]ReconciledMappingSearchRequest searchRequest)
         {
-            if (searchRequest == null || !ModelState.IsValid)
+          if (searchRequest == null || !ModelState.IsValid)
             {
                 throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
             }
