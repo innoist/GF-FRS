@@ -71,7 +71,8 @@
                 PageNo: 1,
                 PageSize: 10,
                 sort: null,
-                DebitOrCredit: null,
+                TransactDate: null,
+                Amount:"",
                 MT940CustomerStatementId: $stateParams.Id == null || $stateParams.Id == "" ? 0 : $stateParams.Id
             },
 
@@ -162,7 +163,9 @@
 
         $scope.resetFilter = function () {
             //vm.dt = null;
-            vm.DebitOrCredit.selected = null;
+            //vm.DebitOrCredit.selected = null;
+            vm.Amount = "";
+            vm.tansctiondt = null;
             paginationOptions.params.DebitOrCredit = null;
             paginationOptions.params.IsAsc = true;
             paginationOptions.params.PageNo = 1;
@@ -172,8 +175,12 @@
         }
 
         $scope.fiterData = function () {
-            //paginationOptions.params.CreatedDate = vm.dt;
-            paginationOptions.params.DebitOrCredit = vm.DebitOrCredit.selected == null ? "" : vm.DebitOrCredit.selected.Id;
+            debugger
+            paginationOptions.params.TransactDate = vm.tansctiondt;
+            paginationOptions.params.Amount = vm.Amount;
+           // paginationOptions.params.TransactDate = vm.tansctiondt;
+
+            //paginationOptions.params.DebitOrCredit = vm.DebitOrCredit.selected == null ? "" : vm.DebitOrCredit.selected.Id;
             getPage();
         }
 
