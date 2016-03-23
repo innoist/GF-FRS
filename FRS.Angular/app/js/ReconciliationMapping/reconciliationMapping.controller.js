@@ -166,6 +166,8 @@
             //vm.DebitOrCredit.selected = null;
             vm.Amount = "";
             vm.tansctiondt = null;
+            paginationOptions.params.TransactDate = null;
+            paginationOptions.params.Amount = "";
             paginationOptions.params.DebitOrCredit = null;
             paginationOptions.params.IsAsc = true;
             paginationOptions.params.PageNo = 1;
