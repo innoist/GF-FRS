@@ -134,6 +134,7 @@
     <Content Include="app\views\Currency\Currency.html" />
     <Content Include="app\views\Currency\NewCurrency.html" />
     <Content Include="app\views\CustomerStatementTransactions\CustomerStatementTransactions.html" />
+    <Content Include="app\views\ManualReconciliation\ReconciliationList.html" />
     <Content Include="app\views\ManualReconciliation\ManualReconciliation.html" />
     <Content Include="app\views\MT940Balance\MT940Balance.html" />
     <Content Include="app\views\LoadMetaData\LoadMetaData.html" />

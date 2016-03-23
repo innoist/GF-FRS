@@ -37,16 +37,16 @@ namespace FRS.WebApi.Controllers
                 throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
             }
 
-            //var response = reconciledMappingService.GetReconciledMappingSearchResponse(searchRequest);
-            //MT940LoadListViewModel listViewModel = new MT940LoadListViewModel
-            //{
-            //    Mt940Loads = response.Data.Select(x => x.CreateFromServerToClient()).ToList(),
-            //    FilteredCount = response.FilteredCount,
-            //    TotalCount = response.TotalCount
-            //};
+            var response = reconciledMappingService.GetReconciledMappingSearchResponse(searchRequest);
+            ReconciledMappingViewModel listViewModel = new ReconciledMappingViewModel
+            {
+                ReconciledMappingModels = response.Data.Select(x => x.MapFromServerToClient()).ToList(),
+                FilteredCount = response.FilteredCount,
+                TotalCount = response.TotalCount
+            };
 
-            //return listViewModel;
-            return null;
+            return listViewModel;
+            
         }
 
         #endregion

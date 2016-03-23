@@ -289,6 +289,14 @@
                 controllerAs: 'mrc',
                 resolve: helper.resolveFor('ManualReconciliation.module', 'ui.grid', 'ui.select')
             })
+              .state('app.ReconciliationMapping', {
+                  url: '/ReconciliationMapping',
+                  title: 'Reconciliation Mappings',
+                  templateUrl: helper.basepath('../../../../app/views/ManualReconciliation/ReconciliationList.html'),
+                  controller: 'ManualReconciliationController',
+                  controllerAs: 'rm',
+                  resolve: helper.resolveFor('ManualReconciliation.module', 'ui.grid', 'ui.select')
+              })
             .state('account', {
                 url: '/account',
                 templateUrl: 'app/pages/page.html',
