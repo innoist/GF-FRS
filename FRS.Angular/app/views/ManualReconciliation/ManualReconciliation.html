@@ -1,12 +1,12 @@
 ﻿<h3>
     <!-- START Language list-->
     <div class="pull-right">
-        <!--<a ui-sref="app.Load" class="btn btn-info btn-labeled">
+        <a ng-click="done()" class="btn btn-success btn-labeled">
             <span class="btn-label">
-                <i class="fa fa-plus"></i>
-            </span>New
-        </a>-->
-        <button class="btn btn-warning btn-labeled" ng-click="isFilterOpen = !isFilterOpen" ng-show="!isFilterOpen">
+                <i class="fa fa-save"></i>
+            </span>Done
+        </a>
+        <button class="btn btn-warning btn-labeled" ng-click="isFilterOpen = !isFilterOpen" title="Toggle filter section">
             <span class="btn-label">
                 <i class="fa fa-filter"></i>
             </span>Filter
@@ -45,16 +45,16 @@
                         <button class="btn btn-success" ng-click="fiterData()">Filter</button>
                         <button class="btn btn-default" ng-click="resetFilter()">Reset</button>
 
-                        <a class="pull-right" title="Hide filter Section" ng-click="isFilterOpen = !isFilterOpen"><i class="fa fa-compress"></i></a>
+                        <!--<a class="pull-right" title="Hide filter Section" ng-click="isFilterOpen = !isFilterOpen"><i class="fa fa-compress"></i></a>-->
                     </div>
 
                 </div>
 
             </div>
-
+            <h4>Accounting Entries</h4>
             <div class="container-fluid">
                 <!-- Grid view to show listview with searching, sorting and pagination-->
-                <div ui-grid="oglec.gridOptions" ui-grid-pagination ui-grid-move-columns ui-grid-resize-columns class="table-uigrid flip"></div>
+                <div ui-grid="oglec.gridOptions" ui-grid-selection ui-grid-pagination ui-grid-move-columns ui-grid-resize-columns class=""></div>
             </div>
         </div>
 
@@ -85,22 +85,22 @@
                         <button class="btn btn-success" ng-click="fiterData()">Filter</button>
                         <button class="btn btn-default" ng-click="resetFilter()">Reset</button>
 
-                        <a class="pull-right" title="Hide filter Section" ng-click="isFilterOpen = !isFilterOpen"><i class="fa fa-compress"></i></a>
+                        <!--<a class="pull-right" title="Hide filter Section" ng-click="isFilterOpen = !isFilterOpen"><i class="fa fa-compress"></i></a>-->
                     </div>
 
                 </div>
 
             </div>
-
+            <h4>Transactions</h4>
             <div class="container-fluid">
                 <!-- Grid view to show listview with searching, sorting and pagination-->
                 <div ui-grid="custstc.gridOptions" ui-grid-selection ui-grid-pagination ui-grid-resize-columns class=""></div>
             </div>
         </div>
     </div>
-    
+    <h4 class="mt-lg">Mappings</h4>
     <div class="col-md-12 mt-lg">
         <!-- Grid view to show listview with searching, sorting and pagination-->
-        <div ui-grid="mrc.gridOptions" ui-grid-pagination ui-grid-move-columns ui-grid-resize-columns class="table-uigrid flip"></div>
+        <div ui-grid="mrc.gridOptions" ui-grid-pagination ui-grid-move-columns ui-grid-resize-columns class=""></div>
     </div>
 </div>

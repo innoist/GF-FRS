@@ -14,7 +14,7 @@
 
 // ReSharper disable once InconsistentNaming
     function OracleGlEntryController($scope, $state, uiGridConstants, OracleGlEntryService) {
-
+        window.OracleEntry = {};
         var vm = this;
 
         //datepicker
@@ -75,6 +75,9 @@
             paginationPageSize: 10,
             enableSorting: false,
             //suppressRemoveSort: true,
+            multiSelect: false,
+            modifierKeysToMultiSelect: false,
+            noUnselect: true,
             useExternalPagination: true,
             useExternalSorting: true,
             //enableFiltering: true,
@@ -82,6 +85,7 @@
             //fastWatch: true,
             enableGridMenu: true,
             enableColumnMenus: false,
+
             //useExternalFiltering: true,
             columnDefs: [
                 // name is for display on the table header, field is for mapping as in 
@@ -130,6 +134,11 @@
                     paginationOptions.params.PageNo = newPage;
                     paginationOptions.params.PageSize = pageSize;
                     getPage();
+                });
+                gridApi.selection.on.rowSelectionChanged($scope, function (row) {
+                    debugger;
+                    window.OracleEntry = row.entity;
+                    console.log(row.entity);
                 });
             }
         };

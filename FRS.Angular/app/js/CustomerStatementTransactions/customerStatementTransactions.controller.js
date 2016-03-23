@@ -13,7 +13,7 @@
     CustomerStatementTransactionsController.$inject = ['$scope', '$state', '$stateParams', 'uiGridConstants', 'CustomerStatementTransactionService'];
 
     function CustomerStatementTransactionsController($scope, $state, $stateParams, uiGridConstants, CustomerStatementTransactionService) {
-
+        window.Transactions = [];
         var vm = this;
 
         //datepicker
@@ -83,6 +83,9 @@
             paginationPageSizes: [10, 25, 50, 100, 500],
             paginationPageSize: 10,
             enableSorting: false,
+            //modifierKeysToMultiSelect: true,
+            //enableFullRowSelection: true,
+            //enableRowHeaderSelection: true,
             //suppressRemoveSort: true,
             useExternalPagination: true,
             useExternalSorting: true,
@@ -95,16 +98,7 @@
             columnDefs: [
                 // name is for display on the table header, field is for mapping as in 
                 //sortId is kept locally it is not the property of ui.grid
-              //{
-              //    name: 'Name',
-              //    field: 'Name',
-              //    sortId: 1,
-              //    cellTemplate: '<div class="ui-grid-cell-contents"><a ui-sref="">{{row.entity.Name}}</a> </div>',
-              //    //sort: {
-              //    //    direction: uiGridConstants.ASC
-              //    //}
-              //},
-              { displayName: 'ID', field: 'MT940CustomerStatementId', sortId: 0 },
+              { name: 'Id', displayName: 'ID', field: 'MT940CustomerStatementId', sortId: 0 },
               { name: 'Sequence', field: 'Sequence', sortId: 0 },
               { name: 'Reference', field: 'Reference', sortId: 4 },
               { name: 'Type', field: 'TransactionType', sortId: 1 },
@@ -115,6 +109,7 @@
             ],
             onRegisterApi: function (gridApi) {
                 vm.gridApi = gridApi;
+                gridApi.core.notifyDataChange(uiGridConstants.dataChange.OPTIONS);
                 vm.gridApi.core.on.sortChanged($scope, function (grid, sortColumns) {
                     if (sortColumns.length == 0) {
                         paginationOptions.params.sort = null;
@@ -129,7 +124,6 @@
                                     temp = 0;
                                 }
                         });
-
                     }
                     getPage();
                 });
@@ -137,6 +131,24 @@
                     paginationOptions.params.PageNo = newPage;
                     paginationOptions.params.PageSize = pageSize;
                     getPage();
+                });
+                gridApi.selection.on.rowSelectionChanged($scope, function (row) {
+                    debugger;
+                    if (row.isSelected === true) {
+                        window.Transactions.push(row.entity);
+                    }else if (row.isSelected === false) {
+                        window.Transactions.pop(row.entity);
+                    }
+                    console.log(row.entity);
+                });
+
+                gridApi.selection.on.rowSelectionChangedBatch($scope, function (rows) {
+                    debugger;
+                    angular.forEach(rows, function(key, value) {
+                        
+                    });
+                    var msg = 'rows changed ' + rows.length;
+                    console.log(msg);
                 });
             }
         };
