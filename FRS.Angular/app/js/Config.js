@@ -293,9 +293,9 @@
                   url: '/ReconciliationMapping',
                   title: 'Reconciliation Mappings',
                   templateUrl: helper.basepath('../../../../app/views/ManualReconciliation/ReconciliationList.html'),
-                  controller: 'ManualReconciliationController',
+                  controller: 'ReconciliationMappingController',
                   controllerAs: 'rm',
-                  resolve: helper.resolveFor('ManualReconciliation.module', 'ui.grid', 'ui.select')
+                  resolve: helper.resolveFor('ReconciliationMapping.module', 'ui.grid', 'ui.select')
               })
             .state('account', {
                 url: '/account',

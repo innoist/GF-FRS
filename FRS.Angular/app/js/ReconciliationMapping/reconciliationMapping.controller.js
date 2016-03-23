@@ -8,11 +8,11 @@
 
     var core = angular.module('app.core');
     // ReSharper disable FunctionsUsedBeforeDeclared
-    core.lazy.controller('ManualReconciliationController', ManualReconciliationController);
+    core.lazy.controller('ReconciliationMappingController', ReconciliationMappingController);
 
-    ManualReconciliationController.$inject = ['$scope', '$state', '$stateParams', 'uiGridConstants', 'ReconciliationSerice'];
+    ReconciliationMappingController.$inject = ['$scope', '$state', '$stateParams', 'uiGridConstants', 'ReconciliationSerice'];
 
-    function ManualReconciliationController($scope, $state, $stateParams, uiGridConstants, ReconciliationSerice) {
+    function ReconciliationMappingController($scope, $state, $stateParams, uiGridConstants, ReconciliationSerice) {
 
 
         var vm = this;
@@ -181,27 +181,3 @@
 
     }
 })();
-
-function MappingsGrid(vm) {
-    vm.gridOptions = {
-        paginationPageSizes: [10, 25, 50, 100, 500],
-        paginationPageSize: 10,
-        enableSorting: true,
-        flatEntityAccess: true,
-        //fastWatch: true,
-        enableGridMenu: true,
-        enableColumnMenus: false,
-        columnDefs: [
-            // name is for display on the table header, field is for mapping as in 
-            //sortId is kept locally it is not the property of ui.grid
-            { name: 'Id', displayName: 'ID', field: 'MT940CustomerStatementId'},
-            { name: 'Sequence', field: 'Sequence' },
-            { name: 'Reference', field: 'Reference' },
-            { name: 'Type', field: 'TransactionType' },
-            { name: 'Value', field: 'Value'},
-            { name: 'ValueDate', field: 'ValueDate'},
-            { name: 'Amount', field: 'Amount' },
-            { name: 'Entry', field: 'EntryDate' }
-        ],
-    }
-}
