@@ -43,11 +43,14 @@ namespace FRS.Repository.Repositories
             int toRow = searchRequest.PageSize;
 
             Expression<Func<ReconciledMapping, bool>> query =
-            s =>
-                (
-                (searchRequest.AccountDate == null || searchRequest.AccountDate.Value == s.OracleGLEntry.EffectiveDate) &&
-                (searchRequest.TransactDate == null || searchRequest.TransactDate.Value== s.MT940CustomerStatementTransaction.EntryDate)
-                );
+                s =>
+                    (
+                        (searchRequest.AccountDate == null ||
+                         DbFunctions.TruncateTime(searchRequest.AccountDate.Value) ==
+                         DbFunctions.TruncateTime(s.OracleGLEntry.EffectiveDate)
+                         ||
+                         DbFunctions.TruncateTime(searchRequest.AccountDate.Value) ==
+                         DbFunctions.TruncateTime(s.MT940CustomerStatementTransaction.EntryDate)) && (string.IsNullOrEmpty(searchRequest.Amount) || searchRequest.Amount == s.MT940CustomerStatementTransaction.Amount.ToString())); 
 
             IEnumerable<ReconciledMapping> ReconciledMappings = searchRequest.IsAsc
               ? DbSet
