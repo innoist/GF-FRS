@@ -10,10 +10,12 @@
     // ReSharper disable FunctionsUsedBeforeDeclared
     core.lazy.controller('CustomerStatementTransactionsController', CustomerStatementTransactionsController);
 
-    CustomerStatementTransactionsController.$inject = ['$scope', '$state', '$stateParams', 'uiGridConstants', 'CustomerStatementTransactionService'];
+    CustomerStatementTransactionsController.$inject = ['$rootScope', '$scope', '$state', '$stateParams', 'uiGridConstants', 'CustomerStatementTransactionService'];
 
-    function CustomerStatementTransactionsController($scope, $state, $stateParams, uiGridConstants, CustomerStatementTransactionService) {
-        window.Transactions = [];
+    function CustomerStatementTransactionsController($rootScope, $scope, $state, $stateParams, uiGridConstants, CustomerStatementTransactionService) {
+        //window.Transactions = [];
+        
+        $rootScope.app.Transactions = [];
         var vm = this;
 
         //datepicker
@@ -134,17 +136,23 @@
                 });
                 gridApi.selection.on.rowSelectionChanged($scope, function (row) {
                     if (row.isSelected === true) {
-                        window.Transactions.push(row.entity);
+                        // window.Transactions.push(row.entity);
+                        $rootScope.app.Transactions.push(row.entity);
+                        
+                        var index=vm.gridOptions.data.indexOf(row.entity);
+                        vm.gridOptions.data.splice(index, 1);
                     }else if (row.isSelected === false) {
-                        window.Transactions.pop(row.entity);
+                        //window.Transactions.pop(row.entity);
+                        $rootScope.app.Transactions.pop(row.entity);
                     }
                     console.log(row.entity);
+                 
                 });
 
                 gridApi.selection.on.rowSelectionChangedBatch($scope, function (rows) {
                     
                     angular.forEach(rows, function(key, value) {
-                        debugger;
+                        
                     });
                     var msg = 'rows changed ' + rows.length;
                     console.log(msg);

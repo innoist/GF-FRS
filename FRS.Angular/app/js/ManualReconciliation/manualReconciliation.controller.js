@@ -10,9 +10,9 @@
     // ReSharper disable FunctionsUsedBeforeDeclared
     core.lazy.controller('ManualReconciliationController', ManualReconciliationController);
 
-    ManualReconciliationController.$inject = ['$scope', '$state', 'uiGridConstants', 'ReconciliationSerice', 'toaster'];
+    ManualReconciliationController.$inject = ['$timeout','$rootScope', '$scope', '$state', 'uiGridConstants', 'ReconciliationSerice', 'toaster'];
 
-    function ManualReconciliationController($scope, $state, uiGridConstants, ReconciliationSerice, toaster) {
+    function ManualReconciliationController($timeout ,$rootScope, $scope, $state, uiGridConstants, ReconciliationSerice, toaster) {
 
         var vm = this;
         $scope.toReconcile = true;
@@ -40,20 +40,32 @@
             ],
             onRegisterApi: function(gridApi) {
                 vm.gridApi = gridApi;
-                gridApi.selection.on.rowSelectionChanged($scope, function(row) {
+                gridApi.selection.on.rowSelectionChanged($scope, function (row) {
+                   
                     if (row.isSelected === false) {
-                        window.Transactions.pop(row.entity);
+                        //window.Transactions.pop(row.entity);
+                        $rootScope.app.Transactions.pop(row.entity);
                     }
                 });
             }
         };
-        
-        vm.gridOptions.data = [];
 
+        $rootScope.app.Transactions = []
+        vm.gridOptions.data = $rootScope.app.Transactions;
+        
+        $timeout(function () {
+           
+            vm.gridOptions.data = $rootScope.app.Transactions;
+        
+        }, 3000);
+        
         $scope.done = function () {
-            if (window.OracleEntry && window.Transactions.length > 0) {
+            //if (window.OracleEntry && window.Transactions.length > 0) {
+        
+            if (window.OracleEntry && $rootScope.app.Transactions.length > 0) {
                 vm.OracleEntry = window.OracleEntry;
-                vm.gridOptions.data = window.Transactions;
+                //vm.gridOptions.data = window.Transactions;
+                //vm.gridOptions.data = $rootScope.app.Transactions;
                 toaster.info("Info", "Records are ready to reconcile and can be viewed in grid below. Press Reconcile Button to save changes.");
                 $scope.toReconcile = false;
             } else {
@@ -66,7 +78,8 @@
 
             var data = {
                 OracleGlEntryId: window.OracleEntry.OracleGLEntryId,
-                TransactionIds: window.Transactions.map(function (value) {
+                //TransactionIds: window.Transactions.map(function (value) {
+                TransactionIds: $rootScope.app.Transactions.map(function (value) {
                     return value.MT940CustomerStatementTransactionId;
                 })
             }

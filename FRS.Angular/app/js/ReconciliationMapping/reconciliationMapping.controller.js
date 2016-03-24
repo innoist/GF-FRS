@@ -177,7 +177,7 @@
         }
 
         $scope.fiterData = function () {
-            debugger
+            
             paginationOptions.params.TransactDate = vm.tansctiondt;
             paginationOptions.params.Amount = vm.Amount;
            // paginationOptions.params.TransactDate = vm.tansctiondt;
