@@ -42,27 +42,29 @@
                 vm.gridApi = gridApi;
                 gridApi.selection.on.rowSelectionChanged($scope, function (row) {
                    
-                    if (row.isSelected === false) {
+                    if (row.isSelected === true) {
                         //window.Transactions.pop(row.entity);
-                        $rootScope.app.Transactions.pop(row.entity);
+                        $rootScope.app.CustomerTransactions.pop(row.entity);
+                        $rootScope.app.Transactions.push(row.entity);
+
                     }
                 });
             }
         };
 
-        $rootScope.app.Transactions = []
-        vm.gridOptions.data = $rootScope.app.Transactions;
+        $rootScope.app.Transactions = [];
+        vm.gridOptions.data = $rootScope.app.CustomerTransactions;
         
         $timeout(function () {
            
-            vm.gridOptions.data = $rootScope.app.Transactions;
+            vm.gridOptions.data = $rootScope.app.CustomerTransactions;
         
         }, 3000);
         
         $scope.done = function () {
             //if (window.OracleEntry && window.Transactions.length > 0) {
         
-            if (window.OracleEntry && $rootScope.app.Transactions.length > 0) {
+            if (window.OracleEntry && $rootScope.app.CustomerTransactions.length > 0) {
                 vm.OracleEntry = window.OracleEntry;
                 //vm.gridOptions.data = window.Transactions;
                 //vm.gridOptions.data = $rootScope.app.Transactions;
@@ -79,7 +81,7 @@
             var data = {
                 OracleGlEntryId: window.OracleEntry.OracleGLEntryId,
                 //TransactionIds: window.Transactions.map(function (value) {
-                TransactionIds: $rootScope.app.Transactions.map(function (value) {
+                TransactionIds: $rootScope.app.CustomerTransactions.map(function (value) {
                     return value.MT940CustomerStatementTransactionId;
                 })
             }

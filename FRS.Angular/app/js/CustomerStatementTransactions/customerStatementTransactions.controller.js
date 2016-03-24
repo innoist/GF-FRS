@@ -16,6 +16,7 @@
         //window.Transactions = [];
         
         $rootScope.app.Transactions = [];
+        $rootScope.app.CustomerTransactions = [];
         var vm = this;
 
         //datepicker
@@ -137,13 +138,14 @@
                 gridApi.selection.on.rowSelectionChanged($scope, function (row) {
                     if (row.isSelected === true) {
                         // window.Transactions.push(row.entity);
-                        $rootScope.app.Transactions.push(row.entity);
+                        $rootScope.app.CustomerTransactions.push(row.entity);
                         
                         var index=vm.gridOptions.data.indexOf(row.entity);
                         vm.gridOptions.data.splice(index, 1);
+                        //vm.gridOptions.data.pop(row.entity);
                     }else if (row.isSelected === false) {
                         //window.Transactions.pop(row.entity);
-                        $rootScope.app.Transactions.pop(row.entity);
+                        $rootScope.app.CustomerTransactions.pop(row.entity);
                     }
                     console.log(row.entity);
                  
@@ -175,7 +177,8 @@
             CustomerStatementTransactionService.getGridData(
                 function onSuccess(data) {
                     vm.gridOptions.totalItems = data.TotalCount;
-                    vm.gridOptions.data = data.Data;
+                    $rootScope.app.Transactions = data.Data;
+                    vm.gridOptions.data = $rootScope.app.Transactions;
             }, null, paginationOptions);
 
             
