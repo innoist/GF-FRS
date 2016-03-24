@@ -6,11 +6,11 @@
                 <i class="fa fa-cogs"></i>
             </span>Reconcile
         </a>
-        <a ng-click="done()" class="btn bg-purple-light btn-labeled">
+        <!--<a ng-click="done()" class="btn bg-purple-light btn-labeled">
             <span class="btn-label">
                 <i class="fa fa-check"></i>
             </span>Apply
-        </a>
+        </a>-->
         <button class="btn btn-warning btn-labeled" ng-click="isFilterOpen = !isFilterOpen" title="Toggle filter section">
             <span class="btn-label">
                 <i class="fa fa-filter"></i>
@@ -56,7 +56,7 @@
                 </div>
 
             </div>
-            <h4>Accounting Entries</h4>
+            <h4 class="bg-purple-light">Accounting Entries</h4>
             <div class="container-fluid">
                 <!-- Grid view to show listview with searching, sorting and pagination-->
                 <div ui-grid="oglec.gridOptions" ui-grid-selection ui-grid-pagination ui-grid-move-columns ui-grid-resize-columns class=""></div>
@@ -96,7 +96,7 @@
                 </div>
 
             </div>
-            <h4>Transactions</h4>
+            <h4 class="bg-primary-light">Transactions</h4>
             <div class="container-fluid">
                 <!-- Grid view to show listview with searching, sorting and pagination-->
                 <div ui-grid="custstc.gridOptions" ui-grid-selection ui-grid-pagination ui-grid-resize-columns class=""></div>

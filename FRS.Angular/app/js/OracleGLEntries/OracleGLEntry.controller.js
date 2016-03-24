@@ -10,11 +10,12 @@
     // ReSharper disable FunctionsUsedBeforeDeclared
     core.lazy.controller('OracleGlEntryController', OracleGlEntryController);
 
-    OracleGlEntryController.$inject = ['$scope', '$state', 'uiGridConstants', 'OracleGlEntryService'];
+    OracleGlEntryController.$inject = ['$rootScope', '$scope', '$state', 'uiGridConstants', 'OracleGlEntryService'];
 
 // ReSharper disable once InconsistentNaming
-    function OracleGlEntryController($scope, $state, uiGridConstants, OracleGlEntryService) {
+    function OracleGlEntryController($rootScope, $scope, $state, uiGridConstants, OracleGlEntryService) {
         window.OracleEntry = undefined;
+        $rootScope.app.OracleEntry = undefined;
         var vm = this;
 
         //datepicker
@@ -136,7 +137,8 @@
                     getPage();
                 });
                 gridApi.selection.on.rowSelectionChanged($scope, function (row) {
-                    window.OracleEntry = row.entity;
+                    //window.OracleEntry = row.entity;
+                    $rootScope.app.OracleEntry = row.entity;
                     console.log(row.entity);
                 });
             }

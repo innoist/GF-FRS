@@ -15,7 +15,7 @@
     function ManualReconciliationController($timeout ,$rootScope, $scope, $state, uiGridConstants, ReconciliationSerice, toaster) {
 
         var vm = this;
-        $scope.toReconcile = true;
+        $scope.toReconcile = false;
         vm.gridOptions = {
             paginationPageSizes: [10, 25, 50, 100, 500],
             paginationPageSize: 10,
@@ -56,41 +56,32 @@
         vm.gridOptions.data = $rootScope.app.CustomerTransactions;
         
         $timeout(function () {
-           
             vm.gridOptions.data = $rootScope.app.CustomerTransactions;
-        
+            
         }, 3000);
-        
-        $scope.done = function () {
-            //if (window.OracleEntry && window.Transactions.length > 0) {
-        
-            if (window.OracleEntry && $rootScope.app.CustomerTransactions.length > 0) {
-                vm.OracleEntry = window.OracleEntry;
-                //vm.gridOptions.data = window.Transactions;
-                //vm.gridOptions.data = $rootScope.app.Transactions;
-                toaster.info("Info", "Records are ready to reconcile and can be viewed in grid below. Press Reconcile Button to save changes.");
-                $scope.toReconcile = false;
+        vm.OracleEntry = $rootScope.app.OracleEntry;
+        $scope.reconcile = function () {
+            if ($rootScope.app.OracleEntry && $rootScope.app.CustomerTransactions.length > 0) {
+                
+                var data = {
+                    OracleGlEntryId: window.OracleEntry.OracleGLEntryId,
+                    //TransactionIds: window.Transactions.map(function (value) {
+                    TransactionIds: $rootScope.app.CustomerTransactions.map(function (value) {
+                        return value.MT940CustomerStatementTransactionId;
+                    })
+                }
+                ReconciliationSerice.saveReconciledRecords(data, function (response) {
+                    if (response) {
+                        toaster.success("Success", "Reconcilition was successful.");
+                        $state.go("app.ReconciliationMapping");
+                    }
+                });
+                //toaster.info("Info", "Records are ready to reconcile and can be viewed in grid below. Press Reconcile Button to save changes.");
+                //$scope.toReconcile = false;
             } else {
-                $scope.toReconcile = true;
+                //$scope.toReconcile = true;
                 toaster.warning("Warning", "Please select records from grid to reconcile.");
             }
-        }
-
-        $scope.reconcile = function () {
-
-            var data = {
-                OracleGlEntryId: window.OracleEntry.OracleGLEntryId,
-                //TransactionIds: window.Transactions.map(function (value) {
-                TransactionIds: $rootScope.app.CustomerTransactions.map(function (value) {
-                    return value.MT940CustomerStatementTransactionId;
-                })
-            }
-            ReconciliationSerice.saveReconciledRecords(data, function(response) {
-                if (response) {
-                    toaster.success("Success", "Reconcilition was successful.");
-                    $state.go("app.ReconciliationMapping");
-                }
-            });
         }
 
     }
