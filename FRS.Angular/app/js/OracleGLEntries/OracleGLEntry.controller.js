@@ -14,7 +14,7 @@
 
 // ReSharper disable once InconsistentNaming
     function OracleGlEntryController($rootScope, $scope, $state, uiGridConstants, OracleGlEntryService) {
-        window.OracleEntry = undefined;
+        //window.OracleEntry = undefined;
         $rootScope.app.OracleEntry = undefined;
         var vm = this;
 
@@ -96,13 +96,13 @@
                   field: 'OracleGLLoadId', sortId: 2,
                   //cellTemplate: '<div class="ui-grid-cell-contents"><a ui-sref="app.OracleGLLoadDetail({OracleGLLoadId : row.entity.OracleGLLoadId})">{{ row.entity.OracleGLLoadId}}</a></div>'
               },
-              { name: 'Load', field: 'Name', sortId: 2 },
-              { name: 'Unique Ref. Key', field: 'ModifiedOnString', sortId: 5 },
-              { name: 'A/C#', field: 'FileName', sortId: 3 },
-              { name: 'Period', field: 'OracleGLEntryCount', sortId: 3 },
-              { name: 'Year', field: 'Status', sortId: 4 },
-              { name: 'Created On', field: 'Status', sortId: 4 },
-              { name: 'Modified On', field: 'Status', sortId: 4 },
+              //{ name: 'Load', field: 'Name', sortId: 2 },
+              { name: 'Unique Ref. Key', field: 'UniqueReferenceKey', sortId: 5 },
+              { name: 'A/C#', field: 'AccountNumber', sortId: 3 },
+              { name: 'Period', field: 'Period', sortId: 3 },
+              { name: 'Year', field: 'Year', sortId: 4 },
+              { name: 'Created On', field: 'CreatedOn', sortId: 4 },
+              { name: 'Modified On', field: 'ModifiedOn', sortId: 4 }
               //{
               //    name: 'Actions', cellTemplate: '<div class="ui-grid-cell-contents"><div class="btn btn-xs">' +
               //      '<a href="javascript:;" class="btn btn-xs btn-info"><i class="fa fa-search"></i></a>' +
@@ -156,8 +156,7 @@
                     break;
             }
 
-            OracleGlEntryService.getGridData(
-                function onSuccess(data) {
+            OracleGlEntryService.getGridData(function (data) {
                     vm.gridOptions.totalItems = data.TotalCount;
                     vm.gridOptions.data = data.OracleGlEntries;
             }, null, paginationOptions);

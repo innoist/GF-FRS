@@ -28,8 +28,10 @@ namespace FRS.WebApi.Models.OracleGLEntry
         public DateTime? JELastUpdateDate { get; set; }
         public byte StatusId { get; set; }
         public string CreatedBy { get; set; }
-        public DateTime CreatedOn { get; set; }
+        public string CreatedOn { get; set; }
         public string ModifiedBy { get; set; }
-        public DateTime ModifiedOn { get; set; }
+        public string ModifiedOn { get; set; }
+        public string Name { get; set; }
+        public string Year { get; set; }
     }
 }

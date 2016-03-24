@@ -61,7 +61,8 @@ namespace FRS.WebApi.ModelMappers
                 ModifiedBy = source.ModifiedBy,
                 CreatedBy = source.CreatedBy,
                 StatusId = source.StatusId,
-                CreatedOn = source.CreatedOn,
+                CreatedOn = source.CreatedOn.ToString("dd-MMM-yy HH:mm:ss"),
+                ModifiedOn = source.ModifiedOn.ToString("dd-MMM-yy HH:mm:ss"),
                 OracleGLLoadId = source.OracleGLLoadId,
                 AccountDescription = source.AccountDescription,
                 AccountNumber = source.AccountNumber,
@@ -73,7 +74,9 @@ namespace FRS.WebApi.ModelMappers
                 UniqueReferenceKey = source.UniqueReferenceKey,
                 EntrySource = source.EntrySource,
                 Period = source.Period,
-                OracleGLEntryId = source.OracleGLEntryId
+                OracleGLEntryId = source.OracleGLEntryId,
+                //Name = source.OracleGLLoad.Loads.FirstOrDefault().Name,
+                Year = source.FiscalYear.Name
                 
             };
         }
@@ -84,7 +87,7 @@ namespace FRS.WebApi.ModelMappers
                 ModifiedBy = source.ModifiedBy,
                 CreatedBy = source.CreatedBy,
                 StatusId = source.StatusId,
-                CreatedOn = source.CreatedOn,
+                //CreatedOn = source.CreatedOn,
                 OracleGLLoadId = source.OracleGLLoadId,
                 AccountDescription = source.AccountDescription,
                 AccountNumber = source.AccountNumber,
