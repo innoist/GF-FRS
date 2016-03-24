@@ -32,6 +32,6 @@ namespace FRS.WebApi.Models.OracleGLEntry
         public string ModifiedBy { get; set; }
         public string ModifiedOn { get; set; }
         public string Name { get; set; }
-        public string Year { get; set; }
+        public short Year { get; set; }
     }
 }

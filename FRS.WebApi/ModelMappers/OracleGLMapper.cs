@@ -76,7 +76,7 @@ namespace FRS.WebApi.ModelMappers
                 Period = source.Period,
                 OracleGLEntryId = source.OracleGLEntryId,
                 //Name = source.OracleGLLoad.Loads.FirstOrDefault().Name,
-                Year = source.FiscalYear.Name
+                Year = source.FiscalYear.Value
                 
             };
         }
