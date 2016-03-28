@@ -1983,6 +1983,9 @@
         .constant('APP_REQUIRES', {
             // jQuery based and standalone scripts
             scripts: {
+                'pageguide': [
+                    '../../vendor/pageguide/css/pageguide.min.css',
+                    '../../vendor/pageguide/js/pageguide.js'],
                 'whirl': ['../../vendor/whirl/dist/whirl.css'],
                 'classyloader': ['../../vendor/jquery-classyloader/js/jquery.classyloader.min.js'],
                 'animo': ['../../vendor/animo.js/animo.js'],

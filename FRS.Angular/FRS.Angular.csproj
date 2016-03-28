@@ -165,6 +165,9 @@
     <Content Include="vendor\angular-ui-grid\ui-grid.ttf" />
     <Content Include="vendor\angular-ui-grid\ui-grid.woff" />
     <Content Include="vendor\datatables\media\images\Sorting icons.psd" />
+    <Content Include="vendor\pageguide\css\pageguide.min.css" />
+    <Content Include="vendor\pageguide\js\pageguide.js" />
+    <Content Include="vendor\pageguide\js\pageguide.min.js" />
     <Content Include="vendor\fontawesome\fonts\fontawesome-webfont.eot" />
     <Content Include="vendor\fontawesome\fonts\fontawesome-webfont.ttf" />
     <Content Include="vendor\fontawesome\fonts\fontawesome-webfont.woff" />

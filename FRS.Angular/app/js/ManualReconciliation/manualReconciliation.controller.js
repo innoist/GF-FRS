@@ -13,7 +13,7 @@
     ManualReconciliationController.$inject = ['$timeout','$rootScope', '$scope', '$state', 'uiGridConstants', 'ReconciliationSerice', 'toaster'];
 
     function ManualReconciliationController($timeout ,$rootScope, $scope, $state, uiGridConstants, ReconciliationSerice, toaster) {
-
+        
         var vm = this;
         $scope.toReconcile = false;
         vm.gridOptions = {
@@ -57,7 +57,7 @@
         
         $timeout(function () {
             vm.gridOptions.data = $rootScope.app.CustomerTransactions;
-            
+            tl.pg.init();
         }, 3000);
         vm.OracleEntry = $rootScope.app.OracleEntry;
         $scope.reconcile = function () {
