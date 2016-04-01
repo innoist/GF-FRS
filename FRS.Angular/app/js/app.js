@@ -2288,6 +2288,10 @@
                                                         '/app/js/Log/LogDataService.js']
               },
               {
+                  name: 'ServiceLog.module', files: ['/app/js/ServiceLog/ServiceLogController.js',
+                                                     '/app/js/ServiceLog/ServiceLogDataService.js']
+              },
+              {
                   name: 'ReconciliationMapping.module', files: ['/app/js/ReconciliationMapping/reconciliationMapping.controller.js',
                                                                 '/app/js/ReconciliationMapping/reconciliationMapping.service.js']
               }

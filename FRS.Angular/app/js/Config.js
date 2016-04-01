@@ -145,6 +145,22 @@
                 controllerAs: 'lc',
                 resolve: helper.resolveFor('ui.grid', 'ui.select', 'log.module')
             })
+            .state('app.ServiceLog', {
+                url: '/ServiceLog',
+                title: 'Service Logs',
+                templateUrl: helper.basepath('../../../../app/views/ServiceLog/ServiceLog.html'),
+                controller: 'ServiceLogController',
+                controllerAs: 'slc',
+                resolve: helper.resolveFor('ui.grid', 'ui.select', 'ServiceLog.module')
+            })
+            .state('app.ServiceLogDetail', {
+                url: '/ServiceLogDetail/:Id',
+                title: 'Service Log Detail',
+                templateUrl: helper.basepath('../../../../app/views/ServiceLog/ServiceLogDetail.html'),
+                controller: 'ServiceLogDetailController',
+                controllerAs: 'sldc',
+                resolve: helper.resolveFor('ui.grid', 'ui.select', 'ServiceLog.module')
+            })
             .state('app.Load', {
                 url: '/Load/:Type',
                 title: 'Load',

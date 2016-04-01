@@ -44,6 +44,7 @@ namespace FRS.Implementation
             unityContainer.RegisterType<IOracleGLLoadService, OracleGLLoadService>();
             unityContainer.RegisterType<IOracleGLEntryService, OracleGLEntryService>();
             unityContainer.RegisterType<IReconciledMappingService, ReconciledMappingService>();
+            unityContainer.RegisterType<IServiceLogService, ServiceLogService>();
         }
     }
 }

@@ -3,7 +3,7 @@
     public enum OrderByServiceLogs
     {
   
-        Severity = 0,
+        Id = 0,
         Timestamp = 1,
         Message = 2
      

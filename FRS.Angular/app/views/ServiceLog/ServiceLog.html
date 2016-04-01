@@ -1,0 +1,58 @@
+﻿<h3>
+    <!-- START Language list-->
+    <div class="pull-right">
+      
+        <button class="btn btn-warning btn-labeled" ng-click="isFilterOpen = !isFilterOpen" ng-show="!isFilterOpen">
+            <span class="btn-label">
+                <i class="fa fa-filter"></i>
+            </span>Filter
+        </button>
+    </div>
+    <!-- END Language list    -->
+    Service Logs
+    <small>Details</small>
+</h3>
+
+<div class="container-fluid" ng-show="isFilterOpen">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="col-md-3">
+                <input type="text" placeholder="Message" class="form-control" ng-model="slc.message" />
+            </div>
+            <div class="col-md-3">
+                <p class="input-group">
+                    <input type="text" placeholder="Select Time Stamp"
+                           uib-datepicker-popup="{{slc.format}}"
+                           ng-model="slc.dt"
+                           is-open="slc.opened"
+                           min-date="slc.minDate"
+                           max-date="'slc.maxDate'"
+                           uib-datepicker-options="slc.dateOptions"
+                           date-disabled="slc.disabled(date, mode)"
+                           close-text="Close"
+                           class="form-control"
+                           ng-disabled="true" />
+                    <span class="input-group-btn">
+                        <button type="button" ng-click="slc.open($event)" class="btn btn-default">
+                            <em class="fa fa-calendar"></em>
+                        </button>
+                    </span>
+                </p>
+            </div>
+            <div class="col-md-3">
+                <input type="text" placeholder="Severity" class="form-control" ng-model="slc.severity" />
+            </div>
+            <button class="btn btn-success" ng-click="fiterData()">Filter</button>
+            <button class="btn btn-default" ng-click="resetFilter()">Reset</button>
+
+            <a class="pull-right" title="Hide filter Section" ng-click="isFilterOpen = !isFilterOpen"><i class="fa fa-compress"></i></a>
+        </div>
+
+    </div>
+</div>
+
+<div class="container-fluid">
+    <!-- Grid view to show listview with searching, sorting and pagination-->
+    <div ui-grid="slc.gridOptions" ui-grid-pagination ui-grid-move-columns ui-grid-resize-columns class="table-uigrid">
+    </div>
+</div>

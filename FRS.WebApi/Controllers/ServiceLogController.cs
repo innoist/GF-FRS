@@ -10,29 +10,29 @@ using FRS.WebApi.ModelMappers.Log;
 
 namespace FRS.WebApi.Controllers
 {
-    public class LogController : ApiController
+    [Authorize]
+    public class ServiceLogController : ApiController
     {
-        private readonly ILogger loggerService;
+        private readonly IServiceLogService serviceLogService;
 
-        public LogController(ILogger loggerService)
+        public ServiceLogController(IServiceLogService serviceLogService)
         {
-            this.loggerService = loggerService;
+            this.serviceLogService = serviceLogService;
         }
 
         [HttpGet]
-        [Authorize]
         [ApiException]
-        public LogViewModel Get([FromUri]LogSearchRequest searchRequest)
+        public ServiceLogViewModel Get([FromUri]ServiceLogSearchRequest searchRequest)
         {
             if (searchRequest == null || !ModelState.IsValid)
             {
                 throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
             }
 
-            var response = loggerService.SearchLogs(searchRequest);
-            LogViewModel listViewModel = new LogViewModel
+            var response = serviceLogService.SearchLogs(searchRequest);
+            ServiceLogViewModel listViewModel = new ServiceLogViewModel
             {
-                LogDatas = response.Data.Select(x => x.CreateFromServerToClient()).ToList(),
+                Data = response.Data.Select(x => x.CreateFromServerToClient()).ToList(),
                 FilteredCount = response.FilteredCount,
                 TotalCount = response.TotalCount
             };

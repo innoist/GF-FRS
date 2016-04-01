@@ -249,6 +249,7 @@
     <Compile Include="Controllers\LoadStatusController.cs" />
     <Compile Include="Controllers\FiscalYearController.cs" />
     <Compile Include="Controllers\CurrencyController.cs" />
+    <Compile Include="Controllers\ServiceLogController.cs" />
     <Compile Include="Controllers\MT940BalanceController.cs" />
     <Compile Include="Controllers\MT940CustomerStatementTransactionController.cs" />
     <Compile Include="Controllers\CustomerStatementController.cs" />
@@ -317,6 +318,7 @@
     <Compile Include="ViewModels\LoadStatus\LoadStatusViewModel.cs" />
     <Compile Include="ViewModels\LoadType\LoadTypeViewModel.cs" />
     <Compile Include="ViewModels\Load\BaseDataLoad.cs" />
+    <Compile Include="ViewModels\Log\ServiceLogViewModel.cs" />
     <Compile Include="ViewModels\Log\LogViewModel.cs" />
     <Compile Include="ViewModels\MetaData\BaseDataLoadMetaData.cs" />
     <Compile Include="ViewModels\MetaData\LoadMetaDataListViewModel.cs" />

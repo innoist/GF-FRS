@@ -19,7 +19,8 @@ namespace FRS.Repository.Repositories
 
           new Dictionary<OrderByServiceLogs, Func<ServiceLog, object>>
           {
-                {OrderByServiceLogs.Message, c => c.Message}
+                {OrderByServiceLogs.Message, c => c.Message},
+                {OrderByServiceLogs.Id, c => c.ServiceLogID},
                
           };
 
