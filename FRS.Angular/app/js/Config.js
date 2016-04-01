@@ -146,7 +146,7 @@
                 resolve: helper.resolveFor('ui.grid', 'ui.select', 'log.module')
             })
             .state('app.Load', {
-                url: '/Load',
+                url: '/Load/:Type',
                 title: 'Load',
                 templateUrl: helper.basepath('../../../../app/views/Load/Load.html'),
                 controller: 'LoadController',

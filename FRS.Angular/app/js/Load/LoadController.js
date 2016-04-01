@@ -9,14 +9,17 @@
     // ReSharper disable FunctionsUsedBeforeDeclared
     core.lazy.controller('LoadController', LoadController);
 
-    LoadController.$inject = ['$http', '$scope', '$state', 'SweetAlert'];
+    LoadController.$inject = ['$http', '$scope', '$stateParams', '$state', 'SweetAlert'];
 
-    function LoadController($http, $scope, $state, SweetAlert) {
+    function LoadController($http, $scope, $stateParams, $state, SweetAlert) {
         var vm = this;
 
         activate();
 
         function activate() {
+            var loadType = $stateParams.Type;
+            if (loadType == "OracleGL")
+                loadType = "CSV";
 
             vm.validateInput = function (property, type) {
                 if (!property || !type) {
@@ -37,7 +40,14 @@
                 $http.get(window.frsApiUrl + '/api/Load')
                     .success(function (data) {
                         $scope.loadList = data.Loads;
-                        vm.LoadMetaDatas = data.LoadMetadataDropDown;
+                        if (loadType != "") {
+                            vm.LoadMetaDatas = data.LoadMetadataDropDown.filter(function (item) {
+                                return item.Type === loadType;
+                            });
+                        } else {
+                            vm.LoadMetaDatas = data.LoadMetadataDropDown;
+                        }
+                        
                         $scope.MetaDataWithFileTypes = data.MetaDataWithFileTypes;
                     });
             }
@@ -52,27 +62,26 @@
                     Name: vm.LoadName,
                     LoadType: vm.LoadMetaDatas.selected.Type
 
-            };
-                debugger;
-                $http.post(window.frsApiUrl + '/api/Load',load)
+                };
+                $http.post(window.frsApiUrl + '/api/Load', load)
                     .then(function (data) {
                         SweetAlert.swal({
                             title: 'Success',
                             text: 'Load Created Successfully.',
                             type: 'success'
                         });
-                    $state.go('app.dashboard');
-                    //console.log(data);
+                        $state.go('app.dashboard');
+                        //console.log(data);
 
-                }, function(err) {
+                    }, function (err) {
                         SweetAlert.swal({
                             title: 'Error',
                             text: 'Load Creation Failed.',
                             type: 'error'
                         });
-                    window.location.reload();
-                });
-                
+                        window.location.reload();
+                    });
+
             }
             // Wire Source Change
             $scope.$watch("ldc.LoadMetaDatas.selected", function (newValue, oldValue) {
@@ -90,7 +99,7 @@
                                 $scope.LoadMetadataId = newValue.Id;
                             }
                         });
-                }else{
+                } else {
                     $scope.IsLoadTypeMT940 = false;
                     $scope.Trailer = '';
                     $scope.Header = '';
@@ -116,7 +125,7 @@
                     reader.readAsDataURL(input.files[0]);
                 }
             }
-            
+
 
         }
     }

@@ -54,21 +54,20 @@
             function onSuccess(response) {
                 if (response.data == true) {
                     toaster.pop("success", "Notification", "Metadata Saved successfully");
+                    if (isNew) {
+                        $state.go('app.CreateMetaData');
+                    }
+                    if (!isNew) {
+                        $state.go('app.LoadMetaData');
+                    }
                 }
             }
             function onError(err) {
                 toaster.error(err.statusText, err.data.Message);
                 showErrors(err);
             }
-
-            if (isNew) {
-                //reseting form
-                vm.formValidate.$setPristine();
-                $state.go('app.CreateMetaData');
-            }
-            if (!isNew) {
-                $state.go('app.LoadMetaData');
-            }
+            //reseting form
+            vm.formValidate.$setPristine();
             defaultModel();
         }
         //#endregion
