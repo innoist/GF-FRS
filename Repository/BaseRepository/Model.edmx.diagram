@@ -65,6 +65,7 @@
         <AssociationConnector Association="angularModel.FK_LoadMetaData_Source" />
         <AssociationConnector Association="angularModel.FK_LoadMetaData_Status" />
         <AssociationConnector Association="angularModel.FK_Load_LoadMetaData" />
+        <EntityTypeShape EntityType="angularModel.ServiceLog" Width="1.5" PointX="3.375" PointY="14.75" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

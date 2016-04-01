@@ -171,6 +171,7 @@
     <Compile Include="Repositories\FiscalYearRepository.cs" />
     <Compile Include="Repositories\CurrencyRepository.cs" />
     <Compile Include="Repositories\EmployeeRepository.cs" />
+    <Compile Include="Repositories\ServiceLogRepository.cs" />
     <Compile Include="Repositories\LogRepository.cs" />
     <Compile Include="Repositories\FileContentRepository.cs" />
     <Compile Include="Repositories\LoadMetaDataRepository.cs" />

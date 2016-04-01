@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="20431150-7e77-4abe-b74b-10cd4d7f581f" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://frsintegrationsvcs.azurewebsites.net/Svc.Bank.MT940/bankmt940Loader.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="BankMT940Loader.xsd" MetadataType="Schema" ID="3cf2fc1e-c5d6-40db-97e9-aaa91f96713a" SourceId="1" SourceUrl="http://frsintegrationsvcs.azurewebsites.net/Svc.Bank.MT940/BankMT940Loader.svc?xsd=xsd3" />
+    <MetadataFile FileName="BankMT940Loader1.xsd" MetadataType="Schema" ID="cc1fbbc2-ed1b-40f5-be62-04ce2d0b0dae" SourceId="1" SourceUrl="http://frsintegrationsvcs.azurewebsites.net/Svc.Bank.MT940/BankMT940Loader.svc?xsd=xsd0" />
+    <MetadataFile FileName="BankMT940Loader.wsdl" MetadataType="Wsdl" ID="3584a6bc-15ad-4e0f-8ca0-5aac222bc70f" SourceId="1" SourceUrl="http://frsintegrationsvcs.azurewebsites.net/Svc.Bank.MT940/BankMT940Loader.svc?wsdl=wsdl0" />
+    <MetadataFile FileName="BankMT940Loader1.wsdl" MetadataType="Wsdl" ID="0e4311c6-80f0-4ac8-aa22-f03dc62347c5" SourceId="1" SourceUrl="http://frsintegrationsvcs.azurewebsites.net/Svc.Bank.MT940/BankMT940Loader.svc?wsdl" />
+    <MetadataFile FileName="BankMT940Loader.disco" MetadataType="Disco" ID="0520b5a0-7973-4cb5-a41d-e8c3f55a2b99" SourceId="1" SourceUrl="http://frsintegrationsvcs.azurewebsites.net/Svc.Bank.MT940/BankMT940Loader.svc?disco" />
+    <MetadataFile FileName="BankMT940Loader2.xsd" MetadataType="Schema" ID="f9e40175-dd99-41f3-a2bf-3feb618f7cb8" SourceId="1" SourceUrl="http://frsintegrationsvcs.azurewebsites.net/Svc.Bank.MT940/BankMT940Loader.svc?xsd=xsd2" />
+    <MetadataFile FileName="BankMT940Loader3.xsd" MetadataType="Schema" ID="c71e45b0-dd1a-4685-b53d-89b88c43e5f2" SourceId="1" SourceUrl="http://frsintegrationsvcs.azurewebsites.net/Svc.Bank.MT940/BankMT940Loader.svc?xsd=xsd1" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

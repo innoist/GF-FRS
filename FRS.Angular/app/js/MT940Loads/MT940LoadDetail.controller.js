@@ -15,6 +15,9 @@
     function MT940LoadDetailController($scope, $controller, $state, $stateParams, uiGridConstants, MT940Service) {
         
         var vm = this;
+
+        
+
         $scope.toProcess = true;
         //datepicker
         vm.today = function () {
@@ -83,6 +86,12 @@
                 vm.mt940Load = mt940LoadModel;
                 vm.loadMetadata = loadMetadata;
                 $scope.toProcess = vm.mt940Load.LoadStatus != 'Created';
+
+                $scope.processLoad = function () {
+                    MT940Service.processMT940Load(vm.load.LoadId, function (responseMessage) {
+                        alert(responseMessage);
+                    });
+                }
             });
         }
 

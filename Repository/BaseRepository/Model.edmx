@@ -333,6 +333,35 @@
           <Property Name="ModifiedOn" Type="datetime2" Precision="7" Nullable="false" />
           <Property Name="Identifier" Type="nvarchar" MaxLength="500" />
         </EntityType>
+        <EntityType Name="ServiceLog">
+          <Key>
+            <PropertyRef Name="ServiceLogID" />
+          </Key>
+          <Property Name="ServiceLogID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MachineName" Type="nvarchar" MaxLength="200" />
+          <Property Name="SiteName" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Logged" Type="datetime" Nullable="false" />
+          <Property Name="Level" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Application" Type="nvarchar" MaxLength="200" />
+          <Property Name="Message" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Logger" Type="nvarchar" MaxLength="300" />
+          <Property Name="Properties" Type="nvarchar(max)" />
+          <Property Name="ServerName" Type="nvarchar" MaxLength="200" />
+          <Property Name="Port" Type="nvarchar" MaxLength="100" />
+          <Property Name="SessionId" Type="nvarchar" MaxLength="100" />
+          <Property Name="ThreadId" Type="int" />
+          <Property Name="CallerDetails" Type="nvarchar" MaxLength="1024" />
+          <Property Name="RequestDump" Type="nvarchar" MaxLength="1024" />
+          <Property Name="ResponseDump" Type="nvarchar" MaxLength="1024" />
+          <Property Name="Url" Type="nvarchar" MaxLength="2000" />
+          <Property Name="Https" Type="bit" />
+          <Property Name="ServerAddress" Type="nvarchar" MaxLength="100" />
+          <Property Name="RemoteAddress" Type="nvarchar" MaxLength="100" />
+          <Property Name="Callsite" Type="nvarchar" MaxLength="300" />
+          <Property Name="PartitionKey" Type="tinyint" Nullable="false" />
+          <Property Name="Exception" Type="nvarchar(max)" />
+        </EntityType>
         <EntityType Name="Source">
           <Key>
             <PropertyRef Name="Value" />
@@ -810,6 +839,7 @@
           <EntitySet Name="OracleGLEntry" EntityType="Self.OracleGLEntry" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OracleGLLoad" EntityType="Self.OracleGLLoad" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ReconciledMapping" EntityType="Self.ReconciledMapping" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ServiceLog" EntityType="Self.ServiceLog" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Source" EntityType="Self.Source" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Status" EntityType="Self.Status" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_AspNetUsers_Employee" Association="Self.FK_AspNetUsers_Employee">
@@ -1160,6 +1190,7 @@
             <End Role="LoadMetaData" EntitySet="LoadMetaDatas" />
             <End Role="Load" EntitySet="Loads" />
           </AssociationSet>
+          <EntitySet Name="ServiceLogs" EntityType="angularModel.ServiceLog" />
           </EntityContainer>
         <EntityType Name="Menu">
           <Key>
@@ -1965,6 +1996,35 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="ServiceLog">
+          <Key>
+            <PropertyRef Name="ServiceLogID" />
+          </Key>
+          <Property Name="ServiceLogID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MachineName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="SiteName" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Logged" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Level" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Application" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Message" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Logger" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="Properties" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ServerName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Port" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="SessionId" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ThreadId" Type="Int32" />
+          <Property Name="CallerDetails" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+          <Property Name="RequestDump" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+          <Property Name="ResponseDump" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+          <Property Name="Url" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Name="Https" Type="Boolean" />
+          <Property Name="ServerAddress" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="RemoteAddress" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Callsite" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="PartitionKey" Type="Byte" Nullable="false" />
+          <Property Name="Exception" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2333,6 +2393,36 @@
                 <ScalarProperty Name="SourceId" ColumnName="SourceId" />
                 <ScalarProperty Name="LoadTypeId" ColumnName="LoadTypeId" />
                 <ScalarProperty Name="LoadMetaDataId" ColumnName="LoadMetaDataId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ServiceLogs">
+            <EntityTypeMapping TypeName="angularModel.ServiceLog">
+              <MappingFragment StoreEntitySet="ServiceLog">
+                <ScalarProperty Name="Exception" ColumnName="Exception" />
+                <ScalarProperty Name="PartitionKey" ColumnName="PartitionKey" />
+                <ScalarProperty Name="Callsite" ColumnName="Callsite" />
+                <ScalarProperty Name="RemoteAddress" ColumnName="RemoteAddress" />
+                <ScalarProperty Name="ServerAddress" ColumnName="ServerAddress" />
+                <ScalarProperty Name="Https" ColumnName="Https" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="ResponseDump" ColumnName="ResponseDump" />
+                <ScalarProperty Name="RequestDump" ColumnName="RequestDump" />
+                <ScalarProperty Name="CallerDetails" ColumnName="CallerDetails" />
+                <ScalarProperty Name="ThreadId" ColumnName="ThreadId" />
+                <ScalarProperty Name="SessionId" ColumnName="SessionId" />
+                <ScalarProperty Name="Port" ColumnName="Port" />
+                <ScalarProperty Name="ServerName" ColumnName="ServerName" />
+                <ScalarProperty Name="Properties" ColumnName="Properties" />
+                <ScalarProperty Name="Logger" ColumnName="Logger" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="Application" ColumnName="Application" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Level" ColumnName="Level" />
+                <ScalarProperty Name="Logged" ColumnName="Logged" />
+                <ScalarProperty Name="SiteName" ColumnName="SiteName" />
+                <ScalarProperty Name="MachineName" ColumnName="MachineName" />
+                <ScalarProperty Name="ServiceLogID" ColumnName="ServiceLogID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

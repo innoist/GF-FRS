@@ -295,6 +295,7 @@
     <Compile Include="Models\OracleGLEntry\OracleGLEntryModel.cs" />
     <Compile Include="Models\OracleGLLoad\OracleGLLoadModel.cs" />
     <Compile Include="Models\ReconciledMapping\ReconciledMappingModel.cs" />
+    <Compile Include="Models\ServiceLogModel.cs" />
     <Compile Include="Models\Source\SourceModel.cs" />
     <Compile Include="Models\Status\StatusModel.cs" />
     <Compile Include="Models\UserRole.cs" />
@@ -303,6 +304,11 @@
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
     <Compile Include="Results\ChallengeResult.cs" />
     <Compile Include="Service References\AccountsOracleGLLoader\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\BankMT940Loader\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -380,6 +386,16 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+    <None Include="Service References\BankMT940Loader\BankMT940Loader.disco" />
+    <None Include="Service References\BankMT940Loader\configuration91.svcinfo" />
+    <None Include="Service References\BankMT940Loader\configuration.svcinfo" />
+    <Content Include="Service References\BankMT940Loader\FRS.WebApi.BankMT940Loader.LoadMT940Response.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Service References\BankMT940Loader\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -410,6 +426,20 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\AccountsOracleGLLoader\AccountsOracleGLLoader3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\BankMT940Loader\BankMT940Loader.wsdl" />
+    <None Include="Service References\BankMT940Loader\BankMT940Loader.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\BankMT940Loader\BankMT940Loader1.wsdl" />
+    <None Include="Service References\BankMT940Loader\BankMT940Loader1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\BankMT940Loader\BankMT940Loader2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\BankMT940Loader\BankMT940Loader3.xsd">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
@@ -460,6 +490,7 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\AccountsOracleGLLoader\" />
+    <WCFMetadataStorage Include="Service References\BankMT940Loader\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

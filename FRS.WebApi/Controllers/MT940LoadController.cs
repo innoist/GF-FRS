@@ -4,9 +4,11 @@ using System.Web;
 using System.Web.Http;
 using FRS.Interfaces.IServices;
 using FRS.Models.RequestModels;
+using FRS.WebApi.BankMT940Loader;
 using FRS.WebApi.ModelMappers;
 using FRS.WebApi.ViewModels.MT940Load;
 using FRS.WebBase.Mvc;
+using Microsoft.AspNet.Identity;
 
 namespace FRS.WebApi.Controllers
 {
@@ -73,30 +75,20 @@ namespace FRS.WebApi.Controllers
         [HttpPost]
         [Authorize]
         [ApiException]
-        public IHttpActionResult Post(Models.MetaData.LoadMetaData loadMetaData)
+        public IHttpActionResult Post(long LoadId)
         {
-            //HttpContext.Current.Session
-            //if (loadMetaData == null || !ModelState.IsValid)
-            //{
-            //    return BadRequest(ModelState);
-            //}
-            //if (loadMetaDataService != null)
-            //{
-            //    try
-            //    {
-            //        loadMetaData.CreatedBy = User.Identity.GetUserId();
-            //        loadMetaData.ModifiedBy = User.Identity.GetUserId();
-            //        loadMetaData.CreatedOn = DateTime.UtcNow;
-            //        loadMetaData.ModifiedOn = DateTime.Now;
-            //        var temp = loadMetaData.CreateFromClientToServer();
-            //        return Json(loadMetaDataService.SaveMetaData(temp));//.CreateFromServerToClient();
-            //    }
-            //    catch (Exception e)
-            //    {
-            //        return InternalServerError(e);
-            //    }
-            //}
-            return Json(true);
+            BankMT940LoaderClient mt940LoaderClient =
+                new BankMT940LoaderClient("BasicHttpBinding_BankMT940Loader");
+            //I wna tto call this async but for now we wil do sync
+            mt940LoaderClient.Open();
+            var response = mt940LoaderClient.LoadMT940(new LoadMT940Request()
+            {
+                LoadId = LoadId,
+                UserId = User.Identity.GetUserId()
+            });
+            mt940LoaderClient.Close();
+
+            return Json(response.Message);
         }
 
         #endregion

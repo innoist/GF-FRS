@@ -41,7 +41,7 @@
         }
 
         this.processOracleGlLoad = function (Id, onReady, onError) {
-            onError = onError || function () { alert('Failed to load data'); };
+            onError = onError || function () { alert('Processing failed.'); };
             $http
                 .post(window.frsApiUrl + '/api/OracleGLLoad/?LoadId=' + Id)
                 .success(onReady)

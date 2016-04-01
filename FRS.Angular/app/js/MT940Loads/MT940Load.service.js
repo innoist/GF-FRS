@@ -39,6 +39,14 @@
                 .success(onReady)
                 .error(onError);
         }
+
+        this.processMT940Load = function (Id, onReady, onError) {
+            onError = onError || function () { alert('Processing failed.'); };
+            $http
+                .post(window.frsApiUrl + '/api/MT940Load/?LoadId=' + Id)
+                .success(onReady)
+                .error(onError);
+        }
     }
 
 

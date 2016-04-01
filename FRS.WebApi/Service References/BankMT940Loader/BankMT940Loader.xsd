@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://www.gulffinance.com.sa/frs/v1/bank/mt940/operations/load/response" elementFormDefault="qualified" targetNamespace="http://www.gulffinance.com.sa/frs/v1/bank/mt940/operations/load/response" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="LoadMT940Response">
+    <xs:sequence>
+      <xs:element name="Code" type="xs:long" />
+      <xs:element name="Message" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="LoadMT940Response" nillable="true" type="tns:LoadMT940Response" />
+</xs:schema>

@@ -111,6 +111,7 @@
     <Compile Include="Common\HelperIcon.cs" />
     <Compile Include="Common\ClaimParamters.cs" />
     <Compile Include="Common\LoadMetaDataForLoad.cs" />
+    <Compile Include="Common\OrderByServiceLogs.cs" />
     <Compile Include="Common\OrderByMT940Balance.cs" />
     <Compile Include="Common\OrderByCustomerStatement.cs" />
     <Compile Include="Common\OrderByCustomerStatementTransaction.cs" />
@@ -137,6 +138,7 @@
     <Compile Include="DomainModels\OracleGLEntry.cs" />
     <Compile Include="DomainModels\OracleGLLoad.cs" />
     <Compile Include="DomainModels\ReconciledMapping.cs" />
+    <Compile Include="DomainModels\ServiceLog.cs" />
     <Compile Include="DomainModels\Source.cs" />
     <Compile Include="DomainModels\Status.cs" />
     <Compile Include="DomainModels\UserDetail.cs" />
@@ -166,6 +168,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="RequestModels\ServiceLogSearchRequest.cs" />
     <Compile Include="RequestModels\MT940CustomerStatementTransactionSearchrequest.cs" />
     <Compile Include="RequestModels\MT940CustomerStatementSearchrequest.cs" />
     <Compile Include="RequestModels\MT940BalanceSearchRequest.cs" />

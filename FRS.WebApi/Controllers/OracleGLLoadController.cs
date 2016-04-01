@@ -83,14 +83,14 @@ namespace FRS.WebApi.Controllers
                 new FrsOracleGLLoaderServiceClient("BasicHttpBinding_FrsOracleGLLoaderService");
             //I wna tto call this async but for now we wil do sync
             oracleGLClient.Open();
-            oracleGLClient.LoadOracleGL(new LoadOracleGLRequest()
+            var response = oracleGLClient.LoadOracleGL(new LoadOracleGLRequest()
             {
                 LoadId = LoadId, 
                 UserId = User.Identity.GetUserId()
             });
             oracleGLClient.Close();
 
-            return Json(true);
+            return Json(response.Message);
             //TEST
             // ok
 

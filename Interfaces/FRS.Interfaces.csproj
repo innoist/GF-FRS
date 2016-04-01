@@ -58,6 +58,7 @@
     <Compile Include="IServices\IEmployeeService.cs" />
     <Compile Include="IServices\IFileContentService.cs" />
     <Compile Include="IServices\ILoadTypeService.cs" />
+    <Compile Include="IServices\IServiceLogService.cs" />
     <Compile Include="IServices\IMT940BalanceService.cs" />
     <Compile Include="IServices\ILoadMetaDataService.cs" />
     <Compile Include="IServices\ILoadService.cs" />
@@ -96,6 +97,7 @@
     <Compile Include="Repository\IOracleGLEntryRepository.cs" />
     <Compile Include="Repository\IOracleGLLoadRepository.cs" />
     <Compile Include="Repository\IMT940LoadRepository.cs" />
+    <Compile Include="Repository\IServiceLogRepository.cs" />
     <Compile Include="Repository\ISourceRepository.cs" />
     <Compile Include="Repository\IStatusRepository.cs" />
     <Compile Include="Repository\IUserDetailsRepository.cs" />

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://www.gulffinance.com.sa/frs/v1/bank/mt940/operations" elementFormDefault="qualified" targetNamespace="http://www.gulffinance.com.sa/frs/v1/bank/mt940/operations" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://frsintegrationsvcs.azurewebsites.net/Svc.Bank.MT940/BankMT940Loader.svc?xsd=xsd2" namespace="http://www.gulffinance.com.sa/frs/v1/bank/mt940/operations/load/request" />
+  <xs:import schemaLocation="http://frsintegrationsvcs.azurewebsites.net/Svc.Bank.MT940/BankMT940Loader.svc?xsd=xsd3" namespace="http://www.gulffinance.com.sa/frs/v1/bank/mt940/operations/load/response" />
+  <xs:element name="LoadMT940">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://www.gulffinance.com.sa/frs/v1/bank/mt940/operations/load/request" minOccurs="0" name="request" nillable="true" type="q1:LoadMT940Request" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoadMT940Response">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://www.gulffinance.com.sa/frs/v1/bank/mt940/operations/load/response" minOccurs="0" name="LoadMT940Result" nillable="true" type="q2:LoadMT940Response" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
