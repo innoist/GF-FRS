@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="9a586ef8-feef-4757-b6a3-79d0854900f2" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://frsintegrationsvcs.azurewebsites.net/Svc.Accounts.OracleGL/AccountsOracleGLLoader.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="AccountsOracleGLLoader.wsdl" MetadataType="Wsdl" ID="2355e9a2-20b7-4896-abe3-a95c48906c5c" SourceId="1" SourceUrl="http://frsintegrationsvcs.azurewebsites.net/Svc.Accounts.OracleGL/AccountsOracleGLLoader.svc?wsdl=wsdl0" />
+    <MetadataFile FileName="AccountsOracleGLLoader.xsd" MetadataType="Schema" ID="f33dc305-ac80-4042-bb0f-e870dfa3086f" SourceId="1" SourceUrl="http://frsintegrationsvcs.azurewebsites.net/Svc.Accounts.OracleGL/AccountsOracleGLLoader.svc?xsd=xsd2" />
+    <MetadataFile FileName="AccountsOracleGLLoader1.xsd" MetadataType="Schema" ID="cbefdf5c-4f6e-4316-9b7b-2255ac30abef" SourceId="1" SourceUrl="http://frsintegrationsvcs.azurewebsites.net/Svc.Accounts.OracleGL/AccountsOracleGLLoader.svc?xsd=xsd3" />
+    <MetadataFile FileName="AccountsOracleGLLoader2.xsd" MetadataType="Schema" ID="0432c1ba-01de-4ddd-93e3-63b3e3469090" SourceId="1" SourceUrl="http://frsintegrationsvcs.azurewebsites.net/Svc.Accounts.OracleGL/AccountsOracleGLLoader.svc?xsd=xsd0" />
+    <MetadataFile FileName="AccountsOracleGLLoader.disco" MetadataType="Disco" ID="92861143-9935-4e55-87ff-6e84a14ab1df" SourceId="1" SourceUrl="http://frsintegrationsvcs.azurewebsites.net/Svc.Accounts.OracleGL/AccountsOracleGLLoader.svc?disco" />
+    <MetadataFile FileName="AccountsOracleGLLoader1.wsdl" MetadataType="Wsdl" ID="902be340-ade4-4588-8e6d-1499ef965f48" SourceId="1" SourceUrl="http://frsintegrationsvcs.azurewebsites.net/Svc.Accounts.OracleGL/AccountsOracleGLLoader.svc?wsdl" />
+    <MetadataFile FileName="AccountsOracleGLLoader3.xsd" MetadataType="Schema" ID="b29fe67e-54ff-464a-ba67-664d0a13fea5" SourceId="1" SourceUrl="http://frsintegrationsvcs.azurewebsites.net/Svc.Accounts.OracleGL/AccountsOracleGLLoader.svc?xsd=xsd1" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

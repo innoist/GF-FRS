@@ -9,9 +9,9 @@
     // ReSharper disable FunctionsUsedBeforeDeclared
     core.lazy.controller('LoadController', LoadController);
 
-    LoadController.$inject = ['$http', '$scope', 'SweetAlert'];
+    LoadController.$inject = ['$http', '$scope', '$state', 'SweetAlert'];
 
-    function LoadController($http, $scope, SweetAlert) {
+    function LoadController($http, $scope, $state, SweetAlert) {
         var vm = this;
 
         activate();
@@ -49,10 +49,11 @@
                     FileBase64Content: $scope.Attachment,
                     FileName: $scope.FileName,
                     FileExtension: $scope.FileExtension,
-                    Name: vm.LoadName
+                    Name: vm.LoadName,
+                    LoadType: vm.LoadMetaDatas.selected.Type
 
             };
-
+                debugger;
                 $http.post(window.frsApiUrl + '/api/Load',load)
                     .then(function (data) {
                         SweetAlert.swal({
@@ -60,9 +61,16 @@
                             text: 'Load Created Successfully.',
                             type: 'success'
                         });
-                        console.log(data);
-                    }, function(err) {
-                        showErrors(err);
+                    $state.go('app.dashboard');
+                    //console.log(data);
+
+                }, function(err) {
+                        SweetAlert.swal({
+                            title: 'Error',
+                            text: 'Load Creation Failed.',
+                            type: 'error'
+                        });
+                    window.location.reload();
                 });
                 
             }

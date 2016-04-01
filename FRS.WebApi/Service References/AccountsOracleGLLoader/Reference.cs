@@ -8,16 +8,16 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace FRS.WebApi.FrsBankMT940Loader {
+namespace FRS.WebApi.AccountsOracleGLLoader {
     using System.Runtime.Serialization;
     using System;
     
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="LoadMT940Request", Namespace="http://www.gulffinance.com.sa/frs/v1/bank/mt940/operations/load/request")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="LoadOracleGLRequest", Namespace="http://www.gulffinance.com.sa/frs/v1/accounts/oraclegl/operations/load/request")]
     [System.SerializableAttribute()]
-    public partial class LoadMT940Request : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+    public partial class LoadOracleGLRequest : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
@@ -74,9 +74,9 @@ namespace FRS.WebApi.FrsBankMT940Loader {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="LoadMT940Response", Namespace="http://www.gulffinance.com.sa/frs/v1/bank/mt940/operations/load/response")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="LoadOracleGLResponse", Namespace="http://www.gulffinance.com.sa/frs/v1/accounts/oraclegl/operations/load/response")]
     [System.SerializableAttribute()]
-    public partial class LoadMT940Response : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+    public partial class LoadOracleGLResponse : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
@@ -132,53 +132,53 @@ namespace FRS.WebApi.FrsBankMT940Loader {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(Namespace="http://www.gulffinance.com.sa/frs/v1/bank/mt940/operations", ConfigurationName="FrsBankMT940Loader.BankMT940Loader")]
-    public interface BankMT940Loader {
+    [System.ServiceModel.ServiceContractAttribute(Namespace="http://www.gulffinance.com.sa/frs/v1/accounts/oraclegl/operations", ConfigurationName="AccountsOracleGLLoader.FrsOracleGLLoaderService")]
+    public interface FrsOracleGLLoaderService {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://www.gulffinance.com.sa/frs/v1/bank/mt940/operations/BankMT940Loader/LoadMT" +
-            "940", ReplyAction="http://www.gulffinance.com.sa/frs/v1/bank/mt940/operations/BankMT940Loader/LoadMT" +
-            "940Response")]
-        FRS.WebApi.FrsBankMT940Loader.LoadMT940Response LoadMT940(FRS.WebApi.FrsBankMT940Loader.LoadMT940Request request);
+        [System.ServiceModel.OperationContractAttribute(Action="http://www.gulffinance.com.sa/frs/v1/accounts/oraclegl/operations/FrsOracleGLLoad" +
+            "erService/LoadOracleGL", ReplyAction="http://www.gulffinance.com.sa/frs/v1/accounts/oraclegl/operations/FrsOracleGLLoad" +
+            "erService/LoadOracleGLResponse")]
+        FRS.WebApi.AccountsOracleGLLoader.LoadOracleGLResponse LoadOracleGL(FRS.WebApi.AccountsOracleGLLoader.LoadOracleGLRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://www.gulffinance.com.sa/frs/v1/bank/mt940/operations/BankMT940Loader/LoadMT" +
-            "940", ReplyAction="http://www.gulffinance.com.sa/frs/v1/bank/mt940/operations/BankMT940Loader/LoadMT" +
-            "940Response")]
-        System.Threading.Tasks.Task<FRS.WebApi.FrsBankMT940Loader.LoadMT940Response> LoadMT940Async(FRS.WebApi.FrsBankMT940Loader.LoadMT940Request request);
+        [System.ServiceModel.OperationContractAttribute(Action="http://www.gulffinance.com.sa/frs/v1/accounts/oraclegl/operations/FrsOracleGLLoad" +
+            "erService/LoadOracleGL", ReplyAction="http://www.gulffinance.com.sa/frs/v1/accounts/oraclegl/operations/FrsOracleGLLoad" +
+            "erService/LoadOracleGLResponse")]
+        System.Threading.Tasks.Task<FRS.WebApi.AccountsOracleGLLoader.LoadOracleGLResponse> LoadOracleGLAsync(FRS.WebApi.AccountsOracleGLLoader.LoadOracleGLRequest request);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface BankMT940LoaderChannel : FRS.WebApi.FrsBankMT940Loader.BankMT940Loader, System.ServiceModel.IClientChannel {
+    public interface FrsOracleGLLoaderServiceChannel : FRS.WebApi.AccountsOracleGLLoader.FrsOracleGLLoaderService, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class BankMT940LoaderClient : System.ServiceModel.ClientBase<FRS.WebApi.FrsBankMT940Loader.BankMT940Loader>, FRS.WebApi.FrsBankMT940Loader.BankMT940Loader {
+    public partial class FrsOracleGLLoaderServiceClient : System.ServiceModel.ClientBase<FRS.WebApi.AccountsOracleGLLoader.FrsOracleGLLoaderService>, FRS.WebApi.AccountsOracleGLLoader.FrsOracleGLLoaderService {
         
-        public BankMT940LoaderClient() {
+        public FrsOracleGLLoaderServiceClient() {
         }
         
-        public BankMT940LoaderClient(string endpointConfigurationName) : 
+        public FrsOracleGLLoaderServiceClient(string endpointConfigurationName) : 
                 base(endpointConfigurationName) {
         }
         
-        public BankMT940LoaderClient(string endpointConfigurationName, string remoteAddress) : 
+        public FrsOracleGLLoaderServiceClient(string endpointConfigurationName, string remoteAddress) : 
                 base(endpointConfigurationName, remoteAddress) {
         }
         
-        public BankMT940LoaderClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+        public FrsOracleGLLoaderServiceClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(endpointConfigurationName, remoteAddress) {
         }
         
-        public BankMT940LoaderClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+        public FrsOracleGLLoaderServiceClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(binding, remoteAddress) {
         }
         
-        public FRS.WebApi.FrsBankMT940Loader.LoadMT940Response LoadMT940(FRS.WebApi.FrsBankMT940Loader.LoadMT940Request request) {
-            return base.Channel.LoadMT940(request);
+        public FRS.WebApi.AccountsOracleGLLoader.LoadOracleGLResponse LoadOracleGL(FRS.WebApi.AccountsOracleGLLoader.LoadOracleGLRequest request) {
+            return base.Channel.LoadOracleGL(request);
         }
         
-        public System.Threading.Tasks.Task<FRS.WebApi.FrsBankMT940Loader.LoadMT940Response> LoadMT940Async(FRS.WebApi.FrsBankMT940Loader.LoadMT940Request request) {
-            return base.Channel.LoadMT940Async(request);
+        public System.Threading.Tasks.Task<FRS.WebApi.AccountsOracleGLLoader.LoadOracleGLResponse> LoadOracleGLAsync(FRS.WebApi.AccountsOracleGLLoader.LoadOracleGLRequest request) {
+            return base.Channel.LoadOracleGLAsync(request);
         }
     }
 }

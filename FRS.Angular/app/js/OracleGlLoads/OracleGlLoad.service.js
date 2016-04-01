@@ -39,6 +39,14 @@
                 .success(onReady)
                 .error(onError);
         }
+
+        this.processOracleGlLoad = function (Id, onReady, onError) {
+            onError = onError || function () { alert('Failed to load data'); };
+            $http
+                .post(window.frsApiUrl + '/api/OracleGLLoad/?LoadId=' + Id)
+                .success(onReady)
+                .error(onError);
+        }
     }
 
 

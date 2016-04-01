@@ -46,7 +46,8 @@ namespace FRS.Repository.Repositories
             return DbSet.Select(x => new DropDownModel
             {
                 Id = x.LoadMetaDataId,
-                Name = x.Name
+                Name = x.Name,
+                Type = x.LoadType.Name
             });
         }
 

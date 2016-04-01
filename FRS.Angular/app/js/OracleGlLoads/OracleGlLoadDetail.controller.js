@@ -16,6 +16,15 @@
 
         var vm = this;
         $scope.toProcess = true;
+
+        $scope.processLoad = function () {
+            var LoadId = vm.load.LoadId;
+            debugger;
+            OracleGlLoadService.processOracleGlLoad(LoadId, function(response) {
+                alert(response);
+            });
+        }
+
         if ($stateParams.Id != "") {
             OracleGlLoadService.getOracleGLLoadDetail($stateParams.Id, function (response) {
                 vm.OracleGlLoad = response.OracleGlLoad;

@@ -1,12 +1,16 @@
-﻿using System.Linq;
+﻿using System.Data.SqlClient;
+using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Http;
+using System.Web.Http.Owin;
 using FRS.Interfaces.IServices;
 using FRS.Models.RequestModels;
+using FRS.WebApi.AccountsOracleGLLoader;
 using FRS.WebApi.ModelMappers;
 using FRS.WebApi.ViewModels.OracleGlLoad;
 using FRS.WebBase.Mvc;
+using Microsoft.AspNet.Identity;
 
 namespace FRS.WebApi.Controllers
 {
@@ -72,8 +76,31 @@ namespace FRS.WebApi.Controllers
         [HttpPost]
         [Authorize]
         [ApiException]
-        public IHttpActionResult Post(Models.MetaData.LoadMetaData loadMetaData)
+        public IHttpActionResult Post([FromUri]long LoadId)
         {
+
+            FrsOracleGLLoaderServiceClient oracleGLClient =
+                new FrsOracleGLLoaderServiceClient("BasicHttpBinding_FrsOracleGLLoaderService");
+            //I wna tto call this async but for now we wil do sync
+            oracleGLClient.Open();
+            oracleGLClient.LoadOracleGL(new LoadOracleGLRequest()
+            {
+                LoadId = LoadId, 
+                UserId = User.Identity.GetUserId()
+            });
+            oracleGLClient.Close();
+
+            return Json(true);
+            //TEST
+            // ok
+
+
+
+            //Done.. 
+
+
+
+
             //HttpContext.Current.Session
             //if (loadMetaData == null || !ModelState.IsValid)
             //{
@@ -95,6 +122,25 @@ namespace FRS.WebApi.Controllers
             //        return InternalServerError(e);
             //    }
             //}
+            
+        }
+
+
+        [HttpPut]
+        [Authorize]
+        [ApiException]
+        public IHttpActionResult Put(long LoadId)
+        {
+            FrsOracleGLLoaderServiceClient oracleGLClient = new FrsOracleGLLoaderServiceClient();
+            //I wna tto call this async but for now we wil do sync
+            oracleGLClient.Open();
+            oracleGLClient.LoadOracleGL(new LoadOracleGLRequest()
+            {
+                LoadId = LoadId,
+                UserId = User.Identity.GetUserId()
+            });
+            oracleGLClient.Close();
+
             return Json(true);
         }
 

@@ -8,6 +8,7 @@ namespace FRS.WebApi.Models.Load
         public long LoadId { get; set; }
         public byte LoadMetaDataId { get; set; }
         public long? MT940LoadId { get; set; }
+        public long? OracleGLLoadId { get; set; }
         public DateTime Start { get; set; }
         public string StartString { get; set; }
         public DateTime? Finish { get; set; }
@@ -19,6 +20,7 @@ namespace FRS.WebApi.Models.Load
         public DateTime ModifiedOn { get; set; }
         public string ModifiedOnStr { get; set; }
         public string Name { get; set; }
+        public string LoadType { get; set; }
 
         //File Properties
         public string FileBase64Content { get; set; }

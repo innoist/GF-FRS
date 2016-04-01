@@ -45,7 +45,12 @@ namespace FRS.WebApi.ModelMappers
                 ReadOnly = source.ReadOnly,
                 Start = DateTime.UtcNow,
                 Name = source.Name,
-                MT940Load = new MT940Load
+                
+            };
+
+            if (source.LoadType.Contains("MT940"))
+            {
+                load.MT940Load = new MT940Load
                 {
                     FileContent = new FileContent
                     {
@@ -62,8 +67,29 @@ namespace FRS.WebApi.ModelMappers
                     CustomerStatementCount = 1,
                     StatusId = 2
 
-                },
-            };
+                };
+            }
+            else
+            {
+                load.OracleGLLoad = new OracleGLLoad()
+                {
+                    FileContent = new FileContent
+                    {
+                        FileContentBase64 = source.FileBase64Content,
+                        CreatedBy = userId,
+                        ModifiedBy = userId
+
+                    },
+                    FileName = source.FileName,
+                    FileExtension = source.FileExtension,
+                    CreatedBy = userId,
+                    ModifiedBy = userId,
+                    Path = "C:/",
+                    OracleGLEntryCount = 0,
+                    StatusId = 2
+
+                };
+            }
 
             return load;
         }
