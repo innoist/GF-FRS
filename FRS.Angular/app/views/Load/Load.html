@@ -75,6 +75,10 @@
                                         </ui-select-match>
                                         <ui-select-choices repeat="obj in ldc.LoadMetaDatas | propsFilter: {Name: $select.search}">
                                             <div ng-bind-html="obj.Name | highlight: $select.search"></div>
+                                            <small>
+                                                Type:
+                                                <span ng-bind-html="''+ obj.Type | highlight: $select.search"></span>
+                                            </small>
                                         </ui-select-choices>
                                     </ui-select>
                                 </div>

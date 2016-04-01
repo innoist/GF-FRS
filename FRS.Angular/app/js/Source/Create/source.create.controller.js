@@ -42,6 +42,14 @@
             function onSuccess(response) {
                 if (response.data == true) {
                     toaster.pop("success", "Notification", "Source Saved successfully");
+                    if (isNew) {
+                        //reseting form
+                        //vm.formValidate.$setPristine();
+                        $state.go('app.CreateSources');
+                    }
+                    if (!isNew) {
+                        $state.go('app.Sources');
+                    }
                 }
             }
             function onError(err) {
@@ -49,14 +57,7 @@
                 showErrors(err);
             }
 
-            if (isNew) {
-                //reseting form
-                //vm.formValidate.$setPristine();
-                $state.go('app.CreateSources');
-            }
-            if (!isNew) {
-                $state.go('app.Sources');
-            }
+            
             //reseting form
             vm.formValidate.$setPristine();
             vm.submitted = false;

@@ -35,6 +35,14 @@
             function onSuccess(response) {
                 if (response.data == true) {
                     toaster.pop("success", "Notification", "Fiscal Year Saved successfully");
+                    if (isNew) {
+                        //reseting form
+                        //vm.formValidate.$setPristine();
+                        $state.go('app.NewFiscalYear');
+                    }
+                    if (!isNew) {
+                        $state.go('app.FiscalYear');
+                    }
                 }
             }
             function onError(err) {
@@ -42,14 +50,7 @@
                 showErrors(err);
             }
 
-            if (isNew) {
-                //reseting form
-                //vm.formValidate.$setPristine();
-                $state.go('app.NewFiscalYear');
-            }
-            if (!isNew) {
-                $state.go('app.FiscalYear');
-            }
+            
             //reseting form
             vm.formValidate.$setPristine();
             vm.submitted = false;

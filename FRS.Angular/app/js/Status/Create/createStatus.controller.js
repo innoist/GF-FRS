@@ -35,6 +35,14 @@
             function onSuccess(response) {
                 if (response.data == true) {
                     toaster.pop("success", "Notification", "Currency Saved successfully");
+                    if (isNew) {
+                        //reseting form
+                        //vm.formValidate.$setPristine();
+                        $state.go('app.CreateStatus');
+                    }
+                    if (!isNew) {
+                        $state.go('app.Status');
+                    }
                 }
             }
             function onError(err) {
@@ -42,14 +50,7 @@
                 showErrors(err);
             }
 
-            if (isNew) {
-                //reseting form
-                //vm.formValidate.$setPristine();
-                $state.go('app.CreateStatus');
-            }
-            if (!isNew) {
-                $state.go('app.Status');
-            }
+            
             //reseting form
             vm.formValidate.$setPristine();
             vm.submitted = false;

@@ -41,6 +41,14 @@
             function onSuccess(response) {
                 if (response.data == true) {
                     toaster.pop("success", "Notification", "Load Type Saved successfully");
+                    if (isNew) {
+                        //reseting form
+                        //vm.formValidate.$setPristine();
+                        $state.go('app.CreateLoadType');
+                    }
+                    if (!isNew) {
+                        $state.go('app.LoadType');
+                    }
                 }
             }
             function onError(err) {
@@ -48,14 +56,7 @@
                 showErrors(err);
             }
 
-            if (isNew) {
-                //reseting form
-                //vm.formValidate.$setPristine();
-                $state.go('app.CreateLoadType');
-            }
-            if (!isNew) {
-                $state.go('app.LoadType');
-            }
+            
             //reseting form
             vm.formValidate.$setPristine();
             vm.submitted = false;
