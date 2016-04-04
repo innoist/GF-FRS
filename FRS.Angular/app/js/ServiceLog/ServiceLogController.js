@@ -56,9 +56,6 @@
                 PageNo: 1,
                 PageSize: 10,
                 sort: null,
-                Timestamp: '',
-                Severity: '',
-                Message: ''
             },
 
         };
@@ -140,22 +137,15 @@
 
         $scope.resetFilter = function () {
             vm.dt = null;
-            vm.message = '';
-            vm.severity = '';
 
-            paginationOptions.params.Severity = '';
             paginationOptions.params.IsAsc = true;
             paginationOptions.params.PageNo = 1;
             paginationOptions.params.sort = null;
             paginationOptions.params.SortBy = 0;
-            paginationOptions.params.Timestamp = '';
-            paginationOptions.params.Message = '';
             getPage();
         }
 
         $scope.fiterData = function () {
-            paginationOptions.params.Message = vm.message;
-            paginationOptions.params.Severity = vm.severity;
             paginationOptions.params.Timestamp = vm.dt;
             getPage();
         }
