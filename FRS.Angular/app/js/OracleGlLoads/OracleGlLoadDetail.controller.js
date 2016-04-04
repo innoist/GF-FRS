@@ -18,11 +18,12 @@
         $scope.toProcess = true;
 
         $scope.processLoad = function () {
-            var LoadId = vm.load.LoadId;
-            debugger;
-            OracleGlLoadService.processOracleGlLoad(LoadId, function(response) {
-                alert(response);
-            });
+            if (vm.OracleGlLoad.LoadStatus == 'Submitted') {
+                var LoadId = vm.load.LoadId;
+                OracleGlLoadService.processOracleGlLoad(LoadId, function (response) {
+                    alert(response);
+                });
+            }
         }
 
         if ($stateParams.Id != "") {
@@ -30,7 +31,7 @@
                 vm.OracleGlLoad = response.OracleGlLoad;
                 vm.load = response.Load;
 
-                $scope.toProcess = vm.OracleGlLoad.LoadStatus != 'Created';
+                $scope.toProcess = vm.OracleGlLoad.LoadStatus != 'Submitted';
             });
         }
 

@@ -37,14 +37,15 @@ namespace FRS.WebApi.ModelMappers
                 CreatedBy = userId,
                 CreatedOn = source.CreatedOn,
                 Finish = source.Finish,
-                InProgress = source.InProgress,
+                InProgress = false,
                 LoadId = source.LoadId,
                 MT940LoadId = source.MT940LoadId,
                 ModifiedBy = userId,
                 ModifiedOn = source.ModifiedOn,
-                ReadOnly = source.ReadOnly,
+                ReadOnly = false,
                 Start = DateTime.UtcNow,
                 Name = source.Name,
+                LoadStatusId = 0
                 
             };
 
@@ -54,7 +55,7 @@ namespace FRS.WebApi.ModelMappers
                 {
                     FileContent = new FileContent
                     {
-                        FileContentBase64 = source.FileBase64Content,
+                        FileContentBase64 = source.FileBase64Content.Split(',')[1],
                         CreatedBy = userId,
                         ModifiedBy = userId
 
@@ -75,7 +76,7 @@ namespace FRS.WebApi.ModelMappers
                 {
                     FileContent = new FileContent
                     {
-                        FileContentBase64 = source.FileBase64Content,
+                        FileContentBase64 = source.FileBase64Content.Split(',')[1],
                         CreatedBy = userId,
                         ModifiedBy = userId
 

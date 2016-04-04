@@ -85,12 +85,15 @@
                 vm.load = load;
                 vm.mt940Load = mt940LoadModel;
                 vm.loadMetadata = loadMetadata;
-                $scope.toProcess = vm.mt940Load.LoadStatus != 'Created';
+                $scope.toProcess = vm.mt940Load.LoadStatus != 'Submitted';
 
                 $scope.processLoad = function () {
-                    MT940Service.processMT940Load(vm.load.LoadId, function (responseMessage) {
-                        alert(responseMessage);
-                    });
+                    if (vm.mt940Load.LoadStatus == 'Submitted') {
+                        MT940Service.processMT940Load(vm.load.LoadId, function (responseMessage) {
+                            alert(responseMessage);
+                        });
+                    }
+                    
                 }
             });
         }

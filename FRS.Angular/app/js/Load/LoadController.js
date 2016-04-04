@@ -70,8 +70,11 @@
                             text: 'Load Created Successfully.',
                             type: 'success'
                         });
-                        $state.go('app.dashboard');
-                        //console.log(data);
+                        
+                        if ($stateParams.Type == "MT940")
+                            $state.go('app.MT940Loads');
+                        else
+                            $state.go('app.OracleGlLoad');
 
                     }, function (err) {
                         SweetAlert.swal({

@@ -93,10 +93,12 @@
                 //sortId is kept locally it is not the property of ui.grid
               {
                   displayName: 'ID',
-                  field: 'OracleGLLoadId', sortId: 2,
-                  //cellTemplate: '<div class="ui-grid-cell-contents"><a ui-sref="app.OracleGLLoadDetail({OracleGLLoadId : row.entity.OracleGLLoadId})">{{ row.entity.OracleGLLoadId}}</a></div>'
+                  field: 'OracleGLEntryId', sortId: 2,
               },
-              //{ name: 'Load', field: 'Name', sortId: 2 },
+                {
+                    displayName: 'OracleGL Load Id',
+                    field: 'OracleGLLoadId', sortId: 2,
+                },
               { name: 'Unique Ref. Key', field: 'UniqueReferenceKey', sortId: 5 },
               { name: 'A/C#', field: 'AccountNumber', sortId: 3 },
               { name: 'Period', field: 'Period', sortId: 3 },
@@ -108,8 +110,6 @@
               //      '<a href="javascript:;" class="btn btn-xs btn-info"><i class="fa fa-search"></i></a>' +
               //      '</div></div>'
               //}
-              
-              //{ name: 'Action', width: '10%', cellTemplate: '<div class="ui-grid-cell-contents"><a ui-sref="app.CustomerStatements({Id : row.entity.MT940LoadId})" class="btn btn-xs btn-green">Details</a></div>' }
             ],
             onRegisterApi: function (gridApi) {
                 vm.gridApi = gridApi;
@@ -135,11 +135,6 @@
                     paginationOptions.params.PageNo = newPage;
                     paginationOptions.params.PageSize = pageSize;
                     getPage();
-                });
-                gridApi.selection.on.rowSelectionChanged($scope, function (row) {
-                    //window.OracleEntry = row.entity;
-                    $rootScope.app.OracleEntry = row.entity;
-                    console.log(row.entity);
                 });
             }
         };
