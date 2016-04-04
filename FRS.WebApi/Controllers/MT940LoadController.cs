@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Http;
@@ -81,14 +82,23 @@ namespace FRS.WebApi.Controllers
                 new BankMT940LoaderClient("BasicHttpBinding_BankMT940Loader");
             //I wna tto call this async but for now we wil do sync
             mt940LoaderClient.Open();
-            var response = mt940LoaderClient.LoadMT940(new LoadMT940Request()
+            try
             {
-                LoadId = LoadId,
-                UserId = User.Identity.GetUserId()
-            });
-            mt940LoaderClient.Close();
+                var response = mt940LoaderClient.LoadMT940(new LoadMT940Request()
+                {
+                    LoadId = LoadId,
+                    UserId = User.Identity.GetUserId()
+                });
 
-            return Json(response.Message);
+                mt940LoaderClient.Close();
+                return Json(response.Message);
+            }
+            catch (Exception e)
+            {
+                return Json(e.Message);
+            }
+
+            
         }
 
         #endregion

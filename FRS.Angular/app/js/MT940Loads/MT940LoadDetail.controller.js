@@ -10,9 +10,9 @@
     // ReSharper disable FunctionsUsedBeforeDeclared
     core.lazy.controller('MT940LoadDetailController', MT940LoadDetailController);
     
-    MT940LoadDetailController.$inject = ['$scope','$controller' , '$state', '$stateParams', 'uiGridConstants', 'MT940Service'];
+    MT940LoadDetailController.$inject = ['$scope','$controller' , '$state', '$stateParams', 'uiGridConstants', 'MT940Service', 'toaster'];
 
-    function MT940LoadDetailController($scope, $controller, $state, $stateParams, uiGridConstants, MT940Service) {
+    function MT940LoadDetailController($scope, $controller, $state, $stateParams, uiGridConstants, MT940Service, toaster) {
         
         var vm = this;
 
@@ -85,12 +85,15 @@
                 vm.load = load;
                 vm.mt940Load = mt940LoadModel;
                 vm.loadMetadata = loadMetadata;
-                $scope.toProcess = vm.mt940Load.LoadStatus != 'Submitted';
+                $scope.toProcess = vm.mt940Load.LoadStatus != 'Created';
 
                 $scope.processLoad = function () {
-                    if (vm.mt940Load.LoadStatus == 'Submitted') {
+                    if (vm.mt940Load.LoadStatus == 'Created') {
                         MT940Service.processMT940Load(vm.load.LoadId, function (responseMessage) {
-                            alert(responseMessage);
+                            toaster.info("Message", responseMessage);
+                        },
+                        function(err) {
+                            toaster.error("Message", "Processing failed for load" + "Id: " + vm.load);
                         });
                     }
                     

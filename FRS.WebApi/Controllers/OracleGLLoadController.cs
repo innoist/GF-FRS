@@ -1,4 +1,5 @@
-﻿using System.Data.SqlClient;
+﻿using System;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -83,45 +84,20 @@ namespace FRS.WebApi.Controllers
                 new FrsOracleGLLoaderServiceClient("BasicHttpBinding_FrsOracleGLLoaderService");
             //I wna tto call this async but for now we wil do sync
             oracleGLClient.Open();
-            var response = oracleGLClient.LoadOracleGL(new LoadOracleGLRequest()
+            try
             {
-                LoadId = LoadId, 
-                UserId = User.Identity.GetUserId()
-            });
-            oracleGLClient.Close();
-
-            return Json(response.Message);
-            //TEST
-            // ok
-
-
-
-            //Done.. 
-
-
-
-
-            //HttpContext.Current.Session
-            //if (loadMetaData == null || !ModelState.IsValid)
-            //{
-            //    return BadRequest(ModelState);
-            //}
-            //if (loadMetaDataService != null)
-            //{
-            //    try
-            //    {
-            //        loadMetaData.CreatedBy = User.Identity.GetUserId();
-            //        loadMetaData.ModifiedBy = User.Identity.GetUserId();
-            //        loadMetaData.CreatedOn = DateTime.UtcNow;
-            //        loadMetaData.ModifiedOn = DateTime.Now;
-            //        var temp = loadMetaData.CreateFromClientToServer();
-            //        return Json(loadMetaDataService.SaveMetaData(temp));//.CreateFromServerToClient();
-            //    }
-            //    catch (Exception e)
-            //    {
-            //        return InternalServerError(e);
-            //    }
-            //}
+                var response = oracleGLClient.LoadOracleGL(new LoadOracleGLRequest()
+                {
+                    LoadId = LoadId,
+                    UserId = User.Identity.GetUserId()
+                });
+                oracleGLClient.Close();
+                return Json(response.Message);
+            }
+            catch (Exception e)
+            {
+                return Json(e.Message);
+            }
             
         }
 

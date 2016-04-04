@@ -10,18 +10,21 @@
     // ReSharper disable FunctionsUsedBeforeDeclared
     core.lazy.controller('OracleGlLoadDetailController', OracleGlLoadDetailController);
 
-    OracleGlLoadDetailController.$inject = ['$scope', '$state', '$stateParams', 'uiGridConstants', 'OracleGlLoadService'];
+    OracleGlLoadDetailController.$inject = ['$scope', '$state', '$stateParams', 'uiGridConstants', 'OracleGlLoadService', 'toaster'];
 
-    function OracleGlLoadDetailController($scope, $state, $stateParams, uiGridConstants, OracleGlLoadService) {
+    function OracleGlLoadDetailController($scope, $state, $stateParams, uiGridConstants, OracleGlLoadService, toaster) {
 
         var vm = this;
         $scope.toProcess = true;
 
         $scope.processLoad = function () {
-            if (vm.OracleGlLoad.LoadStatus == 'Submitted') {
+            if (vm.OracleGlLoad.LoadStatus == 'Created') {
                 var LoadId = vm.load.LoadId;
                 OracleGlLoadService.processOracleGlLoad(LoadId, function (response) {
-                    alert(response);
+                    toaster.info("Message", response);
+                },
+                function (err) {
+                    toaster.error("Message", "Processing failed for load" + "Id: " + vm.load);
                 });
             }
         }
@@ -31,7 +34,7 @@
                 vm.OracleGlLoad = response.OracleGlLoad;
                 vm.load = response.Load;
 
-                $scope.toProcess = vm.OracleGlLoad.LoadStatus != 'Submitted';
+                $scope.toProcess = vm.OracleGlLoad.LoadStatus != 'Created';
             });
         }
 
@@ -54,6 +57,9 @@
             paginationPageSize: 10,
             enableSorting: false,
             //suppressRemoveSort: true,
+            multiSelect: false,
+            modifierKeysToMultiSelect: false,
+            noUnselect: true,
             useExternalPagination: true,
             useExternalSorting: true,
             //enableFiltering: true,
@@ -61,29 +67,30 @@
             //fastWatch: true,
             enableGridMenu: true,
             enableColumnMenus: false,
+
             //useExternalFiltering: true,
             columnDefs: [
                 // name is for display on the table header, field is for mapping as in 
                 //sortId is kept locally it is not the property of ui.grid
               {
                   displayName: 'ID',
-                  field: 'OracleGLLoadId', sortId: 2,
-                  //sort: {
-                  //    //    direction: uiGridConstants.ASC
-                  //    //}
+                  field: 'OracleGLEntryId', sortId: 2,
               },
-              { name: 'Load', field: 'Name', sortId: 2 },
-              { name: 'Unique Ref. Key', field: 'ModifiedOnString', sortId: 5 },
-              { name: 'A/C#', field: 'FileName', sortId: 3 },
-              { name: 'Period', field: 'OracleGLEntryCount', sortId: 3 },
-              { name: 'Year', field: 'Status', sortId: 4 },
-              { name: 'Created On', field: 'Status', sortId: 4 },
-              { name: 'Modified On', field: 'Status', sortId: 4 },
-              {
-                  name: 'Actions', cellTemplate: '<div class="ui-grid-cell-contents"><div class="btn btn-xs">' +
-                    '<a class="btn btn-xs btn-info"><i class="fa fa-search"></i></a>' +
-                    '</div></div>'
-              }
+                {
+                    displayName: 'OracleGL Load Id',
+                    field: 'OracleGLLoadId', sortId: 2,
+                },
+              { name: 'Unique Ref. Key', field: 'UniqueReferenceKey', sortId: 5 },
+              { name: 'A/C#', field: 'AccountNumber', sortId: 3 },
+              { name: 'Period', field: 'Period', sortId: 3 },
+              { name: 'Year', field: 'Year', sortId: 4 },
+              { name: 'Created On', field: 'CreatedOn', sortId: 4 },
+              { name: 'Modified On', field: 'ModifiedOn', sortId: 4 }
+              //{
+              //    name: 'Actions', cellTemplate: '<div class="ui-grid-cell-contents"><div class="btn btn-xs">' +
+              //      '<a href="javascript:;" class="btn btn-xs btn-info"><i class="fa fa-search"></i></a>' +
+              //      '</div></div>'
+              //}
             ],
             onRegisterApi: function (gridApi) {
                 vm.gridApi = gridApi;
@@ -125,16 +132,19 @@
                     break;
             }
 
-            OracleGlLoadService.getOracleGLEntries(
-                function onSuccess(data) {
-                    vm.gridOptions.totalItems = data.TotalCount;
-                    vm.gridOptions.data = data.OracleGlEntries;
-                }, null, paginationOptions);
+            OracleGlLoadService.getOracleGLEntries(function (data) {
+                vm.gridOptions.totalItems = data.TotalCount;
+                vm.gridOptions.data = data.OracleGlEntries;
+            }, null, paginationOptions);
 
 
         };
 
         $scope.resetFilter = function () {
+            //vm.dt = null;
+            //vm.name = '';
+            //vm.Status.selected = null;
+
             paginationOptions.params.IsAsc = true;
             paginationOptions.params.PageNo = 1;
             paginationOptions.params.sort = null;
