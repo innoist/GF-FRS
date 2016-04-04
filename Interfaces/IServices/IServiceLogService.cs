@@ -10,5 +10,7 @@ namespace FRS.Interfaces.IServices
     public interface IServiceLogService
     {
         SearchTemplateResponse<ServiceLog> SearchLogs(ServiceLogSearchRequest searchRequest);
+
+        ServiceLog GetLog(int id);
     }
 }

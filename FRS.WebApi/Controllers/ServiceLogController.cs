@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Http;
 using FRS.WebApi.ModelMappers.Log;
+using FRS.WebApi.Models;
 
 namespace FRS.WebApi.Controllers
 {
@@ -38,6 +39,14 @@ namespace FRS.WebApi.Controllers
             };
 
             return listViewModel;
+        }
+        
+        [HttpGet]
+        [ApiException]
+        public ServiceLogModel Get(int id)
+        {
+            var response = serviceLogService.GetLog(id).CreateFromServerToClient();
+            return response;
         }
     }
 }

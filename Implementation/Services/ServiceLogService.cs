@@ -23,5 +23,9 @@ namespace FRS.Implementation.Services
             return serviceLogRepository.SearchLogs(searchRequest);
         }
 
+        public ServiceLog GetLog(int id)
+        {
+            return serviceLogRepository.Find(id);
+        }
     }
 }

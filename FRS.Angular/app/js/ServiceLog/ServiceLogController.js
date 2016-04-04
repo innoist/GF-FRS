@@ -21,7 +21,7 @@
         vm.today = function () {
             vm.dt = new Date();
         };
-        vm.today();
+        //vm.today();
 
         vm.clear = function () {
             vm.dt = null;
@@ -56,6 +56,10 @@
                 PageNo: 1,
                 PageSize: 10,
                 sort: null,
+                Url : '',
+                Message : '',
+                Logged : null
+
             },
 
         };
@@ -74,17 +78,27 @@
             columnDefs: [
                 // name is for display on the table header, field is for mapping as in 
                 //sortId is kept locally it is not the property of ui.grid
-              {
-                  name: 'Severity',
-                  field: 'Severity',
-                  sortId: 0,
-                  width: '15%',
-                  sort: {
-                      direction: uiGridConstants.ASC
-                  }
-              },
-              { name: 'Timestamp', field: 'Timestamp', sortId: 1, width: '20%' },
-              { name: 'Message', field: 'Message', sortId: 2, cellTemplate: '<div class="ui-grid-cell-contents" title="{{row.entity.Message}}">{{row.entity.Message}}</div>' }
+                {
+                    displayName: 'ID',
+                    field: 'ServiceLogID',
+                    sortId: 0,
+                    width: '15%',
+                    sort: {
+                        direction: uiGridConstants.ASC
+                    }
+                },
+                { name: 'Machine Name', field: 'MachineName', sortId: 1 },
+                { name: 'Application', field: 'Application', sortId: 2 },
+                { displayName: 'URL', field: 'Url', sortId: 3 },
+                { displayName: 'Log Date', field: 'Logged', sortId: 5 },
+                { name: 'Message', field: 'Message', sortId: 4, cellTemplate: '<div class="ui-grid-cell-contents" title="{{row.entity.Message}}">{{row.entity.Message}}</div>' },
+                {
+                    name: 'Actions',
+                    cellTemplate: '<div class="ui-grid-cell-contents"><div class="btn btn-xs">' +
+                        '<a ui-sref="app.ServiceLogDetail({Id : row.entity.ServiceLogID})" class="btn btn-xs btn-info"><i class="fa fa-search"></i></a>' +
+                        '</div></div>',
+                    enableSorting: false
+    }
              
             ],
             onRegisterApi: function (gridApi) {
@@ -137,6 +151,13 @@
 
         $scope.resetFilter = function () {
             vm.dt = null;
+            vm.Url = '';
+            vm.Message = '';
+            vm.Logged = '';
+
+            paginationOptions.params.Url = '',
+            paginationOptions.params.Message= '',
+            paginationOptions.params.Logged = '',
 
             paginationOptions.params.IsAsc = true;
             paginationOptions.params.PageNo = 1;
@@ -146,7 +167,11 @@
         }
 
         $scope.fiterData = function () {
-            paginationOptions.params.Timestamp = vm.dt;
+
+            paginationOptions.params.Logged = vm.dt;
+            paginationOptions.params.Url = vm.Url;
+            paginationOptions.params.Message = vm.Message;
+
             getPage();
         }
 

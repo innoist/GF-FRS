@@ -4,8 +4,11 @@
     {
   
         Id = 0,
-        Timestamp = 1,
-        Message = 2
+        MachineName = 1,
+        Application = 2,
+        Url = 3,
+        Message = 4,
+        Logged = 5,
      
     }
 }

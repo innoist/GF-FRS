@@ -21,6 +21,10 @@ namespace FRS.Repository.Repositories
           {
                 {OrderByServiceLogs.Message, c => c.Message},
                 {OrderByServiceLogs.Id, c => c.ServiceLogID},
+                {OrderByServiceLogs.Application, c => c.Application},
+                {OrderByServiceLogs.MachineName, c => c.MachineName},
+                {OrderByServiceLogs.Url, c => c.Url},
+                {OrderByServiceLogs.Logged, c => c.Logged}
                
           };
 
@@ -41,7 +45,9 @@ namespace FRS.Repository.Repositories
             Expression<Func<ServiceLog, bool>> query =
                 s =>
                     (
-                     (String.IsNullOrEmpty(searchRequest.Message) || s.Message.Contains(searchRequest.Message))
+                     (string.IsNullOrEmpty(searchRequest.Message) || s.Message.Contains(searchRequest.Message)) &&
+                     (string.IsNullOrEmpty(searchRequest.Url) || s.Message.Contains(searchRequest.Url)) &&
+                     ( !searchRequest.Logged.HasValue || DbFunctions.TruncateTime(s.Logged) == DbFunctions.TruncateTime(searchRequest.Logged.Value))
                     );
 
             IEnumerable<ServiceLog> logData = searchRequest.IsAsc

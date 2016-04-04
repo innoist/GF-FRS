@@ -26,6 +26,14 @@
               .success(onReady)
               .error(onError);
         }
+
+        this.getServiceLogData = function (id, onReady, onError) {
+            onError = onError || function () { alert('Failed to load Data'); };
+            $http
+              .get(window.frsApiUrl + '/api/ServiceLog/' + id)
+              .success(onReady)
+              .error(onError);
+        }
     }
 
 })();
