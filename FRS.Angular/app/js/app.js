@@ -2213,6 +2213,7 @@
               },
               {
                   name: 'OracleGlEntry.module', files: ['/app/js/OracleGLEntries/OracleGLEntry.controller.js',
+                                                        '/app/js/OracleGLEntries/OracleGLEntryDetail.controller.js',
                                                         '/app/js/OracleGLEntries/OracleGLEntry.service.js']
               },
               {

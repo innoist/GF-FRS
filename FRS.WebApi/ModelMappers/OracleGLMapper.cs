@@ -69,38 +69,24 @@ namespace FRS.WebApi.ModelMappers
                 AccountedCr = source.AccountedCr,
                 AccountedDr = source.AccountedDr,
                 Currency = source.Currency,
-                EffectiveDate = source.EffectiveDate,
+                EffectiveDate = source.EffectiveDate.HasValue ? source.EffectiveDate.Value.ToString("dd-MMM-yy HH:mm:ss") : "N/A",
                 EnteredCr = source.EnteredCr,
                 UniqueReferenceKey = source.UniqueReferenceKey,
                 EntrySource = source.EntrySource,
                 Period = source.Period,
                 OracleGLEntryId = source.OracleGLEntryId,
-                //Name = source.OracleGLLoad.Loads.FirstOrDefault().Name,
+                EnteredDr = source.EnteredCr,
+                ExchangeRate = source.ExchangeRate,
+                JECreationDate = source.JECreationDate.HasValue ? source.JECreationDate.Value.ToString("dd-MMM-yy HH:mm:ss") : "N/A",
+                JELastUpdateDate = source.JELastUpdateDate.HasValue ? source.JELastUpdateDate.Value.ToString("dd-MMM-yy HH:mm:ss") : "N/A",
+                JournalEntryDescription = source.JournalEntryDescription,
+                JournalEntryHeaderNumber = source.JournalEntryDescription,
+                LineDescription = source.LineDescription,
+                LineNumber = source.LineNumber,
+                SubAccountDescription = source.SubAccountDescription,
                 Year = source.FiscalYear.Value
-                
             };
         }
-        public static OracleGLEntry CreateFromClientToServer(this OracleGLEntryModel source)
-        {
-            return new OracleGLEntry()
-            {
-                ModifiedBy = source.ModifiedBy,
-                CreatedBy = source.CreatedBy,
-                StatusId = source.StatusId,
-                //CreatedOn = source.CreatedOn,
-                OracleGLLoadId = source.OracleGLLoadId,
-                AccountDescription = source.AccountDescription,
-                AccountNumber = source.AccountNumber,
-                AccountedCr = source.AccountedCr,
-                AccountedDr = source.AccountedDr,
-                Currency = source.Currency,
-                EffectiveDate = source.EffectiveDate,
-                EnteredCr = source.EnteredCr,
-                UniqueReferenceKey = source.UniqueReferenceKey,
-                EntrySource = source.EntrySource,
-                Period = source.Period,
-                OracleGLEntryId = source.OracleGLEntryId
-            };
-        }
+        
     }
 }

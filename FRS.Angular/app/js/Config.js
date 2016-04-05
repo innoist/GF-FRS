@@ -63,6 +63,14 @@
                 controllerAs: 'oglec',
                 resolve: helper.resolveFor('ui.grid', 'ui.select', 'OracleGlEntry.module')
             })
+            .state('app.OracleGlEntryDetail', {
+                url: '/OracleGlEntryDetail/:Id',
+                title: 'Oracle GL Entries',
+                templateUrl: helper.basepath('../../../../app/views/OracleGLEntries/OracleGLEntryDetail.html'),
+                controller: 'OracleGlEntryDetailController',
+                controllerAs: 'ogledc',
+                resolve: helper.resolveFor('ui.grid', 'ui.select', 'OracleGlEntry.module')
+            })
             .state('app.OracleGlLoad', {
                 url: '/OracleGlLoad',
                 title: 'Oracle GL Loads',

@@ -30,5 +30,10 @@ namespace FRS.Implementation.Services
         {
             return oracleGlEntryRepository.GetOracleGLEntrySearchResponse(searchRequest);
         }
+
+        public OracleGLEntry GetOracleGlEntry(long id)
+        {
+            return oracleGlEntryRepository.Find(id);
+        }
     }
 }
