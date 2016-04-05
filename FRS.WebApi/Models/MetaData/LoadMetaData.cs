@@ -13,10 +13,8 @@ namespace FRS.WebApi.Models.MetaData
         [Required(ErrorMessage = "Source is required.")]
         public byte SourceId { get; set; }
 
-        [Required(ErrorMessage = "Header is required.")]
         public string Header { get; set; }
 
-        [Required(ErrorMessage = "Trailer is required.")]
         public string Trailer { get; set; }
 
         [Required (ErrorMessage = "Name field is required.")]

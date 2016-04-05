@@ -7,14 +7,11 @@ using FRS.Interfaces.IServices;
 using FRS.Models.RequestModels;
 using FRS.Models.ResponseModels;
 using FRS.WebApi.ModelMappers;
-using FRS.WebApi.Models.MetaData;
 using FRS.WebApi.ViewModels.MetaData;
 using FRS.WebBase.Mvc;
-using FRS.WebBase.UnityConfiguration;
 using Microsoft.AspNet.Identity;
-using Microsoft.Practices.Unity;
 
-namespace FRS.WebApi.Areas.Load.Controllers
+namespace FRS.WebApi.Controllers
 {
     public class LoadMetaDataController : ApiController
     {

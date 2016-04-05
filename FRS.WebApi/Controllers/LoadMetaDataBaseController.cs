@@ -2,10 +2,9 @@
 using System.Web.Http;
 using FRS.Interfaces.IServices;
 using FRS.Models.Common.DropDown;
-using FRS.Models.ResponseModels;
 using FRS.WebApi.ViewModels.MetaData;
 
-namespace FRS.WebApi.Areas.Load.Controllers
+namespace FRS.WebApi.Controllers
 {
     public class LoadMetaDataBaseController : ApiController
     {

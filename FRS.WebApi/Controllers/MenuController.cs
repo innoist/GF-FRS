@@ -6,7 +6,7 @@ using FRS.Interfaces.IServices;
 using FRS.Models.MenuModels;
 using FRS.WebBase.Mvc;
 
-namespace FRS.WebApi.Areas.Load.Controllers
+namespace FRS.WebApi.Controllers
 {
     public class MenuController : ApiController
     {

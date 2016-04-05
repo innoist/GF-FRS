@@ -98,6 +98,9 @@
                 {
                     displayName: 'OracleGL Load Id',
                     field: 'OracleGLLoadId', sortId: 2,
+                    cellTemplate: '<div class="ui-grid-cell-contents">' +
+                    '<a ui-sref="app.OracleGlLoadDetail({Id : row.entity.OracleGLLoadId})">{{row.entity.OracleGLLoadId}}</a>' +
+                    '</div>'
                 },
               { name: 'Unique Ref. Key', field: 'UniqueReferenceKey', sortId: 5 },
               { name: 'A/C#', field: 'AccountNumber', sortId: 3 },

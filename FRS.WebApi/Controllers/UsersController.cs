@@ -10,7 +10,7 @@ using FRS.WebBase.Mvc;
 using FRS.WebBase.UnityConfiguration;
 using Microsoft.Practices.Unity;
 
-namespace FRS.WebApi.Areas.Load.Controllers
+namespace FRS.WebApi.Controllers
 {
 
     public class UsersController : ApiController

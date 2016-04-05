@@ -101,7 +101,11 @@
             columnDefs: [
                 // name is for display on the table header, field is for mapping as in 
                 //sortId is kept locally it is not the property of ui.grid
-              { name: 'Id', displayName: 'ID', field: 'MT940CustomerStatementId', sortId: 0 },
+              { displayName: 'ID', field: 'MT940CustomerStatementTransactionId', sortId: 0 },
+              {
+                  displayName: 'Statement ID', field: 'MT940CustomerStatementId', sortId: 0,
+                  cellTemplate: '<div class="ui-grid-cell-contents"><a ui-sref="app.CustomerStatementsDetail({MT940CustomerStatementId : row.entity.MT940CustomerStatementId})">{{row.entity.MT940CustomerStatementId}}</span></div>'
+              },
               { name: 'Sequence', field: 'Sequence', sortId: 0 },
               { name: 'Reference', field: 'Reference', sortId: 4 },
               { name: 'Type', field: 'TransactionType', sortId: 1 },

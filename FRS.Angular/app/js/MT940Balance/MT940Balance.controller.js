@@ -100,7 +100,10 @@
               //    //}
               //},
               { displayName: 'ID', field: 'MT940BalanceId', sortId: 0 },
-              { name: 'Type', field: 'DebitOrCredit', sortId: 3 },
+              {
+                  name: 'Type', field: 'DebitOrCredit', sortId: 3,
+                  cellTemplate: "<div class='ui-grid-cell-contents'><label class='label' ng-class=" + '"' + "{'bg-green-light':row.entity.DebitOrCredit == 'Credit', 'bg-primary-light' : row.entity.DebitOrCredit == 'Debit'}" + '"' + ">{{row.entity.DebitOrCredit}}</label></div>"
+              },
               { name: 'Entry', field: 'EntryDate', sortId: 5 },
               { name: 'Value', field: 'Value', sortId: 0 }
               //{ name: 'Actions' , cellTemplate: '<div class="ui-grid-cell-contents"><div uib-dropdown="dropdown" style="position:absolute;" class="btn-group btn-xs dropdown">' +

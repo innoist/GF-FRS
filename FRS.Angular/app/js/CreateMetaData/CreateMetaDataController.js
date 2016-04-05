@@ -19,6 +19,7 @@
         vm.submitted = false;
         $scope.Currency = '';
         $scope.IsReadOnly = false;
+        $scope.IsLoadTypeMT940 = true;
 
         $scope.clear = function ($event) {
             $event.stopPropagation();
@@ -99,7 +100,15 @@
 
         }
 
-
+        $scope.$watch("cmdc.LoadTypes.selected", function (newValue, oldValue) {
+            if (newValue) {
+                if (newValue.Name === "MT940") {
+                    $scope.IsLoadTypeMT940 = true;
+                } else {
+                    $scope.IsLoadTypeMT940 = false;
+                }
+            }
+        });
         //#region Functions
         var defaultModel = function () {
             $scope.LoadMetaDataId = 0;
