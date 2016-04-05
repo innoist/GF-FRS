@@ -104,12 +104,12 @@
               { name: 'Period', field: 'Period', sortId: 3 },
               { name: 'Year', field: 'Year', sortId: 4 },
               { name: 'Created On', field: 'CreatedOn', sortId: 4 },
-              { name: 'Modified On', field: 'ModifiedOn', sortId: 4 }
-              //{
-              //    name: 'Actions', cellTemplate: '<div class="ui-grid-cell-contents"><div class="btn btn-xs">' +
-              //      '<a href="javascript:;" class="btn btn-xs btn-info"><i class="fa fa-search"></i></a>' +
-              //      '</div></div>'
-              //}
+              { name: 'Modified On', field: 'ModifiedOn', sortId: 4 },
+              {
+                  name: 'Actions', cellTemplate: '<div class="ui-grid-cell-contents"><div class="btn btn-xs">' +
+                    '<a ui-sref="app.OracleGlEntryDetail({Id : row.entity.OracleGLEntryId})" class="btn btn-xs btn-info"><i class="fa fa-search"></i></a>' +
+                    '</div></div>'
+              }
             ],
             onRegisterApi: function (gridApi) {
                 vm.gridApi = gridApi;
