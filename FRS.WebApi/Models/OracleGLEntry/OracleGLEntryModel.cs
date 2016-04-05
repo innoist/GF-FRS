@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace FRS.WebApi.Models.OracleGLEntry
+﻿namespace FRS.WebApi.Models.OracleGLEntry
 {
     public class OracleGLEntryModel
     {
@@ -14,7 +12,7 @@ namespace FRS.WebApi.Models.OracleGLEntry
         public string AccountNumber { get; set; }
         public string AccountDescription { get; set; }
         public string SubAccountDescription { get; set; }
-        public DateTime? EffectiveDate { get; set; }
+        public string EffectiveDate { get; set; }
         public string EntrySource { get; set; }
         public decimal? EnteredDr { get; set; }
         public decimal? EnteredCr { get; set; }
@@ -24,8 +22,8 @@ namespace FRS.WebApi.Models.OracleGLEntry
         public decimal? ExchangeRate { get; set; }
         public string Period { get; set; }
         public short? FiscalYearId { get; set; }
-        public DateTime? JECreationDate { get; set; }
-        public DateTime? JELastUpdateDate { get; set; }
+        public string JECreationDate { get; set; }
+        public string JELastUpdateDate { get; set; }
         public byte StatusId { get; set; }
         public string CreatedBy { get; set; }
         public string CreatedOn { get; set; }

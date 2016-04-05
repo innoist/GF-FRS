@@ -5,11 +5,13 @@ using System.Web.Http;
 using FRS.Interfaces.IServices;
 using FRS.Models.RequestModels;
 using FRS.WebApi.ModelMappers;
+using FRS.WebApi.Models.OracleGLEntry;
 using FRS.WebApi.ViewModels.OracleGlLoad;
 using FRS.WebBase.Mvc;
 
 namespace FRS.WebApi.Controllers
 {
+    [Authorize]
     public class OracleGLEntryController : ApiController
     {
         #region Private
@@ -26,27 +28,19 @@ namespace FRS.WebApi.Controllers
         }
 
         #region Get
-        //[ApiException]
-        //[HttpGet]
-        //[Authorize]
-        //public OracleGLLoadDetail Get(long id)
-        //{
-        //    if (id <= 0)
-        //    {
-        //        throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
-        //    }
-        //    var detail = oracleGlLoadService.GetOracleGlLoadDetailResponse(id);
-        //    OracleGLLoadDetail model = new OracleGLLoadDetail
-        //    {
-        //        Load = detail.Load.CreateFromServerToClient(),
-        //        OracleGlLoad = detail.OracleGlLoad.CreateFromServerToClient()
-        //    };
-
-        //    return model;
-        //}
+        [ApiException]
+        [HttpGet]
+        public OracleGLEntryModel Get(long id)
+        {
+            if (id <= 0)
+            {
+                throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
+            }
+            var detail = oracleGlEntryService.GetOracleGlEntry(id).CreateFromServerToClient();
+            return detail;
+        }
 
         [HttpGet]
-        [Authorize]
         [ApiException]
         public OracleGLEntryLVModel Get([FromUri]OracleGLEntrySearchRequest searchRequest)
         {
@@ -71,7 +65,6 @@ namespace FRS.WebApi.Controllers
         #region Post
 
         [HttpPost]
-        [Authorize]
         [ApiException]
         public IHttpActionResult Post(Models.MetaData.LoadMetaData loadMetaData)
         {

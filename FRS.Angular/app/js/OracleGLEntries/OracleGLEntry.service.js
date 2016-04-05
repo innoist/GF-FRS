@@ -23,6 +23,15 @@
                 .success(onReady)
                 .error(onError);
         }
+
+        this.getDetail = function (id,onReady, onError) {
+
+            onError = onError || function () { alert('Failed to load data'); };
+            $http
+                .get(window.frsApiUrl + '/api/OracleGLEntry/'+id)
+                .success(onReady)
+                .error(onError);
+        }
     }
 
 

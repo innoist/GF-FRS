@@ -7,5 +7,6 @@ namespace FRS.Interfaces.IServices
     public interface IOracleGLEntryService
     {
         SearchTemplateResponse<OracleGLEntry> GetOracleGLEntrySearchResponse(OracleGLEntrySearchRequest searchRequest);
+        OracleGLEntry GetOracleGlEntry(long id);
     }
 }
