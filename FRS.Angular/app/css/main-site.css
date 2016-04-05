@@ -22,7 +22,7 @@
     display: none;
   }
 }
-
+.wordWrap{ word-wrap: break-word;}
 .requiredLabel:after 
 {
     content: " *";

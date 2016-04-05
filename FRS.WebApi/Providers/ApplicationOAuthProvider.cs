@@ -51,6 +51,11 @@ namespace FRS.WebApi.Providers
                 if (context.UserName.Contains("@"))
                 {
                     var aspNetUser = await userManager.FindByEmailAsync(context.UserName);
+                    if (aspNetUser == null)
+                    {
+                        context.SetError("invalid_grant", "The user name or password is incorrect.");
+                        return;
+                    }
                     userName = aspNetUser.UserName;
                 }
                 AspNetUser user = await userManager.FindAsync(userName, context.Password);

@@ -67,7 +67,7 @@
                 url: '/OracleGlEntryDetail/:Id',
                 title: 'Oracle GL Entries',
                 templateUrl: helper.basepath('../../../../app/views/OracleGLEntries/OracleGLEntryDetail.html'),
-                controller: 'OracleGlEntryDetailController',
+                controller: 'OracleGLEntryDetailController',
                 controllerAs: 'ogledc',
                 resolve: helper.resolveFor('ui.grid', 'ui.select', 'OracleGlEntry.module')
             })
