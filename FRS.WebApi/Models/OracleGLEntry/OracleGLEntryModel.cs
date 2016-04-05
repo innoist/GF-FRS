@@ -30,6 +30,8 @@
         public string ModifiedBy { get; set; }
         public string ModifiedOn { get; set; }
         public string Name { get; set; }
+        public string Type { get; set; }
+        public decimal Amount { get; set; }
         public short Year { get; set; }
     }
 }
