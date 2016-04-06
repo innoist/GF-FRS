@@ -11,7 +11,7 @@ using FRS.WebApi.Models;
 using FRS.WebApi.ViewModels.RightsManagement;
 using FRS.WebBase.Mvc;
 
-namespace FRS.WebApi.Areas.Load.Controllers
+namespace FRS.WebApi.Controllers
 {
     public class RightsManagementController : ApiController
     {

@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Linq;
-using System.Net;
-using System.Web;
 using System.Web.Http;
 using FRS.Interfaces.IServices;
 using FRS.Models.Common;
@@ -12,7 +10,7 @@ using FRS.WebBase.UnityConfiguration;
 using Microsoft.AspNet.Identity;
 using Microsoft.Practices.Unity;
 
-namespace FRS.WebApi.Areas.Load.Controllers
+namespace FRS.WebApi.Controllers
 {
     public class LoadController : ApiController
     {

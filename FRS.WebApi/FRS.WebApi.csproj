@@ -238,12 +238,12 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
-    <Compile Include="Areas\Load\Controllers\LoadController.cs" />
-    <Compile Include="Areas\Load\Controllers\LoadMetaDataBaseController.cs" />
-    <Compile Include="Areas\Load\Controllers\RightsManagementController.cs" />
-    <Compile Include="Areas\Load\Controllers\MenuController.cs" />
-    <Compile Include="Areas\Load\Controllers\LoadMetaDataController.cs" />
-    <Compile Include="Areas\Load\Controllers\UsersController.cs" />
+    <Compile Include="Controllers\LoadController.cs" />
+    <Compile Include="Controllers\LoadMetaDataBaseController.cs" />
+    <Compile Include="Controllers\RightsManagementController.cs" />
+    <Compile Include="Controllers\MenuController.cs" />
+    <Compile Include="Controllers\LoadMetaDataController.cs" />
+    <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Areas\Load\LoadAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\LoadStatusController.cs" />
@@ -447,6 +447,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Load\Controllers\" />
     <Folder Include="Areas\Load\Models\" />
     <Folder Include="Areas\Load\Views\Shared\" />
   </ItemGroup>

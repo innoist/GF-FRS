@@ -56,7 +56,7 @@ namespace FRS.WebApi.ModelMappers
         
         public static OracleGLEntryModel CreateFromServerToClient(this OracleGLEntry source)
         {
-            return new OracleGLEntryModel()
+            var toReturn =  new OracleGLEntryModel()
             {
                 ModifiedBy = source.ModifiedBy,
                 CreatedBy = source.CreatedBy,
@@ -86,6 +86,10 @@ namespace FRS.WebApi.ModelMappers
                 SubAccountDescription = source.SubAccountDescription,
                 Year = source.FiscalYear.Value
             };
+
+            toReturn.Type = source.AccountedCr.HasValue ? "Credit" : "Debit";
+            toReturn.Amount = source.AccountedCr.HasValue? source.AccountedCr.Value : source.AccountedDr.HasValue ? source.AccountedDr.Value: 0;
+            return toReturn;
         }
         
     }

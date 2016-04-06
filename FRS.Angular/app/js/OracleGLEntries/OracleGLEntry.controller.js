@@ -98,11 +98,20 @@
                 {
                     displayName: 'OracleGL Load Id',
                     field: 'OracleGLLoadId', sortId: 2,
+                    cellTemplate: '<div class="ui-grid-cell-contents">' +
+                    '<a ui-sref="app.OracleGlLoadDetail({Id : row.entity.OracleGLLoadId})">{{row.entity.OracleGLLoadId}}</a>' +
+                    '</div>'
                 },
               { name: 'Unique Ref. Key', field: 'UniqueReferenceKey', sortId: 5 },
               { name: 'A/C#', field: 'AccountNumber', sortId: 3 },
               { name: 'Period', field: 'Period', sortId: 3 },
               { name: 'Year', field: 'Year', sortId: 4 },
+              { name: 'Currency', field: 'Currency', sortId: 4 },
+                {
+                    name: 'Type', field: 'Type', sortId: 4 ,
+                    cellTemplate: "<div class='ui-grid-cell-contents'><label class='label' ng-class=" + '"' + "{'bg-green-light':row.entity.Type == 'Credit', 'bg-primary-light' : row.entity.Type == 'Debit'}" + '"' + ">{{row.entity.Type}}</label></div>"
+                },
+              { name: 'Amount', field: 'Amount', sortId: 4 },
               { name: 'Created On', field: 'CreatedOn', sortId: 4 },
               { name: 'Modified On', field: 'ModifiedOn', sortId: 4 },
               {
