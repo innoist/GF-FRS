@@ -11,7 +11,7 @@
     core.lazy.controller('ManualReconciliationController', ManualReconciliationController);
 
     ManualReconciliationController.$inject = ['$timeout','$rootScope', '$scope', '$state', 'uiGridConstants', 'ReconciliationSerice', 'toaster'];
-
+  
     function ManualReconciliationController($timeout ,$rootScope, $scope, $state, uiGridConstants, ReconciliationSerice, toaster) {
         
         var vm = this;
@@ -51,7 +51,15 @@
                 });
             }
         };
+        $scope.$on('$destroy', function () {
+            $('#tlyPageGuideWrapper').hide();
 
+        });
+        angular.element(document).ready(function () {
+          
+            $('#tlyPageGuideWrapper').show();
+            
+        });
         $rootScope.app.Transactions = [];
         vm.gridOptions.data = $rootScope.app.CustomerTransactions;
         
@@ -85,4 +93,5 @@
         }
 
     }
+
 })();

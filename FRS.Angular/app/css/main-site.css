@@ -75,3 +75,16 @@ nav li ul li {
     position: absolute !important
     /*transform: scaleX(2)*/
 }
+
+.sidebar:not(.show-scrollbar) {
+    margin-right: -7px !important;
+}
+/* I AM DOING THE FOLLOWING*/
+/********** FOR GRID TO TAKE PLACE WITHOUT SCROLL BAR**********************/
+.content-wrapper {
+    padding-bottom: 0px !important;
+}
+.content-wrapper > h3, .content-wrapper > .content-heading {
+    margin-bottom: 7px !important
+}
+/****************END  FOR GRID TO TAKE PLACE WITHOUT SCROLL BAR*************/
