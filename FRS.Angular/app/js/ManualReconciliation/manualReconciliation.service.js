@@ -21,7 +21,27 @@
              .post(url, data)
              .success(onReady)
              .error(onError);
-       }
+        }
+
+        this.getOracleGridData = function (onReady, onError, paginationOptions) {
+
+            onError = onError || function () { alert('Failed to load data'); };
+            $http
+                .get(window.frsApiUrl + '/api/OracleGLEntry', paginationOptions)
+                .success(onReady)
+                .error(onError);
+        }
+
+        this.getCustomerStatementGridData = function (onReady, onError, paginationOptions) {
+
+            onError = onError || function () { alert('Failed to load rights'); };
+            $http
+                .get(window.frsApiUrl + '/api/MT940CustomerStatementTransaction', paginationOptions)
+                .success(onReady)
+                .error(onError);
+
+
+        }
 
     }
 })();

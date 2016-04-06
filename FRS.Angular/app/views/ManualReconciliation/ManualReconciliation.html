@@ -23,25 +23,25 @@
 </h3>
 
 <div class="container-fluid">
-    <div class="col-md-6 first_element_to_target" ng-controller="OracleGlEntryController as oglec">
+    <div class="col-md-6 first_element_to_target" >
         <div class="container-fluid" ng-show="isFilterOpen">
             <div class="panel panel-default">
                 <div class="panel-body">
                     <div class="col-md-6">
                         <p class="input-group">
                             <input type="text" placeholder="Select Date"
-                                   uib-datepicker-popup="{{oglec.format}}"
-                                   ng-model="oglec.dt"
-                                   is-open="oglec.opened"
-                                   min-date="oglec.minDate"
-                                   max-date="'oglec.maxDate'"
-                                   uib-datepicker-options="oglec.dateOptions"
-                                   date-disabled="oglec.disabled(date, mode)"
+                                   uib-datepicker-popup="{{mrc.format}}"
+                                   ng-model="mrc.dt"
+                                   is-open="mrc.opened"
+                                   min-date="mrc.minDate"
+                                   max-date="'mrc.maxDate'"
+                                   uib-datepicker-options="mrc.dateOptions"
+                                   date-disabled="mrc.disabled(date, mode)"
                                    close-text="Close"
                                    class="form-control"
                                    ng-disabled="true" />
                             <span class="input-group-btn">
-                                <button type="button" ng-click="oglec.open($event)" class="btn btn-default">
+                                <button type="button" ng-click="mrc.open($event)" class="btn btn-default">
                                     <em class="fa fa-calendar"></em>
                                 </button>
                             </span>
@@ -59,7 +59,7 @@
         <h4 class="bg-purple-light p-sm">Accounting Entries</h4>
         <div class="container-fluid">
             <!-- Grid view to show listview with searching, sorting and pagination-->
-            <div ui-grid="oglec.gridOptions" ui-grid-selection ui-grid-pagination ui-grid-move-columns ui-grid-resize-columns class=""></div>
+            <div ui-grid="mrc.gridOracleOptions" ui-grid-selection ui-grid-pagination ui-grid-move-columns ui-grid-resize-columns class=""></div>
         </div>
     </div>
 
@@ -99,7 +99,7 @@
         <h4 class="bg-primary-light p-sm">Transactions</h4>
         <div class="container-fluid">
             <!-- Grid view to show listview with searching, sorting and pagination-->
-            <div ui-grid="custstc.gridOptions" ui-grid-selection ui-grid-pagination ui-grid-resize-columns class=""></div>
+            <div ui-grid="mrc.gridTransactionOptions" ui-grid-selection ui-grid-pagination ui-grid-resize-columns class=""></div>
         </div>
     </div>
 
@@ -160,7 +160,7 @@
     }
 
     
-     #tlyPageGuideWrapper #tlyPageGuideMessages {
+    #tlyPageGuideWrapper #tlyPageGuideMessages {
         background: #7266ba !important;
     }
     .tlypageguide-open #tlyPageGuideWrapper .tlypageguide_toggle.tlyPageGuideToggleActive {
@@ -169,18 +169,18 @@
     .tlypageguide-active .tlyPageGuideStepIndex {
         background: darkgreen !important;
     }
-        .tlypageguide-active .tlyPageGuideStepIndex.tlypageguide_right:after, .tlypageguide-active .tlyPageGuideStepIndex.tlypageguide_left:after, .tlypageguide-active .tlyPageGuideStepIndex.tlypageguide_top:after {
-            border-top: 15px solid darkgreen !important;
-        }
+    .tlypageguide-active .tlyPageGuideStepIndex.tlypageguide_right:after, .tlypageguide-active .tlyPageGuideStepIndex.tlypageguide_left:after, .tlypageguide-active .tlyPageGuideStepIndex.tlypageguide_top:after {
+        border-top: 15px solid darkgreen !important;
+    }
     .tlyPageGuideStepIndex {
         background: lightgreen !important;
     }
-        .tlyPageGuideStepIndex.tlypageguide_left:after {
-            border-top: 15px solid lightgreen !important;
-        }
-        .tlyPageGuideStepIndex.tlypageguide_top:after {
-            border-top: 15px solid lightgreen !important;
-        }
+    .tlyPageGuideStepIndex.tlypageguide_left:after {
+        border-top: 15px solid lightgreen !important;
+    }
+    .tlyPageGuideStepIndex.tlypageguide_top:after {
+        border-top: 15px solid lightgreen !important;
+    }
     #tlyPageGuideWrapper #tlyPageGuideMessages span {
         background: darkgreen !important;
     }
@@ -192,7 +192,7 @@
         background: rgba(0,102,186,0.85) !important;
         font-family: "Source Sans Pro", sans-serif !important;
     }
-    /*    .tlypageguide-active .tlyPageGuideStepIndex.tlypageguide_right:after, .tlypageguide-active .tlyPageGuideStepIndex.tlypageguide_left:after, .tlypageguide-active .tlyPageGuideStepIndex.tlypageguide_top:after {
+/*    .tlypageguide-active .tlyPageGuideStepIndex.tlypageguide_right:after, .tlypageguide-active .tlyPageGuideStepIndex.tlypageguide_left:after, .tlypageguide-active .tlyPageGuideStepIndex.tlypageguide_top:after {
             background: darkgreen !important;
         }
     .tlyPageGuideStepIndex {
@@ -219,3 +219,7 @@
         background: lightgreen !important;
     }*/
 </style>
+<script language="javascript">
+    
+   
+</script>
