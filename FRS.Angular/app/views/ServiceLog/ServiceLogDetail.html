@@ -17,147 +17,151 @@
     <small>Details</small>
 </h3>
 <div class="panel panel-default">
-    <div class="panel-heading">Further Details
-    </div>
     <div class="panel-body">
         <div class="row">
             <div class="col-md-12">
-                <p class="lead bb">Logging Details</p>
+                <p class="lead bb"><strong>Logging Details</strong></p>
                 <form class="form-horizontal p-20">
-                    <div class="form-group">
-                        <div class="col-sm-4">Url</div>
-                        <div class="col-sm-8 wordWrap">
-                            <strong>{{sldc.Log.Url}}</strong>
+                    
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <div class="col-sm-4">Url</div>
+                            <div class="col-sm-8 wordWrap">
+                                <strong class="wordWrap">{{sldc.Log.Url}}</strong>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-4">Site Name</div>
+                            <div class="col-sm-8">
+                                <strong>
+                                    <label class='label'>
+                                        {{sldc.Log.SiteName}}
+                                    </label>
+                                </strong>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-4">Https</div>
+                            <div class="col-sm-8">
+                                <strong class="wordWrap">{{sldc.Log.Https}}</strong>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-4">Application</div>
+                            <div class="col-sm-8">
+                                <strong class="wordWrap">{{sldc.Log.Application}}</strong>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-4">Caller Details</div>
+                            <div class="col-sm-8 wordWrap">
+                                <strong class="wordWrap">{{sldc.Log.CallerDetails}}</strong>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-4">Call site</div>
+                            <div class="col-sm-8">
+                                <strong class="wordWrap">{{sldc.Log.Callsite}}</strong>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-4">Level</div>
+                            <div class="col-sm-8">
+                                <strong class="wordWrap">{{sldc.Log.Level}}</strong>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-4">Logged Date</div>
+                            <div class="col-sm-8">
+                                <strong class="wordWrap">{{sldc.Log.Logged}}</strong>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-4">Logger</div>
+                            <div class="col-sm-8">
+                                <strong class="wordWrap">{{sldc.Log.Logger}}</strong>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-4">PartitionKey</div>
+                            <div class="col-sm-8">
+                                <strong class="wordWrap">{{sldc.Log.PartitionKey}}</strong>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-4">Port</div>
+                            <div class="col-sm-8">
+                                <strong class="wordWrap">{{sldc.Log.Port}}</strong>
+                            </div>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <div class="col-sm-4">Site Name</div>
-                        <div class="col-sm-8">
-                            <strong>
-                                <label class='label'>
-                                    {{sldc.Log.SiteName}}
-                                </label>
-                            </strong>
+                    
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <div class="col-sm-4">Properties</div>
+                            <div class="col-sm-8 wordWrap">
+                                <strong class="wordWrap">{{sldc.Log.Properties}}</strong>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-4">Https</div>
-                        <div class="col-sm-8">
-                            <strong>{{sldc.Log.Https}}</strong>
+                        <div class="form-group">
+                            <div class="col-sm-4">RemoteAddress</div>
+                            <div class="col-sm-8">
+                                <strong class="wordWrap">{{sldc.Log.RemoteAddress}}</strong>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-4">Application</div>
-                        <div class="col-sm-8">
-                            <strong>{{sldc.Log.Application}}</strong>
+                        <div class="form-group">
+                            <div class="col-sm-4">RequestDump</div>
+                            <div class="col-sm-8">
+                                <strong class="wordWrap">{{sldc.Log.RequestDump}}</strong>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-4">Caller Details</div>
-                        <div class="col-sm-8 wordWrap">
-                            <strong>{{sldc.Log.CallerDetails}}</strong>
+                        <div class="form-group">
+                            <div class="col-sm-4">ResponseDump</div>
+                            <div class="col-sm-8">
+                                <strong class="wordWrap">{{sldc.Log.ResponseDump}}</strong>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-4">Call site</div>
-                        <div class="col-sm-8">
-                            <strong>{{sldc.Log.Callsite}}</strong>
+                        <div class="form-group">
+                            <div class="col-sm-4">ServerAddress</div>
+                            <div class="col-sm-8 wordWrap">
+                                <strong class="wordWrap">{{sldc.Log.ServerAddress}}</strong>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-4">Level</div>
-                        <div class="col-sm-8">
-                            <strong>{{sldc.Log.Level}}</strong>
+                        <div class="form-group">
+                            <div class="col-sm-4">ServerName</div>
+                            <div class="col-sm-8 wordWrap">
+                                <strong class="wordWrap">{{sldc.Log.ServerName}}</strong>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-4">Logged Date</div>
-                        <div class="col-sm-8">
-                            <strong>{{sldc.Log.Logged}}</strong>
+                        <div class="form-group">
+                            <div class="col-sm-4">SessionId</div>
+                            <div class="col-sm-8">
+                                <strong class="wordWrap">{{sldc.Log.SessionId}}</strong>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-4">Logger</div>
-                        <div class="col-sm-8">
-                            <strong>{{sldc.Log.Logger}}</strong>
+                        <div class="form-group">
+                            <div class="col-sm-4">ThreadId</div>
+                            <div class="col-sm-8">
+                                <strong class="wordWrap">{{sldc.Log.ThreadId}}</strong>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-4">PartitionKey</div>
-                        <div class="col-sm-8">
-                            <strong>{{sldc.Log.PartitionKey}}</strong>
+                        <div class="form-group">
+                            <div class="col-sm-4">ServerAddress</div>
+                            <div class="col-sm-8 wordWrap">
+                                <strong class="wordWrap">{{sldc.Log.ServerAddress}}</strong>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-4">Port</div>
-                        <div class="col-sm-8">
-                            <strong>{{sldc.Log.Port}}</strong>
+                        <div class="form-group">
+                            <div class="col-sm-4">UserName</div>
+                            <div class="col-sm-8">
+                                <strong class="wordWrap">{{sldc.Log.UserName}}</strong>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-4">Properties</div>
-                        <div class="col-sm-8 wordWrap">
-                            <strong>{{sldc.Log.Properties}}</strong>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-4">RemoteAddress</div>
-                        <div class="col-sm-8">
-                            <strong>{{sldc.Log.RemoteAddress}}</strong>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-4">RequestDump</div>
-                        <div class="col-sm-8">
-                            <strong>{{sldc.Log.RequestDump}}</strong>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-4">ResponseDump</div>
-                        <div class="col-sm-8">
-                            <strong>{{sldc.Log.ResponseDump}}</strong>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-4">ServerAddress</div>
-                        <div class="col-sm-8 wordWrap">
-                            <strong>{{sldc.Log.ServerAddress}}</strong>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-4">ServerName</div>
-                        <div class="col-sm-8 wordWrap">
-                            <strong>{{sldc.Log.ServerName}}</strong>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-4">SessionId</div>
-                        <div class="col-sm-8">
-                            <strong>{{sldc.Log.SessionId}}</strong>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-4">ThreadId</div>
-                        <div class="col-sm-8">
-                            <strong>{{sldc.Log.ThreadId}}</strong>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-4">ServerAddress</div>
-                        <div class="col-sm-8 wordWrap">
-                            <strong>{{sldc.Log.ServerAddress}}</strong>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-4">UserName</div>
-                        <div class="col-sm-8">
-                            <strong>{{sldc.Log.UserName}}</strong>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-4">Message</div>
-                        <div class="col-sm-8 wordWrap">
-                            <strong>{{sldc.Log.Message}}</strong>
+                        <div class="form-group">
+                            <div class="col-sm-4">Message</div>
+                            <div class="col-sm-8 wordWrap">
+                                <strong class="wordWrap">{{sldc.Log.Message}}</strong>
+                            </div>
                         </div>
                     </div>
 
