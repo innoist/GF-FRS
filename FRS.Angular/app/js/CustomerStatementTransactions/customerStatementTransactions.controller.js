@@ -106,12 +106,15 @@
                   displayName: 'Statement ID', field: 'MT940CustomerStatementId', sortId: 0,
                   cellTemplate: '<div class="ui-grid-cell-contents"><a ui-sref="app.CustomerStatementsDetail({MT940CustomerStatementId : row.entity.MT940CustomerStatementId})">{{row.entity.MT940CustomerStatementId}}</span></div>'
               },
-              { name: 'Sequence', field: 'Sequence', sortId: 0 },
+              { name: 'Sequence', field: 'Sequence', sortId: 0, headerCellClass: 'text-right' },
               { name: 'Reference', field: 'Reference', sortId: 4 },
               { name: 'Type', field: 'TransactionType', sortId: 1 },
-              { name: 'Value', field: 'Value', sortId: 1, cellTemplate: '<div class="ui-grid-cell-contents"><span title="{{row.entity.Value}}">{{row.entity.Value}}</span></div>' },
+              {
+                  name: 'Value', field: 'Value', sortId: 1,
+                  cellTemplate: '<div class="ui-grid-cell-contents text-center"><span title="{{row.entity.Value}}">{{row.entity.Value}}</span></div>'
+              },
               { name: 'ValueDate', field: 'ValueDate', sortId: 1 },
-              { name: 'Amount', field: 'Amount', sortId: 2 },
+              { name: 'Amount', field: 'Amount', sortId: 2, headerCellClass: 'text-right' },
               { name: 'Entry', field: 'EntryDate', sortId: 2 }
             ],
             onRegisterApi: function (gridApi) {

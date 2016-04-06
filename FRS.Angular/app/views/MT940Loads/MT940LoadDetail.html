@@ -17,29 +17,34 @@
     <small>Details</small>
 </h3>
 <div class="panel panel-default">
-    <div class="panel-heading">Further Details
+    <!--<div class="panel-heading">Further Details
         <div class="pull-right">
-            <label class="ml-lg">Load Status: </label>
-            <label class='label' ng-class=" {
+            
+        </div>
+    </div>-->
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-12">
+                <p class="bb">
+                    <span class="lead"><strong>Bank Load - MT940 Load</strong></span>
+                    <span class="pull-right"><label class="ml-lg">Load Status: </label>
+                        <label class='label' ng-class=" {
                                            'bg-warning-light' : mt940ldc.mt940Load.LoadStatus == 'Created' || mt940ldc.mt940Load.LoadStatus == 'Submitted' ,
                                            'bg-green-light' : mt940ldc.mt940Load.LoadStatus == 'Parsing' || mt940ldc.mt940Load.LoadStatus == 'Transforming' || mt940ldc.mt940Load.LoadStatus == 'Importing' ,
                                            'bg-success' : mt940ldc.mt940Load.LoadStatus == 'Completed' ,
                                            'bg-danger' : mt940ldc.mt940Load.LoadStatus == 'Failed' }">
-                {{mt940ldc.mt940Load.LoadStatus}}
-            </label>
-            <label class="ml-lg">Start: </label>
-            <label class="label label-primary">{{mt940ldc.mt940Load.Start}}</label>
-            <label class="ml-lg">Finish: </label>
-            <label class="label label-primary">{{mt940ldc.mt940Load.Finish}}</label>
-            <label class="ml-lg">Status: </label>
-            <label class="label" ng-class="{'bg-green-light' : mt940ldc.mt940Load.Status == 'Active', 'bg-warning-light' : mt940ldc.mt940Load.Status == 'Inactive'}">{{mt940ldc.mt940Load.Status}}</label>
+                            {{mt940ldc.mt940Load.LoadStatus}}
+                        </label>
+                        <label class="ml-lg">Start: </label>
+                        <label class="label label-primary">{{mt940ldc.mt940Load.Start}}</label>
+                        <label class="ml-lg">Finish: </label>
+                        <label class="label label-primary">{{mt940ldc.mt940Load.Finish}}</label>
+                        <label class="ml-lg">Status: </label>
+                        <label class="label" ng-class="{'bg-green-light' : mt940ldc.mt940Load.Status == 'Active', 'bg-warning-light' : mt940ldc.mt940Load.Status == 'Inactive'}">{{mt940ldc.mt940Load.Status}}</label></span>
 
-        </div>
-    </div>
-    <div class="panel-body">
-        <div class="row">
-            <div class="col-md-12">
-                <p class="lead bb">Bank Load - MT940 Load</p>
+
+                </p>
+
                 <form class="form-horizontal p-20">
                     <div class="col-md-6">
                         <div class="form-group">
@@ -89,7 +94,7 @@
 
         <div class="row">
             <div class="col-md-6">
-                <p class="lead bb">Load</p>
+                <p class="lead bb"><strong>Load</strong></p>
                 <form class="form-horizontal p-20">
                     <div class="form-group">
                         <div class="col-sm-4">Name</div>
@@ -118,7 +123,7 @@
                 </form>
             </div>
             <div class="col-md-6">
-                <p class="lead bb">Load Metadata</p>
+                <p class="lead bb"><strong >Load Metadata</strong></p>
                 <form class="form-horizontal p-20">
                     <div class="form-group">
                         <div class="col-sm-4">Name</div>
@@ -160,8 +165,8 @@
     </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading">Statements</div>
     <div class="panel-body">
+        <p class="lead"><strong >Statements</strong></p>
         <div class="container-fluid animated">
             <!-- Grid view to show listview with searching, sorting and pagination-->
             <div ui-grid="mt940ldc.gridOptions" ui-grid-pagination ui-grid-move-columns ui-grid-resize-columns class="table-uigrid flip"></div>

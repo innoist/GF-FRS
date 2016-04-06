@@ -5366,6 +5366,23 @@ angular.module('ui.grid')
     }
   };
 
+  Grid.prototype.getCellValueType = function getCellValueType(row, col) {
+      if (col.colDef.displayName !== "ID") {
+          if (typeof (row.entity['$$' + col.uid]) !== 'undefined') {
+              return typeof (row.entity['$$' + col.uid].rendered);
+          } else if (this.options.flatEntityAccess && typeof (col.field) !== 'undefined') {
+              return typeof (row.entity[col.field]);
+          } else {
+              if (!col.cellValueGetterCache) {
+                  col.cellValueGetterCache = $parse(row.getEntityQualifiedColField(col));
+              }
+
+              return typeof (col.cellValueGetterCache(row));
+          }
+      }
+      
+  };
+
   /**
    * @ngdoc function
    * @name getCellDisplayValue
@@ -26588,7 +26605,7 @@ angular.module('ui.grid').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('ui-grid/uiGridCell',
-    "<div class=\"ui-grid-cell-contents\" title=\"TOOLTIP\">{{COL_FIELD CUSTOM_FILTERS}}</div>"
+    "<div class=\"ui-grid-cell-contents\" title=\"TOOLTIP\" ng-class=\"{'text-right': grid.getCellValueType(row, col) == 'number'}\">{{COL_FIELD CUSTOM_FILTERS}}</div>"
   );
 
 

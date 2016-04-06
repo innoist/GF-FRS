@@ -13,145 +13,149 @@
         </a>
     </div>
     <!-- END Language list    -->
-    Oracle Entry Detail
-    <small>Details</small>
+    Accounting Entry Detail
+    <small>Oracle GL Entry Detail</small>
 </h3>
 <div class="panel panel-default">
-    <div class="panel-heading">Further Details
-    </div>
     <div class="panel-body">
         <div class="row">
             <div class="col-md-12">
-                <p class="lead bb">Oracle GL Entry Details</p>
+                <p class="lead bb"><strong>Accounting Entry Details</strong></p>
                 <form class="form-horizontal p-20">
-                    <div class="form-group">
-                        <div class="col-sm-4">Oracle GL Load Id</div>
-                        <div class="col-sm-8">
-                            <strong>{{ogledc.OracleGLEntry.OracleGLLoadId}}</strong>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <div class="col-sm-4">Oracle GL Load Id</div>
+                            <div class="col-sm-8">
+                                <strong class="wordWrap">{{ogledc.OracleGLEntry.OracleGLLoadId}}</strong>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-4">Created On</div>
+                            <div class="col-sm-8">
+                                <strong>
+                                    <label class='label'>
+                                        {{ogledc.OracleGLEntry.CreatedOn}}
+                                    </label>
+                                </strong>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-4">Modified On</div>
+                            <div class="col-sm-8">
+                                <strong class="wordWrap">{{ogledc.OracleGLEntry.ModifiedOn}}</strong>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-4">Account Number</div>
+                            <div class="col-sm-8">
+                                <strong class="wordWrap">{{ogledc.OracleGLEntry.AccountNumber}}</strong>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-4">Accounted Credit</div>
+                            <div class="col-sm-8">
+                                <strong class="wordWrap">{{ogledc.OracleGLEntry.AccountedCr}}</strong>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-4">Accounted Debit</div>
+                            <div class="col-sm-8">
+                                <strong class="wordWrap">{{ogledc.OracleGLEntry.AccountedDr}}</strong>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-4">Currency</div>
+                            <div class="col-sm-8">
+                                <strong class="wordWrap">{{ogledc.OracleGLEntry.Currency}}</strong>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-4">Effective Date</div>
+                            <div class="col-sm-8">
+                                <strong class="wordWrap">{{ogledc.OracleGLEntry.EffectiveDate}}</strong>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-4">Entered Credit</div>
+                            <div class="col-sm-8">
+                                <strong class="wordWrap">{{ogledc.OracleGLEntry.EnteredCr}}</strong>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-4">Unique Reference Key</div>
+                            <div class="col-sm-8">
+                                <strong class="wordWrap">{{ogledc.OracleGLEntry.UniqueReferenceKey}}</strong>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-4">Entry Source</div>
+                            <div class="col-sm-8">
+                                <strong class="wordWrap">{{ogledc.OracleGLEntry.EntrySource}}</strong>
+                            </div>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <div class="col-sm-4">Created On</div>
-                        <div class="col-sm-8">
-                            <strong>
-                                <label class='label'>
-                                    {{ogledc.OracleGLEntry.CreatedOn}}
-                                </label>
-                            </strong>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <div class="col-sm-4">Period</div>
+                            <div class="col-sm-8">
+                                <strong class="wordWrap">{{ogledc.OracleGLEntry.Period}}</strong>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-4">Modified On</div>
-                        <div class="col-sm-8">
-                            <strong>{{ogledc.OracleGLEntry.ModifiedOn}}</strong>
+                        <div class="form-group">
+                            <div class="col-sm-4">Oracle GL Entry Id</div>
+                            <div class="col-sm-8">
+                                <strong class="wordWrap">{{ogledc.OracleGLEntry.OracleGLEntryId}}</strong>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-4">Account Number</div>
-                        <div class="col-sm-8">
-                            <strong>{{ogledc.OracleGLEntry.AccountNumber}}</strong>
+                        <div class="form-group">
+                            <div class="col-sm-4">Entered Debit</div>
+                            <div class="col-sm-8">
+                                <strong class="wordWrap">{{ogledc.OracleGLEntry.EnteredDr}}</strong>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-4">Accounted Credit</div>
-                        <div class="col-sm-8">
-                            <strong>{{ogledc.OracleGLEntry.AccountedCr}}</strong>
+                        <div class="form-group">
+                            <div class="col-sm-4">Exchange Rate</div>
+                            <div class="col-sm-8">
+                                <strong class="wordWrap">{{ogledc.OracleGLEntry.ExchangeRate}}</strong>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-4">Accounted Debit</div>
-                        <div class="col-sm-8">
-                            <strong>{{ogledc.OracleGLEntry.AccountedDr}}</strong>
+                        <div class="form-group">
+                            <div class="col-sm-4">JE Creation Date</div>
+                            <div class="col-sm-8">
+                                <strong class="wordWrap">{{ogledc.OracleGLEntry.JECreationDate}}</strong>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-4">Currency</div>
-                        <div class="col-sm-8">
-                            <strong>{{ogledc.OracleGLEntry.Currency}}</strong>
+                        <div class="form-group">
+                            <div class="col-sm-4">JE Last UpdateDate</div>
+                            <div class="col-sm-8">
+                                <strong class="wordWrap">{{ogledc.OracleGLEntry.JELastUpdateDate}}</strong>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-4">Effective Date</div>
-                        <div class="col-sm-8">
-                            <strong>{{ogledc.OracleGLEntry.EffectiveDate}}</strong>
+                        <div class="form-group">
+                            <div class="col-sm-4">Journal Entry Description</div>
+                            <div class="col-sm-8">
+                                <strong class="wordWrap">{{ogledc.OracleGLEntry.JournalEntryDescription}}</strong>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-4">Entered Credit</div>
-                        <div class="col-sm-8">
-                            <strong>{{ogledc.OracleGLEntry.EnteredCr}}</strong>
+                        <div class="form-group">
+                            <div class="col-sm-4">Journal Entry Header Number</div>
+                            <div class="col-sm-8">
+                                <strong class="wordWrap">{{ogledc.OracleGLEntry.JournalEntryHeaderNumber}}</strong>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-4">Unique Reference Key</div>
-                        <div class="col-sm-8">
-                            <strong>{{ogledc.OracleGLEntry.UniqueReferenceKey}}</strong>
+                        <div class="form-group">
+                            <div class="col-sm-4">Line Description</div>
+                            <div class="col-sm-8">
+                                <strong class="wordWrap">{{ogledc.OracleGLEntry.LineDescription}}</strong>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-4">Entry Source</div>
-                        <div class="col-sm-8">
-                            <strong>{{ogledc.OracleGLEntry.EntrySource}}</strong>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-4">Period</div>
-                        <div class="col-sm-8">
-                            <strong>{{ogledc.OracleGLEntry.Period}}</strong>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-4">Oracle GL Entry Id</div>
-                        <div class="col-sm-8">
-                            <strong>{{ogledc.OracleGLEntry.OracleGLEntryId}}</strong>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-4">Entered Debit</div>
-                        <div class="col-sm-8">
-                            <strong>{{ogledc.OracleGLEntry.EnteredDr}}</strong>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-4">Exchange Rate</div>
-                        <div class="col-sm-8">
-                            <strong>{{ogledc.OracleGLEntry.ExchangeRate}}</strong>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-4">JE Creation Date</div>
-                        <div class="col-sm-8">
-                            <strong>{{ogledc.OracleGLEntry.JECreationDate}}</strong>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-4">JE Last UpdateDate</div>
-                        <div class="col-sm-8">
-                            <strong>{{ogledc.OracleGLEntry.JELastUpdateDate}}</strong>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-4">Journal Entry Description</div>
-                        <div class="col-sm-8">
-                            <strong>{{ogledc.OracleGLEntry.JournalEntryDescription}}</strong>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-4">Journal Entry Header Number</div>
-                        <div class="col-sm-8">
-                            <strong>{{ogledc.OracleGLEntry.JournalEntryHeaderNumber}}</strong>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-4">Line Description</div>
-                        <div class="col-sm-8">
-                            <strong>{{ogledc.OracleGLEntry.LineDescription}}</strong>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-4">Sub Account Description</div>
-                        <div class="col-sm-8">
-                            <strong>{{ogledc.OracleGLEntry.SubAccountDescription}}</strong>
+                        <div class="form-group">
+                            <div class="col-sm-4">Sub Account Description</div>
+                            <div class="col-sm-8">
+                                <strong class="wordWrap">{{ogledc.OracleGLEntry.SubAccountDescription}}</strong>
+                            </div>
                         </div>
                     </div>
 

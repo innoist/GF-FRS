@@ -96,7 +96,7 @@
                   field: 'OracleGLEntryId', sortId: 2,
               },
                 {
-                    displayName: 'OracleGL Load Id',
+                    displayName: 'Account Load Id',
                     field: 'OracleGLLoadId', sortId: 2,
                     cellTemplate: '<div class="ui-grid-cell-contents">' +
                     '<a ui-sref="app.OracleGlLoadDetail({Id : row.entity.OracleGLLoadId})">{{row.entity.OracleGLLoadId}}</a>' +
@@ -108,16 +108,17 @@
               { name: 'Year', field: 'Year', sortId: 4 },
               { name: 'Currency', field: 'Currency', sortId: 4 },
                 {
-                    name: 'Type', field: 'Type', sortId: 4 ,
-                    cellTemplate: "<div class='ui-grid-cell-contents'><label class='label' ng-class=" + '"' + "{'bg-green-light':row.entity.Type == 'Credit', 'bg-primary-light' : row.entity.Type == 'Debit'}" + '"' + ">{{row.entity.Type}}</label></div>"
+                    name: 'Type', field: 'Type', sortId: 4 ,headerCellClass: 'text-right',
+                    cellTemplate: "<div class='ui-grid-cell-contents text-center'><label class='label' ng-class=" + '"' + "{'bg-green-light':row.entity.Type == 'Credit', 'bg-primary-light' : row.entity.Type == 'Debit'}" + '"' + ">{{row.entity.Type}}</label></div>"
                 },
               { name: 'Amount', field: 'Amount', sortId: 4 },
               { name: 'Created On', field: 'CreatedOn', sortId: 4 },
               { name: 'Modified On', field: 'ModifiedOn', sortId: 4 },
               {
-                  name: 'Actions', cellTemplate: '<div class="ui-grid-cell-contents"><div class="btn btn-xs">' +
+                  name: 'Actions', cellTemplate: '<div class="ui-grid-cell-contents text-center"><div class="btn btn-xs">' +
                     '<a ui-sref="app.OracleGlEntryDetail({Id : row.entity.OracleGLEntryId})" class="btn btn-xs btn-info"><i class="fa fa-search"></i></a>' +
-                    '</div></div>'
+                    '</div></div>',
+                  headerCellClass: 'text-right'
               }
             ],
             onRegisterApi: function (gridApi) {

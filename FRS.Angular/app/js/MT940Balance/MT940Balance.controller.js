@@ -101,11 +101,11 @@
               //},
               { displayName: 'ID', field: 'MT940BalanceId', sortId: 0 },
               {
-                  name: 'Type', field: 'DebitOrCredit', sortId: 3,
-                  cellTemplate: "<div class='ui-grid-cell-contents'><label class='label' ng-class=" + '"' + "{'bg-green-light':row.entity.DebitOrCredit == 'Credit', 'bg-primary-light' : row.entity.DebitOrCredit == 'Debit'}" + '"' + ">{{row.entity.DebitOrCredit}}</label></div>"
+                  name: 'Type', field: 'DebitOrCredit', sortId: 3, headerCellClass : 'text-center',
+                  cellTemplate: "<div class='ui-grid-cell-contents text-center'><label class='label' ng-class=" + '"' + "{'bg-green-light':row.entity.DebitOrCredit == 'Credit', 'bg-primary-light' : row.entity.DebitOrCredit == 'Debit'}" + '"' + ">{{row.entity.DebitOrCredit}}</label></div>"
               },
               { name: 'Entry', field: 'EntryDate', sortId: 5 },
-              { name: 'Value', field: 'Value', sortId: 0 }
+              { name: 'Value', field: 'Value', sortId: 0,  headerCellClass: 'text-right' }
               //{ name: 'Actions' , cellTemplate: '<div class="ui-grid-cell-contents"><div uib-dropdown="dropdown" style="position:absolute;" class="btn-group btn-xs dropdown">' +
               //    '<a type="button" class="btn btn-xs btn-info"><i class="fa fa-search"></i></a>' +
               //    '<a type="button" uib-dropdown-toggle="" class="btn btn-xs dropdown-toggle btn-info" aria-haspopup="true" aria-expanded="false">' +

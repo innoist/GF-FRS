@@ -4,7 +4,7 @@
         
         <button class="btn btn-inverse btn-labeled" ng-click="backPage()">
             <span class="btn-label">
-                <i class="fa fa-bolt"></i>
+                <i class="fa fa-arrow-left"></i>
             </span>Back
         </button>
     </div>
@@ -13,11 +13,10 @@
     <small>Details</small>
 </h3>
 <div class="panel panel-default">
-    <div class="panel-heading">Further Details</div>
     <div class="panel-body">
         <div class="row">
             <div class="col-md-12">
-                <p class="lead bb">Customer Statement Detail</p>
+                <p class="lead bb"><strong>Customer Statement Detail</strong></p>
                 <form class="form-horizontal p-20">
                     <div class="form-group">
                         <div class="col-sm-2">Message</div>
@@ -65,7 +64,7 @@
             </div>
             
             <div class="col-md-3">
-                <p class="lead bb">Closing Available Balance</p>
+                <p class="lead bb"><strong >Closing Available Balance</strong></p>
                 <form class="form-horizontal p-20">
                     <div class="form-group">
                         <div class="col-sm-4">Amount</div>
@@ -108,7 +107,7 @@
             </div>
             
             <div class="col-md-3">
-                <p class="lead bb">Closing Balance</p>
+                <p class="lead bb"><strong >Closing Balance</strong></p>
                 <form class="form-horizontal p-20">
                     <div class="form-group">
                         <div class="col-sm-4">Amount</div>
@@ -150,7 +149,7 @@
 
             </div>
             <div class="col-md-3">
-                <p class="lead bb">Forward Available Balance</p>
+                <p class="lead bb"><strong >Forward Available Balance</strong></p>
                 <form class="form-horizontal p-20">
                     <div class="form-group">
                         <div class="col-sm-4">Amount</div>
@@ -192,7 +191,7 @@
 
             </div>
             <div class="col-md-3">
-                <p class="lead bb">Opening Balance</p>
+                <p class="lead bb"><strong >Opening Balance</strong></p>
                 <form class="form-horizontal p-20">
                     <div class="form-group">
                         <div class="col-sm-4">Amount</div>
@@ -239,8 +238,8 @@
     </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading">Transactions</div>
     <div class="panel-body">
+        <p class="lead"><strong>Transactions</strong></p>
         <div class="container-fluid animated">
             <!-- Grid view to show listview with searching, sorting and pagination-->
             <div ui-grid="mt940CustStatDetail.gridOptions" ui-grid-pagination ui-grid-move-columns ui-grid-resize-columns class="table-uigrid flip"></div>

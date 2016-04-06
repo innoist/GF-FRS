@@ -96,6 +96,7 @@
                     //cellTemplate: '<div class="ui-grid-cell-contents"><a ui-sref="app.CustomerStatementsDetail({MT940CustomerStatementId : row.entity.MT940CustomerStatementId})">{{row.entity.MT940CustomerStatementId}}</a></div>'
                 },
               { name: 'Sequence', field: 'Sequence', sortId: 2 },
+              { name: 'Load Id', field: 'MT940LoadId', sortId: 2 },
               { name: 'A/C#', field: 'AccountNumber', sortId: 2 },
               { name: 'Statement No.', field: 'StatementNumber', sortId: 2 },
               { name: 'Transaction Reference', field: 'TransactionReference', sortId: 5 },
@@ -103,7 +104,7 @@
               {
                   name: 'Actions', cellTemplate: '<div class="ui-grid-cell-contents"><div class="btn btn-xs">' +
                     '<a ui-sref="app.CustomerStatementsDetail({MT940CustomerStatementId : row.entity.MT940CustomerStatementId})" class="btn btn-xs btn-info"><i class="fa fa-search"></i></a>' +
-                    '</div></div>'
+                    '</div></div>', headerCellClass: 'text-right'
               }
             ],
             onRegisterApi: function (gridApi) {

@@ -17,28 +17,29 @@
     <small>Details</small>
 </h3>
 <div class="panel panel-default">
-    <div class="panel-heading">Further Details
-        <div class="pull-right">
-            <label class="ml-lg">Load Status: </label>
-            <label class='label' ng-class=" {
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-12">
+                <p class="bb">
+                    <span class="lead"><strong>ORACLE GL Load</strong></span>
+                    <span class="pull-right">
+                        <label class="ml-lg">Load Status: </label>
+                        <label class='label' ng-class=" {
                                            'bg-warning-light' : oglldc.OracleGlLoad.LoadStatus == 'Created' || oglldc.OracleGlLoad.LoadStatus == 'Submitted' ,
                                            'bg-green-light' : oglldc.OracleGlLoad.LoadStatus == 'Parsing' || oglldc.OracleGlLoad.LoadStatus == 'Transforming' || oglldc.OracleGlLoad.LoadStatus == 'Importing' ,
                                            'bg-success' : oglldc.OracleGlLoad.LoadStatus == 'Completed' ,
                                            'bg-danger' : oglldc.OracleGlLoad.LoadStatus == 'Failed' }">
-                {{oglldc.OracleGlLoad.LoadStatus}}
-            </label>
-            <label class="ml-lg">Start: </label>
-            <label class="label label-primary">{{oglldc.OracleGlLoad.Start}}</label>
-            <label class="ml-lg">Finish: </label>
-            <label class="label label-primary">{{oglldc.OracleGlLoad.Finish}}</label>
-            <label class="ml-lg">Status: </label>
-            <label class="label" ng-class="{'bg-green-light' : oglldc.OracleGlLoad.Status == 'Active', 'bg-warning-light' : oglldc.OracleGlLoad.Status == 'Inactive'}">{{oglldc.OracleGlLoad.Status}}</label>
-        </div>
-    </div>
-    <div class="panel-body">
-        <div class="row">
-            <div class="col-md-12">
-                <p class="lead bb">ORACLE GL Load</p>
+                            {{oglldc.OracleGlLoad.LoadStatus}}
+                        </label>
+                        <label class="ml-lg">Start: </label>
+                        <label class="label label-primary">{{oglldc.OracleGlLoad.Start}}</label>
+                        <label class="ml-lg">Finish: </label>
+                        <label class="label label-primary">{{oglldc.OracleGlLoad.Finish}}</label>
+                        <label class="ml-lg">Status: </label>
+                        <label class="label" ng-class="{'bg-green-light' : oglldc.OracleGlLoad.Status == 'Active', 'bg-warning-light' : oglldc.OracleGlLoad.Status == 'Inactive'}">{{oglldc.OracleGlLoad.Status}}</label>
+                    </span>
+                
+                </p>
                 <form class="form-horizontal p-20">
                     <div class="form-group">
                         <div class="col-sm-4">File</div>
@@ -72,7 +73,7 @@
 
         <div class="row">
             <div class="col-md-12">
-                <p class="lead bb">Load</p>
+                <p class="lead bb"><strong>Load</strong></p>
                 <form class="form-horizontal p-20">
                     <div class="form-group">
                         <div class="col-sm-4">Name</div>
@@ -108,8 +109,9 @@
     </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading">Oracle GL Entries</div>
     <div class="panel-body">
+        
+        <p class="lead"><strong>Accounting Entries</strong></p>
         <div class="container-fluid animated">
             <!-- Grid view to show listview with searching, sorting and pagination-->
             <div ui-grid="oglldc.gridOptions" ui-grid-pagination ui-grid-move-columns ui-grid-resize-columns class="table-uigrid flip"></div>

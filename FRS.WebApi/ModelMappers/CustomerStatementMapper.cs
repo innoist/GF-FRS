@@ -21,7 +21,7 @@ namespace FRS.WebApi.ModelMappers
                 MT940ClosingBalance = source.MT940Balance1 != null ? source.MT940Balance1.MapFromServerToClient() : null,
                 MT940ForwardAvailableBalanceModel = source.MT940Balance2 != null ? source.MT940Balance2.MapFromServerToClient() : null,
                 MT940OpeningBalance = source.MT940Balance3 != null ? source.MT940Balance3.MapFromServerToClient() : null,
-                
+                MT940LoadId  = source.MT940LoadId,
                 ReadOnly = source.ReadOnly                
          
             };

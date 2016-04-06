@@ -75,6 +75,9 @@ nav li ul li {
     position: absolute !important
     /*transform: scaleX(2)*/
 }
+.bb {
+    border-bottom: 2px solid rgba(0, 0, 0, 0.12) !important;
+}
 
 .sidebar:not(.show-scrollbar) {
     margin-right: -7px !important;
