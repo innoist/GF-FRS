@@ -6936,6 +6936,11 @@ angular.module('ui.grid')
      * Defaults to false
      *
      */
+
+
+      /******Custom Tootltip enabled**********/
+
+      colDef.cellTooltip = true;
     if ( typeof(colDef.cellTooltip) === 'undefined' || colDef.cellTooltip === false ) {
       self.cellTooltip = false;
     } else if ( colDef.cellTooltip === true ){
@@ -6963,6 +6968,9 @@ angular.module('ui.grid')
      * Defaults to false
      *
      */
+
+      /******Custom Tootltip enabled**********/
+      colDef.headerTooltip = true;
     if ( typeof(colDef.headerTooltip) === 'undefined' || colDef.headerTooltip === false ) {
       self.headerTooltip = false;
     } else if ( colDef.headerTooltip === true ){

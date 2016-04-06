@@ -87,8 +87,9 @@ namespace FRS.WebApi.ModelMappers
                 Year = source.FiscalYear.Value
             };
 
-            toReturn.Type = source.AccountedCr.HasValue ? "Credit" : "Debit";
-            toReturn.Amount = source.AccountedCr.HasValue? source.AccountedCr.Value : source.AccountedDr.HasValue ? source.AccountedDr.Value: 0;
+            toReturn.Type = source.AccountedCr.HasValue && source.AccountedCr.Value != 0 ? "Credit" : "Debit";
+            
+            toReturn.Amount = source.AccountedCr.HasValue && source.AccountedCr.Value != 0 ? source.AccountedCr.Value : source.AccountedDr.HasValue && source.AccountedDr.Value != 0 ? source.AccountedDr.Value : 0;
             return toReturn;
         }
         
