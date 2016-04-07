@@ -386,12 +386,12 @@
 
         $scope.$on('$destroy', function () {
             $('#tlyPageGuideWrapper').hide();
-
+            tl.pg.destroy();
         });
         angular.element(document).ready(function () {
           
             $('#tlyPageGuideWrapper').show();
-            
+            tl.pg.init();
         });
         
         //vm.gridOracleOptions.data = $rootScope.app.CustomerTransactions;
