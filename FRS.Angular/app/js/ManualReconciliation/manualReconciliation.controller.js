@@ -146,7 +146,7 @@
               
               { name: 'A/C#', field: 'AccountNumber', sortId: 3 },
               { name: 'Period', field: 'Period', sortId: 3 },
-              { name: 'Year', field: 'Year', sortId: 4 },
+             
               { name: 'Currency', field: 'Currency', sortId: 4 },
                 {
                     name: 'Type', field: 'Type', sortId: 4,
@@ -262,7 +262,7 @@
                   displayName: 'Statement ID', field: 'MT940CustomerStatementId', sortId: 0,
                   cellTemplate: '<div class="ui-grid-cell-contents"><a ui-sref="app.CustomerStatementsDetail({MT940CustomerStatementId : row.entity.MT940CustomerStatementId})">{{row.entity.MT940CustomerStatementId}}</span></div>'
               },
-              { name: 'Sequence', field: 'Sequence', sortId: 0 },
+              
               { name: 'Reference', field: 'Reference', sortId: 4 },
               { name: 'Type', field: 'TransactionType', sortId: 1 },
               { name: 'Value', field: 'Value', sortId: 1, cellTemplate: '<div class="ui-grid-cell-contents"><span title="{{row.entity.Value}}">{{row.entity.Value}}</span></div>' },
