@@ -311,7 +311,7 @@
                 templateUrl: helper.basepath('../../../../app/views/ManualReconciliation/ManualReconciliation.html'),
                 controller: 'ManualReconciliationController',
                 controllerAs: 'mrc',
-                resolve: helper.resolveFor('ManualReconciliation.module', 'ui.grid', 'ui.select', 'pageguide')
+                resolve: helper.resolveFor('ManualReconciliation.module', 'ui.grid', 'ui.select', 'pageguide', 'oitozero.ngSweetAlert')
             })
               .state('app.ReconciliationMapping', {
                   url: '/ReconciliationMapping',

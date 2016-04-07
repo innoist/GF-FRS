@@ -10,9 +10,9 @@
     // ReSharper disable FunctionsUsedBeforeDeclared
     core.lazy.controller('ManualReconciliationController', ManualReconciliationController);
 
-    ManualReconciliationController.$inject = ['$timeout', '$rootScope', '$scope', '$state', 'uiGridConstants', 'ReconciliationSerice', 'toaster', '$stateParams'];
+    ManualReconciliationController.$inject = ['$timeout', '$rootScope', '$scope', '$state', 'uiGridConstants', 'ReconciliationSerice', 'toaster', '$stateParams', 'SweetAlert'];
   
-    function ManualReconciliationController($timeout, $rootScope, $scope, $state, uiGridConstants, ReconciliationSerice, toaster, $stateParams) {
+    function ManualReconciliationController($timeout, $rootScope, $scope, $state, uiGridConstants, ReconciliationSerice, toaster, $stateParams, SweetAlert) {
         
         var vm = this;
         $scope.toReconcile = false;
@@ -25,12 +25,10 @@
             paginationPageSizes: [10, 25, 50, 100, 500],
             paginationPageSize: 10,
             enableSorting: true,
-            //enableFiltering: true,
+            multiSelect: false,
             flatEntityAccess: true,
-            //fastWatch: true,
             enableGridMenu: true,
             enableColumnMenus: false,
-            //useExternalFiltering: true,
             columnDefs: [
                 // name is for display on the table header, field is for mapping as in 
                 //sortId is kept locally it is not the property of ui.grid
@@ -38,7 +36,11 @@
               { name: 'Sequence', field: 'Sequence', sortId: 0 },
               { name: 'Reference', field: 'Reference', sortId: 4 },
               { name: 'Type', field: 'TransactionType', sortId: 1 },
-              { name: 'Value', field: 'Value', sortId: 1, cellTemplate: '<div class="ui-grid-cell-contents"><span title="{{row.entity.Value}}">{{row.entity.Value}}</span></div>' },
+                {
+                    name: 'Debit/Credit', field: 'DebitOrCredit', sortId: 1 ,
+                    cellTemplate: "<div class='ui-grid-cell-contents'><label title='{{row.entity.DebitOrCredit}}' class='label' ng-class=" + '"' + "{'bg-green-light':row.entity.DebitOrCredit == 'Credit', 'bg-primary-light' : row.entity.DebitOrCredit == 'Debit'}" + '"' + ">{{row.entity.DebitOrCredit}}</label></div>"
+                },
+              { name: 'Value', field: 'Value', sortId: 1 },
               { name: 'ValueDate', field: 'ValueDate', sortId: 1 },
               { name: 'Amount', field: 'Amount', sortId: 2 },
               { name: 'Entry', field: 'EntryDate', sortId: 2 }
@@ -114,7 +116,7 @@
         };
         vm.gridOracleOptions = {
             paginationPageSizes: [10, 25, 50, 100, 500],
-            paginationPageSize: 10,
+            paginationPageSize: 25,
             enableSorting: false,
             //suppressRemoveSort: true,
             multiSelect: false,
@@ -190,8 +192,10 @@
                 gridOracleApi.selection.on.rowSelectionChanged($scope, function (row) {
                     //$rootScope.app.OracleEntry = row.entity;
                     vm.OracleEntry = row.entity;
+                    vm.RemainingAmount = row.entity.Amount;
+                    vm.gridTransactionOptions.enableRowSelection = true;
                     //console.log(row.entity);
-                    });
+                });
             }
         };
 
@@ -240,12 +244,10 @@
         $scope.MT940LoadId = $stateParams.MT940LoadId;
         vm.gridTransactionOptions = {
             paginationPageSizes: [10, 25, 50, 100, 500],
-            paginationPageSize: 10,
+            paginationPageSize: 25,
             enableSorting: false,
-            //modifierKeysToMultiSelect: true,
-            //enableFullRowSelection: true,
-            //enableRowHeaderSelection: true,
-            //suppressRemoveSort: true,
+            multiSelect: false,
+            //enableRowSelection: false,
             useExternalPagination: true,
             useExternalSorting: true,
             //enableFiltering: true,
@@ -265,7 +267,13 @@
               
               { name: 'Reference', field: 'Reference', sortId: 4 },
               { name: 'Type', field: 'TransactionType', sortId: 1 },
-              { name: 'Value', field: 'Value', sortId: 1, cellTemplate: '<div class="ui-grid-cell-contents"><span title="{{row.entity.Value}}">{{row.entity.Value}}</span></div>' },
+                {
+                    name: 'Debit/Credit', field: 'DebitOrCredit', sortId: 1,
+                    cellTemplate: "<div class='ui-grid-cell-contents'><label title='{{row.entity.DebitOrCredit}}' class='label' ng-class=" + '"' + "{'bg-green-light':row.entity.DebitOrCredit == 'Credit', 'bg-primary-light' : row.entity.DebitOrCredit == 'Debit'}" + '"' + ">{{row.entity.DebitOrCredit}}</label></div>"
+                },
+              {
+                  name: 'Value', field: 'Value', sortId: 1,
+              },
               { name: 'ValueDate', field: 'ValueDate', sortId: 1 },
               { name: 'Amount', field: 'Amount', sortId: 2 },
               { name: 'Entry', field: 'EntryDate', sortId: 2 }
@@ -298,17 +306,42 @@
                 gridTransactionApi.selection.on.rowSelectionChanged($scope, function (row) {
                     if (row.isSelected === true) {
                         // window.Transactions.push(row.entity);
-                      //  $scope.CustomerTransactions.push(row.entity);
-                        vm.gridOptions.data.push(row.entity);
-                        var index = vm.gridTransactionOptions.data.indexOf(row.entity);
-                        vm.gridTransactionOptions.data.splice(index, 1);
+                        //  $scope.CustomerTransactions.push(row.entity);
+                        
+                        if (vm.OracleEntry) {
+                            if (row.entity.DebitOrCredit !== vm.OracleEntry.Type) {
+
+                                if (row.entity.Amount <= vm.RemainingAmount) {
+
+                                    vm.RemainingAmount -= row.entity.Amount;
+                                    vm.gridOptions.data.push(row.entity);
+                                    var index = vm.gridTransactionOptions.data.indexOf(row.entity);
+                                    vm.gridTransactionOptions.data.splice(index, 1);
+
+                                } else if (row.entity.Amount > vm.RemainingAmount) {
+                                    row.isSelected = false;
+                                    toaster.error("Transaction not Selected !", "Transaction amount exceeds the remaining amount.");
+                                }
+                                
+                            } else {
+                                row.isSelected = false;
+                                var transactionType = vm.OracleEntry.Type === 'Credit' ? 'Debit' : 'Credit';
+                                toaster.warning("Transaction not valid", "Please select transaction of <strong>" + transactionType + "</strong> type.");
+                            }
+                        } else {
+                            row.isSelected = false;
+                            toaster.error("No Accounting Entry Selected", "Please select an accounting entry from the grid");
+                            return;
+                        }
+
+                        
                         //vm.gridTransactionOptions.data.pop(row.entity);
                     } else if (row.isSelected === false) {
                         //window.Transactions.pop(row.entity);
                         // $scope.CustomerTransactions.pop(row.entity);
                         vm.gridOptions.data.pop(row.entity);
                     }
-                    console.log(row.entity);
+                    //console.log(row.entity);
 
                 });
 
@@ -370,25 +403,43 @@
         //vm.OracleEntry = $rootScope.app.OracleEntry;
         $scope.reconcile = function () {
             //if ($rootScope.app.OracleEntry && $rootScope.app.CustomerTransactions.length > 0) {
-            if (vm.OracleEntry) {
-                var data = {
-                    OracleGlEntryId: vm.OracleEntry.OracleGLEntryId,
-                    
-                    TransactionIds: vm.gridOptions.data.map(function (value) {
-                        return value.MT940CustomerStatementTransactionId;
-                    })
+            if (!vm.OracleEntry) {
+                toaster.error("Reconciliation Error", "Please select an accounting entry and transaction(s) to reconcile.");
+                return;
+            }
+            if (vm.OracleEntry && vm.gridOptions.data.length > 0) {
+                if (vm.RemainingAmount > 0) {
+                    SweetAlert.swal({
+                        title: 'Are you sure?',
+                        text: 'There is still some remaining amount, more transation(s) can be selected.',
+                        type: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#DD6B55',
+                        confirmButtonText: 'Yes, Proceed Reconciliation!',
+                        cancelButtonText: 'No, Select more transaction(s)!',
+                        closeOnConfirm: true,
+                        closeOnCancel: true,
+                    }, function (isConfirm) {
+                        if (isConfirm) {
+                            var data = {
+                                OracleGlEntryId: vm.OracleEntry.OracleGLEntryId,
+
+                                TransactionIds: vm.gridOptions.data.map(function(value) {
+                                    return value.MT940CustomerStatementTransactionId;
+                                })
+                            }
+                            ReconciliationSerice.saveReconciledRecords(data, function(response) {
+                                if (response) {
+                                    toaster.success("Success", "Reconcilition was successful.");
+                                    $state.go("app.ReconciliationMapping");
+                                }
+                            });
+                        }
+                    });
                 }
-                ReconciliationSerice.saveReconciledRecords(data, function (response) {
-                    if (response) {
-                        toaster.success("Success", "Reconcilition was successful.");
-                        $state.go("app.ReconciliationMapping");
-                    }
-                });
-                //toaster.info("Info", "Records are ready to reconcile and can be viewed in grid below. Press Reconcile Button to save changes.");
-                //$scope.toReconcile = false;
             } else {
                 //$scope.toReconcile = true;
-                toaster.warning("Warning", "Please select records from grid to reconcile.");
+                toaster.error("Reconciliation Error", "No Transaction(s) selected<br/>Please select transaction(s) to reconcile.");
             }
         }
 

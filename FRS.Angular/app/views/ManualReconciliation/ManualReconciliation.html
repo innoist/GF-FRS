@@ -62,7 +62,11 @@
 
             <div class="col-md-6">
                 <span>Type: </span>
-                <span>{{mrc.OracleEntry.OracleGLEntryId}}</span>
+                <span>{{mrc.OracleEntry.Type}}</span>
+            </div>
+            <div class="col-md-6">
+                <span>Amount: </span>
+                <span>{{mrc.OracleEntry.Amount}}&nbsp;{{mrc.OracleEntry.Currency}}</span>
             </div>
 
 
@@ -75,7 +79,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-6" ng-controller="CustomerStatementTransactionsController as custstc" id="second_element_to_target">
+                    <div class="col-md-6" id="second_element_to_target">
                         <div class="container-fluid" ng-show="isFilterOpen">
                             <div class="panel panel-default">
                                 <div class="panel-body">
@@ -106,6 +110,15 @@
                                 </div>
 
                             </div>
+
+                        </div>
+                        <div class="container-fluid" ng-show="mrc.OracleEntry != undefined">
+                            
+                            <div class="col-md-6">
+                                <span>Remaining Amount: </span>
+                                <span>{{mrc.RemainingAmount}}</span>
+                            </div>
+
 
                         </div>
                         <h4 class="bg-primary-light p-sm">Transactions</h4>
