@@ -23,7 +23,7 @@
 </h3>
 
 <div class="container-fluid">
-    <div class="col-md-6 first_element_to_target" >
+    <div class="col-md-6 first_element_to_target">
         <div class="container-fluid" ng-show="isFilterOpen">
             <div class="panel panel-default">
                 <div class="panel-body">
@@ -56,170 +56,192 @@
             </div>
 
         </div>
-        <h4 class="bg-purple-light p-sm">Accounting Entries</h4>
-        <div class="container-fluid">
-            <!-- Grid view to show listview with searching, sorting and pagination-->
-            <div ui-grid="mrc.gridOracleOptions" ui-grid-selection ui-grid-pagination ui-grid-move-columns ui-grid-resize-columns class=""></div>
-        </div>
-    </div>
 
-    <div class="col-md-6" ng-controller="CustomerStatementTransactionsController as custstc" id="second_element_to_target">
-        <div class="container-fluid" ng-show="isFilterOpen">
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <div class="col-md-6">
-                        <p class="input-group">
-                            <input type="text" placeholder="Select Date"
-                                   uib-datepicker-popup="{{custstc.format}}"
-                                   ng-model="custstc.dt"
-                                   is-open="custstc.opened"
-                                   min-date="custstc.minDate"
-                                   max-date="'custstc.maxDate'"
-                                   uib-datepicker-options="custstc.dateOptions"
-                                   date-disabled="custstc.disabled(date, mode)"
-                                   close-text="Close"
-                                   class="form-control"
-                                   ng-disabled="true" />
-                            <span class="input-group-btn">
-                                <button type="button" ng-click="custstc.open($event)" class="btn btn-default">
-                                    <em class="fa fa-calendar"></em>
-                                </button>
-                            </span>
-                        </p>
-                    </div>
-                    <button class="btn btn-success" ng-click="fiterData()">Filter</button>
-                    <button class="btn btn-default" ng-click="resetFilter()">Reset</button>
+        <div class="container-fluid" ng-show="mrc.OracleEntry != undefined">
 
-                    <!--<a class="pull-right" title="Hide filter Section" ng-click="isFilterOpen = !isFilterOpen"><i class="fa fa-compress"></i></a>-->
-                </div>
 
+            <div class="col-md-6">
+                <span>Type: </span>
+                <span>{{mrc.OracleEntry.OracleGLEntryId}}</span>
             </div>
 
+
         </div>
-        <h4 class="bg-primary-light p-sm">Transactions</h4>
-        <div class="container-fluid">
-            <!-- Grid view to show listview with searching, sorting and pagination-->
-            <div ui-grid="mrc.gridTransactionOptions" ui-grid-selection ui-grid-pagination ui-grid-resize-columns class=""></div>
-        </div>
-    </div>
 
-    <div class="col-md-12 mt-lg third_element_to_target">
-        <h4 class="bg-green-light p-sm">Accounting Entries</h4>
-        <!--<h4 class="mt-lg">Mappings</h4>-->
-        <!-- Grid view to show listview with searching, sorting and pagination-->
-        <div ui-grid="mrc.gridOptions" ui-grid-selection ui-grid-pagination ui-grid-move-columns ui-grid-resize-columns class=""></div>
-    </div>
-</div>
-    
-    
-<!-- this set of pageguide steps will be displayed by default. -->
-<ul id="tlyPageGuide" data-tourtitle="Follow the steps">
-    <!-- use these classes to indicate where each number bubble should be
-        positioned. data-tourtarget should contain the selector for the element to
-        which you want to attach this pageguide step. -->
-    <li class="tlypageguide_left" data-tourtarget=".first_element_to_target h4">
-        Select an Accounting entry from this Oracle GL entry table. Once selected you can click on multiple 
-        Transactions.
-    </li>
-    <li class="tlypageguide_top" data-tourtarget="#second_element_to_target h4">
-        After selecting Accounting entry, you can select multiple Transactions. The transactions which are selected will be removed from the corresponding grid and 
-        will be displaed in the selected transactions grid.
-    </li>
-    <li class="tlypageguide_left" data-tourtarget=".third_element_to_target h4">
-        Here your selected mappings will appear as soon as you select some records to reconcile.
-        Press "Reconcile" button to save the changes.
-    </li>
-</ul>
+                        <h4 class="bg-purple-light p-sm">Accounting Entries</h4>
+                        <div class="container-fluid">
+                            <!-- Grid view to show listview with searching, sorting and pagination-->
+                            <div ui-grid="mrc.gridOracleOptions" ui-grid-selection ui-grid-pagination ui-grid-move-columns ui-grid-resize-columns class=""></div>
+                        </div>
+                    </div>
 
-<div class="tlyPageGuideWelcome">
-    <p style="align-content: center"><b>Welcome to Manual Reconciliation.</b></p>
-    <br/>
-    <p>This guide will help you understand and use this functionality better.</p>
-    <p>1. Select entry from Oracle GL grid.</p>
-    <p>2. Select entries from Customer Transactions Grid.</p>
-    <p>3. Press Reconcile to save the changes</p>
+                    <div class="col-md-6" ng-controller="CustomerStatementTransactionsController as custstc" id="second_element_to_target">
+                        <div class="container-fluid" ng-show="isFilterOpen">
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                    <div class="col-md-6">
+                                        <p class="input-group">
+                                            <input type="text" placeholder="Select Date"
+                                                   uib-datepicker-popup="{{custstc.format}}"
+                                                   ng-model="custstc.dt"
+                                                   is-open="custstc.opened"
+                                                   min-date="custstc.minDate"
+                                                   max-date="'custstc.maxDate'"
+                                                   uib-datepicker-options="custstc.dateOptions"
+                                                   date-disabled="custstc.disabled(date, mode)"
+                                                   close-text="Close"
+                                                   class="form-control"
+                                                   ng-disabled="true" />
+                                            <span class="input-group-btn">
+                                                <button type="button" ng-click="custstc.open($event)" class="btn btn-default">
+                                                    <em class="fa fa-calendar"></em>
+                                                </button>
+                                            </span>
+                                        </p>
+                                    </div>
+                                    <button class="btn btn-success" ng-click="fiterData()">Filter</button>
+                                    <button class="btn btn-default" ng-click="resetFilter()">Reset</button>
 
-    
-    <br />
-    <button class="tlypageguide_start">Let's Go</button>
-    <button class="tlypageguide_ignore">Not Now</button>
-    <button class="tlypageguide_dismiss">Got it, Thanks</button>
-</div>
+                                    <!--<a class="pull-right" title="Hide filter Section" ng-click="isFilterOpen = !isFilterOpen"><i class="fa fa-compress"></i></a>-->
+                                </div>
 
-<style>
-    .tlypageguide_shadow {
-        z-index: 999 !important;
-    }
+                            </div>
 
-    #tlyPageGuideWrapper #tlyPageGuideToggles {
-        top: 110px !important;
-    }
-    .tlypageguide_shadow {
-        background: rgba(0, 255, 119, 0.1) !important;
-        box-shadow: 0 0 1px 1px darkgreen !important;
-    }
+                        </div>
+                        <h4 class="bg-primary-light p-sm">Transactions</h4>
+                        <div class="container-fluid">
+                            <!-- Grid view to show listview with searching, sorting and pagination-->
+                            <div ui-grid="mrc.gridTransactionOptions" ui-grid-selection ui-grid-pagination ui-grid-resize-columns class=""></div>
+                        </div>
+                    </div>
 
-    
-    #tlyPageGuideWrapper #tlyPageGuideMessages {
-        background: #7266ba !important;
-    }
-    .tlypageguide-open #tlyPageGuideWrapper .tlypageguide_toggle.tlyPageGuideToggleActive {
-        background: darkgreen !important;
-    }
-    .tlypageguide-active .tlyPageGuideStepIndex {
-        background: darkgreen !important;
-    }
-    .tlypageguide-active .tlyPageGuideStepIndex.tlypageguide_right:after, .tlypageguide-active .tlyPageGuideStepIndex.tlypageguide_left:after, .tlypageguide-active .tlyPageGuideStepIndex.tlypageguide_top:after {
-        border-top: 15px solid darkgreen !important;
-    }
-    .tlyPageGuideStepIndex {
-        background: lightgreen !important;
-    }
-    .tlyPageGuideStepIndex.tlypageguide_left:after {
-        border-top: 15px solid lightgreen !important;
-    }
-    .tlyPageGuideStepIndex.tlypageguide_top:after {
-        border-top: 15px solid lightgreen !important;
-    }
-    #tlyPageGuideWrapper #tlyPageGuideMessages span {
-        background: darkgreen !important;
-    }
-    .tlyPageGuideWelcome button, #tlyPageGuideWelcome button {
-        background: darkgreen !important;
-        font-size: 21px !important
-    }
-    .tlyPageGuideWelcome, #tlyPageGuideWelcome {
-        background: rgba(0,102,186,0.85) !important;
-        font-family: "Source Sans Pro", sans-serif !important;
-    }
-/*    .tlypageguide-active .tlyPageGuideStepIndex.tlypageguide_right:after, .tlypageguide-active .tlyPageGuideStepIndex.tlypageguide_left:after, .tlypageguide-active .tlyPageGuideStepIndex.tlypageguide_top:after {
-            background: darkgreen !important;
-        }
-    .tlyPageGuideStepIndex {
-        background: lightgreen !important;
-    }
-        .tlyPageGuideStepIndex.tlypageguide_left:after {
-            background: lightgreen !important;
-        }
+                    <div class="col-md-12 mt-lg third_element_to_target">
+                        <h4 class="bg-green-light p-sm">Accounting Entries</h4>
+                        <!--<h4 class="mt-lg">Mappings</h4>-->
+                        <!-- Grid view to show listview with searching, sorting and pagination-->
+                        <div ui-grid="mrc.gridOptions" ui-grid-selection ui-grid-pagination ui-grid-move-columns ui-grid-resize-columns class=""></div>
+                    </div>
+                </div>
 
-    .tlypageguide_shadow {
-        background: darkgreen !important;
-    }
 
-    .tlyPageGuideStepIndex.tlypageguide_top:after {
-        background: lightgreen !important;
-    }
-    #tlyPageGuideWrapper #tlyPageGuideMessages span {
-        background: darkgreen !important;
-    }
-    .tlyPageGuideStepIndex:hover.tlypageguide_right:after, .tlyPageGuideStepIndex:hover.tlypageguide_left:after, .tlyPageGuideStepIndex:hover.tlypageguide_top:after {
-        background: lightgreen !important;
-    }
-    .tlyPageGuideStepIndex.tlypageguide_top:after {
-        background: lightgreen !important;
-    }*/
-</style>
-<script language="javascript">
-    
-   
-</script>
+                <!-- this set of pageguide steps will be displayed by default. -->
+                <ul id="tlyPageGuide" data-tourtitle="Follow the steps">
+                    <!-- use these classes to indicate where each number bubble should be
+                        positioned. data-tourtarget should contain the selector for the element to
+                        which you want to attach this pageguide step. -->
+                    <li class="tlypageguide_left" data-tourtarget=".first_element_to_target h4">
+                        Select an Accounting entry from this Oracle GL entry table. Once selected you can click on multiple
+                        Transactions.
+                    </li>
+                    <li class="tlypageguide_top" data-tourtarget="#second_element_to_target h4">
+                        After selecting Accounting entry, you can select multiple Transactions. The transactions which are selected will be removed from the corresponding grid and
+                        will be displaed in the selected transactions grid.
+                    </li>
+                    <li class="tlypageguide_left" data-tourtarget=".third_element_to_target h4">
+                        Here your selected mappings will appear as soon as you select some records to reconcile.
+                        Press "Reconcile" button to save the changes.
+                    </li>
+                </ul>
+
+                <div class="tlyPageGuideWelcome">
+                    <p style="align-content: center"><b>Welcome to Manual Reconciliation.</b></p>
+                    <br />
+                    <p>This guide will help you understand and use this functionality better.</p>
+                    <p>1. Select entry from Oracle GL grid.</p>
+                    <p>2. Select entries from Customer Transactions Grid.</p>
+                    <p>3. Press Reconcile to save the changes</p>
+
+
+                    <br />
+                    <button class="tlypageguide_start">Let's Go</button>
+                    <button class="tlypageguide_ignore">Not Now</button>
+                    <button class="tlypageguide_dismiss">Got it, Thanks</button>
+                </div>
+
+                <style>
+                                    .tlypageguide_shadow {
+                                        z-index: 999 !important;
+                                    }
+
+                                    #tlyPageGuideWrapper #tlyPageGuideToggles {
+                                        top: 110px !important;
+                                    }
+
+                                    .tlypageguide_shadow {
+                                        background: rgba(0, 255, 119, 0.1) !important;
+                                        box-shadow: 0 0 1px 1px darkgreen !important;
+                                    }
+
+
+                                    #tlyPageGuideWrapper #tlyPageGuideMessages {
+                                        background: #7266ba !important;
+                                    }
+
+                                    .tlypageguide-open #tlyPageGuideWrapper .tlypageguide_toggle.tlyPageGuideToggleActive {
+                                        background: darkgreen !important;
+                                    }
+
+                                    .tlypageguide-active .tlyPageGuideStepIndex {
+                                        background: darkgreen !important;
+                                    }
+
+                                        .tlypageguide-active .tlyPageGuideStepIndex.tlypageguide_right:after, .tlypageguide-active .tlyPageGuideStepIndex.tlypageguide_left:after, .tlypageguide-active .tlyPageGuideStepIndex.tlypageguide_top:after {
+                                            border-top: 15px solid darkgreen !important;
+                                        }
+
+                                    .tlyPageGuideStepIndex {
+                                        background: lightgreen !important;
+                                    }
+
+                                        .tlyPageGuideStepIndex.tlypageguide_left:after {
+                                            border-top: 15px solid lightgreen !important;
+                                        }
+
+                                        .tlyPageGuideStepIndex.tlypageguide_top:after {
+                                            border-top: 15px solid lightgreen !important;
+                                        }
+
+                                    #tlyPageGuideWrapper #tlyPageGuideMessages span {
+                                        background: darkgreen !important;
+                                    }
+
+                                    .tlyPageGuideWelcome button, #tlyPageGuideWelcome button {
+                                        background: darkgreen !important;
+                                        font-size: 21px !important;
+                                    }
+
+                                    .tlyPageGuideWelcome, #tlyPageGuideWelcome {
+                                        background: rgba(0,102,186,0.85) !important;
+                                        font-family: "Source Sans Pro", sans-serif !important;
+                                    }
+                                    /*    .tlypageguide-active .tlyPageGuideStepIndex.tlypageguide_right:after, .tlypageguide-active .tlyPageGuideStepIndex.tlypageguide_left:after, .tlypageguide-active .tlyPageGuideStepIndex.tlypageguide_top:after {
+                            background: darkgreen !important;
+                        }
+                    .tlyPageGuideStepIndex {
+                        background: lightgreen !important;
+                    }
+                        .tlyPageGuideStepIndex.tlypageguide_left:after {
+                            background: lightgreen !important;
+                        }
+
+                    .tlypageguide_shadow {
+                        background: darkgreen !important;
+                    }
+
+                    .tlyPageGuideStepIndex.tlypageguide_top:after {
+                        background: lightgreen !important;
+                    }
+                    #tlyPageGuideWrapper #tlyPageGuideMessages span {
+                        background: darkgreen !important;
+                    }
+                    .tlyPageGuideStepIndex:hover.tlypageguide_right:after, .tlyPageGuideStepIndex:hover.tlypageguide_left:after, .tlyPageGuideStepIndex:hover.tlypageguide_top:after {
+                        background: lightgreen !important;
+                    }
+                    .tlyPageGuideStepIndex.tlypageguide_top:after {
+                        background: lightgreen !important;
+                    }*/
+                </style>
+                <script language="javascript">
+
+
+                </script>
