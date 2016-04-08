@@ -14,5 +14,16 @@
 
 <div class="container-fluid animated">
     <!-- Grid view to show listview with searching, sorting and pagination-->
-    <div ui-grid="lsc.gridOptions" ui-grid-pagination class="table-uigrid"></div>
+    <div ui-grid="lsc.gridOptions" ui-grid-pagination class="table-uigrid resizableGrid"></div>
 </div>
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        if (window.innerHeight > 400) {
+            height = window.innerHeight - 205;
+            $('.resizableGrid').height(height + "px");
+        }
+
+
+    });
+</script>

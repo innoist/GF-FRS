@@ -110,7 +110,7 @@
                 },
               { name: 'Modified On', field: 'ModifiedOnString', sortId: 5 },
               { name: 'File', field: 'FileName', sortId: 3 },
-              { name: 'Entry Count', field: 'OracleGLEntryCount', sortId: 3 },
+              { name: 'Entry Count', field: 'OracleGLEntryCount',  headerCellClass: 'text-right' },
               {
                   name: 'Actions', cellTemplate: '<div class="ui-grid-cell-contents text-center"><div class="btn btn-xs">' +
                     '<a ui-sref="app.OracleGlLoadDetail({Id : row.entity.OracleGLLoadId})" class="btn btn-xs btn-info"><i class="fa fa-search"></i></a>' +
