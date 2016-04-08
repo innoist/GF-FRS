@@ -61,12 +61,12 @@
 
 
             <div class="col-md-6">
-                <span>Type: </span>
-                <span>{{mrc.OracleEntry.Type}}</span>
+                <span>T<strong >ype</strong>: </span>
+                <label class="label" ng-class="{'bg-green-light':mrc.OracleEntry.Type == 'Credit', 'bg-primary-light' : mrc.OracleEntry.Type == 'Debit'}">{{mrc.OracleEntry.Type}}</label>
             </div>
             <div class="col-md-6">
-                <span>Amount: </span>
-                <span>{{mrc.OracleEntry.Amount}}&nbsp;{{mrc.OracleEntry.Currency}}</span>
+                <span><strong >Amount:</strong> </span>
+                <label class="label bg-purple-light">{{mrc.OracleEntry.Amount | number}}&nbsp;{{mrc.OracleEntry.Currency}}</label>
             </div>
 
 
@@ -114,9 +114,9 @@
                         </div>
                         <div class="container-fluid" ng-show="mrc.OracleEntry != undefined">
                             
-                            <div class="col-md-6">
-                                <span>Remaining Amount: </span>
-                                <span>{{mrc.RemainingAmount}}</span>
+                            <div class="col-md-6 pull-right">
+                                <span><strong >Remaining Amount:</strong> </span>
+                                <label class="label bg-primary-light">{{mrc.RemainingAmount | number}}</label>
                             </div>
 
 
@@ -129,7 +129,7 @@
                     </div>
 
                     <div class="col-md-12 mt-lg third_element_to_target">
-                        <h4 class="bg-green-light p-sm">Accounting Entries</h4>
+                        <h4 class="bg-green-light p-sm">Accounting Entries <span ng-show="mrc.gridOptions.data.length > 0" class="ml-lg">(Running balance: {{mrc.RunningBalance | number}})</span></h4>
                         <!--<h4 class="mt-lg">Mappings</h4>-->
                         <!-- Grid view to show listview with searching, sorting and pagination-->
                         <div ui-grid="mrc.gridOptions" ui-grid-selection ui-grid-pagination ui-grid-move-columns ui-grid-resize-columns class=""></div>

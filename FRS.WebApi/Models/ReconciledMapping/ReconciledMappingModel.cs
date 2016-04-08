@@ -6,6 +6,8 @@ namespace FRS.WebApi.Models.ReconciledMapping
     {
         public long ReconciledMappingId { get; set; }
         public long OracleGLEntryId { get; set; }
+        public long OracleGLLoadId { get; set; }
+        public long StatementId { get; set; }
         public long MT940CustomerStatementTransactionId { get; set; }
         public bool IsDeleted { get; set; }
         public bool IsManual { get; set; }

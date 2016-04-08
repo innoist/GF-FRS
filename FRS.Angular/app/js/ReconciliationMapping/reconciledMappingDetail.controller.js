@@ -8,11 +8,11 @@
 
     var core = angular.module('app.core');
     // ReSharper disable FunctionsUsedBeforeDeclared
-    core.lazy.controller('ReconciliationMappingController', ReconciliationMappingController);
+    core.lazy.controller('ReconciledMappingDetailController', ReconciledMappingDetailController);
 
-    ReconciliationMappingController.$inject = ['$scope', '$state', '$stateParams', 'uiGridConstants', 'ReconciliationMappingService'];
+    ReconciledMappingDetailController.$inject = ['$scope', '$state', '$stateParams', 'uiGridConstants', 'ReconciliationMappingService'];
 
-    function ReconciliationMappingController($scope, $state, $stateParams, uiGridConstants, ReconciliationMappingService) {
+    function ReconciledMappingDetailController($scope, $state, $stateParams, uiGridConstants, ReconciliationMappingService) {
 
 
         var vm = this;
@@ -56,12 +56,6 @@
           { Id: 'C', Name: 'Credit' }
         ];
 
-        //$http.get(window.frsApiUrl + '/api/LoadMetaDataBase').success(function (response) {
-        //    vm.Statuses = response.Statuses;
-        //});
-
-
-
         //ui-grid
         var paginationOptions = {
             'params': {
@@ -95,17 +89,6 @@
             enableColumnMenus: false,
             //useExternalFiltering: true,
             columnDefs: [
-                // name is for display on the table header, field is for mapping as in 
-                //sortId is kept locally it is not the property of ui.grid
-              //{
-              //    name: 'Name',
-              //    field: 'Name',
-              //    sortId: 1,
-              //    cellTemplate: '<div class="ui-grid-cell-contents"><a ui-sref="">{{row.entity.Name}}</a> </div>',
-              //    //sort: {
-              //    //    direction: uiGridConstants.ASC
-              //    //}
-              //},
                { displayName: 'Account Number', field: 'AccountNumber', sortId: 0 },
                 {
                     displayName: 'Statement', field: 'StatementId', sortId: 0 ,

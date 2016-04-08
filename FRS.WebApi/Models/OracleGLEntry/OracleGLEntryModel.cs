@@ -16,8 +16,8 @@
         public string EntrySource { get; set; }
         public decimal? EnteredDr { get; set; }
         public decimal? EnteredCr { get; set; }
-        public decimal? AccountedDr { get; set; }
-        public decimal? AccountedCr { get; set; }
+        public string AccountedDr { get; set; }
+        public string AccountedCr { get; set; }
         public string Currency { get; set; }
         public decimal? ExchangeRate { get; set; }
         public string Period { get; set; }

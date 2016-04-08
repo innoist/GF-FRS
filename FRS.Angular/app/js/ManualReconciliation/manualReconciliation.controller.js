@@ -16,7 +16,7 @@
         
         var vm = this;
         $scope.toReconcile = false;
-
+        vm.RunningBalance = 0;
         $scope.ReconiliationTransactions = [];
         $scope.CustomerTransactions = [];
         vm.OracleEntry = undefined;
@@ -42,7 +42,7 @@
                 },
               { name: 'Value', field: 'Value', sortId: 1 },
               { name: 'ValueDate', field: 'ValueDate', sortId: 1 },
-              { name: 'Amount', field: 'Amount', sortId: 2 },
+              { name: 'Amount', field: 'Amount', sortId: 2, cellFilter: 'number' },
               { name: 'Entry', field: 'EntryDate', sortId: 2 }
             ],
             onRegisterApi: function(gridApi) {
@@ -53,7 +53,8 @@
                         
                         //$scope.CustomerTransactions.pop(row.entity);
                         vm.gridOptions.data.pop(row.entity);
-                        vm.gridTransactionOptions.data.pop(row.entity);
+                        vm.gridTransactionOptions.data.push(row.entity);
+                        vm.RunningBalance -= row.entity.Amount;
                         //$rootScope.ReconiliationTransactions.push(row.entity);
 
                     }
@@ -154,7 +155,7 @@
                     name: 'Type', field: 'Type', sortId: 4,
                     cellTemplate: "<div class='ui-grid-cell-contents'><label class='label' ng-class=" + '"' + "{'bg-green-light':row.entity.Type == 'Credit', 'bg-primary-light' : row.entity.Type == 'Debit'}" + '"' + ">{{row.entity.Type}}</label></div>"
                 },
-              { name: 'Amount', field: 'Amount', sortId: 4 },
+              { name: 'Amount', field: 'Amount', sortId: 4, cellFilter: 'number' },
               { name: 'Created On', field: 'CreatedOn', sortId: 4 }
               //,{ name: 'Modified On', field: 'ModifiedOn', sortId: 4 }
               //,{
@@ -275,7 +276,7 @@
                   name: 'Value', field: 'Value', sortId: 1,
               },
               { name: 'ValueDate', field: 'ValueDate', sortId: 1 },
-              { name: 'Amount', field: 'Amount', sortId: 2 },
+              { name: 'Amount', field: 'Amount', sortId: 2, cellFilter: 'number' },
               { name: 'Entry', field: 'EntryDate', sortId: 2 }
             ],
             onRegisterApi: function (gridTransactionApi) {
@@ -314,6 +315,7 @@
                                 if (row.entity.Amount <= vm.RemainingAmount) {
 
                                     vm.RemainingAmount -= row.entity.Amount;
+                                    vm.RunningBalance += row.entity.Amount;
                                     vm.gridOptions.data.push(row.entity);
                                     var index = vm.gridTransactionOptions.data.indexOf(row.entity);
                                     vm.gridTransactionOptions.data.splice(index, 1);

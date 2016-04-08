@@ -65,6 +65,7 @@
     <Content Include="app\img\logo.png" />
     <Content Include="app\img\preloader\preloader.full.png" />
     <Content Include="app\img\preloader\preloader.empty.png" />
+    <Content Include="app\img\user\default.png" />
     <Content Include="app\js\angular-local-storage.min.js" />
     <Content Include="app\js\app.js" />
     <Content Include="app\js\Config.js" />
@@ -81,6 +82,7 @@
     <Content Include="app\js\FiscalYear\fiscalYear.service.js" />
     <Content Include="app\js\FiscalYear\newFiscalYear.controller.js" />
     <Content Include="app\js\OracleGLEntries\OracleGLEntryDetail.controller.js" />
+    <Content Include="app\js\ReconciliationMapping\reconciledMappingDetail.controller.js" />
     <Content Include="app\js\ServiceLog\ServiceLogDetailController.js" />
     <Content Include="app\js\ServiceLog\ServiceLogController.js" />
     <Content Include="app\js\ServiceLog\ServiceLogDataService.js" />

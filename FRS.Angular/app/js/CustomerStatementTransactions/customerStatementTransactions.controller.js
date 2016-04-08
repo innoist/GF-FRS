@@ -114,7 +114,7 @@
                   cellTemplate: '<div class="ui-grid-cell-contents text-center"><span title="{{row.entity.Value}}">{{row.entity.Value}}</span></div>'
               },
               { name: 'ValueDate', field: 'ValueDate', sortId: 1 },
-              { name: 'Amount', field: 'Amount', sortId: 2, headerCellClass: 'text-right' },
+              { name: 'Amount', field: 'Amount', sortId: 2, headerCellClass: 'text-right', cellFilter: 'number' },
               { name: 'Entry', field: 'EntryDate', sortId: 2 }
             ],
             onRegisterApi: function (gridApi) {

@@ -23,5 +23,14 @@
               .error(onError);
         }
 
+        this.getMappingDetail = function (id, onReady, onError) {
+            var url = frsApiUrl + "/api/ReconciledMapping/"+id;
+            onError = onError || function () { alert('Failed to load data'); };
+            $http
+              .get(url)
+              .success(onReady)
+              .error(onError);
+        }
+
     }
 })();

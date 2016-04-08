@@ -9,7 +9,7 @@ namespace FRS.WebApi.ModelMappers
     {
         public static OracleGLLoadModel CreateFromServerToClient(this OracleGLLoad source)
         {
-            var toReturn = new OracleGLLoadModel()
+            var toReturn = new OracleGLLoadModel
             {
                 ModifiedBy = source.ModifiedBy,
                 CreatedBy = source.CreatedBy,
@@ -23,10 +23,9 @@ namespace FRS.WebApi.ModelMappers
                 Path = source.Path,
                 OracleGLLoadId = source.OracleGLLoadId
             };
-            if (source.Loads.FirstOrDefault() != null)
+            var load = source.Loads.FirstOrDefault();
+            if (load != null)
             {
-                var load = source.Loads.FirstOrDefault();
-
                 toReturn.Name = load.Name;
                 toReturn.Start = load.Start.ToString("dd-MMM-yy HH:mm:ss");
                 toReturn.Finish = load.Finish.HasValue ? load.Finish.Value.ToString("dd-MMM-yy HH:mm:ss") : "N/A";
@@ -39,7 +38,7 @@ namespace FRS.WebApi.ModelMappers
         }
         public static OracleGLLoad CreateFromClientToServer(this OracleGLLoadModel source)
         {
-            return new OracleGLLoad()
+            return new OracleGLLoad
             {
                 ModifiedBy = source.ModifiedBy,
                 CreatedBy = source.CreatedBy,
@@ -56,7 +55,7 @@ namespace FRS.WebApi.ModelMappers
         
         public static OracleGLEntryModel CreateFromServerToClient(this OracleGLEntry source)
         {
-            var toReturn =  new OracleGLEntryModel()
+            return new OracleGLEntryModel
             {
                 ModifiedBy = source.ModifiedBy,
                 CreatedBy = source.CreatedBy,
@@ -66,8 +65,8 @@ namespace FRS.WebApi.ModelMappers
                 OracleGLLoadId = source.OracleGLLoadId,
                 AccountDescription = source.AccountDescription,
                 AccountNumber = source.AccountNumber,
-                AccountedCr = source.AccountedCr,
-                AccountedDr = source.AccountedDr,
+                AccountedCr = source.AccountedCr.HasValue ? source.AccountedCr.Value.ToString("N") : "N/A",
+                AccountedDr = source.AccountedDr.HasValue ? source.AccountedDr.Value.ToString("N") : "N/A",
                 Currency = source.Currency,
                 EffectiveDate = source.EffectiveDate.HasValue ? source.EffectiveDate.Value.ToString("dd-MMM-yy HH:mm:ss") : "N/A",
                 EnteredCr = source.EnteredCr,
@@ -84,13 +83,13 @@ namespace FRS.WebApi.ModelMappers
                 LineDescription = source.LineDescription,
                 LineNumber = source.LineNumber,
                 SubAccountDescription = source.SubAccountDescription,
-                Year = source.FiscalYear.Value
+                Year = source.FiscalYear.Value,
+
+                Type = source.AccountedCr.HasValue && source.AccountedCr.Value != 0 ? "Credit" : "Debit",
+                Amount = source.AccountedCr.HasValue && source.AccountedCr.Value != 0 ? source.AccountedCr.Value : source.AccountedDr.HasValue && source.AccountedDr.Value != 0 ? source.AccountedDr.Value : 0
             };
 
-            toReturn.Type = source.AccountedCr.HasValue && source.AccountedCr.Value != 0 ? "Credit" : "Debit";
-            
-            toReturn.Amount = source.AccountedCr.HasValue && source.AccountedCr.Value != 0 ? source.AccountedCr.Value : source.AccountedDr.HasValue && source.AccountedDr.Value != 0 ? source.AccountedDr.Value : 0;
-            return toReturn;
+            //return toReturn;
         }
         
     }

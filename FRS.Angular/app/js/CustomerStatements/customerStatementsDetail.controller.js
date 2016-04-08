@@ -106,7 +106,7 @@
                 // name is for display on the table header, field is for mapping as in 
                   { displayName: 'ID', field: 'MT940CustomerStatementId', sortId: 0 },
               { name: 'TransactionType', field: 'TransactionType', sortId: 1 },
-              { name: 'Amount', field: 'Amount', sortId: 2 },
+              { name: 'Amount', field: 'Amount', sortId: 2, cellFilter: 'number' },
               { name: 'Debit Or Credit', field: 'DebitOrCredit', sortId: 3 },
               { name: 'Reference', field: 'Reference', sortId: 4 },
               { name: 'Description', field: 'Description', sortId: 5 },

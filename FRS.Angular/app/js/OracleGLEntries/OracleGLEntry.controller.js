@@ -111,9 +111,9 @@
                     name: 'Type', field: 'Type', sortId: 4 ,headerCellClass: 'text-right',
                     cellTemplate: "<div class='ui-grid-cell-contents text-center'><label class='label' ng-class=" + '"' + "{'bg-green-light':row.entity.Type == 'Credit', 'bg-primary-light' : row.entity.Type == 'Debit'}" + '"' + ">{{row.entity.Type}}</label></div>"
                 },
-              { name: 'Amount', field: 'Amount', sortId: 4, headerCellClass: 'text-center' },
-              { name: 'Created On', field: 'CreatedOn', sortId: 4 },
-              { name: 'Modified On', field: 'ModifiedOn', sortId: 4 },
+              { name: 'Amount', field: 'Amount', sortId: 4, headerCellClass: 'text-center', cellFilter: 'number' },
+              { displayName: 'JE Created', field: 'JECreationDate', sortId: 4 },
+              { displayName: 'JE Updated', field: 'JELastUpdateDate', sortId: 4 },
               {
                   name: 'Actions', cellTemplate: '<div class="ui-grid-cell-contents text-center"><div class="btn btn-xs">' +
                     '<a ui-sref="app.OracleGlEntryDetail({Id : row.entity.OracleGLEntryId})" class="btn btn-xs btn-info"><i class="fa fa-search"></i></a>' +

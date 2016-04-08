@@ -17,7 +17,8 @@ namespace FRS.WebApi.ModelMappers
                 CreatedOn = source.CreatedOn,
                 ModifiedOn = source.ModifiedOn,
                 OracleGLEntryId = source.OracleGLEntryId,
-
+                StatementId = source.MT940CustomerStatementTransaction.MT940CustomerStatementId,
+                OracleGLLoadId = source.OracleGLEntry.OracleGLLoadId,
                 MT940CustomerStatementTransactionId = source.MT940CustomerStatementTransactionId,
                 IsDeleted = source.IsDeleted,
                 IsManual = source.IsManual,
