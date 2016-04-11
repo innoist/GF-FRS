@@ -11,7 +11,7 @@ namespace FRS.Interfaces.Repository
         SearchTemplateResponse<ReconciledMapping> GetReconciledMappingSearchResponse(ReconciledMappingSearchRequest searchRequest);
         bool SaveMappings(IEnumerable<ReconciledMapping> mappings);
 
-        IEnumerable<MT940CustomerStatementTransaction> GetReconciledMappingResponse(long ReconciledMappingResponseId);
+        IEnumerable<MT940CustomerStatementTransaction> GetReconciledMappings(long oracleEntryId);
 
     }
 }

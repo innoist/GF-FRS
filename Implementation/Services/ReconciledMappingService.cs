@@ -66,7 +66,7 @@ namespace FRS.Implementation.Services
             ReconciledMappingResponse response = new ReconciledMappingResponse
             {
                 OracleGlEntry = mapping.OracleGLEntry,
-                Transactions = rcRepository.GetReconciledMappingResponse(mapping.MT940CustomerStatementTransactionId),
+                Transactions = rcRepository.GetReconciledMappings(mapping.OracleGLEntryId),
                 ReconciledMapping = mapping
             };
 

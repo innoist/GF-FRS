@@ -83,11 +83,11 @@ namespace FRS.Repository.Repositories
             return true;
         }
 
-        public IEnumerable<MT940CustomerStatementTransaction> GetReconciledMappingResponse(long transactionId)
+        public IEnumerable<MT940CustomerStatementTransaction> GetReconciledMappings(long oracleEntryId)
         {
             IEnumerable<MT940CustomerStatementTransaction> transactions =
                 DbSet.Include(x => x.MT940CustomerStatementTransaction)
-                    .Where(x => x.MT940CustomerStatementTransactionId == transactionId)
+                    .Where(x => x.OracleGLEntryId == oracleEntryId)
                     .Select(x => x.MT940CustomerStatementTransaction);
             return transactions;
         }
