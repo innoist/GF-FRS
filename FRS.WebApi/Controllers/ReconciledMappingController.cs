@@ -13,6 +13,7 @@ using Microsoft.AspNet.Identity;
 
 namespace FRS.WebApi.Controllers
 {
+    [Authorize]
     public class ReconciledMappingController : ApiController
     {
         #region Private
@@ -30,7 +31,6 @@ namespace FRS.WebApi.Controllers
 
 
         [HttpGet]
-        [Authorize]
         [ApiException]
         public ReconciledMappingViewModel Get([FromUri]ReconciledMappingSearchRequest searchRequest)
         {
@@ -51,12 +51,31 @@ namespace FRS.WebApi.Controllers
             
         }
 
+        [HttpGet]
+        [ApiException]
+        public ReconciliationDetailViewModel Get(long id)
+        {
+            if (id < 0)
+            {
+                throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
+            }
+            var response = reconciledMappingService.GetReconciledMappingResponse(id);
+            ReconciliationDetailViewModel viewModel = new ReconciliationDetailViewModel
+            {
+                OracleGlEntry = response.OracleGlEntry.CreateFromServerToClient(),
+                ReconciledMapping = response.ReconciledMapping.MapFromServerToClient(),
+                Transactions = response.Transactions.Select(x=>x.MapFromServerToClient()).ToList()
+            };
+
+            return viewModel;
+
+        }
+
         #endregion
 
         #region Post
 
         [HttpPost]
-        [Authorize]
         [ApiException]
         public IHttpActionResult Post(ReconciliationViewModel model)
         {

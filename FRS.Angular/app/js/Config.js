@@ -321,8 +321,8 @@
                   controllerAs: 'rm',
                   resolve: helper.resolveFor('ReconciliationMapping.module', 'ui.grid', 'ui.select')
               })
-            .state('app.app.ReconciledMappingDetail', {
-                url: '/app.ReconciledMappingDetail/:Id',
+            .state('app.ReconciledMappingDetail', {
+                url: '/ReconciledMappingDetail/:Id',
                   title: 'Reconciliation Mapping Detail',
                   templateUrl: helper.basepath('../../../../app/views/ManualReconciliation/ReconciledMappingDetail.html'),
                   controller: 'ReconciledMappingDetailController',

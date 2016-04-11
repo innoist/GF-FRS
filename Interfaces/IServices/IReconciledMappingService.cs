@@ -7,7 +7,7 @@ namespace FRS.Interfaces.IServices
 {
     public interface IReconciledMappingService
     {
-        ReconciledMappingResponse GetReconciledMappingResponse(long ReconciledMappingResponseId);
+        ReconciledMappingResponse GetReconciledMappingResponse(long ReconciledMappingId);
         SearchTemplateResponse<ReconciledMapping> GetReconciledMappingSearchResponse(ReconciledMappingSearchRequest searchRequest);
 
         IEnumerable<ReconciledMapping> GetAll();

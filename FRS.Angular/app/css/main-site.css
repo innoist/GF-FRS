@@ -102,3 +102,18 @@ nav li ul li {
                 padding-right: 0px !important;
             }
 /*****end right aligning the table headers*/
+
+
+/*****Start change alert button color****/
+.sweet-alert button.cancel {
+    background-color: rgb(212, 103, 82) !important;
+}
+
+.sweet-alert button.confirm {
+    background-color: rgb(20, 200, 107) !important;
+}
+
+
+
+
+/*****Start change alert button color****/

@@ -1,10 +1,10 @@
 ﻿<h3>
     <!-- START Language list-->
     <div class="pull-right">
-        <button onclick="history.back()" class="btn btn-info btn-labeled">
+        <button onclick="history.back()" class="btn btn-inverse btn-labeled">
             <span class="btn-label">
-                <i class="fa fa-plus"></i>
-            </span>New
+                <i class="fa fa-arrow-left"></i>
+            </span>Back
         </button>
         <!--<button class="btn btn-warning btn-labeled" ng-click="isFilterOpen = !isFilterOpen" ng-show="!isFilterOpen">
             <span class="btn-label">
@@ -15,12 +15,236 @@
 
     </div>
     <!-- END Language list    -->
-    Reconciliation Set
-    <small>Manual & Auto Reconciliation List</small>
+    Reconciliation Set Detail
+    <small>Manual & Auto Reconciliation details</small>
 </h3>
 
-<div class="container-fluid animated">
-    <!-- Grid view to show listview with searching, sorting and pagination-->
+<div class="panel panel-default">
+    <div class="panel-body">
+        <div class="row">
+            <div class="">
+                <div class="col-md-12">
+                    <p class="lead bb"><strong>Mapping Detail</strong></p>
+                    <form class="form-horizontal p-20">
+                        <div class="form-group">
+                            <div class="col-sm-4">Mapping Id</div>
+                            <div class="col-sm-8">
+                                <strong>{{rmdc.ReconciledMapping.ReconciledMappingId}}</strong>
+                            </div>
+                        </div>
 
+
+                        <div class="form-group">
+                            <div class="col-sm-4">Debit/Credit</div>
+                            <div class="col-sm-8">
+                                <strong>{{rmdc.ReconciledMapping.DebitOrCredit}}</strong>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <div class="col-sm-4">Account Date</div>
+                            <div class="col-sm-8">
+                                <strong>{{rmdc.ReconciledMapping.AccountDate}}</strong>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <div class="col-sm-4">TransactionDate</div>
+                            <div class="col-sm-8">
+                                <strong>{{rmdc.ReconciledMapping.TransactionDate}}</strong>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-4">A/C #</div>
+                            <div class="col-sm-8">
+                                <strong>{{rmdc.ReconciledMapping.AccountNumber}}</strong>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <div class="col-sm-4">Amount</div>
+                            <div class="col-sm-8">
+                                <strong>{{rmdc.ReconciledMapping.Amount | number}}</strong>
+                            </div>
+                        </div>
+
+
+
+
+                        <div class="form-group">
+                            <div class="col-sm-4">Type</div>
+                            <div class="col-sm-8">
+                                <strong><span ng-if="rmdc.ReconciledMapping.IsManual">Manual</span>
+                                    <span ng-if="!rmdc.ReconciledMapping.IsManual">Automatic</span>
+                                </strong>
+                            </div>
+                        </div>
+
+
+                    </form>
+
+
+
+                </div>
+
+                <div class="col-md-12">
+                    
+                    <p class="lead bb"><strong>Accounting Entry Details</strong></p>
+                    <form class="form-horizontal p-20">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <div class="col-sm-4">Oracle GL Load Id</div>
+                                <div class="col-sm-8">
+                                    <strong class="wordWrap">{{rmdc.OracleGlEntry.OracleGLLoadId}}</strong>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-4">Created On</div>
+                                <div class="col-sm-8">
+                                    <strong>
+                                        <label class='label'>
+                                            {{rmdc.OracleGlEntry.CreatedOn}}
+                                        </label>
+                                    </strong>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-4">Modified On</div>
+                                <div class="col-sm-8">
+                                    <strong class="wordWrap">{{rmdc.OracleGlEntry.ModifiedOn}}</strong>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-4">Account Number</div>
+                                <div class="col-sm-8">
+                                    <strong class="wordWrap">{{rmdc.OracleGlEntry.AccountNumber}}</strong>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-4">Accounted Credit</div>
+                                <div class="col-sm-8">
+                                    <strong class="wordWrap">{{rmdc.OracleGlEntry.AccountedCr}}</strong>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-4">Accounted Debit</div>
+                                <div class="col-sm-8">
+                                    <strong class="wordWrap">{{rmdc.OracleGlEntry.AccountedDr}}</strong>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-4">Currency</div>
+                                <div class="col-sm-8">
+                                    <strong class="wordWrap">{{rmdc.OracleGlEntry.Currency}}</strong>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-4">Effective Date</div>
+                                <div class="col-sm-8">
+                                    <strong class="wordWrap">{{rmdc.OracleGlEntry.EffectiveDate}}</strong>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-4">Entered Credit</div>
+                                <div class="col-sm-8">
+                                    <strong class="wordWrap">{{rmdc.OracleGlEntry.EnteredCr}}</strong>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-4">Unique Reference Key</div>
+                                <div class="col-sm-8">
+                                    <strong class="wordWrap">{{rmdc.OracleGlEntry.UniqueReferenceKey}}</strong>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-sm-4">Entry Source</div>
+                                <div class="col-sm-8">
+                                    <strong class="wordWrap">{{rmdc.OracleGlEntry.EntrySource}}</strong>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <div class="col-sm-4">Period</div>
+                                <div class="col-sm-8">
+                                    <strong class="wordWrap">{{rmdc.OracleGlEntry.Period}}</strong>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-4">Oracle GL Entry Id</div>
+                                <div class="col-sm-8">
+                                    <strong class="wordWrap">{{rmdc.OracleGlEntry.OracleGlEntryId}}</strong>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-4">Entered Debit</div>
+                                <div class="col-sm-8">
+                                    <strong class="wordWrap">{{rmdc.OracleGlEntry.EnteredDr}}</strong>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-4">Exchange Rate</div>
+                                <div class="col-sm-8">
+                                    <strong class="wordWrap">{{rmdc.OracleGlEntry.ExchangeRate}}</strong>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-4">JE Creation Date</div>
+                                <div class="col-sm-8">
+                                    <strong class="wordWrap">{{rmdc.OracleGlEntry.JECreationDate}}</strong>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-4">JE Last UpdateDate</div>
+                                <div class="col-sm-8">
+                                    <strong class="wordWrap">{{rmdc.OracleGlEntry.JELastUpdateDate}}</strong>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-4">Journal Entry Description</div>
+                                <div class="col-sm-8">
+                                    <strong class="wordWrap">{{rmdc.OracleGlEntry.JournalEntryDescription}}</strong>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-4">Journal Entry Header Number</div>
+                                <div class="col-sm-8">
+                                    <strong class="wordWrap">{{rmdc.OracleGlEntry.JournalEntryHeaderNumber}}</strong>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-4">Line Description</div>
+                                <div class="col-sm-8">
+                                    <strong class="wordWrap">{{rmdc.OracleGlEntry.LineDescription}}</strong>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-4">Sub Account Description</div>
+                                <div class="col-sm-8">
+                                    <strong class="wordWrap">{{rmdc.OracleGlEntry.SubAccountDescription}}</strong>
+                                </div>
+                            </div>
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-body">
+        <p class="lead"><strong>Transactions</strong></p>
+        <div class="container-fluid animated">
+            <!-- Grid view to show listview with searching, sorting and pagination-->
+            <div ui-grid="rmdc.gridOptions" ui-grid-pagination ui-grid-move-columns ui-grid-resize-columns class="table-uigrid flip"></div>
+        </div>
+    </div>
 </div>
 

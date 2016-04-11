@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using FRS.Models.DomainModels;
 using FRS.Models.RequestModels;
 using FRS.Models.ResponseModels;
@@ -10,8 +9,9 @@ namespace FRS.Interfaces.Repository
     {
 
         SearchTemplateResponse<ReconciledMapping> GetReconciledMappingSearchResponse(ReconciledMappingSearchRequest searchRequest);
-        IEnumerable<ReconciledMapping> GetAll();
         bool SaveMappings(IEnumerable<ReconciledMapping> mappings);
+
+        IEnumerable<MT940CustomerStatementTransaction> GetReconciledMappingResponse(long ReconciledMappingResponseId);
 
     }
 }

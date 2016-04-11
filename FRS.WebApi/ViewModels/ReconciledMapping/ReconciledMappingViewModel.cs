@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using FRS.WebApi.Models.MT940Load;
 using FRS.WebApi.Models.ReconciledMapping;
 
 namespace FRS.WebApi.ViewModels.ReconciledMapping

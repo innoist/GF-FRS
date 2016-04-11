@@ -105,10 +105,10 @@
               { name: 'Unique Ref. Key', field: 'UniqueReferenceKey', sortId: 5 },
               { name: 'A/C#', field: 'AccountNumber', sortId: 3 },
               { name: 'Period', field: 'Period', sortId: 3 },
-              { name: 'Year', field: 'Year', sortId: 4, headerCellClass: 'text-right' },
+              { name: 'Year', field: 'Year', sortId: 4, headerCellClass: 'grid-align-right' },
               { name: 'Currency', field: 'Currency', sortId: 4 },
                 {
-                    name: 'Type', field: 'Type', sortId: 4 ,headerCellClass: 'text-right',
+                    name: 'Type', field: 'Type', sortId: 4 ,headerCellClass: 'grid-align-right',
                     cellTemplate: "<div class='ui-grid-cell-contents text-center'><label class='label' ng-class=" + '"' + "{'bg-green-light':row.entity.Type == 'Credit', 'bg-primary-light' : row.entity.Type == 'Debit'}" + '"' + ">{{row.entity.Type}}</label></div>"
                 },
               { name: 'Amount', field: 'Amount', sortId: 4, headerCellClass: 'text-center', cellFilter: 'number' },

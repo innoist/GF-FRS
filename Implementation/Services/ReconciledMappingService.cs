@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using FRS.Interfaces.IServices;
 using FRS.Interfaces.Repository;
 using FRS.Models.DomainModels;
 using FRS.Models.RequestModels;
 using FRS.Models.ResponseModels;
+using FRS.Repository.Repositories;
 
 namespace FRS.Implementation.Services
 {
@@ -12,15 +14,19 @@ namespace FRS.Implementation.Services
         #region Private
 
         private readonly IReconciledMappingRepository rcRepository;
+        private readonly OracleGLEntryRepository oracleGlEntryRepository;
+        private readonly MT940CustomerStatementTransactionRepository transactionRepository;
         //private readonly ILoadMetaDataRepository loadMetaDataRepository;
 
         #endregion
 
         #region Constructor
 
-        public ReconciledMappingService(IReconciledMappingRepository mcRepository)
+        public ReconciledMappingService(IReconciledMappingRepository mcRepository, OracleGLEntryRepository oracleGlEntryRepository, MT940CustomerStatementTransactionRepository transactionRepository)
         {
             this.rcRepository = mcRepository;
+            this.oracleGlEntryRepository = oracleGlEntryRepository;
+            this.transactionRepository = transactionRepository;
         }
 
         #endregion
@@ -54,22 +60,17 @@ namespace FRS.Implementation.Services
             }
         }
 
-        //public MT940LoadDetailResponse GetMt940LoadDetail(long mt940LoadId)
-        //{
-        //    MT940LoadDetailResponse response = new MT940LoadDetailResponse
-        //    {
-        //        Load = loadRepository.GetLoad(mt940LoadId),
-        //        Mt940Load = mt940LoadRepository.Find(mt940LoadId)
-                
-        //    };
-        //    response.LoadMetaData = loadMetaDataRepository.GetMetaData(response.Load.LoadMetaDataId);
-
-        //    return response;
-        //}
-
-        public ReconciledMappingResponse GetReconciledMappingResponse(long ReconciledMappingResponseId)
+        public ReconciledMappingResponse GetReconciledMappingResponse(long ReconciledMappingId)
         {
-            throw new System.NotImplementedException();
+            var mapping = rcRepository.Find(ReconciledMappingId);
+            ReconciledMappingResponse response = new ReconciledMappingResponse
+            {
+                OracleGlEntry = mapping.OracleGLEntry,
+                Transactions = rcRepository.GetReconciledMappingResponse(mapping.MT940CustomerStatementTransactionId),
+                ReconciledMapping = mapping
+            };
+
+            return response;
         }
 
         public SearchTemplateResponse<ReconciledMapping> GetReconciledMappingSearchResponse(ReconciledMappingSearchRequest searchRequest)
