@@ -26,7 +26,7 @@ namespace FRS.WebApi.ModelMappers
 
                 AccountDate = source.OracleGLEntry.EffectiveDate.HasValue ? source.OracleGLEntry.EffectiveDate.Value.ToString():"",
                 TransactionDate = source.MT940CustomerStatementTransaction.EntryDate.HasValue ? source.MT940CustomerStatementTransaction.EntryDate.Value.ToString():"",
-                Amount = source.MT940CustomerStatementTransaction.Amount.ToString("C0")
+                Amount = source.MT940CustomerStatementTransaction.Amount
             };
         }
 

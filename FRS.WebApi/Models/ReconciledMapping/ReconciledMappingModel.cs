@@ -19,7 +19,7 @@ namespace FRS.WebApi.Models.ReconciledMapping
 
         public string AccountDate { get; set; }
         public string TransactionDate { get; set; }
-        public string Amount { get; set; }
+        public decimal Amount { get; set; }
         public string DebitOrCredit { get; set; }
         
             

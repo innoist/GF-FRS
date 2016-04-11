@@ -142,6 +142,7 @@
     <Content Include="app\views\Currency\Currency.html" />
     <Content Include="app\views\Currency\NewCurrency.html" />
     <Content Include="app\views\CustomerStatementTransactions\CustomerStatementTransactions.html" />
+    <Content Include="app\views\ManualReconciliation\ReconciledMappingDetail.html" />
     <Content Include="app\views\OracleGLEntries\OracleGLEntryDetail.html" />
     <Content Include="app\views\ServiceLog\ServiceLogDetail.html" />
     <Content Include="app\views\ServiceLog\ServiceLog.html" />

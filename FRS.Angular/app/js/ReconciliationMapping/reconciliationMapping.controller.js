@@ -121,7 +121,7 @@
                 },
               { name: 'Account Date', field: 'AccountDate', sortId: 1 },
               { name: 'Transaction Date', field: 'TransactionDate', sortId: 2 },
-              { name: 'Amount', field: 'Amount', sortId: 3 },
+              { name: 'Amount', field: 'Amount', sortId: 3 , headerCellClass: 'text-right', cellFilter: 'number'},
               { name: 'Debit/Credit', field: 'DebitOrCredit', sortId: 4 },
               {
                   name: 'Actions', cellTemplate: '<div class="ui-grid-cell-contents text-center"><div class="btn btn-xs">' +
