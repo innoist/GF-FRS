@@ -1,6 +1,6 @@
 ﻿namespace FRS.Models.Common
 {
-    public enum OrderByOracleGLLoad
+    public enum OrderByOracleGLEntry
     {
         Id = 0,
         CreatedOn = 1

@@ -20,6 +20,10 @@ namespace FRS.Repository.Repositories
             new Dictionary<OrderByOracleGLLoad, Func<OracleGLLoad, object>>
             {
                 {OrderByOracleGLLoad.Id, c => c.OracleGLLoadId},
+                {OrderByOracleGLLoad.LoadStatus, c => c.Loads.FirstOrDefault().LoadStatu.Name},
+                {OrderByOracleGLLoad.ModifiedOn, c => c.ModifiedOn},
+                {OrderByOracleGLLoad.EntryCount, c => c.OracleGLEntryCount},
+                {OrderByOracleGLLoad.Start, c => c.Loads.FirstOrDefault().Start},
             };
         public OracleGLLoadRepository(IUnityContainer container)
             : base(container)
