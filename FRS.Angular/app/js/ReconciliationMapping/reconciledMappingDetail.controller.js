@@ -49,7 +49,14 @@
             vm.OracleGlEntry = response.OracleGlEntry;
             vm.gridOptions.data = vm.Transactions = response.Transactions;
             vm.ReconciledMapping = response.ReconciledMapping;
+            var temp = vm.Transactions.map(function (value) { return value.Amount; }).reduce(function (pv, cv) { return pv + cv; }, 0);
 
+            vm.RemainingBalance = vm.OracleGlEntry.Amount - temp;
+            if (vm.OracleGlEntry.Amount === temp) {
+                vm.ReconciliationStatus = true;
+            } else {
+                vm.ReconciliationStatus = false;
+            }
             toaster.success("Success", "Reconciliation set detail loaded successfully.");
         });
     }
