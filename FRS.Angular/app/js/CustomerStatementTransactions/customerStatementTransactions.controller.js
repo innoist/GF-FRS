@@ -115,7 +115,13 @@
               },
               { name: 'ValueDate', field: 'ValueDate', sortId: 1 },
               { name: 'Amount', field: 'Amount', sortId: 2, headerCellClass: 'grid-align-right', cellFilter: 'number' },
-              { name: 'Entry', field: 'EntryDate', sortId: 2 }
+              { name: 'Entry', field: 'EntryDate', sortId: 2 },
+              {
+                  name: 'Actions', cellTemplate: '<div class="ui-grid-cell-contents text-center"><div class="btn btn-xs">' +
+                    '<a ui-sref="app.CustomerStatementTransactionsDetail({Id : row.entity.MT940CustomerStatementTransactionId})" class="btn btn-xs btn-info"><i class="fa fa-search"></i></a>' +
+                    '</div></div>',
+                  headerCellClass: 'grid-align-right'
+              }
             ],
             onRegisterApi: function (gridApi) {
                 vm.gridApi = gridApi;

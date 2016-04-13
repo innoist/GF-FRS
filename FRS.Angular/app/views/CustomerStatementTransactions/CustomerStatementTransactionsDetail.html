@@ -1,0 +1,113 @@
+﻿<h3>
+    <!-- START Language list-->
+    <div class="pull-right">
+        <!--<a class="btn btn-info btn-labeled" ng-disabled="toProcess" ng-click="processLoad()">
+            <span class="btn-label">
+                <i class="fa fa-refresh"></i>
+            </span>Process
+        </a>-->
+        <a class="btn btn-inverse btn-labeled" onclick="history.back()">
+            <span class="btn-label">
+                <i class="fa fa-arrow-left"></i>
+            </span>Back
+        </a>
+    </div>
+    <!-- END Language list    -->
+    Transaction Statement
+    <small>MT940 Customer Transaction Detail</small>
+</h3>
+<div class="panel panel-default">
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-12">
+                <p class="lead bb"><strong>Details</strong></p>
+                <form class="form-horizontal p-20">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <div class="col-sm-4">Transaction Id</div>
+                            <div class="col-sm-8">
+                                <strong class="wordWrap">{{tdc.Transaction.MT940CustomerStatementTransactionId}}</strong>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-4">Debit / Credit</div>
+                            <div class="col-sm-8">
+                                <strong>
+                                    <label class='label'>
+                                        {{tdc.Transaction.DebitOrCredit}}
+                                    </label>
+                                </strong>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-4">Transaction Type</div>
+                            <div class="col-sm-8">
+                                <strong class="wordWrap">{{tdc.Transaction.TransactionType}}</strong>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-4">Reference</div>
+                            <div class="col-sm-8">
+                                <strong class="wordWrap">{{tdc.Transaction.Reference}}</strong>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-4">Amount</div>
+                            <div class="col-sm-8">
+                                <strong class="wordWrap">{{tdc.Transaction.Amount}}</strong>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-4">Statement ID</div>
+                            <div class="col-sm-8">
+                                <strong class="wordWrap">{{tdc.Transaction.MT940CustomerStatementId}}</strong>
+                            </div>
+                        </div>
+                       
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <div class="col-sm-4">Fund's Code</div>
+                            <div class="col-sm-8">
+                                <strong class="wordWrap">{{tdc.Transaction.FundsCode}}</strong>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-4">Sequence</div>
+                            <div class="col-sm-8">
+                                <strong class="wordWrap">{{tdc.Transaction.Sequence}}</strong>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-4">Value Date</div>
+                            <div class="col-sm-8">
+                                <strong class="wordWrap">{{tdc.Transaction.ValueDate}}</strong>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-4">EntryDate</div>
+                            <div class="col-sm-8">
+                                <strong class="wordWrap">{{tdc.Transaction.EntryDate}}</strong>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-4">Value</div>
+                            <div class="col-sm-8">
+                                <strong class="wordWrap">{{tdc.Transaction.Value}}</strong>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-4">Description</div>
+                            <div class="col-sm-8">
+                                <strong class="wordWrap">{{tdc.Transaction.Description}}</strong>
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

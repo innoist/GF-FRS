@@ -183,6 +183,7 @@
             getPage();
         }
 
+
         $scope.fiterData = function () {
             //paginationOptions.params.Name = vm.name;
             //paginationOptions.params.CreatedDate = vm.dt;
@@ -190,7 +191,9 @@
             getPage();
         }
 
+
         $scope.resetFilter();
+
 
 
     }

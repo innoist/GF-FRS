@@ -5,6 +5,7 @@ using System.Web.Http;
 using FRS.Interfaces.IServices;
 using FRS.Models.RequestModels;
 using FRS.WebApi.ModelMappers;
+using FRS.WebApi.Models.MT940CustomerStatementTransaction;
 using FRS.WebApi.ViewModels.MT940CustomerStatementTransaction;
 using FRS.WebBase.Mvc;
 
@@ -28,6 +29,17 @@ namespace FRS.WebApi.Controllers
         
 
         #region Get
+        [ApiException]
+        [HttpGet]
+        public MT940CustomerStatementTransactionModel Get(long id)
+        {
+            if (id <= 0)
+            {
+                throw new HttpException((int)HttpStatusCode.BadRequest, "Invalid Request");
+            }
+            var detail = mt940CustomerStatementTransactionService.GetTransaction(id).MapFromServerToClient();
+            return detail;
+        }
 
         [HttpGet]
         [Authorize]

@@ -2223,7 +2223,8 @@
               },
               {
                   name: 'CustomerStatementTransactions.module', files: ['/app/js/CustomerStatementTransactions/customerStatementTransactions.controller.js',
-                                                                        '/app/js/CustomerStatementTransactions/customerStatementTransactions.service.js']
+                                                                        '/app/js/CustomerStatementTransactions/customerStatementTransactions.service.js',
+                                                                        '/app/js/CustomerStatementTransactions/customerStatementTransactionDetails.controller.js']
               },
               {
                   name: 'MT940Balance.module', files: ['/app/js/MT940Balance/MT940Balance.controller.js',

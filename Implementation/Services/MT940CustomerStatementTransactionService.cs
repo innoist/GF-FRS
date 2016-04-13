@@ -1,5 +1,6 @@
 ﻿using FRS.Interfaces.IServices;
 using FRS.Interfaces.Repository;
+using FRS.Models.DomainModels;
 using FRS.Models.RequestModels;
 using FRS.Models.ResponseModels;
 
@@ -18,6 +19,11 @@ namespace FRS.Implementation.Services
         public SearchTemplateResponse<Models.DomainModels.MT940CustomerStatementTransaction> GetMt940SearchResponse(MT940CustomerStatementTransactionSearchrequest searchRequest)
         {
             return mt940CustomerStatementTransactionRepository.GetMt940SearchResponse(searchRequest);
+        }
+
+        public MT940CustomerStatementTransaction GetTransaction(long id)
+        {
+            return mt940CustomerStatementTransactionRepository.Find(id);
         }
     }
 }

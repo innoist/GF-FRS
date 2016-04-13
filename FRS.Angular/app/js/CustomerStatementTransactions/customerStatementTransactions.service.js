@@ -23,8 +23,20 @@
                 .error(onError);
 
             
+
+
+
+            
+        }
+        this.getDetail = function(id, onReady, onError) {
+
+            onError = onError || function() { alert('Failed to load rights'); };
+            $http
+                .get(window.frsApiUrl + '/api/MT940CustomerStatementTransaction/' + id)
+                .success(onReady)
+                .error(onError);
         }
     }
 
 
-})();
+    })();

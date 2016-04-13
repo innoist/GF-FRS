@@ -129,6 +129,14 @@
                 controllerAs: 'custstc',
                 resolve: helper.resolveFor('ui.grid', 'ui.select', 'CustomerStatementTransactions.module')
             })
+            .state('app.CustomerStatementTransactionsDetail', {
+                url: '/CustomerStatementTransactionDetail/:Id',
+                title: 'Customer Statement Transaction Detail',
+                templateUrl: helper.basepath('../../../../app/views/CustomerStatementTransactions/CustomerStatementTransactionsDetail.html'),
+                controller: 'TransactionDetailControllor',
+                controllerAs: 'tdc',
+                resolve: helper.resolveFor('CustomerStatementTransactions.module')
+            })
             .state('app.MT940Balance', {
                 url: '/MT940Balance',
                 title: 'MT940 Balance',
