@@ -31,7 +31,7 @@
             enableColumnMenus: false,
             columnDefs: [
               { name: 'Id', displayName: 'ID', field: 'MT940CustomerStatementId', sortId: 0 },
-              { name: 'Sequence', field: 'Sequence', sortId: 0 },
+              { name: 'Sequence', field: 'Sequence', sortId: 0, headerCellClass: 'grid-align-right' },
               { name: 'Reference', field: 'Reference', sortId: 4 },
               { name: 'Type', field: 'TransactionType', sortId: 1 },
                 {
@@ -40,7 +40,7 @@
                 },
               { name: 'Value', field: 'Value', sortId: 1 },
               { name: 'ValueDate', field: 'ValueDate', sortId: 1 },
-              { name: 'Amount', field: 'Amount', sortId: 2, cellFilter: 'number' },
+              { name: 'Amount', field: 'Amount', sortId: 2, cellFilter: 'number' , headerCellClass:'grid-align-right'},
               { name: 'Entry', field: 'EntryDate', sortId: 2 }
             ]
         };
