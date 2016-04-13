@@ -107,13 +107,13 @@
               { name: 'Period', field: 'Period', sortId: 3 },
               { name: 'Year', field: 'Year', sortId: 4, headerCellClass: 'grid-align-right' },
               { name: 'Currency', field: 'Currency', sortId: 4 },
-                {
-                    name: 'Type', field: 'Type', sortId: 4 ,headerCellClass: 'grid-align-right',
-                    cellTemplate: "<div class='ui-grid-cell-contents text-center'><label class='label' ng-class=" + '"' + "{'bg-green-light':row.entity.Type == 'Credit', 'bg-primary-light' : row.entity.Type == 'Debit'}" + '"' + ">{{row.entity.Type}}</label></div>"
-                },
-              { name: 'Amount', field: 'Amount', sortId: 4, headerCellClass: 'text-center', cellFilter: 'number' },
+              { name: 'Amount', field: 'Amount', sortId: 4, headerCellClass: 'grid-align-right', cellFilter: 'number' },
               { displayName: 'JE Created', field: 'JECreationDate', sortId: 4 },
               { displayName: 'JE Updated', field: 'JELastUpdateDate', sortId: 4 },
+              {
+                  name: 'Type', field: 'Type', sortId: 4, headerCellClass: 'grid-align-right',
+                  cellTemplate: "<div class='ui-grid-cell-contents text-right'><label class='label' ng-class=" + '"' + "{'bg-green-light':row.entity.Type == 'Credit', 'bg-primary-light' : row.entity.Type == 'Debit'}" + '"' + ">{{row.entity.Type}}</label></div>"
+              },
               {
                   name: 'Actions', cellTemplate: '<div class="ui-grid-cell-contents text-center"><div class="btn btn-xs">' +
                     '<a ui-sref="app.OracleGlEntryDetail({Id : row.entity.OracleGLEntryId})" class="btn btn-xs btn-info"><i class="fa fa-search"></i></a>' +

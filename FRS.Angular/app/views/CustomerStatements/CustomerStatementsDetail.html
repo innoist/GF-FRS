@@ -9,14 +9,14 @@
         </button>
     </div>
     <!-- END Language list    -->
-    {{mt940CustStatDetail.objCustomerStatement.AccountNumber}} - (Account Number)
-    <small>Details</small>
+    Customer Statement - ({{mt940CustStatDetail.objCustomerStatement.AccountNumber}})
+    <small>MT940 Customer Statement Detail</small>
 </h3>
 <div class="panel panel-default">
     <div class="panel-body">
         <div class="row">
             <div class="col-md-12">
-                <p class="lead bb"><strong>Customer Statement Detail</strong></p>
+                <p class="lead bb"><strong>Detail</strong></p>
                 <form class="form-horizontal p-20">
                     <div class="form-group">
                         <div class="col-sm-2">Message</div>
@@ -196,7 +196,7 @@
                     <div class="form-group">
                         <div class="col-sm-4">Amount</div>
                         <div class="col-sm-8">
-                            <strong>{{mt940CustStatDetail.objCustomerStatement.MT940OpeningBalance.Value}}</strong>
+                            <strong>{{mt940CustStatDetail.objCustomerStatement.MT940OpeningBalance.Value | number}}</strong>
                         </div>
                     </div>
 

@@ -9,10 +9,11 @@
     var core = angular.module('app.core');
     // ReSharper disable FunctionsUsedBeforeDeclared
     core.lazy.controller('ManualReconciliationController', ManualReconciliationController);
+    core.lazy.controller('ModalController', ModalController);
 
-    ManualReconciliationController.$inject = ['$timeout', '$rootScope', '$scope', '$state', 'uiGridConstants', 'ReconciliationSerice', 'toaster', '$stateParams', 'SweetAlert'];
+    ManualReconciliationController.$inject = ['$timeout', '$rootScope', '$scope', '$state', 'uiGridConstants', 'ReconciliationSerice', 'toaster', '$stateParams', 'SweetAlert', 'ngDialog'];
   
-    function ManualReconciliationController($timeout, $rootScope, $scope, $state, uiGridConstants, ReconciliationSerice, toaster, $stateParams, SweetAlert) {
+    function ManualReconciliationController($timeout, $rootScope, $scope, $state, uiGridConstants, ReconciliationSerice, toaster, $stateParams, SweetAlert, ngDialog) {
         
         var vm = this;
         $scope.toReconcile = false;
@@ -33,17 +34,23 @@
                 // name is for display on the table header, field is for mapping as in 
                 //sortId is kept locally it is not the property of ui.grid
               { name: 'Id', displayName: 'ID', field: 'MT940CustomerStatementId', sortId: 0 },
-              { name: 'Sequence', field: 'Sequence', sortId: 0 },
+              { name: 'Sequence', field: 'Sequence', sortId: 0, headerCellClass: 'grid-align-right', },
               { name: 'Reference', field: 'Reference', sortId: 4 },
+              {
+                  name: 'Debit/Credit', field: 'DebitOrCredit', sortId: 1, headerCellClass: 'grid-align-right',
+                  cellTemplate: "<div class='ui-grid-cell-contents text-right'><label title='{{row.entity.DebitOrCredit}}' class='label' ng-class=" + '"' + "{'bg-green-light':row.entity.DebitOrCredit == 'Credit', 'bg-primary-light' : row.entity.DebitOrCredit == 'Debit'}" + '"' + ">{{row.entity.DebitOrCredit}}</label></div>"
+              },
+              { name: 'Amount', field: 'Amount', sortId: 2, cellFilter: 'number' },
               { name: 'Type', field: 'TransactionType', sortId: 1 },
-                {
-                    name: 'Debit/Credit', field: 'DebitOrCredit', sortId: 1 ,
-                    cellTemplate: "<div class='ui-grid-cell-contents'><label title='{{row.entity.DebitOrCredit}}' class='label' ng-class=" + '"' + "{'bg-green-light':row.entity.DebitOrCredit == 'Credit', 'bg-primary-light' : row.entity.DebitOrCredit == 'Debit'}" + '"' + ">{{row.entity.DebitOrCredit}}</label></div>"
-                },
               { name: 'Value', field: 'Value', sortId: 1 },
               { name: 'ValueDate', field: 'ValueDate', sortId: 1 },
-              { name: 'Amount', field: 'Amount', sortId: 2, cellFilter: 'number' },
-              { name: 'Entry', field: 'EntryDate', sortId: 2 }
+              { name: 'Entry', field: 'EntryDate', sortId: 2 },
+              {
+                  name: 'Actions', cellTemplate: '<div class="ui-grid-cell-contents text-center"><div class="btn btn-xs">' +
+                    '<a class="btn btn-xs btn-info" ng-click="grid.appScope.viewTransactionDetail(row.entity)"><i class="fa fa-search"></i></a>' +
+                    '</div></div>',
+                  headerCellClass: 'text-center'
+              }
             ],
             onRegisterApi: function(gridApi) {
                 vm.gridApi = gridApi;
@@ -156,13 +163,13 @@
                     cellTemplate: "<div class='ui-grid-cell-contents'><label class='label' ng-class=" + '"' + "{'bg-green-light':row.entity.Type == 'Credit', 'bg-primary-light' : row.entity.Type == 'Debit'}" + '"' + ">{{row.entity.Type}}</label></div>"
                 },
               { name: 'Amount', field: 'Amount', sortId: 4, cellFilter: 'number' },
-              { name: 'Created On', field: 'CreatedOn', sortId: 4 }
-              //,{ name: 'Modified On', field: 'ModifiedOn', sortId: 4 }
-              //,{
-              //    name: 'Actions', cellTemplate: '<div class="ui-grid-cell-contents"><div class="btn btn-xs">' +
-              //      '<a target="_blank" ui-sref="app.OracleGlEntryDetail({Id : row.entity.OracleGLEntryId})" class="btn btn-xs btn-info"><i class="fa fa-search"></i></a>' +
-              //      '</div></div>'
-              //}
+              { name: 'Created On', field: 'CreatedOn', sortId: 4 },
+              {
+                  name: 'Actions', cellTemplate: '<div class="ui-grid-cell-contents text-center"><div class="btn btn-xs">' +
+                    '<a class="btn btn-xs btn-info" ng-click="grid.appScope.viewEntryDetail(row.entity)"><i class="fa fa-search"></i></a>' +
+                    '</div></div>',
+                  headerCellClass: 'text-center'
+              }
             ],
             onRegisterApi: function (gridOracleApi) {
                 vm.gridOracleApi = gridOracleApi;
@@ -265,19 +272,22 @@
                   displayName: 'Statement ID', field: 'MT940CustomerStatementId', sortId: 0,
                   cellTemplate: '<div class="ui-grid-cell-contents"><a ui-sref="app.CustomerStatementsDetail({MT940CustomerStatementId : row.entity.MT940CustomerStatementId})">{{row.entity.MT940CustomerStatementId}}</span></div>'
               },
-              
               { name: 'Reference', field: 'Reference', sortId: 4 },
-              { name: 'Type', field: 'TransactionType', sortId: 1 },
-                {
-                    name: 'Debit/Credit', field: 'DebitOrCredit', sortId: 1,
-                    cellTemplate: "<div class='ui-grid-cell-contents'><label title='{{row.entity.DebitOrCredit}}' class='label' ng-class=" + '"' + "{'bg-green-light':row.entity.DebitOrCredit == 'Credit', 'bg-primary-light' : row.entity.DebitOrCredit == 'Debit'}" + '"' + ">{{row.entity.DebitOrCredit}}</label></div>"
-                },
               {
-                  name: 'Value', field: 'Value', sortId: 1,
+                  name: 'Debit/Credit', field: 'DebitOrCredit', sortId: 1, headerCellClass:'grid-align-right',
+                  cellTemplate: "<div class='ui-grid-cell-contents text-right'><label title='{{row.entity.DebitOrCredit}}' class='label' ng-class=" + '"' + "{'bg-green-light':row.entity.DebitOrCredit == 'Credit', 'bg-primary-light' : row.entity.DebitOrCredit == 'Debit'}" + '"' + ">{{row.entity.DebitOrCredit}}</label></div>"
               },
-              { name: 'ValueDate', field: 'ValueDate', sortId: 1 },
               { name: 'Amount', field: 'Amount', sortId: 2, cellFilter: 'number' },
-              { name: 'Entry', field: 'EntryDate', sortId: 2 }
+              { name: 'Value', field: 'Value', sortId: 1},
+              { name: 'Type', field: 'TransactionType', sortId: 1 },
+              { name: 'ValueDate', field: 'ValueDate', sortId: 1 },
+              { name: 'Entry', field: 'EntryDate', sortId: 2 },
+              {
+                  name: 'Actions', cellTemplate: '<div class="ui-grid-cell-contents text-center"><div class="btn btn-xs">' +
+                    '<a class="btn btn-xs btn-info" ng-click="grid.appScope.viewTransactionDetail(row.entity)"><i class="fa fa-search"></i></a>' +
+                    '</div></div>',
+                  headerCellClass: 'text-center'
+              }
             ],
             onRegisterApi: function (gridTransactionApi) {
                 vm.gridTransactionApi = gridTransactionApi;
@@ -445,6 +455,43 @@
             }
         }
 
+        $scope.viewEntryDetail = function (item) {
+            ngDialog.open({
+                template: 'OralceEntryDetail',
+                controller: 'ModalController',
+                controllerAs: 'mc',
+                className: 'ngdialog-theme-default',
+                data: {OracleGLEntry: item}
+            });
+        };
+
+        $scope.viewTransactionDetail = function (item) {
+            ngDialog.open({
+                template: 'TransactionDetail',
+                controller: 'ModalController',
+                controllerAs: 'mc',
+                className: 'ngdialog-theme-default',
+                data: {Transaction: item}
+            });
+        };
+
+        
+    }
+
+    ModalController.$inject = ['ngDialog'];
+    function ModalController(ngDialog) {
+        var vm = this;
+        activate();
+
+        ////////////////
+
+        function activate() {
+            vm.closeDialog = function () {
+                ngDialog.close();
+            }
+        }
+
+        
     }
 
 })();

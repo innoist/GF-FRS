@@ -171,63 +171,63 @@
                     <button class="tlypageguide_dismiss">Got it, Thanks</button>
                 </div>
 
-                <style>
-                                    .tlypageguide_shadow {
-                                        z-index: 999 !important;
-                                    }
+<style>
+    .tlypageguide_shadow {
+        z-index: 999 !important;
+    }
 
-                                    #tlyPageGuideWrapper #tlyPageGuideToggles {
-                                        top: 110px !important;
-                                    }
+    #tlyPageGuideWrapper #tlyPageGuideToggles {
+        top: 110px !important;
+    }
 
-                                    .tlypageguide_shadow {
-                                        background: rgba(0, 255, 119, 0.1) !important;
-                                        box-shadow: 0 0 1px 1px darkgreen !important;
-                                    }
+    .tlypageguide_shadow {
+        background: rgba(0, 255, 119, 0.1) !important;
+        box-shadow: 0 0 1px 1px darkgreen !important;
+    }
 
 
-                                    #tlyPageGuideWrapper #tlyPageGuideMessages {
-                                        background: #7266ba !important;
-                                    }
+    #tlyPageGuideWrapper #tlyPageGuideMessages {
+        background: #7266ba !important;
+    }
 
-                                    .tlypageguide-open #tlyPageGuideWrapper .tlypageguide_toggle.tlyPageGuideToggleActive {
-                                        background: darkgreen !important;
-                                    }
+    .tlypageguide-open #tlyPageGuideWrapper .tlypageguide_toggle.tlyPageGuideToggleActive {
+        background: darkgreen !important;
+    }
 
-                                    .tlypageguide-active .tlyPageGuideStepIndex {
-                                        background: darkgreen !important;
-                                    }
+    .tlypageguide-active .tlyPageGuideStepIndex {
+        background: darkgreen !important;
+    }
 
-                                        .tlypageguide-active .tlyPageGuideStepIndex.tlypageguide_right:after, .tlypageguide-active .tlyPageGuideStepIndex.tlypageguide_left:after, .tlypageguide-active .tlyPageGuideStepIndex.tlypageguide_top:after {
-                                            border-top: 15px solid darkgreen !important;
-                                        }
+    .tlypageguide-active .tlyPageGuideStepIndex.tlypageguide_right:after, .tlypageguide-active .tlyPageGuideStepIndex.tlypageguide_left:after, .tlypageguide-active .tlyPageGuideStepIndex.tlypageguide_top:after {
+        border-top: 15px solid darkgreen !important;
+    }
 
-                                    .tlyPageGuideStepIndex {
-                                        background: lightgreen !important;
-                                    }
+    .tlyPageGuideStepIndex {
+        background: lightgreen !important;
+    }
 
-                                        .tlyPageGuideStepIndex.tlypageguide_left:after {
-                                            border-top: 15px solid lightgreen !important;
-                                        }
+    .tlyPageGuideStepIndex.tlypageguide_left:after {
+        border-top: 15px solid lightgreen !important;
+    }
 
-                                        .tlyPageGuideStepIndex.tlypageguide_top:after {
-                                            border-top: 15px solid lightgreen !important;
-                                        }
+    .tlyPageGuideStepIndex.tlypageguide_top:after {
+        border-top: 15px solid lightgreen !important;
+    }
 
-                                    #tlyPageGuideWrapper #tlyPageGuideMessages span {
-                                        background: darkgreen !important;
-                                    }
+    #tlyPageGuideWrapper #tlyPageGuideMessages span {
+        background: darkgreen !important;
+    }
 
-                                    .tlyPageGuideWelcome button, #tlyPageGuideWelcome button {
-                                        background: darkgreen !important;
-                                        font-size: 21px !important;
-                                    }
+    .tlyPageGuideWelcome button, #tlyPageGuideWelcome button {
+        background: darkgreen !important;
+        font-size: 21px !important;
+    }
 
-                                    .tlyPageGuideWelcome, #tlyPageGuideWelcome {
-                                        background: rgba(0,102,186,0.85) !important;
-                                        font-family: "Source Sans Pro", sans-serif !important;
-                                    }
-                                    /*    .tlypageguide-active .tlyPageGuideStepIndex.tlypageguide_right:after, .tlypageguide-active .tlyPageGuideStepIndex.tlypageguide_left:after, .tlypageguide-active .tlyPageGuideStepIndex.tlypageguide_top:after {
+    .tlyPageGuideWelcome, #tlyPageGuideWelcome {
+        background: rgba(0,102,186,0.85) !important;
+        font-family: "Source Sans Pro", sans-serif !important;
+    }
+/*    .tlypageguide-active .tlyPageGuideStepIndex.tlypageguide_right:after, .tlypageguide-active .tlyPageGuideStepIndex.tlypageguide_left:after, .tlypageguide-active .tlyPageGuideStepIndex.tlypageguide_top:after {
                             background: darkgreen !important;
                         }
                     .tlyPageGuideStepIndex {
@@ -254,7 +254,230 @@
                         background: lightgreen !important;
                     }*/
                 </style>
-                <script language="javascript">
 
+<style>
+    .ngdialog.ngdialog-theme-default {
+        padding-top: 50px !important;
+        padding-bottom: 100px !important;
+    }
 
-                </script>
+        .ngdialog.ngdialog-theme-default .ngdialog-content {
+            max-width: 80% !important;
+            width: auto !important;
+        }
+</style>
+
+<!-- Modal Templates -->
+<script type="text/ng-template" id="OralceEntryDetail">
+    <div class="container-fluid">
+                <!--<div class="col-md-9">-->
+                    <div class="col-md-12"><h3 class="bb mt0">Accounting Entry Detail</h3></div>
+                    <form class="form-horizontal p-20">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <div class="col-sm-4">Oracle GL Load Id</div>
+                                <div class="col-sm-8">
+                                    <strong class="wordWrap">{{ngDialogData.OracleGLEntry.OracleGLLoadId}}</strong>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-sm-4">Account Number</div>
+                                <div class="col-sm-8">
+                                    <strong class="wordWrap">{{ngDialogData.OracleGLEntry.AccountNumber}}</strong>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-4">Accounted Credit</div>
+                                <div class="col-sm-8">
+                                    <strong class="wordWrap">{{ngDialogData.OracleGLEntry.AccountedCr}}</strong>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-4">Accounted Debit</div>
+                                <div class="col-sm-8">
+                                    <strong class="wordWrap">{{ngDialogData.OracleGLEntry.AccountedDr}}</strong>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-4">Currency</div>
+                                <div class="col-sm-8">
+                                    <strong class="wordWrap">{{ngDialogData.OracleGLEntry.Currency}}</strong>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-4">Effective Date</div>
+                                <div class="col-sm-8">
+                                    <strong class="wordWrap">{{ngDialogData.OracleGLEntry.EffectiveDate}}</strong>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-4">Entered Credit</div>
+                                <div class="col-sm-8">
+                                    <strong class="wordWrap">{{ngDialogData.OracleGLEntry.EnteredCr}}</strong>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-4">Unique Reference Key</div>
+                                <div class="col-sm-8">
+                                    <strong class="wordWrap">{{ngDialogData.OracleGLEntry.UniqueReferenceKey}}</strong>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-sm-4">Entry Source</div>
+                                <div class="col-sm-8">
+                                    <strong class="wordWrap">{{ngDialogData.OracleGLEntry.EntrySource}}</strong>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-4">Sub Account Description</div>
+                                <div class="col-sm-8">
+                                    <strong class="wordWrap">{{ngDialogData.OracleGLEntry.SubAccountDescription}}</strong>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <div class="col-sm-4">Period</div>
+                                <div class="col-sm-8">
+                                    <strong class="wordWrap">{{ngDialogData.OracleGLEntry.Period}}</strong>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-4">Oracle GL Entry Id</div>
+                                <div class="col-sm-8">
+                                    <strong class="wordWrap">{{ngDialogData.OracleGLEntry.ngDialogData.OracleGLEntryId}}</strong>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-4">Entered Debit</div>
+                                <div class="col-sm-8">
+                                    <strong class="wordWrap">{{ngDialogData.OracleGLEntry.EnteredDr}}</strong>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-4">Exchange Rate</div>
+                                <div class="col-sm-8">
+                                    <strong class="wordWrap">{{ngDialogData.OracleGLEntry.ExchangeRate}}</strong>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-4">JE Creation Date</div>
+                                <div class="col-sm-8">
+                                    <strong class="wordWrap">{{ngDialogData.OracleGLEntry.JECreationDate}}</strong>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-4">JE Last UpdateDate</div>
+                                <div class="col-sm-8">
+                                    <strong class="wordWrap">{{ngDialogData.OracleGLEntry.JELastUpdateDate}}</strong>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-4">Journal Entry Description</div>
+                                <div class="col-sm-8">
+                                    <strong class="wordWrap">{{ngDialogData.OracleGLEntry.JournalEntryDescription}}</strong>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-4">Journal Entry Header Number</div>
+                                <div class="col-sm-8">
+                                    <strong class="wordWrap">{{ngDialogData.OracleGLEntry.JournalEntryHeaderNumber}}</strong>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-4">Line Description</div>
+                                <div class="col-sm-8">
+                                    <strong class="wordWrap">{{ngDialogData.OracleGLEntry.LineDescription}}</strong>
+                                </div>
+                            </div>
+                            
+                        </div>
+
+                    </form>
+                    <button type="button" class="btn btn-danger pull-right" ng-click="mc.closeDialog()">
+                        Close
+                    </button>
+                <!--</div>-->
+    </div>
+</script>
+
+<script type="text/ng-template" id="TransactionDetail">
+    <div class="container-fluid">
+        <!--<div class="col-md-9">-->
+        <div class="col-md-12"><h3 class="bb mt0">Transaction Detail</h3></div>
+        <form class="form-horizontal p-20">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <div class="col-sm-4">Transaction Id</div>
+                    <div class="col-sm-8">
+                        <strong class="wordWrap">{{ngDialogData.Transaction.MT940CustomerStatementTransactionId}}</strong>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-4">Statement Id</div>
+                    <div class="col-sm-8">
+                        <strong class="wordWrap">{{ngDialogData.Transaction.MT940CustomerStatementId}}</strong>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-4">DebitOrCredit</div>
+                    <div class="col-sm-8">
+                        <strong class="wordWrap"><label class="label" ng-class="{'bg-green-light':ngDialogData.Transaction.DebitOrCredit == 'Credit', 'bg-primary-light' : ngDialogData.Transaction.DebitOrCredit == 'Debit'}"></label>{{ngDialogData.Transaction.DebitOrCredit}}</strong>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-4">Amount</div>
+                    <div class="col-sm-8">
+                        <strong class="wordWrap">{{ngDialogData.Transaction.Amount}}</strong>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-4">Reference</div>
+                    <div class="col-sm-8">
+                        <strong class="wordWrap">{{ngDialogData.Transaction.Reference}}</strong>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="form-group">
+                    <div class="col-sm-4">Transaction Type</div>
+                    <div class="col-sm-8">
+                        <strong class="wordWrap">{{ngDialogData.Transaction.TransactionType}}</strong>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-4">Sequence</div>
+                    <div class="col-sm-8">
+                        <strong class="wordWrap">{{ngDialogData.Transaction.Sequence}}</strong>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-4">Value</div>
+                    <div class="col-sm-8">
+                        <strong class="wordWrap">{{ngDialogData.Transaction.Value}}</strong>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-4">Value Date</div>
+                    <div class="col-sm-8">
+                        <strong class="wordWrap">{{ngDialogData.Transaction.ValueDate}}</strong>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-4">Entry Date</div>
+                    <div class="col-sm-8">
+                        <strong class="wordWrap">{{ngDialogData.Transaction.EntryDate}}</strong>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <button type="button" class="btn btn-danger pull-right" ng-click="mc.closeDialog()">
+            Close
+        </button>
+        <!--</div>-->
+    </div>
+</script>
