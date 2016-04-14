@@ -7,11 +7,11 @@ namespace FRS.Models.RequestModels
         public long MT940LoadId { get; set; }
         public byte StatusId { get; set; }
 
-        public OrderByMT940Load OrderByColumn
+        public OrderByCustomerStatement OrderByColumn
         {
             get
             {
-                return (OrderByMT940Load)SortBy;
+                return (OrderByCustomerStatement)SortBy;
             }
             set
             {

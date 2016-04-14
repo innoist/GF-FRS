@@ -3,6 +3,8 @@
     public enum OrderByOracleGLEntry
     {
         Id = 0,
-        CreatedOn = 1
+        AccountLoad = 1,
+        UniqueRef=2,
+        Ac =3
     }
 }

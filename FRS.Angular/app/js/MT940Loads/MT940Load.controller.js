@@ -71,7 +71,7 @@
         vm.gridOptions = {
             paginationPageSizes: [10, 25, 50, 100, 500],
             paginationPageSize: 10,
-            enableSorting: false,
+            enableSorting: true,
             //suppressRemoveSort: true,
             useExternalPagination: true,
             useExternalSorting: true,
@@ -86,23 +86,23 @@
                 //sortId is kept locally it is not the property of ui.grid
               {
                   displayName: 'ID',
-                  field: 'MT940LoadId', sortId: 1,
+                  field: 'MT940LoadId', sortId: 0, enableSorting: true
                   //sort: {
                   //    //    direction: uiGridConstants.ASC
                   //    //}
               },
-              { name: 'Load Name', field: 'Name', sortId: 2 },
-              { name: 'File Name', field: 'FileName', sortId: 3 },
-              { name: 'Start', field: 'Start', sortId: 4 },
-              { name: 'Finish', field: 'Finish', sortId: 5 },
-              { name: 'Statements', field: 'CustomerStatementCount', sortId: 8 },
-              { name: 'Modified', field: 'ModifiedOnString', sortId: 9 },
+              { name: 'Load Name', field: 'Name', sortId: 1, enableSorting: true },
+              { name: 'File Name', field: 'FileName', sortId: 2, enableSorting: true },
+              { name: 'Start', field: 'Start', sortId: 3, enableSorting: true },
+              { name: 'Finish', field: 'Finish', sortId: null, enableSorting: false },
+              { name: 'Statements', field: 'CustomerStatementCount', sortId: null, enableSorting: false },
+              { name: 'Modified', field: 'ModifiedOnString', sortId: null, enableSorting: false },
               {
-                  name: 'Load Status', field: 'LoadStatus', sortId: 7, headerCellClass: 'grid-align-right',
+                  name: 'Load Status', field: 'LoadStatus', sortId: null, enableSorting: false, headerCellClass: 'grid-align-right',
                   cellTemplate: "<div class='ui-grid-cell-contents text-right'><label class='label' ng-class=" + '"' + "{'bg-warning-light' : row.entity.LoadStatus == 'Created' || row.entity.LoadStatus == 'Submitted', 'bg-green-light' : row.entity.LoadStatus == 'Parsing' || row.entity.LoadStatus == 'Transforming' || row.entity.LoadStatus == 'Importing', 'bg-success' : row.entity.LoadStatus == 'Completed', 'bg-danger' : row.entity.LoadStatus == 'Failed'}" + '"' + ">{{row.entity.LoadStatus}}</label></div>"
               },
               {
-                  name: 'Actions', cellTemplate: '<div class="ui-grid-cell-contents text-center"><div class="btn btn-xs">' +
+                  name: 'Actions', enableSorting: false, cellTemplate: '<div class="ui-grid-cell-contents text-center"><div class="btn btn-xs">' +
                     '<a ui-sref="app.MT940LoadDetail({MT940LoadId : row.entity.MT940LoadId})" class="btn btn-xs btn-info"><i class="fa fa-search"></i></a>'+
                     '</div></div>',
                   headerCellClass: 'text-center'

@@ -55,6 +55,7 @@
             paginationPageSize: 10,
             useExternalPagination: true,
             useExternalSorting: true,
+            enableSorting: true,
             //enableFiltering: true,
             flatEntityAccess: true,
             //fastWatch: true,
@@ -64,14 +65,14 @@
             columnDefs: [
                 // name is for display on the table header, field is for mapping as in 
                 //sortId is kept locally it is not the property of ui.grid
-              { name: 'User Name', field: 'UserName', sortId: 3, enableSorting: false, cellTemplate: '<div class="ui-grid-cell-contents"><a ui-sref="app.Profile({Name : row.entity.UserName})">{{row.entity.UserName}}</a> </div>' },
-              { name: 'First Name', field: 'FirstName', sortId: 1, enableSorting: false },
-              { name: 'Last Name', field: 'LastName', sortId: 2, enableSorting: false },
-              { name: 'Email', field: 'Email', sortId: 4, enableSorting: false },
-              { name: 'Address', field: 'Address', sortId: 5, enableSorting: false },
-              { name: 'Phone No.', field: 'Telephone', sortId: 6, enableSorting: false },
-              { name: 'Company', field: 'CompanyName', sortId: 7, enableSorting: false },
-              { name: 'Role', field: 'Role', sortId: 8, enableSorting: false },
+              { name: 'User Name', field: 'UserName', sortId: 0, enableSorting: true, cellTemplate: '<div class="ui-grid-cell-contents"><a ui-sref="app.Profile({Name : row.entity.UserName})">{{row.entity.UserName}}</a> </div>' },
+              { name: 'First Name', field: 'FirstName', sortId: 1, enableSorting: true },
+              { name: 'Last Name', field: 'LastName', sortId: 2, enableSorting: true },
+              { name: 'Email', field: 'Email', sortId: null, enableSorting: true },
+              { name: 'Address', field: 'Address', sortId: null, enableSorting: false },
+              { name: 'Phone No.', field: 'Telephone', sortId: null, enableSorting: false },
+              { name: 'Company', field: 'CompanyName', sortId: null, enableSorting: false },
+              { name: 'Role', field: 'Role', sortId: null, enableSorting: false },
               //{ name: 'Action', field: '', sortId: 8, enableSorting: false, cellTemplate: actionBtnTemplate }
             ],
             onRegisterApi: function (gridApi) {

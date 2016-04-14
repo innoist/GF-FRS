@@ -405,6 +405,11 @@
 </script>
 
 <script type="text/ng-template" id="TransactionDetail">
+    <style>
+        .ngdialog.ngdialog-theme-default {
+        padding-top: 160px !important;
+    }
+    </style>
     <div class="container-fluid">
         <!--<div class="col-md-9">-->
         <div class="col-md-12"><h3 class="bb mt0">Transaction Detail</h3></div>
@@ -475,9 +480,11 @@
                 </div>
             </div>
         </form>
+       
         <button type="button" class="btn btn-danger pull-right" ng-click="mc.closeDialog()">
             Close
         </button>
         <!--</div>-->
     </div>
+
 </script>

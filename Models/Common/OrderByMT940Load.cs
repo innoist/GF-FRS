@@ -3,6 +3,8 @@
     public enum OrderByCustomerStatement
     {
         Id = 0,
-        CreatedOn = 1
+        LoadName = 1,
+        FileName=2,
+        Start=3
     }
 }

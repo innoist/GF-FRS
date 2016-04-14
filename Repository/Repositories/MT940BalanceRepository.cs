@@ -21,6 +21,9 @@ namespace FRS.Repository.Repositories
             new Dictionary<OrderByMT940Balance, Func<MT940Balance, object>>
             {
                 {OrderByMT940Balance.Id, c => c.MT940BalanceId},
+                {OrderByMT940Balance.Type, c => c.DebitOrCredit},
+                {OrderByMT940Balance.Entry, c => c.EntryDate},
+                {OrderByMT940Balance.Value, c => c.Value},
             };
 
         public MT940BalanceRepository(IUnityContainer container) : base(container)

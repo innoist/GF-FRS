@@ -74,7 +74,7 @@
         vm.gridOptions = {
             paginationPageSizes: [10, 25, 50, 100, 500],
             paginationPageSize: 10,
-            enableSorting: false,
+            enableSorting: true,
             //suppressRemoveSort: true,
             useExternalPagination: true,
             useExternalSorting: true,
@@ -89,18 +89,18 @@
                 //sortId is kept locally it is not the property of ui.grid
                 {
                     displayName: 'ID',
-                    field: 'MT940CustomerStatementId', sortId: 1,
+                    field: 'MT940CustomerStatementId', sortId: 0, enableSorting: true,
                     sort: {
                             direction: uiGridConstants.ASC
                         },
                     //cellTemplate: '<div class="ui-grid-cell-contents"><a ui-sref="app.CustomerStatementsDetail({MT940CustomerStatementId : row.entity.MT940CustomerStatementId})">{{row.entity.MT940CustomerStatementId}}</a></div>'
                 },
-              { name: 'Sequence', field: 'Sequence', sortId: 2, headerCellClass: 'grid-align-right' },
-              { name: 'Load Id', field: 'MT940LoadId', sortId: 2, headerCellClass: 'grid-align-right' },
-              { name: 'A/C#', field: 'AccountNumber', sortId: 2 },
-              { name: 'Statement No.', field: 'StatementNumber', sortId: 2, headerCellClass: 'grid-align-right' },
+              { name: 'Sequence', field: 'Sequence', sortId: 1, enableSorting: true, headerCellClass: 'grid-align-right' },
+              { name: 'Load Id', field: 'MT940LoadId', sortId: 2, enableSorting: true, headerCellClass: 'grid-align-right' },
+              { name: 'A/C#', field: 'AccountNumber', sortId: 3, enableSorting: true },
+              { name: 'Statement No.', field: 'StatementNumber', sortId: null, headerCellClass: 'grid-align-right', enableSorting: false },
               { name: 'Transaction Reference', field: 'TransactionReference', sortId: 5 },
-              { name: 'Transactions', field: 'TransactionCount', sortId: 2, headerCellClass: 'grid-align-right' },
+              { name: 'Transactions', field: 'TransactionCount', sortId: null, headerCellClass: 'grid-align-right', enableSorting: false },
               {
                   name: 'Actions', cellTemplate: '<div class="ui-grid-cell-contents text-center"><div class="btn btn-xs">' +
                     '<a ui-sref="app.CustomerStatementsDetail({MT940CustomerStatementId : row.entity.MT940CustomerStatementId})" class="btn btn-xs btn-info"><i class="fa fa-search"></i></a>' +

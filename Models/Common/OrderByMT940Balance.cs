@@ -3,6 +3,8 @@
     public enum OrderByMT940Balance
     {
         Id = 0,
-        CreatedOn = 1
+        Type = 1,
+        Entry = 2,
+        Value = 3,
     }
 }
