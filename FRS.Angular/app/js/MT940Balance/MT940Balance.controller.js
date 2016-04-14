@@ -13,7 +13,7 @@
     MT940BalanceController.$inject = ['$scope', '$state', 'uiGridConstants', 'MT940BalanceService'];
 
     function MT940BalanceController($scope, $state, uiGridConstants, MT940BalanceService) {
-
+        //github
         var vm = this;
 
         //datepicker
