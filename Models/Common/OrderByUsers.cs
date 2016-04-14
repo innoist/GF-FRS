@@ -2,10 +2,10 @@
 {
     public enum OrderByUsers
     {
-        Id = 0,
-        Name = 1,
-        Role = 2,
-        Email = 3,
-        Telephone = 4
+        UserName = 0,
+        FirstName = 1,
+        LastName = 2,
+        Email = 3
+
     }
 }

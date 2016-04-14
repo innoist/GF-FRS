@@ -25,7 +25,10 @@ namespace FRS.Repository.Repositories
             new Dictionary<OrderByUsers, Func<AspNetUser, object>>
             {
                 //{OrderByUsers.Name, c => c.},
-                {OrderByUsers.Id, c => c.Id},
+                {OrderByUsers.UserName, c => c.UserName},
+                {OrderByUsers.FirstName, c => c.FirstName},
+                {OrderByUsers.LastName, c => c.LastName},
+                {OrderByUsers.Email, c => c.Email},
             };
 
         #endregion
