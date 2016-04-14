@@ -85,7 +85,7 @@
         vm.gridOptions = {
             paginationPageSizes: [10, 25, 50, 100, 500],
             paginationPageSize: 10,
-            enableSorting: false,
+            enableSorting: true,
             //modifierKeysToMultiSelect: true,
             //enableFullRowSelection: true,
             //enableRowHeaderSelection: true,
@@ -101,23 +101,23 @@
             columnDefs: [
                 // name is for display on the table header, field is for mapping as in 
                 //sortId is kept locally it is not the property of ui.grid
-              { displayName: 'ID', field: 'MT940CustomerStatementTransactionId', sortId: 0 },
+              { displayName: 'ID', field: 'MT940CustomerStatementTransactionId', sortId: 0, enableSorting: true },
               {
-                  displayName: 'Statement ID', field: 'MT940CustomerStatementId', sortId: 0,
+                  displayName: 'Statement ID', field: 'MT940CustomerStatementId', sortId: 1, enableSorting: true,
                   cellTemplate: '<div class="ui-grid-cell-contents"><a ui-sref="app.CustomerStatementsDetail({MT940CustomerStatementId : row.entity.MT940CustomerStatementId})">{{row.entity.MT940CustomerStatementId}}</span></div>'
               },
-              { name: 'Sequence', field: 'Sequence', sortId: 0, headerCellClass: 'grid-align-right' },
-              { name: 'Reference', field: 'Reference', sortId: 4 },
-              { name: 'Type', field: 'TransactionType', sortId: 1 },
+              { name: 'Sequence', field: 'Sequence', sortId: 2, enableSorting: true, headerCellClass: 'grid-align-right' },
+              { name: 'Reference', field: 'Reference', sortId: 3, enableSorting: true },
+              { name: 'Type', field: 'TransactionType', sortId: null, enableSorting: false },
               {
-                  name: 'Value', field: 'Value', sortId: 1,
+                  name: 'Value', field: 'Value', sortId: null, enableSorting: false,
                   cellTemplate: '<div class="ui-grid-cell-contents text-center"><span title="{{row.entity.Value}}">{{row.entity.Value}}</span></div>'
               },
-              { name: 'ValueDate', field: 'ValueDate', sortId: 1 },
-              { name: 'Amount', field: 'Amount', sortId: 2, headerCellClass: 'grid-align-right', cellFilter: 'number' },
-              { name: 'Entry', field: 'EntryDate', sortId: 2 },
+              { name: 'ValueDate', field: 'ValueDate', sortId: null, enableSorting: false },
+              { name: 'Amount', field: 'Amount', sortId: null, enableSorting: false, headerCellClass: 'grid-align-right', cellFilter: 'number' },
+              { name: 'Entry', field: 'EntryDate', sortId: null, enableSorting: false },
               {
-                  name: 'Actions', cellTemplate: '<div class="ui-grid-cell-contents text-center"><div class="btn btn-xs">' +
+                  name: 'Actions', enableSorting: false, cellTemplate: '<div class="ui-grid-cell-contents text-center"><div class="btn btn-xs">' +
                     '<a ui-sref="app.CustomerStatementTransactionsDetail({Id : row.entity.MT940CustomerStatementTransactionId})" class="btn btn-xs btn-info"><i class="fa fa-search"></i></a>' +
                     '</div></div>',
                   headerCellClass: 'grid-align-right'
@@ -148,30 +148,7 @@
                     paginationOptions.params.PageSize = pageSize;
                     getPage();
                 });
-                gridApi.selection.on.rowSelectionChanged($scope, function (row) {
-                    if (row.isSelected === true) {
-                        // window.Transactions.push(row.entity);
-                        $rootScope.app.CustomerTransactions.push(row.entity);
-                        
-                        var index=vm.gridOptions.data.indexOf(row.entity);
-                        vm.gridOptions.data.splice(index, 1);
-                        //vm.gridOptions.data.pop(row.entity);
-                    }else if (row.isSelected === false) {
-                        //window.Transactions.pop(row.entity);
-                        $rootScope.app.CustomerTransactions.pop(row.entity);
-                    }
-                    console.log(row.entity);
-                 
-                });
-
-                gridApi.selection.on.rowSelectionChangedBatch($scope, function (rows) {
-                    
-                    angular.forEach(rows, function(key, value) {
-                        
-                    });
-                    var msg = 'rows changed ' + rows.length;
-                    console.log(msg);
-                });
+                
             }
         };
         var getPage = function () {

@@ -19,7 +19,10 @@ namespace FRS.Repository.Repositories
 
             new Dictionary<OrderByOracleGLEntry, Func<OracleGLEntry, object>>
             {
-                {OrderByOracleGLEntry.Id, c => c.OracleGLLoadId},
+                {OrderByOracleGLEntry.Id, c => c.OracleGLEntryId},
+                {OrderByOracleGLEntry.AccountLoad, c => c.OracleGLLoadId},
+                {OrderByOracleGLEntry.UniqueRef, c => c.UniqueReferenceKey},
+                {OrderByOracleGLEntry.Ac, c => c.AccountedCr},
             };
         public OracleGLEntryRepository(IUnityContainer container)
             : base(container)

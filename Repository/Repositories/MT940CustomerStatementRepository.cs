@@ -15,11 +15,14 @@ namespace FRS.Repository.Repositories
 {
     public class MT940CustomerStatementRepository : BaseRepository<MT940CustomerStatement>, IMT940CustomerStatementRepository
     {
-        private readonly Dictionary<OrderByCustomerStatement, Func<MT940CustomerStatement, object>> orderClause =
+        private readonly Dictionary<OrderByMT940Load, Func<MT940CustomerStatement, object>> orderClause =
 
-            new Dictionary<OrderByCustomerStatement, Func<MT940CustomerStatement, object>>
+            new Dictionary<OrderByMT940Load, Func<MT940CustomerStatement, object>>
             {
-                {OrderByCustomerStatement.Id, c => c.MT940LoadId},
+                {OrderByMT940Load.Id, c => c.MT940CustomerStatementId},
+                {OrderByMT940Load.Sequence, c => c.Sequence},
+                {OrderByMT940Load.LoadId, c => c.MT940LoadId},
+                {OrderByMT940Load.AC, c => c.AccountNumber},
             };
 
         public MT940CustomerStatementRepository(IUnityContainer container) : base(container)

@@ -21,6 +21,9 @@ namespace FRS.Repository.Repositories
             new Dictionary<OrderByCustomerStatementTransaction, Func<MT940CustomerStatementTransaction, object>>
             {
                 {OrderByCustomerStatementTransaction.Id, c => c.MT940CustomerStatementTransactionId},
+                {OrderByCustomerStatementTransaction.StatementID, c => c.MT940CustomerStatementId},
+                {OrderByCustomerStatementTransaction.Sequence, c => c.Sequence},
+                {OrderByCustomerStatementTransaction.Reference, c => c.Reference},
             };
 
         public MT940CustomerStatementTransactionRepository(IUnityContainer container) : base(container)

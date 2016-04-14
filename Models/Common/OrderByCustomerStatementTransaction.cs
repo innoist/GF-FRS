@@ -3,6 +3,8 @@
     public enum OrderByCustomerStatementTransaction
     {
         Id = 0,
-        CreatedOn = 1
+        StatementID = 1,
+        Sequence = 2,
+        Reference = 3
     }
 }

@@ -74,7 +74,7 @@
         vm.gridOptions = {
             paginationPageSizes: [10, 25, 50, 100, 500],
             paginationPageSize: 10,
-            enableSorting: false,
+            enableSorting: true,
             //suppressRemoveSort: true,
             multiSelect: false,
             modifierKeysToMultiSelect: false,
@@ -93,29 +93,29 @@
                 //sortId is kept locally it is not the property of ui.grid
               {
                   displayName: 'ID',
-                  field: 'OracleGLEntryId', sortId: 2,
+                  field: 'OracleGLEntryId', sortId: 0, enableSorting: true
               },
                 {
                     displayName: 'Account Load Id',
-                    field: 'OracleGLLoadId', sortId: 2,
+                    field: 'OracleGLLoadId', sortId: 1, enableSorting: true,
                     cellTemplate: '<div class="ui-grid-cell-contents">' +
                     '<a ui-sref="app.OracleGlLoadDetail({Id : row.entity.OracleGLLoadId})">{{row.entity.OracleGLLoadId}}</a>' +
                     '</div>'
                 },
-              { name: 'Unique Ref. Key', field: 'UniqueReferenceKey', sortId: 5 },
-              { name: 'A/C#', field: 'AccountNumber', sortId: 3 },
-              { name: 'Period', field: 'Period', sortId: 3 },
-              { name: 'Year', field: 'Year', sortId: 4, headerCellClass: 'grid-align-right' },
-              { name: 'Currency', field: 'Currency', sortId: 4 },
-              { name: 'Amount', field: 'Amount', sortId: 4, headerCellClass: 'grid-align-right', cellFilter: 'number' },
-              { displayName: 'JE Created', field: 'JECreationDate', sortId: 4 },
-              { displayName: 'JE Updated', field: 'JELastUpdateDate', sortId: 4 },
+              { name: 'Unique Ref. Key', field: 'UniqueReferenceKey', sortId: 2, enableSorting: true },
+              { name: 'A/C#', field: 'AccountNumber', sortId: 3, enableSorting: true },
+              { name: 'Period', field: 'Period', sortId: null, enableSorting: false },
+              { name: 'Year', field: 'Year', sortId: null, headerCellClass: 'grid-align-right', enableSorting: false },
+              { name: 'Currency', field: 'Currency', sortId: null, enableSorting: false },
+              { name: 'Amount', field: 'Amount', sortId: null, enableSorting: false, headerCellClass: 'grid-align-right', cellFilter: 'number' },
+              { displayName: 'JE Created', field: 'JECreationDate', sortId: null, enableSorting: false },
+              { displayName: 'JE Updated', field: 'JELastUpdateDate', sortId: null, enableSorting: false },
               {
                   name: 'Type', field: 'Type', sortId: 4, headerCellClass: 'grid-align-right',
                   cellTemplate: "<div class='ui-grid-cell-contents text-right'><label class='label' ng-class=" + '"' + "{'bg-green-light':row.entity.Type == 'Credit', 'bg-primary-light' : row.entity.Type == 'Debit'}" + '"' + ">{{row.entity.Type}}</label></div>"
               },
               {
-                  name: 'Actions', cellTemplate: '<div class="ui-grid-cell-contents text-center"><div class="btn btn-xs">' +
+                  name: 'Actions', enableSorting: false, cellTemplate: '<div class="ui-grid-cell-contents text-center"><div class="btn btn-xs">' +
                     '<a ui-sref="app.OracleGlEntryDetail({Id : row.entity.OracleGLEntryId})" class="btn btn-xs btn-info"><i class="fa fa-search"></i></a>' +
                     '</div></div>',
                   headerCellClass: 'text-center'
