@@ -195,6 +195,7 @@
     <Content Include="vendor\weather-icons\font\weathericons-regular-webfont.woff2" />
     <Content Include="app\js\Users\changePassword.controller.js" />
     <Content Include="app\views\Source\SourceIndex.html" />
+    <None Include="Properties\PublishProfiles\ClientFileSystemDeploy.pubxml" />
     <None Include="Properties\PublishProfiles\GFFRS - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\GFFRS - Web Deploy.pubxml" />
     <None Include="Web.Debug.config">

@@ -365,6 +365,7 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
     <Content Include="Areas\Load\Views\web.config" />
+    <None Include="Properties\PublishProfiles\FileSystemDeployment.pubxml" />
     <None Include="Properties\PublishProfiles\FRSWebApi - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\FRSWebApi - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
