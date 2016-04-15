@@ -107,7 +107,7 @@
               { name: 'Period', field: 'Period', sortId: null, enableSorting: false },
               { name: 'Year', field: 'Year', sortId: null, headerCellClass: 'grid-align-right', enableSorting: false },
               { name: 'Currency', field: 'Currency', sortId: null, enableSorting: false },
-              { name: 'Amount', field: 'Amount', sortId: null, enableSorting: false, headerCellClass: 'grid-align-right', cellFilter: 'number' },
+              { name: 'Amount', field: 'Amount', sortId: null, enableSorting: false, headerCellClass: 'grid-align-right', cellFilter: 'number : 2' },
               { displayName: 'JE Created', field: 'JECreationDate', sortId: null, enableSorting: false },
               { displayName: 'JE Updated', field: 'JELastUpdateDate', sortId: null, enableSorting: false },
               {
