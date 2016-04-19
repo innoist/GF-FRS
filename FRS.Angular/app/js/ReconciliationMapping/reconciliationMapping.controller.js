@@ -121,7 +121,7 @@
                 },
               { name: 'Account Date', field: 'AccountDate', sortId: 1 },
               { name: 'Transaction Date', field: 'TransactionDate', sortId: 2 },
-              { name: 'Amount', field: 'Amount', sortId: 3 , headerCellClass: 'grid-align-right', cellFilter: 'number'},
+              { name: 'Amount', field: 'Amount', sortId: 3 , headerCellClass: 'grid-align-right', cellFilter: 'number : 2'},
                 {
                     name: 'Debit/Credit', field: 'DebitOrCredit', sortId: 4,headerCellClass: 'grid-align-right',
                     cellTemplate: "<div class='ui-grid-cell-contents text-right'><label title='{{row.entity.DebitOrCredit}}' class='label' ng-class=" + '"' + "{'bg-green-light':row.entity.DebitOrCredit == 'Credit', 'bg-primary-light' : row.entity.DebitOrCredit == 'Debit'}" + '"' + ">{{row.entity.DebitOrCredit}}</label></div>"

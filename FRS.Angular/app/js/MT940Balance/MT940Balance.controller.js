@@ -105,7 +105,7 @@
                   cellTemplate: "<div class='ui-grid-cell-contents text-center'><label class='label' ng-class=" + '"' + "{'bg-green-light':row.entity.DebitOrCredit == 'Credit', 'bg-primary-light' : row.entity.DebitOrCredit == 'Debit'}" + '"' + ">{{row.entity.DebitOrCredit}}</label></div>"
               },
               { name: 'Entry', field: 'EntryDate', sortId: 2, enableSorting: true },
-              { name: 'Value', field: 'Value', sortId: 3, enableSorting: true, headerCellClass: 'grid-align-right', cellFilter: 'number' }
+              { name: 'Value', field: 'Value', sortId: 3, enableSorting: true, headerCellClass: 'grid-align-right', cellFilter: 'number:2' }
               //{ name: 'Actions' , cellTemplate: '<div class="ui-grid-cell-contents"><div uib-dropdown="dropdown" style="position:absolute;" class="btn-group btn-xs dropdown">' +
               //    '<a type="button" class="btn btn-xs btn-info"><i class="fa fa-search"></i></a>' +
               //    '<a type="button" uib-dropdown-toggle="" class="btn btn-xs dropdown-toggle btn-info" aria-haspopup="true" aria-expanded="false">' +

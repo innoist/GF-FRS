@@ -378,6 +378,16 @@
                 title: 'Not Found',
                 templateUrl: 'app/pages/404.html'
             })
+
+            .state('app.SLoadType', {
+                url: '/SLoadType',
+                title: 'SLoadType',
+                templateUrl: helper.basepath('../../../../app/views/SLoadType/SLoadType.html'),
+                controller: 'SLoadTcontrollor',
+                controllerAs: 'ltc',
+                resolve: helper.resolveFor('SLoadType.module', 'ui.grid')
+            })
+
             .state('account.ResetPassword', {
                 url: '/ResetPassword',
                 title: 'Reset Password',

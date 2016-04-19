@@ -2272,6 +2272,12 @@
                   name: 'loadType.module', files: ['/app/js/LoadType/Index/loadType.controller.js',
                                                        '/app/js/LoadType/Index/loadType.service.js']
               },
+
+              {
+                  name: 'SLoadType.module', files: ['/app/js/SLoadType/SLoadT.controllor.js',
+                                                       '/app/js/SLoadType/sLoadT.service.js']
+              },
+
               {
                   name: 'createLoadType.module', files: ['/app/js/LoadType/Create/CreateLoadType.controller.js',
                                                          '/app/js/LoadType/Create/CreateLoadType.service.js']

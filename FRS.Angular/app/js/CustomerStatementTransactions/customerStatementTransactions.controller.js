@@ -114,7 +114,7 @@
                   cellTemplate: '<div class="ui-grid-cell-contents text-center"><span title="{{row.entity.Value}}">{{row.entity.Value}}</span></div>'
               },
               { name: 'ValueDate', field: 'ValueDate', sortId: null, enableSorting: false },
-              { name: 'Amount', field: 'Amount', sortId: null, enableSorting: false, headerCellClass: 'grid-align-right', cellFilter: 'number' },
+              { name: 'Amount', field: 'Amount', sortId: null, enableSorting: false, headerCellClass: 'grid-align-right', cellFilter: 'number', cellFilter: 'number : 2' },
               { name: 'Entry', field: 'EntryDate', sortId: null, enableSorting: false },
               {
                   name: 'Actions', enableSorting: false, cellTemplate: '<div class="ui-grid-cell-contents text-center"><div class="btn btn-xs">' +
