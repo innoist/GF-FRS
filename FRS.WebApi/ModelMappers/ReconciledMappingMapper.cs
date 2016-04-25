@@ -11,22 +11,20 @@ namespace FRS.WebApi.ModelMappers
             return new ReconciledMappingModel
             {
                 ReconciledMappingId = source.ReconciledMappingId,
-                DebitOrCredit = source.MT940CustomerStatementTransaction.DebitOrCredit == "C" ? "Credit" : source.MT940CustomerStatementTransaction.DebitOrCredit == "D" ? "Debit" : "N/A",
+                Identifier = source.Identifier,
+                DebitOrCredit = source.OracleGLEntry.AccountedCr.HasValue && source.OracleGLEntry.AccountedCr.Value != 0 ? "Credit" : "Debit",
                 ModifiedBy = source.ModifiedBy,
                 CreatedBy = source.CreatedBy,
                 CreatedOn = source.CreatedOn,
                 ModifiedOn = source.ModifiedOn,
                 OracleGLEntryId = source.OracleGLEntryId,
-                StatementId = source.MT940CustomerStatementTransaction.MT940CustomerStatementId,
                 OracleGLLoadId = source.OracleGLEntry.OracleGLLoadId,
                 MT940CustomerStatementTransactionId = source.MT940CustomerStatementTransactionId,
                 IsDeleted = source.IsDeleted,
                 IsManual = source.IsManual,
                 AccountNumber = source.OracleGLEntry.AccountNumber,
-
-                AccountDate = source.OracleGLEntry.EffectiveDate.HasValue ? source.OracleGLEntry.EffectiveDate.Value.ToString():"",
-                TransactionDate = source.MT940CustomerStatementTransaction.EntryDate.HasValue ? source.MT940CustomerStatementTransaction.EntryDate.Value.ToString():"",
-                Amount = source.MT940CustomerStatementTransaction.Amount
+                TransactionsCount = source.TransactionsCount,
+                Amount = source.TransactionAmount
             };
         }
 

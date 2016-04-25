@@ -85,6 +85,8 @@ namespace FRS.WebApi.Controllers
                 return BadRequest(ModelState);
             }
             var userId = User.Identity.GetUserId();
+            string identifier = DateTime.UtcNow.Month + "" + DateTime.UtcNow.Year + "" + DateTime.UtcNow.Hour + "" +
+                                DateTime.UtcNow.Minute + DateTime.UtcNow.Second;
             var mappings = model.TransactionIds.Select(transactionId => new ReconciledMapping
             {
                 OracleGLEntryId = model.OracleGlEntryId, 
@@ -95,6 +97,7 @@ namespace FRS.WebApi.Controllers
                 ModifiedBy = userId, 
                 CreatedOn = DateTime.UtcNow, 
                 ModifiedOn = DateTime.UtcNow,
+                Identifier = identifier
             }).ToList();
 
             var result = reconciledMappingService.SaveReconciledMappings(mappings);

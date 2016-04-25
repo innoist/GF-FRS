@@ -95,43 +95,29 @@
             enableColumnMenus: false,
             //useExternalFiltering: true,
             columnDefs: [
-                // name is for display on the table header, field is for mapping as in 
-                //sortId is kept locally it is not the property of ui.grid
-              //{
-              //    name: 'Name',
-              //    field: 'Name',
-              //    sortId: 1,
-              //    cellTemplate: '<div class="ui-grid-cell-contents"><a ui-sref="">{{row.entity.Name}}</a> </div>',
-              //    //sort: {
-              //    //    direction: uiGridConstants.ASC
-              //    //}
-              //},
-               { displayName: 'Account Number', field: 'AccountNumber', sortId: 0 },
+                { displayName: 'ID', field: 'Identifier', sortId: 0 },
                 {
-                    displayName: 'Statement', field: 'StatementId', sortId: 0 ,
+                    displayName: 'Accounting Entry', field: 'OracleGLEntryId', sortId: 0,
                     cellTemplate: '<div class="ui-grid-cell-contents">' +
-                    '<a ui-sref="app.CustomerStatementsDetail({MT940CustomerStatementId : row.entity.StatementId})">{{row.entity.StatementId}}</a>' +
+                    '<a ui-sref="app.OracleGlEntryDetail({Id : row.entity.OracleGLEntryId})">{{row.entity.OracleGLEntryId}}</a>' +
                     '</div>'
                 },
+                { name: 'Transactions', field: 'TransactionsCount', sortId: 2, headerCellClass: 'grid-align-right' },
                 {
-                    displayName: 'Account Load', field: 'OracleGLLoadId', sortId: 0,
-                    cellTemplate: '<div class="ui-grid-cell-contents">' +
-                    '<a ui-sref="app.OracleGlLoadDetail({Id : row.entity.OracleGLLoadId})">{{row.entity.OracleGLLoadId}}</a>' +
-                    '</div>'
-                },
-              { name: 'Account Date', field: 'AccountDate', sortId: 1 },
-              { name: 'Transaction Date', field: 'TransactionDate', sortId: 2 },
-              { name: 'Amount', field: 'Amount', sortId: 3 , headerCellClass: 'grid-align-right', cellFilter: 'number : 2'},
-                {
-                    name: 'Debit/Credit', field: 'DebitOrCredit', sortId: 4,headerCellClass: 'grid-align-right',
+                    name: 'Debit/Credit', field: 'DebitOrCredit', sortId: 4, headerCellClass: 'grid-align-right',
                     cellTemplate: "<div class='ui-grid-cell-contents text-right'><label title='{{row.entity.DebitOrCredit}}' class='label' ng-class=" + '"' + "{'bg-green-light':row.entity.DebitOrCredit == 'Credit', 'bg-primary-light' : row.entity.DebitOrCredit == 'Debit'}" + '"' + ">{{row.entity.DebitOrCredit}}</label></div>"
                 },
-              {
-                  name: 'Actions', cellTemplate: '<div class="ui-grid-cell-contents text-center"><div class="btn btn-xs">' +
-                    '<a ui-sref="app.ReconciledMappingDetail({Id : row.entity.ReconciledMappingId})" class="btn btn-xs btn-info"><i class="fa fa-search"></i></a>' +
-                    '</div></div>',
-                  headerCellClass: 'text-center'
-              }
+                { name: 'Amount', field: 'Amount', sortId: 3, headerCellClass: 'grid-align-right', cellFilter: 'number : 2' },
+                {
+                    name: 'Reconciliation Status', field: 'DebitOrCredit', sortId: 4, headerCellClass: 'grid-align-right',
+                    cellTemplate: "<div class='ui-grid-cell-contents text-right'><label title='{{row.entity.DebitOrCredit}}' class='label' ng-class=" + '"' + "{'bg-green-light':row.entity.DebitOrCredit == 'Credit', 'bg-primary-light' : row.entity.DebitOrCredit == 'Debit'}" + '"' + ">{{row.entity.DebitOrCredit}}</label></div>"
+                },
+                {
+                    name: 'Actions', cellTemplate: '<div class="ui-grid-cell-contents text-center"><div class="btn btn-xs">' +
+                      '<a ui-sref="app.ReconciledMappingDetail({Id : row.entity.ReconciledMappingId})" class="btn btn-xs btn-info"><i class="fa fa-search"></i></a>' +
+                      '</div></div>',
+                    headerCellClass: 'text-center'
+                }
             ],
             onRegisterApi: function (gridApi) {
                 vm.gridApi = gridApi;

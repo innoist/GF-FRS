@@ -7,6 +7,7 @@ using FRS.Interfaces.Repository;
 using FRS.Models.Common;
 using FRS.Models.DomainModels;
 using FRS.Models.RequestModels;
+using FRS.Models.Resources;
 using FRS.Models.ResponseModels;
 using FRS.Repository.BaseRepository;
 using Microsoft.Practices.Unity;
@@ -51,7 +52,7 @@ namespace FRS.Repository.Repositories
                          DbFunctions.TruncateTime(s.OracleGLEntry.EffectiveDate)
                          ||
                          DbFunctions.TruncateTime(searchRequest.TransactDate.Value) ==
-                         DbFunctions.TruncateTime(s.MT940CustomerStatementTransaction.EntryDate)) && (string.IsNullOrEmpty(searchRequest.Amount) ||value == s.MT940CustomerStatementTransaction.Amount)); 
+                         DbFunctions.TruncateTime(s.MT940CustomerStatementTransaction.EntryDate)) && (string.IsNullOrEmpty(searchRequest.Amount) ||value == s.MT940CustomerStatementTransaction.Amount));
 
             IEnumerable<ReconciledMapping> ReconciledMappings = searchRequest.IsAsc
               ? DbSet
@@ -59,6 +60,23 @@ namespace FRS.Repository.Repositories
                   .Include(x => x.OracleGLEntry)
                   .Where(query)
                   .OrderBy(orderClause[searchRequest.OrderByColumn])
+                  .GroupBy(x => new { x.Identifier})
+                  .Select(x => new ReconciledMapping
+                  {
+                      Identifier = x.Key.Identifier,
+                      ModifiedOn = x.First().ModifiedOn,
+                      OracleGLEntryId = x.First().OracleGLEntryId,
+                      IsManual = x.First().IsManual,
+                      TransactionsCount = x.Count(),
+                      TransactionAmount = x.Sum(y=>y.MT940CustomerStatementTransaction.Amount),
+                      ReconciledMappingId = x.First().ReconciledMappingId,
+                      CreatedBy = x.First().CreatedByRef.FirstName,
+                      CreatedOn = x.First().CreatedOn,
+                      IsDeleted = x.First().IsDeleted,
+                      OracleGLEntry = x.First().OracleGLEntry
+                  })
+                  
+
                   .Skip(fromRow)
                   .Take(toRow)
                   .ToList()
@@ -67,6 +85,22 @@ namespace FRS.Repository.Repositories
                   .Include(x => x.OracleGLEntry)
                   .Where(query)
                   .OrderByDescending(orderClause[searchRequest.OrderByColumn])
+                  .GroupBy(x => new { x.Identifier })
+                  .Select(x => new ReconciledMapping
+                  {
+                      Identifier = x.Key.Identifier,
+                      ModifiedOn = x.First().ModifiedOn,
+                      OracleGLEntryId = x.First().OracleGLEntryId,
+                      IsManual = x.First().IsManual,
+                      TransactionsCount = x.Count(),
+                      TransactionAmount = x.Sum(y => y.MT940CustomerStatementTransaction.Amount),
+                      ReconciledMappingId = x.First().ReconciledMappingId,
+                      CreatedBy = x.First().CreatedByRef.FirstName,
+                      CreatedOn = x.First().CreatedOn,
+                      IsDeleted = x.First().IsDeleted,
+                      OracleGLEntry = x.First().OracleGLEntry
+                  })
+                  
                   .Skip(fromRow)
                   .Take(toRow)
                   .ToList();

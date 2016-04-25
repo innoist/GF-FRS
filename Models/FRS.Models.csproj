@@ -180,6 +180,7 @@
     <Compile Include="RequestModels\LoadMetaDataSearchRequest.cs" />
     <Compile Include="RequestModels\UsersSearchRequest.cs" />
     <Compile Include="RequestModels\RightsManagementRequest.cs" />
+    <Compile Include="Resources\ReconciledMappingGroupByModel.cs" />
     <Compile Include="ResponseModels\BaseDataLoadMetaDataResponse.cs" />
     <Compile Include="ResponseModels\LoadStatusResponse.cs" />
     <Compile Include="ResponseModels\LoadTypeBaseData.cs" />

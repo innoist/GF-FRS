@@ -23,38 +23,44 @@
     <div class="panel-body">
         <div class="row">
             <div class="">
-                <!--<div class="col-md-12">
-                    <p class="lead bb"><strong>Mapping Detail</strong></p>
+                <div class="col-md-12">
+                    <p class="bb">
+                        <span class="lead"><strong>Detail</strong></span>
+                        <span class="pull-right">
+                            <label class="label ml-lg"
+                                   ng-class="{'bg-green-light':rmdc.ReconciledMapping.DebitOrCredit == 'Credit',
+                                   'bg-primary-light' : rmdc.ReconciledMapping.DebitOrCredit == 'Debit'}">{{rmdc.ReconciledMapping.DebitOrCredit}}</label>
+
+                            <span class="">
+                                <label class="label bg-green-light ml-lg" ng-if="rmdc.ReconciliationStatus">Reconciled</label>
+                                <label class="label ml-lg" style="background-color: #dc322f" ng-if="!rmdc.ReconciliationStatus">Remaining Balance: {{rmdc.RemainingBalance | number}}</label>
+                            </span>
+                        </span>
+                    </p>
                     <form class="form-horizontal p-20">
                         <div class="form-group">
-                            <div class="col-sm-4">Mapping Id</div>
+                            <div class="col-sm-4">Identifier</div>
                             <div class="col-sm-8">
-                                <strong>{{rmdc.ReconciledMapping.ReconciledMappingId}}</strong>
+                                <strong>{{rmdc.ReconciledMapping.Identifier}}</strong>
                             </div>
                         </div>
 
 
-                        <div class="form-group">
+                        <!--<div class="form-group">
                             <div class="col-sm-4">Debit/Credit</div>
                             <div class="col-sm-8">
                                 <strong>{{rmdc.ReconciledMapping.DebitOrCredit}}</strong>
                             </div>
-                        </div>
+                        </div>-->
 
 
                         <div class="form-group">
-                            <div class="col-sm-4">Account Date</div>
+                            <div class="col-sm-4">Transactions</div>
                             <div class="col-sm-8">
-                                <strong>{{rmdc.ReconciledMapping.AccountDate}}</strong>
+                                <strong>{{rmdc.ReconciledMapping.TransactionsCount}}</strong>
                             </div>
                         </div>
                         
-                        <div class="form-group">
-                            <div class="col-sm-4">TransactionDate</div>
-                            <div class="col-sm-8">
-                                <strong>{{rmdc.ReconciledMapping.TransactionDate}}</strong>
-                            </div>
-                        </div>
                         <div class="form-group">
                             <div class="col-sm-4">A/C #</div>
                             <div class="col-sm-8">
@@ -65,12 +71,9 @@
                         <div class="form-group">
                             <div class="col-sm-4">Amount</div>
                             <div class="col-sm-8">
-                                <strong>{{rmdc.ReconciledMapping.Amount | number}}</strong>
+                                <strong>{{rmdc.ReconciledMapping.Amount | number:2}}</strong>
                             </div>
                         </div>
-
-
-
 
                         <div class="form-group">
                             <div class="col-sm-4">Type</div>
@@ -86,23 +89,13 @@
 
 
 
-                </div>-->
+                </div>
 
                 <div class="col-md-12">
                     
                     <p class="bb">
-                        <span class="lead"><strong>Detail</strong></span>
+                        <span class="lead"><strong>Accounting Entry</strong></span>
 
-                        <span class="pull-right">
-                            <label class="label ml-lg"
-                                   ng-class="{'bg-green-light':rmdc.ReconciledMapping.DebitOrCredit == 'Credit',
-                                   'bg-primary-light' : rmdc.ReconciledMapping.DebitOrCredit == 'Debit'}">{{rmdc.ReconciledMapping.DebitOrCredit}}</label>
-
-                            <span class="">
-                                <label class="label bg-green-light ml-lg" ng-if="rmdc.ReconciliationStatus">Reconciled</label>
-                                <label class="label ml-lg" style="background-color: #dc322f" ng-if="!rmdc.ReconciliationStatus">Remaining Balance: {{rmdc.RemainingBalance | number}}</label>
-                            </span>
-                        </span>
                     </p>
                     <form class="form-horizontal p-20">
                         <div class="col-md-6">

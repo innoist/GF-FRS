@@ -69,6 +69,8 @@ namespace FRS.Implementation.Services
                 Transactions = rcRepository.GetReconciledMappings(mapping.OracleGLEntryId),
                 ReconciledMapping = mapping
             };
+            response.ReconciledMapping.TransactionAmount = response.Transactions.Sum(x => x.Amount);
+            response.ReconciledMapping.TransactionsCount = response.Transactions.Count();
 
             return response;
         }

@@ -7,6 +7,7 @@ namespace FRS.WebApi.Models.ReconciledMapping
         public long ReconciledMappingId { get; set; }
         public long OracleGLEntryId { get; set; }
         public long OracleGLLoadId { get; set; }
+        public long TransactionsCount { get; set; }
         public long StatementId { get; set; }
         public long MT940CustomerStatementTransactionId { get; set; }
         public bool IsDeleted { get; set; }
@@ -16,6 +17,8 @@ namespace FRS.WebApi.Models.ReconciledMapping
         public string ModifiedBy { get; set; }
         public System.DateTime ModifiedOn { get; set; }
         public string AccountNumber { get; set; }
+        public string Identifier { get; set; }
+
 
         public string AccountDate { get; set; }
         public string TransactionDate { get; set; }

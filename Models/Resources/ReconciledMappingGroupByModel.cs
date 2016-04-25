@@ -1,20 +1,19 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using FRS.Models.DomainModels;
 using FRS.Models.IdentityModels;
 
-namespace FRS.Models.DomainModels
+namespace FRS.Models.Resources
 {
-    public  class ReconciledMapping
+    public  class ReconciledMappingGroupByModel
     {
         public long ReconciledMappingId { get; set; }
         public long OracleGLEntryId { get; set; }
+        
+        public long TransactionsCount { get; set; }
+        
+        public long TransactionsAmount { get; set; }
         public long MT940CustomerStatementTransactionId { get; set; }
         public bool IsDeleted { get; set; }
         public bool IsManual { get; set; }
-        [NotMapped]
-        public long TransactionsCount { get; set; }
-        [NotMapped]
-        public decimal TransactionAmount { get; set; }
-
         public string CreatedBy { get; set; }
         public System.DateTime CreatedOn { get; set; }
         public string ModifiedBy { get; set; }
