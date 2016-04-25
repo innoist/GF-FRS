@@ -65,9 +65,9 @@
         //ui-grid
         var paginationOptions = {
             'params': {
-                SortBy: 0,
+                SortBy: 2,
                 SearchString: '',
-                IsAsc: true,
+                IsAsc: false,
                 PageNo: 1,
                 PageSize: 10,
                 sort: null,
@@ -109,8 +109,8 @@
                 },
                 { name: 'Amount', field: 'Amount', sortId: 3, headerCellClass: 'grid-align-right', cellFilter: 'number : 2' },
                 {
-                    name: 'Reconciliation Status', field: 'DebitOrCredit', sortId: 4, headerCellClass: 'grid-align-right',
-                    cellTemplate: "<div class='ui-grid-cell-contents text-right'><label title='{{row.entity.DebitOrCredit}}' class='label' ng-class=" + '"' + "{'bg-green-light':row.entity.DebitOrCredit == 'Credit', 'bg-primary-light' : row.entity.DebitOrCredit == 'Debit'}" + '"' + ">{{row.entity.DebitOrCredit}}</label></div>"
+                    name: 'Reconciliation Status', field: 'ReconciliationStatus', sortId: 4, headerCellClass: 'grid-align-right',
+                    cellTemplate: "<div class='ui-grid-cell-contents text-right'><label title='{{row.entity.ReconciliationStatus}}' class='label' ng-class=" + '"' + "{'bg-green-light':row.entity.ReconciliationStatus == 'Reconciled', 'bg-danger-light' : row.entity.ReconciliationStatus == 'Not Reconciled'}" + '"' + ">{{row.entity.ReconciliationStatus}}</label></div>"
                 },
                 {
                     name: 'Actions', cellTemplate: '<div class="ui-grid-cell-contents text-center"><div class="btn btn-xs">' +
@@ -176,10 +176,10 @@
             paginationOptions.params.TransactDate = null;
             paginationOptions.params.Amount = "";
             paginationOptions.params.DebitOrCredit = null;
-            paginationOptions.params.IsAsc = true;
+            paginationOptions.params.IsAsc = false;
             paginationOptions.params.PageNo = 1;
             paginationOptions.params.sort = null;
-            paginationOptions.params.SortBy = 0;
+            paginationOptions.params.SortBy = 2;
             getPage();
         }
 

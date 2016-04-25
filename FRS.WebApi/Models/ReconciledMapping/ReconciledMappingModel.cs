@@ -24,12 +24,7 @@ namespace FRS.WebApi.Models.ReconciledMapping
         public string TransactionDate { get; set; }
         public decimal Amount { get; set; }
         public string DebitOrCredit { get; set; }
+        public string ReconciliationStatus { get; set; }
         
-            
-            
-            
-            
-        
-      
     }
 }

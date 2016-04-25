@@ -20,11 +20,9 @@ namespace FRS.Repository.Repositories
 
             new Dictionary<OrderByReconciledMapping, Func<ReconciledMapping, object>>
             {
-                {OrderByReconciledMapping.AccountDate, c => c.OracleGLEntry.EffectiveDate},
                 {OrderByReconciledMapping.AccountNumber, c => c.OracleGLEntry.AccountNumber},
-                {OrderByReconciledMapping.TransactionDate, c => c.MT940CustomerStatementTransaction.EntryDate},
+                {OrderByReconciledMapping.TransactionDate, c => c.CreatedOn},
                 {OrderByReconciledMapping.Amount, c => c.MT940CustomerStatementTransaction.Amount},
-                {OrderByReconciledMapping.DebitOrCredit, c => c.MT940CustomerStatementTransaction.DebitOrCredit}
                 
             };
         public ReconciledMappingRepository(IUnityContainer container)
@@ -49,10 +47,8 @@ namespace FRS.Repository.Repositories
                     (
                         (searchRequest.TransactDate == null ||
                          DbFunctions.TruncateTime(searchRequest.TransactDate.Value) ==
-                         DbFunctions.TruncateTime(s.OracleGLEntry.EffectiveDate)
-                         ||
-                         DbFunctions.TruncateTime(searchRequest.TransactDate.Value) ==
-                         DbFunctions.TruncateTime(s.MT940CustomerStatementTransaction.EntryDate)) && (string.IsNullOrEmpty(searchRequest.Amount) ||value == s.MT940CustomerStatementTransaction.Amount));
+                         DbFunctions.TruncateTime(s.OracleGLEntry.EffectiveDate)) && 
+                         (string.IsNullOrEmpty(searchRequest.Amount) ||value == s.MT940CustomerStatementTransaction.Amount));
 
             IEnumerable<ReconciledMapping> ReconciledMappings = searchRequest.IsAsc
               ? DbSet

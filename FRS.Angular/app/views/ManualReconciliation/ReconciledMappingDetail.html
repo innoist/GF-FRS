@@ -33,7 +33,7 @@
 
                             <span class="">
                                 <label class="label bg-green-light ml-lg" ng-if="rmdc.ReconciliationStatus">Reconciled</label>
-                                <label class="label ml-lg" style="background-color: #dc322f" ng-if="!rmdc.ReconciliationStatus">Remaining Balance: {{rmdc.RemainingBalance | number}}</label>
+                                <label class="label ml-lg" style="background-color: #dc322f" ng-if="!rmdc.ReconciliationStatus">Remaining Balance: {{rmdc.RemainingBalance | number:2}}</label>
                             </span>
                         </span>
                     </p>

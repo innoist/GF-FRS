@@ -3222,8 +3222,8 @@
         // Global Settings
         // -----------------------------------
         $rootScope.app = {
-            name: 'FRS',
-            description: 'FRS (Financial Reconcilaition System) &copy; v. 0.0.0.1 by <a href="http://innostark.com/">InnoStark Technologies</a>',
+            name: 'BRS',
+            description: 'BRS (Bank Reconcilaition System) &copy; v. 0.0.0.1 by <a href="http://innostark.com/">InnoStark Technologies</a>',
             year: ((new Date()).getFullYear()),
             layout: {
                 isFixed: true,
