@@ -111,7 +111,7 @@
                 controllerAs: 'custsc',
                 resolve: helper.resolveFor('ui.grid', 'ui.select', 'CustomerStatements.module')
             })
-            
+
              .state('app.CustomerStatementsDetail', {
                  url: '/CustomerStatementDetail/:MT940CustomerStatementId',
                  title: 'MT940 Customer Statment Detail',
@@ -331,18 +331,18 @@
               })
             .state('app.ReconciledMappingDetail', {
                 url: '/ReconciledMappingDetail/:Id',
-                  title: 'Reconciliation Mapping Detail',
-                  templateUrl: helper.basepath('../../../../app/views/ManualReconciliation/ReconciledMappingDetail.html'),
-                  controller: 'ReconciledMappingDetailController',
-                  controllerAs: 'rmdc',
-                  resolve: helper.resolveFor('ReconciliationMapping.module', 'ui.grid', 'ui.select')
-              })
+                title: 'Reconciliation Mapping Detail',
+                templateUrl: helper.basepath('../../../../app/views/ManualReconciliation/ReconciledMappingDetail.html'),
+                controller: 'ReconciledMappingDetailController',
+                controllerAs: 'rmdc',
+                resolve: helper.resolveFor('ReconciliationMapping.module', 'ui.grid', 'ui.select')
+            })
             .state('account', {
                 url: '/account',
                 templateUrl: 'app/pages/page.html',
                 resolve: helper.resolveFor('modernizr', 'icons', 'toaster'),
                 controller: [
-                    '$rootScope', function($rootScope) {
+                    '$rootScope', function ($rootScope) {
                         $rootScope.app.layout.isBoxed = false;
                     }
                 ]
@@ -367,7 +367,7 @@
                 controller: 'ForgotPasswordController',
                 controllerAs: 'forgotPassword',
                 resolve: helper.resolveFor('recover.module'),
-    })
+            })
             .state('account.lock', {
                 url: '/lock',
                 title: 'Lock',
@@ -379,15 +379,6 @@
                 templateUrl: 'app/pages/404.html'
             })
 
-            .state('app.SLoadType', {
-                url: '/SLoadType',
-                title: 'SLoadType',
-                templateUrl: helper.basepath('../../../../app/views/SLoadType/SLoadType.html'),
-                controller: 'SLoadTcontrollor',
-                controllerAs: 'ltc',
-                resolve: helper.resolveFor('SLoadType.module', 'ui.grid')
-            })
-
             .state('account.ResetPassword', {
                 url: '/ResetPassword',
                 title: 'Reset Password',
@@ -396,7 +387,7 @@
                 controllerAs: 'resetPassword',
                 resolve: helper.resolveFor('resetPassword.module'),
             });
-        
+
         //
         // CUSTOM RESOLVES
         //   Add your own resolves properties

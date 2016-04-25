@@ -7,7 +7,6 @@ using FRS.Interfaces.Repository;
 using FRS.Models.Common;
 using FRS.Models.DomainModels;
 using FRS.Models.RequestModels;
-using FRS.Models.Resources;
 using FRS.Models.ResponseModels;
 using FRS.Repository.BaseRepository;
 using Microsoft.Practices.Unity;
