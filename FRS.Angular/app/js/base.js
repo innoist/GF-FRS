@@ -65,6 +65,7 @@
     
     //Cloud
     //window.frsApiUrl = "http://frswebapi.azurewebsites.net";
+    //window.frsApiUrl = "http://innoist-001-site1.gtempurl.com";
 
 
     var
